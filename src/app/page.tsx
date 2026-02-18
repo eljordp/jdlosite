@@ -49,12 +49,9 @@ function Hero() {
             AI, sales, automation, content, management &mdash;
             every skill I use to run real businesses, taught to the right people.
           </p>
-          <div className="flex items-center gap-6">
-            <a href="#skills" className="glow-btn">
-              Explore
-            </a>
-            <a href="#apply" className="text-text-muted text-[13px] hover:text-text transition-colors duration-300 font-mono tracking-wide">
-              APPLY &rarr;
+          <div>
+            <a href="#apply" className="glow-btn">
+              Apply Now
             </a>
           </div>
         </div>
