@@ -1,86 +1,62 @@
 import PageShell from "@/components/PageShell";
 import LeadForm from "@/components/LeadForm";
 
-const roles = [
-  {
-    title: "Sales Representative",
-    type: "COMMISSION",
-    desc: "Close deals for AI courses and consulting. We bring leads, you close them.",
-  },
-  {
-    title: "Content Creator",
-    type: "CONTRACT",
-    desc: "Create AI content for social — short-form video, carousels, threads.",
-  },
-  {
-    title: "Community Manager",
-    type: "PART-TIME",
-    desc: "Manage the student community. Keep engagement high, help people win.",
-  },
-];
-
 export default function CareersPage() {
   return (
-    <PageShell ctaText="APPLY" ctaHref="#apply">
-      <section className="min-h-[60vh] flex items-center">
-        <div className="max-w-4xl mx-auto px-6 pt-16">
-          <p className="font-mono text-green text-xs tracking-[0.3em] mb-6 animate-in delay-1">
-            {'>'} CAREERS // JOIN THE TEAM
+    <PageShell ctaText="Apply" ctaHref="#apply">
+      <section className="min-h-[60vh] flex items-center justify-center text-center">
+        <div className="max-w-3xl mx-auto px-8">
+          <p className="text-text-muted text-xs tracking-[0.2em] uppercase mb-6 animate-in delay-1">
+            Careers
           </p>
-          <h1 className="text-4xl md:text-6xl font-black leading-[0.95] mb-8 animate-in delay-2">
-            Build the future of<br />
-            <span className="text-green">AI education.</span>
+          <h1 className="font-serif text-4xl md:text-7xl leading-[1.05] mb-8 animate-in delay-2">
+            Build the future of<br />AI education.
           </h1>
-          <p className="text-text-mid text-lg max-w-xl leading-relaxed animate-in delay-3">
-            Small team. Moving fast. If you&apos;re hungry and want to
-            be at the front of AI — keep reading.
+          <p className="text-text-secondary text-lg max-w-lg mx-auto animate-in delay-3">
+            Small team. Moving fast. If you&apos;re hungry and want to be
+            part of something big — keep reading.
           </p>
         </div>
       </section>
 
-      <section className="py-28 border-t border-border">
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="flex items-center gap-3 mb-12">
-            <span className="w-2 h-2 bg-green" />
-            <h2 className="font-mono text-xs tracking-[0.3em] text-text-dim">
-              OPEN ROLES
-            </h2>
-          </div>
-          <div className="space-y-px bg-border">
-            {roles.map((role) => (
+      <section className="py-32">
+        <div className="max-w-3xl mx-auto px-8">
+          <h2 className="font-serif text-3xl md:text-4xl text-center mb-20">
+            Open Roles
+          </h2>
+          <div className="space-y-px">
+            {[
+              { title: "Sales Representative", type: "Commission", desc: "Close deals for AI courses and consulting. We bring leads, you close them." },
+              { title: "Content Creator", type: "Contract", desc: "Create AI content for social — short-form video, carousels, threads." },
+              { title: "Community Manager", type: "Part-time", desc: "Manage the student community. Keep engagement high, help people win." },
+            ].map((role) => (
               <div
                 key={role.title}
-                className="bg-bg p-8 hover:bg-surface transition-colors"
+                className="border border-border hover:border-border-hover p-8 transition-colors"
               >
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
-                  <h3 className="font-bold text-lg">{role.title}</h3>
-                  <span className="font-mono text-[10px] text-green tracking-wider">
+                  <h3 className="font-serif text-lg">{role.title}</h3>
+                  <span className="text-text-muted text-xs tracking-[0.15em] uppercase">
                     {role.type}
                   </span>
                 </div>
-                <p className="text-text-dim text-sm">{role.desc}</p>
+                <p className="text-text-secondary text-sm">{role.desc}</p>
               </div>
             ))}
           </div>
-          <p className="text-text-dim text-sm mt-6 font-mono">
+          <p className="text-text-muted text-sm text-center mt-8">
             Don&apos;t see your role? Apply anyway.
           </p>
         </div>
       </section>
 
-      <section id="apply" className="py-28 border-t border-border">
-        <div className="max-w-lg mx-auto px-6">
-          <div className="flex items-center gap-3 mb-6">
-            <span className="w-2 h-2 bg-green" />
-            <h2 className="font-mono text-xs tracking-[0.3em] text-text-dim">
-              APPLY
-            </h2>
-          </div>
-          <p className="text-2xl font-bold mb-2">Join the team.</p>
-          <p className="text-text-dim text-sm mb-8">
+      <section id="apply" className="py-32">
+        <div className="max-w-lg mx-auto px-8">
+          <h2 className="font-serif text-3xl text-center mb-4">Apply</h2>
+          <p className="text-text-secondary text-sm text-center mb-12">
             Tell us about yourself and what role interests you.
           </p>
-          <LeadForm type="careers" buttonText="SUBMIT" />
+          <LeadForm type="careers" buttonText="Submit Application" />
         </div>
       </section>
     </PageShell>

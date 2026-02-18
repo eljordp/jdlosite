@@ -2,38 +2,31 @@ import Link from "next/link";
 
 function Nav() {
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-bg/80 backdrop-blur-md">
-      <div className="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <span className="font-mono text-green text-sm font-bold tracking-wider">
-            JDLO
-          </span>
-          <span className="text-border-bright">|</span>
-          <span className="text-text-dim text-xs font-mono">SYS.ONLINE</span>
-          <span className="w-1.5 h-1.5 rounded-full bg-green pulse-dot" />
-        </div>
-        <div className="hidden md:flex items-center gap-6 text-xs font-mono text-text-dim">
-          <a href="#ops" className="hover:text-text transition-colors">
-            [OPERATIONS]
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-bg/60 backdrop-blur-xl">
+      <div className="max-w-6xl mx-auto px-8 h-16 flex items-center justify-between">
+        <span className="text-sm font-medium tracking-[0.2em]">JDLO</span>
+        <div className="hidden md:flex items-center gap-10 text-[13px] text-text-secondary">
+          <a href="#about" className="hover:text-text transition-colors">
+            About
           </a>
-          <a href="#paths" className="hover:text-text transition-colors">
-            [PROGRAMS]
+          <a href="#programs" className="hover:text-text transition-colors">
+            Programs
           </a>
-          <a href="#stack" className="hover:text-text transition-colors">
-            [STACK]
+          <a href="#faq" className="hover:text-text transition-colors">
+            FAQ
           </a>
           <Link
-            href="#paths"
-            className="border border-green/30 text-green px-4 py-1.5 hover:bg-green/10 transition-colors"
+            href="#apply"
+            className="text-text hover:text-accent transition-colors"
           >
-            ENTER →
+            Apply
           </Link>
         </div>
         <Link
-          href="#paths"
-          className="md:hidden border border-green/30 text-green px-3 py-1 text-xs font-mono hover:bg-green/10 transition-colors"
+          href="#apply"
+          className="md:hidden text-[13px] text-text"
         >
-          ENTER →
+          Apply
         </Link>
       </div>
     </nav>
@@ -42,162 +35,110 @@ function Nav() {
 
 function Hero() {
   return (
-    <section className="min-h-screen flex items-center relative grid-bg">
-      {/* Corner decorations */}
-      <div className="absolute top-20 left-6 font-mono text-text-dim text-[10px] hidden md:block">
-        <p>LAT 21.3069° N</p>
-        <p>LON 157.8583° W</p>
-        <p className="mt-2 text-green/40">/// ACTIVE</p>
-      </div>
-      <div className="absolute top-20 right-6 font-mono text-text-dim text-[10px] text-right hidden md:block">
-        <p>BUILD 2.0.26</p>
-        <p>SECTOR: AI.EDU</p>
-      </div>
-
-      <div className="max-w-5xl mx-auto px-6 pt-20">
-        <div className="animate-in delay-1">
-          <p className="font-mono text-green text-xs tracking-[0.3em] mb-6">
-            {'>'} JORDAN LOPEZ // AI OPERATOR
-          </p>
-        </div>
-
-        <h1 className="text-4xl md:text-7xl font-black leading-[0.95] mb-8 animate-in delay-2">
-          I teach people &<br />
-          businesses how to<br />
-          <span className="text-green">actually use AI.</span>
+    <section className="min-h-screen flex flex-col items-center justify-center text-center px-8">
+      <div className="max-w-3xl">
+        <h1 className="font-serif text-5xl md:text-8xl font-medium leading-[1.05] mb-8 animate-in delay-1">
+          Learn AI.<br />
+          Build with AI.<br />
+          Win with AI.
         </h1>
-
-        <div className="max-w-xl animate-in delay-3">
-          <p className="text-text-mid text-lg leading-relaxed mb-4">
-            Not theory. Not hype. The real systems, workflows, and skills that
-            are making people dangerous right now.
-          </p>
-          <p className="text-text-dim text-sm leading-relaxed">
-            Courses for individuals. Training for teams. Mentorship for people
-            who want to move fast. I built the operation — now I&apos;m showing
-            others how.
-          </p>
-        </div>
-
-        <div className="flex flex-col sm:flex-row gap-3 mt-10 animate-in delay-4">
-          <a
-            href="#paths"
-            className="bg-green text-bg font-mono font-bold text-sm px-8 py-3.5 hover:bg-green/90 transition-colors text-center"
-          >
-            SEE PROGRAMS →
-          </a>
-          <a
-            href="#ops"
-            className="border border-border-bright text-text-mid font-mono text-sm px-8 py-3.5 hover:border-text-dim hover:text-text transition-colors text-center"
-          >
-            HOW IT WORKS
-          </a>
-        </div>
-
-        {/* Terminal line */}
-        <div className="mt-20 border-t border-border pt-6 font-mono text-xs text-text-dim animate-in delay-5">
-          <span className="text-green">$</span> jdlo --status{" "}
-          <span className="text-text-mid">
-            → courses: building | mentorship: open | consulting: booking
-          </span>
-        </div>
+        <p className="text-text-secondary text-lg md:text-xl max-w-lg mx-auto mb-12 animate-in delay-2">
+          Courses, mentorship, and consulting for people
+          who are serious about it.
+        </p>
+        <a
+          href="#programs"
+          className="inline-block border border-accent/30 text-accent text-[13px] tracking-[0.15em] px-10 py-4 hover:bg-accent/5 transition-all animate-in delay-3"
+        >
+          EXPLORE PROGRAMS
+        </a>
       </div>
-    </section>
-  );
-}
 
-function Operations() {
-  return (
-    <section id="ops" className="py-28 border-t border-border">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="flex items-center gap-3 mb-16">
-          <span className="w-2 h-2 bg-green" />
-          <h2 className="font-mono text-xs tracking-[0.3em] text-text-dim">
-            THE OPERATION
-          </h2>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-16 mb-20">
-          <div>
-            <h3 className="text-3xl md:text-4xl font-bold leading-tight mb-6">
-              This isn&apos;t a one-man<br />
-              YouTube channel.
-            </h3>
-            <p className="text-text-mid leading-relaxed">
-              I have a head of sales, a team managing outreach, and an
-              operation built to deliver. When you work with me, you&apos;re
-              plugging into a system — not watching a course and hoping for
-              the best.
+      {/* Video slot */}
+      <div className="mt-20 w-full max-w-4xl animate-in delay-4">
+        <div className="aspect-video bg-surface border border-border flex items-center justify-center">
+          <div className="text-center">
+            <p className="text-text-muted text-sm mb-2">
+              Your intro video goes here
+            </p>
+            <p className="text-text-muted text-xs">
+              Replace this div with an iframe or video element
             </p>
           </div>
-          <div className="space-y-4">
-            {[
-              {
-                role: "FOUNDER / INSTRUCTOR",
-                name: "Jordan Lopez",
-                status: "active",
-              },
-              {
-                role: "HEAD OF SALES",
-                name: "On team",
-                status: "active",
-              },
-              {
-                role: "SALES & OUTREACH TEAM",
-                name: "Active reps",
-                status: "active",
-              },
-              {
-                role: "OPERATIONS",
-                name: "Management layer",
-                status: "active",
-              },
-            ].map((member) => (
-              <div
-                key={member.role}
-                className="flex items-center justify-between border border-border p-4 hover:border-border-bright transition-colors"
-              >
-                <div>
-                  <p className="font-mono text-[10px] text-green tracking-wider">
-                    {member.role}
-                  </p>
-                  <p className="text-sm text-text-mid mt-1">{member.name}</p>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-green pulse-dot" />
-                  <span className="font-mono text-[10px] text-text-dim">
-                    {member.status.toUpperCase()}
-                  </span>
-                </div>
-              </div>
-            ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function PhotoGrid() {
+  return (
+    <section className="py-4 px-4">
+      <div className="photo-grid grid grid-cols-3 md:grid-cols-5 gap-1">
+        {[1, 2, 3, 4, 5].map((i) => (
+          <div
+            key={i}
+            className="aspect-[4/5] bg-surface border border-border flex items-center justify-center"
+          >
+            <span className="text-text-muted text-xs">Photo {i}</span>
           </div>
-        </div>
+        ))}
+      </div>
+    </section>
+  );
+}
 
-        {/* Process */}
-        <div className="grid md:grid-cols-3 gap-px bg-border">
+function About() {
+  return (
+    <section id="about" className="py-32">
+      <div className="max-w-3xl mx-auto px-8 text-center">
+        <h2 className="font-serif text-4xl md:text-5xl mb-10 animate-in">
+          Who I Am
+        </h2>
+        <p className="text-text-secondary text-lg leading-relaxed mb-8">
+          I&apos;m Jordan Lopez. I build AI systems, lead teams, and help
+          businesses integrate AI into their operations. I&apos;ve built the
+          infrastructure — sales team, management, content — and now
+          I&apos;m making the knowledge accessible.
+        </p>
+        <p className="text-text-secondary leading-relaxed">
+          This isn&apos;t a course from someone who read about AI.
+          This is from someone who runs on it every day.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+function WhatIDo() {
+  return (
+    <section className="py-32">
+      <div className="max-w-3xl mx-auto px-8 text-center">
+        <h2 className="font-serif text-4xl md:text-5xl mb-6">
+          What I Do
+        </h2>
+        <p className="font-serif italic text-2xl text-accent mb-16">
+          AI knowledge into real leverage.
+        </p>
+        <div className="grid md:grid-cols-3 gap-16 text-center">
           {[
             {
-              num: "01",
-              title: "Learn",
-              desc: "Self-paced AI courses that teach you what actually works. Prompt engineering, automation, building with AI.",
+              title: "Educate",
+              desc: "Courses and training that teach what actually works right now.",
             },
             {
-              num: "02",
-              title: "Build",
-              desc: "Apply it. Projects, systems, workflows. You don't just learn — you leave with something that works.",
+              title: "Mentor",
+              desc: "1-on-1 guidance for people who want to move faster than everyone else.",
             },
             {
-              num: "03",
-              title: "Scale",
-              desc: "Mentorship and consulting to take it further. Whether that's a career, a business, or a team.",
+              title: "Consult",
+              desc: "AI implementation for businesses that want to stop leaving money on the table.",
             },
-          ].map((step) => (
-            <div key={step.num} className="bg-bg p-10">
-              <span className="font-mono text-green text-xs">{step.num}</span>
-              <h4 className="text-2xl font-bold mt-3 mb-4">{step.title}</h4>
-              <p className="text-text-dim text-sm leading-relaxed">
-                {step.desc}
+          ].map((item) => (
+            <div key={item.title}>
+              <h3 className="font-serif text-xl mb-3">{item.title}</h3>
+              <p className="text-text-secondary text-sm leading-relaxed">
+                {item.desc}
               </p>
             </div>
           ))}
@@ -207,87 +148,63 @@ function Operations() {
   );
 }
 
-function Paths() {
+function Programs() {
   return (
-    <section id="paths" className="py-28 border-t border-border">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="flex items-center gap-3 mb-6">
-          <span className="w-2 h-2 bg-green" />
-          <h2 className="font-mono text-xs tracking-[0.3em] text-text-dim">
-            SELECT PROGRAM
-          </h2>
-        </div>
-        <p className="text-3xl md:text-4xl font-bold mb-16">
-          Where are you at?
+    <section id="programs" className="py-32">
+      <div className="max-w-4xl mx-auto px-8">
+        <h2 className="font-serif text-4xl md:text-5xl text-center mb-6">
+          Programs
+        </h2>
+        <p className="text-text-secondary text-center mb-20 max-w-lg mx-auto">
+          Three ways to work with me, depending on where you&apos;re at.
         </p>
 
-        <div className="grid md:grid-cols-3 gap-px bg-border">
+        <div className="space-y-px">
           {[
             {
-              tag: "INDIVIDUAL",
-              title: "AI Course",
-              desc: "Self-paced. Learn prompt engineering, automation, and how to build with AI. For students, career switchers, and anyone who wants to stop being behind.",
-              features: [
-                "Video modules + projects",
-                "Private community",
-                "Certificate on completion",
-              ],
-              cta: "Join Waitlist",
+              label: "AI Course",
+              audience: "For individuals",
+              desc: "Self-paced. Learn prompt engineering, automation, and building with AI. Join the waitlist for early access.",
               href: "/students",
+              cta: "Join Waitlist",
             },
             {
-              tag: "ENTERPRISE",
-              title: "Team Training & Consulting",
-              desc: "We audit your workflows, train your team, and implement AI systems that actually save time and money. Your sales team talks to our sales team.",
-              features: [
-                "Custom AI audit",
-                "Team training sessions",
-                "Implementation support",
-              ],
-              cta: "Book a Call",
+              label: "Team Training & Consulting",
+              audience: "For businesses",
+              desc: "We audit your workflows, train your team, and implement AI systems that save real time and money.",
               href: "/businesses",
+              cta: "Book a Call",
             },
             {
-              tag: "HIGH-TICKET",
-              title: "1-on-1 Mentorship",
-              desc: "Direct access to me. Weekly calls, personalized roadmap, async support. For people who are serious and want to move at 10x speed.",
-              features: [
-                "Weekly 1-on-1 calls",
-                "Custom AI roadmap",
-                "Direct message access",
-              ],
-              cta: "Apply",
+              label: "1-on-1 Mentorship",
+              audience: "For serious individuals",
+              desc: "Direct access to me. Weekly calls, custom roadmap, async support. Limited spots.",
               href: "/mentorship",
+              cta: "Apply",
             },
-          ].map((path) => (
-            <div
-              key={path.tag}
-              className="bg-bg p-10 flex flex-col group"
+          ].map((program) => (
+            <Link
+              key={program.label}
+              href={program.href}
+              className="block border border-border hover:border-border-hover p-10 md:p-12 transition-all group hover:bg-surface/50"
             >
-              <span className="font-mono text-[10px] text-green tracking-wider mb-4">
-                {path.tag}
-              </span>
-              <h3 className="text-2xl font-bold mb-4">{path.title}</h3>
-              <p className="text-text-dim text-sm leading-relaxed mb-8 flex-grow">
-                {path.desc}
-              </p>
-              <ul className="space-y-2 mb-8">
-                {path.features.map((f) => (
-                  <li
-                    key={f}
-                    className="flex items-center gap-2 text-xs text-text-mid font-mono"
-                  >
-                    <span className="text-green text-[10px]">→</span> {f}
-                  </li>
-                ))}
-              </ul>
-              <Link
-                href={path.href}
-                className="border border-green/30 text-green font-mono text-sm py-3 text-center hover:bg-green/10 transition-colors"
-              >
-                {path.cta} →
-              </Link>
-            </div>
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                <div className="flex-1">
+                  <p className="text-text-muted text-xs tracking-[0.2em] uppercase mb-2">
+                    {program.audience}
+                  </p>
+                  <h3 className="font-serif text-2xl md:text-3xl mb-3">
+                    {program.label}
+                  </h3>
+                  <p className="text-text-secondary text-sm leading-relaxed max-w-lg">
+                    {program.desc}
+                  </p>
+                </div>
+                <span className="text-text-muted text-sm group-hover:text-text transition-colors whitespace-nowrap">
+                  {program.cta} &rarr;
+                </span>
+              </div>
+            </Link>
           ))}
         </div>
       </div>
@@ -295,43 +212,65 @@ function Paths() {
   );
 }
 
-function Stack() {
+function PhotoGrid2() {
   return (
-    <section id="stack" className="py-28 border-t border-border">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="flex items-center gap-3 mb-6">
-          <span className="w-2 h-2 bg-green" />
-          <h2 className="font-mono text-xs tracking-[0.3em] text-text-dim">
-            WHAT YOU&apos;LL LEARN
-          </h2>
-        </div>
-        <p className="text-3xl md:text-4xl font-bold mb-16">
-          The AI stack that matters.
-        </p>
+    <section className="py-4 px-4">
+      <div className="photo-grid grid grid-cols-3 md:grid-cols-5 gap-1">
+        {[6, 7, 8, 9, 10].map((i) => (
+          <div
+            key={i}
+            className="aspect-[4/5] bg-surface border border-border flex items-center justify-center"
+          >
+            <span className="text-text-muted text-xs">Photo {i}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-border">
+function FAQ() {
+  return (
+    <section id="faq" className="py-32">
+      <div className="max-w-2xl mx-auto px-8">
+        <h2 className="font-serif text-4xl md:text-5xl text-center mb-20">
+          Questions
+        </h2>
+        <div className="space-y-px">
           {[
-            "ChatGPT & Claude",
-            "Prompt Engineering",
-            "AI Automation",
-            "AI Agents",
-            "API Integrations",
-            "Workflow Design",
-            "AI for Sales",
-            "AI for Content",
-            "No-Code AI Tools",
-            "Custom GPTs",
-            "AI Strategy",
-            "Building w/ AI",
-          ].map((skill) => (
-            <div
-              key={skill}
-              className="bg-bg p-6 hover:bg-surface transition-colors group"
+            {
+              q: "Who is this for?",
+              a: "Students who want to break into AI, professionals who want to level up, and businesses that want to integrate AI into their operations.",
+            },
+            {
+              q: "What makes this different from other AI courses?",
+              a: "I'm not a content creator who read about AI. I run businesses on it. You're learning from someone in the trenches, not the sidelines.",
+            },
+            {
+              q: "How does the mentorship work?",
+              a: "Weekly 1-on-1 calls, a custom roadmap based on your goals, and direct message access between sessions. You apply, and if it's a fit, we start.",
+            },
+            {
+              q: "What if I'm a complete beginner?",
+              a: "The course is designed to take you from zero. The mentorship meets you where you're at. Either way, you'll move faster than trying to figure it out alone.",
+            },
+          ].map((item) => (
+            <details
+              key={item.q}
+              className="group border border-border hover:border-border-hover transition-colors"
             >
-              <p className="text-sm text-text-mid group-hover:text-text transition-colors font-mono">
-                {skill}
-              </p>
-            </div>
+              <summary className="flex items-center justify-between p-6 cursor-pointer list-none">
+                <span className="text-[15px]">{item.q}</span>
+                <span className="text-text-muted group-open:rotate-45 transition-transform text-xl ml-4">
+                  +
+                </span>
+              </summary>
+              <div className="px-6 pb-6">
+                <p className="text-text-secondary text-sm leading-relaxed">
+                  {item.a}
+                </p>
+              </div>
+            </details>
           ))}
         </div>
       </div>
@@ -341,69 +280,63 @@ function Stack() {
 
 function Careers() {
   return (
-    <section className="py-28 border-t border-border">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid md:grid-cols-2 gap-16 items-center">
-          <div>
-            <div className="flex items-center gap-3 mb-6">
-              <span className="w-2 h-2 bg-green" />
-              <span className="font-mono text-xs tracking-[0.3em] text-text-dim">
-                CAREERS
-              </span>
-            </div>
-            <h3 className="text-3xl font-bold mb-4">
-              Want to work with me?
-            </h3>
-            <p className="text-text-dim leading-relaxed mb-6">
-              I&apos;m building a team of people who are hungry and want to be
-              at the front of AI. If that&apos;s you, I want to hear from you.
-            </p>
-            <Link
-              href="/careers"
-              className="inline-block border border-green/30 text-green font-mono text-sm px-6 py-3 hover:bg-green/10 transition-colors"
-            >
-              VIEW OPEN ROLES →
-            </Link>
-          </div>
-          <div className="space-y-3">
-            {["Sales", "Content", "Community", "Operations"].map((dept) => (
-              <div
-                key={dept}
-                className="flex items-center justify-between border border-border p-4 hover:border-border-bright transition-colors"
-              >
-                <span className="font-mono text-sm text-text-mid">{dept}</span>
-                <span className="font-mono text-[10px] text-green">
-                  HIRING
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
+    <section className="py-32">
+      <div className="max-w-3xl mx-auto px-8 text-center">
+        <p className="text-text-muted text-xs tracking-[0.2em] uppercase mb-4">
+          Careers
+        </p>
+        <h2 className="font-serif text-3xl md:text-4xl mb-6">
+          Want to work with me?
+        </h2>
+        <p className="text-text-secondary mb-10 max-w-md mx-auto">
+          Building a team of hungry, talented people who want to be
+          at the forefront of AI education.
+        </p>
+        <Link
+          href="/careers"
+          className="inline-block border border-border text-text-secondary text-[13px] tracking-[0.15em] px-8 py-3.5 hover:border-border-hover hover:text-text transition-all"
+        >
+          VIEW OPEN ROLES
+        </Link>
       </div>
     </section>
   );
 }
 
-function CTA() {
+function Apply() {
   return (
-    <section className="py-28 border-t border-border">
-      <div className="max-w-3xl mx-auto px-6 text-center">
-        <p className="font-mono text-green text-xs tracking-[0.3em] mb-6">
-          {'>'} READY?
-        </p>
-        <h2 className="text-3xl md:text-5xl font-bold mb-6">
-          The people learning AI now<br />
-          are the ones running things next.
+    <section id="apply" className="py-32">
+      <div className="max-w-3xl mx-auto px-8 text-center">
+        <h2 className="font-serif text-4xl md:text-6xl mb-6">
+          If you&apos;re serious about AI,
         </h2>
-        <p className="text-text-dim mb-10">
-          Your move.
+        <p className="font-serif italic text-2xl text-accent mb-4">
+          let&apos;s talk.
         </p>
-        <a
-          href="#paths"
-          className="inline-block bg-green text-bg font-mono font-bold text-sm px-10 py-4 hover:bg-green/90 transition-colors"
-        >
-          GET STARTED →
-        </a>
+        <div className="divider max-w-xs mx-auto my-12" />
+        <p className="text-text-secondary mb-10">
+          Pick the program that fits you and apply.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <Link
+            href="/students"
+            className="border border-border text-text-secondary text-[13px] tracking-[0.15em] px-8 py-3.5 hover:border-border-hover hover:text-text transition-all"
+          >
+            COURSE
+          </Link>
+          <Link
+            href="/businesses"
+            className="border border-border text-text-secondary text-[13px] tracking-[0.15em] px-8 py-3.5 hover:border-border-hover hover:text-text transition-all"
+          >
+            CONSULTING
+          </Link>
+          <Link
+            href="/mentorship"
+            className="border border-accent/30 text-accent text-[13px] tracking-[0.15em] px-8 py-3.5 hover:bg-accent/5 transition-all"
+          >
+            MENTORSHIP
+          </Link>
+        </div>
       </div>
     </section>
   );
@@ -411,24 +344,24 @@ function CTA() {
 
 function Footer() {
   return (
-    <footer className="border-t border-border py-10">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex items-center gap-3">
-            <span className="font-mono text-green text-sm font-bold">JDLO</span>
-            <span className="text-border-bright">|</span>
-            <span className="font-mono text-text-dim text-[10px]">
-              AI EDUCATION & OPS
-            </span>
+    <footer className="py-16">
+      <div className="max-w-6xl mx-auto px-8">
+        <div className="divider mb-12" />
+        <div className="flex flex-col md:flex-row justify-between items-center gap-8">
+          <div className="text-center md:text-left">
+            <p className="text-sm tracking-[0.2em] mb-1">JDLO</p>
+            <p className="text-text-muted text-xs">
+              AI Education & Mentorship
+            </p>
           </div>
-          <div className="flex gap-6 font-mono text-[11px] text-text-dim">
+          <div className="flex gap-8 text-[13px] text-text-muted">
             <a
               href="https://instagram.com/jdlo"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-text transition-colors"
             >
-              IG
+              Instagram
             </a>
             <a
               href="https://twitter.com/jdlo"
@@ -438,14 +371,11 @@ function Footer() {
             >
               X
             </a>
-            <Link href="/careers" className="hover:text-text transition-colors">
-              CAREERS
-            </Link>
           </div>
         </div>
-        <div className="mt-6 text-center font-mono text-[10px] text-text-dim">
-          &copy; {new Date().getFullYear()} JDLO. ALL RIGHTS RESERVED.
-        </div>
+        <p className="text-center text-text-muted text-[11px] mt-10">
+          &copy; {new Date().getFullYear()} JDLO. All rights reserved.
+        </p>
       </div>
     </footer>
   );
@@ -456,11 +386,15 @@ export default function Home() {
     <main>
       <Nav />
       <Hero />
-      <Operations />
-      <Paths />
-      <Stack />
+      <PhotoGrid />
+      <About />
+      <div className="divider max-w-2xl mx-auto" />
+      <WhatIDo />
+      <Programs />
+      <PhotoGrid2 />
+      <FAQ />
       <Careers />
-      <CTA />
+      <Apply />
       <Footer />
     </main>
   );
