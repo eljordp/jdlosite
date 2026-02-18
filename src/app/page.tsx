@@ -15,8 +15,8 @@ function Nav() {
           <a href="#about" className="hover:text-text transition-colors duration-300">About</a>
           <a href="#faq" className="hover:text-text transition-colors duration-300">FAQ</a>
         </div>
-        <Link href="#apply" className="text-[13px] text-text-secondary hover:text-text transition-colors duration-300">
-          Work With Me &rarr;
+        <Link href="#apply" className="glow-btn !py-1.5 !px-5 !text-[13px]">
+          Work With Me
         </Link>
       </div>
     </nav>
