@@ -9,31 +9,25 @@ interface PageShellProps {
 export default function PageShell({ children, ctaText, ctaHref }: PageShellProps) {
   return (
     <main>
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-bg/60 backdrop-blur-xl">
-        <div className="max-w-6xl mx-auto px-8 h-16 flex items-center justify-between">
-          <Link href="/" className="text-sm tracking-[0.2em]">
+      <nav className="fixed top-0 left-0 right-0 z-50 nav-blur border-b border-border">
+        <div className="max-w-[1200px] mx-auto px-6 h-12 flex items-center justify-between">
+          <Link href="/" className="text-[15px] font-semibold tracking-tight">
             JDLO
           </Link>
-          <a
-            href={ctaHref}
-            className="text-[13px] text-text hover:text-accent transition-colors"
-          >
+          <a href={ctaHref} className="glow-btn !py-1.5 !px-4 !text-[13px]">
             {ctaText}
           </a>
         </div>
       </nav>
-      <div className="pt-16">{children}</div>
-      <footer className="py-16">
-        <div className="max-w-6xl mx-auto px-8">
-          <div className="divider mb-10" />
-          <div className="text-center">
-            <Link
-              href="/"
-              className="text-text-muted text-[13px] hover:text-text transition-colors"
-            >
-              &larr; Back to JDLO
-            </Link>
-          </div>
+      <div className="pt-12">{children}</div>
+      <footer className="py-12 border-t border-border">
+        <div className="max-w-[1200px] mx-auto px-6 text-center">
+          <Link
+            href="/"
+            className="text-text-muted text-[13px] hover:text-text transition-colors duration-300"
+          >
+            &larr; Back to JDLO
+          </Link>
         </div>
       </footer>
     </main>

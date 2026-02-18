@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "JDLO — AI Education & Mentorship",
+  title: "JDLO — AI Education & Operations",
   description:
-    "AI courses, mentorship, and consulting. Built by Jordan Lopez.",
+    "Learn AI, sales, automation, and operations from someone who actually runs on it. Courses, mentorship, and consulting by Jordan Lopez.",
 };
 
 export default function RootLayout({
@@ -15,8 +15,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap"
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
           rel="stylesheet"
         />
       </head>

@@ -21,23 +21,23 @@ export default function LeadForm({
 
   if (submitted) {
     return (
-      <div className="border border-border p-12 text-center">
-        <h3 className="font-serif text-2xl mb-3">Received.</h3>
-        <p className="text-text-secondary text-sm">
+      <div className="rounded-2xl border border-border bg-surface p-12 text-center">
+        <h3 className="text-2xl font-semibold tracking-[-0.02em] mb-3">Received.</h3>
+        <p className="text-text-secondary text-[14px]">
           {type === "business"
-            ? "Our team will reach out within 24 hours to schedule a call."
+            ? "I'll reach out within 24 hours to schedule a call."
             : type === "mentorship"
-            ? "We'll review your application and be in touch."
+            ? "I'll review your application and be in touch."
             : type === "careers"
-            ? "We'll review and reach out if there's a fit."
-            : "You're on the list. We'll be in touch."}
+            ? "I'll review and reach out if there's a fit."
+            : "You're on the list. I'll be in touch."}
         </p>
       </div>
     );
   }
 
   const inputClass =
-    "w-full bg-transparent border border-border px-4 py-3.5 text-sm text-text placeholder:text-text-muted focus:outline-none focus:border-border-hover transition-colors";
+    "w-full bg-surface border border-border rounded-xl px-4 py-3.5 text-[14px] text-text placeholder:text-text-muted focus:outline-none focus:border-accent/30 transition-colors duration-300";
 
   const labelClass = "block text-[13px] text-text-secondary mb-2";
 
@@ -206,11 +206,8 @@ export default function LeadForm({
         </div>
       )}
 
-      <button
-        type="submit"
-        className="w-full border border-accent/30 text-accent text-[13px] tracking-[0.15em] py-4 hover:bg-accent/5 transition-all"
-      >
-        {buttonText} &rarr;
+      <button type="submit" className="glow-btn w-full justify-center">
+        {buttonText} <span className="ml-1">&rarr;</span>
       </button>
     </form>
   );
