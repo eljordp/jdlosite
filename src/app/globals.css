@@ -230,25 +230,8 @@ details summary { list-style: none; }
   mix-blend-mode: difference;
   transform: translate(-50%, -50%);
 }
-.cursor-ring {
-  width: 40px;
-  height: 40px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  z-index: 99998;
-  transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
-  transform: translate(-50%, -50%);
-}
-.cursor-ring.hovering {
-  width: 60px;
-  height: 60px;
-  border-color: var(--color-accent);
-}
-
 @media (pointer: coarse) {
-  .cursor-dot, .cursor-ring { display: none; }
+  .cursor-dot { display: none; }
 }
 
 /* ── Horizontal line animation ── */
