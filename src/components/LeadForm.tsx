@@ -12,11 +12,32 @@ export default function LeadForm({
   buttonText = "Submit Application",
 }: LeadFormProps) {
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // TODO: Connect to backend/CRM/email service
-    setSubmitted(true);
+    setSending(true);
+    setError("");
+
+    const form = e.currentTarget;
+    const data = Object.fromEntries(new FormData(form));
+    data.type = type;
+
+    try {
+      const res = await fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (!res.ok) throw new Error("Failed");
+      setSubmitted(true);
+    } catch {
+      setError("Something went wrong. Try again.");
+    } finally {
+      setSending(false);
+    }
   };
 
   if (submitted) {
@@ -206,8 +227,12 @@ export default function LeadForm({
         </div>
       )}
 
-      <button type="submit" className="glow-btn w-full justify-center">
-        {buttonText} <span className="ml-1">&rarr;</span>
+      {error && (
+        <p className="text-red-400 text-[13px] text-center">{error}</p>
+      )}
+
+      <button type="submit" disabled={sending} className="glow-btn w-full justify-center disabled:opacity-50">
+        {sending ? "Sending..." : buttonText} {!sending && <span className="ml-1">&rarr;</span>}
       </button>
     </form>
   );
