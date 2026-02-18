@@ -1,7 +1,17 @@
 import { Resend } from "resend";
 import { NextRequest, NextResponse } from "next/server";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Lazy init so build doesn't crash without the env var
+let _resend: Resend | null = null;
+function getResend() {
+  if (!_resend) {
+    if (!process.env.RESEND_API_KEY) {
+      throw new Error("RESEND_API_KEY is not set");
+    }
+    _resend = new Resend(process.env.RESEND_API_KEY);
+  }
+  return _resend;
+}
 
 /* ── Auto-reply content per lead type ── */
 function getAutoReply(type: string, firstName: string) {
@@ -150,14 +160,14 @@ export async function POST(req: NextRequest) {
 
     // Send both emails in parallel
     await Promise.all([
-      resend.emails.send({
+      getResend().emails.send({
         from: "JDLO Leads <onboarding@resend.dev>",
         to: process.env.LEAD_EMAIL || "eljordp@gmail.com",
         subject: `New ${labels[type] || "Lead"}: ${name}`,
         html: notificationHtml,
         replyTo: email,
       }),
-      resend.emails.send({
+      getResend().emails.send({
         from: "JDLO <onboarding@resend.dev>",
         to: email,
         subject: reply.subject,
