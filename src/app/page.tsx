@@ -239,7 +239,7 @@ function About() {
                 src="/jordan.jpg"
                 alt="Jordan Lopez"
                 fill
-                className="object-cover object-top"
+                className="object-cover object-center"
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>
