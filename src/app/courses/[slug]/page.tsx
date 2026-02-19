@@ -64,34 +64,6 @@ export default async function CoursePage({
                 <span className="w-px h-4 bg-border" />
                 <span className="text-text">{course.price}</span>
               </div>
-              {/* ── Course nav arrows ── */}
-              <div className="flex items-center gap-5">
-                {prevCourse && (
-                  <Link
-                    href={`/courses/${prevCourse.slug}`}
-                    className="flex items-center gap-2 group"
-                  >
-                    <span className="bounce-left text-accent text-base leading-none">←</span>
-                    <span className="text-[11px] font-mono text-text-muted group-hover:text-accent transition-colors duration-300">
-                      {prevCourse.title}
-                    </span>
-                  </Link>
-                )}
-                {prevCourse && nextCourse && (
-                  <span className="w-px h-3 bg-border" />
-                )}
-                {nextCourse && (
-                  <Link
-                    href={`/courses/${nextCourse.slug}`}
-                    className="flex items-center gap-2 group"
-                  >
-                    <span className="text-[11px] font-mono text-text-muted group-hover:text-accent transition-colors duration-300">
-                      {nextCourse.title}
-                    </span>
-                    <span className="bounce-right text-accent text-base leading-none">→</span>
-                  </Link>
-                )}
-              </div>
             </div>
           </div>
         </div>
@@ -264,9 +236,33 @@ export default async function CoursePage({
               <br />
               <span className="gradient-text-blue">get started?</span>
             </h2>
-            <p className="text-text-secondary text-lg mb-4">
-              {course.price} &middot; {course.duration}
-            </p>
+            <div className="flex items-center justify-center gap-4 mb-4">
+              {prevCourse && (
+                <Link
+                  href={`/courses/${prevCourse.slug}`}
+                  className="flex items-center gap-2 group"
+                >
+                  <span className="bounce-left text-accent text-base leading-none">←</span>
+                  <span className="text-[11px] font-mono text-text-secondary group-hover:text-accent transition-colors duration-300">
+                    {prevCourse.title}
+                  </span>
+                </Link>
+              )}
+              <p className="text-text-secondary text-lg">
+                {course.price} &middot; {course.duration}
+              </p>
+              {nextCourse && (
+                <Link
+                  href={`/courses/${nextCourse.slug}`}
+                  className="flex items-center gap-2 group"
+                >
+                  <span className="text-[11px] font-mono text-text-secondary group-hover:text-accent transition-colors duration-300">
+                    {nextCourse.title}
+                  </span>
+                  <span className="bounce-right text-accent text-base leading-none">→</span>
+                </Link>
+              )}
+            </div>
             <p className="text-text-muted text-[13px] mb-10">
               Enrollment is reviewed. Not everyone gets in.
             </p>
