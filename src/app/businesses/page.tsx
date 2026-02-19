@@ -4,7 +4,7 @@ import RevealOnScroll from "@/components/RevealOnScroll";
 
 export default function BusinessesPage() {
   return (
-    <PageShell ctaText="Book a Call" ctaHref="#contact">
+    <PageShell ctaText="Book a Call" ctaHref="https://calendar.app.google/uZVeQYHLMe5croEn8" ctaExternal>
       <section className="min-h-[80vh] flex items-center justify-center text-center relative">
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-accent/[0.03] rounded-full blur-[120px] pointer-events-none" />
         <div className="max-w-[700px] mx-auto px-6 relative z-10">

@@ -176,7 +176,7 @@ function ForBusinesses() {
               I audit your workflows, train your team on AI, and build the systems
               that 10x your output.
             </p>
-            <GlowLink href="/businesses">
+            <GlowLink href="https://calendar.app.google/uZVeQYHLMe5croEn8" external>
               Book a Strategy Call
             </GlowLink>
           </RevealOnScroll>
@@ -371,9 +371,9 @@ function Apply() {
             </div>
             <p className="text-text-muted text-[13px] mt-8">
               Businesses &mdash;{" "}
-              <Link href="/businesses" className="text-accent hover:underline">
+              <a href="https://calendar.app.google/uZVeQYHLMe5croEn8" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">
                 book a strategy call
-              </Link>
+              </a>
             </p>
           </div>
         </RevealOnScroll>

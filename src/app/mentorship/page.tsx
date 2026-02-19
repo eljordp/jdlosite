@@ -21,6 +21,9 @@ export default function MentorshipPage() {
             Direct access to me. Personalized roadmap, weekly calls,
             and accountability. For people who are serious.
           </p>
+          <p className="text-text text-[1.75rem] font-bold tracking-tight mt-6 hero-animate hero-delay-4">
+            $5,000<span className="text-text-secondary text-xl font-normal">/mo</span>
+          </p>
         </div>
       </section>
 

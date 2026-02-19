@@ -198,29 +198,6 @@ body::after {
   pointer-events: none;
 }
 
-/* ── Keep .glow-btn as alias for non-interactive use ── */
-.glow-btn {
-  --glow-x: 50%;
-  --glow-y: 50%;
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.875rem 2rem;
-  border-radius: 980px;
-  background: var(--color-accent);
-  color: #fff;
-  font-size: 0.9375rem;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.glow-btn:hover {
-  background: #0077ed;
-  box-shadow: 0 0 30px var(--color-glow);
-  transform: scale(1.02);
-}
 
 /* ── Ghost button ── */
 .ghost-btn {
@@ -337,15 +314,6 @@ details[open] > div {
   animation: faq-open 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* ── Horizontal line animation ── */
-@keyframes line-draw {
-  from { transform: scaleX(0); }
-  to   { transform: scaleX(1); }
-}
-.line-draw {
-  transform-origin: left;
-  animation: line-draw 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
 
 /* ── Spotlight for remaining cards ── */
 .spotlight-card {

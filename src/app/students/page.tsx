@@ -1,75 +1,58 @@
 import PageShell from "@/components/PageShell";
-import LeadForm from "@/components/LeadForm";
 import RevealOnScroll from "@/components/RevealOnScroll";
-import SpotlightCard from "@/components/SpotlightCard";
+import Link from "next/link";
+import { courses } from "@/lib/courses";
 
 export default function StudentsPage() {
   return (
-    <PageShell ctaText="Join Waitlist" ctaHref="#enroll">
-      <section className="min-h-[80vh] flex items-center justify-center text-center relative">
+    <PageShell ctaText="Take the Quiz" ctaHref="/quiz">
+      <section className="min-h-[55vh] flex items-center justify-center text-center relative">
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-accent/[0.03] rounded-full blur-[120px] pointer-events-none" />
         <div className="max-w-[700px] mx-auto px-6 relative z-10">
           <p className="text-accent text-[13px] tracking-[0.3em] uppercase mb-6 hero-animate hero-delay-1">
-            AI Course
+            Courses
           </p>
           <h1 className="text-[clamp(2.5rem,6vw,4.5rem)] font-semibold leading-[1.05] tracking-[-0.03em] mb-8 hero-animate hero-delay-2">
-            <span className="gradient-text">Learn AI that gets</span>
+            <span className="gradient-text">Pick your</span>
             <br />
-            <span className="gradient-text-blue">you ahead.</span>
+            <span className="gradient-text-blue">skill track.</span>
           </h1>
           <p className="text-text-secondary text-lg max-w-[480px] mx-auto hero-animate hero-delay-3">
-            A complete, project-based AI course. Go from zero to building
-            real systems &mdash; with a community and mentor behind you.
+            Six disciplines. Real systems. Every course built on what Jordan uses daily.
           </p>
         </div>
       </section>
 
       <section className="section-gap">
-        <div className="max-w-[800px] mx-auto px-6">
-          <RevealOnScroll>
-            <h2 className="text-[clamp(1.8rem,3.5vw,2.5rem)] font-semibold tracking-[-0.03em] text-center mb-16">
-              What You&apos;ll Learn
-            </h2>
-          </RevealOnScroll>
-          <div className="space-y-4">
-            {[
-              { num: "01", title: "AI Fundamentals", desc: "How AI actually works — the concepts that matter for real-world application." },
-              { num: "02", title: "Prompt Engineering", desc: "Advanced techniques that 99% of people don't know. Get exactly what you want from AI." },
-              { num: "03", title: "Automation & Workflows", desc: "Build AI-powered systems that save hours every week. Connect tools, build agents." },
-              { num: "04", title: "Building with AI", desc: "Go from consumer to creator. Build real projects you can show employers or clients." },
-              { num: "05", title: "AI Career & Freelancing", desc: "Position yourself in the AI economy. Land roles, win clients, build products." },
-            ].map((mod, i) => (
-              <RevealOnScroll key={mod.num} delay={(i % 3) + 1}>
-                <SpotlightCard className="skill-card flex gap-6 items-start">
-                  <span className="text-text-muted text-xs font-mono mt-1 shrink-0">
-                    {mod.num}
-                  </span>
-                  <div>
-                    <h3 className="text-lg font-semibold tracking-[-0.02em] mb-2">{mod.title}</h3>
-                    <p className="text-text-secondary text-[14px] leading-relaxed">
-                      {mod.desc}
-                    </p>
-                  </div>
-                </SpotlightCard>
-              </RevealOnScroll>
-            ))}
-          </div>
+        <div className="max-w-[800px] mx-auto px-6 space-y-3">
+          {courses.map((course, i) => (
+            <RevealOnScroll key={course.slug} delay={(i % 3) + 1}>
+              <Link
+                href={`/courses/${course.slug}`}
+                className="group flex items-center justify-between gap-6 rounded-2xl border border-border bg-surface/50 p-7 hover:border-border-hover transition-all duration-500"
+              >
+                <div className="flex-1 min-w-0">
+                  <h2 className="text-xl font-semibold tracking-[-0.02em] mb-1 group-hover:text-accent transition-colors duration-300">
+                    {course.title}
+                  </h2>
+                  <p className="text-text-secondary text-[14px] leading-relaxed">
+                    {course.tagline}
+                  </p>
+                </div>
+                <div className="shrink-0 text-right">
+                  <p className="text-text text-[15px] font-semibold">{course.price}</p>
+                  <p className="text-text-muted text-[12px] font-mono">{course.duration}</p>
+                </div>
+                <span className="text-accent text-lg shrink-0 group-hover:translate-x-1 transition-transform duration-300">→</span>
+              </Link>
+            </RevealOnScroll>
+          ))}
         </div>
-      </section>
-
-      <section id="enroll" className="section-gap">
-        <div className="max-w-[480px] mx-auto px-6">
-          <RevealOnScroll>
-            <h2 className="text-2xl font-semibold tracking-[-0.02em] text-center mb-3">
-              Join the Waitlist
-            </h2>
-            <p className="text-text-secondary text-[14px] text-center mb-10">
-              Get early access and a launch discount.
-            </p>
-          </RevealOnScroll>
-          <RevealOnScroll delay={1}>
-            <LeadForm type="student" buttonText="Join Waitlist" />
-          </RevealOnScroll>
+        <div className="text-center mt-14">
+          <p className="text-text-muted text-[14px] mb-4">Not sure where to start?</p>
+          <Link href="/quiz" className="text-accent text-[14px] hover:underline font-mono">
+            Take the skills quiz →
+          </Link>
         </div>
       </section>
     </PageShell>

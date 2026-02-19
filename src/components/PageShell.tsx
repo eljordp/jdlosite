@@ -15,10 +15,11 @@ interface PageShellProps {
   children: React.ReactNode;
   ctaText: string;
   ctaHref: string;
+  ctaExternal?: boolean;
   activeSlug?: string;
 }
 
-export default function PageShell({ children, ctaText, ctaHref, activeSlug }: PageShellProps) {
+export default function PageShell({ children, ctaText, ctaHref, ctaExternal, activeSlug }: PageShellProps) {
   return (
     <main className="cursor-none">
       <CustomCursor />
@@ -48,7 +49,7 @@ export default function PageShell({ children, ctaText, ctaHref, activeSlug }: Pa
             })}
           </div>
 
-          <GlowLink href={ctaHref} className="!py-1.5 !px-4 !text-[13px] shrink-0">
+          <GlowLink href={ctaHref} external={ctaExternal} className="!py-1.5 !px-4 !text-[13px] shrink-0">
             {ctaText}
           </GlowLink>
         </div>
