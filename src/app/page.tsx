@@ -233,21 +233,13 @@ function About() {
           </RevealOnScroll>
 
           <RevealOnScroll delay={2}>
-            <div className="flex flex-col justify-end h-full gap-12">
-              {[
-                { num: "500+", label: "Students" },
-                { num: "50+", label: "Businesses" },
-                { num: "6", label: "Disciplines" },
-              ].map((stat) => (
-                <div key={stat.label}>
-                  <p className="text-[clamp(3rem,6vw,5rem)] font-bold tracking-[-0.05em] leading-none gradient-text-blue">
-                    {stat.num}
-                  </p>
-                  <p className="text-text-muted text-[11px] tracking-[0.3em] uppercase font-mono mt-2">
-                    {stat.label}
-                  </p>
-                </div>
-              ))}
+            {/* ── Photo: drop a lifestyle/portrait image here ── */}
+            <div className="relative w-full aspect-[4/5] rounded-3xl overflow-hidden border border-border bg-surface-2">
+              {/* Replace the div below with: <Image src="/jordan.jpg" alt="Jordan Lopez" fill className="object-cover" /> */}
+              <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-center px-6">
+                <p className="text-text-muted text-[11px] tracking-[0.3em] uppercase font-mono">Photo</p>
+                <p className="text-text-muted text-[12px] font-mono opacity-50">Drop your image in /public</p>
+              </div>
             </div>
           </RevealOnScroll>
         </div>
