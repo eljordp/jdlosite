@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { GlowLink } from "@/components/GlowButton";
+import CustomCursor from "@/components/CustomCursor";
 
 const disciplines = [
   { label: "AI & Automation", href: "/courses/ai-automation", slug: "ai-automation" },
@@ -23,7 +24,8 @@ export default function PageShell({ children, ctaText, ctaHref, activeSlug }: Pa
   const next = activeIdx !== -1 && activeIdx < disciplines.length - 1 ? disciplines[activeIdx + 1] : null;
 
   return (
-    <main>
+    <main className="cursor-none">
+      <CustomCursor />
       <nav className="fixed top-0 left-0 right-0 z-50 nav-blur border-b border-border">
         <div className="max-w-[1400px] mx-auto px-6 h-12 flex items-center justify-between gap-6">
           <Link href="/" className="text-[15px] font-semibold tracking-tight shrink-0">
