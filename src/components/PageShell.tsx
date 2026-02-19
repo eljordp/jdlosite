@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { GlowLink } from "@/components/GlowButton";
 
 const disciplines = [
   { label: "AI & Automation", href: "/courses/ai-automation", slug: "ai-automation" },
@@ -45,9 +46,9 @@ export default function PageShell({ children, ctaText, ctaHref, activeSlug }: Pa
             })}
           </div>
 
-          <a href={ctaHref} className="glow-btn !py-1.5 !px-4 !text-[13px] shrink-0">
+          <GlowLink href={ctaHref} className="!py-1.5 !px-4 !text-[13px] shrink-0">
             {ctaText}
-          </a>
+          </GlowLink>
         </div>
       </nav>
       <div className="pt-12">{children}</div>

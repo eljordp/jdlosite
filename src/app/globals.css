@@ -154,11 +154,58 @@ body::after {
   -webkit-text-stroke-color: var(--color-border-hover);
 }
 
-/* ── Glow button ── */
-.glow-btn {
+/* ── Magnetic glow button ── */
+.magnetic-btn {
+  --glow-x: 50%;
+  --glow-y: 50%;
+  --glow-opacity: 0;
   position: relative;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  border-radius: 980px;
+  background: var(--color-accent);
+  color: #fff;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.3s ease;
+}
+.magnetic-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    120px circle at var(--glow-x) var(--glow-y),
+    rgba(255, 255, 255, 0.25) 0%,
+    transparent 70%
+  );
+  opacity: var(--glow-opacity);
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+.magnetic-btn:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 40px rgba(41, 151, 255, 0.25);
+}
+.magnetic-btn:disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* ── Keep .glow-btn as alias for non-interactive use ── */
+.glow-btn {
+  --glow-x: 50%;
+  --glow-y: 50%;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   padding: 0.875rem 2rem;
   border-radius: 980px;
@@ -171,14 +218,17 @@ body::after {
 }
 .glow-btn:hover {
   background: #0077ed;
-  box-shadow: 0 0 30px var(--color-glow), 0 0 60px rgba(41, 151, 255, 0.1);
-  transform: scale(1.03);
+  box-shadow: 0 0 30px var(--color-glow);
+  transform: scale(1.02);
 }
 
 /* ── Ghost button ── */
 .ghost-btn {
+  --glow-x: 50%;
+  --glow-y: 50%;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   padding: 0.875rem 2rem;
   border-radius: 980px;
@@ -187,11 +237,27 @@ body::after {
   font-size: 0.9375rem;
   font-weight: 500;
   letter-spacing: -0.01em;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+  position: relative;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+.ghost-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    100px circle at var(--glow-x) var(--glow-y),
+    rgba(41, 151, 255, 0.12) 0%,
+    transparent 70%
+  );
+  opacity: var(--glow-opacity, 0);
+  transition: opacity 0.4s ease;
+  pointer-events: none;
 }
 .ghost-btn:hover {
   border-color: var(--color-accent);
-  background: rgba(41, 151, 255, 0.06);
+  transform: scale(1.02);
 }
 
 /* ── Nav ── */

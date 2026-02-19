@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { GlowButton } from "@/components/GlowButton";
 
 interface LeadFormProps {
   type: "student" | "business" | "mentorship" | "careers";
@@ -231,9 +232,9 @@ export default function LeadForm({
         <p className="text-red-400 text-[13px] text-center">{error}</p>
       )}
 
-      <button type="submit" disabled={sending} className="glow-btn w-full justify-center disabled:opacity-50">
+      <GlowButton type="submit" disabled={sending} className="w-full justify-center">
         {sending ? "Sending..." : buttonText} {!sending && <span className="ml-1">&rarr;</span>}
-      </button>
+      </GlowButton>
     </form>
   );
 }

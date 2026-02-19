@@ -1,6 +1,7 @@
 import Link from "next/link";
 import RevealOnScroll from "@/components/RevealOnScroll";
 import CustomCursor from "@/components/CustomCursor";
+import { GlowLink } from "@/components/GlowButton";
 
 /* ── Nav ── */
 function Nav() {
@@ -15,9 +16,9 @@ function Nav() {
           <a href="#about" className="hover:text-text transition-colors duration-300">About</a>
           <a href="#faq" className="hover:text-text transition-colors duration-300">FAQ</a>
         </div>
-        <Link href="#apply" className="glow-btn !py-1.5 !px-5 !text-[13px]">
+        <GlowLink href="#apply" className="!py-1.5 !px-5 !text-[13px]">
           Work With Me
-        </Link>
+        </GlowLink>
       </div>
     </nav>
   );
@@ -50,9 +51,9 @@ function Hero() {
             every skill I use to run real businesses, taught to the right people.
           </p>
           <div>
-            <a href="#apply" className="glow-btn">
+            <GlowLink href="#apply">
               Apply Now
-            </a>
+            </GlowLink>
           </div>
         </div>
       </div>
@@ -176,9 +177,9 @@ function ForBusinesses() {
               I audit your workflows, train your team on AI, and build the systems
               that 10x your output.
             </p>
-            <Link href="/businesses" className="glow-btn">
+            <GlowLink href="/businesses">
               Book a Strategy Call
-            </Link>
+            </GlowLink>
           </RevealOnScroll>
 
           <RevealOnScroll delay={2}>
@@ -362,9 +363,9 @@ function Apply() {
               Apply and I&apos;ll get back to you personally.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/mentorship" className="glow-btn">
+              <GlowLink href="/mentorship">
                 Apply for Mentorship
-              </Link>
+              </GlowLink>
               <Link href="/students" className="ghost-btn">
                 Browse Courses
               </Link>

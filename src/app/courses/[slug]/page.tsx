@@ -3,6 +3,7 @@ import Link from "next/link";
 import { getCourse, getAllSlugs } from "@/lib/courses";
 import RevealOnScroll from "@/components/RevealOnScroll";
 import PageShell from "@/components/PageShell";
+import { GlowLink } from "@/components/GlowButton";
 
 export async function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
@@ -236,9 +237,9 @@ export default async function CoursePage({
               Enrollment is reviewed. Not everyone gets in.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/students" className="glow-btn">
+              <GlowLink href="/students">
                 Apply to Enroll
-              </Link>
+              </GlowLink>
               <Link href="/mentorship" className="ghost-btn">
                 Want 1:1 instead?
               </Link>
