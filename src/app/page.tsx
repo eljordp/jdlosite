@@ -2,6 +2,7 @@ import Link from "next/link";
 import RevealOnScroll from "@/components/RevealOnScroll";
 import CustomCursor from "@/components/CustomCursor";
 import { GlowLink } from "@/components/GlowButton";
+import ScrollHighlightText from "@/components/ScrollHighlightText";
 
 /* ── Nav ── */
 function Nav() {
@@ -146,13 +147,10 @@ function Statement() {
   return (
     <section className="section-gap">
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
-        <RevealOnScroll>
-          <h2 className="text-[clamp(1.8rem,4vw,3.5rem)] font-semibold tracking-[-0.04em] leading-[1.15] max-w-[700px]">
-            <span className="text-text-muted">This isn&apos;t a course from someone who read about AI.</span>
-            {" "}
-            <span className="text-text">This is from someone who runs on it every day.</span>
-          </h2>
-        </RevealOnScroll>
+        <ScrollHighlightText
+          text="This isn't a course from someone who read about AI. This is from someone who runs on it every day."
+          className="text-[clamp(1.8rem,4vw,3.5rem)] font-semibold tracking-[-0.04em] leading-[1.15] max-w-[700px]"
+        />
       </div>
     </section>
   );
