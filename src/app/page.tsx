@@ -221,16 +221,10 @@ function About() {
               <br />
               <span className="text-text-secondary">An operator.</span>
             </h2>
-            <div className="space-y-5 text-text-secondary text-lg leading-relaxed max-w-[500px]">
-              <p>
-                I build and run businesses on AI. Sales teams, content engines,
-                automation systems.
-              </p>
-              <p>
-                Everything I teach, I use. Every system I sell,
-                I built for myself first.
-              </p>
-            </div>
+            <ScrollHighlightText
+              text="I build and run businesses on AI. Sales teams, content engines, automation systems. Everything I teach, I use. Every system I sell, I built for myself first."
+              className="text-lg leading-relaxed max-w-[500px]"
+            />
           </RevealOnScroll>
 
           <RevealOnScroll delay={2}>
