@@ -32,7 +32,7 @@ export default async function CoursePage({
   if (!course) notFound();
 
   return (
-    <PageShell ctaText="Enroll Now" ctaHref="#enroll">
+    <PageShell ctaText="Enroll Now" ctaHref="#enroll" activeSlug={course.slug}>
       {/* ── Hero ── */}
       <section className="min-h-[80vh] flex flex-col justify-end relative px-6 md:px-10 pb-[10vh]">
         <div className="absolute top-[20%] right-[5%] w-[500px] h-[500px] bg-accent/[0.03] rounded-full blur-[180px] pointer-events-none" />
