@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import JordiChat from "@/components/JordiChat";
 
 export const metadata: Metadata = {
   title: "JDLO — AI Education & Operations",
@@ -26,7 +27,10 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="font-sans antialiased">{children}</body>
+      <body className="font-sans antialiased">
+        {children}
+        <JordiChat />
+      </body>
     </html>
   );
 }
