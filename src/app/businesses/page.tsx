@@ -20,6 +20,14 @@ export default function BusinessesPage() {
             Most businesses use AI at 10% of its potential.
             I find the gaps, train your team, and build the systems.
           </p>
+          <div className="mt-10 hero-animate hero-delay-4">
+            <a
+              href="/quiz/operator"
+              className="inline-flex items-center gap-2 text-accent text-[13px] font-mono hover:gap-3 transition-all duration-300"
+            >
+              Not sure if we&apos;re a fit? Take the 5-question quiz →
+            </a>
+          </div>
         </div>
       </section>
 
