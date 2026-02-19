@@ -6,11 +6,13 @@ import { GlowButton } from "@/components/GlowButton";
 interface LeadFormProps {
   type: "student" | "business" | "mentorship" | "careers";
   buttonText?: string;
+  course?: string;
 }
 
 export default function LeadForm({
   type,
   buttonText = "Submit Application",
+  course,
 }: LeadFormProps) {
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
@@ -65,6 +67,7 @@ export default function LeadForm({
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
+      {course && <input type="hidden" name="course" value={course} />}
       <div className="grid sm:grid-cols-2 gap-5">
         <div>
           <label className={labelClass}>Full Name *</label>

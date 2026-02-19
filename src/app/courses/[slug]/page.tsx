@@ -267,7 +267,7 @@ export default async function CoursePage({
               Enrollment is reviewed. Not everyone gets in.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <GlowLink href="/students">
+              <GlowLink href={`/apply/${course.slug}`}>
                 Apply to Enroll
               </GlowLink>
               <Link href="/mentorship" className="ghost-btn">

@@ -14,29 +14,32 @@ function getResend() {
 }
 
 /* ── Auto-reply content per lead type ── */
-function getAutoReply(type: string, firstName: string) {
+function getAutoReply(type: string, firstName: string, course?: string) {
   const base = {
     greeting: `Hey ${firstName},`,
-    signoff: `Talk soon,<br/>Jordan Lopez<br/><span style="color:#48484a;font-size:12px">Founder, JDLO</span>`,
+    signoff: `— Jordan Lopez<br/><span style="color:#48484a;font-size:12px">Founder, JDLO</span>`,
   };
 
   switch (type) {
     case "student":
       return {
-        subject: "You're on the list — here's what's coming",
+        subject: course
+          ? `Application received — ${course}`
+          : "Application received — here's what's next",
         body: `
-          <p>Thanks for signing up. You just made a smart move.</p>
-          <p>Here's what you'll be learning inside the program:</p>
-          <table style="width:100%;border-collapse:collapse;margin:24px 0">
-            <tr><td style="padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.06);color:#f5f5f7;font-size:14px"><strong style="color:#2997ff">01</strong> &nbsp; AI Fundamentals</td></tr>
-            <tr><td style="padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.06);color:#f5f5f7;font-size:14px"><strong style="color:#2997ff">02</strong> &nbsp; Prompt Engineering</td></tr>
-            <tr><td style="padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.06);color:#f5f5f7;font-size:14px"><strong style="color:#2997ff">03</strong> &nbsp; Automation & Workflows</td></tr>
-            <tr><td style="padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.06);color:#f5f5f7;font-size:14px"><strong style="color:#2997ff">04</strong> &nbsp; Building with AI</td></tr>
-            <tr><td style="padding:10px 0;color:#f5f5f7;font-size:14px"><strong style="color:#2997ff">05</strong> &nbsp; AI Career & Freelancing</td></tr>
+          <p>Application received${course ? ` for <strong style="color:#f5f5f7">${course}</strong>` : ""}.</p>
+          <p>Most people stay on the fence. They read the page, tell themselves they'll think about it, and never move. You didn't do that. That already puts you ahead of most.</p>
+          <p style="color:#86868b;font-size:13px;border-left:2px solid #2997ff;padding-left:14px;margin:24px 0">
+            I review every application personally. Not everyone gets in — and that's the point. The people inside this program are serious, and I intend to keep it that way.
+          </p>
+          <p>Here's what happens next:</p>
+          <table style="width:100%;border-collapse:collapse;margin:20px 0">
+            <tr><td style="padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.06);color:#f5f5f7;font-size:14px"><strong style="color:#2997ff">01</strong> &nbsp; I review your application</td></tr>
+            <tr><td style="padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.06);color:#f5f5f7;font-size:14px"><strong style="color:#2997ff">02</strong> &nbsp; If you're a fit, you'll hear from me within 24–48 hours</td></tr>
+            <tr><td style="padding:10px 0;color:#f5f5f7;font-size:14px"><strong style="color:#2997ff">03</strong> &nbsp; We get you started</td></tr>
           </table>
-          <p>This isn't theory — it's the exact systems I use to run real businesses. You'll go from understanding AI to actually building with it.</p>
-          <p>One of our <strong>Program Advisors</strong> will be reaching out to you shortly to answer any questions and get you set up.</p>
-          <p>In the meantime, keep an eye on your inbox.</p>
+          <p>If I think a different track would serve you better, I'll tell you that too. I'm not here to sell you something that doesn't fit.</p>
+          <p>Sit tight.</p>
         `,
         ...base,
       };
@@ -99,7 +102,7 @@ function getAutoReply(type: string, firstName: string) {
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { type, name, email, ...rest } = body;
+    const { type, name, email, course, ...rest } = body;
 
     if (!name || !email || !type) {
       return NextResponse.json(
@@ -140,7 +143,7 @@ export async function POST(req: NextRequest) {
     `;
 
     // ── 2. Auto-reply email to the lead ──
-    const reply = getAutoReply(type, firstName);
+    const reply = getAutoReply(type, firstName, course);
 
     const autoReplyHtml = `
       <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;max-width:560px;margin:0 auto;color:#f5f5f7;background:#0a0a0a;padding:40px;border-radius:16px">
@@ -163,7 +166,7 @@ export async function POST(req: NextRequest) {
       getResend().emails.send({
         from: "JDLO Leads <onboarding@resend.dev>",
         to: process.env.LEAD_EMAIL || "eljordp@gmail.com",
-        subject: `New ${labels[type] || "Lead"}: ${name}`,
+        subject: `New ${labels[type] || "Lead"}: ${name}${course ? ` — ${course}` : ""}`,
         html: notificationHtml,
         replyTo: email,
       }),
