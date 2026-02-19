@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getCourse, getAllSlugs } from "@/lib/courses";
+import { getCourse, getAllSlugs, courses } from "@/lib/courses";
 import RevealOnScroll from "@/components/RevealOnScroll";
 import PageShell from "@/components/PageShell";
 import { GlowLink } from "@/components/GlowButton";
@@ -32,6 +32,10 @@ export default async function CoursePage({
   const course = getCourse(slug);
   if (!course) notFound();
 
+  const courseIdx = courses.findIndex((c) => c.slug === slug);
+  const prevCourse = courseIdx > 0 ? courses[courseIdx - 1] : null;
+  const nextCourse = courseIdx < courses.length - 1 ? courses[courseIdx + 1] : null;
+
   return (
     <PageShell ctaText="Enroll Now" ctaHref="#enroll" activeSlug={course.slug}>
       {/* ── Hero ── */}
@@ -52,12 +56,42 @@ export default async function CoursePage({
             <p className="text-text-secondary text-xl leading-relaxed max-w-[480px]">
               {course.tagline}
             </p>
-            <div className="flex items-center gap-8 text-[13px] font-mono text-text-muted">
-              <span>{course.duration}</span>
-              <span className="w-px h-4 bg-border" />
-              <span>{course.level}</span>
-              <span className="w-px h-4 bg-border" />
-              <span className="text-text">{course.price}</span>
+            <div className="flex flex-col items-start md:items-end gap-4">
+              <div className="flex items-center gap-8 text-[13px] font-mono text-text-muted">
+                <span>{course.duration}</span>
+                <span className="w-px h-4 bg-border" />
+                <span>{course.level}</span>
+                <span className="w-px h-4 bg-border" />
+                <span className="text-text">{course.price}</span>
+              </div>
+              {/* ── Course nav arrows ── */}
+              <div className="flex items-center gap-5">
+                {prevCourse && (
+                  <Link
+                    href={`/courses/${prevCourse.slug}`}
+                    className="flex items-center gap-2 group"
+                  >
+                    <span className="bounce-left text-accent text-base leading-none">←</span>
+                    <span className="text-[11px] font-mono text-text-muted group-hover:text-accent transition-colors duration-300">
+                      {prevCourse.title}
+                    </span>
+                  </Link>
+                )}
+                {prevCourse && nextCourse && (
+                  <span className="w-px h-3 bg-border" />
+                )}
+                {nextCourse && (
+                  <Link
+                    href={`/courses/${nextCourse.slug}`}
+                    className="flex items-center gap-2 group"
+                  >
+                    <span className="text-[11px] font-mono text-text-muted group-hover:text-accent transition-colors duration-300">
+                      {nextCourse.title}
+                    </span>
+                    <span className="bounce-right text-accent text-base leading-none">→</span>
+                  </Link>
+                )}
+              </div>
             </div>
           </div>
         </div>
