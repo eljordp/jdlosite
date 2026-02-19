@@ -66,31 +66,37 @@ const skills = [
     title: "AI & Automation",
     desc: "Build AI agents, automate workflows, integrate AI into real operations. This is what I run my companies on.",
     price: "$2,500",
+    href: "/courses/ai-automation",
   },
   {
     title: "Sales Systems",
     desc: "Scripts, objection handling, pipeline management, CRM automation. The exact frameworks I use to close.",
     price: "$1,500",
+    href: "/courses/sales-systems",
   },
   {
     title: "Prompt Engineering",
     desc: "Advanced techniques that 99% don't know. Get what you want from any model, every time.",
     price: "$800",
+    href: "/courses/prompt-engineering",
   },
   {
     title: "Content & Brand",
     desc: "Strategy, production systems, distribution — all AI-accelerated. Build a brand that prints.",
     price: "$1,200",
+    href: "/courses/content-brand",
   },
   {
     title: "Team & Operations",
     desc: "Hiring, SOPs, management frameworks. The systems that let you scale without burning out.",
     price: "$2,000",
+    href: "/courses/team-operations",
   },
   {
     title: "1:1 Mentorship",
     desc: "Direct access. Weekly calls, custom roadmap, async support. Limited to 5 spots at any time.",
     price: "$5,000/mo",
+    href: "/mentorship",
   },
 ];
 
@@ -112,7 +118,7 @@ function Skills() {
         <div>
           {skills.map((skill, i) => (
             <RevealOnScroll key={skill.title} delay={(i % 3) + 1}>
-              <div className="skill-row group">
+              <Link href={skill.href} className="skill-row group block">
                 <div>
                   <span className="skill-title">{skill.title}</span>
                   <div className="skill-desc">
@@ -125,7 +131,7 @@ function Skills() {
                 <span className="skill-number" aria-hidden="true">
                   0{i + 1}
                 </span>
-              </div>
+              </Link>
             </RevealOnScroll>
           ))}
         </div>
