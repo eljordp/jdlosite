@@ -13,10 +13,9 @@ const milestones = [
 ];
 
 const stats = [
-  { value: "$92B+", label: "Revenue of clients we've worked with" },
-  { value: "$3K", label: "First big website deal, up from a few hundred" },
-  { value: "Monthly", label: "Recurring revenue from AI products built in-house" },
-  { value: "1 team", label: "Of true operators. Nothing slips past us." },
+  { value: "$0", label: "What it started with", sub: "No connections. No playbook. No safety net." },
+  { value: "90 days", label: "Zero to enterprise clients", sub: "DHL. P.F. Chang's. From scratch." },
+  { value: "$92B+", label: "Revenue of companies we've closed", sub: "The room you end up in when you move fast." },
 ];
 
 export default function AboutPage() {
@@ -138,12 +137,16 @@ export default function AboutPage() {
       {/* ── Stats ── */}
       <section className="section-gap border-t border-border">
         <div className="max-w-[1400px] mx-auto px-6 md:px-10">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border">
+          <div className="grid sm:grid-cols-3 gap-0">
             {stats.map((s, i) => (
-              <RevealOnScroll key={i} delay={(i % 4) + 1}>
-                <div className="bg-bg p-10">
-                  <p className="text-[clamp(2rem,4vw,3.5rem)] font-bold tracking-[-0.04em] gradient-text mb-2">{s.value}</p>
-                  <p className="text-text-muted text-[13px] leading-relaxed">{s.label}</p>
+              <RevealOnScroll key={i} delay={i + 1}>
+                <div className={`py-12 flex flex-col gap-4 ${i < stats.length - 1 ? 'sm:border-r border-border sm:pr-12' : ''} ${i > 0 ? 'sm:pl-12' : ''} ${i > 0 ? 'border-t sm:border-t-0 border-border pt-12 sm:pt-12' : ''}`}>
+                  <div className="w-6 h-px bg-accent mb-2" />
+                  <p className="text-[clamp(2.8rem,6vw,5rem)] font-bold tracking-[-0.05em] gradient-text leading-none">{s.value}</p>
+                  <div>
+                    <p className="text-text text-[15px] font-medium leading-snug mb-1">{s.label}</p>
+                    <p className="text-text-muted text-[13px] leading-relaxed">{s.sub}</p>
+                  </div>
                 </div>
               </RevealOnScroll>
             ))}
