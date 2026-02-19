@@ -1,3 +1,6 @@
+'use client';
+
+import { useState } from "react";
 import Link from "next/link";
 import { GlowLink } from "@/components/GlowButton";
 import CustomCursor from "@/components/CustomCursor";
@@ -21,6 +24,8 @@ interface PageShellProps {
 }
 
 export default function PageShell({ children, ctaText, ctaHref, ctaExternal, activeSlug }: PageShellProps) {
+  const [open, setOpen] = useState(false);
+
   return (
     <main className="cursor-none">
       <CustomCursor />
@@ -30,7 +35,7 @@ export default function PageShell({ children, ctaText, ctaHref, ctaExternal, act
             JDLO
           </Link>
 
-          {/* Discipline links */}
+          {/* Desktop discipline links */}
           <div className="hidden lg:flex items-center gap-1 overflow-x-auto">
             {disciplines.map((d) => {
               const isActive = activeSlug === d.slug;
@@ -50,11 +55,67 @@ export default function PageShell({ children, ctaText, ctaHref, ctaExternal, act
             })}
           </div>
 
-          <GlowLink href={ctaHref} external={ctaExternal} className="!py-1.5 !px-4 !text-[13px] shrink-0">
+          <div className="flex items-center gap-3">
+            <GlowLink href={ctaHref} external={ctaExternal} className="!py-1.5 !px-4 !text-[13px] shrink-0">
+              {ctaText}
+            </GlowLink>
+            {/* Mobile hamburger */}
+            <button
+              onClick={() => setOpen(true)}
+              className="lg:hidden p-2 -mr-1 text-text-muted hover:text-text transition-colors"
+              aria-label="Open menu"
+            >
+              <svg width="20" height="14" viewBox="0 0 20 14" fill="currentColor">
+                <rect width="20" height="1.5" rx="0.75" />
+                <rect y="6.25" width="20" height="1.5" rx="0.75" />
+                <rect y="12.5" width="20" height="1.5" rx="0.75" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      {/* Mobile overlay */}
+      <div
+        className={`fixed inset-0 z-[100] bg-bg flex flex-col px-6 py-5 transition-opacity duration-300 lg:hidden ${
+          open ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
+      >
+        <div className="flex items-center justify-between mb-10">
+          <Link href="/" onClick={() => setOpen(false)} className="text-[15px] font-semibold tracking-tight">
+            JDLO
+          </Link>
+          <button
+            onClick={() => setOpen(false)}
+            className="text-text-muted hover:text-text text-4xl leading-none"
+            aria-label="Close menu"
+          >
+            ×
+          </button>
+        </div>
+
+        <div className="flex flex-col flex-1">
+          {disciplines.map((d) => (
+            <Link
+              key={d.slug}
+              href={d.href}
+              onClick={() => setOpen(false)}
+              className={`text-[2rem] font-semibold tracking-[-0.03em] transition-colors duration-200 py-2.5 border-b border-border/40 last:border-0 ${
+                activeSlug === d.slug ? 'text-accent' : 'text-text-secondary hover:text-text'
+              }`}
+            >
+              {d.label}
+            </Link>
+          ))}
+        </div>
+
+        <div className="pt-8">
+          <GlowLink href={ctaHref} external={ctaExternal} className="w-full justify-center">
             {ctaText}
           </GlowLink>
         </div>
-      </nav>
+      </div>
+
       <div className="pt-12">{children}</div>
       <footer className="py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">

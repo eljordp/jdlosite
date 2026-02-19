@@ -18,7 +18,7 @@ export default function StudentsPage() {
             <span className="gradient-text-blue">skill track.</span>
           </h1>
           <p className="text-text-secondary text-lg max-w-[480px] mx-auto hero-animate hero-delay-3">
-            Six disciplines. Real systems. Every course built on what Jordan uses daily.
+            Five disciplines. Real systems. Every course built on what Jordan uses daily.
           </p>
         </div>
       </section>

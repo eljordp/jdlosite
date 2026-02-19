@@ -1,11 +1,29 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import JordiChat from "@/components/JordiChat";
 
 export const metadata: Metadata = {
   title: "JDLO — AI Education & Operations",
   description:
     "Learn AI, sales, automation, and operations from someone who actually runs on it. Courses, mentorship, and consulting by Jordan Lopez.",
+  icons: {
+    icon: "/jordan.jpg",
+  },
+  openGraph: {
+    title: "JDLO — AI Education & Operations",
+    description:
+      "Learn AI, sales, automation, and operations from someone who actually runs on it.",
+    url: "https://jdlo.site",
+    siteName: "JDLO",
+    images: [{ url: "https://jdlo.site/jordan.jpg", width: 1200, height: 1500, alt: "Jordan Lopez — JDLO" }],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "JDLO — AI Education & Operations",
+    description:
+      "Learn AI, sales, automation, and operations from someone who actually runs on it.",
+    images: ["https://jdlo.site/jordan.jpg"],
+  },
 };
 
 export default function RootLayout({
@@ -29,7 +47,6 @@ export default function RootLayout({
       </head>
       <body className="font-sans antialiased">
         {children}
-        <JordiChat />
       </body>
     </html>
   );

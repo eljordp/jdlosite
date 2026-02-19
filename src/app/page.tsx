@@ -4,28 +4,7 @@ import RevealOnScroll from "@/components/RevealOnScroll";
 import CustomCursor from "@/components/CustomCursor";
 import { GlowLink } from "@/components/GlowButton";
 import ScrollHighlightText from "@/components/ScrollHighlightText";
-
-/* ── Nav ── */
-function Nav() {
-  return (
-    <nav className="fixed top-0 left-0 right-0 z-50 nav-blur">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-10 h-14 flex items-center justify-between">
-        <Link href="/" className="text-[15px] font-semibold tracking-tight">
-          JDLO
-        </Link>
-        <div className="hidden md:flex items-center gap-8 text-[13px] text-text-secondary">
-          <a href="#skills" className="hover:text-text transition-colors duration-300">Skills</a>
-          <a href="#about" className="hover:text-text transition-colors duration-300">About</a>
-          <a href="#faq" className="hover:text-text transition-colors duration-300">FAQ</a>
-          <Link href="/quiz" className="text-accent hover:text-accent/80 transition-colors duration-300 font-mono text-[12px]">Skills Quiz →</Link>
-        </div>
-        <GlowLink href="#apply" className="!py-1.5 !px-5 !text-[13px]">
-          Work With Me
-        </GlowLink>
-      </div>
-    </nav>
-  );
-}
+import HomeNav from "@/components/HomeNav";
 
 /* ── Hero ── */
 function Hero() {
@@ -384,10 +363,7 @@ function Footer() {
               Careers
             </Link>
             <a href="https://instagram.com/jdlo" target="_blank" rel="noopener noreferrer" className="text-[12px] text-text-muted hover:text-text transition-colors duration-300">
-              Instagram
-            </a>
-            <a href="https://twitter.com/jdlo" target="_blank" rel="noopener noreferrer" className="text-[12px] text-text-muted hover:text-text transition-colors duration-300">
-              X
+              @jdlo
             </a>
           </div>
         </div>
@@ -401,7 +377,7 @@ export default function Home() {
   return (
     <main className="cursor-none md:cursor-none">
       <CustomCursor />
-      <Nav />
+      <HomeNav />
       <Hero />
       <Skills />
       <Statement />
