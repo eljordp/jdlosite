@@ -159,6 +159,12 @@ function ForBusinesses() {
             <GlowLink href="https://calendar.app.google/uZVeQYHLMe5croEn8" external>
               Book a Strategy Call
             </GlowLink>
+            <a
+              href="/quiz/operator"
+              className="inline-flex items-center gap-2 text-text-muted text-[12px] font-mono hover:text-accent transition-colors duration-300 mt-6"
+            >
+              Not sure if we&apos;re a fit? Take the quiz →
+            </a>
           </RevealOnScroll>
 
           <RevealOnScroll delay={2}>
@@ -201,9 +207,13 @@ function About() {
               <span className="text-text-secondary">An operator.</span>
             </h2>
             <ScrollHighlightText
-              text="I build and run businesses on AI. Sales teams, content engines, automation systems. Everything I teach, I use. Every system I sell, I built for myself first."
+              text="Started with nothing. Sold websites for a few hundred bucks. Now running AI-powered sales teams and working with companies doing billions in revenue. Everything I teach, I lived."
               className="text-lg leading-relaxed max-w-[500px]"
             />
+            <Link href="/about" className="inline-flex items-center gap-2 text-accent text-[14px] font-mono font-medium hover:text-white border-b border-accent/40 hover:border-white pb-0.5 transition-all duration-300 mt-10 group">
+              The full story
+              <span className="group-hover:translate-x-1 transition-transform duration-200">→</span>
+            </Link>
           </RevealOnScroll>
 
           <RevealOnScroll delay={2}>
