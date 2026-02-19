@@ -240,6 +240,7 @@ export default async function CoursePage({
               {prevCourse && (
                 <Link
                   href={`/courses/${prevCourse.slug}`}
+                  scroll={false}
                   className="absolute left-0 flex items-center gap-2 group"
                 >
                   <span className="bounce-left text-accent text-base leading-none">←</span>
@@ -254,6 +255,7 @@ export default async function CoursePage({
               {nextCourse && (
                 <Link
                   href={`/courses/${nextCourse.slug}`}
+                  scroll={false}
                   className="absolute right-0 flex items-center gap-2 group"
                 >
                   <span className="text-[11px] font-mono text-text-secondary group-hover:text-accent transition-colors duration-300">
