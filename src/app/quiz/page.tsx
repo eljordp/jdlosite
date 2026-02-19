@@ -350,6 +350,11 @@ export default function QuizPage() {
   return (
     <main className="cursor-none min-h-screen flex flex-col justify-center px-6 py-20">
       <CustomCursor />
+      <nav className="fixed top-0 left-0 right-0 z-50 nav-blur border-b border-border">
+        <div className="max-w-[1400px] mx-auto px-6 h-12 flex items-center">
+          <Link href="/" className="text-[15px] font-semibold tracking-tight">JDLO</Link>
+        </div>
+      </nav>
       <div className="max-w-[560px] mx-auto w-full">
         {/* Progress */}
         <div className="flex items-center gap-4 mb-14">

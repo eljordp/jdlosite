@@ -46,10 +46,10 @@ export default async function CoursePage({
             Course
           </p>
           <h1 className="text-[clamp(3rem,9vw,7.5rem)] font-bold leading-[0.9] tracking-[-0.05em] hero-animate hero-delay-2">
-            <span className="text-text">{course.title.split(" ")[0]}</span>
+            <span className="text-text">{course.title.split(" ").slice(0, -1).join(" ")}</span>
             <br />
             <span className="gradient-text-blue">
-              {course.title.split(" ").slice(1).join(" ") || "."}
+              {course.title.split(" ").slice(-1)[0]}
             </span>
           </h1>
           <div className="mt-10 hero-animate hero-delay-3 flex flex-col md:flex-row md:items-end md:justify-between gap-8">

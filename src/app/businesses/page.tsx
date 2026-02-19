@@ -84,7 +84,7 @@ export default function BusinessesPage() {
               Apply to Work With Me
             </h2>
             <p className="text-text-secondary text-[14px] text-center mb-10">
-              Complete the form and I&apos;ll be in touch within 48 hours.
+              Complete the form and I&apos;ll be in touch within 24 hours.
             </p>
           </RevealOnScroll>
           <RevealOnScroll delay={1}>

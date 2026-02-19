@@ -9,6 +9,7 @@ const disciplines = [
   { label: "Content & Brand", href: "/courses/content-brand", slug: "content-brand" },
   { label: "Team & Ops", href: "/courses/team-operations", slug: "team-operations" },
   { label: "Mentorship", href: "/mentorship", slug: "mentorship" },
+  { label: "Businesses", href: "/businesses", slug: "businesses" },
 ];
 
 interface PageShellProps {
@@ -56,13 +57,29 @@ export default function PageShell({ children, ctaText, ctaHref, ctaExternal, act
       </nav>
       <div className="pt-12">{children}</div>
       <footer className="py-12 border-t border-border">
-        <div className="max-w-[1400px] mx-auto px-6 flex justify-center">
+        <div className="max-w-[1400px] mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <Link
             href="/"
             className="text-text-muted text-[12px] font-mono hover:text-text transition-colors duration-300"
           >
             JDLO
           </Link>
+          <div className="flex items-center gap-6">
+            <a
+              href="https://instagram.com/jdlo"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-text-muted text-[12px] font-mono hover:text-text transition-colors duration-300"
+            >
+              @jdlo
+            </a>
+            <a
+              href="mailto:eljordp@gmail.com"
+              className="text-text-muted text-[12px] font-mono hover:text-text transition-colors duration-300"
+            >
+              eljordp@gmail.com
+            </a>
+          </div>
         </div>
       </footer>
     </main>
