@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import RevealOnScroll from "@/components/RevealOnScroll";
 import CustomCursor from "@/components/CustomCursor";
 import { GlowLink } from "@/components/GlowButton";
@@ -233,13 +234,14 @@ function About() {
           </RevealOnScroll>
 
           <RevealOnScroll delay={2}>
-            {/* ── Photo: drop a lifestyle/portrait image here ── */}
-            <div className="relative w-full aspect-[4/5] rounded-3xl overflow-hidden border border-border bg-surface-2">
-              {/* Replace the div below with: <Image src="/jordan.jpg" alt="Jordan Lopez" fill className="object-cover" /> */}
-              <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-center px-6">
-                <p className="text-text-muted text-[11px] tracking-[0.3em] uppercase font-mono">Photo</p>
-                <p className="text-text-muted text-[12px] font-mono opacity-50">Drop your image in /public</p>
-              </div>
+            <div className="relative w-full aspect-[4/5] rounded-3xl overflow-hidden border border-border">
+              <Image
+                src="/jordan.jpg"
+                alt="Jordan Lopez"
+                fill
+                className="object-cover object-top"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
             </div>
           </RevealOnScroll>
         </div>
