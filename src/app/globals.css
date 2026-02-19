@@ -283,6 +283,13 @@ details summary { list-style: none; }
   padding-bottom: clamp(6rem, 14vh, 12rem);
 }
 
+/* ── Hide default cursor everywhere (fine-pointer only) ── */
+@media (pointer: fine) {
+  *, *::before, *::after {
+    cursor: none !important;
+  }
+}
+
 /* ── Custom cursor ── */
 .cursor-dot {
   width: 8px;
