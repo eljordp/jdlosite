@@ -236,11 +236,11 @@ export default async function CoursePage({
               <br />
               <span className="gradient-text-blue">get started?</span>
             </h2>
-            <div className="flex items-center justify-center gap-4 mb-4">
+            <div className="relative flex items-center justify-center mb-4 min-h-[2rem]">
               {prevCourse && (
                 <Link
                   href={`/courses/${prevCourse.slug}`}
-                  className="flex items-center gap-2 group"
+                  className="absolute left-0 flex items-center gap-2 group"
                 >
                   <span className="bounce-left text-accent text-base leading-none">←</span>
                   <span className="text-[11px] font-mono text-text-secondary group-hover:text-accent transition-colors duration-300">
@@ -254,7 +254,7 @@ export default async function CoursePage({
               {nextCourse && (
                 <Link
                   href={`/courses/${nextCourse.slug}`}
-                  className="flex items-center gap-2 group"
+                  className="absolute right-0 flex items-center gap-2 group"
                 >
                   <span className="text-[11px] font-mono text-text-secondary group-hover:text-accent transition-colors duration-300">
                     {nextCourse.title}

@@ -19,10 +19,6 @@ interface PageShellProps {
 }
 
 export default function PageShell({ children, ctaText, ctaHref, activeSlug }: PageShellProps) {
-  const activeIdx = activeSlug ? disciplines.findIndex((d) => d.slug === activeSlug) : -1;
-  const prev = activeIdx > 0 ? disciplines[activeIdx - 1] : null;
-  const next = activeIdx !== -1 && activeIdx < disciplines.length - 1 ? disciplines[activeIdx + 1] : null;
-
   return (
     <main className="cursor-none">
       <CustomCursor />
@@ -59,47 +55,13 @@ export default function PageShell({ children, ctaText, ctaHref, activeSlug }: Pa
       </nav>
       <div className="pt-12">{children}</div>
       <footer className="py-12 border-t border-border">
-        <div className="max-w-[1400px] mx-auto px-6">
-          <div className="flex items-center justify-between gap-6">
-            {/* Prev */}
-            {prev ? (
-              <Link
-                href={prev.href}
-                className="group flex items-center gap-3 text-text-muted hover:text-text transition-colors duration-300"
-              >
-                <span className="text-lg transition-transform duration-300 group-hover:-translate-x-1">&larr;</span>
-                <div>
-                  <p className="text-[10px] tracking-[0.3em] uppercase font-mono mb-0.5">Previous</p>
-                  <p className="text-[13px] font-medium">{prev.label}</p>
-                </div>
-              </Link>
-            ) : (
-              <div />
-            )}
-
-            <Link
-              href="/"
-              className="text-text-muted text-[12px] font-mono hover:text-text transition-colors duration-300 shrink-0"
-            >
-              JDLO
-            </Link>
-
-            {/* Next */}
-            {next ? (
-              <Link
-                href={next.href}
-                className="group flex items-center gap-3 text-right text-text-muted hover:text-text transition-colors duration-300"
-              >
-                <div>
-                  <p className="text-[10px] tracking-[0.3em] uppercase font-mono mb-0.5">Next</p>
-                  <p className="text-[13px] font-medium">{next.label}</p>
-                </div>
-                <span className="text-lg transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
-              </Link>
-            ) : (
-              <div />
-            )}
-          </div>
+        <div className="max-w-[1400px] mx-auto px-6 flex justify-center">
+          <Link
+            href="/"
+            className="text-text-muted text-[12px] font-mono hover:text-text transition-colors duration-300"
+          >
+            JDLO
+          </Link>
         </div>
       </footer>
     </main>
