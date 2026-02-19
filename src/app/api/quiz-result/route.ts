@@ -81,14 +81,14 @@ export async function POST(req: NextRequest) {
 
     await Promise.all([
       getResend().emails.send({
-        from: 'JDLO Quiz <jordan@jdlo.site>',
+        from: 'JDLO Quiz <onboarding@resend.dev>',
         to: process.env.LEAD_EMAIL || 'eljordp@gmail.com',
         subject: `[Quiz Lead] ${name} → ${primary}`,
         html: notificationHtml,
         replyTo: email,
       }),
       getResend().emails.send({
-        from: 'JDLO <jordan@jdlo.site>',
+        from: 'JDLO <onboarding@resend.dev>',
         to: email,
         subject: `Your skill track — ${primary}`,
         html: autoReplyHtml,

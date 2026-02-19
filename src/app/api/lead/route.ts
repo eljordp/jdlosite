@@ -164,14 +164,14 @@ export async function POST(req: NextRequest) {
     // Send both emails in parallel
     await Promise.all([
       getResend().emails.send({
-        from: "JDLO Leads <jordan@jdlo.site>",
+        from: "JDLO Leads <onboarding@resend.dev>",
         to: process.env.LEAD_EMAIL || "eljordp@gmail.com",
         subject: `New ${labels[type] || "Lead"}: ${name}${course ? ` — ${course}` : ""}`,
         html: notificationHtml,
         replyTo: email,
       }),
       getResend().emails.send({
-        from: "JDLO <jordan@jdlo.site>",
+        from: "JDLO <onboarding@resend.dev>",
         to: email,
         subject: reply.subject,
         html: autoReplyHtml,
