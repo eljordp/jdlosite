@@ -63,7 +63,7 @@ const SKILL_INFO = {
   'ai-automation': {
     title: 'AI & Automation',
     tagline: 'Build the systems that run businesses.',
-    price: '$2,500',
+    price: '$1,250',
     duration: '6 weeks',
     href: '/courses/ai-automation',
     desc: "You're wired for systems. This course takes you from understanding AI to building real automated workflows, agents, and integrations — the kind that save 20+ hours a week.",
@@ -71,7 +71,7 @@ const SKILL_INFO = {
   'sales-systems': {
     title: 'Sales Systems',
     tagline: 'The playbook I use to close. Systematized.',
-    price: '$1,500',
+    price: '$750',
     duration: '4 weeks',
     href: '/courses/sales-systems',
     desc: "Your instincts are revenue-driven. This course gives you the exact scripts, frameworks, and CRM systems to close consistently and build a predictable pipeline.",
@@ -79,7 +79,7 @@ const SKILL_INFO = {
   'content-brand': {
     title: 'Content & Brand',
     tagline: 'Build a brand that makes money while you sleep.',
-    price: '$1,200',
+    price: '$600',
     duration: '4 weeks',
     href: '/courses/content-brand',
     desc: "You understand that attention is the real asset. This course builds the production system, strategy, and distribution engine to turn your brand into a revenue channel.",
@@ -87,7 +87,7 @@ const SKILL_INFO = {
   'team-operations': {
     title: 'Team & Operations',
     tagline: 'Build a team. Build systems. Scale without breaking.',
-    price: '$2,000',
+    price: '$1,000',
     duration: '5 weeks',
     href: '/courses/team-operations',
     desc: "You're an operator. This course teaches you to hire right, build SOPs, manage performance, and create a business that runs without you in every room.",
@@ -95,7 +95,7 @@ const SKILL_INFO = {
   'prompt-engineering': {
     title: 'Prompt Engineering',
     tagline: 'Get what you want from AI. Every time.',
-    price: '$800',
+    price: '$400',
     duration: '2 weeks',
     href: '/courses/prompt-engineering',
     desc: "You know AI is powerful — you just aren't unlocking it. This course closes that gap with advanced prompting techniques that most people don't know exist.",

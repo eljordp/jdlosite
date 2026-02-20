@@ -6,7 +6,7 @@ import { GlowLink } from '@/components/GlowButton';
 
 const links = [
   { label: 'Skills', href: '#skills' },
-  { label: 'About', href: '#about' },
+  { label: 'About', href: '/about' },
   { label: 'FAQ', href: '#faq' },
   { label: 'Skills Quiz', href: '/quiz' },
   { label: 'Mentorship', href: '/mentorship' },
@@ -28,7 +28,7 @@ export default function HomeNav() {
           {/* Desktop */}
           <div className="hidden md:flex items-center gap-8 text-[13px] text-text-secondary">
             <a href="#skills" className="hover:text-text transition-colors duration-300">Skills</a>
-            <a href="#about" className="hover:text-text transition-colors duration-300">About</a>
+            <Link href="/about" className="hover:text-text transition-colors duration-300">About</Link>
             <a href="#faq" className="hover:text-text transition-colors duration-300">FAQ</a>
             <Link href="/quiz" className="text-accent hover:text-accent/80 transition-colors duration-300 font-mono text-[12px]">
               Skills Quiz →

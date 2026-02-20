@@ -3,6 +3,7 @@ import Link from 'next/link';
 import PageShell from '@/components/PageShell';
 import RevealOnScroll from '@/components/RevealOnScroll';
 import ScrollHighlightText from '@/components/ScrollHighlightText';
+import ProgressBoard from '@/components/ProgressBoard';
 
 const milestones = [
   { year: "Start", label: "Selling websites for a few hundred dollars. No experience, no connections, no roadmap. Just outworking everyone else." },
@@ -131,6 +132,26 @@ export default function AboutPage() {
               </RevealOnScroll>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ── Progress Board ── */}
+      <section className="section-gap border-t border-border">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-10">
+          <RevealOnScroll>
+            <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-4">
+              Progress Board
+            </p>
+            <h2 className="text-[clamp(2rem,5vw,4rem)] font-bold tracking-[-0.04em] leading-[0.95] mb-4">
+              The receipts.
+            </h2>
+            <p className="text-text-secondary text-[15px] leading-relaxed mb-12 max-w-[500px]">
+              Click any milestone to see what happened that day. This is what a few months of urgency looks like.
+            </p>
+          </RevealOnScroll>
+          <RevealOnScroll delay={1}>
+            <ProgressBoard />
+          </RevealOnScroll>
         </div>
       </section>
 

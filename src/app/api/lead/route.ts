@@ -1,5 +1,11 @@
 import { Resend } from "resend";
 import { NextRequest, NextResponse } from "next/server";
+import { kv } from "@vercel/kv";
+
+async function tryKv(fn: () => Promise<unknown>) {
+  if (!process.env.KV_REST_API_URL) return;
+  try { await fn(); } catch { /* KV not ready */ }
+}
 
 // Lazy init so build doesn't crash without the env var
 let _resend: Resend | null = null;
@@ -161,8 +167,11 @@ export async function POST(req: NextRequest) {
       </div>
     `;
 
-    // Send both emails in parallel
-    await Promise.all([
+    // Track form submission count
+    await tryKv(() => kv.incr(`lead:${type}`));
+
+    // Send both emails — allSettled so one failure doesn't block the other
+    await Promise.allSettled([
       getResend().emails.send({
         from: "JDLO Leads <onboarding@resend.dev>",
         to: process.env.LEAD_EMAIL || "eljordp@gmail.com",

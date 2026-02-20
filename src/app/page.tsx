@@ -48,37 +48,37 @@ const skills = [
   {
     title: "AI & Automation",
     desc: "Build AI agents, automate workflows, integrate AI into real operations. This is what I run my companies on.",
-    price: "$2,500",
+    price: "$1,250",
     href: "/courses/ai-automation",
   },
   {
     title: "Sales Systems",
     desc: "Scripts, objection handling, pipeline management, CRM automation. The exact frameworks I use to close.",
-    price: "$1,500",
+    price: "$750",
     href: "/courses/sales-systems",
   },
   {
     title: "Prompt Engineering",
     desc: "Advanced techniques that 99% don't know. Get what you want from any model, every time.",
-    price: "$800",
+    price: "$400",
     href: "/courses/prompt-engineering",
   },
   {
     title: "Content & Brand",
     desc: "Strategy, production systems, distribution — all AI-accelerated. Build a brand that prints.",
-    price: "$1,200",
+    price: "$600",
     href: "/courses/content-brand",
   },
   {
     title: "Team & Operations",
     desc: "Hiring, SOPs, management frameworks. The systems that let you scale without burning out.",
-    price: "$2,000",
+    price: "$1,000",
     href: "/courses/team-operations",
   },
   {
     title: "1:1 Mentorship",
     desc: "Direct access. Weekly calls, custom roadmap, async support. Limited to 5 spots at any time.",
-    price: "$5,000/mo",
+    price: "$2,500/mo",
     href: "/mentorship",
   },
 ];
@@ -181,7 +181,7 @@ function ForBusinesses() {
                 </div>
               ))}
               <p className="text-text-muted text-[12px] font-mono mt-6">
-                Engagements start at $10,000
+                Engagements start at $5,000
               </p>
             </div>
           </RevealOnScroll>

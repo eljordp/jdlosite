@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import PostHogProvider from "@/components/PostHogProvider";
 
 export const metadata: Metadata = {
   title: "JDLO — AI Education & Operations",
@@ -46,7 +47,7 @@ export default function RootLayout({
         />
       </head>
       <body className="font-sans antialiased">
-        {children}
+        <PostHogProvider>{children}</PostHogProvider>
       </body>
     </html>
   );

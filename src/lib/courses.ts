@@ -21,7 +21,7 @@ export const courses: Course[] = [
     slug: "ai-automation",
     title: "AI & Automation",
     tagline: "Build the systems that run businesses.",
-    price: "$2,500",
+    price: "$1,250",
     duration: "6 weeks",
     level: "Beginner → Advanced",
     description:
@@ -99,7 +99,7 @@ export const courses: Course[] = [
     slug: "sales-systems",
     title: "Sales Systems",
     tagline: "The playbook I use to close. Systematized.",
-    price: "$1,500",
+    price: "$750",
     duration: "4 weeks",
     level: "Beginner → Intermediate",
     description:
@@ -167,7 +167,7 @@ export const courses: Course[] = [
     slug: "prompt-engineering",
     title: "Prompt Engineering",
     tagline: "Get what you want from AI. Every time.",
-    price: "$800",
+    price: "$400",
     duration: "2 weeks",
     level: "All Levels",
     description:
@@ -225,7 +225,7 @@ export const courses: Course[] = [
     slug: "content-brand",
     title: "Content & Brand",
     tagline: "Build a brand that makes money while you sleep.",
-    price: "$1,200",
+    price: "$600",
     duration: "4 weeks",
     level: "Beginner → Intermediate",
     description:
@@ -283,7 +283,7 @@ export const courses: Course[] = [
     slug: "team-operations",
     title: "Team & Operations",
     tagline: "Build a team. Build systems. Scale without breaking.",
-    price: "$2,000",
+    price: "$1,000",
     duration: "5 weeks",
     level: "Intermediate → Advanced",
     description:

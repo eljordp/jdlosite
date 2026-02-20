@@ -2,6 +2,7 @@ import PageShell from "@/components/PageShell";
 import LeadForm from "@/components/LeadForm";
 import RevealOnScroll from "@/components/RevealOnScroll";
 import SpotlightCard from "@/components/SpotlightCard";
+import Link from "next/link";
 
 export default function MentorshipPage() {
   return (
@@ -22,7 +23,7 @@ export default function MentorshipPage() {
             and accountability. For people who are serious.
           </p>
           <p className="text-text text-[1.75rem] font-bold tracking-tight mt-6 hero-animate hero-delay-4">
-            $5,000<span className="text-text-secondary text-xl font-normal">/mo</span>
+            $2,500<span className="text-text-secondary text-xl font-normal">/mo</span>
           </p>
         </div>
       </section>
@@ -75,6 +76,20 @@ export default function MentorshipPage() {
               </RevealOnScroll>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="section-gap">
+        <div className="max-w-[480px] mx-auto px-6 text-center">
+          <RevealOnScroll>
+            <p className="text-text-secondary text-[14px] mb-4">Not sure if mentorship is the right move yet?</p>
+            <Link
+              href="/quiz/mentorship"
+              className="inline-flex items-center gap-2 text-accent text-[14px] font-mono hover:opacity-70 transition-opacity duration-200"
+            >
+              Take the 2-minute qualification quiz →
+            </Link>
+          </RevealOnScroll>
         </div>
       </section>
 

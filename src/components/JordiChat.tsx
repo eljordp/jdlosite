@@ -21,7 +21,7 @@ const SKILLS = {
       'api', 'integrate', 'bot', 'time', 'manual', 'repetitive', 'save time',
       'systems', 'pipeline', 'tool', 'build', 'efficiency',
     ],
-    pitch: "That's AI & Automation. I built this course around what I run my companies on — agents, workflows, real integrations. $2,500, 6 weeks.",
+    pitch: "That's AI & Automation. I built this course around what I run my companies on — agents, workflows, real integrations. $1,250, 6 weeks.",
   },
   'sales-systems': {
     name: 'Sales Systems',
@@ -31,7 +31,7 @@ const SKILLS = {
       'client', 'deal', 'pipeline', 'crm', 'cold email', 'follow up',
       'objection', 'money', 'leads', 'convert',
     ],
-    pitch: "Sales Systems. The exact scripts, frameworks, and CRM setup I use to close. $1,500, 4 weeks.",
+    pitch: "Sales Systems. The exact scripts, frameworks, and CRM setup I use to close. $750, 4 weeks.",
   },
   'prompt-engineering': {
     name: 'Prompt Engineering',
@@ -40,7 +40,7 @@ const SKILLS = {
       'prompt', 'prompting', 'chatgpt', 'output', 'gpt', 'claude', 'model',
       'results', 'mediocre', 'ai output', 'write prompts', 'bad results', 'llm',
     ],
-    pitch: "Prompt Engineering. 99% of people use AI at 10% of its power. This closes that gap. $800, 2 weeks.",
+    pitch: "Prompt Engineering. 99% of people use AI at 10% of its power. This closes that gap. $400, 2 weeks.",
   },
   'content-brand': {
     name: 'Content & Brand',
@@ -50,7 +50,7 @@ const SKILLS = {
       'social', 'video', 'grow', 'creator', 'tiktok', 'youtube', 'twitter',
       'visibility', 'known', 'personal brand', 'marketing',
     ],
-    pitch: "Content & Brand. Build a brand that makes money while you sleep. $1,200, 4 weeks.",
+    pitch: "Content & Brand. Build a brand that makes money while you sleep. $600, 4 weeks.",
   },
   'team-operations': {
     name: 'Team & Operations',
@@ -60,7 +60,7 @@ const SKILLS = {
       'operations', 'sop', 'staff', 'delegate', 'bottleneck', 'people',
       'without me', 'run my business', 'grow my team',
     ],
-    pitch: "Team & Operations. Hiring, SOPs, management frameworks — build a business that runs without you. $2,000, 5 weeks.",
+    pitch: "Team & Operations. Hiring, SOPs, management frameworks — build a business that runs without you. $1,000, 5 weeks.",
   },
 } as const;
 
@@ -104,7 +104,7 @@ function getResponse(text: string, identified: boolean): Message {
   if (/mentor|1:1|one.on.one|personal|coaching|direct access/i.test(lower)) {
     return {
       role: 'bot',
-      content: "Mentorship is limited — 5 spots max at any time. Direct access, weekly calls, custom roadmap. $5,000/mo.",
+      content: "Mentorship is limited — 5 spots max at any time. Direct access, weekly calls, custom roadmap. $2,500/mo.",
       links: [{ label: 'See Mentorship →', href: '/mentorship' }],
     };
   }
@@ -112,7 +112,7 @@ function getResponse(text: string, identified: boolean): Message {
   if (/price|cost|how much|expensive|afford/i.test(lower)) {
     return {
       role: 'bot',
-      content: "Courses range from $800 to $2,500 depending on depth. Mentorship is $5,000/mo. Which skill are you looking at?",
+      content: "Courses range from $400 to $1,250 depending on depth. Mentorship is $2,500/mo. Which skill are you looking at?",
       links: [{ label: 'Browse All Courses →', href: '/students' }],
     };
   }

@@ -4,138 +4,116 @@ import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import CustomCursor from '@/components/CustomCursor';
 
-// ── 10 Questions, 0-3 pts each = max 30 raw. Display as round(raw/3) = 1-10. Pass = 7+
+// ── 8 Questions, 0-3 pts each = max 24 raw. Display as round(raw/24*10) = 1-10. Pass = 7+
 const questions = [
   {
-    q: "What's your role?",
+    q: "What are you trying to do?",
     options: [
-      { label: "Owner or founder", value: 'founder', score: 3 },
-      { label: "Executive or director", value: 'exec', score: 3 },
-      { label: "Manager or team lead", value: 'manager', score: 2 },
-      { label: "Solo operator", value: 'solo', score: 0 },
+      { label: "Build something — product, business, or side project", value: 'build', score: 3 },
+      { label: "Pivot my career into AI or a higher-leverage role", value: 'career', score: 3 },
+      { label: "Upskill — make my current work faster and better", value: 'upskill', score: 2 },
+      { label: "Still figuring out where AI fits for me", value: 'exploring', score: 1 },
     ],
   },
   {
-    q: "How big is your team?",
+    q: "How specific is what you want to achieve?",
     options: [
-      { label: "50+ people", value: '50plus', score: 3 },
-      { label: "11–50 people", value: '11to50', score: 2 },
-      { label: "2–10 people", value: '2to10', score: 1 },
-      { label: "Just me right now", value: 'solo', score: 0 },
+      { label: "Very specific — I know exactly what I want and by when", value: 'specific', score: 3 },
+      { label: "Clear direction, working on the details", value: 'clear', score: 2 },
+      { label: "General idea — want to learn AI and see what unfolds", value: 'general', score: 1 },
+      { label: "Not sure yet — that's part of why I need help", value: 'unsure', score: 0 },
     ],
   },
   {
-    q: "Do you have the authority to make this decision?",
+    q: "When do you want this figured out?",
     options: [
-      { label: "Yes — I make the call", value: 'yes', score: 3 },
-      { label: "Mostly — I lead the decision with others", value: 'mostly', score: 2 },
-      { label: "I influence it, but need approval", value: 'influence', score: 1 },
-      { label: "Someone else decides", value: 'no', score: 0 },
+      { label: "I'm already behind — I needed this yesterday", value: 'urgent', score: 3 },
+      { label: "In the next 1–3 months", value: 'soon', score: 3 },
+      { label: "By end of year", value: 'endofyear', score: 2 },
+      { label: "Whenever it happens — no real timeline", value: 'whenever', score: 0 },
     ],
   },
   {
-    q: "Where are you losing the most time or money?",
+    q: "Have you tried to learn AI on your own?",
     options: [
-      { label: "Manual work that AI should already handle", value: 'manual', score: 3 },
-      { label: "Inconsistent output — quality and speed vary too much", value: 'inconsistent', score: 3 },
-      { label: "No AI strategy — everyone's doing their own thing", value: 'nostrategy', score: 3 },
-      { label: "Sales and pipeline consistently underperforming", value: 'sales', score: 3 },
+      { label: "Yes — courses, content, tools. I need personalized direction now", value: 'tried_stuck', score: 3 },
+      { label: "Yes — I started but lost momentum or got overwhelmed", value: 'tried_lost', score: 3 },
+      { label: "A little — dipped my toes but haven't gone deep", value: 'little', score: 2 },
+      { label: "No — this is the beginning for me", value: 'none', score: 1 },
     ],
   },
   {
-    q: "What's the cost of NOT fixing this in the next 12 months?",
+    q: "What's your biggest obstacle right now?",
     options: [
-      { label: "Significant — we're losing real money or falling behind competitors", value: 'high', score: 3 },
-      { label: "Moderate — it's hurting us but we're surviving", value: 'moderate', score: 2 },
-      { label: "Minor — it's more of a nice-to-have", value: 'minor', score: 0 },
-      { label: "Not sure", value: 'unsure', score: 1 },
+      { label: "I don't know what to focus on — there's too much noise", value: 'direction', score: 3 },
+      { label: "I know what I want but can't stay accountable on my own", value: 'accountability', score: 3 },
+      { label: "I'm moving, but too slowly — I need to compress the timeline", value: 'speed', score: 3 },
+      { label: "I need someone to validate my approach before I commit", value: 'validation', score: 2 },
     ],
   },
   {
-    q: "Have you tried to solve this before?",
+    q: "How do you respond to direct, hard feedback?",
     options: [
-      { label: "Yes — we tried, it didn't stick or didn't work", value: 'tried_failed', score: 3 },
-      { label: "Partially — we started but never finished", value: 'partial', score: 2 },
-      { label: "We've talked about it but haven't acted", value: 'talked', score: 1 },
-      { label: "This is the first time we're seriously looking at it", value: 'first', score: 1 },
+      { label: "I want it — brutal honesty is the point", value: 'want_it', score: 3 },
+      { label: "Open to it — I know I have blind spots", value: 'open', score: 2 },
+      { label: "Depends — I trust my own instincts pretty strongly", value: 'selective', score: 1 },
+      { label: "I mostly know what I need — just need someone to execute with", value: 'stubborn', score: 0 },
     ],
   },
   {
-    q: "How does your team use AI today?",
+    q: "Can you commit to 1 weekly call + 5–10 hours of work between sessions?",
     options: [
-      { label: "Not at all — we're starting from zero", value: 'none', score: 3 },
-      { label: "Basic tools here and there, nothing systematic", value: 'basic', score: 3 },
-      { label: "Some workflows automated, but it's inconsistent across the team", value: 'some', score: 2 },
-      { label: "Heavy users — we want to go deeper and build real systems", value: 'heavy', score: 1 },
+      { label: "Yes — I'm building this into my schedule now", value: 'yes', score: 3 },
+      { label: "Yes — I'd shift a few things to make it happen", value: 'adjust', score: 2 },
+      { label: "Tight, but I'd prioritize it if the ROI is there", value: 'tight', score: 1 },
+      { label: "That's more than I can commit to right now", value: 'no', score: 0 },
     ],
   },
   {
-    q: "Do you have budget allocated for this?",
+    q: "The mentorship is $5,000/month. Can you invest at this level?",
     options: [
-      { label: "Yes — budget is ready and allocated", value: 'ready', score: 3 },
-      { label: "Yes — we have budget for the right solution", value: 'have', score: 2 },
-      { label: "We'd need to request it, but it's doable", value: 'request', score: 1 },
-      { label: "No budget currently", value: 'none', score: 0 },
-    ],
-  },
-  {
-    q: "What does success look like in 90 days?",
-    options: [
-      { label: "Specific measurable outcome — hours saved, revenue up, cost down", value: 'specific', score: 3 },
-      { label: "Team trained and consistently using AI across workflows", value: 'trained', score: 2 },
-      { label: "A clear strategy and roadmap we can execute", value: 'strategy', score: 2 },
-      { label: "Not sure yet — still figuring it out", value: 'unsure', score: 0 },
-    ],
-  },
-  {
-    q: "How quickly are you looking to move?",
-    options: [
-      { label: "Now — this is urgent and I'm ready to commit", value: 'now', score: 3 },
-      { label: "In the next 30–60 days", value: 'soon', score: 2 },
-      { label: "This quarter, when timing aligns", value: 'quarter', score: 1 },
-      { label: "Just scoping — no firm timeline", value: 'scoping', score: 0 },
+      { label: "Yes — I've budgeted for this", value: 'ready', score: 3 },
+      { label: "Yes — I can make it work for the right outcome", value: 'can_do', score: 2 },
+      { label: "It's a stretch, but I'd find a way for the right fit", value: 'stretch', score: 1 },
+      { label: "That's out of reach right now", value: 'no', score: 0 },
     ],
   },
 ];
 
-const MAX_RAW = 30; // 10 questions × 3 pts
+const MAX_RAW = 24; // 8 questions × 3 pts
 
 type Step = 'intro' | number | 'contact' | 'result';
 
-// Display score 1-10, pass = 7+
 function calcDisplayScore(raw: number) {
   return Math.max(1, Math.round((raw / MAX_RAW) * 10));
 }
 
 function getResult(raw: number, answers: string[]) {
   const display = calcDisplayScore(raw);
-  const isScoping = answers[9] === 'scoping';
-  const isSolo = answers[1] === 'solo';
-  const noAuthority = answers[2] === 'no';
-  const noBudget = answers[7] === 'none';
 
-  // Hard disqualifiers regardless of score
-  const hardFail = isScoping || isSolo || noAuthority;
+  const noTimeline = answers[2] === 'whenever';
+  const cantCommit = answers[6] === 'no';
+  const noBudget = answers[7] === 'no';
+
+  const hardFail = noTimeline || cantCommit || noBudget;
   const pass = display >= 7 && !hardFail;
 
   return {
     pass,
     display,
-    headline: pass ? "You're a fit. Let's talk." : "Not the right fit — yet.",
+    headline: pass ? "You're a strong candidate." : "Not the right fit — yet.",
     body: pass
-      ? "Your team has a clear AI gap, real urgency, and you're in a position to act. This is exactly the situation I step into. Book a call — I'll know within the first 10 minutes if we should work together."
-      : isScoping
-      ? "Come back when you're ready to move. Consulting works best when there's a specific problem and urgency to fix it. Right now, a course will do more for you."
-      : isSolo
-      ? "Consulting is built for teams. Right now, the highest-leverage move is building your own skills first. Start with a course and come back when you're scaling."
-      : noAuthority
-      ? "Get the decision-maker in the room first. If someone else holds the budget, loop them in before booking a call — it'll save us both time."
+      ? "You have a clear goal, real urgency, and you're willing to put in the work. That's the profile of someone who gets results from mentorship. I'll review your application personally — if there's a fit, you'll hear from me."
       : noBudget
-      ? "Come back when budget is allocated. A consulting engagement without buy-in and resources is set up to fail — that's not good for either of us."
-      : "Based on your answers, a full consulting engagement isn't the right move yet. Build the foundation first — and I have courses for exactly that.",
-    cta: pass ? "Book a Strategy Call" : "Browse Courses Instead",
-    ctaHref: pass ? "https://calendar.app.google/uZVeQYHLMe5croEn8" : "/students",
-    ctaExternal: pass,
+      ? "The mentorship investment is $5,000/month. If that's not in reach right now, a course is a better starting point. Build some traction, then come back."
+      : cantCommit
+      ? "Mentorship only works if you show up for it. Weekly calls and real work between sessions are non-negotiable. When your schedule frees up, the door is open."
+      : noTimeline
+      ? "Mentorship is built for people moving with urgency. If there's no timeline, there's no forcing function — and results follow. Come back when you're ready to move."
+      : "Based on your answers, a 1-on-1 mentorship might not be the highest-leverage move right now. Starting with a structured course will get you further faster.",
+    cta: pass ? "Apply for Mentorship" : "Browse Courses Instead",
+    ctaHref: pass ? "/mentorship#apply" : "/students",
+    ctaExternal: false,
   };
 }
 
@@ -157,14 +135,13 @@ function useElapsed(active: boolean) {
   return `${mm}:${ss}`;
 }
 
-export default function OperatorQuizPage() {
+export default function MentorshipQuizPage() {
   const [step, setStep] = useState<Step>('intro');
   const [answers, setAnswers] = useState<{ label: string; value: string; score: number }[]>([]);
   const [selected, setSelected] = useState<{ label: string; value: string; score: number } | null>(null);
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [company, setCompany] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState(false);
 
@@ -202,26 +179,27 @@ export default function OperatorQuizPage() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          type: 'business',
+          type: 'mentorship',
           name,
           email,
-          company: company || '—',
-          message: `[Operator Quiz — ${result.pass ? 'PASS' : 'FAIL'} ${display}/10] Raw: ${raw}/${MAX_RAW}\n\n${
+          message: `[Mentorship Quiz — ${result.pass ? 'PASS' : 'FAIL'} ${display}/10] Raw: ${raw}/${MAX_RAW}\n\n${
             answers.map((a, i) => `Q${i + 1}: ${a.label}`).join('\n')
           }`,
         }),
       });
-      // Fire-and-forget: store structured answer data for analytics
+
+      // Fire-and-forget: store structured data for analytics
       fetch('/api/quiz-store', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          type: 'operator',
+          type: 'mentorship',
           answers: answers.map(a => ({ value: a.value, score: a.score })),
           score: display,
           pass: result.pass,
         }),
       }).catch(() => {});
+
       setStep('result');
     } catch {
       setSubmitError(true);
@@ -236,7 +214,6 @@ export default function OperatorQuizPage() {
     setSelected(null);
     setName('');
     setEmail('');
-    setCompany('');
     setSubmitError(false);
   };
 
@@ -244,8 +221,8 @@ export default function OperatorQuizPage() {
     <nav className="fixed top-0 left-0 right-0 z-50 nav-blur border-b border-border">
       <div className="max-w-[1400px] mx-auto px-6 h-12 flex items-center justify-between">
         <Link href="/" className="text-[15px] font-semibold tracking-tight">JDLO</Link>
-        <Link href="/businesses" className="text-text-muted text-[12px] font-mono hover:text-text transition-colors duration-300">
-          ← For Businesses
+        <Link href="/mentorship" className="text-text-muted text-[12px] font-mono hover:text-text transition-colors duration-300">
+          ← Mentorship
         </Link>
       </div>
     </nav>
@@ -259,18 +236,18 @@ export default function OperatorQuizPage() {
         <Nav />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/[0.03] rounded-full blur-[180px] pointer-events-none" />
         <div className="max-w-[560px] w-full text-center relative z-10">
-          <p className="text-accent text-[11px] tracking-[0.5em] uppercase font-mono mb-6">For Teams & Operators</p>
+          <p className="text-accent text-[11px] tracking-[0.5em] uppercase font-mono mb-6">1-on-1 Mentorship</p>
           <h1 className="text-[clamp(2.5rem,6vw,4.5rem)] font-bold tracking-[-0.05em] leading-[0.92] mb-6">
-            Are we a
+            Are you
             <br />
-            <span className="gradient-text-blue">fit?</span>
+            <span className="gradient-text">ready?</span>
           </h1>
-          <p className="text-text-secondary text-lg leading-relaxed mb-4 max-w-[400px] mx-auto">
-            10 questions. You&apos;ll get a score from 1–10 and a straight answer on whether consulting makes sense for your team right now.
+          <p className="text-text-secondary text-lg leading-relaxed mb-4 max-w-[420px] mx-auto">
+            8 questions. You&apos;ll get a score from 1–10 and a straight answer on whether 1-on-1 mentorship is the right move for you right now.
           </p>
           <p className="text-text-muted text-[12px] font-mono mb-10">Pass = 7 or higher. No fluff.</p>
           <button onClick={() => setStep(1)} className="magnetic-btn">
-            <span className="relative z-10">Get My Score</span>
+            <span className="relative z-10">See If You Qualify</span>
           </button>
           <p className="text-text-muted text-[11px] font-mono mt-8">Takes about 2 minutes</p>
         </div>
@@ -291,7 +268,7 @@ export default function OperatorQuizPage() {
             Your score is ready.
           </h2>
           <p className="text-text-secondary text-[15px] leading-relaxed mb-10">
-            Drop your info to see your result. I&apos;ll follow up personally if there&apos;s a fit.
+            Drop your info to see your result. If you&apos;re a fit, I&apos;ll reach out personally.
           </p>
           <form onSubmit={handleSubmit} className="space-y-4">
             <input
@@ -304,17 +281,10 @@ export default function OperatorQuizPage() {
             />
             <input
               type="email"
-              placeholder="Work email"
+              placeholder="Your email"
               value={email}
               onChange={e => setEmail(e.target.value)}
               required
-              className="w-full bg-white/[0.04] border border-border rounded-[12px] px-5 py-3.5 text-[14px] text-text placeholder:text-text-muted outline-none focus:border-accent/40 transition-colors duration-200"
-            />
-            <input
-              type="text"
-              placeholder="Company (optional)"
-              value={company}
-              onChange={e => setCompany(e.target.value)}
               className="w-full bg-white/[0.04] border border-border rounded-[12px] px-5 py-3.5 text-[14px] text-text placeholder:text-text-muted outline-none focus:border-accent/40 transition-colors duration-200"
             />
             {submitError && (
@@ -353,7 +323,7 @@ export default function OperatorQuizPage() {
 
           {/* Score display */}
           <div className="flex items-end gap-4 mb-6">
-            <span className={`text-[6rem] font-bold leading-none tracking-[-0.05em] ${result.pass ? 'gradient-text-blue' : 'text-text-secondary'}`}>
+            <span className={`text-[6rem] font-bold leading-none tracking-[-0.05em] ${result.pass ? 'gradient-text' : 'text-text-secondary'}`}>
               {result.display}
             </span>
             <div className="pb-3">
@@ -376,15 +346,9 @@ export default function OperatorQuizPage() {
             <p className="text-text-secondary text-[16px] leading-relaxed mb-8">
               {result.body}
             </p>
-            {result.ctaExternal ? (
-              <a href={result.ctaHref} target="_blank" rel="noopener noreferrer" className="magnetic-btn inline-flex">
-                <span className="relative z-10">{result.cta} →</span>
-              </a>
-            ) : (
-              <Link href={result.ctaHref} className="magnetic-btn inline-flex">
-                <span className="relative z-10">{result.cta} →</span>
-              </Link>
-            )}
+            <Link href={result.ctaHref} className="magnetic-btn inline-flex">
+              <span className="relative z-10">{result.cta} →</span>
+            </Link>
           </div>
 
           {/* Score breakdown */}
@@ -393,14 +357,12 @@ export default function OperatorQuizPage() {
             <div className="space-y-3">
               {answers.map((a, i) => {
                 const isDisqualifier =
-                  (i === 1 && a.value === 'solo') ||
-                  (i === 2 && a.value === 'no') ||
-                  (i === 9 && a.value === 'scoping');
+                  (i === 2 && a.value === 'whenever') ||
+                  (i === 6 && a.value === 'no') ||
+                  (i === 7 && a.value === 'no');
                 return (
                   <div key={i} className={`rounded-[12px] border px-4 py-3 ${
-                    isDisqualifier ? 'border-red-500/30 bg-red-500/[0.04]' :
-                    a.score === 3 ? 'border-border bg-surface/30' :
-                    a.score === 0 ? 'border-border/50 bg-surface/10' : 'border-border bg-surface/30'
+                    isDisqualifier ? 'border-red-500/30 bg-red-500/[0.04]' : 'border-border bg-surface/30'
                   }`}>
                     <div className="flex items-start justify-between gap-3">
                       <div className="flex-1 min-w-0">
@@ -434,8 +396,8 @@ export default function OperatorQuizPage() {
 
           <div className="flex flex-wrap items-center gap-4">
             <button onClick={reset} className="ghost-btn">Retake</button>
-            <Link href="/" className="text-text-muted text-[13px] hover:text-text transition-colors duration-300 font-mono">
-              ← Back to Home
+            <Link href="/mentorship" className="text-text-muted text-[13px] hover:text-text transition-colors duration-300 font-mono">
+              ← Back to Mentorship
             </Link>
           </div>
         </div>

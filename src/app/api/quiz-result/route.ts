@@ -1,5 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
+import { kv } from '@vercel/kv';
+
+async function tryKv(fn: () => Promise<unknown>) {
+  if (!process.env.KV_REST_API_URL) return;
+  try { await fn(); } catch { /* KV not ready */ }
+}
+
+const TRACK_SLUG: Record<string, string> = {
+  'AI & Automation': 'ai-automation',
+  'Sales Systems': 'sales-systems',
+  'Content & Brand': 'content-brand',
+  'Team & Operations': 'team-operations',
+  'Prompt Engineering': 'prompt-engineering',
+};
 
 let _resend: Resend | null = null;
 function getResend() {
@@ -79,7 +93,14 @@ export async function POST(req: NextRequest) {
       </div>
     `;
 
-    await Promise.all([
+    // Track skills quiz completion
+    await tryKv(() => Promise.all([
+      kv.incr('sq:total'),
+      kv.incr(`sq:track:${TRACK_SLUG[primary] ?? 'other'}`),
+      ...(secondary ? [kv.incr(`sq:track2:${TRACK_SLUG[secondary] ?? 'other'}`)] : []),
+    ]));
+
+    await Promise.allSettled([
       getResend().emails.send({
         from: 'JDLO Quiz <onboarding@resend.dev>',
         to: process.env.LEAD_EMAIL || 'eljordp@gmail.com',
