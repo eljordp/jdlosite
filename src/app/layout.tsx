@@ -1,18 +1,17 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import PostHogProvider from "@/components/PostHogProvider";
 
 export const metadata: Metadata = {
-  title: "JDLO — AI Education & Operations",
+  title: "JDLO — Systems Operator & Digital Growth",
   description:
-    "Learn AI, sales, automation, and operations from someone who actually runs on it. Courses, mentorship, and consulting by Jordan Lopez.",
+    "I build systems that turn attention into action. UI/UX design, creative coding, and digital growth by Jordan Lopez.",
   icons: {
     icon: "/jordan.jpg",
   },
   openGraph: {
-    title: "JDLO — AI Education & Operations",
+    title: "JDLO — Systems Operator",
     description:
-      "Learn AI, sales, automation, and operations from someone who actually runs on it.",
+      "I build systems that turn attention into action. Portfolio by Jordan Lopez.",
     url: "https://jdlo.site",
     siteName: "JDLO",
     images: [{ url: "https://jdlo.site/jordan.jpg", width: 1200, height: 1500, alt: "Jordan Lopez — JDLO" }],
@@ -20,9 +19,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "JDLO — AI Education & Operations",
-    description:
-      "Learn AI, sales, automation, and operations from someone who actually runs on it.",
+    title: "JDLO — Systems Operator",
+    description: "I build systems that turn attention into action.",
     images: ["https://jdlo.site/jordan.jpg"],
   },
 };
@@ -36,18 +34,11 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
       </head>
-      <body className="font-sans antialiased">
-        <PostHogProvider>{children}</PostHogProvider>
+      <body className="antialiased">
+        {children}
       </body>
     </html>
   );

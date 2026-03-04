@@ -1,354 +1,137 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
-@theme {
-  --color-bg: #050505;
-  --color-surface: #0a0a0a;
-  --color-surface-2: #111111;
-  --color-surface-3: #181818;
-  --color-border: rgba(255, 255, 255, 0.06);
-  --color-border-hover: rgba(255, 255, 255, 0.12);
-  --color-text: #f5f5f7;
-  --color-text-secondary: #86868b;
-  --color-text-muted: #48484a;
-  --color-accent: #2997ff;
-  --color-glow: rgba(41, 151, 255, 0.15);
-  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-display: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono: "SF Mono", "Fira Code", monospace;
+/* ── Wii Float Animation ── */
+@keyframes wii-float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
 }
 
+/* ── Pulse Animation ── */
+@keyframes pulse-opacity {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* ── Hue Rotate for Warning Icon ── */
+@keyframes hue-shift {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+
+/* ── Shine sweep on channel tiles ── */
+@keyframes shine-sweep {
+  0% { transform: translateX(-100%) rotate(25deg); }
+  100% { transform: translateX(200%) rotate(25deg); }
+}
+
+/* ── Scanline overlay for Pokemon theme ── */
+.scanline-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15) 0px,
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+/* ── Press Start 2P for Pokemon theme ── */
+.pokemon-font * {
+  font-family: 'Press Start 2P', monospace !important;
+}
+.pokemon-font {
+  font-family: 'Press Start 2P', monospace !important;
+}
+
+/* ── Channel Tile ── */
+.channel-tile {
+  aspect-ratio: 1;
+  border-radius: 2rem;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.channel-tile:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+.channel-tile:active {
+  transform: scale(0.97);
+}
+
+/* ── Tile Shine Overlay ── */
+.channel-tile::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 255, 255, 0.1) 30%,
+    transparent 60%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ── Power meter animation ── */
+@keyframes power-fill {
+  0%, 100% { width: 0%; }
+  50% { width: 100%; }
+}
+
+/* ── Progress bar fill ── */
+@keyframes fill-bar {
+  from { width: 0%; }
+}
+
+.animate-fill {
+  animation: fill-bar 1s ease-out forwards;
+}
+
+/* ── Base styles ── */
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  background-color: var(--color-bg);
-  color: var(--color-text);
-  overflow-x: hidden;
-}
-
-/* ── Film grain ── */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0.025;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: Arial, 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
 /* ── Selection ── */
 ::selection {
-  background: rgba(41, 151, 255, 0.3);
+  background: rgba(100, 180, 255, 0.3);
   color: #fff;
 }
 
-/* ── Scroll reveal ── */
-.reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+/* ── Scrollbar styling ── */
+::-webkit-scrollbar {
+  width: 6px;
 }
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
+::-webkit-scrollbar-track {
+  background: transparent;
 }
-.reveal-delay-1 { transition-delay: 0.1s; }
-.reveal-delay-2 { transition-delay: 0.2s; }
-.reveal-delay-3 { transition-delay: 0.3s; }
-.reveal-delay-4 { transition-delay: 0.4s; }
-.reveal-delay-5 { transition-delay: 0.5s; }
-
-/* ── Hero entrance ── */
-@keyframes hero-in {
-  from { opacity: 0; transform: translateY(40px); }
-  to   { opacity: 1; transform: translateY(0); }
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
 }
-.hero-animate {
-  animation: hero-in 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-.hero-delay-1 { animation-delay: 0.2s; opacity: 0; }
-.hero-delay-2 { animation-delay: 0.4s; opacity: 0; }
-.hero-delay-3 { animation-delay: 0.6s; opacity: 0; }
-.hero-delay-4 { animation-delay: 0.8s; opacity: 0; }
-.hero-delay-5 { animation-delay: 1.0s; opacity: 0; }
-
-/* ── Gradient text ── */
-.gradient-text {
-  background: linear-gradient(135deg, #fff 0%, #86868b 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-.gradient-text-blue {
-  background: linear-gradient(135deg, #2997ff 0%, #68c0ff 50%, #2997ff 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
 }
 
-/* ── Skill row ── */
-.skill-row {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-  padding: 2rem 0;
-  border-bottom: 1px solid var(--color-border);
-  cursor: pointer;
-  position: relative;
-}
-.skill-row .skill-title {
-  font-size: clamp(1.5rem, 3.5vw, 3rem);
-  font-weight: 600;
-  letter-spacing: -0.04em;
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  line-height: 1.1;
-}
-.skill-row:hover .skill-title {
-  -webkit-text-fill-color: transparent;
-  background: linear-gradient(135deg, #2997ff 0%, #68c0ff 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  transform: translateX(20px);
-}
-.skill-row .skill-price {
-  font-family: "SF Mono", "Fira Code", monospace;
-  font-size: 0.8125rem;
-  color: var(--color-text-muted);
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.skill-row:hover .skill-price {
-  color: var(--color-accent);
-}
-.skill-row .skill-desc {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-              opacity 0.4s ease;
-  opacity: 0;
-  grid-column: 1 / -1;
-}
-.skill-row:hover .skill-desc {
-  max-height: 120px;
-  opacity: 1;
-}
-.skill-row .skill-number {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: clamp(4rem, 8vw, 8rem);
-  font-weight: 800;
-  letter-spacing: -0.05em;
-  line-height: 1;
-  color: transparent;
-  -webkit-text-stroke: 1px var(--color-border);
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  pointer-events: none;
-  opacity: 0;
-}
-.skill-row:hover .skill-number {
-  opacity: 1;
-  -webkit-text-stroke-color: var(--color-border-hover);
-}
-
-/* ── Magnetic glow button ── */
-.magnetic-btn {
-  --glow-x: 50%;
-  --glow-y: 50%;
-  --glow-opacity: 0;
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.875rem 2rem;
-  border-radius: 980px;
-  background: var(--color-accent);
-  color: #fff;
-  font-size: 0.9375rem;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  overflow: hidden;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.3s ease;
-}
-.magnetic-btn::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: radial-gradient(
-    120px circle at var(--glow-x) var(--glow-y),
-    rgba(255, 255, 255, 0.25) 0%,
-    transparent 70%
-  );
-  opacity: var(--glow-opacity);
-  transition: opacity 0.4s ease;
-  pointer-events: none;
-}
-.magnetic-btn:hover {
-  transform: scale(1.02);
-  box-shadow: 0 0 40px rgba(41, 151, 255, 0.25);
-}
-.magnetic-btn:disabled {
-  opacity: 0.5;
-  pointer-events: none;
-}
-
-
-/* ── Ghost button ── */
-.ghost-btn {
-  --glow-x: 50%;
-  --glow-y: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.875rem 2rem;
-  border-radius: 980px;
-  border: 1px solid var(--color-border-hover);
-  color: var(--color-accent);
-  font-size: 0.9375rem;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  overflow: hidden;
-  position: relative;
-  transition: border-color 0.3s ease, transform 0.3s ease;
-}
-.ghost-btn::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: radial-gradient(
-    100px circle at var(--glow-x) var(--glow-y),
-    rgba(41, 151, 255, 0.12) 0%,
-    transparent 70%
-  );
-  opacity: var(--glow-opacity, 0);
-  transition: opacity 0.4s ease;
-  pointer-events: none;
-}
-.ghost-btn:hover {
-  border-color: var(--color-accent);
-  transform: scale(1.02);
-}
-
-/* ── Nav ── */
-.nav-blur {
-  backdrop-filter: saturate(180%) blur(20px);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
-  background: rgba(5, 5, 5, 0.72);
-}
-
-/* ── Divider ── */
-.divider {
-  height: 1px;
-  background: var(--color-border);
-}
-
-/* ── FAQ ── */
-details summary::-webkit-details-marker { display: none; }
-details summary { list-style: none; }
-
-/* ── Section spacing ── */
-.section-gap {
-  padding-top: clamp(6rem, 14vh, 12rem);
-  padding-bottom: clamp(6rem, 14vh, 12rem);
-}
-
-/* ── Hide default cursor everywhere (fine-pointer only) ── */
-@media (pointer: fine) {
-  *, *::before, *::after {
-    cursor: none !important;
-  }
-}
-
-/* ── Custom cursor ── */
-.cursor-dot {
-  width: 8px;
-  height: 8px;
-  background: var(--color-accent);
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  z-index: 99999;
-  transition: transform 0.15s ease, opacity 0.15s ease;
-  mix-blend-mode: difference;
-  transform: translate(-50%, -50%);
-}
-@media (pointer: coarse) {
-  .cursor-dot { display: none; }
-}
-
-/* ── Bounce arrows ── */
-@keyframes bounce-left {
-  0%, 100% { transform: translateX(0); }
-  50%       { transform: translateX(-5px); }
-}
-@keyframes bounce-right {
-  0%, 100% { transform: translateX(0); }
-  50%       { transform: translateX(5px); }
-}
-.bounce-left  { animation: bounce-left  1.8s ease-in-out infinite; }
-.bounce-right { animation: bounce-right 1.8s ease-in-out infinite; }
-
-/* ── Chat panel open animation ── */
-@keyframes chat-in {
-  from { opacity: 0; transform: translateY(12px) scale(0.97); }
-  to   { opacity: 1; transform: translateY(0) scale(1); }
-}
-.animate-chat-in {
-  animation: chat-in 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-/* ── Accordion open animation ── */
-@keyframes faq-open {
-  from { opacity: 0; transform: translateY(-8px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-details[open] > div {
-  animation: faq-open 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-
-/* ── Spotlight for remaining cards ── */
-.spotlight-card {
-  position: relative;
-  overflow: hidden;
-}
-.spotlight-card::after {
-  content: "";
-  position: absolute;
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle, var(--color-glow) 0%, transparent 70%);
-  border-radius: 50%;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  transform: translate(-50%, -50%);
-  top: var(--mouse-y, 50%);
-  left: var(--mouse-x, 50%);
-}
-.spotlight-card:hover::after {
-  opacity: 1;
-}
-
-/* ── Skill card (for sub-pages) ── */
-.skill-card {
-  position: relative;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: 20px;
-  padding: 2.5rem;
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  overflow: hidden;
-}
-.skill-card:hover {
-  border-color: rgba(255, 255, 255, 0.1);
-  transform: translateY(-2px);
+/* ── Canvas games ── */
+canvas {
+  image-rendering: pixelated;
 }
