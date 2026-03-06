@@ -6,6 +6,11 @@ import Link from "next/link";
 import { getCourse, courses } from "@/lib/courses";
 import { getLessonContent, getLessonKeys, getCourseQuizzes } from "@/lib/content";
 import { isCourseFullyCompleted } from "@/lib/quiz-progress";
+import {
+  syncLessonComplete,
+  syncLessonUncomplete,
+  hydrateFromServer,
+} from "@/lib/progress-sync";
 import CustomCursor from "@/components/CustomCursor";
 
 const STORAGE_PREFIX = "jdlo_access_";
@@ -173,7 +178,7 @@ export default function LessonPage() {
     }
   }, [slug, searchParams]);
 
-  // Load completion state
+  // Load completion state (localStorage first, then server)
   useEffect(() => {
     if (!authorized) return;
     const saved = localStorage.getItem(`${PROGRESS_PREFIX}${slug}`);
@@ -185,23 +190,17 @@ export default function LessonPage() {
         /* ignore */
       }
     }
+    hydrateFromServer(slug).then(({ lessons }) => {
+      setCompleted(lessons.includes(lessonKey));
+    });
   }, [authorized, slug, lessonKey]);
 
   const toggleComplete = () => {
-    const saved = localStorage.getItem(`${PROGRESS_PREFIX}${slug}`);
-    let arr: string[] = [];
-    try {
-      arr = saved ? JSON.parse(saved) : [];
-    } catch {
-      /* ignore */
-    }
-
     if (completed) {
-      arr = arr.filter((k) => k !== lessonKey);
+      syncLessonUncomplete(slug, lessonKey);
     } else {
-      arr.push(lessonKey);
+      syncLessonComplete(slug, lessonKey);
     }
-    localStorage.setItem(`${PROGRESS_PREFIX}${slug}`, JSON.stringify(arr));
     setCompleted(!completed);
   };
 

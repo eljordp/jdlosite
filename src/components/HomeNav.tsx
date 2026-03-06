@@ -54,7 +54,7 @@ export default function HomeNav() {
                 Sign In
               </Link>
             ) : (
-              <Link href="/my-courses" className="text-text-secondary hover:text-text text-[13px] transition-colors duration-300">
+              <Link href="/profile" className="text-text-secondary hover:text-text text-[13px] transition-colors duration-300">
                 {user.email?.split("@")[0]}
               </Link>
             )}

@@ -11,6 +11,7 @@ import {
   getQuizProgress,
   isCourseFullyCompleted,
 } from "@/lib/quiz-progress";
+import { syncQuizPass } from "@/lib/progress-sync";
 import CustomCursor from "@/components/CustomCursor";
 
 const STORAGE_PREFIX = "jdlo_access_";
@@ -133,6 +134,7 @@ export default function QuizPage() {
     if (wrong.length === 0) {
       setPassed(true);
       saveQuizPass(slug, moduleNum, answers);
+      syncQuizPass(slug, moduleNum, answers, quiz.questions.length);
     }
   };
 

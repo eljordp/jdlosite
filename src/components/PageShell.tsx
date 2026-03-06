@@ -77,7 +77,7 @@ export default function PageShell({ children, ctaText, ctaHref, ctaExternal, act
                 Sign In
               </Link>
             ) : (
-              <Link href="/my-courses" className="text-text-secondary hover:text-text text-[12px] transition-colors duration-300 shrink-0">
+              <Link href="/profile" className="text-text-secondary hover:text-text text-[12px] transition-colors duration-300 shrink-0">
                 {user.email?.split("@")[0]}
               </Link>
             )}

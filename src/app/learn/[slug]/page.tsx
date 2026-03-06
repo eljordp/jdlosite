@@ -10,6 +10,8 @@ import {
   isCourseFullyCompleted,
   getQuizProgress,
 } from "@/lib/quiz-progress";
+import { hydrateFromServer } from "@/lib/progress-sync";
+import ProgressMigration from "@/components/ProgressMigration";
 import CustomCursor from "@/components/CustomCursor";
 
 const STORAGE_PREFIX = "jdlo_access_";
@@ -74,9 +76,10 @@ export default function LearnDashboard() {
     }
   }, [slug, searchParams]);
 
-  // Load progress
+  // Load progress (localStorage first, then hydrate from server)
   useEffect(() => {
     if (!authorized) return;
+    // Instant read from localStorage
     const saved = localStorage.getItem(`${PROGRESS_PREFIX}${slug}`);
     if (saved) {
       try {
@@ -85,7 +88,6 @@ export default function LearnDashboard() {
         /* ignore */
       }
     }
-    // Load quiz progress
     if (course) {
       const qp = getQuizProgress(slug);
       const passed: Record<string, boolean> = {};
@@ -94,6 +96,17 @@ export default function LearnDashboard() {
       });
       setQuizzesPassed(passed);
     }
+    // Then hydrate from server (updates localStorage + state)
+    hydrateFromServer(slug).then(({ lessons, quizzes }) => {
+      setCompletedLessons(lessons);
+      if (course) {
+        const passed: Record<string, boolean> = {};
+        course.modules.forEach((mod) => {
+          passed[mod.num] = quizzes[mod.num]?.passed === true;
+        });
+        setQuizzesPassed(passed);
+      }
+    });
   }, [authorized, slug, course]);
 
   // Check if previous course is fully completed (course gating)
@@ -270,6 +283,7 @@ export default function LearnDashboard() {
   return (
     <div className="min-h-screen bg-[#050505] cursor-none">
       <CustomCursor />
+      <ProgressMigration />
       <div className="max-w-[800px] mx-auto px-6 py-10">
         {/* Header */}
         <Link
