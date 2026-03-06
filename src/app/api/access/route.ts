@@ -1,11 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { kv } from "@vercel/kv";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { Resend } from "resend";
-
-function tryKv<T>(fn: () => Promise<T>): Promise<T | null> {
-  if (!process.env.KV_REST_API_URL) return Promise.resolve(null);
-  return fn().catch(() => null);
-}
 
 let _resend: Resend | null = null;
 function getResend() {
@@ -31,17 +26,20 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ valid: false });
   }
 
-  const data = await tryKv(() => kv.get<{ courses: string[] }>(`access:${code}`));
-  if (!data) {
-    // KV not available — accept any code format as valid (fallback for dev)
-    if (!process.env.KV_REST_API_URL) {
-      return NextResponse.json({ valid: true });
-    }
+  const supabase = createAdminClient();
+  const { data, error } = await supabase
+    .from("access_codes")
+    .select("course_slug")
+    .eq("code", code)
+    .eq("course_slug", course)
+    .maybeSingle();
+
+  if (error) {
+    console.error("Access validation error:", error);
     return NextResponse.json({ valid: false });
   }
 
-  const valid = data.courses.includes(course);
-  return NextResponse.json({ valid });
+  return NextResponse.json({ valid: !!data });
 }
 
 // POST — create access after purchase
@@ -53,37 +51,38 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Missing fields" }, { status: 400 });
     }
 
+    const supabase = createAdminClient();
+
+    // Check if access already exists for this email + course
+    const { data: existing } = await supabase
+      .from("access_codes")
+      .select("code")
+      .eq("email", email.toLowerCase())
+      .eq("course_slug", course)
+      .maybeSingle();
+
+    if (existing) {
+      const courseUrl = `${process.env.NEXT_PUBLIC_URL}/learn/${course}?code=${existing.code}`;
+      return NextResponse.json({ code: existing.code, url: courseUrl });
+    }
+
     const code = generateCode();
 
-    // Store in KV
-    await tryKv(() =>
-      kv.set(`access:${code}`, {
-        email,
-        courses: [course],
-        sessionId,
-        created: new Date().toISOString(),
-      })
-    );
-
-    // Index by email so /my-courses can look up all courses for a user
-    await tryKv(async () => {
-      const existing =
-        (await kv.get<{ code: string; course: string; created: string }[]>(
-          `user-courses:${email.toLowerCase()}`
-        )) ?? [];
-      if (!existing.some((e) => e.course === course)) {
-        existing.push({
-          code,
-          course,
-          created: new Date().toISOString(),
-        });
-        await kv.set(`user-courses:${email.toLowerCase()}`, existing);
-      }
+    // Store in Supabase
+    const { error } = await supabase.from("access_codes").insert({
+      code,
+      email: email.toLowerCase(),
+      course_slug: course,
+      session_id: sessionId,
     });
 
-    // Track purchase
-    await tryKv(() => kv.incr("purchases:total"));
-    await tryKv(() => kv.incr(`purchases:${course}`));
+    if (error) {
+      console.error("Access insert error:", error);
+      return NextResponse.json(
+        { error: "Failed to create access" },
+        { status: 500 }
+      );
+    }
 
     // Send access email
     const courseUrl = `${process.env.NEXT_PUBLIC_URL}/learn/${course}?code=${code}`;

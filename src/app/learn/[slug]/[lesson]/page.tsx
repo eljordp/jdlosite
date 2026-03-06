@@ -5,7 +5,7 @@ import { useParams, useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { getCourse, courses } from "@/lib/courses";
 import { getLessonContent, getLessonKeys, getCourseQuizzes } from "@/lib/content";
-import { isCourseFullyCompleted } from "@/lib/quiz-progress";
+import { isCourseFullyCompleted, getQuizProgress } from "@/lib/quiz-progress";
 import {
   syncLessonComplete,
   syncLessonUncomplete,
@@ -239,6 +239,30 @@ export default function LessonPage() {
     if (!isCourseFullyCompleted(prevCourse.slug, prevKeys, prevModuleNums)) {
       router.push(`/learn/${slug}`);
       return null;
+    }
+  }
+
+  // Lesson gating: check if all prior lessons (+ quizzes) are completed
+  if (currentIdx > 0) {
+    const savedProgress = localStorage.getItem(`${PROGRESS_PREFIX}${slug}`);
+    let completedLessons: string[] = [];
+    try {
+      completedLessons = savedProgress ? JSON.parse(savedProgress) : [];
+    } catch { /* ignore */ }
+    const qp = getQuizProgress(slug);
+
+    for (let i = 0; i < currentIdx; i++) {
+      if (!completedLessons.includes(allKeys[i])) {
+        router.push(`/learn/${slug}${codeParam}`);
+        return null;
+      }
+      // If crossing module boundary, check quiz
+      const [prevMod] = allKeys[i].split("-");
+      const [nextMod] = (allKeys[i + 1] ?? "").split("-");
+      if (prevMod !== nextMod && quizzes && quizzes[prevMod] && !qp[prevMod]?.passed) {
+        router.push(`/learn/${slug}${codeParam}`);
+        return null;
+      }
     }
   }
 

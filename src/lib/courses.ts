@@ -27,6 +27,7 @@ export const courses: Course[] = [
     amount: 29700,
     duration: "6 weeks",
     level: "Beginner → Advanced",
+    gated: false,
     description:
       "This entire site, every course, every system — built with Claude. You'll learn exactly how I use Claude to run businesses, automate operations, and build things that used to take teams of developers.",
     outcomes: [
@@ -106,6 +107,7 @@ export const courses: Course[] = [
     amount: 14700,
     duration: "4 weeks",
     level: "Beginner → Intermediate",
+    gated: false,
     description:
       "Not theory from a book. These are the exact scripts, frameworks, and systems I've built to close deals consistently at scale — now AI-accelerated.",
     outcomes: [
@@ -175,6 +177,7 @@ export const courses: Course[] = [
     amount: 6700,
     duration: "2 weeks",
     level: "All Levels",
+    gated: false,
     description:
       "99% of people use Claude at 10% of its capability. Prompt engineering is the skill that unlocks the rest. Learn the techniques I use daily to get elite output — every technique taught through Claude.",
     outcomes: [
@@ -234,6 +237,7 @@ export const courses: Course[] = [
     amount: 9700,
     duration: "4 weeks",
     level: "Beginner → Intermediate",
+    gated: false,
     description:
       "Content is the highest-leverage thing most people aren't doing. Learn how to build a personal brand with a production system so efficient it practically runs itself — all AI-accelerated.",
     outcomes: [
@@ -293,6 +297,7 @@ export const courses: Course[] = [
     amount: 19700,
     duration: "5 weeks",
     level: "Intermediate → Advanced",
+    gated: false,
     description:
       "Scaling a business is about building systems that work without you. I've built teams from scratch, written the SOPs, made the management mistakes — so you don't have to.",
     outcomes: [
@@ -362,6 +367,7 @@ export const courses: Course[] = [
     amount: 9700,
     duration: "4 weeks",
     level: "All Levels",
+    gated: false,
     description:
       "Nobody talks about this part. The discipline to show up every day, the resilience when shit falls apart, the confidence to charge what you're worth, and the networking skills to get in any room. This is the foundation everything else sits on.",
     outcomes: [
@@ -431,6 +437,7 @@ export const courses: Course[] = [
     amount: 24700,
     duration: "5 weeks",
     level: "Intermediate → Advanced",
+    gated: false,
     description:
       "Operators are the most valuable people in business. You don't just do tasks — you see what's broken, fix it, build systems, and make the founder's life easier. This is how I became COO and how you can become indispensable.",
     outcomes: [

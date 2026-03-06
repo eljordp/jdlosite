@@ -68,7 +68,8 @@ export default function LearnDashboard() {
           setChecking(false);
         })
         .catch(() => {
-          setAuthorized(true);
+          setAuthorized(false);
+          localStorage.removeItem(`${STORAGE_PREFIX}${slug}`);
           setChecking(false);
         });
     } else {
@@ -270,6 +271,29 @@ export default function LearnDashboard() {
     );
   }
 
+  // Helper: check if a lesson is unlocked (all prior lessons + quizzes completed)
+  function isLessonUnlocked(key: string): boolean {
+    const idx = lessonKeys.indexOf(key);
+    if (idx === 0) return true; // first lesson always unlocked
+    // All previous lessons must be completed
+    for (let i = 0; i < idx; i++) {
+      if (!completedLessons.includes(lessonKeys[i])) return false;
+      // If the previous lesson is the last in its module and that module has a quiz, quiz must be passed
+      const [prevModNum] = lessonKeys[i].split("-");
+      const [curModNum] = lessonKeys[i + 1]?.split("-") ?? [];
+      if (prevModNum !== curModNum && quizzes && quizzes[prevModNum] && !quizzesPassed[prevModNum]) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  // Helper: check if a module quiz is unlocked (all lessons in that module completed)
+  function isQuizUnlocked(modNum: string): boolean {
+    const modLessons = lessonKeys.filter((k) => k.startsWith(`${modNum}-`));
+    return modLessons.every((k) => completedLessons.includes(k));
+  }
+
   // Authorized — show course dashboard
   const totalModules = course.modules.length;
   const totalItems = lessonKeys.length + totalModules; // lessons + quizzes
@@ -371,6 +395,33 @@ export default function LearnDashboard() {
                     const key = `${mod.num}-${j + 1}`;
                     const lesson = content[key];
                     const done = completedLessons.includes(key);
+                    const unlocked = isLessonUnlocked(key);
+
+                    if (!unlocked) {
+                      return (
+                        <div
+                          key={key}
+                          className="flex items-center gap-4 px-6 py-4 opacity-40 cursor-not-allowed"
+                        >
+                          <span className="w-6 h-6 rounded-full border border-border flex items-center justify-center shrink-0 text-[11px] font-mono text-text-muted">
+                            {j + 1}
+                          </span>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-[14px] text-text-muted truncate">
+                              {lessonTitle}
+                            </p>
+                            {lesson && (
+                              <p className="text-text-muted text-[11px] font-mono">
+                                {lesson.duration}
+                              </p>
+                            )}
+                          </div>
+                          <span className="text-text-muted text-[11px] font-mono shrink-0">
+                            Locked
+                          </span>
+                        </div>
+                      );
+                    }
 
                     return (
                       <Link
@@ -405,33 +456,56 @@ export default function LearnDashboard() {
                   })}
 
                   {/* Quiz row */}
-                  {hasQuiz && (
-                    <Link
-                      href={`/learn/${slug}/quiz/${mod.num}${codeParam}`}
-                      className="flex items-center gap-4 px-6 py-4 hover:bg-surface/50 transition-colors group bg-accent/[0.02]"
-                    >
-                      <span
-                        className={`w-6 h-6 rounded-full border flex items-center justify-center shrink-0 text-[11px] font-mono ${
-                          quizPassed
-                            ? "bg-accent border-accent text-white"
-                            : "border-accent/40 text-accent"
-                        }`}
+                  {hasQuiz && (() => {
+                    const qUnlocked = isQuizUnlocked(mod.num);
+                    if (!qUnlocked) {
+                      return (
+                        <div className="flex items-center gap-4 px-6 py-4 opacity-40 cursor-not-allowed bg-accent/[0.02]">
+                          <span className="w-6 h-6 rounded-full border border-border flex items-center justify-center shrink-0 text-[11px] font-mono text-text-muted">
+                            ?
+                          </span>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-[14px] text-text-muted truncate">
+                              Module {mod.num} Quiz
+                            </p>
+                            <p className="text-text-muted text-[11px] font-mono">
+                              Complete all lessons first
+                            </p>
+                          </div>
+                          <span className="text-text-muted text-[11px] font-mono shrink-0">
+                            Locked
+                          </span>
+                        </div>
+                      );
+                    }
+                    return (
+                      <Link
+                        href={`/learn/${slug}/quiz/${mod.num}${codeParam}`}
+                        className="flex items-center gap-4 px-6 py-4 hover:bg-surface/50 transition-colors group bg-accent/[0.02]"
                       >
-                        {quizPassed ? "✓" : "?"}
-                      </span>
-                      <div className="flex-1 min-w-0">
-                        <p className="text-[14px] text-accent group-hover:text-accent transition-colors truncate font-medium">
-                          Module {mod.num} Quiz
-                        </p>
-                        <p className="text-text-muted text-[11px] font-mono">
-                          {quizPassed ? "Passed" : `${quizzes[mod.num].questions.length} questions`}
-                        </p>
-                      </div>
-                      <span className="text-accent text-sm group-hover:translate-x-0.5 transition-transform shrink-0">
-                        →
-                      </span>
-                    </Link>
-                  )}
+                        <span
+                          className={`w-6 h-6 rounded-full border flex items-center justify-center shrink-0 text-[11px] font-mono ${
+                            quizPassed
+                              ? "bg-accent border-accent text-white"
+                              : "border-accent/40 text-accent"
+                          }`}
+                        >
+                          {quizPassed ? "✓" : "?"}
+                        </span>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-[14px] text-accent group-hover:text-accent transition-colors truncate font-medium">
+                            Module {mod.num} Quiz
+                          </p>
+                          <p className="text-text-muted text-[11px] font-mono">
+                            {quizPassed ? "Passed" : `${quizzes[mod.num].questions.length} questions`}
+                          </p>
+                        </div>
+                        <span className="text-accent text-sm group-hover:translate-x-0.5 transition-transform shrink-0">
+                          →
+                        </span>
+                      </Link>
+                    );
+                  })()}
                 </div>
               </div>
             );

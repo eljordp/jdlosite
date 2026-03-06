@@ -1,12 +1,6 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
-import { kv } from "@vercel/kv";
-
-type UserCourseEntry = {
-  code: string;
-  course: string;
-  created: string;
-};
+import { createAdminClient } from "@/lib/supabase/admin";
 
 export async function GET() {
   const supabase = await createClient();
@@ -23,15 +17,23 @@ export async function GET() {
     return NextResponse.json({ courses: [] });
   }
 
-  if (!process.env.KV_REST_API_URL) {
+  const admin = createAdminClient();
+  const { data, error } = await admin
+    .from("access_codes")
+    .select("code, course_slug, created_at")
+    .eq("email", email)
+    .order("created_at", { ascending: true });
+
+  if (error) {
+    console.error("My courses error:", error);
     return NextResponse.json({ courses: [] });
   }
 
-  try {
-    const entries =
-      (await kv.get<UserCourseEntry[]>(`user-courses:${email}`)) ?? [];
-    return NextResponse.json({ courses: entries });
-  } catch {
-    return NextResponse.json({ courses: [] });
-  }
+  const courses = (data ?? []).map((row) => ({
+    code: row.code,
+    course: row.course_slug,
+    created: row.created_at,
+  }));
+
+  return NextResponse.json({ courses });
 }

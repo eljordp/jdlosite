@@ -26,8 +26,6 @@ export default function StudentsPage() {
       <section className="section-gap">
         <div className="max-w-[800px] mx-auto px-6 space-y-3">
           {courses.map((course, i) => {
-            const isGated = course.gated !== false;
-            const prevCourse = isGated && i > 0 ? courses[i - 1] : null;
             return (
             <RevealOnScroll key={course.slug} delay={(i % 3) + 1}>
               <div className="group rounded-2xl border border-border bg-surface/50 p-7 hover:border-border-hover transition-all duration-500">
@@ -42,11 +40,6 @@ export default function StudentsPage() {
                     <p className="text-text-secondary text-[14px] leading-relaxed">
                       {course.tagline}
                     </p>
-                    {prevCourse && (
-                      <p className="text-text-muted text-[11px] font-mono mt-1">
-                        Requires: {prevCourse.title}
-                      </p>
-                    )}
                   </div>
                   <div className="shrink-0 text-right">
                     <p className="text-text text-[15px] font-semibold">{course.price}</p>

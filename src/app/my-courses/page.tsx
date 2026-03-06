@@ -132,7 +132,71 @@ export default function MyCoursesPage() {
             </Link>
           </div>
         )}
+
+        {/* Redeem access code */}
+        <div className="mt-14 border-t border-border pt-10">
+          <h2 className="text-lg font-semibold text-text mb-2">
+            Have an access code?
+          </h2>
+          <p className="text-text-muted text-[13px] mb-4">
+            Enter the code you received after purchase.
+          </p>
+          <RedeemCode />
+        </div>
       </div>
     </div>
+  );
+}
+
+function RedeemCode() {
+  const router = useRouter();
+  const [code, setCode] = useState("");
+  const [error, setError] = useState("");
+  const [checking, setChecking] = useState(false);
+
+  async function handleRedeem(e: React.FormEvent) {
+    e.preventDefault();
+    const trimmed = code.trim().toUpperCase();
+    if (!trimmed) return;
+
+    setChecking(true);
+    setError("");
+
+    try {
+      const res = await fetch(`/api/access/lookup?code=${trimmed}`);
+      const data = await res.json();
+
+      if (data.course_slug) {
+        router.push(`/learn/${data.course_slug}?code=${trimmed}`);
+      } else {
+        setError("Invalid code. Check it and try again.");
+      }
+    } catch {
+      setError("Something went wrong. Try again.");
+    } finally {
+      setChecking(false);
+    }
+  }
+
+  return (
+    <form onSubmit={handleRedeem} className="flex gap-2 max-w-sm">
+      <input
+        type="text"
+        value={code}
+        onChange={(e) => setCode(e.target.value)}
+        placeholder="e.g. AB3K7NQ2XWPH"
+        className="flex-1 px-3 py-2.5 bg-surface rounded-lg border border-border text-text text-sm font-mono focus:border-accent focus:outline-none uppercase tracking-wider"
+      />
+      <button
+        type="submit"
+        disabled={checking}
+        className="px-5 py-2.5 bg-accent text-white text-sm font-semibold rounded-lg hover:bg-accent/80 transition-colors disabled:opacity-50"
+      >
+        {checking ? "..." : "Redeem"}
+      </button>
+      {error && (
+        <p className="text-red-400 text-[12px] mt-1 absolute">{error}</p>
+      )}
+    </form>
   );
 }
