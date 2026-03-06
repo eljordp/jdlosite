@@ -151,42 +151,42 @@ Top-p controls which tokens the model considers. A top-p of 0.9 means the model 
 
 **My take:** Claude is my daily driver. For anything that requires precision, long context, or serious coding — it's the best option. Period.
 
-## GPT-4o / GPT-4 (OpenAI)
+## GPT-5.3 (OpenAI)
 
-**Best at:** General-purpose tasks. Largest plugin/integration ecosystem. Image generation (DALL-E). Good at creative writing with personality.
+**Best at:** General-purpose tasks. Largest plugin/integration ecosystem. Image generation. Good at creative writing with personality.
 
 **Context window:** 128K tokens.
 
-**Where it falls short:** Can be verbose and "corporate" in tone. The free tier is heavily limited. API costs add up at scale.
+**Where it falls short:** Can be verbose and "corporate" in tone. API costs add up at scale.
 
 **My take:** Best ecosystem, and the model most clients are familiar with. I use it when I need tool integrations or when the client's stack is already OpenAI.
 
-## Gemini (Google)
+## Gemini 2.5 (Google)
 
-**Best at:** Multimodal tasks (text + images + video). Integration with Google Workspace. Massive context window (up to 1M tokens). Research with built-in search.
+**Best at:** Multimodal tasks (text + images + video + audio). Integration with Google Workspace. Massive context window (up to 1M tokens). Research with built-in search.
 
-**Where it falls short:** Instruction following isn't as tight as Claude. Can be inconsistent on complex tasks. Smaller developer ecosystem.
+**Where it falls short:** Instruction following isn't as tight as Claude. Can be inconsistent on complex tasks.
 
 **My take:** Great for research and anything touching Google's ecosystem. The 1M context window is insane for processing massive documents.
 
 ## How I choose for client work
 
-- **Building AI automations:** Claude API for the core logic, GPT-4o-mini for simple routing tasks
-- **Content generation pipelines:** Claude for quality drafts, GPT-4o-mini for bulk variations
+- **Building AI automations:** Claude API for the core logic, Haiku for simple routing tasks
+- **Content generation pipelines:** Claude for quality drafts, Haiku for bulk variations
 - **Research tools:** Gemini for Google-integrated search, Claude for analysis
-- **Client-facing chatbots:** GPT-4o for the ecosystem, Claude for quality
+- **Client-facing chatbots:** GPT-5.3 for the ecosystem, Claude for quality
 
 ## The real skill
 
 Don't be loyal to one model. Be loyal to results. The best prompt engineers test their prompts across models and pick the one that performs best for each specific use case. Models update constantly — what's best today might not be best next month.`,
     takeaways: [
       "Claude excels at complex instructions, long context, and coding tasks",
-      "GPT-4o has the largest ecosystem and is best for general-purpose work",
+      "GPT-5.3 has the largest ecosystem and is best for general-purpose work",
       "Gemini leads in multimodal tasks and Google ecosystem integration",
       "The best operators use multiple models strategically based on the task",
     ],
     exercise:
-      "Take a prompt you use regularly and run it through Claude, GPT-4o, and Gemini. Score each output on accuracy, tone, format, and speed. Build a simple comparison chart. Start developing your instinct for which model fits which job.",
+      "Take a prompt you use regularly and run it through Claude, GPT-5.3, and Gemini. Score each output on accuracy, tone, format, and speed. Build a simple comparison chart. Start developing your instinct for which model fits which job.",
   },
   "02-1": {
     title: "Role prompting and persona assignment",

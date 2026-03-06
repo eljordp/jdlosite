@@ -47,18 +47,18 @@ You're not asking a genius for answers. You're steering a prediction engine. The
 
 **Claude (Anthropic)** — Best for long documents, nuanced writing, following complex instructions, and coding. My daily driver. Handles 200K+ token context windows, meaning you can paste entire codebases or documents and it processes all of it.
 
-**GPT-4 / GPT-4o (OpenAI)** — The most well-known. Strong at general tasks, coding, and creative writing. GPT-4o is faster and cheaper, good enough for most tasks. The ecosystem (plugins, API, integrations) is the largest.
+**GPT-5.3 (OpenAI)** — The current flagship. Strong at general tasks, coding, and creative writing. The ecosystem (API, integrations, plugins) is the largest. GPT-4o-mini is still available as a cheap option for simple routing tasks.
 
-**Gemini (Google)** — Best for tasks involving Google's ecosystem. Strong multimodal capabilities (text + images + video). Good for research tasks with Google Search integration.
+**Gemini 2.5 (Google)** — Best for tasks involving Google's ecosystem. Strong multimodal capabilities (text + images + video + audio). Good for research tasks with Google Search integration.
 
-**Open-source (Llama, Mistral, DeepSeek)** — Free to run on your own hardware. Good for privacy-sensitive tasks or when you need to customize the model. Smaller models can run on a laptop. Larger ones compete with GPT-4.
+**Open-source (Llama 4, Mistral, DeepSeek)** — Free to run on your own hardware. Good for privacy-sensitive tasks or when you need to customize the model. Smaller models can run on a laptop. Larger ones compete with the flagship models.
 
 ## When to use what
 
-- **Writing sales copy, emails, proposals:** Claude or GPT-4o
+- **Writing sales copy, emails, proposals:** Claude or GPT-5.3
 - **Coding and debugging:** Claude (best at following technical instructions)
 - **Quick research:** Gemini (integrated search) or GPT with browsing
-- **Bulk processing on a budget:** GPT-4o-mini or open-source
+- **Bulk processing on a budget:** Claude Haiku or GPT-4o-mini
 - **Sensitive data you can't send to the cloud:** Open-source models locally
 
 ## Cost comparison
@@ -67,21 +67,21 @@ API pricing matters when you're building automations that run hundreds of times 
 
 - GPT-4o-mini: ~$0.15 per million input tokens (cheapest quality option)
 - Claude Haiku: ~$0.25/M input (fast, cheap, good for simple tasks)
-- GPT-4o: ~$2.50/M input (mid-tier)
 - Claude Sonnet: ~$3/M input (best value for complex tasks)
-- Claude Opus / GPT-4: ~$15/M input (premium, use only when needed)
+- GPT-5.3: ~$5/M input (mid-tier, strong general purpose)
+- Claude Opus: ~$15/M input (premium, use only when needed)
 
 ## The real move
 
 Don't marry one model. Use cheap models for simple tasks, premium models for complex ones. Route automatically based on task complexity. That's how you build cost-effective AI systems.`,
     takeaways: [
       "Claude excels at long documents, coding, and complex instructions",
-      "GPT-4o is the best general-purpose option with the largest ecosystem",
+      "GPT-5.3 is the best general-purpose option with the largest ecosystem",
       "Use cheap models (GPT-4o-mini, Haiku) for simple tasks to save money",
       "The best operators use multiple models strategically, not just one",
     ],
     exercise:
-      "Take one task you do regularly (writing emails, summarizing docs, etc). Run it through Claude, GPT-4o, and Gemini. Note which gives the best output and which is fastest. Start building your mental model of which tool fits which job.",
+      "Take one task you do regularly (writing emails, summarizing docs, etc). Run it through Claude, GPT-5.3, and Gemini. Note which gives the best output and which is fastest. Start building your mental model of which tool fits which job.",
   },
   "01-3": {
     title: "Tokens, context windows, and why it matters",
@@ -98,7 +98,7 @@ A token is roughly 3/4 of a word. "Automation" is 1-2 tokens. "I want to build a
 
 Think of the context window as the model's working memory. Everything in the conversation — your system prompt, the conversation history, and the current response — has to fit inside it.
 
-- GPT-4o: 128K tokens (~96K words)
+- GPT-5.3: 128K tokens (~96K words)
 - Claude: 200K tokens (~150K words)
 - Gemini: Up to 1M tokens
 
@@ -113,7 +113,7 @@ Think of the context window as the model's working memory. Everything in the con
 
 ## The cost equation
 
-If you're building an automation that runs 1,000 times per day with 2,000 tokens per run, that's 2 million tokens per day. At GPT-4o-mini rates ($0.15/M), that's $0.30/day. At Claude Opus rates ($15/M), that's $30/day. Same task, 100x price difference. Pick the right model.`,
+If you're building an automation that runs 1,000 times per day with 2,000 tokens per run, that's 2 million tokens per day. At Haiku rates ($0.25/M), that's $0.50/day. At Claude Opus rates ($15/M), that's $30/day. Same task, 60x price difference. Pick the right model.`,
     takeaways: [
       "1 token ≈ 3/4 of a word — everything costs tokens",
       "Context window = the model's working memory, don't waste it",
@@ -151,19 +151,19 @@ Ask yourself three questions before every AI task:
 
 Here's exactly how I route tasks across my operations:
 
-**Cheap tier (GPT-4o-mini / Claude Haiku):**
+**Cheap tier (Claude Haiku / GPT-4o-mini):**
 - Classifying incoming emails (spam, lead, support)
 - Extracting data from structured documents
 - Simple formatting and reformatting
 - Yes/no decisions
 
-**Mid tier (GPT-4o / Claude Sonnet):**
+**Mid tier (Claude Sonnet / GPT-5.3):**
 - Writing first drafts of emails and content
 - Summarizing meetings and documents
 - Code generation for standard patterns
 - Research synthesis
 
-**Premium tier (Claude Opus / GPT-4):**
+**Premium tier (Claude Opus):**
 - Complex strategy documents
 - Debugging difficult code
 - Multi-step agent workflows
