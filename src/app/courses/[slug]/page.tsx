@@ -64,6 +64,12 @@ export default async function CoursePage({
                 <span className="w-px h-4 bg-border" />
                 <span className="text-text">{course.price}</span>
               </div>
+              <Link
+                href={`/checkout?course=${encodeURIComponent(course.title)}&price=${encodeURIComponent(course.price)}&amount=${course.amount}`}
+                className="magnetic-btn text-sm"
+              >
+                Buy Now
+              </Link>
             </div>
           </div>
         </div>
@@ -267,8 +273,8 @@ export default async function CoursePage({
               Enrollment is reviewed. Not everyone gets in.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <GlowLink href={`/apply/${course.slug}`}>
-                Apply to Enroll
+              <GlowLink href={`/checkout?course=${encodeURIComponent(course.title)}&price=${encodeURIComponent(course.price)}&amount=${course.amount}`}>
+                Buy Now — {course.price}
               </GlowLink>
               <Link href="/mentorship" className="ghost-btn">
                 Want 1:1 instead?

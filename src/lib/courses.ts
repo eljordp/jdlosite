@@ -9,6 +9,7 @@ export type Course = {
   title: string;
   tagline: string;
   price: string;
+  amount: number; // price in cents for Stripe
   duration: string;
   level: string;
   description: string;
@@ -22,6 +23,7 @@ export const courses: Course[] = [
     title: "AI & Automation",
     tagline: "Build the systems that run businesses.",
     price: "$1,250",
+    amount: 125000,
     duration: "6 weeks",
     level: "Beginner → Advanced",
     description:
@@ -100,6 +102,7 @@ export const courses: Course[] = [
     title: "Sales Systems",
     tagline: "The playbook I use to close. Systematized.",
     price: "$750",
+    amount: 75000,
     duration: "4 weeks",
     level: "Beginner → Intermediate",
     description:
@@ -168,6 +171,7 @@ export const courses: Course[] = [
     title: "Prompt Engineering",
     tagline: "Get what you want from AI. Every time.",
     price: "$400",
+    amount: 40000,
     duration: "2 weeks",
     level: "All Levels",
     description:
@@ -226,6 +230,7 @@ export const courses: Course[] = [
     title: "Content & Brand",
     tagline: "Build a brand that makes money while you sleep.",
     price: "$600",
+    amount: 60000,
     duration: "4 weeks",
     level: "Beginner → Intermediate",
     description:
@@ -284,6 +289,7 @@ export const courses: Course[] = [
     title: "Team & Operations",
     tagline: "Build a team. Build systems. Scale without breaking.",
     price: "$1,000",
+    amount: 100000,
     duration: "5 weeks",
     level: "Intermediate → Advanced",
     description:

@@ -27,24 +27,40 @@ export default function StudentsPage() {
         <div className="max-w-[800px] mx-auto px-6 space-y-3">
           {courses.map((course, i) => (
             <RevealOnScroll key={course.slug} delay={(i % 3) + 1}>
-              <Link
-                href={`/courses/${course.slug}`}
-                className="group flex items-center justify-between gap-6 rounded-2xl border border-border bg-surface/50 p-7 hover:border-border-hover transition-all duration-500"
-              >
-                <div className="flex-1 min-w-0">
-                  <h2 className="text-xl font-semibold tracking-[-0.02em] mb-1 group-hover:text-accent transition-colors duration-300">
-                    {course.title}
-                  </h2>
-                  <p className="text-text-secondary text-[14px] leading-relaxed">
-                    {course.tagline}
-                  </p>
+              <div className="group rounded-2xl border border-border bg-surface/50 p-7 hover:border-border-hover transition-all duration-500">
+                <Link
+                  href={`/courses/${course.slug}`}
+                  className="flex items-center justify-between gap-6"
+                >
+                  <div className="flex-1 min-w-0">
+                    <h2 className="text-xl font-semibold tracking-[-0.02em] mb-1 group-hover:text-accent transition-colors duration-300">
+                      {course.title}
+                    </h2>
+                    <p className="text-text-secondary text-[14px] leading-relaxed">
+                      {course.tagline}
+                    </p>
+                  </div>
+                  <div className="shrink-0 text-right">
+                    <p className="text-text text-[15px] font-semibold">{course.price}</p>
+                    <p className="text-text-muted text-[12px] font-mono">{course.duration}</p>
+                  </div>
+                  <span className="text-accent text-lg shrink-0 group-hover:translate-x-1 transition-transform duration-300">→</span>
+                </Link>
+                <div className="mt-4 pt-4 border-t border-border flex items-center justify-between">
+                  <Link
+                    href={`/courses/${course.slug}`}
+                    className="text-text-muted text-[12px] font-mono hover:text-accent transition-colors"
+                  >
+                    View curriculum →
+                  </Link>
+                  <Link
+                    href={`/checkout?course=${encodeURIComponent(course.title)}&price=${encodeURIComponent(course.price)}&amount=${course.amount}`}
+                    className="magnetic-btn text-[13px] !py-2 !px-5"
+                  >
+                    Buy Now — {course.price}
+                  </Link>
                 </div>
-                <div className="shrink-0 text-right">
-                  <p className="text-text text-[15px] font-semibold">{course.price}</p>
-                  <p className="text-text-muted text-[12px] font-mono">{course.duration}</p>
-                </div>
-                <span className="text-accent text-lg shrink-0 group-hover:translate-x-1 transition-transform duration-300">→</span>
-              </Link>
+              </div>
             </RevealOnScroll>
           ))}
         </div>
