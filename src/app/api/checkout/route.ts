@@ -28,6 +28,9 @@ export async function POST(req: NextRequest) {
       ],
       mode: "payment",
       return_url: `${process.env.NEXT_PUBLIC_URL}/return?session_id={CHECKOUT_SESSION_ID}`,
+      metadata: {
+        course: courseName,
+      },
     });
 
     return NextResponse.json({ clientSecret: session.client_secret });
