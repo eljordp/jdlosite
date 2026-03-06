@@ -5,6 +5,7 @@ import { useParams, useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { getCourse } from "@/lib/courses";
 import { getCourseContent, getLessonKeys } from "@/lib/content";
+import CustomCursor from "@/components/CustomCursor";
 
 const STORAGE_PREFIX = "jdlo_access_";
 const PROGRESS_PREFIX = "jdlo_progress_";
@@ -77,7 +78,8 @@ export default function LearnDashboard() {
 
   if (!course || !content) {
     return (
-      <div className="min-h-screen bg-[#050505] flex items-center justify-center">
+      <div className="min-h-screen bg-[#050505] flex items-center justify-center cursor-none">
+        <CustomCursor />
         <p className="text-text-secondary">Course not found.</p>
       </div>
     );
@@ -85,7 +87,8 @@ export default function LearnDashboard() {
 
   if (checking) {
     return (
-      <div className="min-h-screen bg-[#050505] flex items-center justify-center">
+      <div className="min-h-screen bg-[#050505] flex items-center justify-center cursor-none">
+        <CustomCursor />
         <p className="text-text-secondary text-sm font-mono">
           Verifying access...
         </p>
@@ -95,7 +98,8 @@ export default function LearnDashboard() {
 
   if (!authorized) {
     return (
-      <div className="min-h-screen bg-[#050505] flex items-center justify-center px-6">
+      <div className="min-h-screen bg-[#050505] flex items-center justify-center px-6 cursor-none">
+        <CustomCursor />
         <div className="max-w-md w-full text-center">
           <h1 className="text-2xl font-bold text-text mb-3">{course.title}</h1>
           <p className="text-text-secondary text-sm mb-8">
@@ -158,7 +162,8 @@ export default function LearnDashboard() {
   const progress = totalLessons > 0 ? (completed / totalLessons) * 100 : 0;
 
   return (
-    <div className="min-h-screen bg-[#050505]">
+    <div className="min-h-screen bg-[#050505] cursor-none">
+      <CustomCursor />
       <div className="max-w-[800px] mx-auto px-6 py-10">
         {/* Header */}
         <Link

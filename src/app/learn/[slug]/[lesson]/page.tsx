@@ -5,6 +5,7 @@ import { useParams, useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { getCourse } from "@/lib/courses";
 import { getLessonContent, getLessonKeys } from "@/lib/content";
+import CustomCursor from "@/components/CustomCursor";
 
 const STORAGE_PREFIX = "jdlo_access_";
 const PROGRESS_PREFIX = "jdlo_progress_";
@@ -195,7 +196,8 @@ export default function LessonPage() {
 
   if (!course || !lesson) {
     return (
-      <div className="min-h-screen bg-[#050505] flex items-center justify-center">
+      <div className="min-h-screen bg-[#050505] flex items-center justify-center cursor-none">
+        <CustomCursor />
         <p className="text-text-secondary">Lesson not found.</p>
       </div>
     );
@@ -203,7 +205,8 @@ export default function LessonPage() {
 
   if (checking) {
     return (
-      <div className="min-h-screen bg-[#050505] flex items-center justify-center">
+      <div className="min-h-screen bg-[#050505] flex items-center justify-center cursor-none">
+        <CustomCursor />
         <p className="text-text-secondary text-sm font-mono">
           Verifying access...
         </p>
@@ -217,7 +220,8 @@ export default function LessonPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#050505]">
+    <div className="min-h-screen bg-[#050505] cursor-none">
+      <CustomCursor />
       <div className="max-w-[700px] mx-auto px-6 py-10">
         {/* Nav */}
         <Link

@@ -8,6 +8,7 @@ import {
   EmbeddedCheckout,
 } from "@stripe/react-stripe-js";
 import Link from "next/link";
+import CustomCursor from "@/components/CustomCursor";
 
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
@@ -34,7 +35,8 @@ function CheckoutContent() {
   }, [course, price, amount]);
 
   return (
-    <div className="min-h-screen bg-[#050505] flex flex-col">
+    <div className="min-h-screen bg-[#050505] flex flex-col cursor-none">
+      <CustomCursor />
       <div className="px-6 py-6">
         <Link
           href={`/students`}
