@@ -28,6 +28,8 @@ export async function POST(req: NextRequest) {
       "Prompt Engineering": "prompt-engineering",
       "Content & Brand": "content-brand",
       "Team & Operations": "team-operations",
+      "Personal Growth & Discipline": "personal-growth",
+      "The Operator Playbook": "operator-playbook",
     };
     const courseSlug = courseSlugMap[courseName] || courseName.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 

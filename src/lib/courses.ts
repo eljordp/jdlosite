@@ -353,6 +353,144 @@ export const courses: Course[] = [
       },
     ],
   },
+  {
+    slug: "personal-growth",
+    title: "Personal Growth & Discipline",
+    tagline: "The inner work that makes the outer work possible.",
+    price: "$500",
+    amount: 50000,
+    duration: "4 weeks",
+    level: "All Levels",
+    description:
+      "Nobody talks about this part. The discipline to show up every day, the resilience when shit falls apart, the confidence to charge what you're worth, and the networking skills to get in any room. This is the foundation everything else sits on.",
+    outcomes: [
+      "Build a daily structure that compounds results",
+      "Develop unshakable confidence in yourself and your value",
+      "Network and build real connections (not LinkedIn spam)",
+      "Build resilience that keeps you moving when others quit",
+    ],
+    modules: [
+      {
+        num: "01",
+        title: "Discipline & Daily Structure",
+        lessons: [
+          "Why most people fail before they start",
+          "Designing a daily schedule that actually works",
+          "The first 3 hours: how to win the morning",
+          "Eliminating distractions (phone, people, habits)",
+        ],
+      },
+      {
+        num: "02",
+        title: "Confidence & Mindset",
+        lessons: [
+          "Where real confidence comes from (not affirmations)",
+          "Knowing your worth and communicating it",
+          "Handling rejection without taking it personal",
+          "The 'stop being a bitch' framework",
+        ],
+      },
+      {
+        num: "03",
+        title: "Resilience & Mental Toughness",
+        lessons: [
+          "When everything falls apart — what to do first",
+          "Dealing with flaky people and broken promises",
+          "Financial stress: staying sharp when money is tight",
+          "Long-game thinking in a short-game world",
+        ],
+      },
+      {
+        num: "04",
+        title: "Networking & Relationships",
+        lessons: [
+          "How to get in any room (without being fake)",
+          "Building connections that turn into opportunities",
+          "The follow-up game: staying top of mind",
+          "Cutting dead weight without burning bridges",
+        ],
+      },
+      {
+        num: "05",
+        title: "Health & Energy",
+        lessons: [
+          "Why your body is a business asset",
+          "Nutrition for performance (not aesthetics)",
+          "Movement systems: gym, walks, bodyweight",
+          "Sleep, recovery, and managing stress",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "operator-playbook",
+    title: "The Operator Playbook",
+    tagline: "Become the person every business needs.",
+    price: "$900",
+    amount: 90000,
+    duration: "5 weeks",
+    level: "Intermediate → Advanced",
+    description:
+      "Operators are the most valuable people in business. You don't just do tasks — you see what's broken, fix it, build systems, and make the founder's life easier. This is how I became COO and how you can become indispensable.",
+    outcomes: [
+      "Understand what operators do and why they're irreplaceable",
+      "Run someone else's business like it's your own",
+      "Build systems that scale without you",
+      "Position yourself for equity, partnerships, and leadership",
+    ],
+    modules: [
+      {
+        num: "01",
+        title: "What an Operator Actually Is",
+        lessons: [
+          "Operator vs manager vs freelancer vs employee",
+          "The operator mindset: own everything, blame nothing",
+          "What founders actually need (and won't tell you)",
+          "How I became COO at 22",
+        ],
+      },
+      {
+        num: "02",
+        title: "Bringing Value Before Getting Paid",
+        lessons: [
+          "The audit: finding broken things in any business",
+          "Showing your value before asking for money",
+          "Building a track record with small wins",
+          "Turning free work into paid positions",
+        ],
+      },
+      {
+        num: "03",
+        title: "Running the Business",
+        lessons: [
+          "Understanding every function: sales, marketing, ops, finance",
+          "Making decisions when the founder isn't around",
+          "Managing up: keeping the CEO in the loop without hand-holding",
+          "Cross-functional coordination and accountability",
+        ],
+      },
+      {
+        num: "04",
+        title: "Systems Thinking",
+        lessons: [
+          "Seeing the whole machine, not just your part",
+          "Finding bottlenecks and fixing root causes",
+          "Building SOPs that survive your absence",
+          "Automating yourself out of repetitive work",
+        ],
+      },
+      {
+        num: "05",
+        title: "Scaling & Positioning",
+        lessons: [
+          "From operator to partner: the equity conversation",
+          "Operating multiple businesses simultaneously",
+          "Building your own operator brand and reputation",
+          "The pipeline: from course to paid project to team member",
+        ],
+      },
+    ],
+  },
 ];
 
 export function getCourse(slug: string): Course | undefined {
