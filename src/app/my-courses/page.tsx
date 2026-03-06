@@ -163,7 +163,11 @@ function RedeemCode() {
     setError("");
 
     try {
-      const res = await fetch(`/api/access/lookup?code=${trimmed}`);
+      const res = await fetch("/api/access/lookup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ code: trimmed }),
+      });
       const data = await res.json();
 
       if (data.course_slug) {
