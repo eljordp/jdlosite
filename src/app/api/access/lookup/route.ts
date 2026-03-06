@@ -24,7 +24,7 @@ export async function GET(req: NextRequest) {
   return NextResponse.json({ course_slug: data.course_slug });
 }
 
-// POST — redeem a code and link it to the logged-in user
+// POST — redeem a code and try to link it to the logged-in user
 export async function POST(req: NextRequest) {
   const { code } = await req.json();
 
@@ -32,16 +32,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Missing code" }, { status: 400 });
   }
 
-  // Verify user is logged in
-  const supabase = await createClient();
-  const { data: userData } = await supabase.auth.getUser();
-  const userEmail = userData?.user?.email?.toLowerCase();
-
-  if (!userEmail) {
-    return NextResponse.json({ error: "Not logged in" }, { status: 401 });
-  }
-
-  // Look up the code
+  // Look up the code first
   const admin = createAdminClient();
   const { data, error } = await admin
     .from("access_codes")
@@ -53,12 +44,20 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ course_slug: null });
   }
 
-  // Link the code to this user's email
-  if (userEmail !== data.email) {
-    await admin
-      .from("access_codes")
-      .update({ email: userEmail })
-      .eq("code", code);
+  // Try to link the code to the logged-in user (best effort)
+  try {
+    const supabase = await createClient();
+    const { data: userData } = await supabase.auth.getUser();
+    const userEmail = userData?.user?.email?.toLowerCase();
+
+    if (userEmail && userEmail !== data.email) {
+      await admin
+        .from("access_codes")
+        .update({ email: userEmail })
+        .eq("code", code);
+    }
+  } catch {
+    // Auth failed — code still works, just won't link to profile yet
   }
 
   return NextResponse.json({ course_slug: data.course_slug });
