@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import CustomCursor from "@/components/CustomCursor";
 import { createClient } from "@/lib/supabase/client";
 
@@ -10,7 +11,7 @@ export default function SignUpPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [sent, setSent] = useState(false);
+  const router = useRouter();
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -18,12 +19,9 @@ export default function SignUpPage() {
     setLoading(true);
 
     const supabase = createClient();
-    const { error } = await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signUp({
       email,
       password,
-      options: {
-        emailRedirectTo: `${window.location.origin}/auth/callback`,
-      },
     });
 
     if (error) {
@@ -32,33 +30,16 @@ export default function SignUpPage() {
       return;
     }
 
-    setSent(true);
-    setLoading(false);
-  }
+    // If session exists, user is logged in immediately (no email confirmation)
+    if (data.session) {
+      router.push("/my-courses");
+      router.refresh();
+      return;
+    }
 
-  if (sent) {
-    return (
-      <div className="min-h-screen bg-[#050505] flex items-center justify-center px-6 cursor-none">
-        <CustomCursor />
-        <div className="max-w-sm w-full text-center">
-          <div className="text-5xl mb-6 text-accent">&#10003;</div>
-          <h1 className="text-2xl font-bold text-text mb-3 tracking-[-0.03em]">
-            Check your email
-          </h1>
-          <p className="text-text-secondary text-[15px] leading-relaxed mb-6">
-            We sent a confirmation link to{" "}
-            <span className="text-text font-medium">{email}</span>. Click it to
-            activate your account.
-          </p>
-          <Link
-            href="/"
-            className="text-text-muted text-[13px] font-mono hover:text-accent transition-colors"
-          >
-            Back to Home
-          </Link>
-        </div>
-      </div>
-    );
+    // Fallback: if email confirmation is required
+    setError("Check your email for a confirmation link.");
+    setLoading(false);
   }
 
   return (
@@ -106,7 +87,7 @@ export default function SignUpPage() {
               required
               minLength={6}
               className="w-full bg-[#111] border border-border rounded-xl px-4 py-3 text-text text-sm focus:outline-none focus:border-accent transition-colors"
-              placeholder="6+ characters"
+              placeholder="8+ characters"
             />
           </div>
 
