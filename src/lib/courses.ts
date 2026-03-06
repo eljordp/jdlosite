@@ -15,52 +15,53 @@ export type Course = {
   description: string;
   outcomes: string[];
   modules: Module[];
+  gated?: boolean; // false = no prerequisite course required (default: true)
 };
 
 export const courses: Course[] = [
   {
     slug: "ai-automation",
     title: "AI & Automation",
-    tagline: "Build the systems that run businesses.",
+    tagline: "Build with Claude. Automate everything.",
     price: "$297",
     amount: 29700,
     duration: "6 weeks",
     level: "Beginner → Advanced",
     description:
-      "This is what I run my companies on. You'll go from understanding AI to building real automated systems — agents, workflows, integrations — the kind that save 20+ hours a week.",
+      "This entire site, every course, every system — built with Claude. You'll learn exactly how I use Claude to run businesses, automate operations, and build things that used to take teams of developers.",
     outcomes: [
-      "Build AI agents that work autonomously",
-      "Automate repetitive workflows end-to-end",
-      "Connect AI to your existing tools and data",
-      "Deploy systems your team can actually use",
+      "Use Claude to build real systems from scratch",
+      "Automate repetitive workflows end-to-end with AI",
+      "Build Claude-powered agents that work autonomously",
+      "Deploy AI systems your team can actually use",
     ],
     modules: [
       {
         num: "01",
-        title: "AI Fundamentals",
+        title: "Claude Fundamentals",
         lessons: [
-          "How LLMs actually work (no fluff)",
-          "The model landscape: GPT, Claude, Gemini, open-source",
-          "Tokens, context windows, and why it matters",
-          "Choosing the right model for the right job",
+          "How Claude works (and why it's different)",
+          "Claude's capabilities: code, reasoning, vision, 200K context",
+          "Tokens, context windows, and how to use them",
+          "Claude models: Opus, Sonnet, Haiku — when to use what",
         ],
       },
       {
         num: "02",
-        title: "Prompt Engineering",
+        title: "Prompting Claude",
         lessons: [
-          "The anatomy of a great prompt",
+          "The anatomy of a great Claude prompt",
           "System prompts, roles, and context injection",
-          "Chain-of-thought and reasoning techniques",
+          "Extended thinking and chain-of-thought",
           "Building reusable prompt libraries",
         ],
       },
       {
         num: "03",
-        title: "APIs & Integrations",
+        title: "Claude API & Integrations",
         lessons: [
-          "Calling AI APIs without a CS degree",
-          "Connecting AI to Airtable, Notion, Sheets, Slack",
+          "Calling the Claude API (Messages API, tool use)",
+          "Connecting Claude to Airtable, Notion, Sheets, Slack",
           "Webhooks and real-time triggers",
           "Error handling and reliability",
         ],
@@ -71,16 +72,16 @@ export const courses: Course[] = [
         lessons: [
           "Make, Zapier, n8n — when to use what",
           "Building multi-step automated pipelines",
-          "AI-powered email, CRM, and content workflows",
+          "Claude-powered email, CRM, and content workflows",
           "Testing and maintaining automations at scale",
         ],
       },
       {
         num: "05",
-        title: "AI Agents",
+        title: "Claude Agents",
         lessons: [
-          "What agents actually are and how to build them",
-          "Tool use: giving agents the ability to act",
+          "What agents are and how to build them with Claude",
+          "Tool use: giving Claude the ability to act",
           "Multi-agent systems and orchestration",
           "Real business agent builds: research, outreach, ops",
         ],
@@ -89,7 +90,7 @@ export const courses: Course[] = [
         num: "06",
         title: "Deploy & Operate",
         lessons: [
-          "Putting systems into production",
+          "Putting Claude systems into production",
           "Monitoring, logging, and alerting",
           "Handing off AI systems to a team",
           "Iterating and improving over time",
@@ -169,28 +170,28 @@ export const courses: Course[] = [
   {
     slug: "prompt-engineering",
     title: "Prompt Engineering",
-    tagline: "Get what you want from AI. Every time.",
+    tagline: "Get what you want from Claude. Every time.",
     price: "$67",
     amount: 6700,
     duration: "2 weeks",
     level: "All Levels",
     description:
-      "99% of people use AI at 10% of its capability. Prompt engineering is the skill that unlocks the rest. Learn the techniques I use daily to get elite output from any model.",
+      "99% of people use Claude at 10% of its capability. Prompt engineering is the skill that unlocks the rest. Learn the techniques I use daily to get elite output — every technique taught through Claude.",
     outcomes: [
-      "Write prompts that consistently produce great output",
+      "Write Claude prompts that consistently produce great output",
       "Build system prompts for any use case",
-      "Use advanced reasoning techniques",
+      "Use extended thinking and advanced reasoning",
       "Create prompt libraries your whole team can use",
     ],
     modules: [
       {
         num: "01",
-        title: "How Models Think",
+        title: "How Claude Thinks",
         lessons: [
           "What happens when you send a prompt",
-          "Why AI fails and how to fix it",
+          "Why Claude fails and how to fix it",
           "Temperature, top-p, and generation settings",
-          "Model differences: GPT vs Claude vs Gemini",
+          "Opus vs Sonnet vs Haiku: choosing the right model",
         ],
       },
       {
@@ -487,6 +488,156 @@ export const courses: Course[] = [
           "Operating multiple businesses simultaneously",
           "Building your own operator brand and reputation",
           "The pipeline: from course to paid project to team member",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "ai-for-business",
+    title: "AI for Business",
+    tagline: "Integrate Claude into your business. Print money.",
+    price: "$497",
+    amount: 49700,
+    duration: "5 weeks",
+    level: "Business Owners & Operators",
+    gated: false,
+    description:
+      "This is the course for businesses that want to integrate Claude and stop leaving money on the table. I'll show you exactly how to use AI to cut costs, increase revenue, and run operations that scale — the same playbook I run for my clients.",
+    outcomes: [
+      "Identify the highest-ROI AI opportunities in any business",
+      "Deploy Claude-powered systems that directly increase revenue",
+      "Automate customer operations and reduce headcount costs",
+      "Build an AI-first culture that compounds over time",
+    ],
+    modules: [
+      {
+        num: "01",
+        title: "AI Revenue Strategy",
+        lessons: [
+          "Where AI actually makes businesses money",
+          "The AI audit: finding your highest-ROI opportunities",
+          "Calculating real ROI on AI investments",
+          "Building your 90-day AI implementation roadmap",
+        ],
+      },
+      {
+        num: "02",
+        title: "Customer Operations AI",
+        lessons: [
+          "Claude-powered customer support that scales",
+          "Automating onboarding and client communication",
+          "AI-driven retention and churn prevention",
+          "Quality control: keeping AI responses on-brand",
+        ],
+      },
+      {
+        num: "03",
+        title: "Sales & Marketing Automation",
+        lessons: [
+          "AI lead scoring and qualification",
+          "Claude-powered outreach personalization at scale",
+          "Automated content marketing pipelines",
+          "AI-assisted proposal and pitch generation",
+        ],
+      },
+      {
+        num: "04",
+        title: "Data Intelligence",
+        lessons: [
+          "Using Claude to analyze business data",
+          "Automated reporting and executive summaries",
+          "Competitive intelligence on autopilot",
+          "Forecasting and decision support with AI",
+        ],
+      },
+      {
+        num: "05",
+        title: "Implementation & ROI",
+        lessons: [
+          "Getting your team to actually use AI",
+          "Change management for AI adoption",
+          "Measuring and reporting AI impact",
+          "Scaling from pilot to company-wide deployment",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "ai-mastery",
+    title: "AI Mastery — Expert",
+    tagline: "The full power of Claude. Nothing held back.",
+    price: "$9,997",
+    amount: 999700,
+    duration: "8 weeks",
+    level: "Advanced → Expert",
+    gated: false,
+    description:
+      "This is everything. Claude Code building full production apps from your terminal. MCP servers that give Claude custom tools. The Agent SDK for autonomous systems. Computer use. Vision. Extended thinking. This course shows you the absolute extremes of what Claude can do — and how to weaponize every capability for business.",
+    outcomes: [
+      "Build full production applications using Claude Code",
+      "Create custom MCP servers that extend Claude's capabilities",
+      "Deploy autonomous agent systems with the Claude Agent SDK",
+      "Architect enterprise-grade AI infrastructure",
+    ],
+    modules: [
+      {
+        num: "01",
+        title: "Claude Code",
+        lessons: [
+          "Claude Code: building apps from your terminal",
+          "Project scaffolding, debugging, and iteration",
+          "Multi-file codebases and complex refactors",
+          "Deploying full-stack apps built entirely by Claude",
+        ],
+      },
+      {
+        num: "02",
+        title: "The Claude API Deep Dive",
+        lessons: [
+          "Messages API: streaming, tool use, and vision",
+          "Extended thinking: making Claude reason step-by-step",
+          "Structured outputs and reliable data extraction",
+          "Cost optimization: batching, caching, model routing",
+        ],
+      },
+      {
+        num: "03",
+        title: "MCP — Model Context Protocol",
+        lessons: [
+          "What MCP is and why it changes everything",
+          "Building your first MCP server",
+          "Custom tools: database, API, and file system access",
+          "Deploying MCP servers in production",
+        ],
+      },
+      {
+        num: "04",
+        title: "Claude Agent SDK",
+        lessons: [
+          "Building autonomous agents with the Agent SDK",
+          "Tool design: giving agents real-world capabilities",
+          "Multi-agent orchestration and handoffs",
+          "Guardrails, safety, and monitoring agents in production",
+        ],
+      },
+      {
+        num: "05",
+        title: "Advanced Claude Capabilities",
+        lessons: [
+          "Vision: analyzing images, screenshots, and documents",
+          "Computer use: Claude controlling your desktop",
+          "PDF analysis, data extraction, and multimodal workflows",
+          "Combining capabilities for complex business automation",
+        ],
+      },
+      {
+        num: "06",
+        title: "Enterprise AI Architecture",
+        lessons: [
+          "Designing AI systems that handle millions of requests",
+          "Security, compliance, and data privacy with Claude",
+          "Team workflows: Claude in engineering, sales, and ops",
+          "Building an AI-first company from the ground up",
         ],
       },
     ],

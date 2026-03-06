@@ -6,6 +6,8 @@ import { contentBrand } from "./content-brand";
 import { teamOperations } from "./team-operations";
 import { personalGrowth } from "./personal-growth";
 import { operatorPlaybook } from "./operator-playbook";
+import { aiForBusiness } from "./ai-for-business";
+import { aiMastery } from "./ai-mastery";
 import { aiAutomationQuizzes } from "./ai-automation";
 import { salesSystemsQuizzes } from "./sales-systems";
 import { promptEngineeringQuizzes } from "./prompt-engineering";
@@ -13,6 +15,8 @@ import { contentBrandQuizzes } from "./content-brand";
 import { teamOperationsQuizzes } from "./team-operations";
 import { personalGrowthQuizzes } from "./personal-growth";
 import { operatorPlaybookQuizzes } from "./operator-playbook";
+import { aiForBusinessQuizzes } from "./ai-for-business";
+import { aiMasteryQuizzes } from "./ai-mastery";
 
 export type {
   LessonData,
@@ -32,6 +36,8 @@ const allContent: Record<string, CourseContent> = {
   "team-operations": teamOperations,
   "personal-growth": personalGrowth,
   "operator-playbook": operatorPlaybook,
+  "ai-for-business": aiForBusiness,
+  "ai-mastery": aiMastery,
 };
 
 const allQuizzes: Record<string, CourseQuizzes> = {
@@ -42,6 +48,8 @@ const allQuizzes: Record<string, CourseQuizzes> = {
   "team-operations": teamOperationsQuizzes,
   "personal-growth": personalGrowthQuizzes,
   "operator-playbook": operatorPlaybookQuizzes,
+  "ai-for-business": aiForBusinessQuizzes,
+  "ai-mastery": aiMasteryQuizzes,
 };
 
 export function getLessonContent(courseSlug: string, lessonKey: string) {

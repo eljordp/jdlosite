@@ -18,7 +18,7 @@ export default function StudentsPage() {
             <span className="gradient-text-blue">skill track.</span>
           </h1>
           <p className="text-text-secondary text-lg max-w-[480px] mx-auto hero-animate hero-delay-3">
-            Five disciplines. Real systems. Every course built on what Jordan uses daily.
+            Nine courses. Real systems. Every course built on what Jordan uses daily.
           </p>
         </div>
       </section>
@@ -26,7 +26,8 @@ export default function StudentsPage() {
       <section className="section-gap">
         <div className="max-w-[800px] mx-auto px-6 space-y-3">
           {courses.map((course, i) => {
-            const prevCourse = i > 0 ? courses[i - 1] : null;
+            const isGated = course.gated !== false;
+            const prevCourse = isGated && i > 0 ? courses[i - 1] : null;
             return (
             <RevealOnScroll key={course.slug} delay={(i % 3) + 1}>
               <div className="group rounded-2xl border border-border bg-surface/50 p-7 hover:border-border-hover transition-all duration-500">

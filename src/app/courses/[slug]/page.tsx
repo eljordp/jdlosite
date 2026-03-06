@@ -33,7 +33,8 @@ export default async function CoursePage({
   if (!course) notFound();
 
   const courseIdx = courses.findIndex((c) => c.slug === slug);
-  const prevCourse = courseIdx > 0 ? courses[courseIdx - 1] : null;
+  const isGated = course.gated !== false;
+  const prevCourse = isGated && courseIdx > 0 ? courses[courseIdx - 1] : null;
   const nextCourse = courseIdx < courses.length - 1 ? courses[courseIdx + 1] : null;
 
   return (

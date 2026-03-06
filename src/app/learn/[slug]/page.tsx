@@ -33,9 +33,10 @@ export default function LearnDashboard() {
   const lessonKeys = getLessonKeys(slug);
   const quizzes = getCourseQuizzes(slug);
 
-  // Course gating: find previous course
+  // Course gating: find previous course (skip if course.gated === false)
   const courseIdx = courses.findIndex((c) => c.slug === slug);
-  const prevCourse = courseIdx > 0 ? courses[courseIdx - 1] : null;
+  const isGated = course?.gated !== false;
+  const prevCourse = isGated && courseIdx > 0 ? courses[courseIdx - 1] : null;
 
   // Check access
   useEffect(() => {

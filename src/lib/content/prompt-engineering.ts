@@ -4,7 +4,7 @@ export const promptEngineering: CourseContent = {
   "01-1": {
     title: "What happens when you send a prompt",
     duration: "5 min read",
-    content: `Most people type into ChatGPT like they're Googling something. They get mediocre output and blame the AI. The problem isn't the model — it's that they have no idea what's actually happening under the hood.
+    content: `Most people type into Claude like they're Googling something. They get mediocre output and blame Claude. The problem isn't the model — it's that they have no idea what's actually happening under the hood.
 
 ## The pipeline
 
@@ -26,22 +26,22 @@ The second prompt works better because you've given the model more tokens to att
 
 ## The key mental model
 
-Think of the AI as a prediction engine with incredible pattern recognition but zero initiative. It will only go where your prompt points it. Vague input = vague output. Specific input = specific output. Every single time.
+Think of Claude as a prediction engine with incredible pattern recognition but zero initiative. It will only go where your prompt points it. Vague input = vague output. Specific input = specific output. Every single time.
 
 The rest of this course is about getting surgical with that input.`,
     takeaways: [
-      "AI models predict the next token — they don't think, reason, or understand on their own",
+      "Claude predicts the next token — it doesn't think, reason, or understand on its own",
       "Your prompt gets tokenized, combined with context, and processed through attention layers",
       "Specific prompts dramatically outperform vague ones because they narrow the prediction space",
       "Treat the model as a literal, capable assistant — not a search engine",
     ],
     exercise:
-      "Open any AI model. Send the prompt 'marketing ideas' and note the output. Then send: 'You're a growth marketer for a local gym doing $200K/year. Give me 5 acquisition ideas ranked by cost-effectiveness with estimated monthly budget for each.' Compare the two. The difference is what this entire course teaches you to control.",
+      "Open Claude. Send the prompt 'marketing ideas' and note the output. Then send: 'You're a growth marketer for a local gym doing $200K/year. Give me 5 acquisition ideas ranked by cost-effectiveness with estimated monthly budget for each.' Compare the two. The difference is what this entire course teaches you to control.",
   },
   "01-2": {
-    title: "Why AI fails and how to fix it",
+    title: "Why Claude fails and how to fix it",
     duration: "6 min read",
-    content: `AI doesn't fail randomly. It fails predictably, and once you learn the failure modes, you can prevent almost all of them. I've built AI systems for real businesses — these are the exact issues I see every time.
+    content: `Claude doesn't fail randomly. It fails predictably, and once you learn the failure modes, you can prevent almost all of them. I've built AI systems for real businesses — these are the exact issues I see every time.
 
 ## Failure mode 1: Vague instructions
 
@@ -57,7 +57,7 @@ The model doesn't know your business, your customers, or your situation unless y
 
 ## Failure mode 3: Hallucinations
 
-AI confidently makes things up. It'll cite fake studies, invent statistics, create plausible-sounding but wrong technical explanations. This isn't a bug — it's how prediction works.
+Claude can confidently make things up. It might cite fake studies, invent statistics, create plausible-sounding but wrong technical explanations. This isn't a bug — it's how prediction works.
 
 **Fix:** Ask the model to cite sources or flag uncertainty. Use phrases like "Only include information you're confident about" and "If you're unsure, say so." Always verify critical facts.
 
@@ -75,7 +75,7 @@ You wanted bullet points but got paragraphs. You wanted JSON but got markdown.
 
 ## The operator mindset
 
-Bad output is never the AI's fault. It's a prompt problem. Every time you get garbage output, ask yourself: "What did I fail to specify?" That mindset is what separates operators from tourists.`,
+Bad output is never Claude's fault. It's a prompt problem. Every time you get garbage output, ask yourself: "What did I fail to specify?" That mindset is what separates operators from tourists.`,
     takeaways: [
       "AI failures are predictable — vague instructions, missing context, hallucinations, lost instructions, wrong format",
       "Always specify audience, tone, length, format, and goal in your prompts",
@@ -88,7 +88,7 @@ Bad output is never the AI's fault. It's a prompt problem. Every time you get ga
   "01-3": {
     title: "Temperature, top-p, and generation settings",
     duration: "5 min read",
-    content: `Most people never touch generation settings. That's like driving a car and never adjusting the mirrors. These settings give you direct control over how the model generates output.
+    content: `Most people never touch generation settings. That's like driving a car and never adjusting the mirrors. These settings give you direct control over how Claude generates output.
 
 ## Temperature
 
@@ -137,65 +137,84 @@ Top-p controls which tokens the model considers. A top-p of 0.9 means the model 
       "Pick one prompt and run it at temperature 0, 0.5, and 1.0. Use the same prompt each time. Notice how the output changes — the structure, word choice, creativity, and reliability. This builds your intuition for when to use each setting.",
   },
   "01-4": {
-    title: "Model differences: GPT vs Claude vs Gemini",
+    title: "Opus vs Sonnet vs Haiku: choosing the right model",
     duration: "6 min read",
-    content: `Different models have different strengths. Using the wrong model for a task is like using a hammer to turn a screw — it technically works but the result is ugly. Here's what I've learned building with all of them.
+    content: `Claude isn't one model — it's a family of models, each built for different jobs. Using Opus for a simple classification task is overkill. Using Haiku for complex analysis is underkill. Knowing which model to reach for is a real skill that saves you time and money.
 
-## Claude (Anthropic)
+## Claude Opus 4.6
 
-**Best at:** Following complex, multi-step instructions. Long document processing. Coding. Nuanced writing that doesn't sound like AI. Staying in character with detailed system prompts.
+**The powerhouse.** Opus is Claude's most capable model. It's what you use when the task is hard, nuanced, or high-stakes.
 
-**Context window:** 200K tokens — you can paste entire codebases, full contracts, or 300-page documents.
+**Best at:** Complex multi-step reasoning. Deep code generation and architecture decisions. Long-form analysis where quality matters. Creative writing with genuine nuance. Extended thinking for problems that require deliberation.
 
-**Where it falls short:** Can be overly cautious. Sometimes refuses tasks that are perfectly fine. Slower to adopt new integrations.
+**Context window:** 200K tokens — paste entire codebases, full contracts, or 300-page documents.
 
-**My take:** Claude is my daily driver. For anything that requires precision, long context, or serious coding — it's the best option. Period.
+**Extended thinking:** Opus supports extended thinking, where it reasons through complex problems step by step internally before responding. This is a game-changer for hard tasks — math, logic, multi-factor analysis, and anything where "think harder" actually helps.
 
-## GPT-5.3 (OpenAI)
+**When to use:** High-value client deliverables. Complex coding tasks. Architecture decisions. Deep research analysis. Anything where getting it wrong costs more than the extra API spend.
 
-**Best at:** General-purpose tasks. Largest plugin/integration ecosystem. Image generation. Good at creative writing with personality.
+**My take:** Opus is my daily driver. When I'm building systems, writing proposals, or doing anything that matters — this is what I reach for. Period.
 
-**Context window:** 128K tokens.
+## Claude Sonnet 4.6
 
-**Where it falls short:** Can be verbose and "corporate" in tone. API costs add up at scale.
+**The workhorse.** Sonnet hits the sweet spot of capability and speed. It handles most tasks well and costs significantly less than Opus.
 
-**My take:** Best ecosystem, and the model most clients are familiar with. I use it when I need tool integrations or when the client's stack is already OpenAI.
+**Best at:** Business writing and emails. Code generation for standard tasks. Content creation and editing. Data extraction and formatting. Prompt chaining workflows where speed matters.
 
-## Gemini 2.5 (Google)
+**Context window:** 200K tokens — same massive context as Opus.
 
-**Best at:** Multimodal tasks (text + images + video + audio). Integration with Google Workspace. Massive context window (up to 1M tokens). Research with built-in search.
+**When to use:** Day-to-day work. Content pipelines. Standard code tasks. Client chatbots. Anything where you need good quality fast and the task isn't pushing the boundaries of what AI can do.
 
-**Where it falls short:** Instruction following isn't as tight as Claude. Can be inconsistent on complex tasks.
+**My take:** Sonnet is the model I use most by volume. 80% of tasks don't need Opus-level reasoning, and Sonnet handles them fast and clean.
 
-**My take:** Great for research and anything touching Google's ecosystem. The 1M context window is insane for processing massive documents.
+## Claude Haiku 4.5
+
+**The speedster.** Haiku is Claude's fastest and most affordable model. It's built for high-volume, straightforward tasks where speed and cost matter more than depth.
+
+**Best at:** Classification and routing. Simple data extraction. Quick summarization. Bulk processing where you're running thousands of prompts. Simple Q&A from provided context.
+
+**Context window:** 200K tokens — even Haiku gets the full context window.
+
+**When to use:** High-volume automations. Simple routing logic (is this email a complaint or a question?). Preprocessing steps in prompt chains. Any task where the answer is straightforward and you need it fast.
+
+**My take:** Haiku is the unsung hero. I use it for every simple routing and classification step in my automations. It's fast, cheap, and reliable for tasks that don't need deep reasoning.
 
 ## How I choose for client work
 
-- **Building AI automations:** Claude API for the core logic, Haiku for simple routing tasks
-- **Content generation pipelines:** Claude for quality drafts, Haiku for bulk variations
-- **Research tools:** Gemini for Google-integrated search, Claude for analysis
-- **Client-facing chatbots:** GPT-5.3 for the ecosystem, Claude for quality
+- **Building AI automations:** Opus for the core logic and complex decisions, Haiku for simple routing and classification steps
+- **Content generation pipelines:** Opus for quality drafts and strategy, Sonnet for bulk content, Haiku for formatting and tagging
+- **Client-facing chatbots:** Sonnet for the main conversation engine, Haiku for intent detection and routing
+- **Code generation:** Opus for architecture and complex features, Sonnet for standard implementations
+- **Research and analysis:** Opus with extended thinking for deep analysis, Sonnet for summarization
+
+## Claude-specific features to leverage
+
+- **200K context window** across all models — paste entire codebases, long documents, full conversation histories
+- **Extended thinking** (Opus) — let the model reason through hard problems before responding
+- **Vision** — all Claude models can analyze images, screenshots, diagrams, and charts
+- **Tool use** — Claude can call functions, APIs, and tools you define via the API
+- **System prompts** — Claude follows system prompt instructions with exceptional precision
 
 ## The real skill
 
-Don't be loyal to one model. Be loyal to results. The best prompt engineers test their prompts across models and pick the one that performs best for each specific use case. Models update constantly — what's best today might not be best next month.`,
+Match the model to the task. Opus for quality, Sonnet for balance, Haiku for speed and volume. The best operators build systems that use all three — Haiku handles the simple stuff, Sonnet does the heavy lifting, and Opus steps in when the task demands it.`,
     takeaways: [
-      "Claude excels at complex instructions, long context, and coding tasks",
-      "GPT-5.3 has the largest ecosystem and is best for general-purpose work",
-      "Gemini leads in multimodal tasks and Google ecosystem integration",
-      "The best operators use multiple models strategically based on the task",
+      "Opus 4.6 is the most capable — use it for complex reasoning, coding, and high-stakes work",
+      "Sonnet 4.6 is the workhorse — fast, capable, and cost-effective for 80% of tasks",
+      "Haiku 4.5 is the speedster — use it for classification, routing, and high-volume automation",
+      "Build systems that use all three models strategically based on task complexity",
     ],
     exercise:
-      "Take a prompt you use regularly and run it through Claude, GPT-5.3, and Gemini. Score each output on accuracy, tone, format, and speed. Build a simple comparison chart. Start developing your instinct for which model fits which job.",
+      "Take a prompt you use regularly and run it through Opus, Sonnet, and Haiku. Score each output on accuracy, tone, format, and speed. Note where Opus clearly wins, where Sonnet is good enough, and where Haiku handles it fine. Build your instinct for which model fits which job — this saves real money at scale.",
   },
   "02-1": {
     title: "Role prompting and persona assignment",
     duration: "5 min read",
-    content: `Role prompting is the single fastest way to improve your AI output. By telling the model who it is before you tell it what to do, you activate specific patterns in its training data that dramatically change the quality of the response.
+    content: `Role prompting is the single fastest way to improve your Claude output. By telling Claude who it is before you tell it what to do, you activate specific patterns in its training data that dramatically change the quality of the response.
 
 ## How it works
 
-When you say "You are a senior sales copywriter with 15 years of experience in DTC brands," you're not just adding flavor text. You're filtering the model's entire response through patterns associated with that expertise. The model has been trained on text written by senior copywriters, and the role prompt surfaces those patterns.
+When you say "You are a senior sales copywriter with 15 years of experience in DTC brands," you're not just adding flavor text. You're filtering Claude's entire response through patterns associated with that expertise. Claude has been trained on text written by senior copywriters, and the role prompt surfaces those patterns.
 
 ## The formula
 
@@ -215,7 +234,7 @@ You can layer multiple traits into a single role:
 
 "You are a technical writer who also has deep experience in sales. You explain complex SaaS features in simple terms that highlight business value, not technical specs. Your writing style is direct, uses short sentences, and always ties features back to ROI."
 
-This gives the model a very specific intersection of expertise to pull from.
+This gives Claude a very specific intersection of expertise to pull from.
 
 ## Roles I use daily
 
@@ -242,7 +261,7 @@ This gives the model a very specific intersection of expertise to pull from.
   "02-2": {
     title: "Few-shot examples and in-context learning",
     duration: "6 min read",
-    content: `Few-shot prompting is when you show the model examples of what you want before asking it to perform the task. It's the difference between telling someone how to do something and showing them. Models learn from examples in the prompt far better than from instructions alone.
+    content: `Few-shot prompting is when you show Claude examples of what you want before asking it to perform the task. It's the difference between telling someone how to do something and showing them. Claude learns from examples in the prompt far better than from instructions alone.
 
 ## Zero-shot vs. few-shot
 
@@ -266,9 +285,9 @@ The more examples you provide, the more reliable and consistent the output. Thre
 
 When you give examples, you're doing several things at once:
 
-1. **Defining the format** — the model sees exactly how to structure its response
+1. **Defining the format** — Claude sees exactly how to structure its response
 2. **Setting the tone** — your examples demonstrate the writing style you want
-3. **Establishing boundaries** — the model sees what's in scope and what's not
+3. **Establishing boundaries** — Claude sees what's in scope and what's not
 4. **Reducing ambiguity** — examples eliminate misinterpretation of instructions
 
 ## Practical few-shot template
@@ -310,9 +329,9 @@ Lead: CTO of a 200-person company, replied to cold email asking for a case study
 
 ## Choosing your examples
 
-Pick examples that cover the range of possible inputs. Include an easy case, a hard case, and an edge case. This teaches the model how to handle ambiguity, not just the obvious stuff.`,
+Pick examples that cover the range of possible inputs. Include an easy case, a hard case, and an edge case. This teaches Claude how to handle ambiguity, not just the obvious stuff.`,
     takeaways: [
-      "Few-shot examples teach the model format, tone, boundaries, and edge cases simultaneously",
+      "Few-shot examples teach Claude format, tone, boundaries, and edge cases simultaneously",
       "3 examples is the sweet spot — enough for consistency without burning tokens",
       "Cover easy, hard, and edge cases in your examples to handle ambiguity",
       "Few-shot beats zero-shot for any task where consistency matters",
@@ -323,11 +342,11 @@ Pick examples that cover the range of possible inputs. Include an easy case, a h
   "02-3": {
     title: "Chain-of-thought and step-by-step reasoning",
     duration: "5 min read",
-    content: `Chain-of-thought (CoT) prompting forces the model to show its work. Instead of jumping straight to an answer, the model walks through its reasoning step by step. This dramatically improves accuracy on complex tasks — math, logic, analysis, planning, anything that requires thinking through multiple factors.
+    content: `Chain-of-thought (CoT) prompting forces Claude to show its work. Instead of jumping straight to an answer, Claude walks through its reasoning step by step. This dramatically improves accuracy on complex tasks — math, logic, analysis, planning, anything that requires thinking through multiple factors.
 
 ## Why it works
 
-When you ask a model to answer directly, it makes a single prediction. When you ask it to think step by step, it generates intermediate reasoning tokens that inform the next prediction. Each step builds context for the next one. It's literally giving itself more information to work with.
+When you ask Claude to answer directly, it makes a single prediction. When you ask it to think step by step, it generates intermediate reasoning tokens that inform the next prediction. Each step builds context for the next one. It's literally giving itself more information to work with.
 
 ## Basic chain-of-thought
 
@@ -341,7 +360,7 @@ Model: "3 shirts x $25 = $75. $75 > $50, so 20% discount applies. 20% of $75 = $
 
 ## Structured chain-of-thought
 
-For complex business tasks, give the model a reasoning framework:
+For complex business tasks, give Claude a reasoning framework:
 
 "Analyze this business opportunity. Work through it in this order:
 1. Market size and demand signals
@@ -351,7 +370,7 @@ For complex business tasks, give the model a reasoning framework:
 5. Risk factors
 6. Final recommendation with confidence level"
 
-This forces the model through a complete analysis instead of cherry-picking whatever patterns come up first.
+This forces Claude through a complete analysis instead of cherry-picking whatever patterns come up first.
 
 ## When to use CoT
 
@@ -368,9 +387,9 @@ This forces the model through a complete analysis instead of cherry-picking what
 - Quick formatting tasks
 - Any task where the reasoning steps are obvious and just waste tokens
 
-## Pro tip: Hidden reasoning
+## Pro tip: Claude's extended thinking
 
-If you want the benefits of CoT without the verbose output, use this: "Think through this carefully in your head, then give me only the final answer." Some models handle this well, but showing the work is usually better for verification.`,
+Claude Opus supports **extended thinking** — a built-in chain-of-thought mode where the model reasons internally before responding. When enabled via the API, Claude thinks through complex problems step by step behind the scenes, then gives you a polished answer. This is CoT on steroids — you get the accuracy benefits without cluttering the output. For tasks where you DO want to see the reasoning, just ask Claude to show its work in the prompt.`,
     takeaways: [
       "Chain-of-thought improves accuracy 20-40% on reasoning tasks by generating intermediate context",
       "Adding 'think step by step' to any complex prompt instantly improves output quality",
@@ -439,7 +458,7 @@ When a model keeps breaking format:
 1. **Show an example** of the exact output you want
 2. **Add a constraint:** "Your entire response must be valid JSON. Nothing else."
 3. **Use temperature 0** — reduces creative deviations from format
-4. **Use the API's JSON mode** if available (OpenAI and Anthropic both support this)
+4. **Use the API's JSON mode** — Claude's API supports structured output and tool use for reliable JSON
 5. **Validate and retry** — in production, parse the output and re-prompt if it's malformed`,
     takeaways: [
       "Show the exact structure you want — don't describe it, demonstrate it",
@@ -453,14 +472,14 @@ When a model keeps breaking format:
   "03-1": {
     title: "System prompts that shape behavior long-term",
     duration: "6 min read",
-    content: `System prompts are the single most important piece of prompt engineering for anything you build in production. They run before every message, they set the rules, and they define who the AI is for the entire conversation. Get this right and every interaction is better. Get it wrong and you're fighting the model constantly.
+    content: `System prompts are the single most important piece of prompt engineering for anything you build in production. They run before every message, they set the rules, and they define who Claude is for the entire conversation. Get this right and every interaction is better. Get it wrong and you're fighting Claude constantly.
 
 ## What system prompts do
 
-A system prompt is a special instruction that sits above the conversation. The model treats it as persistent context — it applies to every response. In the API, it's the \`system\` role. In ChatGPT, it's the "Custom Instructions." In Claude, it's the system parameter.
+A system prompt is a special instruction that sits above the conversation. The model treats it as persistent context — it applies to every response. In the Claude API, it's the \`system\` parameter. In claude.ai, it's the project instructions or custom style. This is the most powerful lever you have for shaping Claude's behavior.
 
 This is where you put:
-- **Identity:** Who the AI is and how it behaves
+- **Identity:** Who Claude is and how it behaves
 - **Rules:** What it should always or never do
 - **Context:** Background information it needs for every response
 - **Format:** Default output structure
@@ -476,7 +495,7 @@ RULES:
 - Never [behavior 2]
 - When uncertain, [default action]
 
-CONTEXT: [Background the model needs]
+CONTEXT: [Background Claude needs]
 
 FORMAT: [Default output structure]
 
@@ -502,14 +521,14 @@ TONE: Professional but warm. No corporate jargon. Like a smart coworker helping 
 
 ## System prompt mistakes
 
-1. **Too long:** If your system prompt is 2,000 words, the model will lose track of rules. Keep it under 500 words.
+1. **Too long:** If your system prompt is 2,000 words, Claude will lose track of rules. Keep it under 500 words. (Claude's 200K context helps, but focused system prompts still perform better.)
 2. **Contradictory rules:** "Be concise" and "Provide thorough explanations" — pick one and specify when each applies.
 3. **No examples:** Rules without examples are ambiguous. Show what you mean.
-4. **Forgetting edge cases:** What should the model do when it doesn't know the answer? When the user is angry? When asked something off-topic?`,
+4. **Forgetting edge cases:** What should Claude do when it doesn't know the answer? When the user is angry? When asked something off-topic?`,
     takeaways: [
       "System prompts define identity, rules, context, format, and tone for every response",
       "Use the framework: Identity + Rules + Context + Format + Tone",
-      "Keep system prompts under 500 words — too long and the model loses track of rules",
+      "Keep system prompts under 500 words — too long and Claude loses track of rules",
       "Always define edge cases: what to do when uncertain, off-topic, or facing angry users",
     ],
     exercise:
@@ -522,13 +541,13 @@ TONE: Professional but warm. No corporate jargon. Like a smart coworker helping 
 
 ## Why chaining beats mega-prompts
 
-A 500-word mega-prompt that tries to do everything at once will fail. The model loses focus, mixes up instructions, and produces inconsistent output. Chaining lets you:
+A 500-word mega-prompt that tries to do everything at once will fail. Claude loses focus, mixes up instructions, and produces inconsistent output. Chaining lets you:
 
 1. **Keep each prompt focused** — one task, one prompt
 2. **Validate between steps** — check output quality before proceeding
 3. **Use different settings per step** — temperature 0 for extraction, 0.7 for writing
 4. **Debug easily** — when something breaks, you know exactly which step failed
-5. **Swap models per step** — cheap model for simple steps, premium for complex ones
+5. **Swap Claude models per step** — Haiku for simple extraction, Sonnet for generation, Opus for complex analysis
 
 ## Basic chain structure
 
@@ -560,14 +579,14 @@ I built this for a consulting business. Four prompts, chained together:
 ## Pro tips
 
 - **Save intermediate outputs.** If step 3 fails, you don't want to re-run steps 1 and 2.
-- **Add error handling.** What if the model returns malformed JSON? Build a retry with clearer instructions.
+- **Add error handling.** What if Claude returns malformed JSON? Build a retry with clearer instructions.
 - **Log everything.** In production, you need to see every step's input and output for debugging.
 - **Start simple.** Build a 2-step chain first, get it working perfectly, then add steps.`,
     takeaways: [
       "Chain prompts when tasks are too complex for a single prompt — most real tasks are",
       "Each step should have one job: extract, analyze, generate, or validate",
       "Save intermediate outputs and add error handling for production reliability",
-      "Use different models and temperature settings for different steps in the chain",
+      "Use different Claude models (Opus, Sonnet, Haiku) and temperature settings for different steps in the chain",
     ],
     exercise:
       "Pick a multi-step task you do manually (proposal writing, content creation, research analysis). Break it into 3-4 discrete steps. Write a prompt for each step where the output feeds into the next. Test the full chain end-to-end and iterate on the weakest link.",
@@ -575,13 +594,13 @@ I built this for a consulting business. Four prompts, chained together:
   "03-3": {
     title: "Self-critique and iterative refinement loops",
     duration: "5 min read",
-    content: `One of the most powerful patterns in prompt engineering: make the AI critique its own work and then improve it. First-draft output from any model is almost never the best it can do. But most people accept the first response and move on. That's leaving quality on the table.
+    content: `One of the most powerful patterns in prompt engineering: make Claude critique its own work and then improve it. First-draft output is almost never the best Claude can do. But most people accept the first response and move on. That's leaving quality on the table.
 
 ## The basic pattern
 
-1. **Generate** — Ask the model to produce output
-2. **Critique** — Ask the model to evaluate that output against specific criteria
-3. **Refine** — Ask the model to improve based on the critique
+1. **Generate** — Ask Claude to produce output
+2. **Critique** — Ask Claude to evaluate that output against specific criteria
+3. **Refine** — Ask Claude to improve based on the critique
 4. Repeat steps 2-3 as needed
 
 ## Simple self-critique prompt
@@ -599,7 +618,7 @@ List each issue, then rewrite the response fixing all identified problems."
 
 ## Why this works so well
 
-When a model generates text, it's optimizing for "most likely next token." When it critiques text, it's doing a fundamentally different task — evaluation. It can spot issues in existing text that it wouldn't have avoided during generation. This is similar to how humans are better editors than writers on the first pass.
+When Claude generates text, it's optimizing for "most likely next token." When it critiques text, it's doing a fundamentally different task — evaluation. It can spot issues in existing text that it wouldn't have avoided during generation. This is similar to how humans are better editors than writers on the first pass.
 
 ## Advanced: Multi-criteria evaluation
 
@@ -619,29 +638,29 @@ For any score below 8, explain what's wrong and how to fix it. Then rewrite the 
 In automated systems, you can build this into your pipeline:
 
 1. Generate content
-2. Run a critique prompt (can be a cheaper model)
+2. Run a critique prompt (Sonnet or even Haiku can handle this step)
 3. If critique finds issues, feed original + critique back for revision
 4. Repeat until critique passes all criteria or you hit a max iteration limit (usually 3)
 
 ## When to use this
 
 - **Client-facing content** — proposals, emails, presentations. Always worth a refinement pass.
-- **Code generation** — have the model review its own code for bugs, edge cases, and optimization.
+- **Code generation** — have Claude review its own code for bugs, edge cases, and optimization.
 - **Data analysis** — critique the analysis for missed factors, biased interpretations, or unsupported conclusions.
 - **Sales copy** — first draft is never punchy enough. The critique pass tightens it.`,
     takeaways: [
-      "First-draft AI output is almost never the best the model can produce",
+      "First-draft Claude output is almost never the best it can produce",
       "Generate -> Critique -> Refine is a repeatable pattern that dramatically improves quality",
       "Use structured evaluation criteria with numerical scores for consistent refinement",
       "In production, automate the loop with a max of 3 iterations to balance quality and cost",
     ],
     exercise:
-      "Take any piece of AI-generated content you've produced recently. Run it through a critique prompt with 5 specific criteria relevant to that content type. Then ask the model to rewrite it fixing every issue. Compare the original to the refined version. You'll never skip this step again.",
+      "Take any piece of Claude-generated content you've produced recently. Run it through a critique prompt with 5 specific criteria relevant to that content type. Then ask Claude to rewrite it fixing every issue. Compare the original to the refined version. You'll never skip this step again.",
   },
   "03-4": {
     title: "Retrieval-augmented prompting (RAG basics)",
     duration: "6 min read",
-    content: `RAG is how you make AI actually useful for your specific business. Instead of relying on the model's training data (which is generic and outdated), you feed it your own data at query time. This is the foundation of every custom AI assistant, internal knowledge base, and smart search tool.
+    content: `RAG is how you make Claude actually useful for your specific business. Instead of relying on Claude's training data (which is generic and has a cutoff date), you feed it your own data at query time. This is the foundation of every custom AI assistant, internal knowledge base, and smart search tool.
 
 ## The concept
 
@@ -674,14 +693,14 @@ ANSWER:
 
 ## Why "ONLY the context" matters
 
-Without that constraint, the model blends your data with its training data. It might hallucinate details that sound like they came from your docs but didn't. The constraint keeps it grounded.
+Without that constraint, Claude blends your data with its training data. It might hallucinate details that sound like they came from your docs but didn't. The constraint keeps it grounded.
 
 ## Practical RAG without infrastructure
 
 You don't need a vector database to start using RAG patterns. For small datasets:
 
 - **Manual RAG:** Copy-paste relevant docs into the prompt yourself. This is what most people should start with.
-- **File upload:** Claude and GPT both let you upload files. The model searches them per question. This is RAG with zero code.
+- **File upload:** Claude lets you upload files directly — PDFs, code, spreadsheets. With its 200K context window, you can paste massive documents right into the conversation. This is RAG with zero code.
 - **Simple script:** Write a basic search function that finds relevant text files and injects them into the prompt.
 
 ## Chunking matters
@@ -689,7 +708,7 @@ You don't need a vector database to start using RAG patterns. For small datasets
 Bad chunks = bad retrieval = bad answers. Rules:
 
 - **Keep chunks self-contained.** Each chunk should make sense on its own.
-- **Include headers/titles** in each chunk so the model knows what it's reading.
+- **Include headers/titles** in each chunk so Claude knows what it's reading.
 - **Overlap chunks slightly** (50-100 words) so you don't lose context at boundaries.
 - **Don't chunk too small.** Below 100 words, chunks lose context. Below 50, they're useless.
 
@@ -702,20 +721,20 @@ Bad chunks = bad retrieval = bad answers. Rules:
     takeaways: [
       "RAG lets AI answer from your specific data instead of generic training knowledge",
       "The core pattern: search your data, inject relevant chunks into the prompt, generate",
-      "Always constrain the model to answer ONLY from provided context to prevent hallucination",
+      "Always constrain Claude to answer ONLY from provided context to prevent hallucination",
       "Start with manual RAG (copy-paste) or file uploads before building infrastructure",
     ],
     exercise:
-      "Take a set of business documents (FAQ, SOPs, product info — even just 3-5 pages). Manually split them into chunks. When you have a question, find the relevant chunks yourself and paste them into a prompt with the RAG template above. Test 5 questions and verify the model answers accurately from your data.",
+      "Take a set of business documents (FAQ, SOPs, product info — even just 3-5 pages). Manually split them into chunks. When you have a question, find the relevant chunks yourself and paste them into a Claude prompt with the RAG template above. With Claude's 200K context window, you can paste substantial amounts of data directly. Test 5 questions and verify Claude answers accurately from your data.",
   },
   "04-1": {
     title: "Prompting for code: debugging, building, reviewing",
     duration: "6 min read",
-    content: `AI is the best coding partner most people will ever have. But most developers prompt it wrong — they dump error messages or vague requests and wonder why the output doesn't work. Here's how I actually use AI for code every single day.
+    content: `Claude is the best coding partner most people will ever have. But most developers prompt it wrong — they dump error messages or vague requests and wonder why the output doesn't work. Here's how I actually use Claude for code every single day.
 
 ## Prompting for debugging
 
-When you have a bug, the model needs three things: **the code, the error, and the expected behavior.**
+When you have a bug, Claude needs three things: **the code, the error, and the expected behavior.**
 
 **Bad:** "My code isn't working. Here's the error: TypeError undefined."
 
@@ -732,11 +751,11 @@ Actual behavior: Crashes with TypeError on line 15.
 
 Walk through the code line by line and identify why the email field is undefined."
 
-The "walk through line by line" instruction triggers chain-of-thought reasoning, which catches bugs the model would miss with a quick answer.
+The "walk through line by line" instruction triggers chain-of-thought reasoning, which catches bugs Claude would miss with a quick answer.
 
 ## Prompting for building
 
-When you want AI to write code, be specific about:
+When you want Claude to write code, be specific about:
 
 1. **Language and framework** — "TypeScript, Next.js 14 App Router"
 2. **What it does** — "An API route that accepts a POST request with a JSON body"
@@ -784,24 +803,24 @@ Show me the refactored code and explain each change."
 
 ## The meta-skill
 
-Always paste the full relevant code, not just snippets. Models lose context without the surrounding code. If it's too long, give the model the file structure first, then focus on the specific file. More context = better code output.`,
+Always paste the full relevant code, not just snippets. Claude loses context without the surrounding code. With its 200K context window, you can paste entire files or even multiple files. If the codebase is massive, give Claude the file structure first, then focus on the specific file. More context = better code output.`,
     takeaways: [
       "For debugging: always provide the code, the error, and the expected behavior",
       "For building: specify language, framework, I/O shapes, constraints, and coding style",
-      "Use AI code review before shipping — it catches bugs, security issues, and edge cases",
+      "Use Claude for code review before shipping — it catches bugs, security issues, and edge cases",
       "Always paste full relevant code, not just snippets — context drives quality",
     ],
     exercise:
-      "Take a piece of code you've written recently. Run it through the code review prompt above with all 5 criteria. Fix every issue the model identifies. Then ask it to refactor the fixed code for maintainability. Compare the original to the final version.",
+      "Take a piece of code you've written recently. Run it through the code review prompt above with all 5 criteria in Claude. Fix every issue Claude identifies. Then ask it to refactor the fixed code for maintainability. Compare the original to the final version.",
   },
   "04-2": {
     title: "Prompting for content: writing, editing, repurposing",
     duration: "6 min read",
-    content: `Content is where AI saves the most time for most businesses. But there's a massive gap between "AI-generated slop" and content that actually sounds like a human wrote it. The difference is entirely in how you prompt.
+    content: `Content is where Claude saves the most time for most businesses. But there's a massive gap between "AI-generated slop" and content that actually sounds like a human wrote it. The difference is entirely in how you prompt.
 
 ## Writing original content
 
-Never prompt with just "Write a blog post about X." You'll get 800 words of generic nothing. Instead, give the model everything it needs:
+Never prompt with just "Write a blog post about X." You'll get 800 words of generic nothing. Instead, give Claude everything it needs:
 
 "Write a blog post for [audience] about [topic].
 
@@ -819,7 +838,7 @@ What to include: [specific examples, data points, personal angle]"
 
 ## Editing and refining
 
-AI is an incredible editor. Give it a piece of content and specific editing criteria:
+Claude is an incredible editor. Give it a piece of content and specific editing criteria:
 
 "Edit this content with these goals:
 1. Cut the word count by 30% without losing meaning
@@ -833,7 +852,7 @@ Audience: [who's reading this]"
 
 ## Repurposing content
 
-This is where AI becomes a multiplier. One piece of content becomes five:
+This is where Claude becomes a multiplier. One piece of content becomes five:
 
 "I have this blog post: [paste full post]
 
@@ -844,11 +863,11 @@ Repurpose it into:
 4. 3 Instagram carousel slides (headline + 2-3 bullet points per slide)
 5. A 60-second video script (spoken word, casual tone, strong hook)"
 
-Each format has different rules. The key is specifying those rules per platform so the model adapts appropriately.
+Each format has different rules. The key is specifying those rules per platform so Claude adapts appropriately.
 
 ## Matching your voice
 
-The fastest way to get AI to write like you:
+The fastest way to get Claude to write like you:
 
 1. **Give it 3-5 examples** of your past writing
 2. **Add explicit style rules:** "Use short sentences. Start some sentences with 'And' or 'But.' Never use phrases like 'in today's world' or 'it's important to note.'"
@@ -857,15 +876,15 @@ The fastest way to get AI to write like you:
 ## The editing workflow I use
 
 1. **Brain dump** — I write rough notes or bullet points of what I want to say
-2. **Draft** — AI turns my notes into a structured first draft
+2. **Draft** — Claude turns my notes into a structured first draft
 3. **Critique** — I run the self-critique pattern from Module 03
-4. **Edit** — AI tightens, cuts, and polishes based on critique
+4. **Edit** — Claude tightens, cuts, and polishes based on critique
 5. **Human pass** — I read it once, make it mine, and ship`,
     takeaways: [
       "Always specify audience, tone, structure, and constraints when generating content",
-      "AI editing is powerful — give specific criteria like 'cut 30%' and 'replace vague with specific'",
+      "Claude's editing is powerful — give specific criteria like 'cut 30%' and 'replace vague with specific'",
       "One piece of content can become 5+ formats — specify platform-specific rules for each",
-      "Feed the model examples of your writing and explicit style rules to match your voice",
+      "Feed Claude examples of your writing and explicit style rules to match your voice",
     ],
     exercise:
       "Take a piece of content you've published (blog post, email, social post). Run it through the repurposing prompt to create 3 new formats. Then take one of those outputs and run it through an editing pass with specific criteria. This workflow should become automatic for everything you publish.",
@@ -873,7 +892,7 @@ The fastest way to get AI to write like you:
   "04-3": {
     title: "Prompting for research and analysis",
     duration: "5 min read",
-    content: `AI can compress hours of research into minutes — if you prompt it correctly. The key is giving it a research framework, not just a topic. "Research X" gets you a Wikipedia summary. A structured research prompt gets you actionable intelligence.
+    content: `Claude can compress hours of research into minutes — if you prompt it correctly. The key is giving it a research framework, not just a topic. "Research X" gets you a Wikipedia summary. A structured research prompt gets you actionable intelligence.
 
 ## The research prompt framework
 
@@ -934,18 +953,18 @@ Research and analyze:
 
 ## Important caveats
 
-- **AI research is a starting point, not the ending point.** It's pulling from training data that may be outdated. Always verify critical facts, especially numbers, dates, and market data.
-- **Ask the model to flag uncertainty.** "If you're not sure about a data point, say so" prevents false confidence.
-- **Use web-connected models for current data.** Standard Claude and GPT don't browse the web. Use Perplexity, Gemini with search, or GPT with browsing for current information.
-- **Cross-reference.** Run the same research prompt through 2 different models and compare. Where they disagree, dig deeper.`,
+- **Claude's research is a starting point, not the ending point.** It's pulling from training data that has a cutoff date. Always verify critical facts, especially numbers, dates, and market data.
+- **Ask Claude to flag uncertainty.** "If you're not sure about a data point, say so" prevents false confidence.
+- **Use web-connected tools for current data.** Claude's training data has a cutoff. For real-time information, use Claude with tool use to call search APIs, or supplement with web search tools.
+- **Cross-reference.** Run the same research prompt through Claude with different approaches — try it with and without extended thinking, or compare Opus vs Sonnet output. Where results differ, dig deeper.`,
     takeaways: [
       "Give AI a research framework, not just a topic — structure drives useful output",
-      "Always ask the model to flag uncertainty to prevent false confidence in research",
+      "Always ask Claude to flag uncertainty to prevent false confidence in research",
       "Use competitive analysis prompts to find gaps where your business can win",
-      "AI research is a starting point — verify critical facts with current sources",
+      "Claude's research is a starting point — verify critical facts with current sources",
     ],
     exercise:
-      "Pick a market or competitor you need to research for your business. Use the competitive analysis prompt template above with real specifics. Run it through 2 different models and compare results. Note where they agree (likely accurate) and disagree (needs verification).",
+      "Pick a market or competitor you need to research for your business. Use the competitive analysis prompt template above with real specifics. Run it through Claude Opus with extended thinking enabled, then again with Sonnet. Compare results — note where they agree (likely accurate) and where Opus's deeper reasoning surfaces insights Sonnet missed.",
   },
   "04-4": {
     title: "Building and organizing prompt libraries",
@@ -1043,7 +1062,7 @@ Over time, your prompt library becomes:
 - **A competitive moat** — your prompts are tuned to your specific business, clients, and workflows
 - **A product** — well-organized prompt libraries can be sold as part of consulting packages
 
-This is what separates someone who "uses AI" from someone who **operates** with AI. You're building systems, not typing into chatbots.`,
+This is what separates someone who "uses Claude" from someone who **operates** with Claude. You're building systems, not typing into chatbots.`,
     takeaways: [
       "Every great prompt is a reusable asset — save, organize, and version them",
       "Organize by function (sales, content, code) not by model",
@@ -1074,7 +1093,7 @@ export const promptEngineeringQuizzes: CourseQuizzes = {
       {
         type: "mc",
         question:
-          "You're building an automation that extracts invoice data into JSON using the GPT-5.3 API. Which temperature setting gives you the most reliable, consistent output?",
+          "You're building an automation that extracts invoice data into JSON using the Claude API. Which temperature setting gives you the most reliable, consistent output?",
         options: [
           "Temperature 0 — deterministic and predictable, best for structured data extraction",
           "Temperature 0.7 — balanced creativity helps interpret varied invoice formats",
@@ -1086,7 +1105,7 @@ export const promptEngineeringQuizzes: CourseQuizzes = {
       {
         type: "short",
         question:
-          "Explain the key differences between GPT-5.3, Claude, and Gemini 2.5. When would you choose each model for a real business task, and what strengths make each one the better pick for that task?",
+          "Explain the key differences between Claude Opus 4.6, Sonnet 4.6, and Haiku 4.5. When would you choose each model for a real business task, and what strengths make each one the better pick for that task?",
         minLength: 50,
       },
     ],
@@ -1109,19 +1128,19 @@ export const promptEngineeringQuizzes: CourseQuizzes = {
       {
         type: "mc",
         question:
-          "You want GPT-5.3 to classify customer support tickets into categories. Zero-shot prompting gives inconsistent results. What technique would most improve accuracy?",
+          "You want Claude to classify customer support tickets into categories. Zero-shot prompting gives inconsistent results. What technique would most improve accuracy?",
         options: [
           "Increase the temperature to give the model more creative flexibility",
           "Add few-shot examples showing 3-5 correctly classified tickets before asking it to classify new ones",
           "Make the prompt shorter so the model focuses on the core task",
-          "Switch to Gemini 2.5 since GPT-5.3 cannot handle classification well",
+          "Switch to Opus since Sonnet cannot handle classification well",
         ],
         correctIndex: 1,
       },
       {
         type: "short",
         question:
-          "Describe how chain-of-thought prompting works and give a specific example of a business task where forcing Claude or GPT-5.3 to reason step-by-step would produce better output than a direct answer.",
+          "Describe how chain-of-thought prompting works and give a specific example of a business task where forcing Claude to reason step-by-step would produce better output than a direct answer. How does Claude's extended thinking feature relate to this?",
         minLength: 50,
       },
     ],
@@ -1144,7 +1163,7 @@ export const promptEngineeringQuizzes: CourseQuizzes = {
       {
         type: "mc",
         question:
-          "In the RAG (Retrieval-Augmented Generation) pattern, why is the instruction 'answer ONLY from the context provided' critical when using GPT-5.3, Claude, or Gemini 2.5?",
+          "In the RAG (Retrieval-Augmented Generation) pattern, why is the instruction 'answer ONLY from the context provided' critical when using Claude?",
         options: [
           "It makes the model respond faster by limiting its search space",
           "It prevents the model from blending retrieved data with generic training data, which causes hallucinated details",
@@ -1156,7 +1175,7 @@ export const promptEngineeringQuizzes: CourseQuizzes = {
       {
         type: "short",
         question:
-          "Explain the self-critique and iterative refinement pattern (Generate -> Critique -> Refine). Why is Claude or GPT-5.3 better at evaluating text than generating perfect text on the first pass, and what is one risk of overusing this loop?",
+          "Explain the self-critique and iterative refinement pattern (Generate -> Critique -> Refine). Why is Claude better at evaluating text than generating perfect text on the first pass, and how can you use different Claude models (e.g., Sonnet for critique, Opus for refinement) to optimize this loop?",
         minLength: 50,
       },
     ],
@@ -1167,7 +1186,7 @@ export const promptEngineeringQuizzes: CourseQuizzes = {
       {
         type: "mc",
         question:
-          "You're debugging a Next.js API route that returns a TypeError. Which prompting approach will get you the best debugging help from Claude or GPT-5.3?",
+          "You're debugging a Next.js API route that returns a TypeError. Which prompting approach will get you the best debugging help from Claude?",
         options: [
           "Paste the error message and ask 'why is this broken?'",
           "Provide the code, the error, and the expected vs. actual behavior, then ask the model to walk through the code line by line",
@@ -1179,7 +1198,7 @@ export const promptEngineeringQuizzes: CourseQuizzes = {
       {
         type: "mc",
         question:
-          "You want to repurpose a 3,000-word blog post into LinkedIn posts, tweets, and an email newsletter using Gemini 2.5. What is the most effective prompting strategy?",
+          "You want to repurpose a 3,000-word blog post into LinkedIn posts, tweets, and an email newsletter using Claude. What is the most effective prompting strategy?",
         options: [
           "Paste the entire blog post and ask the model to create all content formats in one prompt",
           "Ask the model to summarize the post first, then manually write the platform-specific content",
@@ -1191,7 +1210,7 @@ export const promptEngineeringQuizzes: CourseQuizzes = {
       {
         type: "short",
         question:
-          "Describe how you would organize a prompt library for a business that uses Claude, GPT-5.3, and Gemini 2.5 daily. What categories would you create, what metadata would you store with each prompt, and why does this library become a competitive moat over time?",
+          "Describe how you would organize a prompt library for a business that uses Claude Opus, Sonnet, and Haiku across different workflows. What categories would you create, what metadata would you store with each prompt (including which Claude model to use), and why does this library become a competitive moat over time?",
         minLength: 50,
       },
     ],

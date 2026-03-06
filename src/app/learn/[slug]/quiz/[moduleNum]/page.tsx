@@ -102,9 +102,10 @@ export default function QuizPage() {
     return null;
   }
 
-  // Course gating
+  // Course gating (skip if course.gated === false)
   const courseIdx = courses.findIndex((c) => c.slug === slug);
-  const prevCourse = courseIdx > 0 ? courses[courseIdx - 1] : null;
+  const isGated = course?.gated !== false;
+  const prevCourse = isGated && courseIdx > 0 ? courses[courseIdx - 1] : null;
   if (prevCourse) {
     const prevKeys = getLessonKeys(prevCourse.slug);
     const prevModuleNums = prevCourse.modules.map((m) => m.num);
