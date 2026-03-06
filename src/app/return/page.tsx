@@ -97,6 +97,12 @@ function ReturnContent() {
                 </Link>
               )}
               <Link
+                href="/my-courses"
+                className="text-text-muted text-[13px] font-mono hover:text-accent transition-colors"
+              >
+                My Courses
+              </Link>
+              <Link
                 href="/"
                 className="text-text-muted text-[13px] font-mono hover:text-accent transition-colors"
               >

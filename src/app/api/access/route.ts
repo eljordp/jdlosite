@@ -65,6 +65,22 @@ export async function POST(req: NextRequest) {
       })
     );
 
+    // Index by email so /my-courses can look up all courses for a user
+    await tryKv(async () => {
+      const existing =
+        (await kv.get<{ code: string; course: string; created: string }[]>(
+          `user-courses:${email.toLowerCase()}`
+        )) ?? [];
+      if (!existing.some((e) => e.course === course)) {
+        existing.push({
+          code,
+          course,
+          created: new Date().toISOString(),
+        });
+        await kv.set(`user-courses:${email.toLowerCase()}`, existing);
+      }
+    });
+
     // Track purchase
     await tryKv(() => kv.incr("purchases:total"));
     await tryKv(() => kv.incr(`purchases:${course}`));

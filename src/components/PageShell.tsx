@@ -1,9 +1,11 @@
 'use client';
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { GlowLink } from "@/components/GlowButton";
 import CustomCursor from "@/components/CustomCursor";
+import { createClient } from "@/lib/supabase/client";
+import type { User } from "@supabase/supabase-js";
 
 const disciplines = [
   { label: "AI & Automation", href: "/courses/ai-automation", slug: "ai-automation" },
@@ -25,6 +27,12 @@ interface PageShellProps {
 
 export default function PageShell({ children, ctaText, ctaHref, ctaExternal, activeSlug }: PageShellProps) {
   const [open, setOpen] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const supabase = createClient();
+    supabase.auth.getUser().then(({ data }) => setUser(data.user));
+  }, []);
 
   return (
     <main className="cursor-none">
@@ -53,9 +61,26 @@ export default function PageShell({ children, ctaText, ctaHref, ctaExternal, act
                 </Link>
               );
             })}
+            {user && (
+              <Link
+                href="/my-courses"
+                className="whitespace-nowrap px-3 py-1.5 rounded-full text-[12px] transition-all duration-300 text-accent hover:text-accent/80 font-medium"
+              >
+                My Courses
+              </Link>
+            )}
           </div>
 
           <div className="flex items-center gap-3">
+            {!user ? (
+              <Link href="/sign-in" className="text-text-secondary hover:text-text text-[12px] transition-colors duration-300 shrink-0">
+                Sign In
+              </Link>
+            ) : (
+              <Link href="/my-courses" className="text-text-secondary hover:text-text text-[12px] transition-colors duration-300 shrink-0">
+                {user.email?.split("@")[0]}
+              </Link>
+            )}
             <GlowLink href={ctaHref} external={ctaExternal} className="!py-1.5 !px-4 !text-[13px] shrink-0">
               {ctaText}
             </GlowLink>
@@ -95,6 +120,15 @@ export default function PageShell({ children, ctaText, ctaHref, ctaExternal, act
         </div>
 
         <div className="flex flex-col flex-1">
+          {user && (
+            <Link
+              href="/my-courses"
+              onClick={() => setOpen(false)}
+              className="text-[2rem] font-semibold tracking-[-0.03em] text-accent hover:text-text transition-colors duration-200 py-2.5 border-b border-border/40"
+            >
+              My Courses
+            </Link>
+          )}
           {disciplines.map((d) => (
             <Link
               key={d.slug}
@@ -107,6 +141,15 @@ export default function PageShell({ children, ctaText, ctaHref, ctaExternal, act
               {d.label}
             </Link>
           ))}
+          {!user && (
+            <Link
+              href="/sign-in"
+              onClick={() => setOpen(false)}
+              className="text-[2rem] font-semibold tracking-[-0.03em] text-text-secondary hover:text-text transition-colors duration-200 py-2.5"
+            >
+              Sign In
+            </Link>
+          )}
         </div>
 
         <div className="pt-8">

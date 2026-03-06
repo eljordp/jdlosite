@@ -1,8 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { GlowLink } from '@/components/GlowButton';
+import { createClient } from '@/lib/supabase/client';
+import type { User } from '@supabase/supabase-js';
 
 const links = [
   { label: 'Skills', href: '#skills' },
@@ -16,6 +18,12 @@ const links = [
 
 export default function HomeNav() {
   const [open, setOpen] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const supabase = createClient();
+    supabase.auth.getUser().then(({ data }) => setUser(data.user));
+  }, []);
 
   return (
     <>
@@ -33,9 +41,23 @@ export default function HomeNav() {
             <Link href="/quiz" className="text-accent hover:text-accent/80 transition-colors duration-300 font-mono text-[12px]">
               Skills Quiz →
             </Link>
+            {user && (
+              <Link href="/my-courses" className="text-accent hover:text-accent/80 transition-colors duration-300 font-medium">
+                My Courses
+              </Link>
+            )}
           </div>
 
           <div className="flex items-center gap-3">
+            {!user ? (
+              <Link href="/sign-in" className="text-text-secondary hover:text-text text-[13px] transition-colors duration-300">
+                Sign In
+              </Link>
+            ) : (
+              <Link href="/my-courses" className="text-text-secondary hover:text-text text-[13px] transition-colors duration-300">
+                {user.email?.split("@")[0]}
+              </Link>
+            )}
             <GlowLink href="#apply" className="!py-1.5 !px-5 !text-[13px]">
               Work With Me
             </GlowLink>
@@ -75,6 +97,15 @@ export default function HomeNav() {
         </div>
 
         <div className="flex flex-col flex-1">
+          {user && (
+            <Link
+              href="/my-courses"
+              onClick={() => setOpen(false)}
+              className="text-[2rem] font-semibold tracking-[-0.03em] text-accent hover:text-text transition-colors duration-200 py-2.5 border-b border-border/40"
+            >
+              My Courses
+            </Link>
+          )}
           {links.map((link) => (
             <a
               key={link.label}
@@ -85,6 +116,15 @@ export default function HomeNav() {
               {link.label}
             </a>
           ))}
+          {!user && (
+            <Link
+              href="/sign-in"
+              onClick={() => setOpen(false)}
+              className="text-[2rem] font-semibold tracking-[-0.03em] text-text-secondary hover:text-text transition-colors duration-200 py-2.5"
+            >
+              Sign In
+            </Link>
+          )}
         </div>
 
         <div className="pt-8">
