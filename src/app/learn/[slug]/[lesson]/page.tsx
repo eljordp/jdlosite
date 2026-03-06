@@ -3,8 +3,9 @@
 import { useState, useEffect } from "react";
 import { useParams, useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
-import { getCourse } from "@/lib/courses";
-import { getLessonContent, getLessonKeys } from "@/lib/content";
+import { getCourse, courses } from "@/lib/courses";
+import { getLessonContent, getLessonKeys, getCourseQuizzes } from "@/lib/content";
+import { isCourseFullyCompleted } from "@/lib/quiz-progress";
 import CustomCursor from "@/components/CustomCursor";
 
 const STORAGE_PREFIX = "jdlo_access_";
@@ -132,6 +133,18 @@ export default function LessonPage() {
   // Find module info
   const [modNum] = lessonKey.split("-");
   const mod = course?.modules.find((m) => m.num === modNum);
+  const quizzes = getCourseQuizzes(slug);
+
+  // Course gating
+  const courseIdx = courses.findIndex((c) => c.slug === slug);
+  const prevCourse = courseIdx > 0 ? courses[courseIdx - 1] : null;
+
+  // Check if this is the last lesson in the module (for quiz nav)
+  const moduleLessons = allKeys.filter((k) => k.startsWith(`${modNum}-`));
+  const isLastInModule =
+    moduleLessons.length > 0 &&
+    lessonKey === moduleLessons[moduleLessons.length - 1];
+  const moduleHasQuiz = quizzes && quizzes[modNum];
 
   // Check access
   useEffect(() => {
@@ -217,6 +230,16 @@ export default function LessonPage() {
   if (!authorized) {
     router.push(`/learn/${slug}`);
     return null;
+  }
+
+  // Course gating: check if previous course is fully completed
+  if (prevCourse) {
+    const prevKeys = getLessonKeys(prevCourse.slug);
+    const prevModuleNums = prevCourse.modules.map((m) => m.num);
+    if (!isCourseFullyCompleted(prevCourse.slug, prevKeys, prevModuleNums)) {
+      router.push(`/learn/${slug}`);
+      return null;
+    }
   }
 
   return (
@@ -325,7 +348,19 @@ export default function LessonPage() {
           ) : (
             <div />
           )}
-          {nextKey ? (
+          {isLastInModule && moduleHasQuiz ? (
+            <Link
+              href={`/learn/${slug}/quiz/${modNum}${codeParam}`}
+              className="flex items-center gap-2 text-accent hover:text-accent/80 transition-colors group"
+            >
+              <span className="text-[13px] font-mono font-medium">
+                Take Module Quiz
+              </span>
+              <span className="text-sm group-hover:translate-x-1 transition-transform">
+                →
+              </span>
+            </Link>
+          ) : nextKey ? (
             <Link
               href={`/learn/${slug}/${nextKey}${codeParam}`}
               className="flex items-center gap-2 text-text-secondary hover:text-accent transition-colors group"

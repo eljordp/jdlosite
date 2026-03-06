@@ -1,4 +1,4 @@
-import type { CourseContent } from "./types";
+import type { CourseContent, CourseQuizzes, ModuleQuiz } from "./types";
 import { aiAutomation } from "./ai-automation";
 import { salesSystems } from "./sales-systems";
 import { promptEngineering } from "./prompt-engineering";
@@ -6,8 +6,23 @@ import { contentBrand } from "./content-brand";
 import { teamOperations } from "./team-operations";
 import { personalGrowth } from "./personal-growth";
 import { operatorPlaybook } from "./operator-playbook";
+import { aiAutomationQuizzes } from "./ai-automation";
+import { salesSystemsQuizzes } from "./sales-systems";
+import { promptEngineeringQuizzes } from "./prompt-engineering";
+import { contentBrandQuizzes } from "./content-brand";
+import { teamOperationsQuizzes } from "./team-operations";
+import { personalGrowthQuizzes } from "./personal-growth";
+import { operatorPlaybookQuizzes } from "./operator-playbook";
 
-export type { LessonData, CourseContent } from "./types";
+export type {
+  LessonData,
+  CourseContent,
+  CourseQuizzes,
+  ModuleQuiz,
+  QuizQuestion,
+  MultipleChoiceQuestion,
+  ShortAnswerQuestion,
+} from "./types";
 
 const allContent: Record<string, CourseContent> = {
   "ai-automation": aiAutomation,
@@ -17,6 +32,16 @@ const allContent: Record<string, CourseContent> = {
   "team-operations": teamOperations,
   "personal-growth": personalGrowth,
   "operator-playbook": operatorPlaybook,
+};
+
+const allQuizzes: Record<string, CourseQuizzes> = {
+  "ai-automation": aiAutomationQuizzes,
+  "sales-systems": salesSystemsQuizzes,
+  "prompt-engineering": promptEngineeringQuizzes,
+  "content-brand": contentBrandQuizzes,
+  "team-operations": teamOperationsQuizzes,
+  "personal-growth": personalGrowthQuizzes,
+  "operator-playbook": operatorPlaybookQuizzes,
 };
 
 export function getLessonContent(courseSlug: string, lessonKey: string) {
@@ -35,4 +60,15 @@ export function getLessonKeys(courseSlug: string): string[] {
     const [bm, bl] = b.split("-").map(Number);
     return am !== bm ? am - bm : al - bl;
   });
+}
+
+export function getModuleQuiz(
+  courseSlug: string,
+  moduleNum: string
+): ModuleQuiz | null {
+  return allQuizzes[courseSlug]?.[moduleNum] ?? null;
+}
+
+export function getCourseQuizzes(courseSlug: string): CourseQuizzes | null {
+  return allQuizzes[courseSlug] ?? null;
 }

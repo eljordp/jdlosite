@@ -1,4 +1,4 @@
-import type { CourseContent } from "./types";
+import type { CourseContent, CourseQuizzes } from "./types";
 
 export const aiAutomation: CourseContent = {
   "01-1": {
@@ -1261,5 +1261,218 @@ A system that improves 5% per month is 80% better after a year. That's not margi
     ],
     exercise:
       "Final exercise: Build your portfolio. Take the three agent systems you built in Module 5, document them with handoff docs, record a Loom walkthrough of each, and compile everything into a portfolio page. This is what you'll submit for paid project consideration.",
+  },
+};
+
+export const aiAutomationQuizzes: CourseQuizzes = {
+  "01": {
+    title: "AI Fundamentals Quiz",
+    questions: [
+      {
+        type: "mc",
+        question:
+          "Why does providing more context in your prompt produce better AI output?",
+        options: [
+          "It makes the model run faster by pre-loading data",
+          "It gives the model more patterns to work with, narrowing the prediction space",
+          "It bypasses the model's safety filters for more detailed responses",
+          "It increases the model's token limit for the conversation",
+        ],
+        correctIndex: 1,
+      },
+      {
+        type: "mc",
+        question:
+          "When building automations that run hundreds of times per day, what is the most effective cost strategy?",
+        options: [
+          "Always use the cheapest model available regardless of task complexity",
+          "Use one premium model for everything to ensure quality",
+          "Route tasks to different model tiers based on complexity, quality needs, and frequency",
+          "Avoid API calls and use the chat interface instead",
+        ],
+        correctIndex: 2,
+      },
+      {
+        type: "short",
+        question:
+          "Explain the concept of a context window and why it matters when building AI systems that process long documents or conversations.",
+        minLength: 50,
+      },
+    ],
+  },
+  "02": {
+    title: "Prompt Engineering Quiz",
+    questions: [
+      {
+        type: "mc",
+        question:
+          "What are the four components of a well-structured prompt as taught in this module?",
+        options: [
+          "Input, Processing, Output, Feedback",
+          "Role, Context, Task, Constraints",
+          "System, User, Assistant, Function",
+          "Hook, Body, CTA, Format",
+        ],
+        correctIndex: 1,
+      },
+      {
+        type: "mc",
+        question:
+          "Why does chain-of-thought prompting improve accuracy on complex tasks?",
+        options: [
+          "It uses more tokens which makes the model work harder",
+          "It activates a special reasoning mode built into the model",
+          "Each reasoning step is a smaller, easier prediction that builds context for the next step",
+          "It prevents the model from hallucinating by checking facts at each step",
+        ],
+        correctIndex: 2,
+      },
+      {
+        type: "short",
+        question:
+          "Describe how you would build a reusable prompt library for a team, including how to templatize prompts with variables and organize them by category.",
+        minLength: 50,
+      },
+    ],
+  },
+  "03": {
+    title: "APIs & Integrations Quiz",
+    questions: [
+      {
+        type: "mc",
+        question:
+          "What three things do you need to make an AI API call?",
+        options: [
+          "A database, a frontend, and a backend",
+          "An API key, the endpoint URL, and the request body",
+          "A webhook, a trigger, and an action",
+          "A system prompt, user message, and temperature setting",
+        ],
+        correctIndex: 1,
+      },
+      {
+        type: "mc",
+        question:
+          "What is the key difference between webhooks and polling for triggering automations?",
+        options: [
+          "Webhooks cost more but are more reliable",
+          "Polling delivers data instantly while webhooks have delays",
+          "Webhooks deliver data instantly when events happen instead of checking periodically",
+          "There is no practical difference; they work the same way",
+        ],
+        correctIndex: 2,
+      },
+      {
+        type: "short",
+        question:
+          "Explain the 80/20 of reliability for AI automations. What are the four essential things you should implement from day one to catch most issues?",
+        minLength: 50,
+      },
+    ],
+  },
+  "04": {
+    title: "Automation Workflows Quiz",
+    questions: [
+      {
+        type: "mc",
+        question:
+          "According to the course, what is the recommended starting platform for building AI automations and why?",
+        options: [
+          "Zapier, because it has the most integrations",
+          "n8n, because it's open-source and free",
+          "Make.com, because it hits the sweet spot of power and usability for AI workflows",
+          "Custom code, because it gives full control",
+        ],
+        correctIndex: 2,
+      },
+      {
+        type: "mc",
+        question:
+          "What is the correct approach to building a multi-step automated pipeline?",
+        options: [
+          "Build all steps at once, then test the entire pipeline end-to-end",
+          "Map the manual process first, then build and test each step sequentially",
+          "Start with the most complex step to ensure it works before adding simpler ones",
+          "Copy an existing automation template and modify it for your use case",
+        ],
+        correctIndex: 1,
+      },
+      {
+        type: "short",
+        question:
+          "Describe the pattern that all three AI workflows (email, CRM, content) share in terms of how they divide work between humans and AI.",
+        minLength: 50,
+      },
+    ],
+  },
+  "05": {
+    title: "AI Agents Quiz",
+    questions: [
+      {
+        type: "mc",
+        question:
+          "What are the four core components of an AI agent as defined in this module?",
+        options: [
+          "Input, output, processing, storage",
+          "The brain (LLM), tools, memory, and the think-act-observe loop",
+          "API key, endpoint, request body, and response handler",
+          "System prompt, user message, function calls, and database",
+        ],
+        correctIndex: 1,
+      },
+      {
+        type: "mc",
+        question:
+          "In a multi-agent system, what is the 'supervisor pattern'?",
+        options: [
+          "A single agent that does all the work sequentially",
+          "Multiple agents competing to produce the best result",
+          "One manager agent that delegates tasks to specialist agents and synthesizes their results",
+          "A human who reviews every agent output before it gets processed",
+        ],
+        correctIndex: 2,
+      },
+      {
+        type: "short",
+        question:
+          "Explain why you should start with read-only tools when building agents and gradually add write tools with guardrails. Give an example of the risk involved.",
+        minLength: 50,
+      },
+    ],
+  },
+  "06": {
+    title: "Deploy & Operate Quiz",
+    questions: [
+      {
+        type: "mc",
+        question:
+          "What is the staging-to-production pattern for launching AI systems?",
+        options: [
+          "Build in production and fix issues as they appear",
+          "Build in staging, run with real data but no real actions, monitor for 3-5 days, then switch to production",
+          "Test with dummy data for one day, then go live immediately",
+          "Deploy to production and set up monitoring after launch",
+        ],
+        correctIndex: 1,
+      },
+      {
+        type: "mc",
+        question:
+          "What are the three layers of keeping AI systems healthy in production?",
+        options: [
+          "Testing, debugging, and deploying",
+          "Building, scaling, and optimizing",
+          "Logging, monitoring, and alerting",
+          "Documenting, training, and handing off",
+        ],
+        correctIndex: 2,
+      },
+      {
+        type: "short",
+        question:
+          "Describe what a handoff document for an AI system should contain and why building yourself out of every system is critical for scaling.",
+        minLength: 50,
+      },
+    ],
   },
 };

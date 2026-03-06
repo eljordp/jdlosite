@@ -1,4 +1,4 @@
-import type { CourseContent } from "./types";
+import type { CourseContent, CourseQuizzes } from "./types";
 
 export const teamOperations: CourseContent = {
   "01-1": {
@@ -1297,4 +1297,182 @@ The tools are available to everyone. The difference is who actually implements t
     ],
     exercise: "Map your current ops stack against the 5-layer framework. For each layer, write down: (1) what tool you use today, (2) what's manual vs. automated, and (3) one improvement you'll make in the next 30 days. Then create a 90-day roadmap to move from your current phase (manual, semi-automated, agent-assisted) to the next one. Include specific milestones and deadlines."
   }
+};
+
+export const teamOperationsQuizzes: CourseQuizzes = {
+  "01": {
+    title: "Hiring Right Quiz",
+    questions: [
+      {
+        type: "mc",
+        question:
+          "According to the course, what is the primary purpose of a job description?",
+        options: [
+          "To list every possible responsibility for the role",
+          "To act as a filter that attracts the right 5 people and repels the wrong 195",
+          "To provide a comprehensive company biography to candidates",
+          "To satisfy HR compliance requirements",
+        ],
+        correctIndex: 1,
+      },
+      {
+        type: "mc",
+        question:
+          "What is the S-tier talent sourcing method and why does it outperform other channels?",
+        options: [
+          "LinkedIn Easy Apply, because it reaches the most candidates",
+          "Traditional job boards like Indeed, because of the high volume of applicants",
+          "Referrals from people you trust, because you skip 80% of the vetting process",
+          "Freelance platforms like Upwork, because you can see past work history",
+        ],
+        correctIndex: 2,
+      },
+      {
+        type: "short",
+        question:
+          "Explain why the course recommends sending a paid async test project before any interview call, and describe what makes an effective test project.",
+        minLength: 50,
+      },
+    ],
+  },
+  "02": {
+    title: "Systems & SOPs Quiz",
+    questions: [
+      {
+        type: "mc",
+        question:
+          "What is the 15-minute documentation method's first step?",
+        options: [
+          "Write a detailed outline of the process from memory",
+          "Open Loom and record yourself walking through the process while doing it",
+          "Create a Notion template with headers and placeholders",
+          "Schedule a meeting with your team to discuss the process",
+        ],
+        correctIndex: 1,
+      },
+      {
+        type: "mc",
+        question:
+          "According to the course, which four tools make up the core ops tool stack and what is the correct flow between them?",
+        options: [
+          "Google Docs, Zoom, Trello, Email — Email assigns work, Zoom coordinates, Trello tracks, Docs store",
+          "Notion, Loom, Slack, Linear — Linear assigns work, Slack coordinates, Loom explains, Notion stores knowledge",
+          "Asana, Teams, Confluence, Jira — Jira assigns work, Teams coordinates, Confluence stores, Asana tracks",
+          "Monday.com, Discord, Google Drive, Figma — Monday assigns, Discord coordinates, Drive stores, Figma creates",
+        ],
+        correctIndex: 1,
+      },
+      {
+        type: "short",
+        question:
+          "Describe why most SOPs fail and explain the key structural elements that make an SOP people will actually follow, based on the course content.",
+        minLength: 50,
+      },
+    ],
+  },
+  "03": {
+    title: "Management Quiz",
+    questions: [
+      {
+        type: "mc",
+        question:
+          "In the 1-on-1 format taught in the course, who drives the first half of the meeting?",
+        options: [
+          "The manager, to set priorities and give feedback",
+          "Both parties equally, splitting time 50/50 from the start",
+          "The direct report, bringing what's on their mind",
+          "Neither — the first half is reserved for reviewing metrics together",
+        ],
+        correctIndex: 2,
+      },
+      {
+        type: "mc",
+        question:
+          "What is the SBI feedback framework and what does each letter stand for?",
+        options: [
+          "Strategy, Benchmark, Implementation — a goal-setting framework",
+          "Situation, Behavior, Impact — a feedback delivery framework",
+          "Strengths, Blindspots, Improvements — a performance review tool",
+          "System, Bottleneck, Intervention — an operations diagnosis method",
+        ],
+        correctIndex: 1,
+      },
+      {
+        type: "short",
+        question:
+          "Explain the difference between KPIs and OKRs as taught in the course, including when to use each and how they should be reviewed.",
+        minLength: 50,
+      },
+    ],
+  },
+  "04": {
+    title: "Operations at Scale Quiz",
+    questions: [
+      {
+        type: "mc",
+        question:
+          "A good operational dashboard should answer how many key questions at a glance, and what is the recommended time to review it each morning?",
+        options: [
+          "10 questions in 15 minutes",
+          "5 questions in 30 seconds, reviewed in 2 minutes each morning",
+          "3 questions in 5 minutes",
+          "8 questions in 10 minutes with a team meeting",
+        ],
+        correctIndex: 1,
+      },
+      {
+        type: "mc",
+        question:
+          "According to the delegation matrix, what should you do when someone can do a task 80% as well as you?",
+        options: [
+          "Keep doing it yourself since quality is paramount",
+          "Wait until they can match your quality before delegating",
+          "Delegate it — your time is not worth the 20% quality difference",
+          "Split the task so you handle the critical 20% and they do the rest",
+        ],
+        correctIndex: 2,
+      },
+      {
+        type: "short",
+        question:
+          "Describe the four methods taught in the course for identifying bottlenecks in your operations before they cause a crisis.",
+        minLength: 50,
+      },
+    ],
+  },
+  "05": {
+    title: "AI-Powered Ops Quiz",
+    questions: [
+      {
+        type: "mc",
+        question:
+          "What is the course's recommended implementation priority for AI admin automation?",
+        options: [
+          "Document management first, then email, then meetings, then scheduling",
+          "Scheduling first, then email triage, then meeting prep/follow-up, then document management",
+          "Email triage first, then scheduling, then document management, then meetings",
+          "Meeting prep first, then scheduling, then email, then document management",
+        ],
+        correctIndex: 1,
+      },
+      {
+        type: "mc",
+        question:
+          "In the automated KPI stack, what are the three layers and what does the AI analysis layer do?",
+        options: [
+          "Collection, storage, visualization — AI creates the visualizations",
+          "Data source integrations, automation connectors, AI analysis — AI interprets trends, flags issues, and suggests actions",
+          "Manual entry, spreadsheet formulas, email distribution — AI writes the distribution emails",
+          "CRM, dashboard, presentation — AI creates presentation slides from the data",
+        ],
+        correctIndex: 1,
+      },
+      {
+        type: "short",
+        question:
+          "Explain the five-layer modern ops stack taught in the course and how AI agents represent the next evolution of operational automation.",
+        minLength: 50,
+      },
+    ],
+  },
 };

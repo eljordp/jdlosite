@@ -1,4 +1,4 @@
-import type { CourseContent } from "./types";
+import type { CourseContent, CourseQuizzes } from "./types";
 
 export const personalGrowth: CourseContent = {
   // ============================================================
@@ -909,4 +909,182 @@ Your discipline means nothing if your body and mind are too broken to execute. R
     ],
     exercise: "Tonight, implement the wind-down protocol: phone off (or in another room) at 9:30 PM. Read, stretch, or journal until 10 PM. Lights out at 10. Wake at your set time tomorrow morning and get sunlight within 30 minutes. Rate your focus the next day on a scale of 1-10 and compare it to your average. Do this for 5 nights in a row."
   }
+};
+
+export const personalGrowthQuizzes: CourseQuizzes = {
+  "01": {
+    title: "Discipline & Daily Structure Quiz",
+    questions: [
+      {
+        type: "mc",
+        question:
+          "According to the course, what is the real reason most people fail before they start?",
+        options: [
+          "They lack natural talent or the right connections",
+          "The market is too competitive for newcomers",
+          "They fear finding out they're not as good as they think, so they avoid starting",
+          "They don't have enough capital to get a business off the ground",
+        ],
+        correctIndex: 2,
+      },
+      {
+        type: "mc",
+        question:
+          "Why does the course recommend putting your hardest, highest-impact task in the first 3 hours of your morning?",
+        options: [
+          "Because morning meetings haven't started yet so you have free time",
+          "Because your prefrontal cortex is strongest after sleep and every distraction drains it throughout the day",
+          "Because clients are less likely to call in the morning",
+          "Because most productivity apps track morning hours more accurately",
+        ],
+        correctIndex: 1,
+      },
+      {
+        type: "short",
+        question:
+          "Explain the course's approach to eliminating distractions through environment design rather than willpower, and describe at least three specific environmental changes recommended.",
+        minLength: 50,
+      },
+    ],
+  },
+  "02": {
+    title: "Confidence & Mindset Quiz",
+    questions: [
+      {
+        type: "mc",
+        question:
+          "What is the 'evidence-based confidence loop' taught in the course?",
+        options: [
+          "Read affirmations daily, visualize success, tell others about your goals, celebrate wins",
+          "Commit to something specific, do it, log the evidence, let your self-image update based on your track record",
+          "Set a big goal, share it publicly, work on it when motivated, review quarterly",
+          "Study successful people, copy their habits, measure your progress against theirs, adjust weekly",
+        ],
+        correctIndex: 1,
+      },
+      {
+        type: "mc",
+        question:
+          "In the value communication framework, what should you do immediately after stating your price?",
+        options: [
+          "Offer a discount to show flexibility",
+          "Explain how many hours the work will take to justify the cost",
+          "Stop talking and let them respond — whoever speaks first after the price loses",
+          "Ask 'Does that work for you?' to gauge their reaction",
+        ],
+        correctIndex: 2,
+      },
+      {
+        type: "short",
+        question:
+          "Describe the 'stop being a bitch' framework from the course, including how to distinguish between genuine struggle and self-inflicted softness, and explain the 5-second rule for overcoming avoidance.",
+        minLength: 50,
+      },
+    ],
+  },
+  "03": {
+    title: "Resilience & Mental Toughness Quiz",
+    questions: [
+      {
+        type: "mc",
+        question:
+          "When a crisis first hits, what does the course recommend you do in the first 30 minutes?",
+        options: [
+          "Immediately start solving the most urgent problem",
+          "Call your team together for an emergency meeting",
+          "Nothing — reset physically first because your decision-making is compromised by fight-or-flight",
+          "Post about it on social media to get community support and advice",
+        ],
+        correctIndex: 2,
+      },
+      {
+        type: "mc",
+        question:
+          "According to the course, what does the 'scarcity mindset' during financial stress actually do to your brain?",
+        options: [
+          "It motivates you to work harder and find creative solutions faster",
+          "It allocates massive processing power to financial worry, leaving less capacity for the creative and strategic thinking that would fix the problem",
+          "It has no measurable cognitive effect — financial stress is purely emotional",
+          "It sharpens your focus by narrowing your attention to revenue-generating activities",
+        ],
+        correctIndex: 1,
+      },
+      {
+        type: "short",
+        question:
+          "Explain the course's approach to dealing with flaky people, including the early warning signs of a flake and the four protection strategies recommended.",
+        minLength: 50,
+      },
+    ],
+  },
+  "04": {
+    title: "Networking & Relationships Quiz",
+    questions: [
+      {
+        type: "mc",
+        question:
+          "What is the 'value-first approach' to getting into rooms above your level?",
+        options: [
+          "Pitch your services to everyone you meet within the first 3 minutes",
+          "Ask 'what can I offer?' before 'what can I get?' — look for ways to be useful before asking for anything",
+          "Collect as many business cards as possible and follow up with LinkedIn requests",
+          "Attend every event in your industry to maximize exposure and name recognition",
+        ],
+        correctIndex: 1,
+      },
+      {
+        type: "mc",
+        question:
+          "In the relationship development framework, what is Stage 2 (Value Deposit) and why do most people fail at it?",
+        options: [
+          "It's the first meeting — most people fail because they don't make a good first impression",
+          "It's the 1-5 interaction phase where you follow up with something valuable — most people either disappear or immediately pitch instead",
+          "It's the 15+ interaction phase — most people give up before reaching this level of trust",
+          "It's the referral stage — most people forget to ask for introductions",
+        ],
+        correctIndex: 1,
+      },
+      {
+        type: "short",
+        question:
+          "Describe the course's system for following up effectively, including the 24-hour rule, the value stack approach, and how to stay top of mind without being annoying.",
+        minLength: 50,
+      },
+    ],
+  },
+  "05": {
+    title: "Health & Energy Quiz",
+    questions: [
+      {
+        type: "mc",
+        question:
+          "What does the course mean by the 'CEO athlete mindset'?",
+        options: [
+          "You should train like a professional athlete and compete in fitness events",
+          "You should hire a personal trainer as your first business expense",
+          "Your body is the machine that runs your business — physical performance directly correlates with mental performance",
+          "You should prioritize aesthetics because looking fit builds client trust",
+        ],
+        correctIndex: 2,
+      },
+      {
+        type: "mc",
+        question:
+          "Why does the course recommend eating fewer, larger meals and timing them around deep work?",
+        options: [
+          "Because eating less food overall accelerates weight loss for a better appearance",
+          "Because constant snacking keeps your body digesting and pulls blood flow from your brain, and heavy meals before deep work cause energy crashes",
+          "Because meal prep is easier with fewer meals, saving time in the kitchen",
+          "Because intermittent fasting boosts testosterone which increases confidence",
+        ],
+        correctIndex: 1,
+      },
+      {
+        type: "short",
+        question:
+          "Describe the three pillars of the daily movement system taught in the course and explain why the course argues that systems beat programs when it comes to fitness consistency.",
+        minLength: 50,
+      },
+    ],
+  },
 };

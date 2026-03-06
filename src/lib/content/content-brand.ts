@@ -1,4 +1,4 @@
-import type { CourseContent } from "./types";
+import type { CourseContent, CourseQuizzes } from "./types";
 
 export const contentBrand: CourseContent = {
   "01-1": {
@@ -1018,5 +1018,136 @@ The whole point of building a brand and creating content is this moment — when
       "Build an offer stack from free to high-ticket so there's an entry point for every follower"
     ],
     exercise: "Map out your 4-week warm-up cycle for your current or next offer. Write the content themes for each week, draft 2 post ideas per week, create your DM keyword CTA, and write your DM response script. Test it on your next launch."
+  }
+};
+
+export const contentBrandQuizzes: CourseQuizzes = {
+  "01": {
+    title: "Brand Identity Quiz",
+    questions: [
+      {
+        type: "mc",
+        question: "What is the core purpose of brand positioning?",
+        options: [
+          "Making your profile look professional and polished",
+          "Getting as many followers as possible across all platforms",
+          "Defining why someone should follow you instead of anyone else",
+          "Copying what successful competitors are doing in your niche"
+        ],
+        correctIndex: 2
+      },
+      {
+        type: "mc",
+        question: "Content pillars are best described as:",
+        options: [
+          "The 3-5 recurring themes that all of your content maps back to",
+          "A list of viral topics you should post about each week",
+          "The hashtags you use most frequently on your posts",
+          "The platforms where you publish your content"
+        ],
+        correctIndex: 0
+      },
+      {
+        type: "short",
+        question: "Write your positioning statement using the format: I help [specific audience] achieve [specific outcome] through [your unique method/perspective]. Then explain why your angle is different from others in your space.",
+        minLength: 50
+      }
+    ]
+  },
+  "02": {
+    title: "Content Strategy Quiz",
+    questions: [
+      {
+        type: "mc",
+        question: "Which content type is most effective at building trust and converting followers into customers?",
+        options: [
+          "Memes and trending audio clips",
+          "Educational content that solves a specific problem your audience has",
+          "Aesthetic flat-lay photos with motivational quotes",
+          "Daily behind-the-scenes stories with no clear takeaway"
+        ],
+        correctIndex: 1
+      },
+      {
+        type: "mc",
+        question: "What is the primary benefit of repurposing content?",
+        options: [
+          "It lets you post the exact same thing on every platform at the same time",
+          "It eliminates the need for a content calendar entirely",
+          "It turns one core idea into multiple format-native pieces across platforms",
+          "It guarantees higher engagement because algorithms favor repeated posts"
+        ],
+        correctIndex: 2
+      },
+      {
+        type: "short",
+        question: "Pick one content idea and outline how you would repurpose it into at least 3 different formats (e.g., short-form video, carousel, newsletter). Explain what you would change for each format and why.",
+        minLength: 50
+      }
+    ]
+  },
+  "03": {
+    title: "Production System Quiz",
+    questions: [
+      {
+        type: "mc",
+        question: "What is the most important element in the first 2 seconds of a short-form video?",
+        options: [
+          "A clean background and professional lighting setup",
+          "A strong hook that creates curiosity or calls out a specific audience",
+          "Your logo and brand name displayed prominently on screen",
+          "Background music that matches the current trending audio"
+        ],
+        correctIndex: 1
+      },
+      {
+        type: "mc",
+        question: "Batch production is effective because it:",
+        options: [
+          "Lets you film once a month and never think about content again",
+          "Reduces context-switching by grouping similar tasks into focused sessions",
+          "Means you only need one type of content across all platforms",
+          "Eliminates the need for editing or post-production"
+        ],
+        correctIndex: 1
+      },
+      {
+        type: "short",
+        question: "Describe your ideal batch production day: what would you produce, in what order, and how would you use AI tools to speed up scripting, editing, or captioning? Be specific about the workflow.",
+        minLength: 50
+      }
+    ]
+  },
+  "04": {
+    title: "Distribution & Growth Quiz",
+    questions: [
+      {
+        type: "mc",
+        question: "What is the most effective way to grow on a new platform?",
+        options: [
+          "Cross-post the same content from your main platform without changes",
+          "Buy followers to build social proof and then start posting",
+          "Study what performs natively on that platform and adapt your content to its format and culture",
+          "Post as frequently as possible regardless of quality or format"
+        ],
+        correctIndex: 2
+      },
+      {
+        type: "mc",
+        question: "Which metric best indicates that your personal brand is actually working?",
+        options: [
+          "Total follower count across all platforms",
+          "Revenue per follower — how much you earn relative to your audience size",
+          "Number of likes and comments on your most viral post",
+          "How many platforms you are actively posting on"
+        ],
+        correctIndex: 1
+      },
+      {
+        type: "short",
+        question: "Outline your follower-to-buyer conversion strategy: what free value do you offer, how do you capture leads, and what is your DM or email sequence to move someone from follower to paying customer?",
+        minLength: 50
+      }
+    ]
   }
 };

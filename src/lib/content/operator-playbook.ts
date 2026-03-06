@@ -1,4 +1,4 @@
-import type { CourseContent } from "./types";
+import type { CourseContent, CourseQuizzes } from "./types";
 
 export const operatorPlaybook: CourseContent = {
   "01-1": {
@@ -882,4 +882,182 @@ That's the pipeline. You started it by opening Module 1. Where you go from here 
     ],
     exercise: "Write a one-page personal operator assessment. Rate yourself 1-10 on each of the five criteria (initiative, communication, problem-solving, delivery, ownership). For your lowest score, write a specific plan to improve it over the next 30 days. Then complete every exercise in this course you skipped — that's your first test of follow-through."
   }
+};
+
+export const operatorPlaybookQuizzes: CourseQuizzes = {
+  "01": {
+    title: "What an Operator Actually Is Quiz",
+    questions: [
+      {
+        type: "mc",
+        question:
+          "What is the key difference between a manager and an operator according to the course?",
+        options: [
+          "Managers make more money than operators",
+          "Managers execute a playbook someone else designed; operators own the outcome of the entire business",
+          "Operators focus on one department while managers oversee all departments",
+          "Managers work with teams while operators work alone",
+        ],
+        correctIndex: 1,
+      },
+      {
+        type: "mc",
+        question:
+          "What does 'radical ownership' mean in the operator mindset, and why does the course say it gives you power?",
+        options: [
+          "It means owning equity in every business you work with so you have financial skin in the game",
+          "It means accepting blame for everything — even things outside your direct control — because the moment you accept blame, you gain the ability to fix things",
+          "It means taking credit for all wins so the founder sees your value and promotes you faster",
+          "It means owning all the company's intellectual property and documentation",
+        ],
+        correctIndex: 1,
+      },
+      {
+        type: "short",
+        question:
+          "Explain the five things every founder actually needs from an operator (as taught in the course), and describe why founders typically won't tell you these directly.",
+        minLength: 50,
+      },
+    ],
+  },
+  "02": {
+    title: "Bringing Value Before Getting Paid Quiz",
+    questions: [
+      {
+        type: "mc",
+        question:
+          "In the five-area audit framework, what is the correct order for evaluating a business and why?",
+        options: [
+          "Team, Finance, Marketing, Sales, Operations — because people problems are always the root cause",
+          "Marketing, Sales, Operations, Finance, Team — because you need awareness before anything else",
+          "Revenue/Sales, Operations, Marketing, Finance, Team — ordered by what typically has the highest immediate impact",
+          "Finance, Operations, Sales, Marketing, Team — because profitability determines everything else",
+        ],
+        correctIndex: 2,
+      },
+      {
+        type: "mc",
+        question:
+          "According to the 'strategic free work framework,' what kind of free work should you do and when should you stop?",
+        options: [
+          "Do unlimited free work until they offer you a full-time position",
+          "Pick something high-visibility and low-effort (2-4 hours), do it without permission, quantify the impact — stop after one or two wins and have the money conversation",
+          "Rebuild their entire website for free to prove you can handle large projects",
+          "Only offer free work if they sign a contract promising paid work afterward",
+        ],
+        correctIndex: 1,
+      },
+      {
+        type: "short",
+        question:
+          "Describe how the course teaches you to build a track record with small wins, including what counts as a 'win,' how to document them, and how small wins compound into a reputation.",
+        minLength: 50,
+      },
+    ],
+  },
+  "03": {
+    title: "Running the Business Quiz",
+    questions: [
+      {
+        type: "mc",
+        question:
+          "In the decision framework taught in the course, which types of decisions should an operator handle themselves versus escalate to the founder?",
+        options: [
+          "Handle all decisions yourself to prove you can operate independently",
+          "Escalate everything to the founder to avoid making mistakes",
+          "Handle reversible, low-cost decisions yourself; escalate irreversible, high-cost, or politically sensitive ones; handle-then-inform for the gray zone",
+          "Only handle decisions related to your specific job description and escalate everything else",
+        ],
+        correctIndex: 2,
+      },
+      {
+        type: "mc",
+        question:
+          "What is the weekly update format the course recommends for managing up to a CEO?",
+        options: [
+          "A 30-minute video call covering every detail of the week's work",
+          "A Slack message with what got done (3-5 bullets), what's in progress (3-5 bullets), what needs founder input (1-2 items), and any blockers",
+          "A long-form document with screenshots of every completed task",
+          "A daily email summarizing each hour of work completed",
+        ],
+        correctIndex: 1,
+      },
+      {
+        type: "short",
+        question:
+          "Explain how the course teaches cross-functional coordination, including the three systems an operator should build and how accountability should work without 'being the bad guy.'",
+        minLength: 50,
+      },
+    ],
+  },
+  "04": {
+    title: "Systems Thinking Quiz",
+    questions: [
+      {
+        type: "mc",
+        question:
+          "According to the course, what happens when you optimize one part of a business system without understanding the whole?",
+        options: [
+          "You always get positive results because any improvement is better than none",
+          "You often create new problems elsewhere — like doubling sales close rate but overwhelming ops, causing delivery quality to drop and refunds to spike",
+          "Nothing happens because business functions operate independently from each other",
+          "The rest of the system automatically adjusts to compensate for the change",
+        ],
+        correctIndex: 1,
+      },
+      {
+        type: "mc",
+        question:
+          "What is the '5 Whys' technique and what does it help you find?",
+        options: [
+          "A brainstorming technique where five team members each contribute one solution to a problem",
+          "A hiring framework where you ask candidates five behavioral questions",
+          "A root cause analysis tool where you ask 'why' five times to drill from a surface symptom to the actual underlying cause",
+          "A prioritization method where you list five reasons for and against each decision",
+        ],
+        correctIndex: 2,
+      },
+      {
+        type: "short",
+        question:
+          "Explain the difference between symptoms and root causes as taught in the course, and describe why improving anything that is not the bottleneck is considered waste.",
+        minLength: 50,
+      },
+    ],
+  },
+  "05": {
+    title: "Scaling & Positioning Quiz",
+    questions: [
+      {
+        type: "mc",
+        question:
+          "When is the right time to have the equity conversation with a founder, according to the course?",
+        options: [
+          "During the first meeting, to set expectations upfront",
+          "After one month, once you've settled into the role",
+          "After 3-6 months, when you've delivered clear measurable results and the founder depends on you for critical functions",
+          "After one year, when you've completed a full annual cycle with the business",
+        ],
+        correctIndex: 2,
+      },
+      {
+        type: "mc",
+        question:
+          "What is the course's rule for when you're ready to take on operating an additional business?",
+        options: [
+          "When you've been operating your first business for at least 6 months",
+          "When your existing businesses can run without you for a week — if they can't, build the systems first",
+          "When you've hit a revenue ceiling and need to diversify immediately",
+          "When a founder personally asks you to and offers equity upfront",
+        ],
+        correctIndex: 1,
+      },
+      {
+        type: "short",
+        question:
+          "Describe the three pillars of an operator brand as taught in the course, and explain how the pipeline model works — from course to paid project to team member.",
+        minLength: 50,
+      },
+    ],
+  },
 };

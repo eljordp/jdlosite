@@ -1,4 +1,4 @@
-import type { CourseContent } from "./types";
+import type { CourseContent, CourseQuizzes } from "./types";
 
 export const salesSystems: CourseContent = {
   "01-1": {
@@ -1448,4 +1448,182 @@ Ship the exercises. Track the numbers. Let's work.`,
     ],
     exercise: "Build your weekly scorecard using the template above. Fill in this week's numbers (even if most are zero — that's your baseline). Calculate your pipeline math: based on your current numbers, how many outreaches per week do you need to hit your revenue goal? Write that number down and commit to it starting Monday."
   }
+};
+
+export const salesSystemsQuizzes: CourseQuizzes = {
+  "01": {
+    title: "Sales Foundation Quiz",
+    questions: [
+      {
+        type: "mc",
+        question:
+          "What is the core difference between a closer and an order-taker according to the sales mindset lesson?",
+        options: [
+          "Closers are more aggressive and use high-pressure tactics",
+          "Closers solve problems so clearly that saying no is irrational, while order-takers just process requests",
+          "Closers have bigger networks and more referrals",
+          "Order-takers focus on relationships while closers focus on transactions",
+        ],
+        correctIndex: 1,
+      },
+      {
+        type: "mc",
+        question:
+          "According to buyer psychology, what are the three buying triggers ranked from strongest to weakest?",
+        options: [
+          "Logic, aspiration, pain",
+          "Fear, greed, urgency",
+          "Pain, aspiration, logic",
+          "Trust, value, timing",
+        ],
+        correctIndex: 2,
+      },
+      {
+        type: "short",
+        question:
+          "Describe the five components of a killer offer and explain the 10x pricing rule. Why should you sell outcomes instead of hours?",
+        minLength: 50,
+      },
+    ],
+  },
+  "02": {
+    title: "Prospecting & Lead Gen Quiz",
+    questions: [
+      {
+        type: "mc",
+        question:
+          "Why does the course recommend building a list of exactly 100 leads instead of 20 or 500?",
+        options: [
+          "100 is the maximum most CRMs can handle on the free tier",
+          "It's enough for meaningful data, small enough to personalize, and forces selectivity",
+          "It takes exactly one month to work through 100 leads",
+          "100 leads guarantees at least 10 sales at standard conversion rates",
+        ],
+        correctIndex: 1,
+      },
+      {
+        type: "mc",
+        question:
+          "In the 3-layer AI research method for prospects, what does each layer cover?",
+        options: [
+          "Company financials, employee reviews, social media mentions",
+          "Public basics (30 sec), AI-powered analysis (2 min), content and activity review (2 min)",
+          "Website audit, competitor comparison, pricing analysis",
+          "LinkedIn profile, email history, phone conversation notes",
+        ],
+        correctIndex: 1,
+      },
+      {
+        type: "short",
+        question:
+          "Explain the difference between cold, warm, and hot outreach. What response rates should you expect from each, and why does the course recommend running both cold and warm simultaneously?",
+        minLength: 50,
+      },
+    ],
+  },
+  "03": {
+    title: "Cold Outreach Quiz",
+    questions: [
+      {
+        type: "mc",
+        question:
+          "What are the five rules of cold email outlined in the course?",
+        options: [
+          "Use templates, send in bulk, follow up daily, include your website, and use a professional signature",
+          "Subject line is 50% of the battle, first line is personal, body is about THEM, one CTA, under 100 words",
+          "Research thoroughly, write long emails, include case studies, attach proposals, and cc their team",
+          "Use catchy subject lines, open with a compliment, list your services, include pricing, and add social links",
+        ],
+        correctIndex: 1,
+      },
+      {
+        type: "mc",
+        question:
+          "In the 5-touch follow-up sequence, what makes Email 4 (the breakup angle) effective?",
+        options: [
+          "It threatens to stop providing service if they don't respond",
+          "It offers a steep discount to create urgency",
+          "It gives them an out, which paradoxically increases response rates",
+          "It includes a detailed comparison with competitors",
+        ],
+        correctIndex: 2,
+      },
+      {
+        type: "short",
+        question:
+          "Describe how AI-personalized outreach at volume works. Include the steps from prospect data sheet to sending, and explain why human review is non-negotiable.",
+        minLength: 50,
+      },
+    ],
+  },
+  "04": {
+    title: "Sales Call Quiz",
+    questions: [
+      {
+        type: "mc",
+        question:
+          "In the SPIN discovery framework, what do Implication questions accomplish?",
+        options: [
+          "They help you understand the prospect's current tools and processes",
+          "They force the prospect to confront and quantify the real cost of their problem",
+          "They let the prospect envision what solving the problem would look like",
+          "They establish your credibility by showing industry knowledge",
+        ],
+        correctIndex: 1,
+      },
+      {
+        type: "mc",
+        question:
+          "What should you do immediately after asking a closing question?",
+        options: [
+          "Reiterate the key benefits to reinforce value",
+          "Offer a discount to sweeten the deal",
+          "Stop talking and let silence do the work",
+          "Suggest they take time to think about it",
+        ],
+        correctIndex: 2,
+      },
+      {
+        type: "short",
+        question:
+          "Explain the Acknowledge-Clarify-Respond framework for handling objections. How should you specifically handle the 'it's too expensive' objection using the ROI reframe?",
+        minLength: 50,
+      },
+    ],
+  },
+  "05": {
+    title: "CRM & Pipeline Quiz",
+    questions: [
+      {
+        type: "mc",
+        question:
+          "What is the non-negotiable CRM rule that increased close rates by 30%?",
+        options: [
+          "Always use the most expensive CRM tool available",
+          "Log every conversation, email, and follow-up — if it's not in the CRM, it didn't happen",
+          "Update your CRM weekly during Friday reviews only",
+          "Never use a CRM until you're doing over $20K/month",
+        ],
+        correctIndex: 1,
+      },
+      {
+        type: "mc",
+        question:
+          "How do you calculate weighted pipeline value, and why does it matter?",
+        options: [
+          "Multiply deal value by the number of days in the pipeline to measure velocity",
+          "Add up all deal values regardless of stage to get total potential revenue",
+          "Multiply deal value by the probability of closing at each stage (e.g., Proposal = 60%) for realistic forecasting",
+          "Divide total pipeline value by number of deals to get average deal size",
+        ],
+        correctIndex: 2,
+      },
+      {
+        type: "short",
+        question:
+          "Describe the 8 key sales metrics and explain how the diagnostic framework works: if your response rate is high but meetings booked are low, what does that tell you and what should you fix?",
+        minLength: 50,
+      },
+    ],
+  },
 };

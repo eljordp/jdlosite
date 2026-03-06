@@ -3,8 +3,13 @@
 import { useState, useEffect } from "react";
 import { useParams, useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
-import { getCourse } from "@/lib/courses";
-import { getCourseContent, getLessonKeys } from "@/lib/content";
+import { getCourse, courses } from "@/lib/courses";
+import { getCourseContent, getLessonKeys, getCourseQuizzes } from "@/lib/content";
+import {
+  isModuleQuizPassed,
+  isCourseFullyCompleted,
+  getQuizProgress,
+} from "@/lib/quiz-progress";
 import CustomCursor from "@/components/CustomCursor";
 
 const STORAGE_PREFIX = "jdlo_access_";
@@ -19,10 +24,18 @@ export default function LearnDashboard() {
   const [authorized, setAuthorized] = useState(false);
   const [checking, setChecking] = useState(true);
   const [completedLessons, setCompletedLessons] = useState<string[]>([]);
+  const [quizzesPassed, setQuizzesPassed] = useState<Record<string, boolean>>(
+    {}
+  );
 
   const course = getCourse(slug);
   const content = getCourseContent(slug);
   const lessonKeys = getLessonKeys(slug);
+  const quizzes = getCourseQuizzes(slug);
+
+  // Course gating: find previous course
+  const courseIdx = courses.findIndex((c) => c.slug === slug);
+  const prevCourse = courseIdx > 0 ? courses[courseIdx - 1] : null;
 
   // Check access
   useEffect(() => {
@@ -30,7 +43,6 @@ export default function LearnDashboard() {
     const stored = localStorage.getItem(`${STORAGE_PREFIX}${slug}`);
 
     if (codeFromUrl) {
-      // Validate code via API
       fetch(`/api/access?code=${codeFromUrl}&course=${slug}`)
         .then((r) => r.json())
         .then((data) => {
@@ -42,7 +54,6 @@ export default function LearnDashboard() {
         })
         .catch(() => setChecking(false));
     } else if (stored) {
-      // Re-validate stored code
       fetch(`/api/access?code=${stored}&course=${slug}`)
         .then((r) => r.json())
         .then((data) => {
@@ -54,7 +65,6 @@ export default function LearnDashboard() {
           setChecking(false);
         })
         .catch(() => {
-          // Offline? Trust localStorage
           setAuthorized(true);
           setChecking(false);
         });
@@ -74,7 +84,37 @@ export default function LearnDashboard() {
         /* ignore */
       }
     }
-  }, [authorized, slug]);
+    // Load quiz progress
+    if (course) {
+      const qp = getQuizProgress(slug);
+      const passed: Record<string, boolean> = {};
+      course.modules.forEach((mod) => {
+        passed[mod.num] = qp[mod.num]?.passed === true;
+      });
+      setQuizzesPassed(passed);
+    }
+  }, [authorized, slug, course]);
+
+  // Check if previous course is fully completed (course gating)
+  const [prevCourseCompleted, setPrevCourseCompleted] = useState<
+    boolean | null
+  >(null);
+
+  useEffect(() => {
+    if (!prevCourse) {
+      setPrevCourseCompleted(true);
+      return;
+    }
+    // Check if previous course is fully completed
+    const prevKeys = getLessonKeys(prevCourse.slug);
+    const prevModuleNums = prevCourse.modules.map((m) => m.num);
+    const completed = isCourseFullyCompleted(
+      prevCourse.slug,
+      prevKeys,
+      prevModuleNums
+    );
+    setPrevCourseCompleted(completed);
+  }, [prevCourse]);
 
   if (!course || !content) {
     return (
@@ -156,10 +196,75 @@ export default function LearnDashboard() {
     );
   }
 
+  // Course gating — show locked screen if previous course not done
+  if (prevCourse && prevCourseCompleted === false) {
+    const prevKeys = getLessonKeys(prevCourse.slug);
+    const prevSaved = localStorage.getItem(
+      `${PROGRESS_PREFIX}${prevCourse.slug}`
+    );
+    let prevCompleted: string[] = [];
+    try {
+      prevCompleted = prevSaved ? JSON.parse(prevSaved) : [];
+    } catch {
+      /* ignore */
+    }
+    const prevQuizProgress = getQuizProgress(prevCourse.slug);
+    const prevQuizzesPassed = prevCourse.modules.filter(
+      (m) => prevQuizProgress[m.num]?.passed
+    ).length;
+    const prevTotal = prevKeys.length + prevCourse.modules.length;
+    const prevDone = prevCompleted.length + prevQuizzesPassed;
+    const prevPercent = prevTotal > 0 ? (prevDone / prevTotal) * 100 : 0;
+
+    return (
+      <div className="min-h-screen bg-[#050505] flex items-center justify-center px-6 cursor-none">
+        <CustomCursor />
+        <div className="max-w-md w-full text-center">
+          <div className="text-5xl mb-4">🔒</div>
+          <h1 className="text-2xl font-bold text-text mb-3">{course.title}</h1>
+          <p className="text-text-secondary text-sm mb-6">
+            Complete <strong className="text-text">{prevCourse.title}</strong> to
+            unlock this course.
+          </p>
+          <div className="mb-6">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-text-muted text-[12px] font-mono">
+                {prevCourse.title} Progress
+              </span>
+              <span className="text-text-muted text-[12px] font-mono">
+                {prevDone}/{prevTotal}
+              </span>
+            </div>
+            <div className="h-1.5 bg-surface-2 rounded-full overflow-hidden">
+              <div
+                className="h-full bg-accent rounded-full transition-all duration-500"
+                style={{ width: `${prevPercent}%` }}
+              />
+            </div>
+          </div>
+          <Link
+            href={`/learn/${prevCourse.slug}`}
+            className="inline-block py-2.5 px-6 rounded-xl font-semibold text-white text-sm transition-all hover:scale-[1.02]"
+            style={{
+              background: "linear-gradient(135deg, #2997ff, #0a84ff)",
+            }}
+          >
+            Continue {prevCourse.title} →
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
   // Authorized — show course dashboard
-  const totalLessons = lessonKeys.length;
-  const completed = completedLessons.length;
-  const progress = totalLessons > 0 ? (completed / totalLessons) * 100 : 0;
+  const totalModules = course.modules.length;
+  const totalItems = lessonKeys.length + totalModules; // lessons + quizzes
+  const passedQuizCount = Object.values(quizzesPassed).filter(Boolean).length;
+  const completedItems = completedLessons.length + passedQuizCount;
+  const progress = totalItems > 0 ? (completedItems / totalItems) * 100 : 0;
+
+  const code = localStorage.getItem(`${STORAGE_PREFIX}${slug}`);
+  const codeParam = code ? `?code=${code}` : "";
 
   return (
     <div className="min-h-screen bg-[#050505] cursor-none">
@@ -190,7 +295,7 @@ export default function LearnDashboard() {
               Progress
             </span>
             <span className="text-text-muted text-[12px] font-mono">
-              {completed}/{totalLessons} lessons
+              {completedItems}/{totalItems}
             </span>
           </div>
           <div className="h-1.5 bg-surface-2 rounded-full overflow-hidden">
@@ -216,7 +321,11 @@ export default function LearnDashboard() {
             const moduleCompleted = moduleLessons.filter((k) =>
               completedLessons.includes(k)
             ).length;
-            const allDone = moduleCompleted === moduleLessons.length;
+            const quizPassed = quizzesPassed[mod.num] === true;
+            const hasQuiz = quizzes && quizzes[mod.num];
+            const allDone =
+              moduleCompleted === moduleLessons.length &&
+              (!hasQuiz || quizPassed);
 
             return (
               <div
@@ -234,7 +343,8 @@ export default function LearnDashboard() {
                   </div>
                   <div className="flex items-center gap-3">
                     <span className="text-text-muted text-[11px] font-mono">
-                      {moduleCompleted}/{moduleLessons.length}
+                      {moduleCompleted + (quizPassed ? 1 : 0)}/
+                      {moduleLessons.length + (hasQuiz ? 1 : 0)}
                     </span>
                     {allDone && (
                       <span className="text-accent text-sm">&#10003;</span>
@@ -246,14 +356,11 @@ export default function LearnDashboard() {
                     const key = `${mod.num}-${j + 1}`;
                     const lesson = content[key];
                     const done = completedLessons.includes(key);
-                    const code = localStorage.getItem(
-                      `${STORAGE_PREFIX}${slug}`
-                    );
 
                     return (
                       <Link
                         key={key}
-                        href={`/learn/${slug}/${key}${code ? `?code=${code}` : ""}`}
+                        href={`/learn/${slug}/${key}${codeParam}`}
                         className="flex items-center gap-4 px-6 py-4 hover:bg-surface/50 transition-colors group"
                       >
                         <span
@@ -281,11 +388,61 @@ export default function LearnDashboard() {
                       </Link>
                     );
                   })}
+
+                  {/* Quiz row */}
+                  {hasQuiz && (
+                    <Link
+                      href={`/learn/${slug}/quiz/${mod.num}${codeParam}`}
+                      className="flex items-center gap-4 px-6 py-4 hover:bg-surface/50 transition-colors group bg-accent/[0.02]"
+                    >
+                      <span
+                        className={`w-6 h-6 rounded-full border flex items-center justify-center shrink-0 text-[11px] font-mono ${
+                          quizPassed
+                            ? "bg-accent border-accent text-white"
+                            : "border-accent/40 text-accent"
+                        }`}
+                      >
+                        {quizPassed ? "✓" : "?"}
+                      </span>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-[14px] text-accent group-hover:text-accent transition-colors truncate font-medium">
+                          Module {mod.num} Quiz
+                        </p>
+                        <p className="text-text-muted text-[11px] font-mono">
+                          {quizPassed ? "Passed" : `${quizzes[mod.num].questions.length} questions`}
+                        </p>
+                      </div>
+                      <span className="text-accent text-sm group-hover:translate-x-0.5 transition-transform shrink-0">
+                        →
+                      </span>
+                    </Link>
+                  )}
                 </div>
               </div>
             );
           })}
         </div>
+
+        {/* Next course teaser */}
+        {progress === 100 && courseIdx < courses.length - 1 && (
+          <div className="mt-8 p-6 border border-accent/30 rounded-2xl bg-accent/[0.05] text-center">
+            <p className="text-accent text-[11px] tracking-[0.3em] uppercase font-mono mb-2">
+              Next Course Unlocked
+            </p>
+            <h3 className="text-lg font-semibold text-text mb-3">
+              {courses[courseIdx + 1].title}
+            </h3>
+            <Link
+              href={`/learn/${courses[courseIdx + 1].slug}${codeParam}`}
+              className="inline-block py-2.5 px-6 rounded-xl font-semibold text-white text-sm transition-all hover:scale-[1.02]"
+              style={{
+                background: "linear-gradient(135deg, #2997ff, #0a84ff)",
+              }}
+            >
+              Start {courses[courseIdx + 1].title} →
+            </Link>
+          </div>
+        )}
 
         {/* Pipeline reminder */}
         <div className="mt-12 p-8 border border-border rounded-2xl bg-surface/20 text-center">
@@ -293,9 +450,9 @@ export default function LearnDashboard() {
             The Pipeline
           </h3>
           <p className="text-text-secondary text-[14px] leading-relaxed max-w-md mx-auto">
-            Complete every lesson → get assigned a real paid project → top
-            performers join the team. This isn&apos;t a certificate. It&apos;s a
-            direct pipeline into real work.
+            Complete every lesson and pass every quiz → get assigned a real paid
+            project → top performers join the team. This isn&apos;t a
+            certificate. It&apos;s a direct pipeline into real work.
           </p>
         </div>
       </div>

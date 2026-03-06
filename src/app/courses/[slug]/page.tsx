@@ -269,6 +269,17 @@ export default async function CoursePage({
                 </Link>
               )}
             </div>
+            {prevCourse && (
+              <p className="text-text-muted text-[13px] mb-3 font-mono">
+                Requires:{" "}
+                <Link
+                  href={`/courses/${prevCourse.slug}`}
+                  className="text-accent hover:underline"
+                >
+                  {prevCourse.title}
+                </Link>
+              </p>
+            )}
             <p className="text-text-muted text-[13px] mb-10">
               Enrollment is reviewed. Not everyone gets in.
             </p>

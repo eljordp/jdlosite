@@ -1,4 +1,4 @@
-import type { CourseContent } from "./types";
+import type { CourseContent, CourseQuizzes } from "./types";
 
 export const promptEngineering: CourseContent = {
   "01-1": {
@@ -1052,5 +1052,148 @@ This is what separates someone who "uses AI" from someone who **operates** with 
     ],
     exercise:
       "Create your prompt library right now. Make folders organized by function. Go through this course and save every prompt template you built during exercises. Add the metadata (purpose, model, temperature, notes) to each one. Commit to adding every good prompt you write from now on. This library will compound over time into one of your most valuable assets.",
+  },
+};
+
+export const promptEngineeringQuizzes: CourseQuizzes = {
+  "01": {
+    title: "How Models Think Quiz",
+    questions: [
+      {
+        type: "mc",
+        question:
+          "You send a prompt to Claude and get a vague, generic response. Based on how language models process input, what is the most likely cause?",
+        options: [
+          "Claude's training data didn't cover that topic",
+          "Your prompt was too specific and overwhelmed the model",
+          "Your prompt lacked specificity, giving the model too wide a prediction space to narrow down",
+          "The API was rate-limited and returned a degraded response",
+        ],
+        correctIndex: 2,
+      },
+      {
+        type: "mc",
+        question:
+          "You're building an automation that extracts invoice data into JSON using the GPT-5.3 API. Which temperature setting gives you the most reliable, consistent output?",
+        options: [
+          "Temperature 0 — deterministic and predictable, best for structured data extraction",
+          "Temperature 0.7 — balanced creativity helps interpret varied invoice formats",
+          "Temperature 1.0 — maximum flexibility to handle unexpected edge cases",
+          "Temperature doesn't matter as long as you provide good few-shot examples",
+        ],
+        correctIndex: 0,
+      },
+      {
+        type: "short",
+        question:
+          "Explain the key differences between GPT-5.3, Claude, and Gemini 2.5. When would you choose each model for a real business task, and what strengths make each one the better pick for that task?",
+        minLength: 50,
+      },
+    ],
+  },
+  "02": {
+    title: "Core Techniques Quiz",
+    questions: [
+      {
+        type: "mc",
+        question:
+          'You need Claude to write sales copy for a DTC skincare brand. Which prompt follows the Role + Context + Task + Constraints formula correctly?',
+        options: [
+          '"Write good sales copy for skincare products that converts well"',
+          '"You are a marketing expert. Write copy."',
+          '"You are a senior DTC copywriter specializing in skincare. Write a 100-word product description for an anti-aging serum targeting women 35-50. Tone: confident, benefit-driven. Focus on results, not ingredients."',
+          '"Act like you know about skincare and write something persuasive about our new product"',
+        ],
+        correctIndex: 2,
+      },
+      {
+        type: "mc",
+        question:
+          "You want GPT-5.3 to classify customer support tickets into categories. Zero-shot prompting gives inconsistent results. What technique would most improve accuracy?",
+        options: [
+          "Increase the temperature to give the model more creative flexibility",
+          "Add few-shot examples showing 3-5 correctly classified tickets before asking it to classify new ones",
+          "Make the prompt shorter so the model focuses on the core task",
+          "Switch to Gemini 2.5 since GPT-5.3 cannot handle classification well",
+        ],
+        correctIndex: 1,
+      },
+      {
+        type: "short",
+        question:
+          "Describe how chain-of-thought prompting works and give a specific example of a business task where forcing Claude or GPT-5.3 to reason step-by-step would produce better output than a direct answer.",
+        minLength: 50,
+      },
+    ],
+  },
+  "03": {
+    title: "Advanced Patterns Quiz",
+    questions: [
+      {
+        type: "mc",
+        question:
+          "You're building a customer-facing chatbot on the Claude API for a SaaS product. Which system prompt component is MOST critical to prevent the assistant from making false promises about features?",
+        options: [
+          "TONE — setting a professional, friendly communication style",
+          "IDENTITY — defining the assistant's name and personality",
+          "RULES — explicit instructions like 'Never promise features that don't exist' and 'Direct pricing questions to the sales team'",
+          "FORMAT — specifying bullet points vs. paragraphs for responses",
+        ],
+        correctIndex: 2,
+      },
+      {
+        type: "mc",
+        question:
+          "In the RAG (Retrieval-Augmented Generation) pattern, why is the instruction 'answer ONLY from the context provided' critical when using GPT-5.3, Claude, or Gemini 2.5?",
+        options: [
+          "It makes the model respond faster by limiting its search space",
+          "It prevents the model from blending retrieved data with generic training data, which causes hallucinated details",
+          "It reduces API costs by limiting the number of output tokens generated",
+          "It ensures the model always provides a response instead of saying it doesn't know",
+        ],
+        correctIndex: 1,
+      },
+      {
+        type: "short",
+        question:
+          "Explain the self-critique and iterative refinement pattern (Generate -> Critique -> Refine). Why is Claude or GPT-5.3 better at evaluating text than generating perfect text on the first pass, and what is one risk of overusing this loop?",
+        minLength: 50,
+      },
+    ],
+  },
+  "04": {
+    title: "Applied Prompting Quiz",
+    questions: [
+      {
+        type: "mc",
+        question:
+          "You're debugging a Next.js API route that returns a TypeError. Which prompting approach will get you the best debugging help from Claude or GPT-5.3?",
+        options: [
+          "Paste the error message and ask 'why is this broken?'",
+          "Provide the code, the error, and the expected vs. actual behavior, then ask the model to walk through the code line by line",
+          "Ask the model to rewrite the entire route from scratch without seeing the original",
+          "Send just the stack trace and let the model figure out the context",
+        ],
+        correctIndex: 1,
+      },
+      {
+        type: "mc",
+        question:
+          "You want to repurpose a 3,000-word blog post into LinkedIn posts, tweets, and an email newsletter using Gemini 2.5. What is the most effective prompting strategy?",
+        options: [
+          "Paste the entire blog post and ask the model to create all content formats in one prompt",
+          "Ask the model to summarize the post first, then manually write the platform-specific content",
+          "Use prompt chaining: first extract key insights, then generate each content format separately with platform-specific constraints and your voice guidelines",
+          "Use a single zero-shot prompt for each platform with no reference to the original post",
+        ],
+        correctIndex: 2,
+      },
+      {
+        type: "short",
+        question:
+          "Describe how you would organize a prompt library for a business that uses Claude, GPT-5.3, and Gemini 2.5 daily. What categories would you create, what metadata would you store with each prompt, and why does this library become a competitive moat over time?",
+        minLength: 50,
+      },
+    ],
   },
 };
