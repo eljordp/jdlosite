@@ -99,7 +99,7 @@ export default function MyCoursesPage() {
               No courses yet.
             </p>
             <Link
-              href="/students"
+              href="/courses"
               className="inline-block py-3 px-8 rounded-xl font-semibold text-white text-sm transition-all hover:scale-[1.02]"
               style={{
                 background: "linear-gradient(135deg, #2997ff, #0a84ff)",
@@ -137,7 +137,7 @@ export default function MyCoursesPage() {
         {userCourses.length > 0 && (
           <div className="text-center mt-10">
             <Link
-              href="/students"
+              href="/courses"
               className="text-text-muted text-[13px] font-mono hover:text-accent transition-colors"
             >
               Browse all courses &rarr;

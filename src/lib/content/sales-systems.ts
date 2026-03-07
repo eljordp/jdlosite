@@ -1447,6 +1447,490 @@ Ship the exercises. Track the numbers. Let's work.`,
       "Course completers get assigned real paid projects and a shot at joining Jordan's sales team — ship the exercises"
     ],
     exercise: "Build your weekly scorecard using the template above. Fill in this week's numbers (even if most are zero — that's your baseline). Calculate your pipeline math: based on your current numbers, how many outreaches per week do you need to hit your revenue goal? Write that number down and commit to it starting Monday."
+  },
+  "06-1": {
+    title: "Writing job descriptions that attract A-players",
+    duration: "5 min read",
+    content: `Most job descriptions are written by people who have never done the role. They copy-paste from Indeed, throw in a list of "nice to haves," and wonder why they get 200 applications from people who can't do the work.
+
+## The real purpose of a job description
+
+A job description isn't a wish list. It's a **filter**. The goal is to attract the right 5 people and repel the wrong 195. Every sentence should either excite an A-player or scare off a C-player.
+
+**Stop writing JDs like HR wrote them.** Write them like someone who actually does the work.
+
+## The framework I use
+
+1. **Lead with the mission, not the company bio.** Nobody cares that you were "founded in 2019 with a passion for innovation." Tell them what they'll be building and why it matters.
+2. **Describe outcomes, not tasks.** Instead of "manage social media accounts," write "grow our audience from 5K to 50K in 6 months." A-players want to know what winning looks like.
+3. **Be honest about the hard parts.** "This role is fast-paced" means nothing. "You'll be managing 4 client accounts simultaneously with weekly deliverables and zero hand-holding" is real. The right person reads that and gets excited.
+4. **List 5 requirements max.** Every requirement beyond 5 cuts your applicant pool in half. Only list what's truly non-negotiable.
+5. **Include a filter question.** At the bottom, add: "In your application, tell me about a time you built something from scratch with no playbook." Anyone who doesn't answer gets auto-rejected.
+
+## What to include
+
+- **Role title** (keep it standard so people can find it)
+- **What you'll own** (3-4 key outcomes)
+- **What success looks like at 30/60/90 days**
+- **Non-negotiable skills** (5 max)
+- **Compensation range** (yes, include it - A-players don't apply to mystery pay)
+- **Filter question**
+
+## What to cut
+
+- "Fast-paced environment" (meaningless)
+- "Rockstar/ninja/guru" (cringe)
+- 15-bullet requirement lists (nobody has all of those)
+- "Duties as assigned" (red flag for candidates)`,
+    takeaways: [
+      "Job descriptions are filters, not wish lists - write to attract 5 right people and repel 195 wrong ones",
+      "Describe outcomes and what winning looks like, not task lists",
+      "Cap requirements at 5 non-negotiables and always include compensation range",
+      "Add a filter question to auto-screen lazy applicants"
+    ],
+    exercise: "Rewrite one of your current job descriptions (or create one for your next hire) using this framework. Lead with mission, describe 3-4 outcomes, list 5 max requirements, include comp range, and add a filter question. Compare it side-by-side with the original and note what changed."
+  },
+  "06-2": {
+    title: "Screening, interviews, and testing candidates",
+    duration: "6 min read",
+    content: `I've been burned by people who interview like A-players and perform like C-players. Resumes lie. Interviews are performances. The only thing that doesn't lie is the work. Here's how I screen now.
+
+## Phase 1: Application screening (5 minutes per person)
+
+Before you look at a single resume, check:
+1. **Did they answer the filter question?** No answer = instant reject. This alone eliminates 60% of applicants.
+2. **Did they customize anything?** Generic cover letter = they applied to 50 jobs today. Skip.
+3. **Do they have proof of work?** Portfolio, GitHub, case studies, anything. No proof = risky.
+
+**Spend 5 minutes max per application.** If you're spending more, your JD isn't filtering well enough.
+
+## Phase 2: The async test (before any call)
+
+Before I get on a single call, I send a paid test project. This is non-negotiable.
+
+**Why paid:** Respect their time. You want their best work, not a rushed freebie. I pay $50-200 depending on the role.
+
+**The test should:**
+- Mirror actual work they'd do in the role
+- Take 2-4 hours max
+- Have a clear deliverable and deadline
+- Be something you can objectively evaluate
+
+**Examples:**
+- Designer: "Redesign this landing page section. Here's the brief and brand guidelines."
+- Developer: "Build this small feature. Here's the repo and specs."
+- Writer: "Write 2 blog posts on these topics. Here's our style guide."
+- Ops person: "Here's a messy process. Document it as an SOP in Notion."
+
+This single step has saved me from more bad hires than everything else combined.
+
+## Phase 3: The interview (30 minutes, structured)
+
+Only interview people who passed the test. Your interview should answer three questions:
+
+1. **Can they do the work?** (You already know this from the test.)
+2. **Will they do the work consistently?** Ask about their systems, routines, how they handle deadlines.
+3. **Do they communicate well?** Pay attention to how clearly they explain their test project decisions.
+
+**Questions I always ask:**
+- "Walk me through how you approached the test project."
+- "Tell me about the last time you dropped the ball. What happened?"
+- "What does your ideal work week look like?"
+- "What would make you quit this role in 3 months?"
+
+**Red flags:**
+- Can't explain their own work clearly
+- Blames others for every failure
+- Has no questions about the role or company
+- Gives rehearsed answers to everything
+
+## Phase 4: Reference check (10 minutes)
+
+Call one reference. Ask one question: **"Would you hire this person again?"** The pause before the answer tells you everything. A fast, enthusiastic "absolutely" is a green light. Anything else is a red flag.`,
+    takeaways: [
+      "Always use a paid async test before any interview - it reveals what resumes and calls can't",
+      "The filter question in your application eliminates 60% of unqualified candidates instantly",
+      "Structure interviews around three questions: can they, will they, and do they communicate well",
+      "One reference check question matters: 'Would you hire this person again?'"
+    ],
+    exercise: "Design a paid test project for your next hire. Define: (1) the deliverable, (2) the brief/instructions, (3) the deadline, (4) the pay amount, and (5) your evaluation criteria (what does a pass vs. fail look like). Keep the test under 4 hours of work."
+  },
+  "06-3": {
+    title: "Documenting your processes without wasting time",
+    duration: "5 min read",
+    content: `Everyone knows they should document their processes. Almost nobody does it. Why? Because they think documentation means writing a 20-page manual for every task. It doesn't.
+
+## The real reason you need documentation
+
+It's not about organization. It's about **removing yourself as the bottleneck.** Every process that lives only in your head is a process that dies when you're unavailable. If your team can't function without you answering questions all day, you don't have a team. You have a group of people who depend on you.
+
+**The test:** If you disappeared for a week, could your business keep running? If the answer is no, you have a documentation problem.
+
+## The "just enough" approach
+
+You don't need to document everything. You need to document:
+
+1. **Things you do repeatedly** (if you've done it 3+ times, document it)
+2. **Things you'll delegate** (if someone else will do it, write it down)
+3. **Things that break when done wrong** (high-stakes processes)
+4. **Things people keep asking you about** (if you've explained it twice, document it)
+
+**That's it.** Don't document things that are intuitive, change constantly, or only you will ever do.
+
+## The 15-minute documentation method
+
+Stop overthinking it. Here's how to document a process in 15 minutes or less:
+
+1. **Open Loom and hit record** (5 minutes). Walk through the process while doing it. Talk out loud. Show your screen. Don't script it, don't edit it.
+2. **Paste the Loom link into a Notion page** (1 minute). Add a title and date.
+3. **Write 5-10 bullet points** below the video summarizing the key steps (5 minutes). Use plain language. Number them.
+4. **Add a "common mistakes" section** (3 minutes). List 2-3 things people get wrong.
+5. **Tag it and file it** (1 minute). Use a simple folder structure: department > process type.
+
+**That's a complete piece of documentation.** Video for context, bullets for quick reference, mistakes for guardrails.
+
+## When to document
+
+- **Right after you do the thing.** Not "later." Not "when I have time." The process is freshest in your mind immediately after doing it. It takes 15 minutes. Do it now.
+- **When someone asks you how to do something.** Instead of explaining, document it, then send the doc. You'll never have to explain it again.
+- **Before you delegate.** Never hand off a task without documentation. That's just hoping they figure it out.
+
+## The documentation debt trap
+
+Don't try to document your entire business in a weekend. You'll burn out and quit. Instead, document **one process per day** as you encounter it. In 30 days, you'll have 30 documented processes. In 90 days, your business runs without you.`,
+    takeaways: [
+      "Documentation exists to remove you as the bottleneck - if you vanish for a week, can the business run?",
+      "Only document things you do repeatedly, will delegate, break when done wrong, or keep explaining",
+      "Use the 15-minute method: Loom recording + bullet point summary + common mistakes",
+      "Document one process per day as you encounter it instead of trying to do everything at once"
+    ],
+    exercise: "Pick the one process you explain to people most often. Set a 15-minute timer. Record a Loom walking through it, write 5-10 bullet steps, and add 2-3 common mistakes. Save it in a shared location and send it to the next person who asks."
+  },
+  "06-4": {
+    title: "Building SOPs people actually follow",
+    duration: "5 min read",
+    content: `Here's the hard truth: most SOPs collect dust. People read them once during onboarding, forget they exist, and go back to doing things their own way. The problem isn't your team. The problem is how most SOPs are written.
+
+## Why SOPs fail
+
+1. **They're too long.** A 15-page SOP for posting on Instagram is insane. Nobody will read it, let alone follow it.
+2. **They're written in corporate speak.** "Ensure alignment with brand guidelines and stakeholder expectations" means nothing to someone trying to get work done.
+3. **They're not where the work happens.** If your SOP lives in a Google Doc buried in a folder, it's dead on arrival.
+4. **They never get updated.** Processes change. If the SOP doesn't change with them, people stop trusting it.
+
+## The anatomy of an SOP people actually follow
+
+**Keep it to one page.** If your SOP is longer than one scroll on a screen, it's too long. Break it into multiple SOPs if needed.
+
+**Use this structure:**
+
+1. **Title:** What process this covers (be specific)
+2. **Purpose:** One sentence on why this matters (not "for alignment" - the real reason)
+3. **Trigger:** When does this process start? What kicks it off?
+4. **Steps:** Numbered, specific actions. Each step = one action. Use screenshots.
+5. **Output:** What does "done" look like? Be specific.
+6. **Owner:** Who's responsible for this process?
+7. **Last updated:** Date and who updated it
+
+**Example step (bad):** "Process the client onboarding materials and ensure everything is set up correctly."
+
+**Example step (good):** "1. Create a new folder in Google Drive using the client name. 2. Copy the onboarding checklist template into the folder. 3. Fill in the client's name, start date, and primary contact. 4. Share the folder with the client's email."
+
+See the difference? **One action per step. No ambiguity.**
+
+## Where to put them
+
+SOPs need to live where people work. Not in a random Google Drive folder.
+
+- **Notion database** with tags by department and process type
+- **Pinned in the relevant Slack channel**
+- **Linked in the project management tool** (Linear, Asana, etc.) where the task lives
+
+**The rule:** It should take fewer than 10 seconds to find any SOP. If it takes longer, your system is broken.
+
+## Keeping SOPs alive
+
+Assign an **SOP owner** to each document. That person is responsible for:
+- Reviewing it quarterly
+- Updating it when the process changes
+- Flagging it for deletion if it's obsolete
+
+**Monthly SOP audit:** Spend 30 minutes once a month reviewing your most-used SOPs. Are they current? Are people following them? If not, why?
+
+The best SOPs aren't documents. They're **living tools** that evolve with your business.`,
+    takeaways: [
+      "Most SOPs fail because they're too long, too corporate, and buried where nobody can find them",
+      "One page max, one action per step, with screenshots - no ambiguity allowed",
+      "SOPs must live where the work happens: Notion, pinned in Slack, linked in your PM tool",
+      "Assign an owner to every SOP and run a 30-minute monthly audit to keep them current"
+    ],
+    exercise: "Take your most important recurring process and write a one-page SOP using the structure above: title, purpose, trigger, numbered steps (one action each), output, owner, and date. Put it where your team will actually see it. Then ask someone on your team to follow it without any additional explanation from you. Whatever they get confused by, fix in the SOP."
+  },
+  "07-1": {
+    title: "Running 1-on-1s that matter",
+    duration: "5 min read",
+    content: `Most managers either skip 1-on-1s entirely or turn them into status update meetings. Both are wrong. Your weekly 1-on-1 is the single most important management ritual you have. It's where you catch problems early, build trust, and develop your people.
+
+## Why 1-on-1s matter
+
+Status updates belong in standups and project trackers. 1-on-1s exist for the stuff that doesn't surface in group settings: frustrations, career goals, interpersonal issues, ideas they're afraid to share publicly, and blockers they haven't escalated.
+
+**If you're only hearing good news in 1-on-1s, your people don't trust you yet.**
+
+## The format I use (30 minutes)
+
+**Their agenda first (15 min).** The direct report drives the first half. They bring what's on their mind. This is non-negotiable. If they say "I don't have anything," that's a red flag - either they don't trust you or they don't know how to use the time. Coach them on it.
+
+**Your agenda second (10 min).** This is where you bring feedback, ask about specific projects, or address concerns. Keep it focused on 1-2 topics max.
+
+**Alignment and action items (5 min).** End every 1-on-1 with clear next steps. Who's doing what by when. Write them down in a shared doc.
+
+## Questions that actually surface the truth
+
+Don't ask "How's everything going?" You'll get "Fine." Ask:
+
+- **"What's the biggest thing slowing you down right now?"** (surfaces blockers)
+- **"What's something you wish was different about how we work?"** (surfaces process issues)
+- **"Is there anything you've been hesitant to bring up?"** (surfaces trust issues)
+- **"What do you want to be doing in 6 months that you're not doing now?"** (surfaces career goals)
+- **"On a scale of 1-10, how are you feeling about work this week? Why?"** (surfaces morale)
+
+**The follow-up matters more than the question.** When they share something, don't immediately solve it. Ask: "Tell me more about that." Then actually listen. Take notes. Follow up next week.
+
+## The 1-on-1 doc
+
+Keep a running Google Doc or Notion page for each direct report. Before each meeting:
+- They add their topics
+- You add yours
+- Review action items from last week
+
+**This doc is gold during performance reviews.** You'll have 6 months of documented conversations, feedback, and progress instead of trying to remember what happened.
+
+## Common mistakes
+
+- **Canceling 1-on-1s regularly.** This tells your team they're not a priority. Reschedule, never cancel.
+- **Doing all the talking.** You should talk 30% of the time max. This is their meeting.
+- **Only discussing problems.** Recognize wins too. People need to know when they're doing well.
+- **Not following up on action items.** If you say you'll do something, do it. Otherwise they stop bringing things to you.`,
+    takeaways: [
+      "1-on-1s are for what doesn't surface in group settings - if you only hear good news, trust isn't there yet",
+      "Let the direct report drive the first half, keep your topics to 1-2 max, and end with clear action items",
+      "Ask specific questions that surface blockers, process issues, and career goals instead of 'how's it going'",
+      "Keep a running doc for each person - it becomes invaluable for performance reviews and tracking patterns"
+    ],
+    exercise: "Set up a 1-on-1 doc for each person you manage (or will manage). Add the question framework from this lesson. Schedule recurring 30-minute 1-on-1s weekly. Before your next one, add 2 topics to your agenda and ask your direct report to add theirs before the meeting."
+  },
+  "07-2": {
+    title: "Building dashboards for real-time visibility",
+    duration: "5 min read",
+    content: `If you have to ask someone "what's the status?" you don't have a dashboard. Dashboards exist so that every person on the team - including you - can see what's happening without asking anyone. The best operators I know check a dashboard, not Slack.
+
+## What belongs on a dashboard
+
+Your dashboard should answer 5 questions at a glance:
+
+1. **Are we making money?** (Revenue, MRR, pipeline value)
+2. **Are we delivering?** (Tasks completed, projects on track, deadlines met)
+3. **Are our customers happy?** (NPS, response times, churn rate)
+4. **Is the team healthy?** (Utilization, burndown, blockers)
+5. **What needs my attention right now?** (Red flags, overdue items, escalations)
+
+**If your dashboard can't answer these in 30 seconds, it's too complicated.**
+
+## Building it simple
+
+You don't need Tableau or Looker to start. Here's what works at every stage:
+
+**Stage 1: Google Sheets / Notion (0-10 team members)**
+- One sheet per area (revenue, delivery, team)
+- Updated manually once a week
+- Color-coded: green = on track, yellow = watch, red = action needed
+- Takes 15 minutes to update
+
+**Stage 2: Integrated tools (10-25 team members)**
+- Notion dashboards pulling from databases
+- Linear project views with filters
+- Google Sheets with automated imports (Zapier or Make)
+- Updated semi-automatically
+
+**Stage 3: Dedicated platforms (25+ team members)**
+- Databox, Geckoboard, or similar
+- Direct integrations with Stripe, Linear, HubSpot
+- Real-time updates, no manual entry
+- Custom views per department
+
+## Dashboard design principles
+
+**Less is more.** 5-8 metrics max on any single view. If you have 30 metrics, nobody will look at it.
+
+**Use visual hierarchy.** The most important number should be the biggest thing on the screen. Supporting metrics underneath. Details on click-through.
+
+**Traffic light system.** Green, yellow, red. Instantly scannable. Every metric needs a target so the color is objective, not subjective.
+
+**One source of truth.** Every metric on the dashboard should have one clear data source. If revenue is in two places with two different numbers, you have a data integrity problem, not a dashboard.
+
+## Who sees what
+
+Not everyone needs the same view:
+- **Executives:** Revenue, burn rate, top-level delivery metrics
+- **Managers:** Team KPIs, project status, resource utilization
+- **Individual contributors:** Their tasks, their metrics, team goals
+
+**Don't overwhelm people with data they can't act on.** A designer doesn't need to see the burn rate. The CEO doesn't need to see individual task completion.
+
+## The daily check
+
+Make dashboard review a habit. I check mine every morning in 2 minutes:
+1. Any red items? Handle those first.
+2. Any yellow trending toward red? Flag for the week.
+3. Everything green? Great, move on to deep work.
+
+**That's it.** Two minutes. No meetings. No Slack messages. No "quick question" to three people.`,
+    takeaways: [
+      "A good dashboard answers 5 questions in 30 seconds: money, delivery, customers, team health, and what needs attention",
+      "Start simple with Google Sheets or Notion - you don't need fancy tools to get visibility",
+      "Keep it to 5-8 metrics max with traffic light colors (green/yellow/red) for instant scanning",
+      "Check your dashboard every morning in 2 minutes: red items first, yellow items flagged, green means move on"
+    ],
+    exercise: "Build a v1 dashboard in Notion or Google Sheets. List your 5-8 most important metrics across revenue, delivery, and team health. Add current values, targets, and color coding. Set it as your browser homepage or pin it in Slack. Check it every morning for one week and note how it changes your decision-making."
+  },
+  "07-3": {
+    title: "Delegating everything except the things only you can do",
+    duration: "5 min read",
+    content: `Most founders and operators hold on to too much for too long. They tell themselves "it's faster if I just do it" or "nobody will do it as well as me." Both are true in the short term and catastrophic in the long term. You cannot scale yourself. You can only scale your systems and your team.
+
+## The delegation matrix
+
+Take everything you do in a week and sort it into four buckets:
+
+**1. Only I can do this (keep).**
+Strategic decisions, key relationships, vision, high-stakes negotiations. This should be 20% of your time or less.
+
+**2. I'm the best at this but others could learn (train and delegate).**
+This is the hardest bucket because your ego wants to hold on. Train someone. Accept 80% quality initially. They'll get to 95% within a month.
+
+**3. Someone else is better at this (delegate now).**
+Design, coding, bookkeeping, content creation - whatever isn't your zone of genius. Delegate immediately.
+
+**4. This shouldn't be done at all (eliminate).**
+Reports nobody reads. Meetings that could be emails. Processes that exist because "we've always done it this way." Kill them.
+
+## How to delegate effectively
+
+**The delegation brief:**
+Every task you delegate needs:
+- **What:** Clear deliverable description
+- **Why:** Context on why it matters (people do better work when they understand the purpose)
+- **When:** Specific deadline (not "when you get a chance")
+- **How:** Link to the SOP or a Loom walkthrough (this is why Module 02 matters)
+- **What good looks like:** An example of the finished product or clear success criteria
+
+**Don't delegate and disappear.** Set check-in points. For a week-long project, check in on day 2 and day 5. Not to micromanage, but to catch misalignment early.
+
+**Don't delegate and hover.** The opposite extreme is just as bad. If you're reviewing every email before it sends and approving every decision, you haven't delegated anything. You've just added yourself as a bottleneck.
+
+## The 80% rule
+
+If someone can do a task 80% as well as you, delegate it. **Your time is not worth the 20% quality difference.** That 20% gap closes with practice and feedback. What doesn't close is the opportunity cost of you doing $20/hour tasks when you should be doing $200/hour work.
+
+Calculate your hourly rate. If you make $100K/year, your hour is worth ~$50. Every task you do that you could pay someone $15-25/hour to do is losing you money.
+
+## What to delegate first
+
+Start with the tasks that are:
+1. **Recurring** (you'll save time every single week)
+2. **Well-documented** (or easy to document)
+3. **Low-risk** (mistakes are fixable, not catastrophic)
+4. **Time-consuming** (frees up the most hours)
+
+**Common first delegations:**
+- Email management and inbox triage
+- Social media scheduling and posting
+- Invoice processing and bookkeeping
+- Meeting scheduling and calendar management
+- Data entry and report compilation
+- Client onboarding logistics
+
+## The mindset shift
+
+Delegation isn't about dumping tasks on people. It's about **building a machine that operates without you.** Every task you delegate successfully is a piece of freedom. Every task you hold onto is a chain.
+
+Your job as an operator isn't to do the work. It's to **build the system that does the work.** The sooner you internalize this, the faster you scale.`,
+    takeaways: [
+      "Sort everything into four buckets: only you, train and delegate, delegate now, eliminate entirely",
+      "Every delegated task needs a clear what, why, when, how, and example of what good looks like",
+      "If someone can do it 80% as well as you, delegate it - your time isn't worth the 20% gap",
+      "Your job isn't to do the work, it's to build the system that does the work"
+    ],
+    exercise: "Track everything you do for one full workday. At the end, sort each task into the four buckets: only me, train and delegate, delegate now, eliminate. Pick the top 3 tasks from the 'delegate now' bucket and create delegation briefs for each one (what, why, when, how, example). Assign them to someone this week."
+  },
+  "07-4": {
+    title: "AI for scheduling, coordination, and admin",
+    duration: "5 min read",
+    content: `Admin work is the silent killer of productivity. Scheduling meetings, coordinating across time zones, managing calendars, handling repetitive emails - none of this is high-value work, but it eats hours every week. AI can handle most of it.
+
+## Scheduling with AI
+
+**The old way:** 5 emails back and forth to find a time that works. "How about Tuesday?" "I'm busy Tuesday." "Wednesday?" "Only after 3pm." Kill me.
+
+**The AI way:**
+
+**Option 1: AI scheduling assistants.** Tools like Reclaim.ai or Clockwise manage your calendar automatically. They block focus time, find optimal meeting slots, and reschedule when conflicts arise. Set your preferences once and let it run.
+
+**Option 2: Calendar link + AI buffer.** Use Calendly or Cal.com with AI-managed buffers. Instead of back-and-forth, send a booking link. Use AI to analyze your calendar weekly and adjust available slots based on your energy patterns and priorities.
+
+**Option 3: AI-powered email scheduling.** For people who won't use booking links, use Claude to draft scheduling emails:
+
+"Draft a response to [name] suggesting 3 available times this week for a 30-minute call. My available slots are [paste from calendar]. Keep it brief and professional."
+
+## Coordination across teams
+
+**Daily coordination prompt:**
+Feed your team's calendars and task lists into Claude:
+
+"Here's my team's schedule and current tasks for today. Flag any conflicts, overloaded team members, or tasks that need resequencing. Suggest an optimal task order for each person."
+
+**Meeting prep automation:**
+Before any meeting, prompt AI with:
+
+"I have a meeting with [name/company] in 1 hour about [topic]. Here's context: [paste relevant docs, emails, or notes]. Give me a 3-bullet briefing and 2 questions I should ask."
+
+**Meeting follow-up:**
+After any meeting, paste your notes or transcript:
+
+"Extract action items, decisions made, and open questions from these meeting notes. Format as a table: action item, owner, deadline. Flag any items without clear owners."
+
+## Admin automation
+
+**Email triage:** AI can categorize incoming emails by urgency and type. Set up rules in your email client, then use AI to draft responses for routine messages.
+
+**Inbox zero prompt:**
+"Here are my 15 unread emails. Categorize each as: (A) needs my personal response, (B) can be handled with a template response - draft it, (C) FYI only - no response needed, (D) delete/unsubscribe."
+
+**Document management:** Use AI to organize files, summarize documents, and extract key information from contracts or proposals.
+
+**Travel coordination:** Paste your travel requirements and preferences, and AI generates a complete itinerary with alternatives.
+
+## The executive assistant replacement myth
+
+AI doesn't replace a great executive assistant. It replaces the need for one at the early stage when you can't afford one. As you grow, AI makes your EA 3x more productive by handling the routine stuff so they can focus on high-judgment coordination.
+
+## Implementation priority
+
+Start with whatever wastes the most time:
+1. **Scheduling** (usually the biggest time sink)
+2. **Email triage and responses** (second biggest)
+3. **Meeting prep and follow-up** (third)
+4. **Document management** (fourth)
+
+Don't try to automate everything at once. Pick one, get it working, then add the next.`,
+    takeaways: [
+      "AI scheduling tools eliminate the back-and-forth - use Reclaim.ai, Calendly, or AI-drafted scheduling emails",
+      "Automate meeting prep (3-bullet briefing + questions) and follow-up (action items extraction) with AI prompts",
+      "Use AI for email triage: categorize by urgency, draft template responses, and identify what actually needs you",
+      "Start with the biggest time sink (usually scheduling), get it working, then automate the next admin task"
+    ],
+    exercise: "Pick your biggest admin time waster (scheduling, email, meeting prep, or document management). Set up one AI automation for it this week. For scheduling: set up Calendly + AI buffer management. For email: create your inbox triage prompt and use it for one full week. Track how many hours it saves."
   }
 };
 
@@ -1622,6 +2106,76 @@ export const salesSystemsQuizzes: CourseQuizzes = {
         type: "short",
         question:
           "Describe the 8 key sales metrics and explain how the diagnostic framework works: if your response rate is high but meetings booked are low, what does that tell you and what should you fix?",
+        minLength: 50,
+      },
+    ],
+  },
+  "06": {
+    title: "Hiring & Team Building Quiz",
+    questions: [
+      {
+        type: "mc",
+        question:
+          "According to the course, what is the primary purpose of a job description?",
+        options: [
+          "To list every possible responsibility for the role",
+          "To act as a filter that attracts the right 5 people and repels the wrong 195",
+          "To provide a comprehensive company biography to candidates",
+          "To satisfy HR compliance requirements",
+        ],
+        correctIndex: 1,
+      },
+      {
+        type: "mc",
+        question:
+          "What is the S-tier talent sourcing method and why does it outperform other channels?",
+        options: [
+          "LinkedIn Easy Apply, because it reaches the most candidates",
+          "Traditional job boards like Indeed, because of the high volume of applicants",
+          "Referrals from people you trust, because you skip 80% of the vetting process",
+          "Freelance platforms like Upwork, because you can see past work history",
+        ],
+        correctIndex: 2,
+      },
+      {
+        type: "short",
+        question:
+          "Explain why the course recommends sending a paid async test project before any interview call, and describe what makes an effective test project.",
+        minLength: 50,
+      },
+    ],
+  },
+  "07": {
+    title: "Operations & Scale Quiz",
+    questions: [
+      {
+        type: "mc",
+        question:
+          "In the 1-on-1 format taught in the course, who drives the first half of the meeting?",
+        options: [
+          "The manager, to set priorities and give feedback",
+          "Both parties equally, splitting time 50/50 from the start",
+          "The direct report, bringing what's on their mind",
+          "Neither — the first half is reserved for reviewing metrics together",
+        ],
+        correctIndex: 2,
+      },
+      {
+        type: "mc",
+        question:
+          "According to the delegation matrix, what should you do when someone can do a task 80% as well as you?",
+        options: [
+          "Keep doing it yourself since quality is paramount",
+          "Wait until they can match your quality before delegating",
+          "Delegate it — your time is not worth the 20% quality difference",
+          "Split the task so you handle the critical 20% and they do the rest",
+        ],
+        correctIndex: 2,
+      },
+      {
+        type: "short",
+        question:
+          "Describe what a good operational dashboard should answer at a glance and explain the four-bucket delegation matrix for deciding what to keep, delegate, and eliminate.",
         minLength: 50,
       },
     ],

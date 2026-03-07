@@ -1,21 +1,11 @@
 import type { CourseContent, CourseQuizzes, ModuleQuiz } from "./types";
 import { aiAutomation } from "./ai-automation";
 import { salesSystems } from "./sales-systems";
-import { promptEngineering } from "./prompt-engineering";
-import { contentBrand } from "./content-brand";
-import { teamOperations } from "./team-operations";
-import { personalGrowth } from "./personal-growth";
 import { operatorPlaybook } from "./operator-playbook";
-import { aiForBusiness } from "./ai-for-business";
 import { aiMastery } from "./ai-mastery";
 import { aiAutomationQuizzes } from "./ai-automation";
 import { salesSystemsQuizzes } from "./sales-systems";
-import { promptEngineeringQuizzes } from "./prompt-engineering";
-import { contentBrandQuizzes } from "./content-brand";
-import { teamOperationsQuizzes } from "./team-operations";
-import { personalGrowthQuizzes } from "./personal-growth";
 import { operatorPlaybookQuizzes } from "./operator-playbook";
-import { aiForBusinessQuizzes } from "./ai-for-business";
 import { aiMasteryQuizzes } from "./ai-mastery";
 
 export type {
@@ -31,24 +21,14 @@ export type {
 const allContent: Record<string, CourseContent> = {
   "ai-automation": aiAutomation,
   "sales-systems": salesSystems,
-  "prompt-engineering": promptEngineering,
-  "content-brand": contentBrand,
-  "team-operations": teamOperations,
-  "personal-growth": personalGrowth,
   "operator-playbook": operatorPlaybook,
-  "ai-for-business": aiForBusiness,
   "ai-mastery": aiMastery,
 };
 
 const allQuizzes: Record<string, CourseQuizzes> = {
   "ai-automation": aiAutomationQuizzes,
   "sales-systems": salesSystemsQuizzes,
-  "prompt-engineering": promptEngineeringQuizzes,
-  "content-brand": contentBrandQuizzes,
-  "team-operations": teamOperationsQuizzes,
-  "personal-growth": personalGrowthQuizzes,
   "operator-playbook": operatorPlaybookQuizzes,
-  "ai-for-business": aiForBusinessQuizzes,
   "ai-mastery": aiMasteryQuizzes,
 };
 

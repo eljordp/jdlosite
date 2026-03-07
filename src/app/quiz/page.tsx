@@ -11,49 +11,71 @@ const questions = [
     options: [
       { label: "Automate my workflow — let AI handle the repetitive stuff", skill: 'ai-automation' },
       { label: "Close more deals and build a real sales process", skill: 'sales-systems' },
-      { label: "Build an audience and brand people actually follow", skill: 'content-brand' },
-      { label: "Learn to lead a team or run operations better", skill: 'team-operations' },
-      { label: "Get better, faster results from AI — every time", skill: 'prompt-engineering' },
+      { label: "Become indispensable — run operations, lead teams, get equity", skill: 'operator-playbook' },
+      { label: "Go deep on AI — build production systems, agents, and tools", skill: 'ai-mastery' },
     ],
   },
   {
     q: "What's slowing you down most?",
     options: [
       { label: "Doing manually what AI should already handle", skill: 'ai-automation' },
-      { label: "Income is inconsistent — I can't close reliably", skill: 'sales-systems' },
-      { label: "No one knows who I am. No brand, no presence", skill: 'content-brand' },
-      { label: "Everything depends on me — I can't step back", skill: 'team-operations' },
-      { label: "I use AI but the output is always off", skill: 'prompt-engineering' },
+      { label: "Income is inconsistent — I can't close reliably or scale a team", skill: 'sales-systems' },
+      { label: "I know I can do more but I lack structure, discipline, or the right role", skill: 'operator-playbook' },
+      { label: "I use AI but I'm barely scratching the surface of what's possible", skill: 'ai-mastery' },
     ],
   },
   {
     q: "What does a typical day look like for you?",
     options: [
-      { label: "Buried in repetitive tasks I should have automated", skill: 'ai-automation' },
-      { label: "On the phone, sending follow-ups, trying to close", skill: 'sales-systems' },
-      { label: "Making content or trying to figure out where to start", skill: 'content-brand' },
-      { label: "Managing people and putting out fires", skill: 'team-operations' },
-      { label: "Using AI tools but rarely getting what I actually want", skill: 'prompt-engineering' },
+      { label: "Buried in repetitive tasks I should have automated yesterday", skill: 'ai-automation' },
+      { label: "On the phone, sending follow-ups, trying to close and manage people", skill: 'sales-systems' },
+      { label: "Trying to figure out my next move — I know I'm capable but unfocused", skill: 'operator-playbook' },
+      { label: "Building with AI tools but hitting walls on advanced stuff", skill: 'ai-mastery' },
+    ],
+  },
+  {
+    q: "Where are you at with AI right now?",
+    options: [
+      { label: "I've played around but never built anything real", skill: 'ai-automation' },
+      { label: "I know AI exists but my focus is revenue and people, not tech", skill: 'sales-systems' },
+      { label: "I'm interested but I care more about operations and leadership", skill: 'operator-playbook' },
+      { label: "I use Claude daily and want to go expert-level", skill: 'ai-mastery' },
     ],
   },
   {
     q: "What would actually move the needle for you?",
     options: [
       { label: "Systems running on their own while I focus on what matters", skill: 'ai-automation' },
-      { label: "A reliable way to generate and close revenue", skill: 'sales-systems' },
-      { label: "An audience that trusts me and buys from me", skill: 'content-brand' },
-      { label: "A team that runs without me in every conversation", skill: 'team-operations' },
-      { label: "Knowing exactly how to get what I want from AI", skill: 'prompt-engineering' },
+      { label: "A reliable way to generate revenue and scale a team", skill: 'sales-systems' },
+      { label: "The mindset, systems, and positioning to run someone's business", skill: 'operator-playbook' },
+      { label: "Building production apps, agents, and enterprise AI systems", skill: 'ai-mastery' },
     ],
   },
   {
-    q: "Where do you come from?",
+    q: "What's your background?",
     options: [
       { label: "Builder — I like systems, tools, and figuring out how things work", skill: 'ai-automation' },
-      { label: "Sales — I know how to sell, or I want to", skill: 'sales-systems' },
-      { label: "Creative — content, video, and brand is my world", skill: 'content-brand' },
-      { label: "Manager or operator — I lead people and run things", skill: 'team-operations' },
-      { label: "Mixed — I use AI but haven't gone deep on anything yet", skill: 'prompt-engineering' },
+      { label: "Sales — I know how to sell, or I want to learn", skill: 'sales-systems' },
+      { label: "Operator — I lead people, run things, and want to do it better", skill: 'operator-playbook' },
+      { label: "Developer or technical — I want to push AI to its absolute limits", skill: 'ai-mastery' },
+    ],
+  },
+  {
+    q: "How much time can you commit per week?",
+    options: [
+      { label: "5-10 hours — I want practical skills I can apply immediately", skill: 'ai-automation' },
+      { label: "5-10 hours — I need a sales system and team framework ASAP", skill: 'sales-systems' },
+      { label: "10+ hours — I'm going all in on becoming an operator", skill: 'operator-playbook' },
+      { label: "15+ hours — I want mastery, not surface-level knowledge", skill: 'ai-mastery' },
+    ],
+  },
+  {
+    q: "What's your budget mindset?",
+    options: [
+      { label: "$297 is a no-brainer if the systems save me hours every week", skill: 'ai-automation' },
+      { label: "$197 to learn how to close deals? That pays for itself in one sale", skill: 'sales-systems' },
+      { label: "$297 to learn how to become COO-level? I'm in", skill: 'operator-playbook' },
+      { label: "$10K is an investment — I want the full picture and I'm serious", skill: 'ai-mastery' },
     ],
   },
 ];
@@ -63,42 +85,34 @@ const SKILL_INFO = {
   'ai-automation': {
     title: 'AI & Automation',
     tagline: 'Build the systems that run businesses.',
-    price: '$1,250',
-    duration: '6 weeks',
+    price: '$297',
+    duration: '8 weeks',
     href: '/courses/ai-automation',
-    desc: "You're wired for systems. This course takes you from understanding AI to building real automated workflows, agents, and integrations — the kind that save 20+ hours a week.",
+    desc: "You're wired for systems. This course takes you from understanding AI to building real automated workflows, agents, and integrations — the kind that save 20+ hours a week. Includes advanced prompting and AI for business.",
   },
   'sales-systems': {
     title: 'Sales Systems',
-    tagline: 'The playbook I use to close. Systematized.',
-    price: '$750',
-    duration: '4 weeks',
+    tagline: 'Close deals. Build teams. Scale revenue.',
+    price: '$197',
+    duration: '7 weeks',
     href: '/courses/sales-systems',
-    desc: "Your instincts are revenue-driven. This course gives you the exact scripts, frameworks, and CRM systems to close consistently and build a predictable pipeline.",
+    desc: "Your instincts are revenue-driven. This course gives you the exact scripts, frameworks, and CRM systems to close consistently — plus the hiring, SOPs, and management systems to build a team that scales.",
   },
-  'content-brand': {
-    title: 'Content & Brand',
-    tagline: 'Build a brand that makes money while you sleep.',
-    price: '$600',
-    duration: '4 weeks',
-    href: '/courses/content-brand',
-    desc: "You understand that attention is the real asset. This course builds the production system, strategy, and distribution engine to turn your brand into a revenue channel.",
+  'operator-playbook': {
+    title: 'The Operator Playbook',
+    tagline: 'Become the person every business needs.',
+    price: '$297',
+    duration: '7 weeks',
+    href: '/courses/operator-playbook',
+    desc: "You're an operator at heart. This course builds the discipline, mindset, and resilience first — then teaches you how to run businesses, build systems, and position yourself for equity and leadership.",
   },
-  'team-operations': {
-    title: 'Team & Operations',
-    tagline: 'Build a team. Build systems. Scale without breaking.',
-    price: '$1,000',
-    duration: '5 weeks',
-    href: '/courses/team-operations',
-    desc: "You're an operator. This course teaches you to hire right, build SOPs, manage performance, and create a business that runs without you in every room.",
-  },
-  'prompt-engineering': {
-    title: 'Prompt Engineering',
-    tagline: 'Get what you want from AI. Every time.',
-    price: '$400',
-    duration: '2 weeks',
-    href: '/courses/prompt-engineering',
-    desc: "You know AI is powerful — you just aren't unlocking it. This course closes that gap with advanced prompting techniques that most people don't know exist.",
+  'ai-mastery': {
+    title: 'AI Mastery — Expert',
+    tagline: 'The full power of Claude. Nothing held back.',
+    price: '$9,997',
+    duration: '8 weeks',
+    href: '/courses/ai-mastery',
+    desc: "You're ready for the deep end. Claude Code, MCP servers, Agent SDK, computer use, vision — this is everything. For serious builders who want to architect enterprise-grade AI systems.",
   },
 };
 
@@ -190,15 +204,15 @@ export default function QuizPage() {
           <h1 className="text-[clamp(2.5rem,6vw,4.5rem)] font-bold tracking-[-0.05em] leading-[0.92] mb-6">
             Find your
             <br />
-            <span className="gradient-text-blue">skill stack.</span>
+            <span className="gradient-text-blue">skill track.</span>
           </h1>
           <p className="text-text-secondary text-lg leading-relaxed mb-12 max-w-[380px] mx-auto">
-            5 questions. Get a straight answer on where to start — and what to stack on next.
+            8 questions. Get a straight answer on where to start — and what to stack on next.
           </p>
           <button onClick={() => setStep(1)} className="magnetic-btn">
             <span className="relative z-10">Start the Quiz</span>
           </button>
-          <p className="text-text-muted text-[11px] font-mono mt-8">Takes about 60 seconds</p>
+          <p className="text-text-muted text-[11px] font-mono mt-8">Takes about 2 minutes</p>
         </div>
       </main>
     );
@@ -272,6 +286,12 @@ export default function QuizPage() {
     const p = SKILL_INFO[primary];
     const s = secondary ? SKILL_INFO[secondary] : null;
 
+    // Check if mentorship might be a fit (high scores across multiple areas)
+    const scores: Partial<Record<SkillKey, number>> = {};
+    answers.forEach(a => { scores[a.skill] = (scores[a.skill] ?? 0) + 1; });
+    const topScores = (Object.values(scores) as number[]).filter(v => v >= 2);
+    const showMentorship = topScores.length >= 3;
+
     return (
       <main className="cursor-none min-h-screen px-6 py-24 relative">
         <CustomCursor />
@@ -315,7 +335,7 @@ export default function QuizPage() {
 
           {/* Secondary */}
           {s && (
-            <div className="mb-14">
+            <div className="mb-6">
               <p className="text-[10px] tracking-[0.4em] uppercase font-mono text-text-muted mb-4">Stack This Next</p>
               <div className="border border-border rounded-[20px] p-7 md:p-8 hover:border-border-hover transition-colors duration-500">
                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
@@ -335,8 +355,34 @@ export default function QuizPage() {
             </div>
           )}
 
+          {/* Mentorship upsell */}
+          {showMentorship && (
+            <div className="mb-14">
+              <p className="text-[10px] tracking-[0.4em] uppercase font-mono text-text-muted mb-4">You might be ready for</p>
+              <div className="border border-accent/15 rounded-[20px] p-7 md:p-8 bg-accent/[0.02]">
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
+                  <div>
+                    <h3 className="text-xl font-bold tracking-[-0.03em]">1:1 Mentorship</h3>
+                    <p className="text-text-muted text-[13px] mt-1">You scored high across multiple areas. Mentorship might be the move.</p>
+                  </div>
+                  <div className="sm:text-right shrink-0">
+                    <p className="text-text text-[14px] font-semibold">$2,500/mo</p>
+                  </div>
+                </div>
+                <Link href="/mentorship" className="inline-block mt-5 text-accent text-[13px] font-mono hover:underline">
+                  Learn More →
+                </Link>
+              </div>
+            </div>
+          )}
+
+          {!showMentorship && <div className="mb-14" />}
+
           <div className="flex flex-wrap items-center gap-4">
             <button onClick={reset} className="ghost-btn">Retake Quiz</button>
+            <Link href="/courses" className="text-text-muted text-[13px] hover:text-text transition-colors duration-300 font-mono">
+              Browse All Courses →
+            </Link>
             <Link href="/" className="text-text-muted text-[13px] hover:text-text transition-colors duration-300 font-mono">
               ← Back to Home
             </Link>

@@ -223,7 +223,7 @@ export default function AboutPage() {
               Ready to get in?
             </h2>
             <div className="flex flex-wrap items-center justify-center gap-6">
-              <Link href="/students" className="magnetic-btn">
+              <Link href="/courses" className="magnetic-btn">
                 <span className="relative z-10">Browse Courses</span>
               </Link>
               <Link href="/mentorship" className="ghost-btn">

@@ -39,7 +39,7 @@ function CheckoutContent() {
       <CustomCursor />
       <div className="px-6 py-6">
         <Link
-          href={`/students`}
+          href={`/courses`}
           className="text-text-secondary text-[13px] font-mono hover:text-accent transition-colors"
         >
           ← Back to courses

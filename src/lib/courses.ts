@@ -25,16 +25,16 @@ export const courses: Course[] = [
     tagline: "Build with Claude. Automate everything.",
     price: "$297",
     amount: 29700,
-    duration: "6 weeks",
+    duration: "8 weeks",
     level: "Beginner → Advanced",
     gated: false,
     description:
-      "This entire site, every course, every system — built with Claude. You'll learn exactly how I use Claude to run businesses, automate operations, and build things that used to take teams of developers.",
+      "This entire site, every course, every system — built with Claude. You'll learn exactly how I use Claude to run businesses, automate operations, and build things that used to take teams of developers. From your first prompt to deploying agents that work while you sleep.",
     outcomes: [
       "Use Claude to build real systems from scratch",
-      "Automate repetitive workflows end-to-end with AI",
+      "Master advanced prompting techniques most people don't know exist",
       "Build Claude-powered agents that work autonomously",
-      "Deploy AI systems your team can actually use",
+      "Deploy AI systems that directly increase revenue and cut costs",
     ],
     modules: [
       {
@@ -59,6 +59,16 @@ export const courses: Course[] = [
       },
       {
         num: "03",
+        title: "Advanced Prompting",
+        lessons: [
+          "Role prompting, few-shot examples, and in-context learning",
+          "Prompt chaining and multi-step workflows",
+          "Self-critique, iterative refinement, and RAG basics",
+          "Prompting for code, content, research, and analysis",
+        ],
+      },
+      {
+        num: "04",
         title: "Claude API & Integrations",
         lessons: [
           "Calling the Claude API (Messages API, tool use)",
@@ -68,7 +78,7 @@ export const courses: Course[] = [
         ],
       },
       {
-        num: "04",
+        num: "05",
         title: "Automation Workflows",
         lessons: [
           "Make, Zapier, n8n — when to use what",
@@ -78,7 +88,17 @@ export const courses: Course[] = [
         ],
       },
       {
-        num: "05",
+        num: "06",
+        title: "AI for Business",
+        lessons: [
+          "The AI audit: finding your highest-ROI opportunities",
+          "Claude-powered customer support and onboarding that scales",
+          "AI lead scoring, outreach personalization, and content pipelines",
+          "Data intelligence: automated reporting, competitive intel, forecasting",
+        ],
+      },
+      {
+        num: "07",
         title: "Claude Agents",
         lessons: [
           "What agents are and how to build them with Claude",
@@ -88,7 +108,7 @@ export const courses: Course[] = [
         ],
       },
       {
-        num: "06",
+        num: "08",
         title: "Deploy & Operate",
         lessons: [
           "Putting Claude systems into production",
@@ -102,19 +122,19 @@ export const courses: Course[] = [
   {
     slug: "sales-systems",
     title: "Sales Systems",
-    tagline: "The playbook I use to close. Systematized.",
-    price: "$147",
-    amount: 14700,
-    duration: "4 weeks",
-    level: "Beginner → Intermediate",
+    tagline: "Close deals. Build teams. Scale revenue.",
+    price: "$197",
+    amount: 19700,
+    duration: "7 weeks",
+    level: "Beginner → Advanced",
     gated: false,
     description:
-      "Not theory from a book. These are the exact scripts, frameworks, and systems I've built to close deals consistently at scale — now AI-accelerated.",
+      "Not theory from a book. These are the exact scripts, frameworks, and systems I've built to close deals consistently at scale — now AI-accelerated. Plus the hiring, SOPs, and management systems you need to build a team that runs without you.",
     outcomes: [
-      "Build a repeatable outbound system",
-      "Close deals with a proven framework",
-      "Set up a CRM that actually helps you sell",
-      "Use AI to 10x your prospecting speed",
+      "Build a repeatable outbound system that generates revenue",
+      "Close deals with a proven framework — objections handled",
+      "Hire the right people and build SOPs that scale",
+      "Manage and operate a team without micromanaging",
     ],
     modules: [
       {
@@ -167,264 +187,24 @@ export const courses: Course[] = [
           "Metrics: what to track and why",
         ],
       },
-    ],
-  },
-  {
-    slug: "prompt-engineering",
-    title: "Prompt Engineering",
-    tagline: "Get what you want from Claude. Every time.",
-    price: "$67",
-    amount: 6700,
-    duration: "2 weeks",
-    level: "All Levels",
-    gated: false,
-    description:
-      "99% of people use Claude at 10% of its capability. Prompt engineering is the skill that unlocks the rest. Learn the techniques I use daily to get elite output — every technique taught through Claude.",
-    outcomes: [
-      "Write Claude prompts that consistently produce great output",
-      "Build system prompts for any use case",
-      "Use extended thinking and advanced reasoning",
-      "Create prompt libraries your whole team can use",
-    ],
-    modules: [
       {
-        num: "01",
-        title: "How Claude Thinks",
-        lessons: [
-          "What happens when you send a prompt",
-          "Why Claude fails and how to fix it",
-          "Temperature, top-p, and generation settings",
-          "Opus vs Sonnet vs Haiku: choosing the right model",
-        ],
-      },
-      {
-        num: "02",
-        title: "Core Techniques",
-        lessons: [
-          "Role prompting and persona assignment",
-          "Few-shot examples and in-context learning",
-          "Chain-of-thought and step-by-step reasoning",
-          "Output formatting: JSON, markdown, structured data",
-        ],
-      },
-      {
-        num: "03",
-        title: "Advanced Patterns",
-        lessons: [
-          "System prompts that shape behavior long-term",
-          "Prompt chaining and multi-step workflows",
-          "Self-critique and iterative refinement loops",
-          "Retrieval-augmented prompting (RAG basics)",
-        ],
-      },
-      {
-        num: "04",
-        title: "Applied Prompting",
-        lessons: [
-          "Prompting for code: debugging, building, reviewing",
-          "Prompting for content: writing, editing, repurposing",
-          "Prompting for research and analysis",
-          "Building and organizing prompt libraries",
-        ],
-      },
-    ],
-  },
-  {
-    slug: "content-brand",
-    title: "Content & Brand",
-    tagline: "Build a brand that makes money while you sleep.",
-    price: "$97",
-    amount: 9700,
-    duration: "4 weeks",
-    level: "Beginner → Intermediate",
-    gated: false,
-    description:
-      "Content is the highest-leverage thing most people aren't doing. Learn how to build a personal brand with a production system so efficient it practically runs itself — all AI-accelerated.",
-    outcomes: [
-      "Develop a clear brand identity and voice",
-      "Build a content production system using AI",
-      "Grow across platforms with a distribution strategy",
-      "Turn content into clients and revenue",
-    ],
-    modules: [
-      {
-        num: "01",
-        title: "Brand Identity",
-        lessons: [
-          "Defining your positioning (what you stand for)",
-          "Finding your voice and tone",
-          "Audience clarity: who you're talking to and why",
-          "The content pillars that drive your brand",
-        ],
-      },
-      {
-        num: "02",
-        title: "Content Strategy",
-        lessons: [
-          "The content types that actually convert",
-          "Building a content calendar without burning out",
-          "Repurposing: one idea, ten pieces of content",
-          "AI-assisted ideation and research",
-        ],
-      },
-      {
-        num: "03",
-        title: "Production System",
-        lessons: [
-          "Short-form video: filming, editing, hooks",
-          "Written content: threads, carousels, newsletters",
-          "AI tools for script writing and captioning",
-          "Batch production: a week of content in one day",
-        ],
-      },
-      {
-        num: "04",
-        title: "Distribution & Growth",
-        lessons: [
-          "Platform-specific growth strategy (IG, X, LinkedIn, TikTok)",
-          "Posting cadence and timing",
-          "Engagement loops that grow your audience",
-          "Converting followers into buyers",
-        ],
-      },
-    ],
-  },
-  {
-    slug: "team-operations",
-    title: "Team & Operations",
-    tagline: "Build a team. Build systems. Scale without breaking.",
-    price: "$197",
-    amount: 19700,
-    duration: "5 weeks",
-    level: "Intermediate → Advanced",
-    gated: false,
-    description:
-      "Scaling a business is about building systems that work without you. I've built teams from scratch, written the SOPs, made the management mistakes — so you don't have to.",
-    outcomes: [
-      "Hire the right people using a repeatable process",
-      "Build SOPs and documentation that scale",
-      "Manage performance without micromanaging",
-      "Use AI to automate operations and reporting",
-    ],
-    modules: [
-      {
-        num: "01",
-        title: "Hiring Right",
+        num: "06",
+        title: "Hiring & Team Building",
         lessons: [
           "Writing job descriptions that attract A-players",
           "Where to find talent (and where not to)",
           "Screening, interviews, and testing candidates",
-          "Making the offer and onboarding fast",
-        ],
-      },
-      {
-        num: "02",
-        title: "Systems & SOPs",
-        lessons: [
-          "Documenting your processes without wasting time",
           "Building SOPs people actually follow",
-          "Tool stack: Notion, Loom, Slack, Linear",
-          "AI-generated documentation and updates",
         ],
       },
       {
-        num: "03",
-        title: "Management",
+        num: "07",
+        title: "Operations & Scale",
         lessons: [
-          "Running 1-on-1s that matter",
-          "Setting goals and tracking performance (OKRs, KPIs)",
-          "Giving feedback that changes behavior",
-          "Dealing with underperformance and exits",
-        ],
-      },
-      {
-        num: "04",
-        title: "Operations at Scale",
-        lessons: [
+          "Running 1-on-1s, setting goals, and tracking performance",
           "Building dashboards for real-time visibility",
-          "Automating reporting and status updates",
-          "Identifying bottlenecks before they break you",
+          "AI for scheduling, coordination, and automated reporting",
           "Delegating everything except the things only you can do",
-        ],
-      },
-      {
-        num: "05",
-        title: "AI-Powered Ops",
-        lessons: [
-          "AI for scheduling, coordination, and admin",
-          "Automating KPI tracking and reporting",
-          "AI tools for hiring and HR workflows",
-          "Building the ops stack of the future",
-        ],
-      },
-    ],
-  },
-  {
-    slug: "personal-growth",
-    title: "Personal Growth & Discipline",
-    tagline: "The inner work that makes the outer work possible.",
-    price: "$97",
-    amount: 9700,
-    duration: "4 weeks",
-    level: "All Levels",
-    gated: false,
-    description:
-      "Nobody talks about this part. The discipline to show up every day, the resilience when shit falls apart, the confidence to charge what you're worth, and the networking skills to get in any room. This is the foundation everything else sits on.",
-    outcomes: [
-      "Build a daily structure that compounds results",
-      "Develop unshakable confidence in yourself and your value",
-      "Network and build real connections (not LinkedIn spam)",
-      "Build resilience that keeps you moving when others quit",
-    ],
-    modules: [
-      {
-        num: "01",
-        title: "Discipline & Daily Structure",
-        lessons: [
-          "Why most people fail before they start",
-          "Designing a daily schedule that actually works",
-          "The first 3 hours: how to win the morning",
-          "Eliminating distractions (phone, people, habits)",
-        ],
-      },
-      {
-        num: "02",
-        title: "Confidence & Mindset",
-        lessons: [
-          "Where real confidence comes from (not affirmations)",
-          "Knowing your worth and communicating it",
-          "Handling rejection without taking it personal",
-          "The 'stop being a bitch' framework",
-        ],
-      },
-      {
-        num: "03",
-        title: "Resilience & Mental Toughness",
-        lessons: [
-          "When everything falls apart — what to do first",
-          "Dealing with flaky people and broken promises",
-          "Financial stress: staying sharp when money is tight",
-          "Long-game thinking in a short-game world",
-        ],
-      },
-      {
-        num: "04",
-        title: "Networking & Relationships",
-        lessons: [
-          "How to get in any room (without being fake)",
-          "Building connections that turn into opportunities",
-          "The follow-up game: staying top of mind",
-          "Cutting dead weight without burning bridges",
-        ],
-      },
-      {
-        num: "05",
-        title: "Health & Energy",
-        lessons: [
-          "Why your body is a business asset",
-          "Nutrition for performance (not aesthetics)",
-          "Movement systems: gym, walks, bodyweight",
-          "Sleep, recovery, and managing stress",
         ],
       },
     ],
@@ -433,15 +213,15 @@ export const courses: Course[] = [
     slug: "operator-playbook",
     title: "The Operator Playbook",
     tagline: "Become the person every business needs.",
-    price: "$247",
-    amount: 24700,
-    duration: "5 weeks",
-    level: "Intermediate → Advanced",
+    price: "$297",
+    amount: 29700,
+    duration: "7 weeks",
+    level: "All Levels → Advanced",
     gated: false,
     description:
-      "Operators are the most valuable people in business. You don't just do tasks — you see what's broken, fix it, build systems, and make the founder's life easier. This is how I became COO and how you can become indispensable.",
+      "Operators are the most valuable people in business. You don't just do tasks — you see what's broken, fix it, build systems, and make the founder's life easier. This is how I became COO at 22, and it starts with the discipline, mindset, and resilience most people skip.",
     outcomes: [
-      "Understand what operators do and why they're irreplaceable",
+      "Build the daily discipline and confidence to show up and execute",
       "Run someone else's business like it's your own",
       "Build systems that scale without you",
       "Position yourself for equity, partnerships, and leadership",
@@ -459,6 +239,26 @@ export const courses: Course[] = [
       },
       {
         num: "02",
+        title: "Discipline & Mindset",
+        lessons: [
+          "Designing a daily schedule that actually works",
+          "The first 3 hours: how to win the morning",
+          "Where real confidence comes from (not affirmations)",
+          "The 'stop being a bitch' framework",
+        ],
+      },
+      {
+        num: "03",
+        title: "Resilience & Networking",
+        lessons: [
+          "When everything falls apart — what to do first",
+          "Financial stress: staying sharp when money is tight",
+          "How to get in any room (without being fake)",
+          "Building connections that turn into opportunities",
+        ],
+      },
+      {
+        num: "04",
         title: "Bringing Value Before Getting Paid",
         lessons: [
           "The audit: finding broken things in any business",
@@ -468,7 +268,7 @@ export const courses: Course[] = [
         ],
       },
       {
-        num: "03",
+        num: "05",
         title: "Running the Business",
         lessons: [
           "Understanding every function: sales, marketing, ops, finance",
@@ -478,7 +278,7 @@ export const courses: Course[] = [
         ],
       },
       {
-        num: "04",
+        num: "06",
         title: "Systems Thinking",
         lessons: [
           "Seeing the whole machine, not just your part",
@@ -488,83 +288,13 @@ export const courses: Course[] = [
         ],
       },
       {
-        num: "05",
+        num: "07",
         title: "Scaling & Positioning",
         lessons: [
           "From operator to partner: the equity conversation",
           "Operating multiple businesses simultaneously",
-          "Building your own operator brand and reputation",
+          "Health as a business asset: nutrition, movement, recovery",
           "The pipeline: from course to paid project to team member",
-        ],
-      },
-    ],
-  },
-  {
-    slug: "ai-for-business",
-    title: "AI for Business",
-    tagline: "Integrate Claude into your business. Print money.",
-    price: "$497",
-    amount: 49700,
-    duration: "5 weeks",
-    level: "Business Owners & Operators",
-    gated: false,
-    description:
-      "This is the course for businesses that want to integrate Claude and stop leaving money on the table. I'll show you exactly how to use AI to cut costs, increase revenue, and run operations that scale — the same playbook I run for my clients.",
-    outcomes: [
-      "Identify the highest-ROI AI opportunities in any business",
-      "Deploy Claude-powered systems that directly increase revenue",
-      "Automate customer operations and reduce headcount costs",
-      "Build an AI-first culture that compounds over time",
-    ],
-    modules: [
-      {
-        num: "01",
-        title: "AI Revenue Strategy",
-        lessons: [
-          "Where AI actually makes businesses money",
-          "The AI audit: finding your highest-ROI opportunities",
-          "Calculating real ROI on AI investments",
-          "Building your 90-day AI implementation roadmap",
-        ],
-      },
-      {
-        num: "02",
-        title: "Customer Operations AI",
-        lessons: [
-          "Claude-powered customer support that scales",
-          "Automating onboarding and client communication",
-          "AI-driven retention and churn prevention",
-          "Quality control: keeping AI responses on-brand",
-        ],
-      },
-      {
-        num: "03",
-        title: "Sales & Marketing Automation",
-        lessons: [
-          "AI lead scoring and qualification",
-          "Claude-powered outreach personalization at scale",
-          "Automated content marketing pipelines",
-          "AI-assisted proposal and pitch generation",
-        ],
-      },
-      {
-        num: "04",
-        title: "Data Intelligence",
-        lessons: [
-          "Using Claude to analyze business data",
-          "Automated reporting and executive summaries",
-          "Competitive intelligence on autopilot",
-          "Forecasting and decision support with AI",
-        ],
-      },
-      {
-        num: "05",
-        title: "Implementation & ROI",
-        lessons: [
-          "Getting your team to actually use AI",
-          "Change management for AI adoption",
-          "Measuring and reporting AI impact",
-          "Scaling from pilot to company-wide deployment",
         ],
       },
     ],

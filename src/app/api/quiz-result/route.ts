@@ -10,9 +10,8 @@ async function tryKv(fn: () => Promise<unknown>) {
 const TRACK_SLUG: Record<string, string> = {
   'AI & Automation': 'ai-automation',
   'Sales Systems': 'sales-systems',
-  'Content & Brand': 'content-brand',
-  'Team & Operations': 'team-operations',
-  'Prompt Engineering': 'prompt-engineering',
+  'The Operator Playbook': 'operator-playbook',
+  'AI Mastery — Expert': 'ai-mastery',
 };
 
 let _resend: Resend | null = null;
@@ -27,9 +26,8 @@ function getResend() {
 const COURSE_LINKS: Record<string, string> = {
   'AI & Automation': 'https://jdlo.site/courses/ai-automation',
   'Sales Systems': 'https://jdlo.site/courses/sales-systems',
-  'Content & Brand': 'https://jdlo.site/courses/content-brand',
-  'Team & Operations': 'https://jdlo.site/courses/team-operations',
-  'Prompt Engineering': 'https://jdlo.site/courses/prompt-engineering',
+  'The Operator Playbook': 'https://jdlo.site/courses/operator-playbook',
+  'AI Mastery — Expert': 'https://jdlo.site/courses/ai-mastery',
 };
 
 export async function POST(req: NextRequest) {

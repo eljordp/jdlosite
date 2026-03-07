@@ -10,11 +10,9 @@ import type { User } from "@supabase/supabase-js";
 const disciplines = [
   { label: "AI & Automation", href: "/courses/ai-automation", slug: "ai-automation" },
   { label: "Sales Systems", href: "/courses/sales-systems", slug: "sales-systems" },
-  { label: "Prompt Engineering", href: "/courses/prompt-engineering", slug: "prompt-engineering" },
-  { label: "Content & Brand", href: "/courses/content-brand", slug: "content-brand" },
-  { label: "Team & Ops", href: "/courses/team-operations", slug: "team-operations" },
+  { label: "Operator Playbook", href: "/courses/operator-playbook", slug: "operator-playbook" },
+  { label: "AI Mastery", href: "/courses/ai-mastery", slug: "ai-mastery" },
   { label: "Mentorship", href: "/mentorship", slug: "mentorship" },
-  { label: "Businesses", href: "/businesses", slug: "businesses" },
 ];
 
 interface PageShellProps {

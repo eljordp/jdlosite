@@ -112,7 +112,7 @@ function getResult(raw: number, answers: string[]) {
       ? "Mentorship is built for people moving with urgency. If there's no timeline, there's no forcing function — and results follow. Come back when you're ready to move."
       : "Based on your answers, a 1-on-1 mentorship might not be the highest-leverage move right now. Starting with a structured course will get you further faster.",
     cta: pass ? "Apply for Mentorship" : "Browse Courses Instead",
-    ctaHref: pass ? "/mentorship#apply" : "/students",
+    ctaHref: pass ? "/mentorship#apply" : "/courses",
     ctaExternal: false,
   };
 }

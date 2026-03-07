@@ -145,7 +145,361 @@ Nobody gives you a title because you deserve it. They give you a title because y
     exercise: "Map out one business or organization you're involved with. Identify three things that are broken or inefficient that nobody has fixed yet. Pick the easiest one and fix it this week without being asked. Document what you did and the result."
   },
 
+  // ============================================================
+  // MODULE 02: Discipline & Mindset
+  // ============================================================
+
   "02-1": {
+    title: "Designing a daily schedule that actually works",
+    duration: "10 min read",
+    content: `A schedule that doesn't account for how you actually operate is just a wish list. I've tried dozens of schedule formats — time-blocking apps, flexible routines, "intuitive" scheduling. The one that finally stuck is the one I printed out and put on my wall. Here's why it works and how to build your own.
+
+## Why most schedules fail
+
+Most people design their schedule around what they think they *should* do, not around how their energy actually flows. They put deep work at 3 PM when their brain is fried. They schedule creative tasks right after a draining meeting. They don't account for transitions, meals, or the fact that willpower is a depletable resource. Then when they can't stick to it, they blame themselves instead of the bad design.
+
+## The principles of a schedule that sticks
+
+**1. Energy mapping comes first.** Before you schedule anything, track your energy for one week. When are you sharpest? When do you crash? When are you most creative vs. most analytical? Your schedule should match your tasks to your energy, not the other way around.
+
+**2. Non-negotiables go in first.** My non-negotiables: wake at 6:30 AM, morning walk, bodyweight workout, 3 hours of deep work, meals at set times, phone off at 9:30 PM, sleep at 10. These don't move. Everything else fits around them.
+
+**3. Batch similar tasks.** Don't scatter calls, emails, and meetings throughout the day. I handle all communication in one window after my first meal. Deep work gets an unbroken 3-hour block in the morning. Context-switching is the silent killer of productivity.
+
+**4. Build in constraints.** My phone stays off until 2:30 PM. I get a 30-minute window, then it goes away again. This isn't extreme — it's the only way I found to actually protect deep work. The more constraints you build in, the less decision fatigue you face.
+
+## My actual schedule (printed on my wall)
+
+- **6:30 AM** — Wake up. No phone.
+- **7:00-8:00 AM** — Morning walk + sunlight
+- **8:00-8:30 AM** — Bodyweight workout
+- **9:00-11:45 AM** — Deep work (highest priority task first, no interruptions)
+- **12:00 PM** — First meal. Then emails, calls, meetings.
+- **2:30-3:00 PM** — Phone window (30 min only)
+- **3:00-5:00 PM** — Lighter work, content creation, social media
+- **5:00-6:00 PM** — PM workout (gym or home)
+- **6:00-6:30 PM** — Sunset walk
+- **6:30 PM** — Last meal
+- **9:30 PM** — Phone off. Wind down.
+- **10:00 PM** — Sleep.
+
+This isn't aspirational. This is what I do. Every weekday. **Weekends: no work, still walk and workout, life admin, recovery.** The weekend rule is just as important as the weekday structure. Recovery is productive.
+
+## How to build yours
+
+Start with your wake time and sleep time. Those are the bookends. Then place your non-negotiables. Then your deep work block (minimum 2 hours, ideally 3). Then communication and lighter work. Then meals and movement. Print it. Put it on your wall. Follow it for 30 days before you change anything.`,
+    takeaways: [
+      "Map your energy first — schedule tasks to match when you're sharpest, not when it's convenient",
+      "Non-negotiables go in first and don't move — everything else fits around them",
+      "Batch similar tasks to eliminate context-switching, the silent killer of productivity",
+      "Print your schedule and put it on the wall — digital schedules are too easy to dismiss"
+    ],
+    exercise: "Track your energy levels every 2 hours for the next 3 days (just write 'high,' 'medium,' or 'low'). Then design a daily schedule that puts your hardest work in your high-energy windows. Write it out by hand, print it, and put it somewhere you'll see it every morning."
+  },
+
+  "02-2": {
+    title: "The first 3 hours: how to win the morning",
+    duration: "8 min read",
+    content: `If you win the first 3 hours of your day, you've already done more than most people do all day. This isn't motivational speaker nonsense — it's math. Three hours of uninterrupted, focused work at peak energy is worth more than 8 hours of distracted, reactive work. I've tested this for over a year, and it's the single highest-leverage change I've ever made.
+
+## Why the morning matters more than any other time
+
+Your prefrontal cortex — the part of your brain responsible for focus, decision-making, and complex thinking — is strongest after sleep. Every decision you make, every distraction you entertain, every notification you check drains it. By afternoon, you're running on fumes. **The morning is when you have the most cognitive horsepower. Wasting it on email is criminal.**
+
+## The morning sequence that works
+
+Here's what my first 3 hours look like (after my walk and bodyweight workout):
+
+**Hour 1: The hardest task.** Whatever you've been avoiding, whatever requires the most brainpower — that goes first. Not the easy win. Not the fun project. The thing that moves the needle the most. If you do nothing else all day, this hour alone justifies your existence.
+
+**Hour 2: Deep continuation or second priority.** If the first task is ongoing, keep going. If it's done, move to the next highest-impact task. No email. No Slack. No phone. Your phone should be off or in another room.
+
+**Hour 3: Completion and capture.** Finish what you started or get it to a clear stopping point. Write down where you left off so you can pick it up without ramp-up time. Capture any ideas, tasks, or follow-ups that came up during deep work.
+
+## The rules that protect these 3 hours
+
+- **No phone.** Period. Not on silent. Not face down. Off or in another room. My phone doesn't come on until 2:30 PM.
+- **No communication.** Emails, texts, calls — all of it waits. The world will not end. Nobody has ever died because you replied 3 hours late.
+- **No "just checking."** Not social media. Not news. Not even "just a quick look." Every "quick look" is a 20-minute recovery in focus. Research calls this attention residue.
+- **Highest priority first.** Not the most urgent. Not the most fun. The most important. There's a difference.
+
+## What happens when you protect the morning
+
+Within a week, you'll notice something: you get more done before noon than you used to get done all day. Within a month, the compound effect is staggering. Projects that used to take weeks are done. The backlog shrinks. You stop feeling behind. And the confidence that comes from knowing you already won the day by noon changes how you carry yourself for the rest of it.`,
+    takeaways: [
+      "Three uninterrupted hours at peak energy outperform 8 distracted hours — it's not close",
+      "Do the hardest, highest-impact task first while your brain is strongest",
+      "No phone, no communication, no 'quick checks' during deep work — every interruption costs 20+ minutes of recovery",
+      "Winning the morning creates compound confidence that changes how you operate all day"
+    ],
+    exercise: "Tomorrow morning, do this: phone off (or in another room) from the moment you wake up until your deep work block is done. Pick your single highest-priority task the night before. Work on it for a minimum of 90 minutes without interruption. Write down how much you got done compared to a normal morning."
+  },
+
+  "02-3": {
+    title: "Where real confidence comes from (not affirmations)",
+    duration: "8 min read",
+    content: `Real confidence doesn't come from telling yourself you're great. It comes from evidence. From doing hard things and surviving them. From showing up when you didn't feel like it and proving to yourself that you're someone who follows through. Affirmations without action are just lying to yourself with good vibes.
+
+## The confidence lie
+
+The self-help industry has convinced people that confidence is a feeling you generate internally through mantras, visualization, and positive self-talk. "I am worthy. I am enough. I am powerful." That's nice. But try saying that after you just ghosted a client, missed a deadline, and spent 4 hours on your phone instead of working. **The affirmation rings hollow when the evidence contradicts it.**
+
+Real confidence is built the same way a building is built — from the ground up, one brick at a time. Every brick is an action. Every floor is a pattern of actions. And eventually the building stands on its own and nobody can knock it down.
+
+## The evidence-based confidence loop
+
+Here's how confidence actually works:
+
+1. **You commit to something specific.** Not "I'll work harder." Something like: "I will complete 3 hours of deep work every morning this week."
+2. **You do it.** Even when it's hard. Especially when it's hard.
+3. **You log the evidence.** Write it down. "Monday: did it. Tuesday: did it. Wednesday: wanted to quit but did it anyway."
+4. **Your self-image updates.** You stop being someone who "wants to be disciplined" and become someone who IS disciplined. That shift is confidence.
+
+This loop is unbreakable. Nobody can take evidence-based confidence from you because it's not based on feelings — it's based on facts. You can look at your own track record and say: "I know I'll follow through because I have a history of following through."
+
+## Why fake confidence crumbles
+
+You've seen it. The person who talks a big game but can't deliver. The entrepreneur who's always "about to blow up" but never ships anything. Fake confidence is loud. Real confidence is quiet, consistent, and backed by results. People can feel the difference, especially in business. Clients can tell. Partners can tell. Your team can tell.
+
+## How to start building today
+
+- **Start small.** Make your bed. Do your morning walk. Show up to your deep work block on time. These micro-commitments build the foundation.
+- **Track your wins.** Not just big wins. Every commitment you kept. Every time you chose the hard thing. Write it in a notebook or your phone.
+- **Stop tolerating your own excuses.** Every time you let yourself off the hook, you erode confidence. Every time you hold yourself accountable, you build it.
+- **Put yourself in situations that test you.** Uncomfortable conversations. Cold outreach. Public accountability. Confidence grows fastest at the edge of your comfort zone.
+
+The person you are six months from now will either have six months of evidence stacked up — or six months of excuses. The choice is made daily.`,
+    takeaways: [
+      "Real confidence is evidence-based — built from doing hard things and following through, not from affirmations",
+      "The confidence loop: commit to something specific, do it, log the evidence, let your self-image update",
+      "Fake confidence crumbles under pressure — real confidence is quiet, consistent, and backed by results",
+      "Every time you keep a commitment to yourself, you add a brick to your foundation"
+    ],
+    exercise: "Pick 3 small daily commitments you can start this week (examples: morning walk, 3-hour deep work block, no phone before noon). Write them down. Every night, check them off. Do this for 7 days straight. At the end of the week, read your own track record. That feeling? That's real confidence being built."
+  },
+
+  "02-4": {
+    title: "The 'stop being a bitch' framework",
+    duration: "8 min read",
+    content: `This is going to sound harsh because it is. The single biggest shift in my life didn't come from a book, a course, or a therapist. It came from a simple realization: I was being a bitch about things that didn't deserve that level of softness. And the moment I stopped, everything changed.
+
+## What this actually means
+
+Let me be clear — this isn't about being toxic, ignoring your emotions, or pretending you're invincible. This is about recognizing the difference between genuine struggle and self-inflicted softness. **Genuine struggle deserves compassion. Self-inflicted softness deserves a wake-up call.**
+
+When you know what you need to do but you're "not feeling it" — that's softness. When someone disrespects your boundaries and you don't say anything — that's softness. When you could make the call, send the email, or do the workout but you choose comfort instead — that's softness. And every time you choose softness over action, you're telling yourself that comfort matters more than your goals.
+
+## The framework
+
+**Step 1: Identify the resistance.** When you feel yourself pulling back from something, pause and ask: "Is this a genuine warning signal, or am I just being soft?" If it's a real danger — like a bad deal or a toxic situation — honor the resistance. If it's discomfort from growth, that's your cue to push through.
+
+**Step 2: Name it honestly.** Say it to yourself: "I'm avoiding this because it's uncomfortable, not because it's wrong." This simple admission breaks the spell. Most avoidance hides behind rationalizations — "I'll do it tomorrow," "it's not the right time," "I need more information." Calling it what it is strips away the disguise.
+
+**Step 3: Do it within 5 seconds.** The 5-second window is real. Once you identify the avoidance, you have about 5 seconds before your brain starts building a case for why you shouldn't. Make the call. Send the message. Start the task. Move before the excuses land.
+
+**Step 4: Stack the evidence.** Every time you push through softness, log it. Not mentally — physically. Write it down. "March 3: didn't want to send the cold email. Sent it. Got a meeting." This evidence compounds into a new identity: someone who does hard things when it matters.
+
+## Where this applies
+
+- **Business:** Raising your prices when you know you're undercharging. Firing a client who doesn't respect you. Making the sales call you've been dodging.
+- **Health:** Getting up for the morning walk when it's cold. Choosing the salad when you want the burger. Going to the gym when your body says no but your schedule says yes.
+- **Relationships:** Having the hard conversation instead of letting resentment build. Cutting off someone who drains you. Saying "no" to things that don't serve your goals.
+- **Mindset:** Stopping the negative self-talk loop by doing the thing you're talking yourself out of. The action kills the anxiety.
+
+## The line between tough and stupid
+
+This framework doesn't mean ignoring genuine signals. If you're burned out, rest. If you're sick, recover. If something is genuinely dangerous, walk away. The framework is specifically for the 90% of situations where you know what to do, you're capable of doing it, and you're choosing not to because it's uncomfortable. **That's the 90% where "stop being a bitch" changes your life.**`,
+    takeaways: [
+      "Distinguish between genuine struggle (deserves compassion) and self-inflicted softness (deserves action)",
+      "The 5-second rule: once you identify avoidance, act within 5 seconds before your brain builds excuses",
+      "Every time you push through softness and log it, you build evidence for a new, stronger identity",
+      "This applies to the 90% of situations where you know what to do but comfort is winning — not genuine danger"
+    ],
+    exercise: "For the next 7 days, carry a small notebook or open a note on your phone. Every time you catch yourself avoiding something uncomfortable, write 'soft' or 'real' next to it. If it's soft — do it immediately and write what happened. At the end of the week, count your pushes. That number is your growth."
+  },
+
+  // ============================================================
+  // MODULE 03: Resilience & Networking
+  // ============================================================
+
+  "03-1": {
+    title: "When everything falls apart — what to do first",
+    duration: "8 min read",
+    content: `There will be days — sometimes weeks — where everything goes wrong at once. A client backs out. A project fails. Money gets tight. A relationship blows up. And your brain, which was already running on fumes, tells you to panic, shut down, or burn everything to the ground. None of those are the answer.
+
+## The first thing to do: nothing
+
+I know that sounds contradictory to everything else I teach, but hear me out. When the crisis first hits, your nervous system is in fight-or-flight. Your cortisol is spiking. Your decision-making ability is compromised. **The worst decisions of your life will be made in the first 30 minutes of a crisis.** So don't make any.
+
+Give yourself a physical reset first:
+- Walk outside. Even 10 minutes.
+- Drink a full glass of water.
+- Take 10 deep breaths — slow exhales longer than inhales.
+- Do NOT open your phone to vent, doom-scroll, or "research" the problem.
+
+This isn't meditation woo-woo. This is nervous system regulation. You need to get out of survival mode before you can think clearly.
+
+## After the reset: triage
+
+Once you're calmer (even slightly), grab a piece of paper and do the triage:
+
+**1. What actually happened?** Write it down in plain facts. Not "everything is falling apart" — that's emotion, not information. "Client X cancelled the $5K project. I have $2K in bills due this week. My teammate hasn't delivered in 3 days." Facts.
+
+**2. What's within my control?** For each fact, identify what you can actually influence. You can't un-cancel the client, but you can reach out to other prospects. You can't make your teammate work, but you can set a clear deadline or replace them.
+
+**3. What's the single most important action?** Not five actions. Not a plan for the next month. One thing. The one move that addresses the most urgent problem. Do that first. Then reassess.
+
+## The compound crisis trap
+
+When multiple things go wrong, your brain tries to solve everything simultaneously. This creates paralysis. **You don't need to solve everything today. You need to solve one thing today, one thing tomorrow, and keep moving.** Problems that feel like a tangled mess become manageable when you address them one at a time in order of urgency.
+
+## What nobody tells you about hard times
+
+The person you are during a crisis is the person you actually are. Anyone can be disciplined when things are going well. The real test is whether your systems hold when the pressure is on. This is why structure matters so much — when your brain can't think clearly, your routine carries you. You still wake up at 6:30. You still walk. You still do your deep work. The structure becomes the anchor.
+
+Every crisis I've survived made me sharper, more prepared, and harder to rattle the next time. You don't build resilience by avoiding problems. You build it by going through them and coming out with better systems on the other side.`,
+    takeaways: [
+      "Don't make decisions in the first 30 minutes of a crisis — your nervous system is compromised",
+      "Reset physically first (walk, water, breathe), then triage with facts, not emotions",
+      "Solve one thing at a time in order of urgency — parallel problem-solving creates paralysis",
+      "Your daily structure becomes the anchor during chaos — when your brain can't think, your routine carries you"
+    ],
+    exercise: "Write a personal 'crisis protocol' — a short checklist you can follow when things go sideways. Include: (1) your physical reset steps, (2) 3 triage questions to answer on paper, (3) the one person you'll call who gives clear-headed advice (not emotional support — tactical advice). Put this somewhere you can find it when you need it."
+  },
+
+  "03-2": {
+    title: "Financial stress: staying sharp when money is tight",
+    duration: "9 min read",
+    content: `Financial stress is one of the most debilitating forces in entrepreneurship. It doesn't just affect your bank account — it affects your focus, your confidence, your decision-making, and your relationships. I've been there. Debt. Inconsistent revenue. Wondering how the next bill gets paid while trying to build something bigger. Here's what I learned about staying sharp when money is tight.
+
+## Why money stress breaks your brain
+
+Research calls it the "scarcity mindset." When you're worried about money, your brain allocates a massive chunk of its processing power to that worry — leaving less capacity for creative thinking, strategic decisions, and the exact kind of work that would fix the money problem. **It's a trap: the stress caused by low income actively reduces your ability to increase your income.**
+
+Recognizing this trap is the first step to breaking it. You're not dumb. You're not failing. Your brain is just running a background process called "financial panic" that's eating your RAM.
+
+## Tactical survival mode
+
+When money is genuinely tight, you need a different operating mode. Not panic mode. **Tactical survival mode:**
+
+**1. Know your exact numbers.** Open a spreadsheet right now. What's coming in? What's going out? What's the gap? What's the runway? Most financial stress comes from vagueness. When you don't know your numbers, your brain fills in the worst-case scenario. Usually the reality, while not great, is more manageable than the anxiety suggests.
+
+**2. Cut everything that doesn't directly produce revenue or maintain survival.** Subscriptions, "investments in yourself" that aren't paying off, unnecessary tools, eating out. Be brutal. This isn't forever — it's until the cash flow stabilizes.
+
+**3. Focus on the shortest path to revenue.** Not the biggest opportunity. Not the most exciting project. The thing that puts money in your account fastest. Maybe that's a quick freelance gig. Maybe it's closing a deal that's been sitting in your pipeline. Maybe it's offering a service at a lower price point to get cash in the door. Revenue solves most problems.
+
+**4. Don't make long-term decisions under short-term pressure.** This is critical. Don't sell equity cheap because you're desperate. Don't sign a bad contract because you need the cash. Don't take on a nightmare client because they'll pay fast. Short-term desperation leads to long-term regret.
+
+## Maintaining your edge
+
+- **Keep your routine.** When money is stressful, the temptation is to abandon structure and just "hustle." This makes everything worse. Your routine is what keeps you productive. Keep waking up early. Keep doing deep work. Keep working out.
+- **Limit financial check-ins.** Check your accounts once a day, max. Refreshing your bank balance every 30 minutes doesn't change the number — it just amplifies the stress.
+- **Talk to someone.** Not to vent endlessly — to get tactical advice. Find someone who's been through a tight financial period and ask what they did. Isolation during financial stress is dangerous.
+- **Remind yourself this is temporary.** Not in a toxic positivity way. In a factual way. Cash flow problems are solvable. Every successful entrepreneur has a "broke phase" story. You're in yours right now. It ends when you take the right actions consistently.
+
+## The reframe
+
+Financial pressure, handled correctly, is one of the most powerful motivators you'll ever experience. It strips away the nice-to-haves and forces you to focus on what actually generates value. Some of my best work happened when I couldn't afford to waste time. Use the pressure. Don't let it use you.`,
+    takeaways: [
+      "Financial stress hijacks your brain's processing power — recognize the scarcity trap to break it",
+      "Know your exact numbers: vagueness creates more anxiety than the real situation warrants",
+      "Focus on the shortest path to revenue, not the biggest opportunity — cash flow solves most problems",
+      "Never make long-term decisions under short-term financial pressure — desperation leads to regret"
+    ],
+    exercise: "Right now, open a spreadsheet or grab paper. Write down: (1) all money coming in this month, (2) all money going out this month, (3) the gap, (4) the 3 fastest actions you can take to close that gap. No emotion — just numbers and actions. This alone will reduce your financial anxiety by 50%."
+  },
+
+  "03-3": {
+    title: "How to get in any room (without being fake)",
+    duration: "8 min read",
+    content: `Getting into rooms — events, circles, partnerships, opportunities — that seem "above your level" isn't about faking it. It's about leading with genuine value and understanding how human connection actually works. I've built a network that includes almost anyone except the ultra-elite, and I did it without LinkedIn spam, fake rapport, or pretending to be something I'm not.
+
+## Why most networking advice is garbage
+
+The standard advice is: "Go to events, shake hands, exchange business cards, follow up with a LinkedIn request." This produces zero meaningful relationships. It produces a stack of cards you'll never look at and a LinkedIn connection list of strangers. **Real networking isn't about collecting contacts. It's about creating genuine connections with people who you can actually help and who can actually help you.**
+
+## The value-first approach
+
+Before you walk into any room, ask yourself: **"What can I offer?"** Not what can you get. What can you give. This flips the entire dynamic. Instead of walking in hoping someone will notice you, you walk in looking for ways to be useful.
+
+- Can you make an introduction between two people who should know each other?
+- Can you solve a problem someone mentioned they're struggling with?
+- Can you share a resource, tool, or insight that's relevant to what they're working on?
+- Can you just be the person who asks great questions and actually listens?
+
+**People remember how you made them feel, not what you said about yourself.** If you make someone feel heard, helped, or connected, they'll remember you. If you pitch them on your services within 3 minutes, they'll avoid you.
+
+## Getting in rooms that seem above you
+
+**1. Go through people, not doors.** The best way into any room is through someone who's already in it. Find one connection — just one — who can introduce you or vouch for you. A warm introduction is 10x more powerful than a cold application.
+
+**2. Contribute before you ask.** Before asking for anything, give something. Share their content. Refer them business. Offer free help on something small. This builds social capital that you can later convert into opportunities.
+
+**3. Be specific about what you do.** "I do marketing" gets ignored. "I build AI-powered automation systems for service businesses that cut their manual work by 60%" gets attention. Specificity signals competence. Vagueness signals uncertainty.
+
+**4. Don't try to be in every room.** Be strategic. What rooms actually matter for where you're going? Who's in those rooms? Focus your energy on 2-3 communities or circles that align with your goals rather than spreading yourself across 20.
+
+## The authenticity edge
+
+Here's what most people get wrong about "networking": they think they need to be someone they're not. More polished. More corporate. More impressive. **The truth is that authenticity is rare and magnetic.** When you show up as yourself — direct, genuine, willing to admit what you don't know — people notice because everyone else is performing.
+
+I've gotten into rooms by being the youngest, least experienced person in the room who happened to ask the most honest questions. That disarms people. It builds trust faster than any pitch ever could.`,
+    takeaways: [
+      "Real networking is about creating genuine connections, not collecting contacts",
+      "Lead with value: ask 'what can I offer?' before asking 'what can I get?'",
+      "Get into rooms through warm introductions and social capital, not cold applications",
+      "Authenticity is rare and magnetic — being genuinely yourself builds trust faster than performing"
+    ],
+    exercise: "Identify one room (event, community, circle) that you want to be in. Find one person who's already in that room and figure out how to provide them value first — share their content, refer them a client, or offer help on something specific. Do this for 2-3 weeks before asking for anything. Notice how the dynamic shifts."
+  },
+
+  "03-4": {
+    title: "Building connections that turn into opportunities",
+    duration: "8 min read",
+    content: `Meeting people is easy. Turning those meetings into real relationships that generate opportunities — referrals, partnerships, clients, mentorship — is a skill most people never develop. The gap between "I know a lot of people" and "my network generates consistent opportunities" is entirely about what you do after the initial connection.
+
+## The difference between contacts and connections
+
+A contact is someone whose name you know. A connection is someone who picks up the phone when you call. Most people have thousands of contacts and a handful of real connections. **Your income and your opportunity flow are proportional to the depth of your connections, not the breadth of your contacts.**
+
+## The relationship development framework
+
+**Stage 1: First Impression (0-1 interactions)**
+Be memorable for the right reasons. Ask thoughtful questions. Listen more than you talk. Be specific about what you do. Don't ask for anything. Leave them thinking "that person was interesting and genuine."
+
+**Stage 2: Value Deposit (1-5 interactions)**
+This is where most people drop the ball. After meeting someone, they either disappear or immediately pitch. Instead: follow up with something valuable. Share an article relevant to what they mentioned. Make an introduction they'd benefit from. Send them a tool that solves a problem they described. **Each interaction should deposit value into the relationship bank.**
+
+**Stage 3: Established Trust (5-15 interactions)**
+After multiple value deposits, you've built trust. This is when collaboration naturally emerges. They start thinking of you when opportunities come up. They refer people to you without being asked. They invite you into rooms you couldn't get into before. **You didn't ask for any of this — you earned it.**
+
+**Stage 4: Inner Circle (15+ interactions)**
+These are your core relationships. The people you call for advice. The ones who call you. Business flows naturally between inner circle members because the trust is so deep that formal pitches become unnecessary. "I need X done" / "I know exactly who can do that" — and it's you.
+
+## How to accelerate relationship building
+
+- **Be the connector.** Introduce people in your network to each other. "You two should talk — here's why." Being the hub of a valuable network makes you indispensable.
+- **Show up consistently.** Not just when you need something. Check in. Comment on their content. Remember details about their life and business. Consistency builds trust faster than grand gestures.
+- **Be direct about what you want (when the time is right).** Don't be slimy. Don't hint. When you've built enough trust, be straightforward: "I'd love to work together on X" or "I think I could help with Y." Directness is respected.
+- **Create shared experiences.** Collaborate on a small project. Attend events together. Shared experiences accelerate bonding more than any amount of messaging.
+
+## The math of relationship investing
+
+If you spend 30 minutes per week maintaining 10 key relationships — a quick message, a useful article, a check-in — that's 5 hours a month. Those 10 relationships, properly nurtured, will generate more opportunities than 100 hours of cold outreach. **Relationship ROI is exponential, but the investment is made in small, consistent deposits over time.**`,
+    takeaways: [
+      "Your opportunity flow is proportional to connection depth, not contact breadth",
+      "Build relationships through consistent value deposits — not by asking for things",
+      "Be the connector: introducing people in your network makes you indispensable",
+      "30 minutes per week on 10 key relationships outperforms 100 hours of cold outreach"
+    ],
+    exercise: "List your 10 most valuable professional connections. For each one, write down: (1) when you last reached out, (2) one specific thing you could do for them this week, and (3) where you want the relationship to be in 6 months. Then reach out to the 3 you've been most absent with this week."
+  },
+
+  // ============================================================
+  // MODULE 04: Bringing Value Before Getting Paid
+  // ============================================================
+
+  "04-1": {
     title: "The audit: finding broken things in any business",
     duration: "10 min read",
     content: `Every business has broken things. Every single one. The founder knows about some of them and has no idea about the rest. Your ability to find these broken things — quickly and systematically — is the single most valuable skill you can develop as an operator. This is how you walk into any business and immediately become useful.
@@ -207,7 +561,7 @@ Document your findings in a simple format: the problem, the impact (what it's co
     exercise: "Pick any business you interact with regularly — a local shop, a service provider, a friend's side hustle. Run the five-area audit mentally or on paper. Identify the top three broken things and estimate what each one is costing the business in revenue, time, or customers. You now have the start of a pitch."
   },
 
-  "02-2": {
+  "04-2": {
     title: "Showing your value before asking for money",
     duration: "8 min read",
     content: `This is the most counterintuitive thing I teach and the most important: do the work before you get paid. Not forever. Not as charity. Strategically. Show someone what you can do by actually doing it, and the money conversation becomes the easiest one you'll ever have.
@@ -244,7 +598,7 @@ After you've delivered free value, the pitch is simple: "You've seen what I can 
     exercise: "Identify one business you want to work with. Find one thing you can fix or improve in 2-4 hours. Do it. Present the result with quantified impact. Track what happens — this is your first real operator play."
   },
 
-  "02-3": {
+  "04-3": {
     title: "Building a track record with small wins",
     duration: "7 min read",
     content: `You can't pitch yourself as an operator with zero proof. Nobody cares about your potential. They care about your results. The good news is that building a track record doesn't require massive projects or big-name clients. It requires stacking small wins until the pattern is undeniable.
@@ -283,7 +637,7 @@ Small wins lead to referrals. The barber tells his accountant. The accountant te
     exercise: "List every project or task you've completed that had a measurable result — even small ones. For each, write the before state, what you did, and the after state in 2-3 sentences. This is the start of your portfolio. If you have fewer than 3 wins documented, identify 2 opportunities this week and go get them."
   },
 
-  "02-4": {
+  "04-4": {
     title: "Turning free work into paid positions",
     duration: "8 min read",
     content: `You've done the audit. You've delivered free value. You've stacked some wins. Now comes the part everyone struggles with: getting paid. The transition from "helpful person" to "paid operator" is where most people fumble because they don't know when or how to make the shift. Let me break down exactly how I do it.
@@ -322,7 +676,7 @@ If they say they can't afford it, offer a payment plan with a down payment. If t
     exercise: "Write your transition script: a 3-4 sentence pitch that references a specific result you delivered, outlines what you'd do next, and names your price. Practice saying it out loud until it feels natural. If you have a real prospect, send it this week."
   },
 
-  "03-1": {
+  "05-1": {
     title: "Understanding every function: sales, marketing, ops, finance",
     duration: "10 min read",
     content: `An operator who only understands one part of the business is a specialist, not an operator. You don't need to be an expert in everything, but you need to understand how every function works, how they connect, and how to evaluate whether each one is healthy. This is what lets you make decisions that actually move the whole business forward instead of optimizing one piece while breaking another.
@@ -363,7 +717,7 @@ Specialists get paid for depth. Operators get paid for breadth. When you underst
     exercise: "For a business you're involved with (or want to work with), score each of the four functions on a scale of 1-10. For each one, write one sentence about what's working and one about what's broken. Identify which function, if fixed, would have the biggest ripple effect on the others. That's your priority."
   },
 
-  "03-2": {
+  "05-2": {
     title: "Making decisions when the founder isn't around",
     duration: "8 min read",
     content: `A founder who has to approve every decision has an assistant, not an operator. Your value as an operator is directly proportional to the number of decisions you can make independently without the founder needing to weigh in. But this doesn't mean going rogue — it means developing judgment, earning trust, and knowing which decisions are yours and which ones need escalation.
@@ -411,7 +765,7 @@ You will make bad calls. It's inevitable. When it happens, own it immediately: "
     exercise: "List the last 10 decisions you escalated to someone above you (or would have). For each one, classify it: should you have handled it yourself, was it a legitimate escalation, or was it in the gray zone? Identify 3 decisions you could have made independently. Next time a similar decision comes up, make the call and inform afterward."
   },
 
-  "03-3": {
+  "05-3": {
     title: "Managing up: keeping the CEO in the loop without hand-holding",
     duration: "7 min read",
     content: `"Managing up" sounds like corporate BS, but it's one of the most practical skills an operator needs. It means giving the founder exactly the information they need, in the format they want, at the frequency that keeps them confident without consuming their time. Get this wrong and either the founder feels out of the loop (bad) or you're spending half your day on status updates instead of actual work (also bad).
@@ -458,7 +812,7 @@ When a founder stops checking in on you constantly, that's not them being neglec
     exercise: "Design your update template. Write a sample weekly update for a real or hypothetical founder you work with. Include: 3-5 completed items, 3-5 in-progress items, 1-2 decisions needed, and any risks. If you currently work with a founder, send it next Monday and ask if the format works for them."
   },
 
-  "03-4": {
+  "05-4": {
     title: "Cross-functional coordination and accountability",
     duration: "9 min read",
     content: `The hardest part of running a business isn't any single function — it's getting them all to work together. Sales promises something, but ops can't deliver it on the timeline quoted. Marketing generates leads, but the sales team doesn't follow up fast enough. The designer finishes work, but nobody tells the developer. This is where operators earn their keep: making sure every function is coordinated and everyone is held accountable.
@@ -495,7 +849,7 @@ When coordination works, everything gets faster. Sales knows what ops can delive
     exercise: "Map out how work currently flows between functions in your business or a business you work with. Identify the top 3 handoff points where things get dropped. For each one, write a simple protocol: who hands off to whom, what information is included, through what channel, and what the deadline is. Implement one this week."
   },
 
-  "04-1": {
+  "06-1": {
     title: "Seeing the whole machine, not just your part",
     duration: "8 min read",
     content: `Most people working in a business can describe their job. Very few can describe how their job connects to every other job, how those connections create the customer experience, and where the system breaks down between the pieces. Systems thinking is seeing the machine, not just the gear you're turning.
@@ -532,7 +886,7 @@ When you can see the whole machine, you can predict what will happen before it h
     exercise: "Map out the full system for a business you know: from customer discovery to purchase to delivery to retention. Draw boxes for each step and arrows for the flow. Circle the one bottleneck that's limiting everything else. Write a one-paragraph recommendation for what to fix first and why."
   },
 
-  "04-2": {
+  "06-2": {
     title: "Finding bottlenecks and fixing root causes",
     duration: "9 min read",
     content: `Every business has a bottleneck — one constraint that limits the throughput of the entire system. Most people treat symptoms. Operators find root causes. The difference between the two is the difference between being busy and being effective.
@@ -588,7 +942,7 @@ Fix the bottleneck first. Then find the new bottleneck (because there's always a
     exercise: "Pick the biggest recurring problem in a business you're involved with. Apply the 5 Whys technique and write it out. Get to the root cause. Then design a fix for the root cause (not the symptom) and estimate how long it would take to implement. If it's under a day of work, do it now."
   },
 
-  "04-3": {
+  "06-3": {
     title: "Building SOPs that survive your absence",
     duration: "8 min read",
     content: `If you get hit by a bus tomorrow, can your business keep running? If the answer is no, you don't have a business — you have a job that depends entirely on your presence. SOPs (Standard Operating Procedures) are how you extract the knowledge from your head and put it into a system that anyone can follow. This is one of the most important things an operator builds.
@@ -634,7 +988,7 @@ Keep all SOPs in one place — a Notion workspace, a Google Drive folder, whatev
     exercise: "Pick one task you do repeatedly. Record yourself doing it (screen recording or detailed notes). Write a step-by-step SOP with numbered actions. Give it to someone else and ask them to follow it without your help. Fix every point where they got confused. You now have your first real SOP."
   },
 
-  "04-4": {
+  "06-4": {
     title: "Automating yourself out of repetitive work",
     duration: "9 min read",
     content: `The best operators don't just do work faster — they eliminate work entirely. Every hour you spend on a repetitive task is an hour you're not spending on strategy, relationships, or high-value problem-solving. Automation isn't about being lazy. It's about deploying your intelligence where it matters most.
@@ -683,7 +1037,7 @@ The ultimate goal is to work yourself out of every repetitive task so that you'r
     exercise: "List every task you did this week that was repetitive (same steps, same type, done more than once). For each one, apply the hierarchy: can it be eliminated? Simplified? Delegated? Automated? Pick the one that takes the most time and build a system for it this week — whether that's an SOP, a Zapier automation, or an AI workflow."
   },
 
-  "05-1": {
+  "07-1": {
     title: "From operator to partner: the equity conversation",
     duration: "10 min read",
     content: `At some point, if you're operating at a high level, the conversation shifts from "how much do you pay me?" to "how much of this company do I own?" This is the most important financial conversation you'll have as an operator, and most people fumble it because they either ask too early, ask for too much, or don't ask at all. Let me walk you through how to navigate it.
@@ -732,7 +1086,7 @@ Get everything in writing. Not a handshake. Not a verbal agreement. A real opera
     exercise: "If you're currently operating for a business, calculate the specific value you've created: revenue generated, costs saved, problems solved, systems built. Write it down with numbers. Draft the opening line of your equity conversation using the alignment frame. If you're not in a position yet, use this as your target criteria — what you'll need to prove before having this conversation."
   },
 
-  "05-2": {
+  "07-2": {
     title: "Operating multiple businesses simultaneously",
     duration: "9 min read",
     content: `I run operations for multiple businesses at the same time. Pomaika'i, Office Kult, and my own freelance work under JDLO. People ask me how I manage it without burning out, dropping balls, or losing quality. The answer isn't "I work 18 hours a day." The answer is systems, boundaries, and ruthless prioritization.
@@ -779,7 +1133,7 @@ The endgame of operating multiple businesses isn't doing all the work across all
     exercise: "If you're currently involved in more than one project or business, map out how you split your time. Is it structured or reactive? Design a time-blocking schedule that gives each business dedicated, uninterrupted focus time. If you're only working on one thing right now, design the system you'd need before adding a second."
   },
 
-  "05-3": {
+  "07-3": {
     title: "Building your own operator brand and reputation",
     duration: "8 min read",
     content: `Your operator brand is what people say about you when you're not in the room. It's the reputation that precedes you into every new opportunity. Most operators neglect this because they're too busy operating — but building your brand intentionally is what creates a pipeline of opportunities so you never have to cold pitch again.
@@ -827,7 +1181,7 @@ Brand building is a long game. You won't see results in a week. But over 6-12 mo
     exercise: "Write your operator positioning statement in one sentence: who you help, what you do, and what result you deliver. Then list your top 3 results you can use as proof. Finally, identify 2 places where your ideal clients spend time and commit to showing up there consistently for the next 30 days."
   },
 
-  "05-4": {
+  "07-4": {
     title: "The pipeline: from course to paid project to team member",
     duration: "10 min read",
     content: `This is the model I'm building, and it's the endgame of this entire course. The pipeline: you take this course, you learn the operator skillset, you get assigned a real paid project, and the top performers join my team as operators. This isn't a theoretical employment pipeline — it's a real system I've designed to find, vet, and develop operators I can trust.
@@ -921,6 +1275,76 @@ export const operatorPlaybookQuizzes: CourseQuizzes = {
     ],
   },
   "02": {
+    title: "Discipline & Mindset Quiz",
+    questions: [
+      {
+        type: "mc",
+        question:
+          "According to the course, what is the real reason most people fail before they start?",
+        options: [
+          "They lack natural talent or the right connections",
+          "The market is too competitive for newcomers",
+          "They fear finding out they're not as good as they think, so they avoid starting",
+          "They don't have enough capital to get a business off the ground",
+        ],
+        correctIndex: 2,
+      },
+      {
+        type: "mc",
+        question:
+          "Why does the course recommend putting your hardest, highest-impact task in the first 3 hours of your morning?",
+        options: [
+          "Because morning meetings haven't started yet so you have free time",
+          "Because your prefrontal cortex is strongest after sleep and every distraction drains it throughout the day",
+          "Because clients are less likely to call in the morning",
+          "Because most productivity apps track morning hours more accurately",
+        ],
+        correctIndex: 1,
+      },
+      {
+        type: "short",
+        question:
+          "Explain the course's approach to building real confidence through the evidence-based confidence loop, and describe how the 'stop being a bitch' framework helps you distinguish between genuine struggle and self-inflicted softness.",
+        minLength: 50,
+      },
+    ],
+  },
+  "03": {
+    title: "Resilience & Networking Quiz",
+    questions: [
+      {
+        type: "mc",
+        question:
+          "When a crisis first hits, what does the course recommend you do in the first 30 minutes?",
+        options: [
+          "Immediately start solving the most urgent problem",
+          "Call your team together for an emergency meeting",
+          "Nothing — reset physically first because your decision-making is compromised by fight-or-flight",
+          "Post about it on social media to get community support and advice",
+        ],
+        correctIndex: 2,
+      },
+      {
+        type: "mc",
+        question:
+          "According to the course, what does the 'scarcity mindset' during financial stress actually do to your brain?",
+        options: [
+          "It motivates you to work harder and find creative solutions faster",
+          "It allocates massive processing power to financial worry, leaving less capacity for the creative and strategic thinking that would fix the problem",
+          "It has no measurable cognitive effect — financial stress is purely emotional",
+          "It sharpens your focus by narrowing your attention to revenue-generating activities",
+        ],
+        correctIndex: 1,
+      },
+      {
+        type: "short",
+        question:
+          "Describe the course's value-first approach to networking and explain the four stages of the relationship development framework, including why most people fail at Stage 2 (Value Deposit).",
+        minLength: 50,
+      },
+    ],
+  },
+  "04": {
     title: "Bringing Value Before Getting Paid Quiz",
     questions: [
       {
@@ -955,7 +1379,7 @@ export const operatorPlaybookQuizzes: CourseQuizzes = {
       },
     ],
   },
-  "03": {
+  "05": {
     title: "Running the Business Quiz",
     questions: [
       {
@@ -990,7 +1414,7 @@ export const operatorPlaybookQuizzes: CourseQuizzes = {
       },
     ],
   },
-  "04": {
+  "06": {
     title: "Systems Thinking Quiz",
     questions: [
       {
@@ -1025,7 +1449,7 @@ export const operatorPlaybookQuizzes: CourseQuizzes = {
       },
     ],
   },
-  "05": {
+  "07": {
     title: "Scaling & Positioning Quiz",
     questions: [
       {

@@ -29,12 +29,12 @@ function Hero() {
 
         <div className="hero-animate hero-delay-3 mt-10 flex flex-col md:flex-row md:items-end md:justify-between gap-8">
           <p className="text-text-secondary text-lg md:text-xl leading-relaxed max-w-[420px]">
-            AI, sales, automation, content, management &mdash;
+            AI, sales, automation, operations &mdash;
             every skill I use to run real businesses, taught to the right people.
           </p>
           <div>
-            <GlowLink href="#apply">
-              Apply Now
+            <GlowLink href="/courses">
+              Browse Courses
             </GlowLink>
           </div>
         </div>
@@ -47,33 +47,27 @@ function Hero() {
 const skills = [
   {
     title: "AI & Automation",
-    desc: "Build AI agents, automate workflows, integrate AI into real operations. This is what I run my companies on.",
-    price: "$1,250",
+    desc: "Build AI agents, automate workflows, integrate AI into real operations. Master prompting, the API, and deploy systems that run while you sleep.",
+    price: "$297",
     href: "/courses/ai-automation",
   },
   {
     title: "Sales Systems",
-    desc: "Scripts, objection handling, pipeline management, CRM automation. The exact frameworks I use to close.",
-    price: "$750",
+    desc: "Scripts, objection handling, pipeline management, CRM automation. Plus hiring, SOPs, and the management systems to build a team that runs without you.",
+    price: "$197",
     href: "/courses/sales-systems",
   },
   {
-    title: "Prompt Engineering",
-    desc: "Advanced techniques that 99% don't know. Get what you want from any model, every time.",
-    price: "$400",
-    href: "/courses/prompt-engineering",
+    title: "The Operator Playbook",
+    desc: "Discipline, mindset, resilience, networking — then how to run businesses, build systems, and position yourself for equity and leadership.",
+    price: "$297",
+    href: "/courses/operator-playbook",
   },
   {
-    title: "Content & Brand",
-    desc: "Strategy, production systems, distribution — all AI-accelerated. Build a brand that prints.",
-    price: "$600",
-    href: "/courses/content-brand",
-  },
-  {
-    title: "Team & Operations",
-    desc: "Hiring, SOPs, management frameworks. The systems that let you scale without burning out.",
-    price: "$1,000",
-    href: "/courses/team-operations",
+    title: "AI Mastery — Expert",
+    desc: "Claude Code, MCP servers, Agent SDK, computer use, vision. The full power of AI — nothing held back. For serious builders only.",
+    price: "$9,997",
+    href: "/courses/ai-mastery",
   },
   {
     title: "1:1 Mentorship",
@@ -90,10 +84,10 @@ function Skills() {
         <RevealOnScroll>
           <div className="flex items-baseline justify-between mb-4">
             <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono">
-              Disciplines
+              Tracks
             </p>
             <p className="text-text-muted text-[11px] font-mono hidden md:block">
-              06 skills
+              05 tracks
             </p>
           </div>
         </RevealOnScroll>
@@ -137,54 +131,50 @@ function Statement() {
   );
 }
 
-/* ── For Businesses ── */
-function ForBusinesses() {
+/* ── Testimonials ── */
+function Testimonials() {
+  /* TODO: Replace with real testimonials */
+  const testimonials = [
+    {
+      quote: "Add your first testimonial here.",
+      name: "Name",
+      role: "Role / Company",
+    },
+    {
+      quote: "Add your second testimonial here.",
+      name: "Name",
+      role: "Role / Company",
+    },
+    {
+      quote: "Add your third testimonial here.",
+      name: "Name",
+      role: "Role / Company",
+    },
+  ];
+
   return (
     <section className="section-gap border-t border-border">
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
-          <RevealOnScroll>
-            <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-8">
-              For Businesses
-            </p>
-            <h2 className="text-[clamp(2rem,4.5vw,3.5rem)] font-bold tracking-[-0.04em] leading-[1] mb-8">
-              Your team is
-              <br />
-              operating at 10%.
-            </h2>
-            <p className="text-text-secondary text-[16px] leading-relaxed mb-10 max-w-[440px]">
-              I audit your workflows, train your team on AI, and build the systems
-              that 10x your output.
-            </p>
-            <GlowLink href="https://calendar.app.google/uZVeQYHLMe5croEn8" external>
-              Book a Strategy Call
-            </GlowLink>
-            <a
-              href="/quiz/operator"
-              className="inline-flex items-center gap-2 text-text-muted text-[12px] font-mono hover:text-accent transition-colors duration-300 mt-6"
-            >
-              Not sure if we&apos;re a fit? Take the quiz →
-            </a>
-          </RevealOnScroll>
+        <RevealOnScroll>
+          <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-16">
+            What people say
+          </p>
+        </RevealOnScroll>
 
-          <RevealOnScroll delay={2}>
-            <div className="flex flex-col justify-end h-full">
-              {["Workflow Audit", "Team Training", "System Build", "Ongoing Advisory"].map((item, i) => (
-                <div
-                  key={item}
-                  className="flex items-center justify-between py-5 border-b border-border group cursor-default"
-                >
-                  <span className="text-[15px] text-text-secondary group-hover:text-text transition-colors duration-300">
-                    {item}
-                  </span>
-                  <span className="text-text-muted text-[11px] font-mono">0{i + 1}</span>
+        <div className="grid md:grid-cols-3 gap-6">
+          {testimonials.map((t, i) => (
+            <RevealOnScroll key={i} delay={i + 1}>
+              <div className="border border-border rounded-2xl p-8 h-full flex flex-col">
+                <p className="text-text-secondary text-[15px] leading-relaxed flex-1 mb-6">
+                  &ldquo;{t.quote}&rdquo;
+                </p>
+                <div>
+                  <p className="text-text text-[14px] font-medium">{t.name}</p>
+                  <p className="text-text-muted text-[12px] font-mono">{t.role}</p>
                 </div>
-              ))}
-              <p className="text-text-muted text-[12px] font-mono mt-6">
-                Engagements start at $5,000
-              </p>
-            </div>
-          </RevealOnScroll>
+              </div>
+            </RevealOnScroll>
+          ))}
         </div>
       </div>
     </section>
@@ -233,6 +223,43 @@ function About() {
   );
 }
 
+/* ── Results ── */
+function Results() {
+  return (
+    <section className="section-gap border-t border-border">
+      <div className="max-w-[1400px] mx-auto px-6 md:px-10">
+        <RevealOnScroll>
+          <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-16">
+            The receipts
+          </p>
+        </RevealOnScroll>
+
+        <div className="grid md:grid-cols-3 gap-0">
+          {[
+            { num: "$0", label: "Starting capital", desc: "No connections. No playbook. No safety net." },
+            { num: "90", label: "Days to enterprise", desc: "Zero to closing DHL and P.F. Chang's." },
+            { num: "$92B+", label: "Client revenue", desc: "Combined revenue of companies we've closed." },
+          ].map((stat, i) => (
+            <RevealOnScroll key={stat.label} delay={i + 1}>
+              <div className={`py-8 md:py-0 md:pr-12 ${i < 2 ? "md:border-r border-border" : ""} ${i > 0 ? "md:pl-12" : ""}`}>
+                <span className="text-[clamp(2rem,4vw,3.5rem)] font-bold tracking-[-0.04em] gradient-text-blue">
+                  {stat.num}
+                </span>
+                <h3 className="text-[15px] font-medium mt-2 mb-2">
+                  {stat.label}
+                </h3>
+                <p className="text-text-secondary text-[14px] leading-relaxed">
+                  {stat.desc}
+                </p>
+              </div>
+            </RevealOnScroll>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ── Process ── */
 function Process() {
   return (
@@ -246,9 +273,9 @@ function Process() {
 
         <div className="grid md:grid-cols-3 gap-0">
           {[
-            { num: "01", title: "Apply", desc: "Tell me what you want to learn. Not everyone gets in." },
-            { num: "02", title: "Get matched", desc: "I recommend the right track based on your goals." },
-            { num: "03", title: "Execute", desc: "Learn from my systems. Implement. See results." },
+            { num: "01", title: "Take the quiz", desc: "Find out which track fits your goals. Takes 2 minutes." },
+            { num: "02", title: "Pick your course", desc: "Each course is built on real systems I use daily." },
+            { num: "03", title: "Execute", desc: "Learn, implement, see results. Top performers get real paid work." },
           ].map((step, i) => (
             <RevealOnScroll key={step.num} delay={i + 1}>
               <div className={`py-8 md:py-0 md:pr-12 ${i < 2 ? "md:border-r border-border" : ""} ${i > 0 ? "md:pl-12" : ""}`}>
@@ -272,10 +299,11 @@ function Process() {
 function FAQ() {
   const faqs = [
     { q: "Who is this for?", a: "People who are serious. If you want motivation, this isn't it. If you want execution, you're in the right place." },
-    { q: "Why different prices?", a: "Each skill has different depth and value. You're paying for specific systems I use daily, not a generic course." },
-    { q: "Can I learn multiple skills?", a: "Yes. Most start with one and come back. Mentorship students get guidance across all." },
-    { q: "What makes this different?", a: "I run businesses on AI. Every system I teach, I use. You're learning from someone in the trenches." },
-    { q: "How do I know if I fit?", a: "Apply. If I can help, I'll tell you. If I can't, I'll tell you that too." },
+    { q: "Why different prices?", a: "Each course has different depth and scope. AI Mastery is $10K because it's 8 weeks of expert-level systems that can make you millions. The others are priced for accessibility — this is a soft launch." },
+    { q: "Can I learn multiple skills?", a: "Yes. Most start with one and come back. Mentorship students get guidance across all tracks." },
+    { q: "What makes this different?", a: "I run businesses on AI. Every system I teach, I use. You're learning from someone in the trenches — not someone who read about it." },
+    { q: "What happens after the course?", a: "Top performers get access to real paid projects from my network. The best of those get offered a spot on my team. It's a pipeline, not a certificate." },
+    { q: "How do I know which course to take?", a: "Take the skills quiz. 2 minutes. It'll tell you exactly where to start based on your goals." },
   ];
 
   return (
@@ -336,21 +364,21 @@ function Apply() {
               <span className="gradient-text-blue">operate?</span>
             </h2>
             <p className="text-text-secondary text-lg mb-12">
-              Apply and I&apos;ll get back to you personally.
+              Start with the quiz or browse the courses.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <GlowLink href="/mentorship">
-                Apply for Mentorship
+              <GlowLink href="/quiz">
+                Take the Quiz
               </GlowLink>
-              <Link href="/students" className="ghost-btn">
+              <Link href="/courses" className="ghost-btn">
                 Browse Courses
               </Link>
             </div>
             <p className="text-text-muted text-[13px] mt-8">
-              Businesses &mdash;{" "}
-              <a href="https://calendar.app.google/uZVeQYHLMe5croEn8" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">
-                book a strategy call
-              </a>
+              Want 1-on-1?{" "}
+              <Link href="/mentorship" className="text-accent hover:underline">
+                Apply for mentorship
+              </Link>
             </p>
           </div>
         </RevealOnScroll>
@@ -369,9 +397,6 @@ function Footer() {
             &copy; {new Date().getFullYear()} JDLO
           </span>
           <div className="flex items-center gap-6">
-            <Link href="/careers" className="text-[12px] text-text-muted hover:text-text transition-colors duration-300">
-              Careers
-            </Link>
             <a href="https://instagram.com/jdlo" target="_blank" rel="noopener noreferrer" className="text-[12px] text-text-muted hover:text-text transition-colors duration-300">
               @jdlo
             </a>
@@ -391,8 +416,9 @@ export default function Home() {
       <Hero />
       <Skills />
       <Statement />
-      <ForBusinesses />
+      <Testimonials />
       <About />
+      <Results />
       <Process />
       <FAQ />
       <Apply />

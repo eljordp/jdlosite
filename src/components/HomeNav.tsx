@@ -7,13 +7,10 @@ import { createClient } from '@/lib/supabase/client';
 import type { User } from '@supabase/supabase-js';
 
 const links = [
-  { label: 'Skills', href: '#skills' },
+  { label: 'Courses', href: '/courses' },
   { label: 'About', href: '/about' },
-  { label: 'FAQ', href: '#faq' },
-  { label: 'Skills Quiz', href: '/quiz' },
   { label: 'Mentorship', href: '/mentorship' },
-  { label: 'Businesses', href: '/businesses' },
-  { label: 'Careers', href: '/careers' },
+  { label: 'FAQ', href: '#faq' },
 ];
 
 export default function HomeNav() {
@@ -35,9 +32,15 @@ export default function HomeNav() {
 
           {/* Desktop */}
           <div className="hidden md:flex items-center gap-8 text-[13px] text-text-secondary">
-            <a href="#skills" className="hover:text-text transition-colors duration-300">Skills</a>
-            <Link href="/about" className="hover:text-text transition-colors duration-300">About</Link>
-            <a href="#faq" className="hover:text-text transition-colors duration-300">FAQ</a>
+            {links.map((link) => (
+              <Link
+                key={link.label}
+                href={link.href}
+                className="hover:text-text transition-colors duration-300"
+              >
+                {link.label}
+              </Link>
+            ))}
             <Link href="/quiz" className="text-accent hover:text-accent/80 transition-colors duration-300 font-mono text-[12px]">
               Skills Quiz →
             </Link>
@@ -58,8 +61,8 @@ export default function HomeNav() {
                 {user.email?.split("@")[0]}
               </Link>
             )}
-            <GlowLink href="#apply" className="!py-1.5 !px-5 !text-[13px]">
-              Work With Me
+            <GlowLink href="/courses" className="!py-1.5 !px-5 !text-[13px]">
+              Get Started
             </GlowLink>
             {/* Mobile hamburger */}
             <button
@@ -107,15 +110,22 @@ export default function HomeNav() {
             </Link>
           )}
           {links.map((link) => (
-            <a
+            <Link
               key={link.label}
               href={link.href}
               onClick={() => setOpen(false)}
               className="text-[2rem] font-semibold tracking-[-0.03em] text-text-secondary hover:text-text transition-colors duration-200 py-2.5 border-b border-border/40 last:border-0"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
+          <Link
+            href="/quiz"
+            onClick={() => setOpen(false)}
+            className="text-[2rem] font-semibold tracking-[-0.03em] text-accent hover:text-text transition-colors duration-200 py-2.5 border-b border-border/40"
+          >
+            Skills Quiz
+          </Link>
           {!user && (
             <Link
               href="/sign-in"
@@ -128,8 +138,8 @@ export default function HomeNav() {
         </div>
 
         <div className="pt-8">
-          <GlowLink href="#apply" className="w-full justify-center">
-            Work With Me
+          <GlowLink href="/courses" className="w-full justify-center">
+            Get Started
           </GlowLink>
         </div>
       </div>

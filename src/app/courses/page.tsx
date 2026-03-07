@@ -3,7 +3,7 @@ import RevealOnScroll from "@/components/RevealOnScroll";
 import Link from "next/link";
 import { courses } from "@/lib/courses";
 
-export default function StudentsPage() {
+export default function CoursesPage() {
   return (
     <PageShell ctaText="Take the Quiz" ctaHref="/quiz">
       <section className="min-h-[55vh] flex items-center justify-center text-center relative">
@@ -18,7 +18,7 @@ export default function StudentsPage() {
             <span className="gradient-text-blue">skill track.</span>
           </h1>
           <p className="text-text-secondary text-lg max-w-[480px] mx-auto hero-animate hero-delay-3">
-            Nine courses. Real systems. Every course built on what Jordan uses daily.
+            Four courses. Real systems. Every course built on what Jordan uses daily.
           </p>
         </div>
       </section>

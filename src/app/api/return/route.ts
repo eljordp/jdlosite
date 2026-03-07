@@ -25,13 +25,14 @@ export async function POST(req: NextRequest) {
     const courseSlugMap: Record<string, string> = {
       "AI & Automation": "ai-automation",
       "Sales Systems": "sales-systems",
-      "Prompt Engineering": "prompt-engineering",
-      "Content & Brand": "content-brand",
-      "Team & Operations": "team-operations",
-      "Personal Growth & Discipline": "personal-growth",
       "The Operator Playbook": "operator-playbook",
-      "AI for Business": "ai-for-business",
       "AI Mastery — Expert": "ai-mastery",
+      // Legacy mappings for existing purchases
+      "Prompt Engineering": "ai-automation",
+      "Content & Brand": "ai-automation",
+      "Team & Operations": "sales-systems",
+      "Personal Growth & Discipline": "operator-playbook",
+      "AI for Business": "ai-automation",
     };
     const courseSlug = courseSlugMap[courseName] || courseName.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 

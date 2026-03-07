@@ -19,9 +19,11 @@ const SKILLS = {
     keywords: [
       'automate', 'automation', 'workflow', 'agent', 'n8n', 'zapier', 'make',
       'api', 'integrate', 'bot', 'time', 'manual', 'repetitive', 'save time',
-      'systems', 'pipeline', 'tool', 'build', 'efficiency',
+      'systems', 'pipeline', 'tool', 'build', 'efficiency', 'prompt', 'prompting',
+      'chatgpt', 'output', 'gpt', 'claude', 'model', 'ai output', 'write prompts',
+      'content', 'brand', 'marketing',
     ],
-    pitch: "That's AI & Automation. I built this course around what I run my companies on — agents, workflows, real integrations. $1,250, 6 weeks.",
+    pitch: "AI & Automation. Everything from prompting to agents to deploying AI systems that run your business. $297, 8 weeks.",
   },
   'sales-systems': {
     name: 'Sales Systems',
@@ -29,38 +31,30 @@ const SKILLS = {
     keywords: [
       'sell', 'sales', 'close', 'closing', 'outreach', 'prospect', 'revenue',
       'client', 'deal', 'pipeline', 'crm', 'cold email', 'follow up',
-      'objection', 'money', 'leads', 'convert',
+      'objection', 'money', 'leads', 'convert', 'team', 'hire', 'hiring',
+      'manage', 'management', 'scale', 'employee', 'sop', 'staff', 'delegate',
     ],
-    pitch: "Sales Systems. The exact scripts, frameworks, and CRM setup I use to close. $750, 4 weeks.",
+    pitch: "Sales Systems. Scripts, frameworks, CRM, plus hiring and team management. Close deals and scale. $197, 7 weeks.",
   },
-  'prompt-engineering': {
-    name: 'Prompt Engineering',
-    href: '/courses/prompt-engineering',
+  'operator-playbook': {
+    name: 'The Operator Playbook',
+    href: '/courses/operator-playbook',
     keywords: [
-      'prompt', 'prompting', 'chatgpt', 'output', 'gpt', 'claude', 'model',
-      'results', 'mediocre', 'ai output', 'write prompts', 'bad results', 'llm',
+      'operator', 'operations', 'run', 'coo', 'founder', 'discipline', 'mindset',
+      'confidence', 'resilience', 'network', 'leadership', 'equity', 'partner',
+      'bottleneck', 'without me', 'run my business', 'grow', 'structure',
     ],
-    pitch: "Prompt Engineering. 99% of people use AI at 10% of its power. This closes that gap. $400, 2 weeks.",
+    pitch: "The Operator Playbook. Discipline, mindset, then running businesses and positioning for equity. $297, 7 weeks.",
   },
-  'content-brand': {
-    name: 'Content & Brand',
-    href: '/courses/content-brand',
+  'ai-mastery': {
+    name: 'AI Mastery — Expert',
+    href: '/courses/ai-mastery',
     keywords: [
-      'content', 'brand', 'post', 'instagram', 'audience', 'followers',
-      'social', 'video', 'grow', 'creator', 'tiktok', 'youtube', 'twitter',
-      'visibility', 'known', 'personal brand', 'marketing',
+      'expert', 'advanced', 'mcp', 'agent sdk', 'claude code', 'production',
+      'enterprise', 'architecture', 'computer use', 'vision', 'deep', 'mastery',
+      'developer', 'code', 'deploy',
     ],
-    pitch: "Content & Brand. Build a brand that makes money while you sleep. $600, 4 weeks.",
-  },
-  'team-operations': {
-    name: 'Team & Operations',
-    href: '/courses/team-operations',
-    keywords: [
-      'team', 'hire', 'hiring', 'manage', 'management', 'scale', 'employee',
-      'operations', 'sop', 'staff', 'delegate', 'bottleneck', 'people',
-      'without me', 'run my business', 'grow my team',
-    ],
-    pitch: "Team & Operations. Hiring, SOPs, management frameworks — build a business that runs without you. $1,000, 5 weeks.",
+    pitch: "AI Mastery. Claude Code, MCP, Agent SDK, vision, computer use — the full power of AI. $9,997, 8 weeks.",
   },
 } as const;
 
@@ -112,8 +106,8 @@ function getResponse(text: string, identified: boolean): Message {
   if (/price|cost|how much|expensive|afford/i.test(lower)) {
     return {
       role: 'bot',
-      content: "Courses range from $400 to $1,250 depending on depth. Mentorship is $2,500/mo. Which skill are you looking at?",
-      links: [{ label: 'Browse All Courses →', href: '/students' }],
+      content: "Courses range from $197 to $9,997 depending on depth. Mentorship is $2,500/mo. Which skill are you looking at?",
+      links: [{ label: 'Browse All Courses →', href: '/courses' }],
     };
   }
 
@@ -121,7 +115,7 @@ function getResponse(text: string, identified: boolean): Message {
     return {
       role: 'bot',
       content: "Enrollment is reviewed — not everyone gets in. Apply and I'll get back to you.",
-      links: [{ label: 'Apply to Enroll →', href: '/students' }],
+      links: [{ label: 'Apply to Enroll →', href: '/courses' }],
     };
   }
 
@@ -144,9 +138,8 @@ function getResponse(text: string, identified: boolean): Message {
     quickReplies: !identified ? [
       'Automate my work',
       'Close more deals',
-      'Build my brand',
-      'Build a team',
-      'Use AI better',
+      'Become an operator',
+      'Go expert on AI',
       "I'm not sure",
     ] : undefined,
   };
@@ -158,9 +151,8 @@ const INITIAL: Message = {
   quickReplies: [
     'Automate my work',
     'Close more deals',
-    'Build my brand',
-    'Build a team',
-    'Use AI better',
+    'Become an operator',
+    'Go expert on AI',
     "I'm not sure",
   ],
 };

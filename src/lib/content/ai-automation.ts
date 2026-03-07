@@ -488,6 +488,285 @@ Review your library monthly. Kill prompts that don't perform. Update ones where 
       "Create your first Claude prompt library. Pick your 5 most common tasks. Write a templatized prompt for each one using XML tags and clear variables. Tag each with the appropriate Claude model. Save them in a Notion page or folder. Use them for the next week and refine based on results.",
   },
   "03-1": {
+    title: "Role prompting and persona assignment",
+    duration: "5 min read",
+    content: `Role prompting is the single fastest way to improve your Claude output. By telling Claude who it is before you tell it what to do, you activate specific patterns in its training data that dramatically change the quality of the response.
+
+## How it works
+
+When you say "You are a senior sales copywriter with 15 years of experience in DTC brands," you're not just adding flavor text. You're filtering Claude's entire response through patterns associated with that expertise. Claude has been trained on text written by senior copywriters, and the role prompt surfaces those patterns.
+
+## The formula
+
+**Role + Context + Task + Constraints = Great output**
+
+Here's a basic example vs. an optimized one:
+
+**Basic:** "Write me a product description for running shoes."
+
+**With role prompting:** "You are a senior DTC copywriter who specializes in athletic brands. You write punchy, benefit-driven copy that converts. Write a product description for lightweight running shoes targeting marathon trainers. Keep it under 100 words. Focus on performance benefits, not features."
+
+The second version will be dramatically better. Every time.
+
+## Advanced persona stacking
+
+You can layer multiple traits into a single role:
+
+"You are a technical writer who also has deep experience in sales. You explain complex SaaS features in simple terms that highlight business value, not technical specs. Your writing style is direct, uses short sentences, and always ties features back to ROI."
+
+This gives Claude a very specific intersection of expertise to pull from.
+
+## Roles I use daily
+
+- **"You are a senior full-stack developer"** — for code review, debugging, architecture decisions
+- **"You are a direct-response copywriter"** — for sales pages, emails, ad copy
+- **"You are a business strategist who thinks in systems"** — for operational planning
+- **"You are a skeptical analyst"** — for finding flaws in ideas, plans, or proposals
+- **"You are a client success manager"** — for writing client-facing communications
+
+## Common mistakes
+
+1. **Too vague:** "You are an expert" — expert at what? Be specific.
+2. **Conflicting traits:** "You are creative and always follow rules exactly" — pick a direction.
+3. **Forgetting the role mid-conversation:** Reinforce the role if the conversation runs long.`,
+    takeaways: [
+      "Role prompting filters model output through specific expertise patterns from training data",
+      "Use the formula: Role + Context + Task + Constraints for consistently better output",
+      "Layer multiple traits for precise persona control at the intersection of skills",
+      "Be specific — 'senior DTC copywriter' beats 'expert writer' every time",
+    ],
+    exercise:
+      "Write 3 different role prompts for tasks you do regularly. For each, write the prompt without a role and with a role. Run both versions and compare. Save the best role prompts — you'll build a library of these by the end of this course.",
+  },
+  "03-2": {
+    title: "System prompts that shape behavior long-term",
+    duration: "6 min read",
+    content: `System prompts are the single most important piece of prompt engineering for anything you build in production. They run before every message, they set the rules, and they define who Claude is for the entire conversation. Get this right and every interaction is better. Get it wrong and you're fighting Claude constantly.
+
+## What system prompts do
+
+A system prompt is a special instruction that sits above the conversation. The model treats it as persistent context — it applies to every response. In the Claude API, it's the \`system\` parameter. In claude.ai, it's the project instructions or custom style. This is the most powerful lever you have for shaping Claude's behavior.
+
+This is where you put:
+- **Identity:** Who Claude is and how it behaves
+- **Rules:** What it should always or never do
+- **Context:** Background information it needs for every response
+- **Format:** Default output structure
+- **Tone:** Communication style
+
+## My system prompt framework
+
+\`\`\`
+IDENTITY: You are [specific role] for [specific context].
+
+RULES:
+- Always [behavior 1]
+- Never [behavior 2]
+- When uncertain, [default action]
+
+CONTEXT: [Background Claude needs]
+
+FORMAT: [Default output structure]
+
+TONE: [Communication style description]
+\`\`\`
+
+## Real example: Client-facing AI assistant
+
+"IDENTITY: You are a customer success assistant for a SaaS company called FlowOps that does workflow automation for agencies.
+
+RULES:
+- Always be helpful, direct, and solution-oriented
+- Never make promises about features that don't exist
+- Never share pricing — direct pricing questions to the sales team at sales@flowops.com
+- When you don't know something, say so and offer to connect them with the team
+- Keep responses under 150 words unless the user asks for detail
+
+CONTEXT: FlowOps integrates with Slack, Notion, and Google Workspace. Plans are Starter ($49/mo), Pro ($149/mo), and Enterprise (custom). Common issues: integration setup, workflow triggers not firing, permission errors.
+
+FORMAT: Lead with the answer, then explain. Use bullet points for multi-step solutions.
+
+TONE: Professional but warm. No corporate jargon. Like a smart coworker helping you out."
+
+## System prompt mistakes
+
+1. **Too long:** If your system prompt is 2,000 words, Claude will lose track of rules. Keep it under 500 words. (Claude's 200K context helps, but focused system prompts still perform better.)
+2. **Contradictory rules:** "Be concise" and "Provide thorough explanations" — pick one and specify when each applies.
+3. **No examples:** Rules without examples are ambiguous. Show what you mean.
+4. **Forgetting edge cases:** What should Claude do when it doesn't know the answer? When the user is angry? When asked something off-topic?`,
+    takeaways: [
+      "System prompts define identity, rules, context, format, and tone for every response",
+      "Use the framework: Identity + Rules + Context + Format + Tone",
+      "Keep system prompts under 500 words — too long and Claude loses track of rules",
+      "Always define edge cases: what to do when uncertain, off-topic, or facing angry users",
+    ],
+    exercise:
+      "Write a system prompt for a business use case you're working on (client chatbot, internal tool, content generator). Use the framework above. Test it with 10 different types of user messages including edge cases. Refine until it handles all of them correctly.",
+  },
+  "03-3": {
+    title: "Prompt chaining and multi-step workflows",
+    duration: "6 min read",
+    content: `Single prompts have limits. When a task is too complex for one prompt — and most real tasks are — you chain prompts together. Each prompt handles one step, and the output of one becomes the input for the next. This is how you build AI workflows that actually work in production.
+
+## Why chaining beats mega-prompts
+
+A 500-word mega-prompt that tries to do everything at once will fail. Claude loses focus, mixes up instructions, and produces inconsistent output. Chaining lets you:
+
+1. **Keep each prompt focused** — one task, one prompt
+2. **Validate between steps** — check output quality before proceeding
+3. **Use different settings per step** — temperature 0 for extraction, 0.7 for writing
+4. **Debug easily** — when something breaks, you know exactly which step failed
+5. **Swap Claude models per step** — Haiku for simple extraction, Sonnet for generation, Opus for complex analysis
+
+## Basic chain structure
+
+**Step 1: Extract** — Pull structured data from raw input
+**Step 2: Analyze** — Process the extracted data
+**Step 3: Generate** — Create the final output
+**Step 4: Validate** — Check the output against criteria
+
+## Real example: Client proposal generator
+
+I built this for a consulting business. Four prompts, chained together:
+
+**Prompt 1 (Extract):** "From this discovery call transcript, extract: client_name, company, industry, pain_points (array), budget_range, timeline, decision_makers"
+
+**Prompt 2 (Analyze):** "Given this client data: [output from prompt 1]. Identify the top 3 services we should propose, ranked by impact. For each, estimate ROI and implementation timeline."
+
+**Prompt 3 (Generate):** "Using this analysis: [output from prompt 2]. Write a professional proposal with sections: Executive Summary, Recommended Solutions, Timeline, Investment, Next Steps. Tone: confident, direct, value-focused."
+
+**Prompt 4 (Validate):** "Review this proposal: [output from prompt 3]. Check for: pricing consistency, timeline feasibility, tone appropriateness, missing sections. Flag any issues."
+
+## Implementation patterns
+
+**Sequential chain:** A -> B -> C -> D. Each step needs the previous output. Simple, reliable, easy to debug.
+
+**Parallel chain:** Run A and B simultaneously, combine outputs into C. Faster, but more complex to manage.
+
+**Conditional chain:** If A's output meets criteria X, go to B. Otherwise, go to C. Useful for routing different types of input.
+
+## Pro tips
+
+- **Save intermediate outputs.** If step 3 fails, you don't want to re-run steps 1 and 2.
+- **Add error handling.** What if Claude returns malformed JSON? Build a retry with clearer instructions.
+- **Log everything.** In production, you need to see every step's input and output for debugging.
+- **Start simple.** Build a 2-step chain first, get it working perfectly, then add steps.`,
+    takeaways: [
+      "Chain prompts when tasks are too complex for a single prompt — most real tasks are",
+      "Each step should have one job: extract, analyze, generate, or validate",
+      "Save intermediate outputs and add error handling for production reliability",
+      "Use different Claude models (Opus, Sonnet, Haiku) and temperature settings for different steps in the chain",
+    ],
+    exercise:
+      "Pick a multi-step task you do manually (proposal writing, content creation, research analysis). Break it into 3-4 discrete steps. Write a prompt for each step where the output feeds into the next. Test the full chain end-to-end and iterate on the weakest link.",
+  },
+  "03-4": {
+    title: "Building and organizing prompt libraries",
+    duration: "5 min read",
+    content: `By this point in the course, you've written dozens of prompts. Most people let those prompts die in chat history. Operators build libraries. A prompt library is your competitive advantage — a collection of tested, refined prompts you can deploy instantly for any task.
+
+## Why a prompt library matters
+
+Every great prompt you write is an asset. It took you time to get it right — the wording, the structure, the examples. Without a library, you rewrite prompts from scratch every time and get inconsistent results. With a library, you grab a proven template, fill in the variables, and get reliable output in seconds.
+
+## How to structure your library
+
+Organize by **function**, not by model:
+
+\`\`\`
+/prompts
+  /sales
+    cold-email-generator.md
+    proposal-writer.md
+    objection-handler.md
+  /content
+    blog-post-writer.md
+    social-media-repurposer.md
+    email-newsletter.md
+  /code
+    code-reviewer.md
+    bug-debugger.md
+    refactoring-assistant.md
+  /research
+    competitor-analysis.md
+    market-research.md
+  /operations
+    meeting-notes-processor.md
+    sop-generator.md
+    data-extractor.md
+\`\`\`
+
+## Template format
+
+Every prompt in your library should follow this format:
+
+\`\`\`markdown
+# [Prompt Name]
+**Purpose:** What this prompt does
+**Best model:** Which model works best
+**Temperature:** Recommended setting
+**Last updated:** Date
+
+## System Prompt
+[If applicable]
+
+## Prompt Template
+[The actual prompt with {{variables}} for customizable parts]
+
+## Example Input
+[A real example of filled-in variables]
+
+## Example Output
+[What good output looks like]
+
+## Notes
+[Edge cases, tips, what to watch for]
+\`\`\`
+
+## Variables make prompts reusable
+
+Instead of hardcoding specifics, use variables:
+
+"You are a {{role}} writing a {{content_type}} for {{audience}}. The topic is {{topic}}. Tone: {{tone}}. Length: {{word_count}} words."
+
+Now you fill in the blanks for each use case instead of rewriting the whole prompt.
+
+## Versioning your prompts
+
+When you improve a prompt, don't overwrite the old one. Version it:
+- v1: Original
+- v2: Added few-shot examples
+- v3: Refined based on edge case failures
+
+Keep notes on what changed and why. When a prompt breaks in production, you can roll back.
+
+## Building the habit
+
+After every significant AI interaction:
+1. **Did I create a new prompt that worked well?** Save it.
+2. **Did I refine an existing prompt?** Update the library.
+3. **Did I discover an edge case?** Add it to the notes.
+4. **Did I find a better model for this task?** Update the recommendation.
+
+## What your library becomes
+
+Over time, your prompt library becomes:
+- **A training resource** for team members — they use your proven prompts instead of starting from scratch
+- **An operational asset** for your business — standardized AI operations across the team
+- **A competitive moat** — your prompts are tuned to your specific business, clients, and workflows
+- **A product** — well-organized prompt libraries can be sold as part of consulting packages
+
+This is what separates someone who "uses Claude" from someone who **operates** with Claude. You're building systems, not typing into chatbots.`,
+    takeaways: [
+      "Every great prompt is a reusable asset — save, organize, and version them",
+      "Organize by function (sales, content, code) not by model",
+      "Use variables like {{audience}} and {{tone}} to make prompts instantly reusable",
+      "Your prompt library becomes a training resource, operational asset, and competitive moat",
+    ],
+    exercise:
+      "Create your prompt library right now. Make folders organized by function. Go through this course and save every prompt template you built during exercises. Add the metadata (purpose, model, temperature, notes) to each one. Commit to adding every good prompt you write from now on. This library will compound over time into one of your most valuable assets.",
+  },
+  "04-1": {
     title: "Calling the Claude API (Messages API, tool use)",
     duration: "6 min read",
     content: `You don't need to be a developer to call the Claude API. You need to understand what an API is and use tools that handle the technical parts.
@@ -554,7 +833,7 @@ Start with no-code tools. Once you're comfortable with the flow, you can move to
     exercise:
       "Sign up for Make.com (free tier). Create a scenario with one step: an HTTP module calling the Claude API. Set the endpoint to https://api.anthropic.com/v1/messages, add your API key in headers, specify claude-haiku-4-5-20250414 as the model, and write a simple prompt. Run it. You just called Claude's API. This is the foundation of everything we build from here.",
   },
-  "03-2": {
+  "04-2": {
     title: "Connecting Claude to Airtable, Notion, Sheets, Slack",
     duration: "5 min read",
     content: `This is where Claude goes from a chat tool to a business tool. When you connect Claude to the apps you already use, it can read, write, and act on real data automatically.
@@ -611,7 +890,7 @@ Chain multiple integrations together. Lead comes in (Sheets) -> Claude qualifies
     exercise:
       "Build your first real Claude integration: Google Sheets + Claude. Create a sheet with a 'Lead Name' and 'Company' column. Set up a Make.com scenario that watches for new rows, sends the data to Claude (via HTTP module to the Messages API) with a qualification prompt, and writes Claude's response back to a 'Score' column.",
   },
-  "03-3": {
+  "04-3": {
     title: "Webhooks and real-time triggers",
     duration: "5 min read",
     content: `Webhooks are how you make Claude-powered systems respond instantly to real-world events. Instead of checking every 5 minutes, your system reacts the moment something happens.
@@ -664,7 +943,7 @@ Developer pushes code -> webhook fires -> Claude reviews the changes using its c
     exercise:
       "Set up a webhook in Make.com. Create a Custom Webhook trigger, copy the URL. Use a tool like webhook.site to send a test payload to it. Watch the data arrive in Make.com in real time. Then add a Claude API step that processes the incoming data. This is the foundation for real-time Claude-powered systems.",
   },
-  "03-4": {
+  "04-4": {
     title: "Error handling and reliability",
     duration: "5 min read",
     content: `Your Claude automations will fail. APIs go down, data comes in weird formats, rate limits get hit. The difference between a toy and a production system is how it handles failure.
@@ -711,7 +990,7 @@ These four things catch 80% of issues. Add more sophistication as your systems m
     exercise:
       "Take an automation you've built (or the one from the previous exercise). Add three things: (1) a retry step if the Claude API call fails, (2) a Slack/email notification on error, (3) a validation check that Claude's output isn't empty before writing it back. These three changes make it production-ready.",
   },
-  "04-1": {
+  "05-1": {
     title: "Make, Zapier, n8n — when to use what",
     duration: "5 min read",
     content: `Three major automation platforms. Each has strengths. Here's how I think about them for building Claude-powered workflows.
@@ -760,7 +1039,7 @@ The platform doesn't matter as much as the thinking. The skill is in designing t
     exercise:
       "If you haven't already, create accounts on Make.com and Zapier (both have free tiers). Build the same simple Claude automation on both: 'When I get an email with subject line containing X, send the body to Claude for summarization, then Slack me the summary.' Compare the experience. Decide which feels more natural to you.",
   },
-  "04-2": {
+  "05-2": {
     title: "Building multi-step automated pipelines",
     duration: "6 min read",
     content: `Single-step automations are nice. Multi-step Claude-powered pipelines are where the real value is. This is how you build systems that handle entire workflows autonomously.
@@ -819,7 +1098,7 @@ One pipeline saves you 15 minutes of manual work. Ten pipelines save you 2.5 hou
     exercise:
       "Pick your most time-consuming repeating workflow. Map out every manual step on paper. Identify which steps can be automated with Claude and assign the right model tier (Haiku, Sonnet, Opus) to each. Build the first 3 steps as a pipeline in Make.com. Test it with real data.",
   },
-  "04-3": {
+  "05-3": {
     title: "Claude-powered email, CRM, and content workflows",
     duration: "5 min read",
     content: `These three workflows alone can transform a small operation. I run variations of all three using Claude across my businesses.
@@ -874,7 +1153,7 @@ Notice the pattern: human does the high-value part (the thinking, the decision, 
     exercise:
       "Pick one of these three workflows and build a basic version this week. Start with the email workflow — it's the easiest to set up and has the most immediate impact. Set up email -> Claude classification (Haiku) -> Claude draft response (Sonnet). Test with 5 real emails.",
   },
-  "04-4": {
+  "05-4": {
     title: "Testing and maintaining automations at scale",
     duration: "4 min read",
     content: `Building Claude automations is the fun part. Keeping them running is the real job. Here's how to not let your systems break silently while you sleep.
@@ -936,7 +1215,317 @@ This documentation takes 5 minutes per automation and saves hours of debugging l
     exercise:
       "Audit your current automations. For each one: give it a clear name (include the Claude model), write a one-line description of what it does, and check the last 10 runs for errors. Fix anything broken. Check your Anthropic API usage dashboard. Set a recurring calendar reminder for weekly automation reviews.",
   },
-  "05-1": {
+  "06-1": {
+    title: "Where AI actually makes businesses money",
+    duration: "6 min read",
+    content: `Let's cut through the noise. Every tech company is screaming about AI, but 90% of what you see is hype designed to sell software subscriptions. What I'm going to show you is where Claude — specifically — puts real dollars on your bottom line.
+
+## The three revenue levers
+
+AI makes businesses money in exactly three ways:
+
+1. **Cost reduction** — Replace or augment expensive manual labor. A customer support team of 5 handling 200 tickets/day can handle 800 with Claude doing first-pass responses and routing. That's not a 4x headcount reduction — it's a 4x capacity increase without hiring.
+2. **Revenue acceleration** — Close more deals, faster. Claude can personalize outreach to 500 prospects in the time your sales rep writes 5 emails. Same quality, 100x the volume. One client went from 30 cold emails/day to 500 — booked 3x more meetings in month one.
+3. **Intelligence advantage** — Make better decisions with data you already have. Most businesses are sitting on goldmines of customer data, sales records, and market intel they never analyze. Claude reads 200 pages in seconds and gives you a structured summary your team would take a week to produce.
+
+## Where the real money is
+
+Here's what I've seen generate the fastest ROI across businesses I've worked with:
+
+- **Customer support automation:** 40-70% ticket deflection. At $15/ticket fully loaded cost, a business doing 1,000 tickets/month saves $6,000-$10,500/month.
+- **Sales outreach personalization:** 2-5x increase in response rates. If your pipeline is $500K and you double your meeting-to-close ratio, that's real money.
+- **Document processing:** Contracts, invoices, applications — anything your team reads and extracts data from. 10 hours/week of manual review becomes 30 minutes.
+- **Content production:** Blog posts, social media, email sequences, SOPs. A marketing team producing 4 blog posts/month can produce 16 without adding headcount.
+
+## Why Claude specifically
+
+I'm not telling you to use AI generically. I'm telling you to use Claude because:
+
+- **200K token context window** — Feed it your entire operations manual, product catalog, or customer database. It reads and reasons over the whole thing.
+- **Tool use** — Claude doesn't just chat. It can call your APIs, search your databases, and take actions in your systems.
+- **Vision** — Upload screenshots, photos of whiteboards, scanned documents. Claude reads and processes images natively.
+- **Reliability** — Claude follows instructions precisely. When you build business systems, you need consistency, not creativity.
+
+## The uncomfortable truth
+
+Most businesses that "tried AI" spent $20/month on ChatGPT, had one person play with it for a week, and declared it "not ready." That's like buying a CRM and never importing your contacts. The tool isn't the problem — the implementation is.
+
+This course fixes that.`,
+    takeaways: [
+      "AI drives revenue through three levers: cost reduction, revenue acceleration, and intelligence advantage",
+      "The highest-ROI opportunities are customer support automation, sales personalization, document processing, and content production",
+      "Claude's 200K context window, tool use, and vision capabilities make it uniquely suited for business operations",
+      "Most AI failures aren't tool problems — they're implementation problems",
+    ],
+    exercise:
+      "List every repetitive task in your business that involves reading, writing, or analyzing information. For each one, estimate hours spent per week and fully loaded cost. Rank them by cost. Your top 3 are where Claude starts.",
+  },
+  "06-2": {
+    title: "The AI audit: finding your highest-ROI opportunities",
+    duration: "7 min read",
+    content: `Before you automate anything, you need to know where the money actually is. I've seen businesses waste months automating the wrong things — building a fancy AI chatbot when their real bottleneck was proposal generation. This lesson gives you the exact audit framework I use with every client.
+
+## The 4-quadrant opportunity matrix
+
+Map every potential AI opportunity on two axes:
+
+**X-axis: Implementation difficulty** (Easy to Hard)
+**Y-axis: Business impact** (Low to High)
+
+- **Quadrant 1 (Easy + High Impact):** Start here. These are your quick wins. Example: Using Claude to draft client emails from bullet points. Takes 30 minutes to set up, saves 5+ hours/week.
+- **Quadrant 2 (Hard + High Impact):** Plan these for months 2-3. Example: Building a Claude-powered customer support system with your knowledge base. Takes weeks to build, but saves thousands monthly.
+- **Quadrant 3 (Easy + Low Impact):** Do these when you have downtime. Example: Using Claude to summarize meeting notes. Nice to have, not transformative.
+- **Quadrant 4 (Hard + Low Impact):** Skip entirely. Example: Building an AI-powered internal wiki nobody will use.
+
+## The audit process (step by step)
+
+### Step 1: Department mapping
+
+Walk through each function in your business and list every task that involves:
+- **Reading and processing information** (emails, documents, data, reports)
+- **Writing and generating content** (emails, proposals, reports, social media)
+- **Analyzing and deciding** (evaluating options, scoring leads, prioritizing work)
+- **Repeating patterns** (same email to different people, same report every week)
+
+### Step 2: Time and cost quantification
+
+For each task, document:
+- Who does it (role and hourly cost)
+- How long it takes per occurrence
+- How often it happens (daily, weekly, monthly)
+- Total monthly cost: (hours x frequency x hourly rate)
+
+### Step 3: AI feasibility scoring
+
+Rate each task 1-5 on:
+- **Text-heavy:** Does it primarily involve reading or writing? (Higher = better fit for Claude)
+- **Pattern-based:** Is it the same general process each time? (Higher = easier to automate)
+- **Error tolerance:** How bad is a mistake? (Lower tolerance = needs human oversight)
+- **Volume:** How often does this happen? (Higher = bigger ROI)
+
+### Step 4: Prioritize ruthlessly
+
+Multiply your monthly cost by your feasibility score. Sort descending. That's your implementation order.
+
+## Real example: $2M services company
+
+I ran this audit for a professional services firm. Here's what we found:
+
+| Task | Monthly Cost | Feasibility | Priority Score |
+|------|-------------|-------------|----------------|
+| Proposal writing | $4,200 | 4.5 | 18,900 |
+| Client email responses | $3,100 | 4.0 | 12,400 |
+| Weekly reporting | $2,800 | 4.8 | 13,440 |
+| Lead qualification | $2,400 | 3.5 | 8,400 |
+| Social media content | $1,800 | 4.2 | 7,560 |
+
+Proposal writing was the clear winner. We built a Claude-powered system that took their average proposal time from 6 hours to 45 minutes. At 15 proposals/month, that freed up 75+ hours — roughly one full-time employee's worth of capacity.
+
+## The audit deliverable
+
+Your output should be a simple spreadsheet with: Task, Department, Monthly Cost, Feasibility Score, Priority Score, Recommended Timeline (Month 1, 2, or 3).
+
+Don't overcomplicate this. The goal is to have a clear, prioritized list within 2-3 hours of work.`,
+    takeaways: [
+      "Use the 4-quadrant matrix (difficulty vs. impact) to categorize every AI opportunity before building anything",
+      "Quantify every task by who does it, how long it takes, how often it happens, and total monthly cost",
+      "Score each opportunity on text-heaviness, pattern-basis, error tolerance, and volume to determine AI feasibility",
+      "Your audit deliverable is a prioritized spreadsheet that becomes your implementation roadmap",
+    ],
+    exercise:
+      "Run the full AI audit on your business or one department. Create the spreadsheet with at least 10 tasks. Score each one and rank them. Share the top 3 with your team and get their input on feasibility — they'll know the edge cases you don't.",
+  },
+  "06-3": {
+    title: "Claude-powered customer support that scales",
+    duration: "7 min read",
+    content: `Customer support is where most businesses should start with Claude. The ROI is immediate, the use case is straightforward, and the impact is measurable from day one. I've built support systems that handle 70% of inbound tickets without a human touching them. Here's exactly how.
+
+## The architecture
+
+You're not building a chatbot. You're building a tiered support system:
+
+**Tier 1: Claude handles directly (60-70% of tickets)**
+- FAQ-type questions with clear answers
+- Order status, account info, basic troubleshooting
+- Password resets, billing inquiries, return policies
+- Anything covered by your knowledge base
+
+**Tier 2: Claude drafts, human approves (20-25% of tickets)**
+- Complex issues requiring judgment
+- Complaints with emotional context
+- Requests outside standard policies
+- Claude drafts the response, human edits and sends
+
+**Tier 3: Human handles, Claude assists (5-10% of tickets)**
+- Escalations, VIP clients, legal/compliance issues
+- Claude provides context summary and suggested approach
+- Human runs the conversation with Claude as copilot
+
+## Building the knowledge base
+
+Claude is only as good as the information you feed it. Your knowledge base needs:
+
+**Product/service documentation**
+- Every product, service, feature, and pricing detail
+- Step-by-step troubleshooting guides
+- Known issues and workarounds
+
+**Policy documentation**
+- Return/refund policies with exact conditions
+- Shipping policies, timelines, exceptions
+- Warranty terms, service level agreements
+
+**Tone and brand guidelines**
+- How you talk to customers (examples of good and bad responses)
+- What you never say (competitors' names, internal jargon, promises you can't keep)
+- Escalation triggers — what words or situations mean "get a human immediately"
+
+Claude's 200K context window means you can feed it ALL of this in a single system prompt. No chunking, no retrieval systems, no complexity. Just one massive context block.
+
+## The prompt architecture
+
+Here's the structure I use for every support system:
+
+\`\`\`
+System prompt:
+1. Role definition (who Claude is, what company it represents)
+2. Knowledge base (complete product/policy documentation)
+3. Response rules (tone, format, length constraints)
+4. Escalation rules (when to hand off to human)
+5. What to never do (never make promises, never share internal info)
+\`\`\`
+
+The key insight: **Be explicit about what Claude should NOT do.** Most support bots fail because they try to help too much — making up answers, offering discounts they can't authorize, or handling situations they should escalate.
+
+## Handling the edge cases
+
+**Angry customers:** Claude should acknowledge the emotion first, then solve the problem. Include examples in your prompt: "When a customer expresses frustration, always start with 'I completely understand your frustration, and I want to make this right.' Never be defensive or dismissive."
+
+**Questions Claude can't answer:** Train it to say "I want to make sure you get the best answer on this — let me connect you with a specialist who can help right away" instead of making something up.
+
+**Repeat contacts:** If your system can access ticket history, include previous interactions in Claude's context. "Customer contacted 3 times this week about the same issue" changes how Claude should respond.
+
+## Measuring success
+
+Track these weekly:
+- **Deflection rate:** % of tickets fully handled by Claude without human intervention
+- **Resolution time:** Average time from ticket open to close (should drop 50%+)
+- **Customer satisfaction:** CSAT or NPS on AI-handled vs. human-handled tickets
+- **Escalation rate:** % of tickets Claude sends to humans (should be 25-35%)
+- **Cost per ticket:** Total support cost / total tickets (your north star metric)
+
+## The numbers
+
+A typical implementation:
+- **Before:** 5 support agents, 200 tickets/day, $15/ticket fully loaded, $3,000/day
+- **After:** 2 support agents + Claude, 200 tickets/day, $4.50/ticket, $900/day
+- **Monthly savings:** $63,000
+- **Claude API cost:** ~$300/month
+- **Net savings:** $62,700/month
+
+Those aren't theoretical numbers. That's what properly implemented AI support looks like.`,
+    takeaways: [
+      "Build a tiered system: Claude handles 60-70% directly, drafts 20-25% for human approval, assists humans on the remaining 5-10%",
+      "Feed Claude your complete knowledge base, policies, and brand guidelines in the 200K context window — no complex retrieval needed",
+      "Be explicit about what Claude should NOT do — over-helpfulness causes more problems than under-helpfulness",
+      "Track deflection rate, resolution time, CSAT, escalation rate, and cost per ticket weekly",
+    ],
+    exercise:
+      "Collect your 50 most recent customer support tickets. Categorize each as Tier 1 (Claude handles), Tier 2 (Claude drafts), or Tier 3 (human handles). Calculate your current deflection potential. Then write the system prompt for Tier 1 — include your real product info, real policies, and real brand voice.",
+  },
+  "06-4": {
+    title: "AI lead scoring and qualification",
+    duration: "7 min read",
+    content: `Most businesses treat every lead the same — same follow-up, same timeline, same effort. That's a massive waste. Some leads are 10x more likely to close than others, and Claude can tell you which ones before your sales team spends a minute on them.
+
+## Why traditional lead scoring fails
+
+Traditional lead scoring uses basic rules: downloaded a whitepaper = 5 points, visited pricing page = 10 points, opened an email = 2 points. The problem? These rules are:
+
+- **Static** — They don't adapt to changing buyer behavior
+- **Surface-level** — They measure actions, not intent
+- **Binary** — A CEO and an intern both get 10 points for visiting the pricing page
+
+Claude does something fundamentally different. It reads the FULL context — the prospect's website, their LinkedIn activity, their email history, their company size — and makes a judgment call the way your best sales rep would.
+
+## Building a Claude-powered lead scoring system
+
+### The data Claude needs
+
+For each lead, feed Claude:
+1. **Company info:** Industry, size, revenue (estimate), growth stage, tech stack
+2. **Contact info:** Title, role, department, LinkedIn summary
+3. **Engagement data:** What pages they visited, emails opened, content downloaded
+4. **Communication history:** Any emails, form submissions, or chat transcripts
+5. **Firmographic data:** Location, number of employees, funding stage
+
+### The scoring prompt
+
+Here's the framework I use:
+
+"You are a senior sales analyst at [company]. Analyze this lead and score them 1-100 on likelihood to close within 90 days. Consider:
+- **Budget signal (25 points):** Company size, revenue indicators, role authority suggest they can afford our solution ($X-$Y range)
+- **Need signal (25 points):** Their industry, current tools, and pain points align with what we solve
+- **Timeline signal (25 points):** Engagement recency and frequency suggest active buying. Multiple visits in 7 days scores higher than 1 visit in 30 days
+- **Fit signal (25 points):** Company profile matches our ideal customer (industry, size, growth stage)
+
+Output: Score (1-100), confidence level (high/medium/low), top 3 scoring factors, recommended next action, and any red flags."
+
+### Making it operational
+
+Run this scoring on every new lead as they come in. Set up three tiers:
+
+- **Hot (75-100):** Route to senior sales rep immediately. Personalized outreach within 2 hours.
+- **Warm (40-74):** Enter nurture sequence with Claude-personalized content. Sales follow-up within 24 hours.
+- **Cool (1-39):** Automated nurture only. No sales time invested until score increases.
+
+## Lead qualification with Claude
+
+Beyond scoring, Claude can qualify leads through automated conversations:
+
+**Website chat qualification:**
+Claude asks smart qualifying questions in your website chat:
+- "What's driving your interest in [product/service] today?" (Need)
+- "Are you evaluating solutions for a specific project or exploring options?" (Timeline)
+- "How many people would be using this?" (Size/budget indicator)
+- "What's your timeline for making a decision?" (Urgency)
+
+Based on answers, Claude scores and routes in real-time. Hot leads get transferred to a human immediately. Warm leads get booked into the next available meeting slot. Cool leads get a resource and enter the nurture sequence.
+
+**Email qualification:**
+When leads respond to outreach, Claude analyzes their response and classifies it:
+- Positive intent with buying signals: "Upgrade to Hot, notify sales"
+- Interested but early stage: "Keep at Warm, send case study"
+- Information gathering only: "Downgrade to Cool, add to newsletter"
+- Not interested: "Remove from active sequences"
+
+## The compound effect
+
+Here's where it gets powerful. Claude doesn't just score leads once — it re-scores them continuously based on new data:
+
+- Lead visits pricing page twice in one week: Score increases by 15
+- Lead downloads case study in their industry: Score increases by 10
+- Lead goes silent for 30 days: Score decreases by 20
+- Lead responds to nurture email: Re-evaluate all signals
+
+Your sales team always works on the highest-probability leads. No more gut feelings, no more working bad leads because they were enthusiastic on one call.
+
+## Real impact
+
+A B2B services company I worked with implemented Claude-powered lead scoring:
+- **Before:** Reps spent equal time on all leads. 8% close rate.
+- **After:** Reps prioritized by AI score. Hot leads: 24% close rate. Overall: 15% close rate.
+- **Revenue impact:** Same team, same effort, 87% more closed deals.`,
+    takeaways: [
+      "Score leads on four dimensions: budget signal, need signal, timeline signal, and fit signal — each worth 25 points",
+      "Route Hot (75-100) to immediate personalized outreach, Warm (40-74) to nurture sequences, Cool (1-39) to automated-only",
+      "Use Claude in website chat and email responses for real-time qualification based on buying signals",
+      "Re-score leads continuously as new data comes in — scores should be dynamic, not static snapshots",
+    ],
+    exercise:
+      "Take your last 20 closed deals and 20 lost deals. Feed each one's data to Claude with the scoring framework. Check if Claude would have scored your closed deals higher than your lost deals. If the separation is clear, your scoring model works. If not, adjust the signal weights until it accurately predicts your historical outcomes.",
+  },
+  "07-1": {
     title: "What agents are and how to build them with Claude",
     duration: "6 min read",
     content: `A Claude agent is Claude with the ability to take actions, not just generate text. Instead of you copying output from claude.ai and pasting it somewhere, the agent does it itself.
@@ -993,7 +1582,7 @@ A human doing this: 3-4 hours. The Claude agent: 15 minutes.
     exercise:
       "Design a Claude agent on paper (don't build it yet). Pick a task you do manually that involves multiple steps and tools. Write out: (1) the goal, (2) which Claude model to use, (3) the tools it would need (with descriptions), (4) the step-by-step logic it would follow. This is your agent blueprint.",
   },
-  "05-2": {
+  "07-2": {
     title: "Tool use: giving Claude the ability to act",
     duration: "5 min read",
     content: `Tools are what make Claude agents useful. Without tools, a Claude agent is just a chatbot. With the right tools, it can do anything you can do on a computer.
@@ -1076,7 +1665,7 @@ Start with read-only tools. Add write tools carefully with validation and approv
     exercise:
       "For the agent you designed in the previous exercise, define 3-5 tools as JSON schemas. For each tool, write: the name, a clear description, the input_schema with parameter types, and what it returns. This is exactly how you'd implement them in Claude's tool use API.",
   },
-  "05-3": {
+  "07-3": {
     title: "Multi-agent systems and orchestration",
     duration: "5 min read",
     content: `One Claude agent is powerful. Multiple Claude agents working together is transformative. This is how you build systems that handle complex operations end-to-end.
@@ -1133,7 +1722,7 @@ Start simple. Build one agent. Get it working. Then add a second agent that hand
     exercise:
       "Take the agent you've been designing. Identify which parts could be handled by separate specialized Claude agents. Draw the architecture: which agent does what, which Claude model each uses, what data flows between them, and which pattern (sequential, supervisor, parallel) fits best.",
   },
-  "05-4": {
+  "07-4": {
     title: "Real business agent builds: research, outreach, ops",
     duration: "6 min read",
     content: `Theory is over. Here are three Claude agent builds I use in production. Study the architecture, then build your own version.
@@ -1213,7 +1802,7 @@ Complete these three builds and you've earned your shot at a real paid project f
     exercise:
       "Build the Company Research Agent. This is your capstone for the agents module. Set up the tools (web search API, website scraper), write the system prompt, build the flow using Claude's tool use API or Make.com, and test it with 5 real companies. Save the briefs. This is the skill that gets you paid projects.",
   },
-  "06-1": {
+  "08-1": {
     title: "Putting Claude systems into production",
     duration: "5 min read",
     content: `Building a Claude system that works in testing is step one. Making it work reliably at scale, every day, without you babysitting it — that's the real skill.
@@ -1269,7 +1858,7 @@ A system only you understand is a liability, not an asset.`,
     exercise:
       "Take your best Claude automation and run it through the production checklist. Test with 5 edge cases. Add error handling if it's missing. Calculate your monthly Anthropic API cost at current volume (use console.anthropic.com for actual rates). Write a one-page doc explaining what it does and how to maintain it.",
   },
-  "06-2": {
+  "08-2": {
     title: "Monitoring, logging, and alerting",
     duration: "4 min read",
     content: `You can't fix what you can't see. Monitoring is how you know your Claude systems are healthy before your customers tell you they're not.
@@ -1326,7 +1915,7 @@ This 5-minute habit catches problems before they compound.`,
     exercise:
       "Add logging to your most important Claude automation. Create a Google Sheet or Airtable base that captures: timestamp, Claude model used, input summary, output summary, token count, estimated cost, success/fail. Set up a simple Slack alert that fires if any run fails. Review your first week of logs and identify cost optimization opportunities.",
   },
-  "06-3": {
+  "08-3": {
     title: "Handing off AI systems to a team",
     duration: "4 min read",
     content: `You built it. Now someone else needs to run it. This is the difference between being an operator and being a bottleneck.
@@ -1390,7 +1979,7 @@ Build yourself out of every system. Your value is in designing and building new 
     exercise:
       "Pick your best Claude automation. Write the one-page handoff document covering all 5 sections. Include the Claude prompts used and which model each step calls. Walk someone through it (a team member, friend, or even record a Loom video). If they can understand and operate it from your doc + walkthrough, it's ready for handoff.",
   },
-  "06-4": {
+  "08-4": {
     title: "Iterating and improving over time",
     duration: "4 min read",
     content: `Your first version of any Claude system is never the best version. The operators who win are the ones who consistently improve their systems based on real data.
@@ -1511,6 +2100,41 @@ export const aiAutomationQuizzes: CourseQuizzes = {
     ],
   },
   "03": {
+    title: "Advanced Prompting Quiz",
+    questions: [
+      {
+        type: "mc",
+        question:
+          'You need Claude to write sales copy for a DTC skincare brand. Which prompt follows the Role + Context + Task + Constraints formula correctly?',
+        options: [
+          '"Write good sales copy for skincare products that converts well"',
+          '"You are a marketing expert. Write copy."',
+          '"You are a senior DTC copywriter specializing in skincare. Write a 100-word product description for an anti-aging serum targeting women 35-50. Tone: confident, benefit-driven. Focus on results, not ingredients."',
+          '"Act like you know about skincare and write something persuasive about our new product"',
+        ],
+        correctIndex: 2,
+      },
+      {
+        type: "mc",
+        question:
+          "You want Claude to classify customer support tickets into categories. Zero-shot prompting gives inconsistent results. What technique would most improve accuracy?",
+        options: [
+          "Increase the temperature to give the model more creative flexibility",
+          "Add few-shot examples showing 3-5 correctly classified tickets before asking it to classify new ones",
+          "Make the prompt shorter so the model focuses on the core task",
+          "Switch to Opus since Sonnet cannot handle classification well",
+        ],
+        correctIndex: 1,
+      },
+      {
+        type: "short",
+        question:
+          "Describe how chain-of-thought prompting works and give a specific example of a business task where forcing Claude to reason step-by-step would produce better output than a direct answer. How does Claude's extended thinking feature relate to this?",
+        minLength: 50,
+      },
+    ],
+  },
+  "04": {
     title: "Claude API & Integrations Quiz",
     questions: [
       {
@@ -1545,7 +2169,7 @@ export const aiAutomationQuizzes: CourseQuizzes = {
       },
     ],
   },
-  "04": {
+  "05": {
     title: "Automation Workflows Quiz",
     questions: [
       {
@@ -1580,7 +2204,42 @@ export const aiAutomationQuizzes: CourseQuizzes = {
       },
     ],
   },
-  "05": {
+  "06": {
+    title: "AI for Business Quiz",
+    questions: [
+      {
+        type: "mc",
+        question:
+          "According to the AI audit framework, how should you prioritize AI opportunities?",
+        options: [
+          "Start with the most technically impressive use case to build excitement",
+          "Multiply monthly cost by AI feasibility score and sort descending",
+          "Begin with the easiest tasks regardless of business impact",
+          "Focus on whatever the CEO is most interested in",
+        ],
+        correctIndex: 1,
+      },
+      {
+        type: "mc",
+        question:
+          "In a Claude-powered tiered support system, what percentage of tickets should Claude handle directly without human intervention?",
+        options: [
+          "90-95% — humans should only handle legal issues",
+          "60-70% — FAQ-type questions, order status, basic troubleshooting",
+          "30-40% — Claude should primarily assist humans rather than handle tickets directly",
+          "10-20% — AI should only handle the simplest requests",
+        ],
+        correctIndex: 1,
+      },
+      {
+        type: "short",
+        question:
+          "Describe the three revenue levers where AI makes businesses money and explain how to run an AI audit to identify the highest-ROI opportunities in a business.",
+        minLength: 50,
+      },
+    ],
+  },
+  "07": {
     title: "Claude Agents Quiz",
     questions: [
       {
@@ -1615,7 +2274,7 @@ export const aiAutomationQuizzes: CourseQuizzes = {
       },
     ],
   },
-  "06": {
+  "08": {
     title: "Deploy & Operate Quiz",
     questions: [
       {
