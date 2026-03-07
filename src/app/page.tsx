@@ -29,8 +29,8 @@ function Hero() {
 
         <div className="hero-animate hero-delay-3 mt-10 flex flex-col md:flex-row md:items-end md:justify-between gap-8">
           <p className="text-text-secondary text-lg md:text-xl leading-relaxed max-w-[420px]">
-            AI, sales, automation, operations &mdash;
-            every skill I use to run real businesses, taught to the right people.
+            Websites that make money. AI systems that replace manual work.
+            Sales teams that close. I build it &mdash; then I teach it.
           </p>
           <div>
             <GlowLink href="/courses">
@@ -123,7 +123,7 @@ function Statement() {
     <section className="section-gap">
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
         <ScrollHighlightText
-          text="This isn't a course from someone who read about AI. This is from someone who runs on it every day."
+          text="I build websites, AI systems, and sales operations for local businesses, real estate agents, and brands. Everything I teach comes from what I deliver to real clients."
           className="text-[clamp(1.8rem,4vw,3.5rem)] font-semibold tracking-[-0.04em] leading-[1.15] max-w-[700px]"
         />
       </div>
@@ -197,7 +197,7 @@ function About() {
               <span className="text-text-secondary">An operator.</span>
             </h2>
             <ScrollHighlightText
-              text="Started with nothing. Sold websites for a few hundred bucks. Now running AI-powered sales teams and working with companies doing billions in revenue. Everything I teach, I lived."
+              text="Started with nothing. Sold websites for a few hundred bucks. Now building AI systems and sales operations for local service businesses, real estate agents, and fashion brands. Everything I teach, I lived."
               className="text-lg leading-relaxed max-w-[500px]"
             />
             <Link href="/about" className="inline-flex items-center gap-2 text-accent text-[14px] font-mono font-medium hover:text-white border-b border-accent/40 hover:border-white pb-0.5 transition-all duration-300 mt-10 group">
@@ -238,7 +238,7 @@ function Results() {
           {[
             { num: "40+", label: "Hours saved per week", desc: "What AI systems replace when you stop doing everything manually." },
             { num: "90", label: "Days to results", desc: "From zero to closing enterprise clients. Speed is the advantage." },
-            { num: "$10K+", label: "Monthly value unlocked", desc: "Time saved × what that time is worth. That's the real ROI." },
+            { num: "$20K+", label: "Revenue generated for clients", desc: "Websites, AI systems, and sales ops that actually make money." },
           ].map((stat, i) => (
             <RevealOnScroll key={stat.label} delay={i + 1}>
               <div className={`py-8 md:py-0 md:pr-12 ${i < 2 ? "md:border-r border-border" : ""} ${i > 0 ? "md:pl-12" : ""}`}>
@@ -364,7 +364,7 @@ function Apply() {
               <span className="gradient-text-blue">operate?</span>
             </h2>
             <p className="text-text-secondary text-lg mb-12">
-              Start with the quiz or browse the courses.
+              Looking for closers, sales reps, system creators, and operators who work as a team.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <GlowLink href="/quiz">
