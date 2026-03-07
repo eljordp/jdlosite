@@ -38,7 +38,7 @@ export default function AboutPage() {
                 <span className="text-text-secondary">An operator.</span>
               </h1>
               <p className="text-text-secondary text-xl leading-relaxed max-w-[480px] hero-animate hero-delay-3">
-                Built AI systems that save 40+ hours a week. Closed enterprise clients in under 90 days. This is what moving with urgency looks like.
+                Went from selling websites for a couple hundred bucks to closing enterprise clients in under 90 days. This is what moving with urgency looks like.
               </p>
             </div>
             {/* Photo right */}
