@@ -25,27 +25,39 @@ export default function MyCoursesPage() {
 
   useEffect(() => {
     const supabase = createClient();
-    supabase.auth.getUser().then(({ data }) => {
+    supabase.auth.getUser().then(async ({ data }) => {
       if (!data.user) {
         router.push("/sign-in");
         return;
       }
 
-      fetch("/api/my-courses")
-        .then((r) => r.json())
-        .then((data) => {
-          const entries: CourseEntry[] = data.courses ?? [];
-          const display: DisplayCourse[] = entries
-            .map((e) => {
-              const meta = courses.find((c) => c.slug === e.course);
-              if (!meta) return null;
-              return { ...e, title: meta.title, tagline: meta.tagline };
-            })
-            .filter(Boolean) as DisplayCourse[];
-          setUserCourses(display);
-          setLoaded(true);
+      const email = data.user.email?.toLowerCase();
+      if (!email) {
+        setLoaded(true);
+        return;
+      }
+
+      // Query access_codes directly — RLS allows SELECT for anyone
+      const { data: rows } = await supabase
+        .from("access_codes")
+        .select("code, course_slug, created_at")
+        .eq("email", email)
+        .order("created_at", { ascending: true });
+
+      const entries: CourseEntry[] = (rows ?? []).map((r: Record<string, string>) => ({
+        code: r.code,
+        course: r.course_slug,
+        created: r.created_at,
+      }));
+      const display: DisplayCourse[] = entries
+        .map((e) => {
+          const meta = courses.find((c) => c.slug === e.course);
+          if (!meta) return null;
+          return { ...e, title: meta.title, tagline: meta.tagline };
         })
-        .catch(() => setLoaded(true));
+        .filter(Boolean) as DisplayCourse[];
+      setUserCourses(display);
+      setLoaded(true);
     });
   }, [router]);
 

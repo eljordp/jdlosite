@@ -19,34 +19,36 @@ export default function ProfilePage() {
 
   useEffect(() => {
     const supabase = createClient();
-    supabase.auth.getUser().then(({ data }) => {
+    supabase.auth.getUser().then(async ({ data }) => {
       if (!data.user) {
         router.push("/sign-in");
         return;
       }
 
-      fetch("/api/profile")
-        .then((r) => r.json())
-        .then((data) => {
-          if (data.profile) {
-            setProfile(data.profile);
-            setDisplayName(data.profile.display_name);
-            setBio(data.profile.bio ?? "");
-          }
-          setLoaded(true);
-        })
-        .catch(() => setLoaded(true));
+      // Load profile directly via Supabase client
+      const { data: profileData } = await supabase
+        .from("profiles")
+        .select("*")
+        .eq("id", data.user.id)
+        .single();
 
-      // Fetch stats
-      fetch("/api/my-courses")
-        .then((r) => r.json())
-        .then((data) => {
-          setStats((s) => ({
-            ...s,
-            courses: (data.courses ?? []).length,
-          }));
-        })
-        .catch(() => {});
+      if (profileData) {
+        const p = profileData as Profile;
+        setProfile(p);
+        setDisplayName(p.display_name ?? "");
+        setBio(p.bio ?? "");
+      }
+      setLoaded(true);
+
+      // Load course count for stats
+      const email = data.user.email?.toLowerCase();
+      if (email) {
+        const { data: rows } = await supabase
+          .from("access_codes")
+          .select("code")
+          .eq("email", email);
+        setStats((s) => ({ ...s, courses: (rows ?? []).length }));
+      }
     });
   }, [router]);
 
@@ -54,14 +56,24 @@ export default function ProfilePage() {
     setSaving(true);
     setSaved(false);
     try {
-      const res = await fetch("/api/profile", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ display_name: displayName, bio }),
-      });
-      const data = await res.json();
-      if (data.profile) {
-        setProfile(data.profile);
+      const supabase = createClient();
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) return;
+
+      const updates: Record<string, string> = {};
+      if (displayName.trim()) updates.display_name = displayName.trim().slice(0, 50);
+      if (bio !== undefined) updates.bio = bio.trim().slice(0, 500);
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const { data } = await (supabase as any)
+        .from("profiles")
+        .update(updates)
+        .eq("id", user.id)
+        .select()
+        .single();
+
+      if (data) {
+        setProfile(data as Profile);
         setSaved(true);
         setTimeout(() => setSaved(false), 2000);
       }
