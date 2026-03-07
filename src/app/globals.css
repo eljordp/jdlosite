@@ -19,12 +19,14 @@
 
 html {
   scroll-behavior: smooth;
+  cursor: none;
 }
 
 body {
   background-color: var(--color-bg);
   color: var(--color-text);
   overflow-x: hidden;
+  cursor: none;
 }
 
 /* ── Film grain ── */
@@ -262,7 +264,7 @@ details summary { list-style: none; }
 
 /* ── Hide default cursor everywhere (fine-pointer only) ── */
 @media (pointer: fine) {
-  *, *::before, *::after {
+  html, body, *, *::before, *::after {
     cursor: none !important;
   }
 }
