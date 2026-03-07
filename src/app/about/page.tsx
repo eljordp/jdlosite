@@ -14,9 +14,9 @@ const milestones = [
 ];
 
 const stats = [
-  { value: "$0", label: "What it started with", sub: "No connections. No playbook. No safety net." },
+  { value: "40+", label: "Hours saved per week", sub: "What AI systems replace when you stop doing everything manually." },
   { value: "90 days", label: "Zero to enterprise clients", sub: "DHL. P.F. Chang's. From scratch." },
-  { value: "$92B+", label: "Revenue of companies we've closed", sub: "The room you end up in when you move fast." },
+  { value: "$10K+", label: "Monthly value unlocked", sub: "Time saved × what that time is worth. That's the real ROI." },
 ];
 
 export default function AboutPage() {

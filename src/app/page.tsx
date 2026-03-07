@@ -236,9 +236,9 @@ function Results() {
 
         <div className="grid md:grid-cols-3 gap-0">
           {[
-            { num: "$0", label: "Starting capital", desc: "No connections. No playbook. No safety net." },
-            { num: "90", label: "Days to enterprise", desc: "Zero to closing DHL and P.F. Chang's." },
-            { num: "$92B+", label: "Client revenue", desc: "Combined revenue of companies we've closed." },
+            { num: "40+", label: "Hours saved per week", desc: "What AI systems replace when you stop doing everything manually." },
+            { num: "90", label: "Days to results", desc: "From zero to closing enterprise clients. Speed is the advantage." },
+            { num: "$10K+", label: "Monthly value unlocked", desc: "Time saved × what that time is worth. That's the real ROI." },
           ].map((stat, i) => (
             <RevealOnScroll key={stat.label} delay={i + 1}>
               <div className={`py-8 md:py-0 md:pr-12 ${i < 2 ? "md:border-r border-border" : ""} ${i > 0 ? "md:pl-12" : ""}`}>
