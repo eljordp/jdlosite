@@ -10,12 +10,12 @@ const milestones = [
   { year: "First win", label: "Same websites, now closing at $3,000. The product didn't change. The positioning did. First lesson: value is perception." },
   { year: "Leverage", label: "Built an AI receptionist product from scratch. Clients paying monthly. Revenue coming in without trading hours for dollars." },
   { year: "Investment", label: "Put real money into education: mentors, programs, courses. Compressed years of learning into months. This is where the edge was built." },
-  { year: "Now", label: "Running a sales team on AI. Closing enterprise-level clients: DHL ($92B, Chicago), P.F. Chang's ($1B+). 2–3 months in. This is what's possible." },
+  { year: "Now", label: "Running a sales team on AI. Closing enterprise-level clients in under 90 days. Building systems that save 40+ hours a week. This is what's possible." },
 ];
 
 const stats = [
   { value: "40+", label: "Hours saved per week", sub: "What AI systems replace when you stop doing everything manually." },
-  { value: "90 days", label: "Zero to enterprise clients", sub: "DHL. P.F. Chang's. From scratch." },
+  { value: "90 days", label: "Zero to enterprise clients", sub: "From scratch. No warm intros. Just systems." },
   { value: "$10K+", label: "Monthly value unlocked", sub: "Time saved × what that time is worth. That's the real ROI." },
 ];
 
@@ -38,7 +38,7 @@ export default function AboutPage() {
                 <span className="text-text-secondary">An operator.</span>
               </h1>
               <p className="text-text-secondary text-xl leading-relaxed max-w-[480px] hero-animate hero-delay-3">
-                2–3 months from beginner to closing DHL and P.F. Chang&apos;s. This is what moving with urgency actually looks like.
+                Built AI systems that save 40+ hours a week. Closed enterprise clients in under 90 days. This is what moving with urgency looks like.
               </p>
             </div>
             {/* Photo right */}
@@ -106,7 +106,7 @@ export default function AboutPage() {
                 className="text-[17px] font-normal leading-[1.8] tracking-normal"
               />
               <ScrollHighlightText
-                text="Now I run a sales team built entirely on AI systems. We work with enterprise clients: DHL ($92B, Chicago), P.F. Chang's ($1B+). Companies with more employees than most people have followers. The result of moving with urgency, investing in the right things, and building real systems. That's what JDLO teaches."
+                text="Now I run a sales team built entirely on AI systems. We close enterprise clients. The systems I built save 40+ hours a week — and that time converts directly into revenue. The result of moving with urgency, investing in the right things, and building real systems. That's what JDLO teaches."
                 className="text-[17px] font-normal leading-[1.8] tracking-normal"
               />
             </div>

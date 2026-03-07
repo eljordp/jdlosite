@@ -42,7 +42,7 @@ const MILESTONES: Milestone[] = [
   {
     date: '2025-01-15',
     label: 'Closed DHL',
-    description: 'Closed DHL ($92B, Chicago). Enterprise-level. 2–3 months from beginner to this.',
+    description: 'Closed DHL. Enterprise-level. Under 90 days from beginner to this.',
   },
   {
     date: '2025-01-20',
