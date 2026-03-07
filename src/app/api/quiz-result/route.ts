@@ -100,14 +100,14 @@ export async function POST(req: NextRequest) {
 
     await Promise.allSettled([
       getResend().emails.send({
-        from: 'JDLO Quiz <onboarding@resend.dev>',
+        from: 'JDLO Quiz <noreply@jdlo.site>',
         to: process.env.LEAD_EMAIL || 'eljordp@gmail.com',
         subject: `[Quiz Lead] ${name} → ${primary}`,
         html: notificationHtml,
         replyTo: email,
       }),
       getResend().emails.send({
-        from: 'JDLO <onboarding@resend.dev>',
+        from: 'JDLO <noreply@jdlo.site>',
         to: email,
         subject: `Your skill track — ${primary}`,
         html: autoReplyHtml,

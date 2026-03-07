@@ -107,7 +107,7 @@ export async function POST(req: NextRequest) {
 
     if (process.env.RESEND_API_KEY) {
       await getResend().emails.send({
-        from: "JDLO <onboarding@resend.dev>",
+        from: "JDLO <noreply@jdlo.site>",
         to: email,
         subject: "Your course access — JDLO",
         html: `
@@ -138,7 +138,7 @@ export async function POST(req: NextRequest) {
 
       // Also notify Jordan
       await getResend().emails.send({
-        from: "JDLO Leads <onboarding@resend.dev>",
+        from: "JDLO Leads <noreply@jdlo.site>",
         to: process.env.LEAD_EMAIL || "eljordp@gmail.com",
         subject: `New purchase: ${course} — ${email}`,
         html: `
