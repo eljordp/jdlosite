@@ -280,7 +280,7 @@ Most people design their schedule around what they think they *should* do, not a
 
 **1. Energy mapping comes first.** Before you schedule anything, track your energy for one week. When are you sharpest? When do you crash? When are you most creative vs. most analytical? Your schedule should match your tasks to your energy, not the other way around.
 
-**2. Non-negotiables go in first.** My non-negotiables: wake at 6:30 AM, morning walk, bodyweight workout, 3 hours of deep work, meals at set times, phone off at 9:30 PM, sleep at 10. These don't move. Everything else fits around them.
+**2. Non-negotiables go in first.** These are the things that don't move no matter what — your wake time, movement, deep work block, meal times, sleep time. For me it's wake at 6:30, walk, workout, 3 hours of deep work, phone off by 9:30, sleep at 10. Yours might look completely different. The point is: decide what's non-negotiable, lock those in first, and fit everything else around them.
 
 **3. Batch similar tasks.** Don't scatter calls, emails, and meetings throughout the day. I handle all communication in one window after my first meal. Deep work gets an unbroken 3-hour block in the morning. Context-switching is the silent killer of productivity.
 
@@ -288,28 +288,29 @@ Most people design their schedule around what they think they *should* do, not a
 
 <!-- check:1 -->
 
-## My actual schedule (printed on my wall)
+## The schedule template
 
-- **6:30 AM** — Wake up. No phone.
-- **7:00-8:00 AM** — Morning walk + sunlight
-- **8:00-8:30 AM** — Bodyweight workout
-- **9:00-11:45 AM** — Deep work (highest priority task first, no interruptions)
-- **12:00 PM** — First meal. Then emails, calls, meetings.
-- **2:30-3:00 PM** — Phone window (30 min only)
-- **3:00-5:00 PM** — Lighter work, content creation, social media
-- **5:00-6:00 PM** — PM workout (gym or home)
-- **6:00-6:30 PM** — Sunset walk
-- **6:30 PM** — Last meal
-- **9:30 PM** — Phone off. Wind down.
-- **10:00 PM** — Sleep.
+Your exact times will be different from mine. That's the point — this is a framework, not a copy-paste. Adapt the blocks to your life, but keep the order and the rules.
 
-This isn't aspirational. This is what I do. Every weekday. **Weekends: no work, still walk and workout, life admin, recovery.** The weekend rule is just as important as the weekday structure. Recovery is productive.
+- **Block 1: Wake + Movement (60-90 min)** — Get up at the same time every day. No phone. Move your body — walk, workout, stretch, whatever. Sunlight if possible. This isn't optional wellness fluff. It sets your circadian rhythm and wakes up your prefrontal cortex.
+- **Block 2: Deep Work (2-3 hours, unbroken)** — Your highest-priority task. Not email. Not calls. The thing that moves the needle most. Phone off or in another room. This is the most valuable block of your entire day. Protect it like your income depends on it — because it does.
+- **Block 3: First Meal + Communication (1-2 hours)** — Eat. Then handle emails, calls, meetings, Slack, whatever needs a response. Batch it all here instead of scattering it through the day.
+- **Block 4: Lighter Work (2-3 hours)** — Content, admin, follow-ups, planning, social media. Tasks that need doing but don't require peak brainpower.
+- **Block 5: Second Movement (30-60 min)** — Gym, walk, sport, whatever. Breaking the day with physical activity resets your energy for the evening.
+- **Block 6: Wind Down + Last Meal** — Eat. No screens within 60 minutes of sleep if you can manage it. Phone off or on airplane mode.
+- **Block 7: Sleep (7-9 hours)** — Same bedtime every night. This is where tomorrow's deep work quality is built.
+
+**If you work a 9-5:** Your deep work block might be 5:30-7:30 AM before work, or 7-10 PM after. The principle still applies — protect an unbroken block for your most important work, even if it's only 90 minutes.
+
+**If you have kids:** Your movement blocks might be shorter. Your deep work might happen during nap time or after bedtime. The framework still works — you're just fitting blocks into different windows.
+
+**Weekends: no work, still move, recover.** The weekend rule is just as important as the weekday structure. Recovery is productive. Without it, the whole system collapses within weeks.
 
 <!-- check:2 -->
 
 ## How to build yours
 
-Start with your wake time and sleep time. Those are the bookends. Then place your non-negotiables. Then your deep work block (minimum 2 hours, ideally 3). Then communication and lighter work. Then meals and movement. Print it. Put it on your wall. Follow it for 30 days before you change anything.`,
+Start with your wake time and sleep time — those are the bookends. Then place your non-negotiables (the things that don't move no matter what). Then your deep work block (minimum 90 minutes, ideally 3 hours). Then communication and lighter work. Then meals and movement. Write it out. Print it. Put it somewhere you see every morning. Follow it for 30 days before you change anything — most people quit a schedule in 3 days and blame the schedule, when really they just didn't give it enough time to become a habit.`,
     takeaways: [
       "Map your energy first — schedule tasks to match when you're sharpest, not when it's convenient",
       "Non-negotiables go in first and don't move — everything else fits around them",
@@ -374,7 +375,7 @@ Here's what my first 3 hours look like (after my walk and bodyweight workout):
 
 ## The rules that protect these 3 hours
 
-- **No phone.** Period. Not on silent. Not face down. Off or in another room. My phone doesn't come on until 2:30 PM.
+- **No phone.** Period. Not on silent. Not face down. Off or in another room until your deep work block is done.
 - **No communication.** Emails, texts, calls — all of it waits. The world will not end. Nobody has ever died because you replied 3 hours late.
 - **No "just checking."** Not social media. Not news. Not even "just a quick look." Every "quick look" is a 20-minute recovery in focus. Research calls this attention residue.
 - **Highest priority first.** Not the most urgent. Not the most fun. The most important. There's a difference.
