@@ -33,7 +33,7 @@ export default function PageShell({ children, ctaText, ctaHref, ctaExternal, act
   }, []);
 
   return (
-    <main className="cursor-none">
+    <main>
       <CustomCursor />
       <nav className="fixed top-0 left-0 right-0 z-50 nav-blur border-b border-border">
         <div className="max-w-[1400px] mx-auto px-6 h-12 flex items-center justify-between gap-6">
@@ -159,28 +159,24 @@ export default function PageShell({ children, ctaText, ctaHref, ctaExternal, act
 
       <div className="pt-12">{children}</div>
       <footer className="py-12 border-t border-border">
-        <div className="max-w-[1400px] mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <Link
-            href="/"
-            className="text-text-muted text-[12px] font-mono hover:text-text transition-colors duration-300"
-          >
-            JDLO
-          </Link>
-          <div className="flex items-center gap-6">
-            <a
-              href="https://instagram.com/jdlo"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-text-muted text-[12px] font-mono hover:text-text transition-colors duration-300"
-            >
-              @jdlo
-            </a>
-            <a
-              href="mailto:eljordp@gmail.com"
-              className="text-text-muted text-[12px] font-mono hover:text-text transition-colors duration-300"
-            >
-              eljordp@gmail.com
-            </a>
+        <div className="max-w-[1400px] mx-auto px-6">
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mb-6">
+            <Link href="/courses" className="text-text-muted text-[12px] hover:text-text transition-colors">Courses</Link>
+            <Link href="/about" className="text-text-muted text-[12px] hover:text-text transition-colors">About</Link>
+            <Link href="/mentorship" className="text-text-muted text-[12px] hover:text-text transition-colors">Mentorship</Link>
+            <Link href="/contact" className="text-text-muted text-[12px] hover:text-text transition-colors">Contact</Link>
+            <Link href="/terms" className="text-text-muted text-[12px] hover:text-text transition-colors">Terms</Link>
+            <Link href="/privacy" className="text-text-muted text-[12px] hover:text-text transition-colors">Privacy</Link>
+            <Link href="/refund" className="text-text-muted text-[12px] hover:text-text transition-colors">Refund Policy</Link>
+          </div>
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-border">
+            <span className="text-text-muted text-[11px] font-mono tracking-wider">
+              &copy; {new Date().getFullYear()} JDLO
+            </span>
+            <div className="flex items-center gap-6">
+              <a href="https://instagram.com/jdlo" target="_blank" rel="noopener noreferrer" className="text-text-muted text-[12px] font-mono hover:text-text transition-colors">@jdlo</a>
+              <a href="mailto:eljordp@gmail.com" className="text-text-muted text-[12px] font-mono hover:text-text transition-colors">eljordp@gmail.com</a>
+            </div>
           </div>
         </div>
       </footer>

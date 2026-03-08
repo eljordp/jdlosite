@@ -66,7 +66,7 @@ const skills = [
   {
     title: "AI Mastery — Expert",
     desc: "Claude Code, MCP servers, Agent SDK, computer use, vision. The full power of AI — nothing held back. For serious builders only.",
-    price: "$9,997",
+    price: "$997",
     href: "/courses/ai-mastery",
   },
   {
@@ -186,7 +186,7 @@ function About() {
   return (
     <section id="about" className="section-gap">
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
-        <div className="grid lg:grid-cols-[1.2fr_1fr] gap-16 lg:gap-24">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-8 lg:gap-24">
           <RevealOnScroll>
             <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-8">
               About
@@ -234,14 +234,14 @@ function Results() {
           </p>
         </RevealOnScroll>
 
-        <div className="grid md:grid-cols-3 gap-0">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-0">
           {[
             { num: "40+", label: "Hours saved per week", desc: "What AI systems replace when you stop doing everything manually." },
             { num: "90", label: "Days to results", desc: "From zero to closing enterprise clients. Speed is the advantage." },
-            { num: "$20K+", label: "Revenue generated for clients", desc: "Websites, AI systems, and sales ops that actually make money." },
+            { num: "$20K+", label: "Avg client revenue / month", desc: "Websites, AI systems, and sales ops that actually make money." },
           ].map((stat, i) => (
             <RevealOnScroll key={stat.label} delay={i + 1}>
-              <div className={`py-8 md:py-0 md:pr-12 ${i < 2 ? "md:border-r border-border" : ""} ${i > 0 ? "md:pl-12" : ""}`}>
+              <div className={`py-4 md:py-0 md:pr-12 ${i < 2 ? "md:border-r border-b md:border-b-0 border-border pb-6 md:pb-0" : ""} ${i > 0 ? "md:pl-12" : ""}`}>
                 <span className="text-[clamp(2rem,4vw,3.5rem)] font-bold tracking-[-0.04em] gradient-text-blue">
                   {stat.num}
                 </span>
@@ -271,17 +271,17 @@ function Process() {
           </p>
         </RevealOnScroll>
 
-        <div className="grid md:grid-cols-3 gap-0">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-0">
           {[
-            { num: "01", title: "Take the quiz", desc: "Find out which track fits your goals. Takes 2 minutes." },
-            { num: "02", title: "Pick your course", desc: "Each course is built on real systems I use daily." },
-            { num: "03", title: "Execute", desc: "Learn, implement, see results. Top performers get real paid work." },
+            { num: "01", title: "Take the quiz", desc: "Find out which track fits your goals. Takes 2 minutes.", href: "/quiz" },
+            { num: "02", title: "Pick your course", desc: "Each course is built on real systems I use daily.", href: "/courses" },
+            { num: "03", title: "Execute", desc: "Learn, implement, see results. Top performers get real paid work.", href: undefined },
           ].map((step, i) => (
             <RevealOnScroll key={step.num} delay={i + 1}>
-              <div className={`py-8 md:py-0 md:pr-12 ${i < 2 ? "md:border-r border-border" : ""} ${i > 0 ? "md:pl-12" : ""}`}>
+              <div className={`py-4 md:py-0 md:pr-12 ${i < 2 ? "md:border-r border-b md:border-b-0 border-border pb-6 md:pb-0" : ""} ${i > 0 ? "md:pl-12" : ""}`}>
                 <span className="text-accent text-[11px] font-mono">{step.num}</span>
                 <h3 className="text-[clamp(1.5rem,3vw,2.2rem)] font-semibold tracking-[-0.03em] mt-3 mb-4 leading-[1.1]">
-                  {step.title}
+                  {step.href ? <Link href={step.href} className="hover:text-accent transition-colors">{step.title}</Link> : step.title}
                 </h3>
                 <p className="text-text-secondary text-[14px] leading-relaxed">
                   {step.desc}
@@ -299,17 +299,17 @@ function Process() {
 function FAQ() {
   const faqs = [
     { q: "Who is this for?", a: "People who are serious. If you want motivation, this isn't it. If you want execution, you're in the right place." },
-    { q: "Why different prices?", a: "Each course has different depth and scope. AI Mastery is $10K because it's 8 weeks of expert-level systems that can make you millions. The others are priced for accessibility — this is a soft launch." },
+    { q: "Why different prices?", a: "Each course has different depth and scope. AI Mastery is $997 because it's 8 weeks of expert-level systems — Claude Code, MCP servers, Agent SDK, the full stack. The others are priced for accessibility." },
     { q: "Can I learn multiple skills?", a: "Yes. Most start with one and come back. Mentorship students get guidance across all tracks." },
     { q: "What makes this different?", a: "I run businesses on AI. Every system I teach, I use. You're learning from someone in the trenches — not someone who read about it." },
     { q: "What happens after the course?", a: "Top performers get access to real paid projects from my network. The best of those get offered a spot on my team. It's a pipeline, not a certificate." },
-    { q: "How do I know which course to take?", a: "Take the skills quiz. 2 minutes. It'll tell you exactly where to start based on your goals." },
+    { q: "How do I know which course to take?", a: "Take the skills quiz — 2 minutes, and it tells you exactly where to start based on your goals.", link: "/quiz" },
   ];
 
   return (
     <section id="faq" className="section-gap">
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
-        <div className="grid lg:grid-cols-[400px_1fr] gap-16 lg:gap-24">
+        <div className="grid grid-cols-1 lg:grid-cols-[400px_1fr] gap-8 lg:gap-24">
           <RevealOnScroll>
             <div className="lg:sticky lg:top-24">
               <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-8">
@@ -334,6 +334,11 @@ function FAQ() {
                   <div className="pb-6">
                     <p className="text-text-secondary text-[14px] leading-relaxed max-w-[500px]">
                       {faq.a}
+                      {"link" in faq && faq.link && (
+                        <>
+                          {" "}<Link href={faq.link} className="text-accent hover:underline">Take it here →</Link>
+                        </>
+                      )}
                     </p>
                   </div>
                 </details>
@@ -356,7 +361,7 @@ function Apply() {
         <RevealOnScroll>
           <div className="max-w-[600px] mx-auto text-center">
             <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-6">
-              Limited
+              Soft Launch — Early Pricing
             </p>
             <h2 className="text-[clamp(2.5rem,6vw,5rem)] font-bold tracking-[-0.04em] leading-[0.95] mb-8">
               Ready to
@@ -390,17 +395,51 @@ function Apply() {
 /* ── Footer ── */
 function Footer() {
   return (
-    <footer className="py-8 border-t border-border">
+    <footer className="py-16 border-t border-border">
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10 mb-12">
+          <div>
+            <p className="text-text text-[13px] font-semibold mb-4">Learn</p>
+            <div className="flex flex-col gap-2.5">
+              <Link href="/courses" className="text-text-muted text-[12px] hover:text-text transition-colors">Courses</Link>
+              <Link href="/courses/ai-automation" className="text-text-muted text-[12px] hover:text-text transition-colors">AI & Automation</Link>
+              <Link href="/courses/sales-systems" className="text-text-muted text-[12px] hover:text-text transition-colors">Sales Systems</Link>
+              <Link href="/courses/operator-playbook" className="text-text-muted text-[12px] hover:text-text transition-colors">Operator Playbook</Link>
+              <Link href="/courses/ai-mastery" className="text-text-muted text-[12px] hover:text-text transition-colors">AI Mastery</Link>
+            </div>
+          </div>
+          <div>
+            <p className="text-text text-[13px] font-semibold mb-4">Company</p>
+            <div className="flex flex-col gap-2.5">
+              <Link href="/about" className="text-text-muted text-[12px] hover:text-text transition-colors">About</Link>
+              <Link href="/mentorship" className="text-text-muted text-[12px] hover:text-text transition-colors">Mentorship</Link>
+              <Link href="/quiz" className="text-text-muted text-[12px] hover:text-text transition-colors">Skills Quiz</Link>
+              <Link href="/contact" className="text-text-muted text-[12px] hover:text-text transition-colors">Contact</Link>
+            </div>
+          </div>
+          <div>
+            <p className="text-text text-[13px] font-semibold mb-4">Legal</p>
+            <div className="flex flex-col gap-2.5">
+              <Link href="/terms" className="text-text-muted text-[12px] hover:text-text transition-colors">Terms of Service</Link>
+              <Link href="/privacy" className="text-text-muted text-[12px] hover:text-text transition-colors">Privacy Policy</Link>
+              <Link href="/refund" className="text-text-muted text-[12px] hover:text-text transition-colors">Refund Policy</Link>
+            </div>
+          </div>
+          <div>
+            <p className="text-text text-[13px] font-semibold mb-4">Connect</p>
+            <div className="flex flex-col gap-2.5">
+              <a href="https://instagram.com/jdlo" target="_blank" rel="noopener noreferrer" className="text-text-muted text-[12px] hover:text-text transition-colors">Instagram</a>
+              <a href="mailto:eljordp@gmail.com" className="text-text-muted text-[12px] hover:text-text transition-colors">eljordp@gmail.com</a>
+            </div>
+          </div>
+        </div>
+        <div className="border-t border-border pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
           <span className="text-text-muted text-[11px] font-mono tracking-wider">
             &copy; {new Date().getFullYear()} JDLO
           </span>
-          <div className="flex items-center gap-6">
-            <a href="https://instagram.com/jdlo" target="_blank" rel="noopener noreferrer" className="text-[12px] text-text-muted hover:text-text transition-colors duration-300">
-              @jdlo
-            </a>
-          </div>
+          <span className="text-text-muted text-[11px] font-mono">
+            Jordan Lopez
+          </span>
         </div>
       </div>
     </footer>
@@ -410,13 +449,13 @@ function Footer() {
 /* ── Page ── */
 export default function Home() {
   return (
-    <main className="cursor-none md:cursor-none">
+    <main>
       <CustomCursor />
       <HomeNav />
       <Hero />
       <Skills />
       <Statement />
-      <Testimonials />
+      {/* <Testimonials /> — uncomment when real testimonials are ready */}
       <About />
       <Results />
       <Process />

@@ -5,7 +5,7 @@ import PostHogProvider from "@/components/PostHogProvider";
 export const metadata: Metadata = {
   title: "JDLO — AI Education & Operations",
   description:
-    "Learn AI, sales, automation, and operations from someone who actually runs on it. Courses, mentorship, and consulting by Jordan Lopez.",
+    "Learn AI, sales, automation, and operations from someone who actually runs on it. Courses and mentorship by Jordan Lopez.",
   icons: {
     icon: "/jordan.jpg",
   },

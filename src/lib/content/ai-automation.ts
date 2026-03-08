@@ -16,6 +16,8 @@ Every large language model, Claude included, predicts the next token. Your text 
 - Specific instructions beat vague ones (you're narrowing the prediction space)
 - AI can be confidently wrong (it's predicting likely text, not verified facts)
 
+<!-- check:0 -->
+
 ## What makes Claude different
 
 **Constitutional AI:** Claude was trained with a set of principles (a "constitution") that guide its behavior. It's not just RLHF'd into compliance — it reasons about whether its outputs are helpful, honest, and harmless. This means Claude is less likely to blindly follow harmful instructions while still being genuinely useful.
@@ -25,6 +27,8 @@ Every large language model, Claude included, predicts the next token. Your text 
 **Extended thinking:** Claude can show its reasoning process step by step before giving you an answer. This isn't just chain-of-thought prompting — it's a built-in capability where Claude actually thinks through complex problems in a structured way before responding.
 
 **Instruction following:** Claude is consistently the best model at following complex, multi-step instructions exactly as written. When you give Claude a detailed system prompt with specific formatting, tone, and behavioral rules, it follows them. This matters enormously when building automated systems.
+
+<!-- check:1 -->
 
 ## The practical takeaway
 
@@ -37,6 +41,30 @@ You're not asking a genius for answers. You're steering a prediction engine that
     ],
     exercise:
       "Open Claude (claude.ai). Ask the same question two ways: first vague ('tell me about sales'), then specific ('give me a 5-step cold email framework for selling SaaS to small businesses'). Compare the outputs. Then try pasting a long document (3,000+ words) and asking Claude to analyze it — notice how it handles the full context without losing details.",
+    checks: [
+      {
+        question: "Why does giving Claude more context generally improve output quality?",
+        options: [
+          "More context gives the model more patterns to work with when predicting the next token",
+          "More context makes Claude run faster because it can skip reasoning steps",
+          "More context forces Claude to use its extended thinking feature automatically",
+        ],
+        correctIndex: 0,
+        explanation:
+          "LLMs predict the next token based on patterns. More context means more relevant patterns to draw from, leading to better predictions. It doesn't make Claude faster (option B) or automatically trigger extended thinking (option C) — those are separate capabilities.",
+      },
+      {
+        question: "What is Constitutional AI and why does it matter for Claude?",
+        options: [
+          "It's a pricing model that makes Claude cheaper for constitutional law firms",
+          "It's a training method using principles that guide Claude's behavior, making it reason about helpfulness and safety rather than just being compliance-filtered",
+          "It's a separate AI model that runs alongside Claude to check its outputs",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Constitutional AI means Claude was trained with guiding principles, so it reasons about whether its outputs are helpful and safe — not just pattern-matched against a blocklist. It's not related to pricing (option A) or a separate model (option C).",
+      },
+    ],
   },
   "01-2": {
     title: "Claude's capabilities: code, reasoning, vision, 200K context",
@@ -50,6 +78,8 @@ Claude is consistently one of the best models for writing, debugging, and explai
 - **Claude Code:** Anthropic's CLI tool that lets Claude operate directly in your terminal — reading files, writing code, running tests, and committing changes. It's not just generating code in a chat window. It's acting as a developer on your machine.
 - **Full codebase understanding:** With 200K context, you can paste your entire project and Claude understands the relationships between files, functions, and data flows.
 - **Debugging with reasoning:** Claude doesn't just find bugs — it explains why they happen and suggests architectural improvements.
+
+<!-- check:0 -->
 
 ## Reasoning and analysis
 
@@ -79,6 +109,8 @@ This is the single biggest practical advantage. 150,000 words in one conversatio
 - Feed weeks of sales emails and get pattern analysis
 - Process full meeting transcripts without losing any context
 
+<!-- check:1 -->
+
 ## Tool use (function calling)
 
 Claude can call external tools and functions you define. This is what turns Claude from a text generator into an agent that can act in the real world. Define a function like \`search_database(query)\` or \`send_email(to, subject, body)\`, and Claude decides when and how to use it. We'll go deep on this in Module 5.
@@ -102,6 +134,30 @@ Don't use a hammer for every nail. Claude has a full toolbox — use the right t
     ],
     exercise:
       "Test each capability: (1) Paste a code snippet and ask Claude to debug it, (2) Upload a screenshot of a chart or dashboard and ask Claude to analyze it, (3) Ask a complex business question and request extended thinking. Notice how each capability changes the quality and type of output you get.",
+    checks: [
+      {
+        question: "What makes Claude Code different from using Claude in a chat window for coding tasks?",
+        options: [
+          "Claude Code is a different AI model optimized specifically for programming languages",
+          "Claude Code operates directly in your terminal — reading files, writing code, running tests, and committing changes on your machine",
+          "Claude Code only works with Python while the chat interface handles all languages",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Claude Code is a CLI tool that lets Claude act as a developer on your machine, not just generate code in a chat. It reads your files, writes code, runs tests, and commits. It's not a different model (option A) — it uses the same Claude models. And it works with all programming languages, not just Python (option C).",
+      },
+      {
+        question: "Why is Claude's 200K context window described as its 'single biggest practical advantage'?",
+        options: [
+          "It makes Claude's responses 200K times more accurate than competitors",
+          "It lets you process entire codebases, long contracts, and weeks of data in one call without chunking or summarizing",
+          "It means Claude can remember 200K previous conversations permanently",
+        ],
+        correctIndex: 1,
+        explanation:
+          "The 200K context window means you can feed Claude massive amounts of information at once — entire projects, long documents, extensive histories — and get analysis without losing details. It doesn't multiply accuracy (option A), and it's per-conversation context, not permanent memory across conversations (option C).",
+      },
+    ],
   },
   "01-3": {
     title: "Tokens, context windows, and how to use them",
@@ -126,6 +182,8 @@ Claude's 200K token context window (~150,000 words) is one of its biggest practi
 
 **Practical implication:** Where other models force you to chunk and summarize, Claude can process the whole thing at once. This means better analysis, fewer missed details, and simpler workflows.
 
+<!-- check:0 -->
+
 ## How to be token-efficient
 
 Even with 200K tokens, efficiency matters — especially at scale.
@@ -146,6 +204,8 @@ If you're building an automation that runs 1,000 times per day with 2,000 tokens
 
 Same task, 60x price difference between Haiku and Opus. Pick the right model for the task complexity.
 
+<!-- check:1 -->
+
 ## Token counting in practice
 
 Use Anthropic's token counting tools or the API's \`usage\` field in responses to track actual consumption. When building systems, always log token usage per run so you can optimize later.`,
@@ -157,6 +217,30 @@ Use Anthropic's token counting tools or the API's \`usage\` field in responses t
     ],
     exercise:
       "Take one of your recent Claude conversations and estimate the token count (word count x 1.33). Now think about how you'd optimize it: what could you cut? What could be more concise? Calculate what it would cost at Haiku vs. Opus rates if it ran 100 times per day. This skill saves you real money at scale.",
+    checks: [
+      {
+        question: "What happens when you hit Claude's context window limit during a conversation?",
+        options: [
+          "Claude automatically compresses the conversation to fit more content",
+          "Claude starts losing your earlier instructions and context",
+          "Claude switches to a model with a larger context window",
+        ],
+        correctIndex: 1,
+        explanation:
+          "When you exceed the context window, earlier messages get dropped, meaning Claude loses your initial instructions and prior context. Claude does not auto-compress (option A) or switch models (option C) — it simply can't see the earlier parts of the conversation anymore.",
+      },
+      {
+        question: "An automation runs 1,000 times per day at 2,000 tokens per run. What's the approximate daily cost difference between Haiku and Opus?",
+        options: [
+          "About $0.50 — Haiku and Opus cost roughly the same at this volume",
+          "About $29.50 — Haiku costs ~$0.50/day while Opus costs ~$30/day",
+          "About $300 — Opus is 300x more expensive than Haiku",
+        ],
+        correctIndex: 1,
+        explanation:
+          "At 2M tokens/day, Haiku at ~$0.25/M costs $0.50/day while Opus at ~$15/M costs $30/day — a roughly $29.50 daily difference (60x, not equal as in option A). The 300x figure in option C is wrong — the actual multiplier is about 60x between Haiku and Opus.",
+      },
+    ],
   },
   "01-4": {
     title: "Claude models: Opus, Sonnet, Haiku — when to use what",
@@ -182,6 +266,8 @@ Use Anthropic's token counting tools or the API's \`usage\` field in responses t
 - Use when: the task is straightforward and you're running it hundreds or thousands of times
 - Cost: ~$0.25/M input tokens
 - Speed: Fastest — sub-second responses
+
+<!-- check:0 -->
 
 ## The decision framework
 
@@ -224,6 +310,8 @@ Here's exactly how I route tasks across my operations:
 - Multi-step agent workflows with extended thinking
 - Anything where being wrong is expensive
 
+<!-- check:1 -->
+
 ## The automation angle
 
 When you build automated systems (which we'll do in this course), you want a routing layer. The system looks at the incoming task, classifies its complexity (using Haiku — it's cheap), and routes to the appropriate Claude model. This alone can cut your costs by 60-80% while maintaining quality where it matters.`,
@@ -235,6 +323,30 @@ When you build automated systems (which we'll do in this course), you want a rou
     ],
     exercise:
       "List 10 tasks you regularly use AI for. Categorize each as simple, medium, or complex. Assign the appropriate Claude model (Haiku, Sonnet, or Opus) to each. Calculate what you'd save monthly by routing instead of using Opus for everything.",
+    checks: [
+      {
+        question: "Which Claude model should you use for classifying incoming emails as spam, lead, or support?",
+        options: [
+          "Opus — classification requires deep reasoning to get right",
+          "Sonnet — it's the best all-around model for any task",
+          "Haiku — it's fast, cheap, and more than capable for straightforward classification tasks",
+        ],
+        correctIndex: 2,
+        explanation:
+          "Email classification is a simple, pattern-based task that Haiku handles perfectly at a fraction of the cost. Opus (option A) is overkill — you don't need deep reasoning for tagging emails. Sonnet (option B) works but costs 12x more than Haiku for a task that doesn't need its extra capability.",
+      },
+      {
+        question: "You need to write a strategy document analyzing three potential market entries. Which model and why?",
+        options: [
+          "Haiku — it's the fastest and speed matters for long documents",
+          "Opus — complex multi-step strategy with trade-offs needs the deepest reasoning capability",
+          "Sonnet — it's cost-effective and handles writing tasks well",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Strategy documents require weighing complex trade-offs, multi-step reasoning, and nuanced analysis — exactly what Opus excels at. Haiku (option A) is too simple for strategic analysis. Sonnet (option B) is good for standard writing, but high-stakes strategy where being wrong is expensive warrants Opus-level reasoning.",
+      },
+    ],
   },
   "02-1": {
     title: "The anatomy of a great Claude prompt",
@@ -263,6 +375,8 @@ Be specific about format, length, tone, and deliverable.
 
 Constraints prevent Claude from falling into generic patterns. Claude is especially good at respecting constraints — it won't "forget" them halfway through like other models tend to.
 
+<!-- check:0 -->
+
 ## The difference in practice
 
 **Bad prompt:** "Write me a cold email for my product"
@@ -270,6 +384,8 @@ Constraints prevent Claude from falling into generic patterns. Claude is especia
 **Good prompt:** "You are a B2B sales rep who's closed $2M+ in SaaS deals. I'm selling an AI lead scoring tool to mid-market companies using HubSpot. Write a cold email to a VP of Marketing at a 200-person e-commerce company. Keep it under 120 words. Open with something specific to e-commerce, not a generic opener. End with a question, not a 'let me know if you're interested.' No buzzwords."
 
 The second prompt takes 30 seconds longer to write and saves you 20 minutes of editing.
+
+<!-- check:1 -->
 
 ## Claude-specific prompting tips
 
@@ -284,6 +400,30 @@ The second prompt takes 30 seconds longer to write and saves you 20 minutes of e
     ],
     exercise:
       "Take your most common AI task. Write the prompt using all four components: Role, Context, Task, Constraints. Wrap each section in XML tags (<role>, <context>, <task>, <constraints>). Run it in Claude and compare the output to what you normally get. Keep this as a template.",
+    checks: [
+      {
+        question: "Which of the four prompt components prevents Claude from falling into generic output patterns?",
+        options: [
+          "Role — telling Claude who it is filters its response through specific expertise",
+          "Context — giving Claude the situation provides relevant background",
+          "Constraints — setting boundaries stops Claude from using generic language and patterns",
+        ],
+        correctIndex: 2,
+        explanation:
+          "Constraints like 'don't use buzzwords' and 'end with a specific question, not a generic CTA' directly prevent generic output. Role (option A) helps activate expertise patterns but doesn't prevent specific bad habits. Context (option B) targets the output but doesn't set the boundaries that stop generic responses.",
+      },
+      {
+        question: "Why does a specific prompt with Role, Context, Task, and Constraints save you 20 minutes of editing compared to a vague prompt?",
+        options: [
+          "Claude generates shorter responses with specific prompts, so there's less to edit",
+          "Specific prompts narrow the prediction space so Claude's first output is already close to what you need",
+          "Claude uses a different, faster algorithm when it detects a structured prompt",
+        ],
+        correctIndex: 1,
+        explanation:
+          "When you give Claude specific role, context, task, and constraint information, you're narrowing the prediction space. The model has clearer signals for what good output looks like, so the first draft needs minimal editing. It doesn't necessarily produce shorter output (option A), and there's no special algorithm for structured prompts (option C) — it's the same model working with better input.",
+      },
+    ],
   },
   "02-2": {
     title: "System prompts, roles, and context injection",
@@ -321,6 +461,8 @@ Context injection means dynamically inserting relevant information into the prom
 
 Now Claude responds with specific, relevant information instead of generic answers.
 
+<!-- check:0 -->
+
 ## Claude-specific system prompt techniques
 
 **Use XML structure in your system prompts:**
@@ -342,6 +484,8 @@ Customer info: [dynamically injected]
 
 Claude parses XML structure natively and it keeps complex system prompts organized and reliable.
 
+<!-- check:1 -->
+
 ## The template I use
 
 Every system prompt I write follows this structure:
@@ -358,6 +502,30 @@ Every system prompt I write follows this structure:
     ],
     exercise:
       "Write a system prompt for a Claude-powered assistant that handles customer inquiries for a business you know well. Use XML tags to structure it into sections: <identity>, <behavior>, <constraints>, <reference_data>, <output_format>. Test it using the Claude API or claude.ai's system prompt field.",
+    checks: [
+      {
+        question: "What is context injection and why does it make Claude-powered systems feel personalized?",
+        options: [
+          "It's a technique where you fine-tune Claude on customer data so it permanently remembers each person",
+          "It's dynamically inserting relevant information (like customer name, order history) into the prompt before sending it to Claude",
+          "It's a Claude API feature that automatically pulls customer data from your CRM",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Context injection means looking up relevant data (customer info, order history, open tickets) and inserting it into the prompt before Claude sees it. This makes responses specific and personalized. It's not fine-tuning (option A) — you're not retraining the model. And it's not automatic (option C) — you build the lookup and injection logic yourself.",
+      },
+      {
+        question: "Why does Claude parse XML tags in system prompts better than plain text for complex instructions?",
+        options: [
+          "XML tags were invented by Anthropic specifically for Claude prompts",
+          "Claude was trained to understand XML structure, so tags like <identity> and <constraints> create clear, labeled sections that reduce ambiguity",
+          "XML tags compress the prompt to use fewer tokens",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Claude was trained on data that includes XML, so it naturally understands the structure. Tags create clear boundaries between sections — identity vs. constraints vs. reference data — reducing the chance Claude mixes up instructions. XML wasn't invented by Anthropic (option A), and tags actually add tokens rather than compress them (option C). The benefit is clarity, not compression.",
+      },
+    ],
   },
   "02-3": {
     title: "Extended thinking and chain-of-thought",
@@ -381,6 +549,8 @@ When you enable extended thinking on Claude (via the API or claude.ai), accuracy
 
 The model is literally thinking harder. It's not just generating text — it's reasoning.
 
+<!-- check:0 -->
+
 ## How to use extended thinking
 
 **In the API:** Set \`thinking.type: "enabled"\` and \`thinking.budget_tokens\` in your request. The budget controls how much thinking Claude can do — more budget means deeper reasoning but higher cost.
@@ -398,6 +568,8 @@ The model is literally thinking harder. It's not just generating text — it's r
 - Simple tasks (classification, formatting, extraction)
 - High-volume automations where speed matters
 - Tasks where Haiku would suffice
+
+<!-- check:1 -->
 
 ## Chain-of-thought prompting (for any Claude model)
 
@@ -427,6 +599,30 @@ This catches errors Claude would otherwise miss. With extended thinking enabled,
     ],
     exercise:
       "Take a real business decision you're facing. Run it through Claude twice: once with a simple prompt, once with extended thinking enabled and a structured chain-of-thought format. Compare the depth and quality of the answers. Notice how extended thinking produces more nuanced analysis.",
+    checks: [
+      {
+        question: "What is the key difference between chain-of-thought prompting and Claude's extended thinking feature?",
+        options: [
+          "Chain-of-thought is free while extended thinking costs extra tokens",
+          "Chain-of-thought is a prompting technique you write yourself; extended thinking is a built-in Claude capability with a dedicated, separate reasoning phase",
+          "They produce identical results but extended thinking is faster",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Chain-of-thought is a prompting technique where you ask Claude to reason step by step in its visible output. Extended thinking is a native feature with a separate thinking phase before the response. While both cost tokens (option A is misleading — chain-of-thought also uses output tokens for reasoning), extended thinking often produces superior results on complex tasks, not identical ones (option C).",
+      },
+      {
+        question: "When should you NOT use extended thinking?",
+        options: [
+          "When working on complex strategy documents with multiple trade-offs",
+          "When running high-volume simple tasks like classification where speed matters and Haiku would suffice",
+          "When debugging difficult code that requires careful reasoning",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Extended thinking adds processing time and cost, making it a poor fit for simple, high-volume tasks like classification where speed matters. Complex strategy (option A) and difficult debugging (option C) are exactly the tasks where extended thinking shines — they benefit from deeper reasoning.",
+      },
+    ],
   },
   "02-4": {
     title: "Building reusable prompt libraries",
@@ -465,6 +661,8 @@ For each task, write the best Claude prompt you can using the Role/Context/Task/
 
 This way your team knows which model to use and your automations route correctly.
 
+<!-- check:0 -->
+
 **Step 5: Organize by category**
 Group prompts into folders: Sales, Marketing, Operations, Customer Support, Internal.
 
@@ -474,6 +672,8 @@ For solo use: A Notion database or simple folder of text files works.
 For a team: A shared doc with version history. Or build them directly into your automation tools.
 
 **For automation:** These templates become the backbone of your Claude-powered workflows. When a new lead comes in, the system fills in the variables, selects the right Claude model, and generates personalized outreach automatically. When a meeting ends, the transcript gets plugged into the summary template. This is how you go from using Claude manually to having it work for you in the background.
+
+<!-- check:1 -->
 
 ## The maintenance cycle
 
@@ -486,6 +686,30 @@ Review your library monthly. Kill prompts that don't perform. Update ones where 
     ],
     exercise:
       "Create your first Claude prompt library. Pick your 5 most common tasks. Write a templatized prompt for each one using XML tags and clear variables. Tag each with the appropriate Claude model. Save them in a Notion page or folder. Use them for the next week and refine based on results.",
+    checks: [
+      {
+        question: "Why should you tag each prompt template with a specific Claude model tier (Haiku, Sonnet, Opus)?",
+        options: [
+          "Because each Claude model uses a different prompt syntax that's incompatible with other tiers",
+          "So your team knows which model to use and your automations route to the right model automatically",
+          "Because prompts only work with the specific model they were written for",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Tagging templates with model tiers ensures your team picks the right model for cost and quality, and your automations route correctly. All Claude models use the same prompt syntax (option A is wrong), and prompts generally work across models (option C is wrong) — the tag is about optimization, not compatibility.",
+      },
+      {
+        question: "What transforms prompt templates from a personal tool into the backbone of automated workflows?",
+        options: [
+          "Sharing them on social media so more people can use them",
+          "Using variables like {{INDUSTRY}} and {{PAIN_POINT}} that get filled in programmatically when automations run",
+          "Writing them in a specific programming language instead of plain text",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Variables make templates programmable. When a new lead comes in, the automation fills in {{COMPANY}}, {{INDUSTRY}}, etc. automatically and sends it to Claude. Sharing on social media (option A) helps others but doesn't create automation. And templates work as plain text with variables — no programming language is needed (option C).",
+      },
+    ],
   },
   "03-1": {
     title: "Role prompting and persona assignment",
@@ -508,6 +732,8 @@ Here's a basic example vs. an optimized one:
 
 The second version will be dramatically better. Every time.
 
+<!-- check:0 -->
+
 ## Advanced persona stacking
 
 You can layer multiple traits into a single role:
@@ -524,6 +750,8 @@ This gives Claude a very specific intersection of expertise to pull from.
 - **"You are a skeptical analyst"** — for finding flaws in ideas, plans, or proposals
 - **"You are a client success manager"** — for writing client-facing communications
 
+<!-- check:1 -->
+
 ## Common mistakes
 
 1. **Too vague:** "You are an expert" — expert at what? Be specific.
@@ -537,6 +765,30 @@ This gives Claude a very specific intersection of expertise to pull from.
     ],
     exercise:
       "Write 3 different role prompts for tasks you do regularly. For each, write the prompt without a role and with a role. Run both versions and compare. Save the best role prompts — you'll build a library of these by the end of this course.",
+    checks: [
+      {
+        question: "Why does telling Claude 'You are a senior DTC copywriter' produce better output than 'You are an expert writer'?",
+        options: [
+          "Claude charges fewer tokens for shorter role descriptions",
+          "Specific roles activate specific patterns from training data — 'senior DTC copywriter' loads different expertise than 'expert writer'",
+          "Claude refuses to follow vague role instructions and will return an error",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Specificity matters because role prompts filter Claude's output through patterns associated with that expertise. 'Senior DTC copywriter' surfaces patterns from DTC sales copy, while 'expert writer' is too broad to activate any specific expertise. Claude doesn't charge differently based on role length (option A), and it won't refuse vague roles (option C) — it just produces more generic output.",
+      },
+      {
+        question: "What is persona stacking and when would you use it?",
+        options: [
+          "Running the same prompt through multiple Claude models and combining the results",
+          "Layering multiple traits into a single role to create a specific intersection of expertise, like 'technical writer with sales experience'",
+          "Assigning different roles to different paragraphs within the same prompt",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Persona stacking means combining traits like 'technical writer who also has deep experience in sales' to get output at the intersection of multiple skill sets. It's not about multiple models (option A) or switching roles mid-prompt (option C) — it's about giving Claude a rich, multi-dimensional persona to draw from.",
+      },
+    ],
   },
   "03-2": {
     title: "System prompts that shape behavior long-term",
@@ -571,6 +823,8 @@ FORMAT: [Default output structure]
 TONE: [Communication style description]
 \`\`\`
 
+<!-- check:0 -->
+
 ## Real example: Client-facing AI assistant
 
 "IDENTITY: You are a customer success assistant for a SaaS company called FlowOps that does workflow automation for agencies.
@@ -588,6 +842,8 @@ FORMAT: Lead with the answer, then explain. Use bullet points for multi-step sol
 
 TONE: Professional but warm. No corporate jargon. Like a smart coworker helping you out."
 
+<!-- check:1 -->
+
 ## System prompt mistakes
 
 1. **Too long:** If your system prompt is 2,000 words, Claude will lose track of rules. Keep it under 500 words. (Claude's 200K context helps, but focused system prompts still perform better.)
@@ -602,6 +858,30 @@ TONE: Professional but warm. No corporate jargon. Like a smart coworker helping 
     ],
     exercise:
       "Write a system prompt for a business use case you're working on (client chatbot, internal tool, content generator). Use the framework above. Test it with 10 different types of user messages including edge cases. Refine until it handles all of them correctly.",
+    checks: [
+      {
+        question: "What five sections should every system prompt include according to the framework?",
+        options: [
+          "Input, Output, Processing, Storage, and Logging",
+          "Identity, Rules, Context, Format, and Tone",
+          "Header, Body, Footer, Signature, and Timestamp",
+        ],
+        correctIndex: 1,
+        explanation:
+          "The system prompt framework covers Identity (who Claude is), Rules (always/never behaviors), Context (background info), Format (output structure), and Tone (communication style). The other options describe data processing (option A) or document formatting (option C), not prompt architecture.",
+      },
+      {
+        question: "Why should you keep system prompts under 500 words even though Claude has a 200K context window?",
+        options: [
+          "System prompts over 500 words are rejected by the Claude API",
+          "Focused system prompts perform better because Claude can track all rules clearly — too many instructions and it starts losing track",
+          "Longer system prompts cost 10x more per token than user messages",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Even with Claude's massive context window, focused system prompts perform better because every rule stays salient. Long, rambling system prompts lead to missed instructions and inconsistent behavior. The API doesn't reject long prompts (option A), and system prompt tokens cost the same as other input tokens (option C).",
+      },
+    ],
   },
   "03-3": {
     title: "Prompt chaining and multi-step workflows",
@@ -637,6 +917,8 @@ I built this for a consulting business. Four prompts, chained together:
 
 **Prompt 4 (Validate):** "Review this proposal: [output from prompt 3]. Check for: pricing consistency, timeline feasibility, tone appropriateness, missing sections. Flag any issues."
 
+<!-- check:0 -->
+
 ## Implementation patterns
 
 **Sequential chain:** A -> B -> C -> D. Each step needs the previous output. Simple, reliable, easy to debug.
@@ -644,6 +926,8 @@ I built this for a consulting business. Four prompts, chained together:
 **Parallel chain:** Run A and B simultaneously, combine outputs into C. Faster, but more complex to manage.
 
 **Conditional chain:** If A's output meets criteria X, go to B. Otherwise, go to C. Useful for routing different types of input.
+
+<!-- check:1 -->
 
 ## Pro tips
 
@@ -659,6 +943,30 @@ I built this for a consulting business. Four prompts, chained together:
     ],
     exercise:
       "Pick a multi-step task you do manually (proposal writing, content creation, research analysis). Break it into 3-4 discrete steps. Write a prompt for each step where the output feeds into the next. Test the full chain end-to-end and iterate on the weakest link.",
+    checks: [
+      {
+        question: "In the client proposal generator example, why are Extract, Analyze, Generate, and Validate handled as separate prompts instead of one mega-prompt?",
+        options: [
+          "Claude can only handle one paragraph of instructions at a time",
+          "Each prompt stays focused on one task, lets you validate between steps, use different Claude models per step, and debug easily when something breaks",
+          "Separate prompts are required by the Claude API — you can't send multi-step instructions in one call",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Chaining keeps each prompt focused, lets you check output quality between steps, use different models (Haiku for extraction, Sonnet for generation), and pinpoint exactly which step failed during debugging. Claude can handle long instructions (option A is wrong), and the API supports complex multi-step prompts in one call (option C is wrong) — chaining is a design choice for reliability.",
+      },
+      {
+        question: "What is a conditional chain and when would you use it?",
+        options: [
+          "A chain where each step always runs in the same order regardless of output",
+          "A chain that routes to different next steps based on the output of the current step — useful for handling different types of input differently",
+          "A chain that only runs when certain time conditions are met, like business hours",
+        ],
+        correctIndex: 1,
+        explanation:
+          "A conditional chain evaluates the output of one step and routes to different paths based on criteria. For example, if a lead scores high, route to personalized outreach; if low, route to nurture. That's different from sequential chains that always follow the same path (option A), and it's about data-driven routing, not time-based scheduling (option C).",
+      },
+    ],
   },
   "03-4": {
     title: "Building and organizing prompt libraries",
@@ -731,6 +1039,8 @@ Instead of hardcoding specifics, use variables:
 
 Now you fill in the blanks for each use case instead of rewriting the whole prompt.
 
+<!-- check:0 -->
+
 ## Versioning your prompts
 
 When you improve a prompt, don't overwrite the old one. Version it:
@@ -747,6 +1057,8 @@ After every significant AI interaction:
 2. **Did I refine an existing prompt?** Update the library.
 3. **Did I discover an edge case?** Add it to the notes.
 4. **Did I find a better model for this task?** Update the recommendation.
+
+<!-- check:1 -->
 
 ## What your library becomes
 
@@ -765,6 +1077,30 @@ This is what separates someone who "uses Claude" from someone who **operates** w
     ],
     exercise:
       "Create your prompt library right now. Make folders organized by function. Go through this course and save every prompt template you built during exercises. Add the metadata (purpose, model, temperature, notes) to each one. Commit to adding every good prompt you write from now on. This library will compound over time into one of your most valuable assets.",
+    checks: [
+      {
+        question: "Why should you organize your prompt library by function (sales, content, code) rather than by Claude model?",
+        options: [
+          "Because Claude models change names frequently, making model-based organization unstable",
+          "Because when you need a prompt, you're thinking about the task (write a cold email, debug code) not the model — function-based organization matches how you actually search for prompts",
+          "Because each function can only use one specific Claude model",
+        ],
+        correctIndex: 1,
+        explanation:
+          "You search for prompts by what you need to do, not which model to use. When you need a cold email prompt, you look in the sales folder. The model tag is metadata on the template, not the organizing principle. Model names are relatively stable (option A is not the main reason), and any function can use multiple models (option C is wrong).",
+      },
+      {
+        question: "Why should you version your prompts instead of overwriting them when making improvements?",
+        options: [
+          "Because older prompts are always better than newer ones",
+          "Because versioning lets you roll back when a new version breaks in production and track what changed and why",
+          "Because the Claude API requires you to specify a prompt version number",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Versioning gives you a safety net. If v3 of a prompt starts producing worse results, you can roll back to v2 immediately. The change notes help you understand what worked and what didn't. Older prompts aren't always better (option A) — but sometimes a change that seemed like an improvement causes edge case failures. The API doesn't require version numbers (option C).",
+      },
+    ],
   },
   "04-1": {
     title: "Calling the Claude API (Messages API, tool use)",
@@ -798,6 +1134,8 @@ Every Claude API call includes:
 - **Body:** The model name (\`claude-sonnet-4-6-20250514\`, \`claude-haiku-4-5-20250414\`, etc.), your messages (system + user), and settings
 - **Response:** Claude's output, plus metadata like token usage
 
+<!-- check:0 -->
+
 ## Tool use (function calling)
 
 This is where Claude gets powerful. You can define tools — functions that Claude can decide to call.
@@ -811,6 +1149,8 @@ This is the foundation of building Claude agents. We go deep on this in Module 5
 **Make.com / n8n:** These tools have built-in HTTP modules. You set the URL, headers, and body — no code needed. Make.com also has dedicated Claude/Anthropic modules.
 
 **HTTP request modules:** Set the endpoint, add your API key in headers, and structure the body. Point and click.
+
+<!-- check:1 -->
 
 ## Key settings
 
@@ -832,6 +1172,30 @@ Start with no-code tools. Once you're comfortable with the flow, you can move to
     ],
     exercise:
       "Sign up for Make.com (free tier). Create a scenario with one step: an HTTP module calling the Claude API. Set the endpoint to https://api.anthropic.com/v1/messages, add your API key in headers, specify claude-haiku-4-5-20250414 as the model, and write a simple prompt. Run it. You just called Claude's API. This is the foundation of everything we build from here.",
+    checks: [
+      {
+        question: "What three things do you need to make a Claude API call?",
+        options: [
+          "A Claude account, a web browser, and an internet connection",
+          "An API key from console.anthropic.com, the Messages API endpoint URL, and a request body with model and messages",
+          "A Make.com subscription, a webhook URL, and a Slack integration",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Every Claude API call requires your API key for authentication, the endpoint URL (https://api.anthropic.com/v1/messages), and a properly formatted request body specifying the model and messages. A Claude chat account (option A) is different from API access. Make.com (option C) is one way to call the API but isn't required — you can call it from any HTTP client.",
+      },
+      {
+        question: "What does Claude's tool use (function calling) capability enable that regular chat cannot?",
+        options: [
+          "It lets Claude generate longer responses by splitting output across multiple function calls",
+          "It lets Claude decide when to call external functions you define — like searching a database or sending an email — and incorporate the results into its response",
+          "It lets Claude access the internet directly without any setup from you",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Tool use lets you define functions (like lookup_customer or send_email) that Claude can decide to call during a conversation. Claude recognizes when it needs external data or actions, calls the appropriate tool, and uses the results. It's not about longer responses (option A), and Claude doesn't access the internet directly (option C) — you define and execute the tools.",
+      },
+    ],
   },
   "04-2": {
     title: "Connecting Claude to Airtable, Notion, Sheets, Slack",
@@ -868,6 +1232,8 @@ Anthropic built MCP (Model Context Protocol) specifically to standardize how Cla
 
 **Why MCP matters:** Instead of building custom integrations for each tool, MCP provides a standard protocol. Claude can connect to any MCP-compatible server and use its tools. This is the future of how Claude integrates with business systems.
 
+<!-- check:0 -->
+
 ## How to build these (step by step)
 
 1. Open Make.com and create a new scenario
@@ -877,6 +1243,8 @@ Anthropic built MCP (Model Context Protocol) specifically to standardize how Cla
 5. Add an action module to write Claude's response back (e.g., "Update row" in Google Sheets)
 6. Test with real data
 7. Turn on scheduling (run every 5 minutes, every hour, etc.)
+
+<!-- check:1 -->
 
 ## The power move
 
@@ -889,6 +1257,30 @@ Chain multiple integrations together. Lead comes in (Sheets) -> Claude qualifies
     ],
     exercise:
       "Build your first real Claude integration: Google Sheets + Claude. Create a sheet with a 'Lead Name' and 'Company' column. Set up a Make.com scenario that watches for new rows, sends the data to Claude (via HTTP module to the Messages API) with a qualification prompt, and writes Claude's response back to a 'Score' column.",
+    checks: [
+      {
+        question: "What is MCP (Model Context Protocol) and why does it matter for building Claude integrations?",
+        options: [
+          "MCP is a monitoring dashboard for tracking Claude API costs across multiple projects",
+          "MCP is Anthropic's open protocol that standardizes how Claude connects to external tools and data sources, replacing the need for custom integrations",
+          "MCP is a premium API tier that gives Claude faster response times",
+        ],
+        correctIndex: 1,
+        explanation:
+          "MCP provides a standard protocol for connecting Claude to external tools — Notion, Slack, databases, file systems, and more. Instead of building custom integrations for each tool, MCP servers act as standardized bridges. It's not a monitoring dashboard (option A) or a premium API tier (option C) — it's an integration standard.",
+      },
+      {
+        question: "What are the seven steps to build a Claude integration with Make.com?",
+        options: [
+          "Create scenario, add trigger module, add Claude HTTP module, map trigger data into the prompt, add action module to write results back, test with real data, turn on scheduling",
+          "Install Claude plugin, connect your Google account, write a prompt, click run",
+          "Set up a server, install dependencies, write code, deploy to production, configure DNS, set up SSL, monitor logs",
+        ],
+        correctIndex: 0,
+        explanation:
+          "The process is: create a scenario, add your trigger (e.g., watch new rows), add an HTTP module calling Claude's API, map the trigger data into your prompt, add an action to write results back, test with real data, and schedule it. It's not as simple as a plugin install (option B), and it doesn't require server setup or coding (option C) — Make.com handles the infrastructure.",
+      },
+    ],
   },
   "04-3": {
     title: "Webhooks and real-time triggers",
@@ -919,6 +1311,8 @@ Someone fills out your contact form -> webhook fires -> Claude analyzes the inqu
 **GitHub push -> Claude code review:**
 Developer pushes code -> webhook fires -> Claude reviews the changes using its code analysis capabilities -> Posts comments on the pull request.
 
+<!-- check:0 -->
+
 ## Setting up a webhook in Make.com
 
 1. Add a "Custom Webhook" module as your trigger
@@ -927,6 +1321,8 @@ Developer pushes code -> webhook fires -> Claude reviews the changes using its c
 4. Paste your URL and select which events to send
 5. Test by triggering an event
 6. Build your Claude processing logic after the webhook module
+
+<!-- check:1 -->
 
 ## Security basics
 
@@ -942,6 +1338,30 @@ Developer pushes code -> webhook fires -> Claude reviews the changes using its c
     ],
     exercise:
       "Set up a webhook in Make.com. Create a Custom Webhook trigger, copy the URL. Use a tool like webhook.site to send a test payload to it. Watch the data arrive in Make.com in real time. Then add a Claude API step that processes the incoming data. This is the foundation for real-time Claude-powered systems.",
+    checks: [
+      {
+        question: "What is the key advantage of webhooks over polling for triggering Claude automations?",
+        options: [
+          "Webhooks are free while polling costs money for each check",
+          "Webhooks deliver data instantly when events happen, while polling checks periodically and creates delays",
+          "Webhooks work with more apps than polling does",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Webhooks push data to your system the instant an event occurs — no delay, no wasted API calls checking for nothing. Polling checks every X minutes, creating delays and wasting resources on empty checks. Cost isn't the main differentiator (option A) — speed and efficiency are. Both methods work with most modern apps (option C).",
+      },
+      {
+        question: "Why should you treat webhook URLs like passwords?",
+        options: [
+          "Because webhook URLs expire after 24 hours if not kept secret",
+          "Because anyone with your webhook URL can send data to your automation, potentially triggering unintended Claude processing and actions",
+          "Because webhook URLs contain your API key embedded in the URL string",
+        ],
+        correctIndex: 1,
+        explanation:
+          "If someone gets your webhook URL, they can send arbitrary data to your automation — triggering Claude processing, consuming API credits, and potentially causing unintended actions. URLs don't expire from being shared (option A), and they don't contain your API key (option C) — but they are direct access points to your system.",
+      },
+    ],
   },
   "04-4": {
     title: "Error handling and reliability",
@@ -960,6 +1380,8 @@ Developer pushes code -> webhook fires -> Claude reviews the changes using its c
 
 **5. Cost overruns:** A loop goes infinite or data volume spikes. Solution: Set daily spending limits on your Anthropic API keys (available in console.anthropic.com). Add circuit breakers that stop processing after N runs.
 
+<!-- check:0 -->
+
 ## How to build reliable Claude systems
 
 **Retry logic:** If a Claude API call fails, wait 5 seconds and try again. If it fails 3 times, alert you and stop. Anthropic's API returns clear error codes — use them to decide whether to retry or bail.
@@ -971,6 +1393,8 @@ Developer pushes code -> webhook fires -> Claude reviews the changes using its c
 **Monitoring:** Set up Slack alerts for failures. If your automation errors 3 times in an hour, you get a message. Don't discover failures when a customer complains.
 
 **Validation:** Before writing Claude's output to your CRM or sending it in an email, validate it. Does it contain required fields? Is it the right format? Is it a reasonable length? This 30-second check prevents embarrassing errors.
+
+<!-- check:1 -->
 
 ## The 80/20 of reliability
 
@@ -989,6 +1413,30 @@ These four things catch 80% of issues. Add more sophistication as your systems m
     ],
     exercise:
       "Take an automation you've built (or the one from the previous exercise). Add three things: (1) a retry step if the Claude API call fails, (2) a Slack/email notification on error, (3) a validation check that Claude's output isn't empty before writing it back. These three changes make it production-ready.",
+    checks: [
+      {
+        question: "Why is Claude hallucination listed as a common failure mode for automations, and what's the solution?",
+        options: [
+          "Claude sometimes generates incorrect output that looks correct — the solution is adding validation steps that check format and reasonableness before acting on outputs",
+          "Claude hallucination only happens with Haiku, so the solution is always using Opus",
+          "Claude hallucination is caused by API errors, so retry logic fixes it automatically",
+        ],
+        correctIndex: 0,
+        explanation:
+          "Claude can produce confident-sounding but incorrect output. The fix is validation: check that outputs have the right format, expected fields, and reasonable content before sending emails, updating CRMs, or taking other actions. Hallucination affects all models (option B is wrong), and retrying won't fix it (option C) — the model will confidently generate a different wrong answer.",
+      },
+      {
+        question: "What four things should you implement from day one to catch 80% of reliability issues?",
+        options: [
+          "Load balancing, auto-scaling, database replication, and CDN caching",
+          "Basic retry logic with exponential backoff, error notifications to Slack/email, input validation on required fields, and daily spending limits on your API key",
+          "Unit tests, integration tests, end-to-end tests, and performance benchmarks",
+        ],
+        correctIndex: 1,
+        explanation:
+          "The 80/20 of reliability is: retry logic (handles transient API failures), error notifications (so you know immediately when something breaks), input validation (prevents garbage data from hitting Claude), and spending limits (prevents cost runaway). Infrastructure scaling (option A) is for different problems. Traditional testing (option C) is valuable but doesn't address runtime reliability of Claude API calls.",
+      },
+    ],
   },
   "05-1": {
     title: "Make, Zapier, n8n — when to use what",
@@ -1019,6 +1467,8 @@ These four things catch 80% of issues. Add more sophistication as your systems m
 
 **Limitations:** Requires technical setup (Docker, hosting). UI is less polished. Smaller integration library (but growing fast).
 
+<!-- check:0 -->
+
 ## My recommendation
 
 **Start with Make.com.** It hits the sweet spot of power and usability. You can build anything from simple email automations to complex Claude agent workflows.
@@ -1026,6 +1476,8 @@ These four things catch 80% of issues. Add more sophistication as your systems m
 **Use Zapier** for quick, simple connections where you just need "when this, do that."
 
 **Graduate to n8n** when you're running 50+ automations and the per-operation costs on Make/Zapier add up, or when you need self-hosting for data privacy.
+
+<!-- check:1 -->
 
 ## The real insight
 
@@ -1038,6 +1490,30 @@ The platform doesn't matter as much as the thinking. The skill is in designing t
     ],
     exercise:
       "If you haven't already, create accounts on Make.com and Zapier (both have free tiers). Build the same simple Claude automation on both: 'When I get an email with subject line containing X, send the body to Claude for summarization, then Slack me the summary.' Compare the experience. Decide which feels more natural to you.",
+    checks: [
+      {
+        question: "Why is Make.com recommended as the starting platform over Zapier for Claude automations?",
+        options: [
+          "Make.com is free while Zapier requires a paid subscription",
+          "Make.com offers visual flow building with flexible HTTP modules, branching logic, and better handling of complex multi-step Claude workflows",
+          "Make.com has an exclusive partnership with Anthropic that Zapier doesn't have",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Make.com hits the sweet spot of power and usability: visual flow building, flexible HTTP modules for raw Claude API calls, and strong support for branching and looping logic. Both have free tiers (option A is wrong), and there's no exclusive partnership (option C) — Make.com's architecture is just better suited for complex Claude workflows.",
+      },
+      {
+        question: "When should you consider moving from Make.com to n8n?",
+        options: [
+          "Immediately — n8n is always the better choice for Claude automations",
+          "When you're running 50+ automations and per-operation costs add up, or when you need self-hosting for data privacy",
+          "Only when Make.com shuts down or removes Claude support",
+        ],
+        correctIndex: 1,
+        explanation:
+          "n8n makes sense at scale: when you have many automations and per-operation pricing becomes expensive, or when data privacy requires self-hosting. It's not always better (option A) — it has a steeper technical setup. And you don't need to wait for Make.com problems (option C) — it's a proactive scaling decision.",
+      },
+    ],
   },
   "05-2": {
     title: "Building multi-step automated pipelines",
@@ -1075,6 +1551,8 @@ A pipeline is a series of connected steps where each step's output feeds into th
 
 **Step 6: Add error handling at each step.** If step 3 fails, what happens? Should it retry? Skip? Alert you?
 
+<!-- check:0 -->
+
 ## Data flow between steps
 
 The key concept in Make.com/Zapier is mapping. Each step produces output data. The next step can reference any field from any previous step.
@@ -1085,6 +1563,8 @@ Step 2 Claude output: \`{company_size: 200, industry: "SaaS", ...}\`
 Step 3 Claude prompt: "Score this lead: {{step1.name}}, {{step2.industry}}, {{step2.company_size}}..."
 
 Each step builds on the data accumulated from all previous steps.
+
+<!-- check:1 -->
 
 ## The compound effect
 
@@ -1097,6 +1577,30 @@ One pipeline saves you 15 minutes of manual work. Ten pipelines save you 2.5 hou
     ],
     exercise:
       "Pick your most time-consuming repeating workflow. Map out every manual step on paper. Identify which steps can be automated with Claude and assign the right model tier (Haiku, Sonnet, Opus) to each. Build the first 3 steps as a pipeline in Make.com. Test it with real data.",
+    checks: [
+      {
+        question: "Why should you build and test pipeline steps sequentially rather than building the whole thing at once?",
+        options: [
+          "Because Make.com only allows you to add one step at a time",
+          "Because testing step by step means when something breaks, you know exactly which step failed — building all at once makes debugging nearly impossible",
+          "Because each step needs separate API keys that must be configured one at a time",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Sequential building isolates failures. If you build all 6 steps and test, a failure could be in any step — and you're debugging blindly. Building step by step lets you verify each one works before adding the next. Make.com doesn't restrict adding steps (option A), and API keys don't need per-step configuration (option C).",
+      },
+      {
+        question: "How does data flow between steps in a Make.com pipeline?",
+        options: [
+          "Each step can only access data from the immediately previous step",
+          "Each step can reference output data from any previous step through field mapping — data accumulates as the pipeline progresses",
+          "Data must be manually copied between steps by the user each time the pipeline runs",
+        ],
+        correctIndex: 1,
+        explanation:
+          "In Make.com (and similar tools), each step's output is available to all subsequent steps through field mapping. Step 3 can reference data from both step 1 and step 2. It's not limited to the previous step only (option A), and it's fully automatic once configured (option C) — that's the whole point of automation.",
+      },
+    ],
   },
   "05-3": {
     title: "Claude-powered email, CRM, and content workflows",
@@ -1113,6 +1617,8 @@ One pipeline saves you 15 minutes of manual work. Ten pipelines save you 2.5 hou
 5. Draft goes to your inbox for quick review and send (or auto-sends for common questions)
 
 **Result:** Instead of writing 30 emails from scratch daily, you review and tweak 30 Claude-drafted responses. Saves 2+ hours.
+
+<!-- check:0 -->
 
 ## Claude-powered CRM workflow
 
@@ -1141,6 +1647,8 @@ One pipeline saves you 15 minutes of manual work. Ten pipelines save you 2.5 hou
 
 **Result:** One 10-minute recording becomes a week of content. Instead of sitting in front of a blank page, you talk about what you know and Claude handles the rest.
 
+<!-- check:1 -->
+
 ## The common thread
 
 Notice the pattern: human does the high-value part (the thinking, the decision, the relationship), Claude handles the repetitive execution (research, drafting, formatting, routing). That's the model for every workflow you'll build.`,
@@ -1152,6 +1660,30 @@ Notice the pattern: human does the high-value part (the thinking, the decision, 
     ],
     exercise:
       "Pick one of these three workflows and build a basic version this week. Start with the email workflow — it's the easiest to set up and has the most immediate impact. Set up email -> Claude classification (Haiku) -> Claude draft response (Sonnet). Test with 5 real emails.",
+    checks: [
+      {
+        question: "In the email workflow, why does classification use Haiku while response drafting uses Sonnet?",
+        options: [
+          "Haiku can only read emails while Sonnet can only write emails",
+          "Classification is a simple, fast task suited for cheap Haiku, while drafting personalized responses requires Sonnet's stronger writing capability",
+          "Haiku processes emails faster because it was specifically trained on email data",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Classification (spam vs. lead vs. support) is a straightforward pattern-matching task that Haiku handles perfectly at minimal cost. Writing a personalized, high-quality response requires more language capability, which Sonnet provides. Both models can read and write (option A is wrong), and Haiku isn't email-specific (option C) — it's just the right tool for the simpler task.",
+      },
+      {
+        question: "What pattern do all three workflows (email, CRM, content) share?",
+        options: [
+          "Claude handles everything autonomously with no human involvement at any step",
+          "Humans do the high-value work (thinking, decisions, relationships) while Claude handles repetitive execution (research, drafting, formatting, routing)",
+          "Claude only works on one workflow at a time and requires manual switching between modes",
+        ],
+        correctIndex: 1,
+        explanation:
+          "The consistent model is human-AI collaboration: humans provide direction, make key decisions, and manage relationships, while Claude handles the time-consuming repetitive work. It's not fully autonomous (option A) — humans review drafts and make final calls. And Claude can power multiple workflows simultaneously (option C).",
+      },
+    ],
   },
   "05-4": {
     title: "Testing and maintaining automations at scale",
@@ -1182,6 +1714,8 @@ Run at least 10 test cases including 3-4 edge cases before going live.
 - Check costs vs. budget in Anthropic's dashboard
 - Identify any automations that should be adjusted
 
+<!-- check:0 -->
+
 **Monthly optimization (1 hour):**
 - Kill automations that aren't delivering value
 - Update Claude prompts based on observed output quality
@@ -1195,6 +1729,8 @@ When something breaks, run through this:
 2. **Check the Claude step.** Is the API responding? Did you hit a rate limit? Is the prompt still producing good output? Check console.anthropic.com for errors.
 3. **Check the action.** Can the destination still accept data? Did permissions change?
 4. **Check the data.** Is the format what you expected? Are any fields missing?
+
+<!-- check:1 -->
 
 ## Scaling: from 5 to 50 automations
 
@@ -1214,6 +1750,30 @@ This documentation takes 5 minutes per automation and saves hours of debugging l
     ],
     exercise:
       "Audit your current automations. For each one: give it a clear name (include the Claude model), write a one-line description of what it does, and check the last 10 runs for errors. Fix anything broken. Check your Anthropic API usage dashboard. Set a recurring calendar reminder for weekly automation reviews.",
+    checks: [
+      {
+        question: "Why should you test with edge cases like empty fields and extra-long text before launching an automation?",
+        options: [
+          "Edge cases only occur in testing environments, not in production",
+          "Real-world data is messy — empty fields, long text, and special characters are common and will break automations that only work with perfect data",
+          "Edge case testing is only necessary for Opus-powered automations since Haiku handles them automatically",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Production data is unpredictable. People leave fields blank, paste entire documents into form fields, and use special characters. If your automation only handles clean, perfect data, it will fail in the real world. Edge cases happen in production too (option A is wrong), and all models need proper input handling (option C) — Haiku doesn't magically handle bad data.",
+      },
+      {
+        question: "When scaling from 5 to 50 automations, what organizational practice becomes critical?",
+        options: [
+          "Keeping all automations in a single scenario for easier management",
+          "Naming them clearly (including the Claude model used), grouping by function, documenting each one, and tracking costs per workflow",
+          "Running all automations on the same schedule so they're easier to monitor",
+        ],
+        correctIndex: 1,
+        explanation:
+          "At scale, organization is everything. Clear names like 'Lead Enrichment - Inbound Form (Sonnet)' beat 'Scenario 47'. Grouping by function, documenting what each does, and tracking per-workflow costs lets you manage 50+ automations without chaos. Combining into one scenario (option A) creates a maintenance nightmare. Same-schedule running (option C) doesn't help with organization.",
+      },
+    ],
   },
   "06-1": {
     title: "Where AI actually makes businesses money",
@@ -1237,6 +1797,8 @@ Here's what I've seen generate the fastest ROI across businesses I've worked wit
 - **Document processing:** Contracts, invoices, applications — anything your team reads and extracts data from. 10 hours/week of manual review becomes 30 minutes.
 - **Content production:** Blog posts, social media, email sequences, SOPs. A marketing team producing 4 blog posts/month can produce 16 without adding headcount.
 
+<!-- check:0 -->
+
 ## Why Claude specifically
 
 I'm not telling you to use AI generically. I'm telling you to use Claude because:
@@ -1245,6 +1807,8 @@ I'm not telling you to use AI generically. I'm telling you to use Claude because
 - **Tool use** — Claude doesn't just chat. It can call your APIs, search your databases, and take actions in your systems.
 - **Vision** — Upload screenshots, photos of whiteboards, scanned documents. Claude reads and processes images natively.
 - **Reliability** — Claude follows instructions precisely. When you build business systems, you need consistency, not creativity.
+
+<!-- check:1 -->
 
 ## The uncomfortable truth
 
@@ -1259,6 +1823,30 @@ This course fixes that.`,
     ],
     exercise:
       "List every repetitive task in your business that involves reading, writing, or analyzing information. For each one, estimate hours spent per week and fully loaded cost. Rank them by cost. Your top 3 are where Claude starts.",
+    checks: [
+      {
+        question: "What are the three revenue levers where AI makes businesses money?",
+        options: [
+          "Building AI products, selling AI consulting, and training teams on AI tools",
+          "Cost reduction (replace/augment manual labor), revenue acceleration (close more deals faster), and intelligence advantage (better decisions from existing data)",
+          "Automating HR, replacing customer support entirely, and eliminating management roles",
+        ],
+        correctIndex: 1,
+        explanation:
+          "The three levers are: reducing costs by augmenting labor (not replacing — a 5-person team handles 4x more work), accelerating revenue through personalized outreach at scale, and gaining intelligence advantages by analyzing data you already have. These are internal operational levers, not business models (option A) or blanket role elimination (option C).",
+      },
+      {
+        question: "Why does the lesson specifically recommend Claude over 'AI generically' for business operations?",
+        options: [
+          "Claude is the only AI model available for business use",
+          "Claude's 200K context window, tool use, vision capabilities, and precise instruction following make it uniquely suited for building reliable business systems",
+          "Claude is free for business users while other models charge per API call",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Claude's specific capabilities — 200K context for processing entire documents, tool use for taking actions, vision for reading images, and best-in-class instruction following for consistency — make it ideal for business automation. Other AI models exist for business (option A is wrong), and Claude has standard API pricing (option C is wrong).",
+      },
+    ],
   },
   "06-2": {
     title: "The AI audit: finding your highest-ROI opportunities",
@@ -1303,6 +1891,8 @@ Rate each task 1-5 on:
 - **Error tolerance:** How bad is a mistake? (Lower tolerance = needs human oversight)
 - **Volume:** How often does this happen? (Higher = bigger ROI)
 
+<!-- check:0 -->
+
 ### Step 4: Prioritize ruthlessly
 
 Multiply your monthly cost by your feasibility score. Sort descending. That's your implementation order.
@@ -1321,6 +1911,8 @@ I ran this audit for a professional services firm. Here's what we found:
 
 Proposal writing was the clear winner. We built a Claude-powered system that took their average proposal time from 6 hours to 45 minutes. At 15 proposals/month, that freed up 75+ hours — roughly one full-time employee's worth of capacity.
 
+<!-- check:1 -->
+
 ## The audit deliverable
 
 Your output should be a simple spreadsheet with: Task, Department, Monthly Cost, Feasibility Score, Priority Score, Recommended Timeline (Month 1, 2, or 3).
@@ -1334,6 +1926,30 @@ Don't overcomplicate this. The goal is to have a clear, prioritized list within 
     ],
     exercise:
       "Run the full AI audit on your business or one department. Create the spreadsheet with at least 10 tasks. Score each one and rank them. Share the top 3 with your team and get their input on feasibility — they'll know the edge cases you don't.",
+    checks: [
+      {
+        question: "In the AI audit framework, how do you calculate the priority score for each task?",
+        options: [
+          "Rank tasks by how exciting they are to automate and start with the most interesting one",
+          "Multiply the monthly cost of the task by its AI feasibility score — highest product goes first",
+          "Count the number of employees involved and prioritize tasks with the most people",
+        ],
+        correctIndex: 1,
+        explanation:
+          "The priority score is calculated as monthly cost x feasibility score, giving you a data-driven ranking of where AI delivers the most value. Excitement-based prioritization (option A) often targets hard problems with low business impact. Headcount (option C) doesn't account for how automatable the task is or its total cost.",
+      },
+      {
+        question: "In the $2M services company example, why was proposal writing the clear winner over other opportunities like social media content?",
+        options: [
+          "Because proposals are more fun to automate than social media",
+          "Because proposal writing had both the highest monthly cost ($4,200) and a high feasibility score (4.5), giving it the top priority score of 18,900",
+          "Because the CEO specifically requested proposal automation before the audit started",
+        ],
+        correctIndex: 1,
+        explanation:
+          "The math drove the decision: $4,200/month x 4.5 feasibility = 18,900 priority score, the highest of any task. Social media content scored lower ($1,800 x 4.2 = 7,560) despite decent feasibility. The audit framework removes subjective bias (option A) and CEO preferences (option C) from prioritization — data decides.",
+      },
+    ],
   },
   "06-3": {
     title: "Claude-powered customer support that scales",
@@ -1382,6 +1998,8 @@ Claude is only as good as the information you feed it. Your knowledge base needs
 
 Claude's 200K context window means you can feed it ALL of this in a single system prompt. No chunking, no retrieval systems, no complexity. Just one massive context block.
 
+<!-- check:0 -->
+
 ## The prompt architecture
 
 Here's the structure I use for every support system:
@@ -1405,6 +2023,8 @@ The key insight: **Be explicit about what Claude should NOT do.** Most support b
 
 **Repeat contacts:** If your system can access ticket history, include previous interactions in Claude's context. "Customer contacted 3 times this week about the same issue" changes how Claude should respond.
 
+<!-- check:1 -->
+
 ## Measuring success
 
 Track these weekly:
@@ -1413,6 +2033,8 @@ Track these weekly:
 - **Customer satisfaction:** CSAT or NPS on AI-handled vs. human-handled tickets
 - **Escalation rate:** % of tickets Claude sends to humans (should be 25-35%)
 - **Cost per ticket:** Total support cost / total tickets (your north star metric)
+
+<!-- check:2 -->
 
 ## The numbers
 
@@ -1432,6 +2054,41 @@ Those aren't theoretical numbers. That's what properly implemented AI support lo
     ],
     exercise:
       "Collect your 50 most recent customer support tickets. Categorize each as Tier 1 (Claude handles), Tier 2 (Claude drafts), or Tier 3 (human handles). Calculate your current deflection potential. Then write the system prompt for Tier 1 — include your real product info, real policies, and real brand voice.",
+    checks: [
+      {
+        question: "Why does the tiered support system feed Claude the complete knowledge base in the system prompt instead of using a retrieval system?",
+        options: [
+          "Because retrieval systems are too expensive to build for customer support",
+          "Because Claude's 200K context window can hold all product docs, policies, and brand guidelines at once — no chunking or retrieval complexity needed",
+          "Because Claude's system prompt is the only place where it can access external information",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Claude's 200K context window is large enough to hold complete product documentation, policies, and brand guidelines in a single system prompt. This eliminates the need for complex retrieval systems. Retrieval systems aren't necessarily expensive (option A) — they're just unnecessary when the context window is big enough. Claude can also access info through tool use (option C), but the system prompt approach is simpler.",
+      },
+      {
+        question: "Why is being explicit about what Claude should NOT do more important than what it should do in support systems?",
+        options: [
+          "Because Claude ignores positive instructions and only follows negative ones",
+          "Because most support bot failures come from over-helpfulness — making up answers, offering unauthorized discounts, or handling situations they should escalate",
+          "Because negative instructions use fewer tokens than positive instructions",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Support bots fail when they try too hard to help — inventing answers, promising things they can't deliver, or handling sensitive situations they should escalate. Explicit 'never do' rules prevent these failures. Claude follows both positive and negative instructions (option A is wrong), and instruction length isn't about token savings (option C) — it's about preventing specific failure modes.",
+      },
+      {
+        question: "What is the 'north star metric' for measuring AI support system success?",
+        options: [
+          "Number of tickets handled per day",
+          "Cost per ticket — total support cost divided by total tickets",
+          "Customer satisfaction score on AI-handled tickets only",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Cost per ticket captures the full picture: efficiency (tickets per agent), AI effectiveness (deflection rate), and quality (if bad AI responses create repeat tickets, cost goes up). Total ticket volume (option A) doesn't account for cost or quality. AI-only CSAT (option C) is important to track but doesn't capture the overall system economics.",
+      },
+    ],
   },
   "06-4": {
     title: "AI lead scoring and qualification",
@@ -1471,6 +2128,8 @@ Here's the framework I use:
 
 Output: Score (1-100), confidence level (high/medium/low), top 3 scoring factors, recommended next action, and any red flags."
 
+<!-- check:0 -->
+
 ### Making it operational
 
 Run this scoring on every new lead as they come in. Set up three tiers:
@@ -1499,6 +2158,8 @@ When leads respond to outreach, Claude analyzes their response and classifies it
 - Information gathering only: "Downgrade to Cool, add to newsletter"
 - Not interested: "Remove from active sequences"
 
+<!-- check:1 -->
+
 ## The compound effect
 
 Here's where it gets powerful. Claude doesn't just score leads once — it re-scores them continuously based on new data:
@@ -1509,6 +2170,8 @@ Here's where it gets powerful. Claude doesn't just score leads once — it re-sc
 - Lead responds to nurture email: Re-evaluate all signals
 
 Your sales team always works on the highest-probability leads. No more gut feelings, no more working bad leads because they were enthusiastic on one call.
+
+<!-- check:2 -->
 
 ## Real impact
 
@@ -1524,6 +2187,41 @@ A B2B services company I worked with implemented Claude-powered lead scoring:
     ],
     exercise:
       "Take your last 20 closed deals and 20 lost deals. Feed each one's data to Claude with the scoring framework. Check if Claude would have scored your closed deals higher than your lost deals. If the separation is clear, your scoring model works. If not, adjust the signal weights until it accurately predicts your historical outcomes.",
+    checks: [
+      {
+        question: "What are the four scoring dimensions in the Claude-powered lead scoring framework, each worth 25 points?",
+        options: [
+          "Email opens, website visits, content downloads, and social media engagement",
+          "Budget signal, need signal, timeline signal, and fit signal",
+          "Company size, industry type, geographic location, and annual revenue",
+        ],
+        correctIndex: 1,
+        explanation:
+          "The four dimensions are: budget signal (can they afford it?), need signal (do they have the problem you solve?), timeline signal (are they actively buying?), and fit signal (do they match your ideal customer profile?). Traditional metrics like email opens (option A) measure actions, not intent. Raw firmographic data (option C) is input to the scoring, not the scoring dimensions themselves.",
+      },
+      {
+        question: "How does Claude-powered lead qualification in website chat work differently from a static form?",
+        options: [
+          "Claude asks the same fixed questions in the same order regardless of answers",
+          "Claude asks smart qualifying questions, evaluates answers in real-time, and routes leads based on buying signals — Hot leads get transferred to humans immediately",
+          "Claude replaces the form entirely and doesn't collect any structured data",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Claude-powered chat qualification is dynamic: it asks questions about need, timeline, and budget, evaluates the responses in real-time, and routes accordingly. Hot leads go straight to a human, warm leads get booked for meetings, cool leads enter nurture sequences. Unlike static forms (option A), Claude adapts its questions. It still produces structured data for your CRM (option C is wrong).",
+      },
+      {
+        question: "Why should lead scores be dynamic rather than static snapshots?",
+        options: [
+          "Because Claude can only generate scores in real-time, not store them",
+          "Because buyer behavior changes — visiting the pricing page twice, downloading case studies, or going silent for 30 days should continuously update the score",
+          "Because static scores use more API tokens than dynamic re-scoring",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Leads are not static. A lead who visits your pricing page twice in a week is showing increasing intent — their score should go up. One who goes silent for 30 days is cooling off — their score should drop. Re-scoring on new data keeps your team focused on the hottest leads. Claude can store scores (option A is wrong), and dynamic scoring doesn't necessarily cost more (option C).",
+      },
+    ],
   },
   "07-1": {
     title: "What agents are and how to build them with Claude",
@@ -1550,6 +2248,8 @@ A B2B services company I worked with implemented Claude-powered lead scoring:
 
 **4. The loop:** Think -> Act -> Observe -> Think again. Claude decides what to do, calls a tool, sees the result, and decides the next step. This is called the "agentic loop."
 
+<!-- check:0 -->
+
 ## A real example
 
 **Agent task:** "Find 10 SaaS companies in Austin with 50-200 employees, find their VP of Marketing on LinkedIn, and draft a personalized cold email for each."
@@ -1563,6 +2263,8 @@ A B2B services company I worked with implemented Claude-powered lead scoring:
 6. Saves everything to a spreadsheet (tool: write to Sheets)
 
 A human doing this: 3-4 hours. The Claude agent: 15 minutes.
+
+<!-- check:1 -->
 
 ## How to build your first Claude agent
 
@@ -1581,6 +2283,30 @@ A human doing this: 3-4 hours. The Claude agent: 15 minutes.
     ],
     exercise:
       "Design a Claude agent on paper (don't build it yet). Pick a task you do manually that involves multiple steps and tools. Write out: (1) the goal, (2) which Claude model to use, (3) the tools it would need (with descriptions), (4) the step-by-step logic it would follow. This is your agent blueprint.",
+    checks: [
+      {
+        question: "What are the four core components of a Claude agent?",
+        options: [
+          "API key, endpoint, request body, and response handler",
+          "The brain (Claude model), tools (functions it can call), memory (context), and the agentic loop (think-act-observe cycle)",
+          "System prompt, user message, assistant response, and tool results",
+        ],
+        correctIndex: 1,
+        explanation:
+          "A Claude agent has four components: the brain (Claude does the reasoning), tools (functions like search_web or send_email), memory (conversation context up to 200K tokens plus stored data), and the agentic loop (think -> act -> observe -> think again). API components (option A) are how you call Claude, not agent architecture. Message types (option C) are API structure, not agent design.",
+      },
+      {
+        question: "In the SaaS prospecting example, what makes this an agent rather than a simple automation?",
+        options: [
+          "It runs faster than a human could do the same task",
+          "Claude decides what to do at each step — searching, filtering, researching, writing — based on the results it gets, rather than following a fixed script",
+          "It uses the Opus model instead of Haiku",
+        ],
+        correctIndex: 1,
+        explanation:
+          "An agent is defined by autonomous decision-making. Claude decides when to search, what to filter, which person to research next, and how to personalize each email based on what it finds. A simple automation follows a fixed script regardless of results. Speed (option A) doesn't define an agent, and model choice (option C) doesn't either — the agentic loop is the key difference.",
+      },
+    ],
   },
   "07-2": {
     title: "Tool use: giving Claude the ability to act",
@@ -1621,6 +2347,8 @@ MCP is Anthropic's open protocol for connecting Claude to external tools and dat
 
 This means you can give Claude access to dozens of tools through standardized MCP connections instead of building each one from scratch.
 
+<!-- check:0 -->
+
 ## Designing good tools
 
 **Keep tools focused.** Each tool should do one thing well. Don't build a "do_everything" tool — Claude won't know when to use it.
@@ -1651,6 +2379,8 @@ This means you can give Claude access to dozens of tools through standardized MC
 - Summarize long documents
 - Score or classify inputs
 
+<!-- check:1 -->
+
 ## The security consideration
 
 Every tool you give Claude is a capability it can use autonomously. Be thoughtful about what actions Claude can take without human approval. A "read" tool is low risk. A "send email to client" tool needs guardrails. A "delete database" tool probably needs human confirmation.
@@ -1664,6 +2394,30 @@ Start with read-only tools. Add write tools carefully with validation and approv
     ],
     exercise:
       "For the agent you designed in the previous exercise, define 3-5 tools as JSON schemas. For each tool, write: the name, a clear description, the input_schema with parameter types, and what it returns. This is exactly how you'd implement them in Claude's tool use API.",
+    checks: [
+      {
+        question: "How does Claude decide which tool to use during a conversation?",
+        options: [
+          "You must explicitly tell Claude which tool to call in every message",
+          "Claude reads the tool descriptions you defined and autonomously decides which tool fits the current task based on those descriptions",
+          "Claude randomly selects from available tools until one works",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Claude uses the tool descriptions in your JSON schemas to determine when and which tool to call. Clear descriptions like 'Search the CRM for contacts by name, email, or company' help Claude match the right tool to the task. You don't need to specify the tool each time (option A) — Claude decides autonomously. And it's not random (option C) — it's based on understanding the descriptions.",
+      },
+      {
+        question: "Why should you start with read-only tools when building Claude agents and add write tools later?",
+        options: [
+          "Because read-only tools are faster and cheaper to run",
+          "Because read-only tools let the agent gather information without risk of unintended modifications — you can validate its decision-making before granting write access",
+          "Because Claude can't use read and write tools in the same conversation",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Starting read-only is a safety principle. The agent can search, look up, and analyze without any risk of sending wrong emails, deleting records, or corrupting data. Once you've validated that Claude makes good decisions with read tools, you add write tools with guardrails. Speed/cost isn't the main concern (option A). Claude absolutely can use both types together (option C).",
+      },
+    ],
   },
   "07-3": {
     title: "Multi-agent systems and orchestration",
@@ -1692,6 +2446,8 @@ Some tasks are too complex for one agent with one set of tools. A research agent
 - Researching 10 companies? Spin up 10 research agents in parallel.
 - Each finishes in 30 seconds instead of 5 minutes sequentially.
 
+<!-- check:0 -->
+
 ## A real multi-agent system
 
 **Claude-Powered Sales Team:**
@@ -1703,6 +2459,8 @@ Some tasks are too complex for one agent with one set of tools. A research agent
 3. **Outreach Agent (Sonnet):** Writes personalized emails using research. Tools: email templates, CRM. Output: ready-to-send emails.
 
 4. **Manager Agent (Opus):** Orchestrates the pipeline, handles errors, ensures quality. Reviews outputs before they go out. Uses extended thinking for quality assessment.
+
+<!-- check:1 -->
 
 ## Building multi-agent with Claude
 
@@ -1721,6 +2479,30 @@ Start simple. Build one agent. Get it working. Then add a second agent that hand
     ],
     exercise:
       "Take the agent you've been designing. Identify which parts could be handled by separate specialized Claude agents. Draw the architecture: which agent does what, which Claude model each uses, what data flows between them, and which pattern (sequential, supervisor, parallel) fits best.",
+    checks: [
+      {
+        question: "What are the three architecture patterns for multi-agent Claude systems?",
+        options: [
+          "Frontend, backend, and database agents",
+          "Sequential pipeline (A -> B -> C), supervisor pattern (manager delegates to specialists), and parallel execution (multiple agents work simultaneously)",
+          "Input agent, processing agent, and output agent",
+        ],
+        correctIndex: 1,
+        explanation:
+          "The three patterns are: sequential (each agent passes results to the next), supervisor (a manager agent delegates and synthesizes), and parallel (multiple agents work on different parts simultaneously). These are architectural patterns, not role labels (option A or option C) — any pattern can include various agent roles.",
+      },
+      {
+        question: "In the Claude-Powered Sales Team example, why does the Manager Agent use Opus while worker agents use Sonnet or Haiku?",
+        options: [
+          "Because Opus can manage more API connections simultaneously",
+          "Because the manager needs deep reasoning for orchestration, error handling, and quality assessment, while worker agents handle more straightforward specialized tasks",
+          "Because Opus is the only model that supports the supervisor pattern",
+        ],
+        correctIndex: 1,
+        explanation:
+          "The manager agent makes complex decisions: which agent to call next, whether outputs pass quality checks, how to handle errors. This requires Opus-level reasoning with extended thinking. Worker agents do focused tasks (prospecting, research, writing) that Sonnet or Haiku handle well. It's not about API connections (option A), and all models support any pattern (option C).",
+      },
+    ],
   },
   "07-4": {
     title: "Real business agent builds: research, outreach, ops",
@@ -1749,6 +2531,8 @@ Start simple. Build one agent. Get it working. Then add a second agent that hand
 
 **Estimated build time:** 2-3 hours using Claude's tool use API or Make.com, including testing.
 
+<!-- check:0 -->
+
 ## Build 2: Outreach Agent
 
 **Goal:** Generate personalized outreach emails at scale using research briefs.
@@ -1768,6 +2552,8 @@ Start simple. Build one agent. Get it working. Then add a second agent that hand
 3. Claude self-checks: is it specific enough? Does it mention something real about the company?
 4. If it passes, Claude queues for sending (calls \`queue_email\` with optional human review)
 5. Result logged to CRM
+
+<!-- check:1 -->
 
 ## Build 3: Operations Agent
 
@@ -1801,6 +2587,30 @@ Complete these three builds and you've earned your shot at a real paid project f
     ],
     exercise:
       "Build the Company Research Agent. This is your capstone for the agents module. Set up the tools (web search API, website scraper), write the system prompt, build the flow using Claude's tool use API or Make.com, and test it with 5 real companies. Save the briefs. This is the skill that gets you paid projects.",
+    checks: [
+      {
+        question: "What three tools does the Company Research Agent use, and what does each provide?",
+        options: [
+          "send_email, update_crm, and schedule_meeting — for outreach automation",
+          "search_web (finds general info), scrape_website (reads company website content), and lookup_linkedin (finds key people)",
+          "read_database, write_database, and delete_database — for CRM management",
+        ],
+        correctIndex: 1,
+        explanation:
+          "The Research Agent needs information-gathering tools: search_web finds general company info, scrape_website reads their actual website for product/service details, and lookup_linkedin identifies key decision-makers. The other options describe action tools (option A) or database operations (option C) — the research agent is read-only by design.",
+      },
+      {
+        question: "Why does the Outreach Agent include a self-check step before queuing emails?",
+        options: [
+          "Because Claude's API requires a validation step before any email can be sent",
+          "To verify the email is specific enough — referencing something real about the company — rather than sending generic outreach that wastes the research data",
+          "Because the self-check converts the email from plain text to HTML formatting",
+        ],
+        correctIndex: 1,
+        explanation:
+          "The self-check catches a common failure: the agent generating generic emails that don't use the research brief. By having Claude verify 'is it specific enough? Does it mention something real about the company?', bad emails get caught before sending. The API doesn't require validation (option A), and the self-check is about content quality, not formatting (option C).",
+      },
+    ],
   },
   "08-1": {
     title: "Putting Claude systems into production",
@@ -1821,6 +2631,8 @@ Before any Claude system goes live, run through this:
 
 **Permissions and access:** Are API keys stored securely (environment variables, not hardcoded)? Can only authorized people trigger or modify the system?
 
+<!-- check:0 -->
+
 ## The staging -> production pattern
 
 **Never go straight to production.** Always:
@@ -1838,6 +2650,8 @@ Before any Claude system goes live, run through this:
 - Context window limits (summarize and chunk long inputs)
 - Cost scaling (optimize model selection — switch steps from Sonnet to Haiku where quality holds)
 - Data volume (archive old data, index for search)
+
+<!-- check:1 -->
 
 ## The handoff
 
@@ -1857,6 +2671,30 @@ A system only you understand is a liability, not an asset.`,
     ],
     exercise:
       "Take your best Claude automation and run it through the production checklist. Test with 5 edge cases. Add error handling if it's missing. Calculate your monthly Anthropic API cost at current volume (use console.anthropic.com for actual rates). Write a one-page doc explaining what it does and how to maintain it.",
+    checks: [
+      {
+        question: "What is the staging-to-production pattern for launching Claude systems?",
+        options: [
+          "Build in production with real data and fix issues as users report them",
+          "Build in staging, run with real data but no real actions (draft emails, test database), monitor for 3-5 days, then switch to production",
+          "Test with dummy data for one hour, then go live immediately to start delivering value",
+        ],
+        correctIndex: 1,
+        explanation:
+          "The staging-to-production pattern validates Claude's behavior on real data without real consequences. Running for 3-5 days catches edge cases that synthetic tests miss. Building directly in production (option A) means real users see every mistake. One hour of dummy data (option C) is too short and too artificial to catch the variety of real-world inputs your system will encounter.",
+      },
+      {
+        question: "Why might a Claude system that works at 10 runs/day break at 1,000 runs/day?",
+        options: [
+          "Because Claude's model quality degrades with higher usage volume",
+          "Because rate limits get hit, costs scale unexpectedly, and context window limits may be reached with higher data volumes",
+          "Because Claude can only handle 100 API calls per account per day",
+        ],
+        correctIndex: 1,
+        explanation:
+          "At scale, multiple factors compound: Anthropic's API rate limits may throttle your requests, token costs multiply (a $3/day system becomes $300/day), and higher data volumes may push against context window limits. Claude's quality doesn't degrade with usage (option A), and there's no 100-call daily limit (option C) — limits depend on your API tier.",
+      },
+    ],
   },
   "08-2": {
     title: "Monitoring, logging, and alerting",
@@ -1881,6 +2719,8 @@ For every Claude automation run, capture:
 - **Metadata:** Timestamp, duration, total token count, estimated cost
 - **Errors:** Any failures and the error message (including Anthropic API error codes)
 
+<!-- check:0 -->
+
 ## Where to log
 
 **Simple:** Google Sheets with one row per run. Works for low volume.
@@ -1895,6 +2735,8 @@ Don't alert on every failure — you'll get alert fatigue. Alert on:
 - Daily Anthropic API cost exceeding your budget by 20%+
 - Zero runs in a period where you expect runs (system might be silently broken)
 - Claude output quality drop (set up a validation check that flags outputs below expected length or missing expected fields)
+
+<!-- check:1 -->
 
 ## The 5-minute daily review
 
@@ -1914,6 +2756,30 @@ This 5-minute habit catches problems before they compound.`,
     ],
     exercise:
       "Add logging to your most important Claude automation. Create a Google Sheet or Airtable base that captures: timestamp, Claude model used, input summary, output summary, token count, estimated cost, success/fail. Set up a simple Slack alert that fires if any run fails. Review your first week of logs and identify cost optimization opportunities.",
+    checks: [
+      {
+        question: "What six things should you log for every Claude automation run?",
+        options: [
+          "Just the final output and whether it passed or failed",
+          "Input data, Claude model used, prompt sent, response received, tokens consumed, and any errors",
+          "Only the timestamp and total cost per run",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Comprehensive logging captures input, model, prompt, response, tokens, and errors — giving you everything needed to debug, optimize, and audit. Logging only output/pass-fail (option A) makes it impossible to understand why something went wrong. Timestamp and cost only (option C) misses the data you need for quality analysis and troubleshooting.",
+      },
+      {
+        question: "Why should you alert on patterns (like error rate spikes) rather than individual failures?",
+        options: [
+          "Because individual failures never matter and can always be ignored",
+          "Because alerting on every failure causes alert fatigue — pattern-based alerts catch real problems while filtering out normal occasional failures",
+          "Because monitoring tools can only detect patterns, not individual events",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Occasional API failures are normal. Alerting on each one means you get paged constantly and start ignoring alerts. Pattern-based alerts (error rate above 10%, zero runs when expected, cost spikes) surface real problems that need attention. Individual failures can matter (option A is too extreme), and monitoring tools can detect both (option C) — the choice is about signal-to-noise ratio.",
+      },
+    ],
   },
   "08-3": {
     title: "Handing off AI systems to a team",
@@ -1953,6 +2819,8 @@ Every Claude system needs a one-page doc covering:
 - To switch Claude models (e.g., Haiku to Sonnet), update the model parameter in the HTTP module
 - To add new data sources, add a new step between steps 2 and 3
 
+<!-- check:0 -->
+
 ## Training the team
 
 Don't just send the doc. Walk through it live:
@@ -1962,6 +2830,8 @@ Don't just send the doc. Walk through it live:
 4. Let them make a small change (update a Claude prompt, change a setting)
 
 Once they can run it, debug it, and modify it — you're free.
+
+<!-- check:1 -->
 
 ## Permissions and access
 
@@ -1978,6 +2848,30 @@ Build yourself out of every system. Your value is in designing and building new 
     ],
     exercise:
       "Pick your best Claude automation. Write the one-page handoff document covering all 5 sections. Include the Claude prompts used and which model each step calls. Walk someone through it (a team member, friend, or even record a Loom video). If they can understand and operate it from your doc + walkthrough, it's ready for handoff.",
+    checks: [
+      {
+        question: "What five sections should every Claude system handoff document include?",
+        options: [
+          "Executive summary, budget, timeline, risks, and sign-off",
+          "What it does (2 sentences), how it works (bullet points), where it lives (links), what can go wrong (failure modes), and how to modify it (change instructions)",
+          "Introduction, methodology, results, discussion, and conclusion",
+        ],
+        correctIndex: 1,
+        explanation:
+          "The handoff doc covers: what (purpose in 2 sentences), how (step-by-step flow), where (links to scenarios, sheets, API keys), risks (failure modes and fixes), and modifications (how to change prompts, channels, or models). This is operational documentation, not a business proposal (option A) or academic paper (option C).",
+      },
+      {
+        question: "Why should you create separate Anthropic API keys for different team members or systems?",
+        options: [
+          "Because each API key has a different set of Claude models it can access",
+          "Because separate keys let you track usage per person/system and revoke access for one without affecting everyone else",
+          "Because Anthropic offers a discount when you use multiple API keys",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Separate API keys give you granular control: you can see which system or person is using how many tokens, and if someone leaves or a system goes rogue, you revoke that key without disrupting everything else. All keys access the same models (option A is wrong), and there's no multi-key discount (option C).",
+      },
+    ],
   },
   "08-4": {
     title: "Iterating and improving over time",
@@ -1991,6 +2885,8 @@ Build yourself out of every system. Your value is in designing and building new 
 **Monthly:** Check overall metrics. Success rate, Anthropic API cost, time saved, and business impact. Is this system still worth running? Could a cheaper Claude model handle it?
 
 **Quarterly:** Evaluate the entire system. Are there new Claude capabilities (new models, new features, better tool use) that could make it significantly better? Should you rebuild or retire it?
+
+<!-- check:0 -->
 
 ## What to improve
 
@@ -2012,6 +2908,8 @@ Build yourself out of every system. Your value is in designing and building new 
 
 Rule of thumb: if you're patching the same system for the third time, it's time to rebuild.
 
+<!-- check:1 -->
+
 ## The compound effect
 
 A system that improves 5% per month is 80% better after a year. That's not marginal — it's transformational. The discipline of consistent improvement separates amateurs from professionals.
@@ -2025,6 +2923,30 @@ A system that improves 5% per month is 80% better after a year. That's not margi
     ],
     exercise:
       "Final exercise: Build your portfolio. Take the three Claude agent systems you built in Module 5, document them with handoff docs, record a Loom walkthrough of each, and compile everything into a portfolio page. This is what you'll submit for paid project consideration.",
+    checks: [
+      {
+        question: "What is the single highest-leverage improvement you can make to a Claude system?",
+        options: [
+          "Upgrading to a more expensive hosting provider for faster response times",
+          "Prompt quality — small prompt changes can dramatically improve Claude's output, and A/B testing different prompts reveals what works best",
+          "Adding more tools so Claude has more options to choose from",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Prompt improvements have the highest impact-to-effort ratio. A small wording change, adding XML structure, or including better examples can dramatically change output quality. Hosting upgrades (option A) affect infrastructure, not AI quality. More tools (option C) can help but also adds complexity — better prompts improve every single run.",
+      },
+      {
+        question: "When should you rebuild a Claude system from scratch rather than patching it?",
+        options: [
+          "Every time Anthropic releases a new Claude model",
+          "When requirements have fundamentally changed, a new Claude capability makes a better architecture possible, or you've patched the same system for the third time",
+          "Never — always patch existing systems since rebuilding wastes the original investment",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Rebuild when the foundation no longer fits: requirements changed significantly, new Claude features enable a better approach, or repeated patches signal the architecture can't handle current needs. Not every model release warrants a rebuild (option A) — test the new model with your existing system first. And sometimes rebuilding is the right investment (option C) — clinging to a patched-up system costs more in maintenance than a clean rebuild.",
+      },
+    ],
   },
 };
 
@@ -2035,14 +2957,15 @@ export const aiAutomationQuizzes: CourseQuizzes = {
       {
         type: "mc",
         question:
-          "What makes Claude's 200K context window a practical advantage over other models?",
+          "What makes Claude's 200K context window a practical advantage for business automations?",
         options: [
-          "It makes Claude run faster by pre-loading more data",
+          "It makes Claude run faster by pre-loading more data into cache",
           "It lets you process entire codebases, long documents, and extensive conversation histories in a single call",
-          "It bypasses Claude's safety filters for more detailed responses",
-          "It automatically summarizes content so you never hit limits",
+          "It automatically summarizes content so you never hit token limits",
         ],
         correctIndex: 1,
+        explanation:
+          "The 200K context window means you can feed Claude massive inputs — full codebases, lengthy contracts, or long conversation histories — in one call without chunking. It does not make Claude faster (option A) or auto-summarize content (option C); it simply allows more information to fit in a single request.",
       },
       {
         type: "mc",
@@ -2050,17 +2973,51 @@ export const aiAutomationQuizzes: CourseQuizzes = {
           "When building automations that run hundreds of times per day, what is the most effective cost strategy with Claude models?",
         options: [
           "Always use Haiku regardless of task complexity",
-          "Use Opus for everything to ensure quality",
+          "Use Opus for everything to ensure maximum quality",
           "Route tasks to Haiku, Sonnet, or Opus based on complexity, quality needs, and frequency",
-          "Avoid API calls and use claude.ai instead",
         ],
         correctIndex: 2,
+        explanation:
+          "Smart model routing is the key cost strategy. Haiku handles simple, high-frequency tasks cheaply; Sonnet covers mid-complexity work; Opus tackles the hardest problems. Using only Haiku (option A) sacrifices quality on complex tasks, and using only Opus (option B) wastes money on simple tasks that a cheaper model handles just as well.",
       },
       {
-        type: "short",
+        type: "mc",
         question:
-          "Explain the three Claude model tiers (Opus 4.6, Sonnet 4.6, Haiku 4.5) and describe a specific use case where each model is the right choice for a business automation.",
-        minLength: 50,
+          "Which Claude model tier is best suited for high-volume, simple classification tasks like tagging support tickets?",
+        options: [
+          "Opus — the most capable model for any task",
+          "Haiku — fast, cheap, and sufficient for straightforward classification",
+          "Sonnet — the default choice for every automation",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Haiku is purpose-built for fast, low-cost tasks like classification, tagging, and routing. Opus (option A) is overkill and expensive for simple pattern matching. Sonnet (option C) is a good general-purpose model but still more expensive than Haiku for tasks that don't need its extra capability.",
+      },
+      {
+        type: "mc",
+        question:
+          "What is a key difference between Opus and Sonnet in terms of when you should use each?",
+        options: [
+          "Opus is for complex reasoning, strategy, and nuanced writing; Sonnet is for everyday tasks that need good quality at lower cost",
+          "Opus is only for coding; Sonnet is only for writing",
+          "Opus and Sonnet produce identical output, but Opus is just slower",
+        ],
+        correctIndex: 0,
+        explanation:
+          "Opus excels at complex reasoning, multi-step analysis, and nuanced creative work, while Sonnet delivers strong results for standard business tasks at a fraction of the cost. They are not limited to single domains (option B), and Opus produces meaningfully different — often higher quality — output on hard problems, not identical output (option C).",
+      },
+      {
+        type: "mc",
+        question:
+          "Why is understanding token pricing important when building Claude automations at scale?",
+        options: [
+          "Tokens only matter for billing; they have no effect on output quality",
+          "Token costs compound at scale, so choosing the right model and managing prompt length directly impacts profitability",
+          "Token limits are the same across all Claude models, so pricing is irrelevant",
+        ],
+        correctIndex: 1,
+        explanation:
+          "At hundreds or thousands of runs per day, even small per-token cost differences multiply into significant expenses. Managing prompt length and selecting the right model tier keeps margins healthy. Tokens do relate to context capacity and quality tradeoffs, not just billing (option A), and different model tiers have different pricing and capabilities (option C).",
       },
     ],
   },
@@ -2075,9 +3032,10 @@ export const aiAutomationQuizzes: CourseQuizzes = {
           "Input, Processing, Output, Feedback",
           "Role, Context, Task, Constraints",
           "System, User, Assistant, Function",
-          "Hook, Body, CTA, Format",
         ],
         correctIndex: 1,
+        explanation:
+          "The RCTC formula — Role, Context, Task, Constraints — gives Claude a clear identity, background information, a specific job to do, and boundaries for the output. Input/Processing/Output/Feedback (option A) is a generic data flow model, not a prompting framework. System/User/Assistant/Function (option C) are API message roles, not prompt structure components.",
       },
       {
         type: "mc",
@@ -2085,17 +3043,51 @@ export const aiAutomationQuizzes: CourseQuizzes = {
           "What is the difference between chain-of-thought prompting and Claude's extended thinking feature?",
         options: [
           "They are the same thing with different names",
-          "Chain-of-thought is faster but less accurate than extended thinking",
-          "Extended thinking is a built-in Claude capability with a dedicated reasoning phase, while chain-of-thought is a prompting technique",
-          "Extended thinking only works with Opus, while chain-of-thought works with any model",
+          "Extended thinking is a built-in Claude capability with a dedicated reasoning phase, while chain-of-thought is a prompting technique you write yourself",
+          "Chain-of-thought is faster and more accurate than extended thinking in all cases",
         ],
-        correctIndex: 2,
+        correctIndex: 1,
+        explanation:
+          "Chain-of-thought is a prompting technique where you explicitly ask Claude to reason step-by-step in its response. Extended thinking is a native Claude feature that gives the model a separate, dedicated reasoning phase before it responds. They are not the same (option A), and extended thinking often outperforms manual chain-of-thought on complex tasks (option C).",
       },
       {
-        type: "short",
+        type: "mc",
         question:
-          "Describe how you would build a reusable Claude prompt library for a team, including how to use XML tags, templatize prompts with variables, and tag each template with the appropriate Claude model tier.",
-        minLength: 50,
+          "How should you use XML tags in Claude prompts?",
+        options: [
+          "XML tags are only for the API and do not work in regular prompts",
+          "Use XML tags like <context>, <instructions>, and <examples> to clearly separate and label sections of your prompt",
+          "XML tags should replace natural language entirely for best results",
+        ],
+        correctIndex: 1,
+        explanation:
+          "XML tags help Claude parse prompt sections clearly — for example, separating context from instructions from examples. They work in both the API and Claude.ai (option A is wrong). They complement natural language rather than replacing it (option C); the tags provide structure while natural language provides the actual instructions.",
+      },
+      {
+        type: "mc",
+        question:
+          "What is the purpose of building a reusable prompt library for your team?",
+        options: [
+          "It ensures consistent, high-quality outputs by templatizing proven prompts with variables and tagging them by model tier",
+          "It eliminates the need to understand prompting because anyone can copy and paste",
+          "It locks prompts so they can never be modified or improved",
+        ],
+        correctIndex: 0,
+        explanation:
+          "A prompt library standardizes quality across your team by capturing what works, using variables for customization, and noting which model tier each prompt is optimized for. It does not eliminate the need to understand prompting (option B) — team members still need to fill in variables and adapt templates. And prompts should be iterated and improved over time, not locked (option C).",
+      },
+      {
+        type: "mc",
+        question:
+          "When should you use the system prompt versus the user message in Claude's API?",
+        options: [
+          "The system prompt sets persistent instructions, role, and constraints; the user message contains the specific task or input for that request",
+          "There is no meaningful difference — put everything in the user message",
+          "The system prompt is only for safety filters and cannot contain custom instructions",
+        ],
+        correctIndex: 0,
+        explanation:
+          "The system prompt is where you set Claude's role, tone, rules, and persistent context that applies across the conversation. The user message is for the specific request or data. There is a meaningful difference (option B) — system prompts carry more weight for behavioral instructions. And system prompts absolutely support custom instructions, not just safety filters (option C).",
       },
     ],
   },
@@ -2105,32 +3097,67 @@ export const aiAutomationQuizzes: CourseQuizzes = {
       {
         type: "mc",
         question:
-          'You need Claude to write sales copy for a DTC skincare brand. Which prompt follows the Role + Context + Task + Constraints formula correctly?',
+          "You need Claude to write sales copy for a DTC skincare brand. Which prompt follows the RCTC formula correctly?",
         options: [
-          '"Write good sales copy for skincare products that converts well"',
-          '"You are a marketing expert. Write copy."',
-          '"You are a senior DTC copywriter specializing in skincare. Write a 100-word product description for an anti-aging serum targeting women 35-50. Tone: confident, benefit-driven. Focus on results, not ingredients."',
-          '"Act like you know about skincare and write something persuasive about our new product"',
+          "\"Write good sales copy for skincare products that converts well\"",
+          "\"You are a senior DTC copywriter specializing in skincare. Write a 100-word product description for an anti-aging serum targeting women 35-50. Tone: confident, benefit-driven. Focus on results, not ingredients.\"",
+          "\"Act like you know about skincare and write something persuasive about our new product\"",
         ],
-        correctIndex: 2,
+        correctIndex: 1,
+        explanation:
+          "Option B nails RCTC: Role (senior DTC copywriter), Context (skincare, anti-aging serum), Task (100-word product description for women 35-50), Constraints (confident tone, benefit-driven, results over ingredients). Option A has no role, no context, and no constraints — it is too vague. Option C is informal and lacks specifics on audience, length, or tone.",
       },
       {
         type: "mc",
         question:
-          "You want Claude to classify customer support tickets into categories. Zero-shot prompting gives inconsistent results. What technique would most improve accuracy?",
+          "You want Claude to classify customer support tickets. Zero-shot prompting gives inconsistent results. What technique would most improve accuracy?",
         options: [
-          "Increase the temperature to give the model more creative flexibility",
-          "Add few-shot examples showing 3-5 correctly classified tickets before asking it to classify new ones",
-          "Make the prompt shorter so the model focuses on the core task",
-          "Switch to Opus since Sonnet cannot handle classification well",
+          "Increase the temperature setting for more creative flexibility",
+          "Add few-shot examples showing 3-5 correctly classified tickets before the new ones",
+          "Make the prompt shorter so Claude focuses on the core task",
         ],
         correctIndex: 1,
+        explanation:
+          "Few-shot prompting gives Claude concrete examples of correct classifications, dramatically improving consistency. Increasing temperature (option A) adds randomness, which makes classification less consistent, not more. Shorter prompts (option C) remove helpful context — the issue is not length, it is the lack of examples.",
       },
       {
-        type: "short",
+        type: "mc",
         question:
-          "Describe how chain-of-thought prompting works and give a specific example of a business task where forcing Claude to reason step-by-step would produce better output than a direct answer. How does Claude's extended thinking feature relate to this?",
-        minLength: 50,
+          "What is the key difference between zero-shot and few-shot prompting?",
+        options: [
+          "Zero-shot asks Claude to perform a task with no examples; few-shot provides examples of correct input-output pairs first",
+          "Zero-shot is free and few-shot costs extra tokens, but they produce the same results",
+          "Zero-shot only works with Haiku; few-shot only works with Opus",
+        ],
+        correctIndex: 0,
+        explanation:
+          "Zero-shot means giving Claude a task with no examples, relying on its training. Few-shot means providing example input-output pairs so Claude can learn the pattern. Few-shot does cost more tokens (option B), but it often produces significantly better results — they are not the same. Both techniques work across all model tiers (option C).",
+      },
+      {
+        type: "mc",
+        question:
+          "When is chain-of-thought prompting most valuable compared to asking for a direct answer?",
+        options: [
+          "When the task involves simple lookups or single-step answers",
+          "When the task requires multi-step reasoning, math, logic, or weighing tradeoffs",
+          "When you want the shortest possible response to save tokens",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Chain-of-thought shines on tasks requiring multi-step reasoning — calculations, logical analysis, strategic decisions — because it forces Claude to show its work and catch errors. Simple lookups (option A) do not benefit from step-by-step reasoning. And chain-of-thought intentionally produces longer responses (option C), trading tokens for accuracy.",
+      },
+      {
+        type: "mc",
+        question:
+          "How does Claude's extended thinking feature improve output quality on complex tasks?",
+        options: [
+          "It gives Claude a separate reasoning phase to think through the problem before generating the visible response",
+          "It doubles the context window so Claude can process more data",
+          "It automatically switches to Opus regardless of which model you selected",
+        ],
+        correctIndex: 0,
+        explanation:
+          "Extended thinking adds a dedicated reasoning phase where Claude works through the problem internally before producing its final answer. This improves quality on complex tasks. It does not change the context window size (option B) or switch models (option C) — it enhances the reasoning process of whichever model you are using.",
       },
     ],
   },
@@ -2142,30 +3169,65 @@ export const aiAutomationQuizzes: CourseQuizzes = {
         question:
           "What are the three things you need to make a Claude API call?",
         options: [
-          "A database, a frontend, and a backend",
-          "An API key from console.anthropic.com, the Messages API endpoint, and the request body",
-          "A webhook, a trigger, and an action",
-          "A system prompt, user message, and temperature setting",
+          "A database, a frontend, and a backend server",
+          "An API key from console.anthropic.com, the Messages API endpoint, and the request body with model and messages",
+          "A webhook URL, a trigger event, and an action step",
         ],
         correctIndex: 1,
+        explanation:
+          "A Claude API call requires your API key for authentication, the Messages API endpoint to send requests to, and a properly formatted request body specifying the model and messages. You do not need a database or frontend (option A) — API calls can be made from scripts, automation tools, or backends. Webhooks and triggers (option C) are automation platform concepts, not API requirements.",
       },
       {
         type: "mc",
         question:
           "What is MCP (Model Context Protocol) and why does it matter for Claude integrations?",
         options: [
-          "MCP is a way to make Claude run faster by compressing messages",
-          "MCP is a pricing model that reduces API costs",
+          "MCP is a way to make Claude run faster by compressing message payloads",
           "MCP is Anthropic's open protocol that standardizes how Claude connects to external tools and data sources",
-          "MCP is a monitoring tool for tracking Claude API usage",
+          "MCP is a monitoring dashboard for tracking Claude API usage and costs",
         ],
-        correctIndex: 2,
+        correctIndex: 1,
+        explanation:
+          "MCP is an open protocol from Anthropic that gives Claude a standardized way to connect to external tools, databases, and services. This matters because it means you can build tool integrations once and reuse them across projects. It is not about compression or speed (option A), and it is not a monitoring tool (option C) — it is an integration standard.",
       },
       {
-        type: "short",
+        type: "mc",
         question:
-          "Explain the 80/20 of reliability for Claude automations. What are the four essential things you should implement from day one to catch most issues?",
-        minLength: 50,
+          "What are the essential reliability patterns you should implement from day one for Claude automations?",
+        options: [
+          "Only log errors and fix them when users complain",
+          "Retry logic with exponential backoff, input/output logging, error alerts, and output validation",
+          "Run every request twice and compare outputs manually",
+        ],
+        correctIndex: 1,
+        explanation:
+          "The 80/20 of reliability includes retry logic (APIs fail occasionally), logging inputs and outputs (for debugging), error alerts (so you know immediately when something breaks), and output validation (catching bad responses before they reach users). Waiting for user complaints (option A) means silent failures go unnoticed. Running everything twice (option C) doubles cost without systematic error handling.",
+      },
+      {
+        type: "mc",
+        question:
+          "How should you handle API key security when building Claude integrations?",
+        options: [
+          "Store the API key in environment variables or a secrets manager, never in source code",
+          "Hardcode the API key in your application so it is always available",
+          "Share one API key across all team members and projects for simplicity",
+        ],
+        correctIndex: 0,
+        explanation:
+          "API keys should live in environment variables or a secrets manager to prevent accidental exposure in version control. Hardcoding keys in source code (option B) means anyone with repo access can see and misuse them. Sharing a single key (option C) makes it impossible to track usage per team member or revoke access for one person without affecting everyone.",
+      },
+      {
+        type: "mc",
+        question:
+          "What is the purpose of output validation in a Claude automation pipeline?",
+        options: [
+          "To make Claude responses shorter and save on token costs",
+          "To check that Claude's response matches the expected format and quality before passing it downstream",
+          "To automatically retrain Claude on better answers",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Output validation catches malformed or low-quality responses before they reach users or trigger downstream actions. This could mean checking JSON structure, verifying required fields, or flagging responses that seem off. It is not about reducing length (option A) — it is about correctness. And you cannot retrain Claude through the API (option C); validation is about catching issues, not training.",
       },
     ],
   },
@@ -2175,14 +3237,15 @@ export const aiAutomationQuizzes: CourseQuizzes = {
       {
         type: "mc",
         question:
-          "According to the course, what is the recommended starting platform for building Claude-powered automations and why?",
+          "According to the course, what is the recommended starting platform for building Claude-powered automations?",
         options: [
-          "Zapier, because it has the most integrations",
-          "n8n, because it's open-source and free",
+          "Zapier, because it has the most app integrations",
+          "Custom code, because it gives you full control from the start",
           "Make.com, because it hits the sweet spot of power and usability for Claude workflows",
-          "Custom code, because it gives full control",
         ],
         correctIndex: 2,
+        explanation:
+          "Make.com offers visual workflow building with enough flexibility to handle complex Claude integrations, HTTP modules, and branching logic. Zapier (option A) has many integrations but is more limited for complex multi-step Claude workflows. Custom code (option B) offers full control but is slower to build and iterate, making it better for later optimization than initial prototyping.",
       },
       {
         type: "mc",
@@ -2191,16 +3254,50 @@ export const aiAutomationQuizzes: CourseQuizzes = {
         options: [
           "Build all steps at once, then test the entire pipeline end-to-end",
           "Map the manual process first, assign Claude models to each step, then build and test sequentially",
-          "Start with the most complex step to ensure it works before adding simpler ones",
-          "Copy an existing automation template and modify it for your use case",
+          "Start with the most complex step to prove feasibility before adding simpler ones",
         ],
         correctIndex: 1,
+        explanation:
+          "You start by understanding the manual workflow, then decide which steps Claude should handle and which model tier fits each step, then build and test one step at a time. Building all at once (option A) makes debugging nearly impossible when something fails. Starting with the hardest step (option C) often blocks progress when simpler wins would build momentum and validate the approach.",
       },
       {
-        type: "short",
+        type: "mc",
         question:
-          "Describe the pattern that all three Claude-powered workflows (email, CRM, content) share in terms of how they divide work between humans and Claude, and how different Claude models are used at different steps.",
-        minLength: 50,
+          "What pattern do the email, CRM, and content automation workflows all share?",
+        options: [
+          "Claude handles everything end-to-end with no human involvement",
+          "Humans set strategy and approve critical outputs, while Claude handles drafting, classification, and repetitive processing",
+          "Humans do the creative work and Claude only handles data entry",
+        ],
+        correctIndex: 1,
+        explanation:
+          "The consistent pattern is human-AI division: humans provide strategic direction and final approval on high-stakes outputs, while Claude handles the heavy lifting of drafting, sorting, classifying, and processing. Fully autonomous (option A) is risky for business-critical workflows. Limiting Claude to data entry (option C) wastes its ability to draft, analyze, and generate creative output.",
+      },
+      {
+        type: "mc",
+        question:
+          "How should you assign different Claude model tiers within a single automation pipeline?",
+        options: [
+          "Use the same model for every step to keep the pipeline simple",
+          "Use Haiku for fast classification and routing steps, Sonnet for standard generation, and Opus for complex reasoning steps",
+          "Always use the cheapest model and only upgrade if output quality is unacceptable",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Different steps in a pipeline have different complexity requirements. Haiku is fast and cheap for sorting and tagging, Sonnet handles most generation well, and Opus brings top-tier reasoning for the hardest steps. Using one model everywhere (option A) either wastes money or sacrifices quality. Starting with the cheapest and upgrading reactively (option C) leads to quality issues that are harder to diagnose after the fact.",
+      },
+      {
+        type: "mc",
+        question:
+          "What is the main advantage of n8n over Make.com for Claude automations?",
+        options: [
+          "n8n is easier to learn and has more templates",
+          "n8n is open-source, self-hostable, and gives you full control over data and infrastructure",
+          "n8n has a built-in Claude integration that Make.com lacks",
+        ],
+        correctIndex: 1,
+        explanation:
+          "n8n's key advantage is that it is open-source and self-hostable, meaning you control your data, infrastructure, and costs at scale. Make.com is generally considered easier to learn (option A is backwards). Both platforms can integrate with Claude via HTTP modules (option C) — neither has a uniquely exclusive built-in integration.",
       },
     ],
   },
@@ -2210,32 +3307,67 @@ export const aiAutomationQuizzes: CourseQuizzes = {
       {
         type: "mc",
         question:
-          "According to the AI audit framework, how should you prioritize AI opportunities?",
+          "According to the AI audit framework, how should you prioritize AI opportunities in a business?",
         options: [
           "Start with the most technically impressive use case to build excitement",
-          "Multiply monthly cost by AI feasibility score and sort descending",
-          "Begin with the easiest tasks regardless of business impact",
-          "Focus on whatever the CEO is most interested in",
+          "Multiply monthly cost of the task by its AI feasibility score and sort descending to find the highest-ROI opportunities",
+          "Focus on whatever the CEO is most interested in automating",
         ],
         correctIndex: 1,
+        explanation:
+          "The AI audit framework is data-driven: you score each task by its cost (time and money) and how feasible it is to automate with AI, then multiply to get an ROI priority score. Starting with impressive demos (option A) often targets hard problems with low business impact. Following CEO interest (option C) skips the analysis and may miss the real high-value opportunities buried in operations.",
       },
       {
         type: "mc",
         question:
           "In a Claude-powered tiered support system, what percentage of tickets should Claude handle directly without human intervention?",
         options: [
-          "90-95% — humans should only handle legal issues",
-          "60-70% — FAQ-type questions, order status, basic troubleshooting",
-          "30-40% — Claude should primarily assist humans rather than handle tickets directly",
-          "10-20% — AI should only handle the simplest requests",
+          "90-95% — humans should only handle legal and compliance issues",
+          "60-70% — FAQ-type questions, order status, and basic troubleshooting",
+          "10-20% — AI should only handle the very simplest requests",
         ],
         correctIndex: 1,
+        explanation:
+          "Claude can reliably handle 60-70% of support volume — the repetitive FAQ, status check, and basic troubleshooting tickets that follow clear patterns. 90-95% (option A) is too aggressive and risks Claude handling complex or sensitive situations it should not. 10-20% (option C) dramatically underutilizes AI and leaves the support team doing work Claude could handle easily.",
       },
       {
-        type: "short",
+        type: "mc",
         question:
-          "Describe the three revenue levers where AI makes businesses money and explain how to run an AI audit to identify the highest-ROI opportunities in a business.",
-        minLength: 50,
+          "What are the three revenue levers where AI makes businesses money?",
+        options: [
+          "Cutting costs, increasing output speed, and improving quality or conversion rates",
+          "Replacing all employees, eliminating office space, and removing management layers",
+          "Building custom AI products, selling AI training courses, and offering AI consulting",
+        ],
+        correctIndex: 0,
+        explanation:
+          "AI drives revenue through three levers: reducing operational costs (doing the same work for less), increasing throughput (producing more output in the same time), and improving quality or conversion (better outputs lead to more revenue). Replacing employees entirely (option B) is not a revenue lever — it is a cost-cutting fantasy that ignores the human-AI collaboration model. Selling AI services (option C) describes business models, not the internal revenue levers the framework teaches.",
+      },
+      {
+        type: "mc",
+        question:
+          "How should you calculate ROI when pitching an AI automation to a business client?",
+        options: [
+          "Estimate time saved per task, multiply by frequency and labor cost, then compare against the AI system cost",
+          "Use industry benchmarks and promise a specific percentage improvement",
+          "Focus on the technology and let the client figure out their own ROI",
+        ],
+        correctIndex: 0,
+        explanation:
+          "Concrete ROI comes from real numbers: how long the task takes now, how often it runs, what that labor costs, and what the AI system costs to operate. This gives the client a clear dollar figure. Industry benchmarks (option B) are too generic and come across as unsubstantiated claims. Letting the client figure it out (option C) means they probably will not, and you lose the sale.",
+      },
+      {
+        type: "mc",
+        question:
+          "When running an AI audit for a client, what is the first step?",
+        options: [
+          "Build a proof-of-concept automation to demonstrate AI capabilities",
+          "Map every repetitive, time-consuming, or error-prone process in the business and score each for AI feasibility",
+          "Purchase AI tools and set up the infrastructure before analyzing needs",
+        ],
+        correctIndex: 1,
+        explanation:
+          "The audit starts with discovery: listing all processes, identifying which are repetitive or error-prone, and scoring each for AI feasibility and business impact. Building a proof-of-concept first (option A) skips the analysis and may target the wrong process. Purchasing tools before understanding needs (option C) is backwards — you need to know what you are solving before choosing how to solve it.",
       },
     ],
   },
@@ -2245,32 +3377,67 @@ export const aiAutomationQuizzes: CourseQuizzes = {
       {
         type: "mc",
         question:
-          "What are the four core components of a Claude agent as defined in this module?",
+          "What are the four core components of a Claude agent?",
         options: [
-          "Input, output, processing, storage",
+          "Input, output, processing, and storage",
           "The brain (Claude), tools, memory, and the agentic loop (think-act-observe)",
           "API key, endpoint, request body, and response handler",
-          "System prompt, user message, function calls, and database",
         ],
         correctIndex: 1,
+        explanation:
+          "A Claude agent is built from four components: the brain (Claude model for reasoning), tools (functions it can call), memory (context it retains), and the agentic loop (the think-act-observe cycle that drives autonomous behavior). Input/output/processing/storage (option A) is a generic computing model. API key/endpoint/request body (option C) are API call components, not agent architecture components.",
       },
       {
         type: "mc",
         question:
-          "In a multi-agent Claude system, how should you assign Claude models to different agent roles?",
+          "In a multi-agent Claude system, how should you assign model tiers to different agent roles?",
         options: [
-          "Use the same model for all agents to keep things simple",
-          "Always use Opus for every agent to ensure quality",
-          "Use Opus for the manager agent, Sonnet for work agents, and Haiku for simple classification/routing agents",
+          "Use the same model for all agents to keep configuration simple",
           "Use Haiku for everything since multi-agent systems are already expensive",
+          "Use Opus for the manager/orchestrator agent, Sonnet for worker agents, and Haiku for simple classification and routing agents",
         ],
         correctIndex: 2,
+        explanation:
+          "Different agent roles have different intelligence requirements. The manager agent needs strong reasoning (Opus), worker agents need solid generation ability (Sonnet), and routing agents just need fast classification (Haiku). One model for all (option A) either overspends or underperforms. All-Haiku (option B) saves money but the manager agent will make poor orchestration decisions on complex tasks.",
       },
       {
-        type: "short",
+        type: "mc",
         question:
-          "Explain how Claude's tool use works (the tool_use and tool_result flow) and why you should start with read-only tools when building agents. Give an example of the risk of giving Claude write tools without guardrails.",
-        minLength: 50,
+          "Why should you start with read-only tools when building Claude agents?",
+        options: [
+          "Read-only tools are faster and cheaper than write tools",
+          "Read-only tools let the agent gather information without risk of unintended modifications, so you can validate behavior before granting write access",
+          "Claude cannot use write tools without a special license",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Starting read-only is a safety principle: the agent can search, retrieve, and analyze data without risk of corrupting databases, sending unintended emails, or modifying records. You validate its decision-making before giving it write power. Speed and cost (option A) are not the main concern — safety is. There is no special license required for write tools (option C); it is a design choice.",
+      },
+      {
+        type: "mc",
+        question:
+          "What is the 'agentic loop' in a Claude agent system?",
+        options: [
+          "A retry mechanism that re-sends failed API calls",
+          "The think-act-observe cycle where the agent reasons about the task, takes an action using a tool, observes the result, and repeats until done",
+          "A logging system that records every step the agent takes",
+        ],
+        correctIndex: 1,
+        explanation:
+          "The agentic loop is the core behavior pattern: the agent thinks about what to do next, acts by calling a tool, observes the result, and then decides the next step — repeating until the task is complete. It is not a retry mechanism (option A), which handles API failures, not task reasoning. And it is not a logging system (option C), although you should log what happens in the loop.",
+      },
+      {
+        type: "mc",
+        question:
+          "What is a key risk of giving a Claude agent write access to production systems without guardrails?",
+        options: [
+          "The agent might use too many tokens and increase costs",
+          "The agent could take unintended destructive actions — like deleting records, sending incorrect emails, or modifying production data based on a misunderstood instruction",
+          "The agent will refuse to use write tools entirely due to built-in safety filters",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Without guardrails, a Claude agent with write access can misinterpret an instruction and take irreversible actions — deleting data, sending wrong messages, or corrupting records. Token costs (option A) are a concern but not a safety risk. Claude does not blanket-refuse write tools (option C); it will use them if provided, which is exactly why guardrails matter.",
       },
     ],
   },
@@ -2282,30 +3449,65 @@ export const aiAutomationQuizzes: CourseQuizzes = {
         question:
           "What is the staging-to-production pattern for launching Claude systems?",
         options: [
-          "Build in production and fix issues as they appear",
+          "Build directly in production and fix issues as they appear from real user feedback",
           "Build in staging, run with real data but no real actions, monitor Claude output quality for 3-5 days, then switch to production",
-          "Test with dummy data for one day, then go live immediately",
-          "Deploy to production and set up monitoring after launch",
+          "Test with dummy data for one day, then go live immediately to start generating value",
         ],
         correctIndex: 1,
+        explanation:
+          "The staging-to-production pattern lets you validate Claude's behavior on real data without real consequences. Running for 3-5 days catches edge cases that synthetic tests miss. Building in production (option A) means real users experience every mistake. One day of dummy data testing (option C) is too short and too artificial to catch the variety of real-world inputs.",
       },
       {
         type: "mc",
         question:
           "What should you log for every Claude automation run?",
         options: [
-          "Just the final output and whether it succeeded",
-          "Only errors and failures for debugging",
-          "Input, Claude model used, prompt sent, response received, tokens consumed, cost, actions taken, and errors",
-          "Just the timestamp and a pass/fail indicator",
+          "Just the final output and a pass/fail status",
+          "Only errors and failures so you can debug when things break",
+          "Input, model used, prompt sent, response received, tokens consumed, cost, actions taken, and errors",
         ],
         correctIndex: 2,
+        explanation:
+          "Comprehensive logging captures everything you need to debug, optimize, and audit your automation. Logging only the final output (option A) makes it impossible to understand why something went wrong. Logging only errors (option B) means you cannot investigate quality issues that did not trigger an explicit error — like a technically successful but low-quality response.",
       },
       {
-        type: "short",
+        type: "mc",
         question:
-          "Describe what a handoff document for a Claude-powered system should contain, including Claude-specific details, and why building yourself out of every system is critical for scaling.",
-        minLength: 50,
+          "What should a handoff document for a Claude-powered system include?",
+        options: [
+          "Just the source code and a README file",
+          "System architecture, every prompt used, model tiers per step, expected costs, monitoring instructions, and escalation procedures",
+          "A video demo and login credentials",
+        ],
+        correctIndex: 1,
+        explanation:
+          "A proper handoff doc covers everything someone needs to operate, maintain, and troubleshoot the system independently. Source code and a README (option A) miss the operational knowledge — prompts, costs, monitoring, and escalation paths. A video and credentials (option C) help with initial access but do not provide the reference documentation needed for ongoing operations.",
+      },
+      {
+        type: "mc",
+        question:
+          "Why is 'building yourself out of every system' critical for scaling an AI automation business?",
+        options: [
+          "It lets you move on to higher-value projects instead of being stuck maintaining every system you build",
+          "It reduces your liability because you are no longer responsible for the system",
+          "It is not important — you should stay hands-on with every system to ensure quality",
+        ],
+        correctIndex: 0,
+        explanation:
+          "If you are the bottleneck for every system you build, you cannot scale. Proper handoff documentation and operational procedures let the client's team (or a junior operator) maintain the system while you take on new projects. It does not eliminate liability (option B) — you may still have contractual obligations. Staying hands-on with everything (option C) caps your income at your personal bandwidth.",
+      },
+      {
+        type: "mc",
+        question:
+          "What is the most important thing to monitor in a production Claude automation?",
+        options: [
+          "The number of API calls per day to track usage volume",
+          "Output quality and accuracy, because a system that runs without errors but produces bad outputs is worse than one that fails loudly",
+          "Server uptime and response times only",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Output quality is the most critical metric because Claude can return technically successful responses that are wrong, off-tone, or unhelpful. Silent quality degradation is harder to catch than outright errors. API call volume (option A) is useful for billing but does not tell you if the outputs are good. Server metrics (option C) matter for infrastructure but miss the AI-specific quality dimension entirely.",
       },
     ],
   },

@@ -14,8 +14,6 @@ export type {
   CourseQuizzes,
   ModuleQuiz,
   QuizQuestion,
-  MultipleChoiceQuestion,
-  ShortAnswerQuestion,
 } from "./types";
 
 const allContent: Record<string, CourseContent> = {

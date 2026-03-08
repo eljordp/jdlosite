@@ -53,7 +53,7 @@ export default async function CoursePage({
               {course.title.split(" ").slice(-1)[0]}
             </span>
           </h1>
-          <div className="mt-10 hero-animate hero-delay-3 flex flex-col md:flex-row md:items-end md:justify-between gap-8">
+          <div className="mt-10 hero-animate hero-delay-3 flex flex-col md:flex-row md:items-end md:justify-between gap-4 md:gap-8">
             <p className="text-text-secondary text-xl leading-relaxed max-w-[480px]">
               {course.tagline}
             </p>
@@ -79,7 +79,7 @@ export default async function CoursePage({
       {/* ── About ── */}
       <section className="section-gap border-t border-border">
         <div className="max-w-[1400px] mx-auto px-6 md:px-10">
-          <div className="grid lg:grid-cols-[1fr_400px] gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-8 lg:gap-16">
             <RevealOnScroll>
               <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-6">
                 Overview
@@ -180,7 +180,7 @@ export default async function CoursePage({
             </h2>
           </RevealOnScroll>
 
-          <div className="grid md:grid-cols-3 gap-0 border border-border rounded-[20px] overflow-hidden">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border border-border rounded-[20px] overflow-hidden">
             {[
               {
                 num: "01",
@@ -203,7 +203,7 @@ export default async function CoursePage({
             ].map((step, i) => (
               <RevealOnScroll key={step.num} delay={i + 1}>
                 <div
-                  className={`p-10 md:p-12 flex flex-col gap-4 ${
+                  className={`p-6 md:p-12 flex flex-col gap-4 ${
                     i < 2 ? "md:border-r border-b md:border-b-0 border-border" : ""
                   } group hover:bg-surface/50 transition-colors duration-500`}
                 >

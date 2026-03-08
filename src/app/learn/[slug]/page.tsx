@@ -133,7 +133,7 @@ export default function LearnDashboard() {
 
   if (!course || !content) {
     return (
-      <div className="min-h-screen bg-[#050505] flex items-center justify-center cursor-none">
+      <div className="min-h-screen bg-[#050505] flex items-center justify-center">
         <CustomCursor />
         <p className="text-text-secondary">Course not found.</p>
       </div>
@@ -142,7 +142,7 @@ export default function LearnDashboard() {
 
   if (checking) {
     return (
-      <div className="min-h-screen bg-[#050505] flex items-center justify-center cursor-none">
+      <div className="min-h-screen bg-[#050505] flex items-center justify-center">
         <CustomCursor />
         <p className="text-text-secondary text-sm font-mono">
           Verifying access...
@@ -153,7 +153,7 @@ export default function LearnDashboard() {
 
   if (!authorized) {
     return (
-      <div className="min-h-screen bg-[#050505] flex items-center justify-center px-6 cursor-none">
+      <div className="min-h-screen bg-[#050505] flex items-center justify-center px-6">
         <CustomCursor />
         <div className="max-w-md w-full text-center">
           <h1 className="text-2xl font-bold text-text mb-3">{course.title}</h1>
@@ -232,7 +232,7 @@ export default function LearnDashboard() {
     const prevPercent = prevTotal > 0 ? (prevDone / prevTotal) * 100 : 0;
 
     return (
-      <div className="min-h-screen bg-[#050505] flex items-center justify-center px-6 cursor-none">
+      <div className="min-h-screen bg-[#050505] flex items-center justify-center px-6">
         <CustomCursor />
         <div className="max-w-md w-full text-center">
           <div className="text-5xl mb-4">🔒</div>
@@ -305,10 +305,10 @@ export default function LearnDashboard() {
   const codeParam = code ? `?code=${code}` : "";
 
   return (
-    <div className="min-h-screen bg-[#050505] cursor-none">
+    <div className="min-h-screen bg-[#050505]">
       <CustomCursor />
       <ProgressMigration />
-      <div className="max-w-[800px] mx-auto px-6 py-10">
+      <div className="max-w-[800px] mx-auto px-4 md:px-6 py-10">
         {/* Header */}
         <Link
           href="/"

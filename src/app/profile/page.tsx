@@ -92,7 +92,7 @@ export default function ProfilePage() {
 
   if (!loaded) {
     return (
-      <div className="min-h-screen bg-[#050505] flex items-center justify-center cursor-none">
+      <div className="min-h-screen bg-[#050505] flex items-center justify-center">
         <CustomCursor />
         <p className="text-text-secondary text-sm font-mono">Loading...</p>
       </div>
@@ -100,7 +100,7 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#050505] cursor-none">
+    <div className="min-h-screen bg-[#050505]">
       <CustomCursor />
       <div className="max-w-[800px] mx-auto px-6 py-10">
         <Link

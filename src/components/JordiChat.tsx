@@ -54,7 +54,7 @@ const SKILLS = {
       'enterprise', 'architecture', 'computer use', 'vision', 'deep', 'mastery',
       'developer', 'code', 'deploy',
     ],
-    pitch: "AI Mastery. Claude Code, MCP, Agent SDK, vision, computer use — the full power of AI. $9,997, 8 weeks.",
+    pitch: "AI Mastery. Claude Code, MCP, Agent SDK, vision, computer use — the full power of AI. $997, 8 weeks.",
   },
 } as const;
 
@@ -106,7 +106,7 @@ function getResponse(text: string, identified: boolean): Message {
   if (/price|cost|how much|expensive|afford/i.test(lower)) {
     return {
       role: 'bot',
-      content: "Courses range from $197 to $9,997 depending on depth. Mentorship is $2,500/mo. Which skill are you looking at?",
+      content: "Courses range from $197 to $997 depending on depth. Mentorship is $2,500/mo. Which skill are you looking at?",
       links: [{ label: 'Browse All Courses →', href: '/courses' }],
     };
   }

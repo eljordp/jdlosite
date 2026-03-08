@@ -35,7 +35,7 @@ function CheckoutContent() {
   }, [course, price, amount]);
 
   return (
-    <div className="min-h-screen bg-[#050505] flex flex-col cursor-none">
+    <div className="min-h-screen bg-[#050505] flex flex-col">
       <CustomCursor />
       <div className="px-6 py-6">
         <Link

@@ -96,6 +96,16 @@ function getAutoReply(type: string, firstName: string, course?: string) {
         ...base,
       };
 
+    case "contact":
+      return {
+        subject: "Got your message — I'll be in touch",
+        body: `
+          <p>Appreciate you reaching out. I read every message personally.</p>
+          <p>I'll get back to you within 24 hours.</p>
+        `,
+        ...base,
+      };
+
     default:
       return {
         subject: "Thanks for reaching out",
@@ -122,6 +132,7 @@ export async function POST(req: NextRequest) {
       business: "Business Inquiry",
       mentorship: "Mentorship Application",
       careers: "Career Application",
+      contact: "Contact Form",
     };
 
     const firstName = name.split(" ")[0];

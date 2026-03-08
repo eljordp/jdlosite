@@ -35,7 +35,7 @@ export default function SignInPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#050505] flex items-center justify-center px-6 cursor-none">
+    <div className="min-h-screen bg-[#050505] flex items-center justify-center px-6">
       <CustomCursor />
       <div className="max-w-sm w-full">
         <div className="text-center mb-8">

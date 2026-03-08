@@ -12,16 +12,30 @@ const questions = [
       { label: "Automate my workflow — let AI handle the repetitive stuff", skill: 'ai-automation' },
       { label: "Close more deals and build a real sales process", skill: 'sales-systems' },
       { label: "Become indispensable — run operations, lead teams, get equity", skill: 'operator-playbook' },
-      { label: "Go deep on AI — build production systems, agents, and tools", skill: 'ai-mastery' },
+    ],
+  },
+  {
+    q: "What kind of content gets you fired up?",
+    options: [
+      { label: "Breakdowns of how to build AI agents, automations, and tools", skill: 'ai-automation' },
+      { label: "Sales call teardowns, cold outreach tactics, and closing frameworks", skill: 'sales-systems' },
+      { label: "Deep technical AI tutorials — MCP, agents, production deployments", skill: 'ai-mastery' },
     ],
   },
   {
     q: "What's slowing you down most?",
     options: [
       { label: "Doing manually what AI should already handle", skill: 'ai-automation' },
-      { label: "Income is inconsistent — I can't close reliably or scale a team", skill: 'sales-systems' },
       { label: "I know I can do more but I lack structure, discipline, or the right role", skill: 'operator-playbook' },
       { label: "I use AI but I'm barely scratching the surface of what's possible", skill: 'ai-mastery' },
+    ],
+  },
+  {
+    q: "What does a win look like for you this month?",
+    options: [
+      { label: "Landing a new client or closing a deal I've been chasing", skill: 'sales-systems' },
+      { label: "Getting promoted or getting brought into a leadership role", skill: 'operator-playbook' },
+      { label: "Shipping an AI product or system that actually works in production", skill: 'ai-mastery' },
     ],
   },
   {
@@ -30,7 +44,6 @@ const questions = [
       { label: "Buried in repetitive tasks I should have automated yesterday", skill: 'ai-automation' },
       { label: "On the phone, sending follow-ups, trying to close and manage people", skill: 'sales-systems' },
       { label: "Trying to figure out my next move — I know I'm capable but unfocused", skill: 'operator-playbook' },
-      { label: "Building with AI tools but hitting walls on advanced stuff", skill: 'ai-mastery' },
     ],
   },
   {
@@ -38,8 +51,15 @@ const questions = [
     options: [
       { label: "I've played around but never built anything real", skill: 'ai-automation' },
       { label: "I know AI exists but my focus is revenue and people, not tech", skill: 'sales-systems' },
-      { label: "I'm interested but I care more about operations and leadership", skill: 'operator-playbook' },
       { label: "I use Claude daily and want to go expert-level", skill: 'ai-mastery' },
+    ],
+  },
+  {
+    q: "If you had a free week, what would you build?",
+    options: [
+      { label: "Automated workflows that run my business while I sleep", skill: 'ai-automation' },
+      { label: "SOPs, dashboards, and systems so a team can run without me", skill: 'operator-playbook' },
+      { label: "A full AI agent or production app from scratch", skill: 'ai-mastery' },
     ],
   },
   {
@@ -48,25 +68,30 @@ const questions = [
       { label: "Systems running on their own while I focus on what matters", skill: 'ai-automation' },
       { label: "A reliable way to generate revenue and scale a team", skill: 'sales-systems' },
       { label: "The mindset, systems, and positioning to run someone's business", skill: 'operator-playbook' },
-      { label: "Building production apps, agents, and enterprise AI systems", skill: 'ai-mastery' },
     ],
   },
   {
-    q: "What's your background?",
+    q: "What's your superpower?",
     options: [
-      { label: "Builder — I like systems, tools, and figuring out how things work", skill: 'ai-automation' },
-      { label: "Sales — I know how to sell, or I want to learn", skill: 'sales-systems' },
-      { label: "Operator — I lead people, run things, and want to do it better", skill: 'operator-playbook' },
-      { label: "Developer or technical — I want to push AI to its absolute limits", skill: 'ai-mastery' },
+      { label: "I can talk to anyone — I'm a people person", skill: 'sales-systems' },
+      { label: "I get things done — give me a system and I'll run it", skill: 'operator-playbook' },
+      { label: "I'm technical — I learn fast and build faster", skill: 'ai-mastery' },
     ],
   },
   {
-    q: "How much time can you commit per week?",
+    q: "What frustrates you most about your current situation?",
     options: [
-      { label: "5-10 hours — I want practical skills I can apply immediately", skill: 'ai-automation' },
-      { label: "5-10 hours — I need a sales system and team framework ASAP", skill: 'sales-systems' },
-      { label: "10+ hours — I'm going all in on becoming an operator", skill: 'operator-playbook' },
-      { label: "15+ hours — I want mastery, not surface-level knowledge", skill: 'ai-mastery' },
+      { label: "I waste hours on things a good automation could handle in minutes", skill: 'ai-automation' },
+      { label: "I know I could run things better than the people in charge", skill: 'operator-playbook' },
+      { label: "I have the skills to build real AI systems but no structured path to mastery", skill: 'ai-mastery' },
+    ],
+  },
+  {
+    q: "How do you learn best?",
+    options: [
+      { label: "Hands-on — give me a project and I'll figure it out", skill: 'ai-automation' },
+      { label: "Through real scenarios — role-plays, scripts, live practice", skill: 'sales-systems' },
+      { label: "Deep dives — documentation, architecture, building from first principles", skill: 'ai-mastery' },
     ],
   },
   {
@@ -75,7 +100,6 @@ const questions = [
       { label: "$297 is a no-brainer if the systems save me hours every week", skill: 'ai-automation' },
       { label: "$197 to learn how to close deals? That pays for itself in one sale", skill: 'sales-systems' },
       { label: "$297 to learn how to become COO-level? I'm in", skill: 'operator-playbook' },
-      { label: "$10K is an investment — I want the full picture and I'm serious", skill: 'ai-mastery' },
     ],
   },
 ];
@@ -109,7 +133,7 @@ const SKILL_INFO = {
   'ai-mastery': {
     title: 'AI Mastery — Expert',
     tagline: 'The full power of Claude. Nothing held back.',
-    price: '$9,997',
+    price: '$997',
     duration: '8 weeks',
     href: '/courses/ai-mastery',
     desc: "You're ready for the deep end. Claude Code, MCP servers, Agent SDK, computer use, vision — this is everything. For serious builders who want to architect enterprise-grade AI systems.",
@@ -191,7 +215,7 @@ export default function QuizPage() {
   // ── Intro ──
   if (step === 'intro') {
     return (
-      <main className="cursor-none min-h-screen flex flex-col items-center justify-center px-6 py-20 relative">
+      <main className="min-h-screen flex flex-col items-center justify-center px-6 py-20 relative">
         <CustomCursor />
       <nav className="fixed top-0 left-0 right-0 z-50 nav-blur border-b border-border">
         <div className="max-w-[1400px] mx-auto px-6 h-12 flex items-center">
@@ -207,7 +231,7 @@ export default function QuizPage() {
             <span className="gradient-text-blue">skill track.</span>
           </h1>
           <p className="text-text-secondary text-lg leading-relaxed mb-12 max-w-[380px] mx-auto">
-            8 questions. Get a straight answer on where to start — and what to stack on next.
+            12 questions. Get a straight answer on where to start — and what to stack on next.
           </p>
           <button onClick={() => setStep(1)} className="magnetic-btn">
             <span className="relative z-10">Start the Quiz</span>
@@ -221,7 +245,7 @@ export default function QuizPage() {
   // ── Contact capture ──
   if (step === 'contact') {
     return (
-      <main className="cursor-none min-h-screen flex flex-col items-center justify-center px-6 py-20 relative">
+      <main className="min-h-screen flex flex-col items-center justify-center px-6 py-20 relative">
         <CustomCursor />
       <nav className="fixed top-0 left-0 right-0 z-50 nav-blur border-b border-border">
         <div className="max-w-[1400px] mx-auto px-6 h-12 flex items-center">
@@ -289,11 +313,11 @@ export default function QuizPage() {
     // Check if mentorship might be a fit (high scores across multiple areas)
     const scores: Partial<Record<SkillKey, number>> = {};
     answers.forEach(a => { scores[a.skill] = (scores[a.skill] ?? 0) + 1; });
-    const topScores = (Object.values(scores) as number[]).filter(v => v >= 2);
+    const topScores = (Object.values(scores) as number[]).filter(v => v >= 3);
     const showMentorship = topScores.length >= 3;
 
     return (
-      <main className="cursor-none min-h-screen px-6 py-24 relative">
+      <main className="min-h-screen px-6 py-24 relative">
         <CustomCursor />
       <nav className="fixed top-0 left-0 right-0 z-50 nav-blur border-b border-border">
         <div className="max-w-[1400px] mx-auto px-6 h-12 flex items-center">
@@ -394,7 +418,7 @@ export default function QuizPage() {
 
   // ── Question ──
   return (
-    <main className="cursor-none min-h-screen flex flex-col justify-center px-6 py-20">
+    <main className="min-h-screen flex flex-col justify-center px-6 py-20">
       <CustomCursor />
       <nav className="fixed top-0 left-0 right-0 z-50 nav-blur border-b border-border">
         <div className="max-w-[1400px] mx-auto px-6 h-12 flex items-center">
@@ -428,7 +452,7 @@ export default function QuizPage() {
             <button
               key={opt.skill}
               onClick={() => setSelected(opt as { label: string; skill: SkillKey })}
-              className={`w-full text-left px-5 py-4 rounded-[14px] border text-[14px] leading-snug transition-all duration-200 ${
+              className={`w-full text-left px-5 py-4 rounded-[14px] border text-[14px] leading-snug transition-all duration-200 min-h-[48px] ${
                 selected?.skill === opt.skill
                   ? 'border-accent/60 bg-accent/[0.08] text-text'
                   : 'border-border text-text-secondary hover:border-border-hover hover:text-text'

@@ -30,6 +30,8 @@ Think of Claude Code as a senior engineer pair-programming with you. It has acce
 
 The key insight: Claude Code maintains **context across your entire session**. Ask it to refactor a function, and it already knows every file that imports it. Ask it to fix a test, and it already read the test file, the source file, and the error output.
 
+<!-- check:0 -->
+
 ## Your First Real Workflow
 
 \`\`\`
@@ -45,6 +47,8 @@ Claude Code will:
 4. Add the necessary environment variable references
 5. Run \`npx tsc --noEmit\` to verify it compiles
 
+<!-- check:1 -->
+
 ## Power User Configuration
 
 Create a \`.claude/settings.json\` in your project root to set persistent instructions:
@@ -59,6 +63,28 @@ Create a \`.claude/settings.json\` in your project root to set persistent instru
 \`\`\`
 
 Use \`CLAUDE.md\` files in your repo root to give Claude Code persistent context about your project — architecture decisions, naming conventions, deployment targets. This is your leverage point. The better your \`CLAUDE.md\`, the less you repeat yourself.`,
+    checks: [
+      {
+        question: "What is the key advantage of Claude Code maintaining full session context?",
+        options: [
+          "It can generate code faster than other AI tools",
+          "It understands how changes in one file affect other files across the project without re-reading them each time",
+          "It automatically deploys code to production after writing it",
+        ],
+        correctIndex: 1,
+        explanation: "Claude Code maintains context across your entire session, meaning when you ask it to refactor a function, it already knows every file that imports it. This cross-file awareness is its core advantage. It doesn't auto-deploy (that requires explicit commands), and speed alone isn't the differentiator — contextual awareness is.",
+      },
+      {
+        question: "When Claude Code receives a complex prompt like building a Stripe webhook handler, what does it do BEFORE writing new code?",
+        options: [
+          "It asks the user for clarification on every detail",
+          "It reads existing files (schema, API routes) to understand patterns and conventions already in use",
+          "It generates a project plan document and waits for approval",
+        ],
+        correctIndex: 1,
+        explanation: "Claude Code reads your existing codebase first — your Prisma schema, existing API routes, and conventions — before writing anything. This is the 'read before write' pattern that produces code matching your project's style. It does not ask for clarification on every detail or generate plan documents.",
+      },
+    ],
     takeaways: [
       "Claude Code operates directly on your filesystem — no copy-pasting between a chat UI and your editor",
       "It maintains full session context across reads, writes, and command execution, making multi-step tasks seamless",
@@ -108,6 +134,8 @@ Claude Code debugging:
 
 It runs the tests. Reads the failures. Reads the source files. Identifies the root cause. Applies the fix. Runs the tests again. **This loop happens automatically.** You can watch it iterate 3-4 times until everything passes.
 
+<!-- check:0 -->
+
 ## Iterative Development Patterns
 
 The highest-leverage pattern is **describe, verify, refine**:
@@ -135,6 +163,8 @@ After tests pass:
 
 This three-step loop — **build, test, review** — catches issues that would otherwise ship to production.
 
+<!-- check:1 -->
+
 ## Handling Build Errors
 
 When a build breaks, don't describe the error. Let Claude Code see it:
@@ -144,6 +174,8 @@ When a build breaks, don't describe the error. Let Claude Code see it:
 \`\`\`
 
 It will read each TypeScript error, trace it to the source, and fix it with full type awareness. For complex chains of type errors, it resolves them in dependency order — fixing the root cause first, not each symptom individually.
+
+<!-- check:2 -->
 
 ## When to Reset Context
 
@@ -155,6 +187,38 @@ claude             # fresh session with clean context
 \`\`\`
 
 A fresh session with a strong \`CLAUDE.md\` is often better than a stale session with 200 turns of accumulated drift.`,
+    checks: [
+      {
+        question: "What is the key difference between a junior and expert scaffold prompt?",
+        options: [
+          "Expert prompts are longer and include more adjectives describing desired quality",
+          "Expert prompts front-load architectural decisions (framework, database, auth, structure) so Claude Code doesn't have to guess",
+          "Expert prompts ask Claude Code to generate multiple options and let you pick",
+        ],
+        correctIndex: 1,
+        explanation: "Expert prompts specify the framework, database, auth strategy, folder structure, and other decisions upfront. This eliminates guesswork and produces production-grade output in one pass. Length alone doesn't help — specificity of decisions is what matters. Generating multiple options wastes time when you already know what you want.",
+      },
+      {
+        question: "What is the correct order of the highest-leverage iterative development pattern?",
+        options: [
+          "Review, build, test",
+          "Build, test, review",
+          "Test, review, build",
+        ],
+        correctIndex: 1,
+        explanation: "The pattern is build, test, review. First you write the code, then you verify it works with tests, then you self-review for edge cases and missed scenarios. Reviewing before testing means you're reviewing unverified code. Testing before building makes no sense — there's nothing to test yet.",
+      },
+      {
+        question: "How does Claude Code handle complex chains of TypeScript type errors during a build fix?",
+        options: [
+          "It fixes each error message individually in the order they appear",
+          "It resolves them in dependency order, fixing the root cause first rather than each symptom",
+          "It deletes the problematic files and rewrites them from scratch",
+        ],
+        correctIndex: 1,
+        explanation: "Claude Code traces chains of type errors to their root cause and fixes in dependency order. Fixing errors in the order they appear would mean patching symptoms rather than causes, leading to cascading fixes. Deleting and rewriting files is destructive and unnecessary when the issues are specific type errors.",
+      },
+    ],
     takeaways: [
       "Front-load architectural decisions in your scaffold prompts — specificity eliminates guesswork and produces production-grade output",
       "The build-test-review loop is the highest-leverage iterative pattern: write code, verify with tests, then self-review for edge cases",
@@ -191,6 +255,8 @@ With Claude Code:
 
 Claude Code searches every file with Grep, builds a dependency graph in its reasoning, and makes coordinated edits across all files. One prompt. Five minutes. Zero missed references.
 
+<!-- check:0 -->
+
 ## Architecture-Level Changes
 
 Complex refactors go beyond find-and-replace:
@@ -214,6 +280,8 @@ Best practices for large projects:
 - **Scope your requests**: "Refactor the payment module" is better than "refactor everything"
 - **Leverage CLAUDE.md**: Document your project map so Claude Code knows where to look without scanning every file
 
+<!-- check:1 -->
+
 ## Coordinated Multi-File Edits
 
 The pattern for complex changes:
@@ -234,6 +302,8 @@ The pattern for complex changes:
 
 Numbered steps give Claude Code a clear execution plan. It will work through them sequentially, verifying each step before moving to the next.
 
+<!-- check:2 -->
+
 ## When Refactors Go Wrong
 
 If a refactor breaks things mid-way, don't panic. Claude Code has access to git:
@@ -249,6 +319,38 @@ If a refactor breaks things mid-way, don't panic. Claude Code has access to git:
 \`\`\`
 
 Git integration means every change is reversible. Use it as your safety net.`,
+    checks: [
+      {
+        question: "How does Claude Code handle a rename refactor across a 50-file codebase?",
+        options: [
+          "It does a simple find-and-replace across all files",
+          "It searches every file with Grep, builds a dependency graph, and makes coordinated edits across all files",
+          "It renames the model file and asks you to manually update the remaining references",
+        ],
+        correctIndex: 1,
+        explanation: "Claude Code uses Grep to find all references, builds a mental dependency graph, and coordinates edits across every file — schema, queries, types, API routes, tests, and UI. A simple find-and-replace would miss context-dependent renames (like variable names derived from the model). Leaving manual work to you defeats the purpose.",
+      },
+      {
+        question: "What is the best practice for managing large context windows with Claude Code on big projects?",
+        options: [
+          "Always load the entire codebase into context at the start of every session",
+          "Use specific file references, scope requests to modules, and leverage CLAUDE.md for project mapping",
+          "Keep all files under 100 lines so they fit easily in context",
+        ],
+        correctIndex: 1,
+        explanation: "Specific instructions ('edit auth middleware in src/middleware/auth.ts'), scoped requests ('refactor the payment module'), and a well-written CLAUDE.md help Claude Code navigate large projects efficiently. Loading everything wastes context. Artificially limiting file size is impractical and unrelated to context management.",
+      },
+      {
+        question: "Why should complex multi-file change prompts use numbered steps?",
+        options: [
+          "Claude Code requires numbered lists for multi-file operations to function",
+          "Numbered steps give Claude Code a clear execution plan it follows sequentially with verification at each stage",
+          "Numbered steps make the prompt shorter and save input tokens",
+        ],
+        correctIndex: 1,
+        explanation: "Numbered steps provide a clear execution plan that Claude Code follows in order, verifying each step before moving to the next. This prevents it from attempting everything at once and missing dependencies. Claude Code doesn't require numbered lists — it's a prompting best practice. And numbered steps don't reduce token count.",
+      },
+    ],
     takeaways: [
       "Claude Code builds cross-file dependency graphs before editing, so a single rename command can safely propagate across 50+ files",
       "Architecture-level migrations (e.g., Pages Router to App Router) work because Claude Code reads the full existing implementation before writing",
@@ -312,6 +414,8 @@ The key insight: have Claude Code generate the pipeline, then **use Claude Code 
   and fix anything that fails
 \`\`\`
 
+<!-- check:0 -->
+
 ## Database Migrations in Production
 
 For apps with Prisma:
@@ -344,6 +448,8 @@ Use Claude Code to audit your app before launch:
 
 This single prompt replaces a security review that would take hours manually.
 
+<!-- check:1 -->
+
 ## Infrastructure as Code
 
 For AWS or other cloud deployments:
@@ -364,6 +470,8 @@ For AWS or other cloud deployments:
 
 Claude Code generates production-grade infrastructure configs because it knows the patterns. Your job is to review, not to write from scratch.
 
+<!-- check:2 -->
+
 ## The Full Loop
 
 The expert workflow is:
@@ -374,6 +482,38 @@ The expert workflow is:
 4. **Monitor** — this is where you take over (for now)
 
 You're not just using an AI assistant. You're operating a full engineering team from your terminal.`,
+    checks: [
+      {
+        question: "After Claude Code generates a CI/CD pipeline, what should you do before pushing it to your repository?",
+        options: [
+          "Review the YAML syntax for formatting errors",
+          "Have Claude Code run the same CI pipeline commands locally to verify they pass",
+          "Push it immediately and fix issues from the CI logs",
+        ],
+        correctIndex: 1,
+        explanation: "The key insight is to use Claude Code to run the CI pipeline commands locally before pushing. This catches failures early without wasting CI minutes or blocking your team. Just reviewing YAML syntax misses actual build/test failures. Pushing and fixing from CI logs is the slow, reactive approach.",
+      },
+      {
+        question: "What should you always include when prompting Claude Code to create a database migration?",
+        options: [
+          "A request to drop and recreate the table for a clean slate",
+          "Backward-compatibility constraints so existing data and the running app won't break during rollout",
+          "A request to lock the table during migration to prevent concurrent access",
+        ],
+        correctIndex: 1,
+        explanation: "Prompting with backward-compatibility constraints ensures zero-downtime deployments — existing rows don't break and the app works with both old and new schema. Dropping and recreating tables destroys data. Table locks cause downtime, which is exactly what you're trying to avoid.",
+      },
+      {
+        question: "What is the expert deployment workflow order when using Claude Code?",
+        options: [
+          "Deploy, build, review, monitor",
+          "Build, review, deploy, monitor",
+          "Review, deploy, build, monitor",
+        ],
+        correctIndex: 1,
+        explanation: "The correct order is build (features, tests, docs), review (security audit, performance check), deploy (CI/CD, infrastructure, migrations), monitor (observability). Deploying before reviewing skips security and quality checks. Reviewing before building means there is nothing to review.",
+      },
+    ],
     takeaways: [
       "Claude Code can generate complete CI/CD pipelines, Dockerfiles, and infrastructure-as-code configs — always run the pipeline locally first before pushing",
       "The production hardening audit prompt replaces hours of manual security review with a systematic, repeatable check",
@@ -417,6 +557,8 @@ Key parameters you need to internalize:
 - **model**: \`claude-opus-4-6\` (200K context, 128K output), \`claude-sonnet-4-6\` (fast + capable), \`claude-haiku-4-5\` (speed + cost)
 - **max_tokens**: Hard ceiling on output length. Set it intentionally — too low truncates, too high wastes latency budget
 - **system**: The system prompt. This is your primary control lever for behavior, tone, and output format
+
+<!-- check:0 -->
 
 ## Streaming for Real-Time UX
 
@@ -477,6 +619,8 @@ const response = await client.messages.create({
 
 After Claude returns a \`tool_use\` block, you execute the function, then send the result back as a \`tool_result\` message. Claude synthesizes the final answer. This is the agentic loop.
 
+<!-- check:1 -->
+
 ## Vision: Multimodal Inputs
 
 Claude can process images natively. Send them as base64 or URL references:
@@ -508,6 +652,28 @@ const response = await client.messages.create({
 \`\`\`
 
 Vision + tool use is a lethal combination. Build systems that screenshot a webpage, feed it to Claude, extract structured data, and pipe it into your database. Fully automated.`,
+    checks: [
+      {
+        question: "Which parameter is the primary control lever for shaping Claude's behavior, tone, and output format?",
+        options: [
+          "max_tokens — it determines how detailed the response can be",
+          "model — different models have different default personalities",
+          "system — the system prompt directly controls behavior, tone, and format",
+        ],
+        correctIndex: 2,
+        explanation: "The system prompt is your primary control lever. It directly instructs Claude on how to behave, what tone to use, and how to format output. max_tokens only limits length, not behavior. While models do differ in capability, the system prompt is the parameter you use to actively shape responses.",
+      },
+      {
+        question: "In the tool use (function calling) flow, what happens after Claude returns a tool_use block?",
+        options: [
+          "Claude automatically executes the function and returns the result",
+          "You execute the function yourself, then send the result back as a tool_result message for Claude to synthesize",
+          "The API retries the request without tool use enabled",
+        ],
+        correctIndex: 1,
+        explanation: "You execute the function on your side and send the result back as a tool_result message. Claude then uses that result to synthesize a final answer. Claude never executes functions directly — it only decides which function to call and with what arguments. The API does not retry without tools.",
+      },
+    ],
     takeaways: [
       "The Messages API is the single endpoint powering every Claude integration — master its parameters (model, max_tokens, system) to control behavior precisely",
       "Always use streaming in user-facing products; the SDK's async iterator and finalMessage() method make implementation straightforward",
@@ -569,6 +735,8 @@ The thinking content reveals Claude's reasoning chain. This is invaluable for:
 - **Auditing**: Verify the logic chain for high-stakes decisions
 - **Tuning**: Understand where reasoning goes off-track so you can improve your prompts
 
+<!-- check:0 -->
+
 ## Budget Tokens: The Art of Allocation
 
 Budget tokens are not a flat cost — Claude uses only what it needs:
@@ -582,6 +750,8 @@ Budget tokens are not a flat cost — Claude uses only what it needs:
 | Deep research synthesis | 20,000 - 50,000 |
 
 Setting the budget too low truncates reasoning and degrades quality. Setting it too high doesn't hurt — Claude stops early when confident. Err on the side of generous budgets for hard problems.
+
+<!-- check:1 -->
 
 ## Streaming with Extended Thinking
 
@@ -613,11 +783,45 @@ for await (const event of stream) {
 }
 \`\`\`
 
+<!-- check:2 -->
+
 ## When to Use Extended Thinking
 
 Use it when the task has **multiple valid approaches** and choosing the right one matters. If you're asking Claude to generate a simple utility function, thinking is overkill. If you're asking it to design a distributed caching strategy for your microservices architecture, thinking is the difference between a generic answer and an answer that actually accounts for your constraints.
 
 The rule of thumb: **if a senior engineer would need 10+ minutes to think through the problem, turn on extended thinking.**`,
+    checks: [
+      {
+        question: "What are the three practical uses of reading Claude's thinking blocks?",
+        options: [
+          "Caching, batching, and cost optimization",
+          "Debugging conclusions, auditing logic chains, and tuning prompts",
+          "Rate limiting, load balancing, and error handling",
+        ],
+        correctIndex: 1,
+        explanation: "Thinking blocks let you debug why Claude reached a conclusion, audit the logic chain for high-stakes decisions, and understand where reasoning goes off-track to improve prompts. Caching/batching/cost optimization and rate limiting/load balancing are infrastructure concerns unrelated to thinking output.",
+      },
+      {
+        question: "What happens if you set budget_tokens too high for a simple task?",
+        options: [
+          "Claude uses all the budget tokens regardless, wasting money",
+          "Nothing bad — Claude stops reasoning early when confident and only uses what it needs",
+          "The API returns an error for exceeding the budget on simple tasks",
+        ],
+        correctIndex: 1,
+        explanation: "Claude stops reasoning as soon as it's confident in its answer, so a generous budget on a simple task doesn't waste tokens. The budget is an upper bound, not a fixed cost. The API does not error on high budgets — it simply gives Claude room to think as much as needed.",
+      },
+      {
+        question: "When streaming with extended thinking, how do you distinguish between thinking tokens and response tokens?",
+        options: [
+          "Thinking tokens arrive first as a single block, then response tokens stream afterward",
+          "Check event.delta.type — thinking_delta contains reasoning, text_delta contains the visible response",
+          "You cannot distinguish them — they arrive interleaved in the same stream",
+        ],
+        correctIndex: 1,
+        explanation: "The stream events include delta types: thinking_delta for internal reasoning and text_delta for the visible response. This lets you handle them differently — for example, hiding thinking from end users or showing it to power users. They do arrive sequentially (thinking first), but the distinguishing mechanism is the delta type, not just ordering.",
+      },
+    ],
     takeaways: [
       "Extended thinking gives Claude a private reasoning scratchpad that dramatically improves accuracy on complex, multi-step problems",
       "Budget tokens set an upper bound — Claude stops reasoning early when confident, so generous budgets don't waste money on simple tasks",
@@ -696,6 +900,8 @@ const invoiceData = toolUseBlock.input; // Typed, structured JSON
 
 The \`tool_choice: { type: "tool", name: "extract_invoice" }\` parameter **forces** Claude to use this specific tool, guaranteeing structured output.
 
+<!-- check:0 -->
+
 ## Schema Design Principles
 
 Your schema is your contract. Design it like a database schema:
@@ -704,6 +910,8 @@ Your schema is your contract. Design it like a database schema:
 - **Use \`description\` on every property** — Claude uses descriptions to understand intent
 - **Use enums for categorical data**: \`{ "type": "string", "enum": ["low", "medium", "high"] }\`
 - **Nest objects for complex structures** — flat schemas lose relational meaning
+
+<!-- check:1 -->
 
 ## Extraction Pipelines
 
@@ -736,6 +944,8 @@ async function processInvoice(imageBase64: string) {
 }
 \`\`\`
 
+<!-- check:2 -->
+
 ## Validation Layer
 
 Never trust raw output. Always validate with a schema library:
@@ -762,6 +972,38 @@ const InvoiceSchema = z.object({
 \`\`\`
 
 Claude's structured output is highly reliable with tool use, but a Zod validation layer catches edge cases and gives you type safety throughout your application.`,
+    checks: [
+      {
+        question: "What is the most reliable way to get structured JSON output from Claude?",
+        options: [
+          "Ask Claude to return JSON in the system prompt and parse the text response",
+          "Use tool use with tool_choice forced to a specific tool whose schema matches your desired output",
+          "Use a regex to extract JSON from Claude's free-form text response",
+        ],
+        correctIndex: 1,
+        explanation: "Tool use with forced tool_choice guarantees Claude returns data conforming to your schema. Asking for JSON in the system prompt works most of the time but can fail with extra text or malformed JSON. Regex extraction is brittle and breaks on edge cases like nested objects or escaped characters.",
+      },
+      {
+        question: "When designing a tool schema for structured extraction, which practice improves output quality?",
+        options: [
+          "Keep all properties optional so Claude has flexibility in what it returns",
+          "Use required fields aggressively, add descriptions to every property, and use enums for categorical data",
+          "Use a single string field and let Claude decide the format",
+        ],
+        correctIndex: 1,
+        explanation: "Required fields prevent missing data, descriptions help Claude understand what each field means, and enums constrain categorical values to valid options. Optional fields invite missing data. A single string field defeats the entire purpose of structured output.",
+      },
+      {
+        question: "What is the role of a vision + structured output extraction pipeline?",
+        options: [
+          "It converts images to text using OCR, then sends the text to Claude for formatting",
+          "It sends images directly to Claude with a forced tool schema, extracting structured data from visual content in one API call",
+          "It requires a separate OCR service before Claude can process any image",
+        ],
+        correctIndex: 1,
+        explanation: "Claude processes images natively — no separate OCR step needed. You send the image directly with a forced tool schema, and Claude extracts structured data in a single call. This is more accurate than OCR-then-parse pipelines because Claude understands visual context, layout, and relationships between elements.",
+      },
+    ],
     takeaways: [
       "Tool use with tool_choice forced to a specific tool is the most reliable method for getting structured JSON output from Claude",
       "Schema design directly impacts extraction quality — use required fields, descriptive property descriptions, and enums for categorical data",
@@ -805,6 +1047,8 @@ The \`cache_control: { type: "ephemeral" }\` flag tells the API to cache this co
 - **Few-shot examples**: Cache the examples block, vary only the user input
 - **Document context**: When multiple queries reference the same document
 - **Tool definitions**: Large tool arrays used across every request
+
+<!-- check:0 -->
 
 ### Cache Breakpoints
 
@@ -850,6 +1094,8 @@ for await (const entry of client.messages.batches.results(batch.id)) {
 
 Batches process within 24 hours (usually much faster). At 50% cost reduction, this is the obvious choice for any non-interactive workload.
 
+<!-- check:1 -->
+
 ## Model Routing
 
 Not every task needs Opus. A smart routing layer matches task complexity to model capability:
@@ -874,6 +1120,8 @@ function selectModel(task: TaskType): string {
 
 Build a classifier (can be Haiku-powered) that evaluates incoming requests and routes to the cheapest model that can handle the task. This alone can cut costs 60-80%.
 
+<!-- check:2 -->
+
 ## The Cost Optimization Stack
 
 Layer these strategies for maximum impact:
@@ -885,6 +1133,38 @@ Layer these strategies for maximum impact:
 5. **Prompt engineering**: Shorter, clearer prompts = fewer input tokens = lower cost
 
 At production scale, these five layers compound. A system that would cost \$50K/month unoptimized can run at \$3-5K/month with proper cost engineering. That's the difference between a sustainable business and a cash furnace.`,
+    checks: [
+      {
+        question: "Which content types benefit most from prompt caching?",
+        options: [
+          "Dynamic user messages that change with every request",
+          "System prompts, few-shot examples, tool definitions, and document context that are reused across requests",
+          "Claude's output responses, which can be cached to avoid regeneration",
+        ],
+        correctIndex: 1,
+        explanation: "Prompt caching works on input prefixes that are reused across requests — system prompts, few-shot examples, tool definitions, and shared document context. Dynamic user messages change every time, so they cannot be cached. Output responses are not cacheable through prompt caching (that would be response caching, a different strategy).",
+      },
+      {
+        question: "What cost reduction does the Message Batches API provide, and when should you use it?",
+        options: [
+          "90% reduction, use for all requests to maximize savings",
+          "50% reduction, use for non-interactive workloads like bulk classification and overnight processing",
+          "25% reduction, use only when processing more than 1 million tokens",
+        ],
+        correctIndex: 1,
+        explanation: "The Batches API provides 50% cost reduction for async workloads processed within 24 hours. It is ideal for bulk classification, data processing, and batch analysis that don't need real-time responses. You cannot use it for interactive workloads where users are waiting for responses. It's not 90% (that's prompt caching) or 25%.",
+      },
+      {
+        question: "Why is tiered model routing the single biggest cost lever?",
+        options: [
+          "Because Opus is the only model accurate enough for production use",
+          "Because most requests are simple enough for cheaper models — routing correctly avoids paying Opus prices for Haiku-level tasks",
+          "Because using a single model for everything reduces infrastructure complexity",
+        ],
+        correctIndex: 1,
+        explanation: "Most production requests (classification, formatting, simple extraction) can be handled by Haiku at a fraction of Opus's cost. Routing to the cheapest capable model per request can cut costs 60-80%. Opus is not the only production-ready model — Sonnet and Haiku are highly capable for their task classes. A single model simplifies code but wastes money.",
+      },
+    ],
     takeaways: [
       "Prompt caching with cache_control gives a 90% discount on repeated prefixes — cache system prompts, few-shot examples, tool definitions, and document context",
       "The Message Batches API processes async workloads at 50% cost — use it for any non-interactive bulk processing (classification, extraction, analysis)",
@@ -917,9 +1197,13 @@ Servers expose three primitive types:
 - **Resources** — Application-controlled data endpoints (e.g., \`file://config.json\`, \`db://users/schema\`). Think of these as GET endpoints the host can read.
 - **Prompts** — Reusable prompt templates with arguments, exposed as slash commands or quick actions.
 
+<!-- check:0 -->
+
 ## Why This Is a Paradigm Shift
 
 The real power isn't connecting Claude to one tool — it's **composability**. A single Claude session can connect to multiple MCP servers simultaneously. Now Claude can query your database, check a GitHub PR, and read local files — all in a single conversation, with zero custom integration code between them.
+
+<!-- check:1 -->
 
 ## Transport Mechanisms
 
@@ -929,6 +1213,28 @@ MCP supports two transport layers:
 - **SSE (Server-Sent Events)** — Server runs as an HTTP service. Supports remote connections, authentication, and multi-tenant deployments. This is your production transport.
 
 The protocol handles capability negotiation, so clients and servers agree on supported features at connection time.`,
+    checks: [
+      {
+        question: "What are the three primitive types that MCP servers expose?",
+        options: [
+          "Requests, responses, and errors",
+          "Tools (model-invoked functions), Resources (data endpoints), and Prompts (reusable templates)",
+          "Inputs, outputs, and middleware",
+        ],
+        correctIndex: 1,
+        explanation: "MCP servers expose Tools (functions Claude can invoke, like query_database), Resources (read-only data endpoints the host can access, like file://config.json), and Prompts (reusable templates exposed as slash commands). Requests/responses/errors describe protocol messages, not capability primitives. Inputs/outputs/middleware describe generic software patterns, not MCP-specific concepts.",
+      },
+      {
+        question: "Why is MCP described as collapsing the N-times-M problem into N+M?",
+        options: [
+          "Because MCP reduces the number of AI models needed from N to 1",
+          "Because one standard protocol means each model and each tool only needs one integration instead of custom connectors for every combination",
+          "Because MCP batches N requests into M parallel connections",
+        ],
+        correctIndex: 1,
+        explanation: "Without MCP, connecting N models to M tools requires N*M custom integrations. With MCP as a universal protocol, each model implements the protocol once and each tool implements it once, totaling N+M integrations. MCP doesn't reduce the number of models or batch requests — it standardizes the connection layer.",
+      },
+    ],
     takeaways: [
       "MCP is a JSON-RPC 2.0 protocol that standardizes how AI models connect to external tools, resources, and prompts — eliminating custom integration code",
       "The architecture separates Hosts (user-facing apps), Clients (protocol handlers), and Servers (capability providers) for clean separation of concerns",
@@ -1003,6 +1309,8 @@ const transport = new StdioServerTransport();
 await server.connect(transport);
 \`\`\`
 
+<!-- check:0 -->
+
 ## Registering With Claude Desktop
 
 Add your server to \`claude_desktop_config.json\`:
@@ -1018,12 +1326,36 @@ Add your server to \`claude_desktop_config.json\`:
 }
 \`\`\`
 
+<!-- check:1 -->
+
 ## Key Patterns to Note
 
 - **Zod schemas** define your tool inputs — MCP uses these to generate JSON Schema for Claude's function calling
 - **\`isError: true\`** in the return signals a tool failure without crashing the server
 - **Resources are read-only** — they provide data context, not mutation capability
 - **Prompts are templates** — they inject pre-built conversation starters into the host UI`,
+    checks: [
+      {
+        question: "What role do Zod schemas play in an MCP server's .tool() method?",
+        options: [
+          "They only validate input at runtime and have no other purpose",
+          "They provide both runtime validation and automatic JSON Schema generation that Claude uses for function calling",
+          "They generate TypeScript types but are not used at runtime",
+        ],
+        correctIndex: 1,
+        explanation: "Zod schemas serve a dual purpose in MCP: they validate inputs at runtime (catching invalid data before your handler runs) and they automatically generate JSON Schema that Claude uses to understand tool parameters during function calling. They are not just runtime-only or types-only — they do both.",
+      },
+      {
+        question: "How do you register a local MCP server with Claude Desktop for testing?",
+        options: [
+          "Run the server and Claude Desktop automatically discovers it via network scanning",
+          "Add an entry to claude_desktop_config.json with the command and args to launch the server",
+          "Upload the server code to Anthropic's cloud and connect via API key",
+        ],
+        correctIndex: 1,
+        explanation: "You add your server to claude_desktop_config.json specifying the command (e.g., 'node') and args (path to your server file). Claude Desktop launches the server as a subprocess using stdio transport. There is no automatic discovery — you must configure it explicitly. MCP servers run locally, not on Anthropic's cloud.",
+      },
+    ],
     takeaways: [
       "McpServer from @modelcontextprotocol/sdk handles all protocol complexity — you just define tools, resources, and prompts with simple method calls",
       "Zod schemas on .tool() provide both runtime validation and automatic JSON Schema generation that Claude uses for structured function calling",
@@ -1078,6 +1410,8 @@ server.tool(
 
 Key safety measures: read-only transactions, statement timeouts, row limits, and query prefix validation.
 
+<!-- check:0 -->
+
 ## API Bridge Tools
 
 Wrap any REST API as MCP tools with proper error propagation:
@@ -1122,12 +1456,36 @@ server.tool(
 );
 \`\`\`
 
+<!-- check:1 -->
+
 ## Tool Design Principles
 
 - **Granular over monolithic** — \`search_customers\` + \`get_customer\` + \`update_customer\` beats one \`manage_customers\` tool
 - **Rich descriptions** — Claude uses descriptions to decide when and how to call them
 - **Fail loudly** — Always return \`isError: true\` with descriptive messages
 - **Limit output size** — Truncate large results and tell Claude they were truncated`,
+    checks: [
+      {
+        question: "What are the four safety measures the database tool uses to prevent misuse?",
+        options: [
+          "Authentication, authorization, encryption, and logging",
+          "Read-only transactions, statement timeouts, row limits, and query prefix validation",
+          "Rate limiting, IP allowlisting, query caching, and connection pooling",
+        ],
+        correctIndex: 1,
+        explanation: "The database tool uses read-only transactions (BEGIN TRANSACTION READ ONLY), statement timeouts (SET statement_timeout = '5000'), row limits (slice results to 100), and query prefix validation (only allow SELECT). These form defense in depth specifically for SQL access. Auth/encryption and rate limiting are important but are separate infrastructure concerns.",
+      },
+      {
+        question: "How does the file system tool prevent path traversal attacks?",
+        options: [
+          "It blocks any file path containing '..' characters",
+          "It resolves the full path with path.resolve() and checks that it starts with the allowed root directory",
+          "It only allows reading files that are listed in a pre-approved whitelist",
+        ],
+        correctIndex: 1,
+        explanation: "The tool uses path.resolve() to get the canonical absolute path, then checks it starts with ALLOWED_ROOT. This catches all traversal attempts, including those using symlinks or encoded characters. Checking for '..' is insufficient because there are other traversal techniques. A file whitelist is too rigid for practical use.",
+      },
+    ],
     takeaways: [
       "Database tools need defense in depth: read-only transactions, statement timeouts, row limits, and query validation",
       "API bridge tools should propagate real error messages with isError so Claude can reason about failures and retry",
@@ -1169,6 +1527,8 @@ app.post("/messages", authenticate, (req, res) => {
 app.listen(3001);
 \`\`\`
 
+<!-- check:0 -->
+
 ## Production Checklist
 
 **Infrastructure:**
@@ -1182,6 +1542,8 @@ app.listen(3001);
 - Input sanitization beyond Zod validation — especially for SQL and file path tools
 - Principle of least privilege: each API key maps to specific permissions
 - Audit logging: record every tool invocation with user, input, output, and timestamp
+
+<!-- check:1 -->
 
 **Reliability:**
 \`\`\`typescript
@@ -1202,6 +1564,28 @@ process.on("SIGTERM", async () => {
 - Alert on error rate spikes
 - Monitor connection count — each active Claude session holds an SSE connection
 - Log token usage if your tools return large payloads`,
+    checks: [
+      {
+        question: "What is the key difference between stdio and SSE transport for MCP servers?",
+        options: [
+          "stdio is faster than SSE for all use cases",
+          "stdio runs the server as a local subprocess via stdin/stdout, while SSE runs as an HTTP service enabling remote connections and authentication",
+          "SSE is only for testing; stdio is the production transport",
+        ],
+        correctIndex: 1,
+        explanation: "stdio communicates via stdin/stdout with the server as a subprocess — great for local development. SSE runs as an HTTP service, enabling remote connections, authentication middleware, and multi-tenant deployments — essential for production. Neither is universally faster; they serve different deployment contexts. SSE is the production transport, not stdio.",
+      },
+      {
+        question: "Why is rate limiting per API key critical for production MCP servers?",
+        options: [
+          "To prevent users from accessing tools they don't have permission for",
+          "Because a runaway agent can make thousands of tool calls in minutes, and rate limiting prevents resource exhaustion",
+          "To ensure all users get equal response times",
+        ],
+        correctIndex: 1,
+        explanation: "Agents operate in loops and can call tools thousands of times if they get stuck or encounter unexpected behavior. Rate limiting per API key prevents a single runaway agent from exhausting server resources, burning API costs, or overwhelming downstream systems. Permission control is a separate concern (authorization), and equal response times are handled by load balancing.",
+      },
+    ],
     takeaways: [
       "SSE transport enables remote, authenticated, multi-tenant MCP deployments — swap StdioServerTransport for SSEServerTransport and wrap with Express middleware",
       "Every production MCP server needs authentication, rate limiting, audit logging, and graceful shutdown",
@@ -1244,6 +1628,8 @@ console.log(result.output);
 
 The \`run()\` function starts the agentic loop. Claude receives the input, examines available tools, decides what to do, calls tools, processes results, and repeats until it produces a final response or hits \`maxTurns\`.
 
+<!-- check:0 -->
+
 ## Defining Tools for Agents
 
 \`\`\`typescript
@@ -1264,6 +1650,8 @@ const webSearchTool = tool({
 });
 \`\`\`
 
+<!-- check:1 -->
+
 ## The Agentic Loop Explained
 
 Every \`run()\` iteration follows this cycle:
@@ -1275,6 +1663,28 @@ Every \`run()\` iteration follows this cycle:
 5. Loop back to step 1
 
 This continues until Claude produces a response without tool calls (task complete) or \`maxTurns\` is reached.`,
+    checks: [
+      {
+        question: "What is the key difference between the Agent SDK and raw Messages API calls for building agents?",
+        options: [
+          "The Agent SDK uses a different AI model than the Messages API",
+          "The Agent SDK manages the agentic loop internally — you define instructions and tools, and it handles reasoning, tool calling, and iteration automatically",
+          "The Agent SDK is a cloud-hosted service while the Messages API runs locally",
+        ],
+        correctIndex: 1,
+        explanation: "With raw Messages API calls, you manually manage the conversation loop: send a message, check for tool_use, execute tools, send results back, repeat. The Agent SDK handles all of this automatically via run(). It uses the same Claude models as the Messages API — the difference is the orchestration layer, not the model or deployment.",
+      },
+      {
+        question: "What are the two conditions that stop the agentic loop in run()?",
+        options: [
+          "When all tools have been called at least once, or when the token budget is exhausted",
+          "When Claude produces a response without tool calls (task complete), or when maxTurns is reached",
+          "When the user sends a stop signal, or when an error occurs",
+        ],
+        correctIndex: 1,
+        explanation: "The loop ends naturally when Claude returns a response without requesting any tool calls (it considers the task done), or artificially when maxTurns is hit (safety limit). Tools don't all need to be called. Token budget exhaustion would cause an error, not a clean stop. User stop signals are not part of the run() API.",
+      },
+    ],
     takeaways: [
       "The Agent SDK manages the entire agentic loop — you define instructions and tools, and run() handles reasoning, tool calling, and iteration",
       "Always set maxTurns to prevent runaway agents — without it, a confused agent can loop indefinitely burning tokens",
@@ -1314,6 +1724,8 @@ If no results found, returns an empty array — do NOT retry with the same query
 
 Include \`availableActions\` in responses so the agent knows what it can do next.
 
+<!-- check:0 -->
+
 ### 3. Make Errors Informative and Recoverable
 
 \`\`\`typescript
@@ -1337,9 +1749,33 @@ execute: async ({ email, subject, body }) => {
 
 Build preview/confirm pairs: \`preview_bulk_update\` shows what would change, \`execute_bulk_update\` applies it.
 
+<!-- check:1 -->
+
 ### 5. Design Tool Chains, Not Islands
 
 Think about how tools connect. An agent working a sales pipeline needs: \`search_contacts\` → \`get_contact_details\` → \`get_deal_history\` → \`update_deal_stage\` → \`send_followup_email\`. Each tool's output should naturally inform the next tool's input.`,
+    checks: [
+      {
+        question: "Why should tool descriptions include information about when NOT to use the tool?",
+        options: [
+          "To reduce the number of tools the agent has to consider",
+          "Because descriptions are prompts — they guide Claude's decision-making on when and how to call each tool, preventing misuse and unnecessary retries",
+          "To make the tool list shorter and easier for developers to read",
+        ],
+        correctIndex: 1,
+        explanation: "Tool descriptions function as prompts that Claude reads to decide when and how to use each tool. Including negative guidance (e.g., 'do NOT retry with the same query if no results found') prevents the agent from looping or misusing tools. This is about agent behavior, not about reducing the tool count or developer readability.",
+      },
+      {
+        question: "What is the recommended pattern for handling destructive actions in agent tools?",
+        options: [
+          "Disable destructive tools entirely and require manual intervention for all writes",
+          "Build preview/confirm tool pairs — one tool shows what would change, another applies it",
+          "Let the agent execute destructive actions freely but log everything for rollback",
+        ],
+        correctIndex: 1,
+        explanation: "Preview/confirm pairs (like preview_bulk_update and execute_bulk_update) give the agent a safe way to plan destructive actions before executing them. Disabling all writes makes agents useless for real work. Executing freely with logging is dangerous — by the time you review logs, the damage may be irreversible.",
+      },
+    ],
     takeaways: [
       "Tool descriptions are prompts — include expected behavior, edge cases, return formats, and when NOT to use the tool",
       "Return structured data with available next actions so the agent can chain tools effectively",
@@ -1380,6 +1816,8 @@ When resolved, hand back to the Sales Agent.\`,
 });
 \`\`\`
 
+<!-- check:0 -->
+
 ## Orchestration Patterns
 
 ### Pattern 1: Router
@@ -1407,9 +1845,33 @@ const final = await run(editorAgent, { input: draft.output, maxTurns: 10 });
 ### Pattern 3: Orchestrator-Worker
 A lead agent that breaks down complex tasks and delegates to workers.
 
+<!-- check:1 -->
+
 ## Handoff Context Management
 
 Context accumulates across handoffs. After 5-6 handoffs, you may carry 50K+ tokens. Monitor this and summarize when needed.`,
+    checks: [
+      {
+        question: "What happens to a single agent's performance as you add more tools and broader instructions?",
+        options: [
+          "Performance improves because the agent has more capabilities to choose from",
+          "Performance degrades — the agent gets confused with too many options and broader scope",
+          "Performance stays the same regardless of tool count",
+        ],
+        correctIndex: 1,
+        explanation: "Single agents hit a ceiling as tools and scope increase. With too many tools, the agent struggles to pick the right one and makes more errors. This is why multi-agent architectures assign each agent a focused role with a limited toolset — specialization improves performance.",
+      },
+      {
+        question: "Why should routing agents use a cheap, fast model like Haiku instead of Opus?",
+        options: [
+          "Because Haiku is more accurate at classification tasks than Opus",
+          "Because routing is a simple classification task — the agent just categorizes and dispatches, so expensive reasoning is wasted",
+          "Because Opus cannot be used with the handoffs parameter",
+        ],
+        correctIndex: 1,
+        explanation: "A router agent only classifies the incoming request and hands off to the right specialist — it doesn't do deep reasoning. Haiku handles classification well at a fraction of Opus's cost. Opus is not inherently worse at classification, just unnecessarily expensive for it. All models support handoffs.",
+      },
+    ],
     takeaways: [
       "Multi-agent architectures outperform single agents on complex tasks by giving each agent a focused role and limited toolset",
       "Three core patterns: Router (classify and dispatch), Pipeline (sequential stages), and Orchestrator-Worker (decompose, delegate, synthesize)",
@@ -1449,6 +1911,8 @@ const piiGuardrail = {
 };
 \`\`\`
 
+<!-- check:0 -->
+
 ## Tool-Level Guardrails
 
 The most critical layer — control what the agent can actually do:
@@ -1474,6 +1938,8 @@ const sendEmail = tool({
 });
 \`\`\`
 
+<!-- check:1 -->
+
 ## Production Monitoring
 
 \`\`\`typescript
@@ -1492,9 +1958,43 @@ metrics.gauge("agent.total_turns", result.turns);
 metrics.gauge("agent.cost_usd", calculateCost(result.usage));
 \`\`\`
 
+<!-- check:2 -->
+
 ## The Human-in-the-Loop Pattern
 
 For high-stakes actions, pause the agent and require human approval. This is not optional — it's the difference between a useful tool and a liability.`,
+    checks: [
+      {
+        question: "Why are input guardrails important even though Claude won't intentionally misuse sensitive data?",
+        options: [
+          "Because Claude might accidentally output PII it received in the input, exposing it in logs or responses",
+          "Because input guardrails make the API calls cheaper by reducing token count",
+          "Because Claude cannot process inputs containing special characters like SSN formats",
+        ],
+        correctIndex: 0,
+        explanation: "Even though Claude won't intentionally misuse PII, sensitive data in the input can end up in responses, logs, cached prompts, or downstream systems. Input guardrails catch and block PII before it enters the pipeline. It's not about cost reduction or character processing limitations — it's about preventing accidental data leakage.",
+      },
+      {
+        question: "What three safeguards does the email tool implement to prevent agent misuse?",
+        options: [
+          "Spell checking, grammar validation, and tone analysis",
+          "Rate limiting (max 10 per run), domain allowlisting, and human-in-the-loop approval for bulk operations",
+          "Email encryption, read receipts, and delivery confirmation",
+        ],
+        correctIndex: 1,
+        explanation: "The email tool implements rate limiting (max 10 emails per agent run), domain allowlisting (only send to approved domains), and human-in-the-loop approval when more than 3 emails are sent. These prevent a looping agent from spamming, sending to unauthorized recipients, or executing bulk operations without oversight.",
+      },
+      {
+        question: "How do you detect that an agent is stuck in a loop during production monitoring?",
+        options: [
+          "Check if the agent has been running for more than 60 seconds",
+          "Monitor tool call patterns — if the same tool is called 5+ times consecutively, flag it as a potential loop",
+          "Count the total number of API calls and alert if it exceeds 100",
+        ],
+        correctIndex: 1,
+        explanation: "Consecutive identical tool calls are the telltale sign of a loop — the agent keeps trying the same action expecting different results. Time-based checks are unreliable because legitimate complex tasks can take minutes. Total API call counts don't distinguish between productive diverse calls and repetitive loops.",
+      },
+    ],
     takeaways: [
       "Implement guardrails at three layers: input validation, output validation, and tool-level controls (rate limits, allowlists, human approval)",
       "Tool-level rate limiting is your last line of defense — a looping agent can make thousands of API calls in minutes without caps",
@@ -1542,6 +2042,8 @@ const response = await anthropic.messages.create({
 - **Max dimensions:** Images are rescaled if they exceed 1568px on the longest edge
 - **Multiple images:** Pass multiple image blocks — Claude reasons across all of them
 
+<!-- check:0 -->
+
 ## Real-World Vision Patterns
 
 **UI Audit Pipeline:** Screenshot your app, ask Claude to identify accessibility issues, broken layouts, or inconsistencies.
@@ -1554,9 +2056,33 @@ const response = await anthropic.messages.create({
 
 Image tokens are calculated based on dimensions. A 1568x1568 image costs approximately 1,600 tokens. When processing high volumes, resize images before sending to optimize costs.
 
+<!-- check:1 -->
+
 ## Multi-Image Reasoning
 
 Claude can compare multiple images in a single request — before/after screenshots, multiple pages of a document, or a series of charts.`,
+    checks: [
+      {
+        question: "What image formats does Claude's vision API support, and what is the maximum file size?",
+        options: [
+          "PNG and JPEG only, up to 5MB per image",
+          "PNG, JPEG, GIF, and WebP, up to 20MB per image",
+          "All image formats including SVG and TIFF, up to 50MB per image",
+        ],
+        correctIndex: 1,
+        explanation: "Claude supports PNG, JPEG, GIF, and WebP up to 20MB per image. SVG and TIFF are not supported. The 20MB limit is generous for most use cases but important to know for high-resolution photo processing pipelines.",
+      },
+      {
+        question: "How should you optimize costs when processing high volumes of images through Claude's vision API?",
+        options: [
+          "Use batch processing to get 50% off — image token costs are the same regardless of dimensions",
+          "Resize images before sending — token costs scale with dimensions, so smaller images cost less",
+          "Convert all images to JPEG format since it's the cheapest format to process",
+        ],
+        correctIndex: 1,
+        explanation: "Image token costs are calculated based on pixel dimensions, not file size or format. A 1568x1568 image costs approximately 1,600 tokens. Resizing images to smaller dimensions directly reduces token costs. Batch processing helps with overall API costs but doesn't change per-image token pricing. Image format does not affect token cost.",
+      },
+    ],
     takeaways: [
       "Images are passed as content blocks using base64 encoding or URL references, supporting PNG, JPEG, GIF, and WebP up to 20MB",
       "Claude understands spatial layout, UI structure, charts, and handwriting — not just raw OCR text extraction",
@@ -1608,13 +2134,39 @@ Computer use requires a loop: send a message, receive an action, execute it, tak
 - **\`key\`** — Presses key combos like \`ctrl+s\` or \`Return\`
 - **\`scroll\`** — Scrolls up/down at a coordinate
 
+<!-- check:0 -->
+
 ## Safety and Sandboxing
 
 **Never run computer use on your primary machine with sensitive data.** Use Docker containers, VMs, or dedicated sandboxed environments. Claude can click anything it sees — including logout buttons, delete confirmations, or payment forms.
 
+<!-- check:1 -->
+
 ## Production Patterns
 
 Run computer use inside a headless Docker container with a virtual display (Xvfb). Expose the action executor as an API. This lets you queue computer-use jobs and run them in parallel across isolated environments.`,
+    checks: [
+      {
+        question: "What is the correct sequence of the computer use agentic loop?",
+        options: [
+          "Claude takes a screenshot, plans all actions, executes them all at once, then verifies",
+          "Send a message to Claude, receive an action, execute it, take a screenshot of the result, send the screenshot back to Claude",
+          "Claude receives a list of UI element coordinates, selects the right one, and clicks it directly",
+        ],
+        correctIndex: 1,
+        explanation: "Computer use requires a tight loop: you send context to Claude, it returns one action (click, type, etc.), you execute that action on the real screen, take a screenshot of the new state, and send it back. Claude does not batch actions or receive pre-mapped coordinates — it visually interprets each screenshot to decide the next step.",
+      },
+      {
+        question: "Why should you never run computer use on your primary machine with sensitive data?",
+        options: [
+          "Because computer use requires administrator privileges that could damage your OS",
+          "Because Claude can interact with anything visible on screen — including logout buttons, delete confirmations, payment forms, and sensitive files",
+          "Because computer use slows down your machine significantly during execution",
+        ],
+        correctIndex: 1,
+        explanation: "Claude visually interprets the screen and can click anything it sees. If sensitive data, payment forms, admin panels, or delete confirmations are visible, Claude might interact with them unintentionally. Docker containers or VMs provide isolation so that even if Claude takes an unexpected action, the blast radius is contained.",
+      },
+    ],
     takeaways: [
       "Computer use gives Claude visual perception and physical control of a desktop — it screenshots, reasons about the UI, and executes mouse/keyboard actions autonomously",
       "The implementation requires an agentic loop: send message, execute returned action, capture screenshot, feed result back until completion",
@@ -1666,6 +2218,8 @@ Claude processes both text-based and scanned PDFs:
 - **Form field detection** — Identifies filled-in form values alongside their labels
 - **Layout awareness** — Distinguishes headers, footers, sidebars, and main content
 
+<!-- check:0 -->
+
 ## Multimodal Pipelines
 
 Combine PDFs with tool use for end-to-end automation:
@@ -1675,9 +2229,33 @@ Combine PDFs with tool use for end-to-end automation:
 3. Store results in your database
 4. Flag anomalies for human review
 
+<!-- check:1 -->
+
 ## Batch Processing for Volume
 
 For high-volume document processing, use the **Batch API** for 50% cost reduction. Results are returned within 24 hours — for contracts, invoices, and compliance documents, this is almost always acceptable latency.`,
+    checks: [
+      {
+        question: "What types of PDFs can Claude process natively?",
+        options: [
+          "Only text-based PDFs with standard formatting",
+          "Both text-based and scanned PDFs, with full understanding of tables, forms, and layout",
+          "Only scanned PDFs through its vision capabilities — text-based PDFs need a separate parser",
+        ],
+        correctIndex: 1,
+        explanation: "Claude processes both text-based and scanned PDFs natively. It understands complex table structures, merged cells, form field values, headers, footers, and multi-page cross-references. No external parsing library is needed for either type.",
+      },
+      {
+        question: "What are the four steps of a multimodal PDF pipeline?",
+        options: [
+          "Upload, parse, format, download",
+          "Extract structured data, validate against business rules using tools, store results, flag anomalies for human review",
+          "OCR, spellcheck, translate, summarize",
+        ],
+        correctIndex: 1,
+        explanation: "The multimodal pipeline combines PDF extraction with tool use: extract structured data from the PDF, validate it against business rules using tools, store the validated results in your database, and flag anomalies for human review. This is end-to-end automation with a human-in-the-loop safety net.",
+      },
+    ],
     takeaways: [
       "PDFs are sent as base64 document content blocks — Claude handles both text-based and scanned PDFs with full layout awareness",
       "Multimodal pipelines combine PDF extraction with tool use for validation, storage, and downstream processing",
@@ -1728,6 +2306,8 @@ async function processInvoice(pdfBase64) {
 }
 \`\`\`
 
+<!-- check:0 -->
+
 ## Orchestration Patterns
 
 **Sequential Pipeline:** PDF extraction → validation → enrichment → storage.
@@ -1736,6 +2316,8 @@ async function processInvoice(pdfBase64) {
 
 **Human-in-the-Loop:** Claude processes and flags. Humans review flagged items only. 80-95% workload reduction.
 
+<!-- check:1 -->
+
 ## Cost Optimization
 
 - Use **Sonnet** for extraction tasks (fast, accurate for structured data)
@@ -1743,6 +2325,28 @@ async function processInvoice(pdfBase64) {
 - Use **Batch API** for anything tolerating 24-hour latency
 - Cache system prompts with **prompt caching** to cut costs 90%
 - Resize images before sending to reduce vision token costs`,
+    checks: [
+      {
+        question: "Why does the automated invoice processing example use extended thinking alongside tool use?",
+        options: [
+          "Extended thinking is required whenever tool use is enabled in the API",
+          "Extended thinking lets Claude reason through cross-checking line items against the stated total, catching calculation errors before calling validation tools",
+          "Extended thinking makes the API response faster by pre-computing tool results",
+        ],
+        correctIndex: 1,
+        explanation: "The invoice processor uses thinking to reason through the math — verifying that line items actually sum to the stated total before triggering downstream tools. This catches subtle calculation errors that would otherwise slip through. Thinking is not required with tool use, and it does not speed up responses.",
+      },
+      {
+        question: "What workload reduction does the human-in-the-loop pattern achieve in production automation?",
+        options: [
+          "10-20% — humans still review most items but with AI-generated summaries",
+          "80-95% — Claude processes everything and humans only review flagged edge cases",
+          "100% — Claude handles everything with no human involvement needed",
+        ],
+        correctIndex: 1,
+        explanation: "Human-in-the-loop designs where Claude processes everything and humans review only flagged items reduce workload by 80-95%. This is not 100% automation — edge cases, anomalies, and high-stakes decisions still need human judgment. And it's far more than 10-20% because Claude handles the vast majority of routine cases autonomously.",
+      },
+    ],
     takeaways: [
       "Capability composition — combining vision, PDFs, tools, computer use, and thinking — is where Claude replaces entire manual workflows",
       "Production architectures use sequential pipelines, parallel fan-out, and human-in-the-loop patterns",
@@ -1786,6 +2390,8 @@ async function callWithRetry(params, maxRetries = 5) {
 }
 \`\`\`
 
+<!-- check:0 -->
+
 ## Architecture Patterns at Scale
 
 **Request Queue + Worker Pool:** Push requests to a queue (SQS, Redis). Workers pull and process. Decouples ingestion from processing.
@@ -1802,6 +2408,8 @@ function selectModel(complexity) {
 
 **Response Caching:** Cache Claude's responses for identical inputs. Use semantic hashing. This reduces API calls 30-60% for support workloads.
 
+<!-- check:1 -->
+
 ## Prompt Caching for Cost and Latency
 
 Cached tokens cost 90% less. Mark shared system prompts with \`cache_control: { type: "ephemeral" }\`.
@@ -1809,6 +2417,28 @@ Cached tokens cost 90% less. Mark shared system prompts with \`cache_control: { 
 ## Batch API for Async Workloads
 
 50% cost reduction. Use for nightly reports, document queues, data enrichment — anything not real-time.`,
+    checks: [
+      {
+        question: "What two levels do Anthropic's rate limits operate on?",
+        options: [
+          "Cost per day and total monthly spend",
+          "Requests per minute (RPM) and tokens per minute (TPM)",
+          "Concurrent connections and total session duration",
+        ],
+        correctIndex: 1,
+        explanation: "Rate limits enforce both requests per minute (RPM) and tokens per minute (TPM). You can hit either limit independently — for example, many small requests might hit RPM before TPM, while fewer large requests might hit TPM first. Design your retry logic to handle 429 responses from either limit.",
+      },
+      {
+        question: "What are the three architecture patterns for scaling Claude to millions of requests?",
+        options: [
+          "Load balancing, database sharding, and CDN caching",
+          "Request queue + worker pool, tiered model routing, and response caching",
+          "Horizontal scaling, vertical scaling, and auto-scaling",
+        ],
+        correctIndex: 1,
+        explanation: "The three patterns are: request queue + worker pool (decouples ingestion from processing), tiered model routing (match task complexity to Haiku/Sonnet/Opus), and response caching with semantic hashing (eliminates redundant API calls). These are AI-specific scaling patterns, not generic infrastructure patterns like load balancing or auto-scaling.",
+      },
+    ],
     takeaways: [
       "Rate limits operate on both RPM and TPM, scaling across usage tiers — design with exponential backoff for 429s",
       "Prompt caching reduces costs by 90% on shared system prompts — enable on every production deployment",
@@ -1854,6 +2484,8 @@ function reidentify(text, mapping) {
 }
 \`\`\`
 
+<!-- check:0 -->
+
 ## Claude for Enterprise
 
 - **SSO/SAML** integration
@@ -1872,6 +2504,8 @@ function reidentify(text, mapping) {
 | SOX | Audit logs, access controls, separation of duties |
 | PCI DSS | Tokenize card data before sending |
 
+<!-- check:1 -->
+
 ## Production Guardrails
 
 Layer your own safety on top:
@@ -1879,6 +2513,28 @@ Layer your own safety on top:
 - **Output filtering** — Scan responses before returning to users
 - **Usage monitoring** — Alert on anomalous patterns
 - **Circuit breakers** — Disable AI features if error rates spike`,
+    checks: [
+      {
+        question: "What is the gold-standard approach for handling PII when using the Claude API in regulated industries?",
+        options: [
+          "Use Claude's built-in PII detection to automatically redact sensitive data",
+          "Anonymize PII before sending to Claude using placeholder tokens, then re-identify placeholders in the response",
+          "Only use Claude's enterprise tier, which automatically encrypts all PII",
+        ],
+        correctIndex: 1,
+        explanation: "The anonymize/re-identify pattern replaces real PII with placeholders before sending to the API, then maps them back in the response. This ensures sensitive data never leaves your infrastructure. Claude does not have built-in PII auto-redaction, and enterprise encryption protects data in transit/at rest but doesn't prevent PII from being processed.",
+      },
+      {
+        question: "What is Anthropic's data retention policy for API interactions?",
+        options: [
+          "Data is retained indefinitely for model improvement",
+          "30 days for abuse monitoring, then deleted — API data is not used for model training",
+          "No data is retained — everything is deleted immediately after the response is sent",
+        ],
+        correctIndex: 1,
+        explanation: "Anthropic retains API data for 30 days for abuse monitoring purposes, then deletes it. Critically, API data is never used for model training. Enterprise customers can negotiate custom retention policies, including zero retention. Data is not kept indefinitely, nor is it deleted immediately.",
+      },
+    ],
     takeaways: [
       "Anthropic holds SOC 2 Type II certification and does not use API data for model training — 30-day retention then deleted",
       "Anonymize PII before sending to Claude and re-identify in responses — gold standard for regulated industries",
@@ -1907,6 +2563,8 @@ Be specific — reference line numbers. Skip stylistic issues handled by linters
 
 **Incident Response:** When PagerDuty fires, Claude pulls logs, analyzes stack traces, suggests root causes, and drafts runbook steps.
 
+<!-- check:0 -->
+
 ## Sales Workflows
 
 **Pre-Call Research:** Claude pulls the prospect's website, news, LinkedIn, and CRM history to generate a brief with talking points and objection predictions.
@@ -1921,6 +2579,8 @@ Be specific — reference line numbers. Skip stylistic issues handled by linters
 
 **Knowledge Base Agent:** Claude answers questions from your internal docs, SOPs, and wikis with sourced answers.
 
+<!-- check:1 -->
+
 ## Deployment Pattern
 
 \`\`\`typescript
@@ -1932,6 +2592,28 @@ const agents = {
 \`\`\`
 
 Each team gets a specialized agent with appropriate permissions, tools, and guardrails.`,
+    checks: [
+      {
+        question: "Why should you build role-specific agents instead of deploying a single general-purpose chatbot across departments?",
+        options: [
+          "Because each department needs a different AI model — engineering needs Opus, sales needs Sonnet",
+          "Because specialized agents with tailored system prompts, tools, and guardrails outperform generic chatbots at domain-specific tasks",
+          "Because Anthropic's pricing requires separate API keys for each department",
+        ],
+        correctIndex: 1,
+        explanation: "Specialization is the key. A code review agent with engineering-specific prompts and git tools performs far better than a generic chatbot asked to review code. Each agent gets the right system prompt, tools, and model for its domain. Model selection is one factor but not the primary reason. Anthropic does not require separate API keys per department.",
+      },
+      {
+        question: "What three types of operations workflows can Claude automate?",
+        options: [
+          "Hiring, onboarding, and performance reviews",
+          "Document processing (invoices, forms), natural language reporting from data warehouses, and knowledge base Q&A from internal docs",
+          "Office management, travel booking, and expense approval",
+        ],
+        correctIndex: 1,
+        explanation: "The three ops workflows are: automated document processing (invoices, purchase orders, compliance forms), natural language reporting connected to data warehouses via MCP, and knowledge base agents that answer questions from internal docs and SOPs. These are high-volume, repeatable tasks where AI delivers the most leverage.",
+      },
+    ],
     takeaways: [
       "Build role-specific agents with tailored system prompts, tools, and model selection — never deploy a generic chatbot across departments",
       "Engineering workflows include automated code review, incident analysis, and documentation generation",
@@ -1966,12 +2648,16 @@ Instead of hiring 5 customer support reps, hire 1 support lead managing a Claude
 - **Domain Experts** — Provide knowledge and judgment that Claude applies at scale
 - **Integration Engineers** — Build and maintain MCP servers and tool connections
 
+<!-- check:0 -->
+
 ## Building the Moat
 
 1. **Proprietary data loops** — Every interaction improves your prompts and workflows
 2. **Custom MCP servers** — Your tool ecosystem deeply integrated with your domain
 3. **Institutional prompt knowledge** — System prompts encode years of expertise
 4. **Speed** — Ship features in hours that competitors take weeks to build
+
+<!-- check:1 -->
 
 ## Implementation Roadmap
 
@@ -1983,9 +2669,43 @@ Instead of hiring 5 customer support reps, hire 1 support lead managing a Claude
 
 **Month 7+:** Optimize. A/B test prompts. Build feedback loops. Track cost per output unit.
 
+<!-- check:2 -->
+
 ## The Mindset Shift
 
 Stop asking "where can we use AI?" Start asking "why would a human do this?" If the answer is not judgment, relationships, or creativity — Claude should be doing it.`,
+    checks: [
+      {
+        question: "How does an AI-first company's organizational structure differ from a traditional one?",
+        options: [
+          "It replaces all employees with AI agents and has no human staff",
+          "It shifts from large teams doing manual work to small teams of experts managing AI-powered systems at 10x throughput",
+          "It adds an AI department alongside existing departments with no structural changes",
+        ],
+        correctIndex: 1,
+        explanation: "AI-first companies don't eliminate humans — they restructure. Instead of 5 support reps, you have 1 support lead managing a Claude-powered system handling 90% of tickets. Instead of 3 data analysts, 1 analytics engineer builds Claude-powered dashboards. The org is smaller but each person has dramatically higher leverage.",
+      },
+      {
+        question: "What are the four sources of competitive moat for an AI-first company?",
+        options: [
+          "Patent portfolio, brand recognition, customer loyalty, and market share",
+          "Proprietary data loops, custom MCP servers, institutional prompt knowledge, and shipping speed",
+          "Lowest pricing, biggest team, most funding, and first-mover advantage",
+        ],
+        correctIndex: 1,
+        explanation: "AI-first moats come from: proprietary data loops (every interaction improves your system), custom MCP integrations (deeply embedded in your domain), institutional prompt knowledge (system prompts encoding years of expertise), and speed (shipping in hours vs. weeks). These are compounding advantages specific to AI-native companies.",
+      },
+      {
+        question: "What should you build first when implementing an AI-first strategy?",
+        options: [
+          "A company-wide AI chatbot that all departments can use",
+          "Core infrastructure with API integration, prompt caching, and a basic agent for your highest-volume workflow",
+          "Multi-agent orchestration with computer use for maximum capability from day one",
+        ],
+        correctIndex: 1,
+        explanation: "Month 1-2 focuses on core infrastructure: API integration, prompt caching, and a basic agent for the highest-volume workflow. This delivers immediate ROI and builds the foundation for expansion. A generic chatbot doesn't solve specific workflow problems. Multi-agent orchestration is a Month 5-6 capability — you need the foundation first.",
+      },
+    ],
     takeaways: [
       "AI-first companies design every workflow with Claude as a core primitive — a structural advantage, not just a tooling choice",
       "The org model shifts from large teams doing manual work to small teams of experts managing AI-powered systems at 10x throughput",
@@ -2004,32 +2724,67 @@ export const aiMasteryQuizzes: CourseQuizzes = {
       {
         type: "mc",
         question:
-          "What is the primary advantage of Claude Code's CLAUDE.md file?",
+          "What is the primary purpose of a CLAUDE.md file in your project?",
         options: [
-          "It provides persistent project-specific instructions and context that Claude reads automatically on every session",
-          "It stores API keys and authentication credentials for Claude",
-          "It replaces the need for a .gitignore file in your repository",
-          "It compiles markdown into executable code for Claude to run",
+          "It stores API keys and credentials for Claude to authenticate",
+          "It provides persistent project-specific instructions that Claude reads automatically every session",
+          "It compiles markdown into executable code for the CLI",
         ],
-        correctIndex: 0,
+        correctIndex: 1,
+        explanation:
+          "CLAUDE.md acts as persistent memory for Claude Code — it reads these instructions at the start of every session so your preferences, project conventions, and context carry forward automatically. It does not store credentials (those belong in environment variables) and it is not compiled into code — it is plain markdown that Claude interprets as instructions.",
       },
       {
         type: "mc",
         question:
-          "When Claude Code executes terminal commands, what safety mechanism is in place by default?",
+          "When Claude Code wants to run a terminal command, what happens by default?",
         options: [
-          "All commands run in a Docker container automatically",
-          "Commands are logged to a remote server for audit",
-          "Claude asks for user approval before running commands that modify files or execute code",
+          "It asks for your approval before executing commands that modify files or run code",
+          "All commands run automatically inside a Docker sandbox",
           "Commands are limited to read-only operations unless you pass --unsafe",
         ],
-        correctIndex: 2,
+        correctIndex: 0,
+        explanation:
+          "Claude Code prompts you for approval before running potentially destructive commands — this is the core safety mechanism. It does not use Docker by default (it runs directly on your system), and there is no --unsafe flag — the approval prompt is the standard flow, not an opt-in mode.",
       },
       {
-        type: "short",
+        type: "mc",
         question:
-          "Describe a real-world workflow where Claude Code's ability to read, edit, and execute across an entire codebase provides a significant advantage over traditional AI chat assistants. Include what specific capabilities make this possible.",
-        minLength: 50,
+          "What makes Claude Code fundamentally different from pasting code into a ChatGPT-style AI chat?",
+        options: [
+          "It uses a more advanced language model than chat interfaces",
+          "It operates directly on your file system with full codebase context, reading and writing real files",
+          "It has a built-in code compiler that validates output before responding",
+        ],
+        correctIndex: 1,
+        explanation:
+          "The key advantage is that Claude Code works directly in your project — it reads your entire codebase, writes real files, and executes commands in your terminal. Chat interfaces require you to copy-paste snippets and lose context. Claude Code does not necessarily use a different model than chat, and it does not have a built-in compiler — it relies on your project's own build tools.",
+      },
+      {
+        type: "mc",
+        question:
+          "Where can CLAUDE.md files be placed to affect Claude Code's behavior?",
+        options: [
+          "Only in the root of your home directory",
+          "In the project root, subdirectories, and your home directory — each scoped to its context",
+          "Only inside a .claude/ configuration folder",
+        ],
+        correctIndex: 1,
+        explanation:
+          "CLAUDE.md files work at multiple levels: a project-root file sets project-wide instructions, subdirectory files add context for specific parts of the codebase, and a home-directory file applies to all your projects globally. They are not limited to the home directory alone, and they do not require a .claude/ folder — they sit alongside your code.",
+      },
+      {
+        type: "mc",
+        question:
+          "When Claude Code maintains context across a session, what does that enable?",
+        options: [
+          "It can refactor a function and automatically update every file that imports it without you listing them",
+          "It permanently memorizes all sessions and never needs CLAUDE.md",
+          "It shares context between different users on the same machine",
+        ],
+        correctIndex: 0,
+        explanation:
+          "Session-level context means Claude Code knows your entire project structure right now — so when you rename a function, it already knows every import and reference to update. However, this context resets between sessions (that is what CLAUDE.md solves for persistence), and context is per-session per-user, not shared across users.",
       },
     ],
   },
@@ -2039,32 +2794,67 @@ export const aiMasteryQuizzes: CourseQuizzes = {
       {
         type: "mc",
         question:
-          "When using extended thinking with the Claude API, what is the correct way to configure it?",
+          "What is the correct way to enable extended thinking in a Claude API request?",
         options: [
           "Set `thinking: true` in the request body",
-          "Add a `think_first: true` header to the HTTP request",
           "Set `thinking: { type: 'enabled', budget_tokens: N }` where N is the max thinking tokens",
           "Append '[THINK]' to the beginning of your system prompt",
         ],
-        correctIndex: 2,
+        correctIndex: 1,
+        explanation:
+          "Extended thinking requires the structured object format with `type: 'enabled'` and a `budget_tokens` value that caps how many tokens Claude can use for reasoning. A simple boolean `true` is not a valid configuration. Prompt-based hacks like appending '[THINK]' do not activate the actual extended thinking feature — they would just be treated as text in your prompt.",
       },
       {
         type: "mc",
         question:
-          "What is the cost benefit of using prompt caching with the Claude API?",
+          "How much do cached prompt tokens cost compared to uncached tokens when using prompt caching?",
         options: [
-          "Cached prompts are free with no additional cost",
-          "Cached prompt tokens cost 90% less than uncached tokens on subsequent requests",
-          "Caching doubles your rate limit allocation automatically",
-          "Cached prompts bypass content moderation for faster responses",
+          "They are completely free — no cost at all",
+          "90% less than uncached tokens",
+          "50% less than uncached tokens",
         ],
         correctIndex: 1,
+        explanation:
+          "Prompt caching gives you a 90% cost reduction on cached input tokens for subsequent requests that reuse the same prefix. They are not free — you still pay 10% of the normal rate. The 50% figure is the discount for the Batch API, not prompt caching — these are separate cost optimization features.",
       },
       {
-        type: "short",
+        type: "mc",
         question:
-          "Explain how Claude's tool use (function calling) works end-to-end, including what happens when Claude decides to call a tool, how results are returned, and how the agentic loop handles multi-step tool use workflows.",
-        minLength: 50,
+          "In Claude's tool use flow, what happens after Claude decides to call a tool?",
+        options: [
+          "Claude executes the tool directly on Anthropic's servers and returns the result",
+          "Claude returns a tool_use block with the tool name and inputs — your code executes it and sends the result back",
+          "The tool call is queued in a batch and processed asynchronously",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Claude never executes tools itself. It returns a `tool_use` stop reason with the tool name and structured inputs. Your application code runs the actual function, then sends a `tool_result` message back to Claude so it can continue. This client-side execution model is fundamental — Anthropic's servers do not run your tools, and tool calls are not batched asynchronously.",
+      },
+      {
+        type: "mc",
+        question:
+          "What is the minimum token count for a prompt prefix to be eligible for caching?",
+        options: [
+          "No minimum — any prompt can be cached",
+          "1,024 tokens for Claude 3.5 Sonnet and Claude 3.5 Haiku",
+          "10,000 tokens for all models",
+        ],
+        correctIndex: 1,
+        explanation:
+          "There is a minimum threshold: 1,024 tokens for Sonnet and Haiku models (2,048 for Opus). This ensures caching is applied to substantial prefixes where the cost savings actually matter. There is not zero minimum — very short prompts cannot be cached. And the threshold varies by model, not a flat 10,000 across the board.",
+      },
+      {
+        type: "mc",
+        question:
+          "In an agentic tool use loop, when does Claude stop calling tools and give a final text response?",
+        options: [
+          "After exactly three tool calls, regardless of the task",
+          "When it has gathered enough information to answer and returns a response with stop_reason 'end_turn'",
+          "When the API automatically times out after 60 seconds",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Claude decides when it has enough information and stops the loop by returning a text response with `stop_reason: 'end_turn'` instead of another `tool_use` block. There is no fixed limit of three calls — it uses as many as needed. And the API does not auto-timeout tool loops — your code controls the loop and can set its own limits.",
       },
     ],
   },
@@ -2074,32 +2864,67 @@ export const aiMasteryQuizzes: CourseQuizzes = {
       {
         type: "mc",
         question:
-          "In the Model Context Protocol (MCP) architecture, what are the three core primitives that an MCP server can expose?",
+          "What are the three core primitives that an MCP server can expose?",
         options: [
           "Functions, variables, and constants",
           "Tools, resources, and prompts",
           "Endpoints, schemas, and handlers",
-          "Actions, queries, and subscriptions",
         ],
         correctIndex: 1,
+        explanation:
+          "MCP servers expose tools (actions the model can invoke), resources (data the model can read), and prompts (reusable prompt templates). These are purpose-built for AI interaction. Functions/variables/constants are generic programming concepts, not MCP primitives. Endpoints/schemas/handlers describe REST APIs, not the MCP protocol.",
       },
       {
         type: "mc",
         question:
-          "What transport protocols does MCP support for communication between clients and servers?",
+          "What transport protocols does MCP support for client-server communication?",
         options: [
-          "HTTP/REST and GraphQL only",
-          "WebSocket and gRPC only",
+          "HTTP/REST and GraphQL",
           "Stdio (standard input/output) and HTTP with Server-Sent Events (SSE)",
-          "TCP sockets and UDP datagrams",
+          "WebSocket and gRPC",
         ],
-        correctIndex: 2,
+        correctIndex: 1,
+        explanation:
+          "MCP supports two transport protocols: stdio for local process communication (ideal for CLI tools like Claude Code) and HTTP+SSE for remote/networked servers. REST/GraphQL are general web API patterns, not MCP transports. WebSocket/gRPC are not part of the MCP specification.",
       },
       {
-        type: "short",
+        type: "mc",
         question:
-          "Describe a practical MCP server you would build for a business use case. Include what tools and resources it would expose, how it would connect to external systems, and why MCP is a better approach than hardcoding API calls.",
-        minLength: 50,
+          "Why is MCP's resource primitive valuable compared to stuffing all context into the system prompt?",
+        options: [
+          "Resources let the model selectively read data on demand instead of front-loading everything into the context window",
+          "Resources automatically compress data to use fewer tokens",
+          "Resources bypass the context window limit entirely",
+        ],
+        correctIndex: 0,
+        explanation:
+          "Resources give the model access to data it can pull when needed, rather than bloating every request with all possible context. This is more efficient and keeps the context window focused. Resources do not compress data — the tokens still count when loaded. And nothing bypasses the context window limit — resources just let you be smarter about what goes in it.",
+      },
+      {
+        type: "mc",
+        question:
+          "When would you choose stdio transport over HTTP+SSE for an MCP server?",
+        options: [
+          "When you need the server accessible over a network by multiple clients",
+          "When the MCP server runs locally as a child process of the client application",
+          "When you need to support browser-based clients",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Stdio transport is designed for local communication where the client spawns the MCP server as a subprocess and communicates via stdin/stdout. It is fast and simple for single-client local setups like Claude Code. Network access and multi-client scenarios require HTTP+SSE. Browser clients also need HTTP+SSE since browsers cannot use stdio.",
+      },
+      {
+        type: "mc",
+        question:
+          "What is the role of MCP prompts as a primitive?",
+        options: [
+          "They define the system prompt that Claude must use for every request",
+          "They are reusable prompt templates that clients can discover and present to users as slash commands or workflow starters",
+          "They store conversation history for long-running sessions",
+        ],
+        correctIndex: 1,
+        explanation:
+          "MCP prompts are reusable templates that servers expose and clients can surface as actions — like slash commands in an IDE. They standardize common workflows. They do not override or define the system prompt — that is controlled by the client application. And they are not conversation storage — that is a separate concern handled by the client.",
       },
     ],
   },
@@ -2109,32 +2934,67 @@ export const aiMasteryQuizzes: CourseQuizzes = {
       {
         type: "mc",
         question:
-          "In the Claude Agent SDK, what is the purpose of guardrails?",
+          "What is the purpose of guardrails in the Claude Agent SDK?",
         options: [
-          "They encrypt all data sent to and from the agent",
-          "They run validation checks on inputs and outputs to ensure the agent operates within defined safety boundaries",
-          "They automatically scale the agent across multiple servers",
-          "They provide real-time logging to third-party monitoring tools",
+          "They encrypt all data flowing between agents",
+          "They run validation checks on inputs and outputs to keep the agent within defined safety boundaries",
+          "They automatically scale agents across multiple servers",
         ],
         correctIndex: 1,
+        explanation:
+          "Guardrails are validation functions that check what goes into and comes out of an agent — catching prompt injections, off-topic requests, or unsafe outputs before they reach the user. They are not encryption (that is a transport-layer concern) and they are not auto-scaling infrastructure (that is a deployment concern). Guardrails are purely about behavioral safety.",
       },
       {
         type: "mc",
         question:
-          "How does multi-agent orchestration work in the Agent SDK?",
+          "How do agent handoffs work in a multi-agent system built with the Agent SDK?",
         options: [
-          "Multiple Claude API keys are used simultaneously to increase throughput",
-          "Agents are defined with specialized roles and can hand off tasks to other agents",
-          "The SDK automatically splits every request across three agents for consensus",
-          "Multi-agent requires running separate server instances that communicate via REST APIs",
+          "The SDK sends requests to multiple agents simultaneously and picks the best response",
+          "One agent transfers control to another specialized agent along with relevant context",
+          "Agents communicate through a shared database that all agents poll",
         ],
         correctIndex: 1,
+        explanation:
+          "Handoffs are explicit transfers where one agent recognizes a task outside its specialty and passes it — along with context — to the right specialist agent. This is intentional routing, not parallel racing (which wastes tokens) or database polling (which adds latency and complexity). The handoff pattern keeps each agent focused on what it does best.",
       },
       {
-        type: "short",
+        type: "mc",
         question:
-          "Design a multi-agent system for a specific business workflow. Describe the role of each agent, what tools each has access to, how handoffs work, and what guardrails you would implement.",
-        minLength: 50,
+          "Why would you give different agents different tool sets in a multi-agent system?",
+        options: [
+          "To reduce API costs since each tool definition adds to the prompt size",
+          "To enforce the principle of least privilege — each agent only accesses what it needs for its role",
+          "Because the API limits each agent to a maximum of three tools",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Giving each agent only the tools it needs follows least privilege — a research agent should not have database-write access, and a writing agent should not have code-execution tools. While fewer tools do reduce prompt size, the primary reason is safety and role clarity. There is no three-tool limit in the API — you can define many tools per agent.",
+      },
+      {
+        type: "mc",
+        question:
+          "What happens when an output guardrail detects a policy violation in an agent's response?",
+        options: [
+          "The response is silently logged and delivered to the user anyway",
+          "The agent run is interrupted and raises a guardrail exception that your code can handle",
+          "The SDK automatically retries with a different model",
+        ],
+        correctIndex: 1,
+        explanation:
+          "When an output guardrail trips, the SDK raises an exception that stops the response from reaching the user — your application code decides what to do next (retry, escalate, return a safe fallback). Silently logging and delivering defeats the purpose of a guardrail. Auto-retrying with a different model is not a built-in behavior — you control the recovery logic.",
+      },
+      {
+        type: "mc",
+        question:
+          "What is the benefit of agent role specialization over a single do-everything agent?",
+        options: [
+          "Specialized agents are cheaper because they use smaller models automatically",
+          "Each agent gets a focused system prompt and toolset, improving accuracy and making the system easier to debug",
+          "Specialized agents share memory so you never lose context between steps",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Specialization means each agent has a tight system prompt and only the tools it needs — this reduces confusion, improves task accuracy, and makes failures easy to trace to a specific agent. Specialized agents do not automatically use smaller models (you choose the model). And agents do not share memory by default — context is passed explicitly through handoffs.",
       },
     ],
   },
@@ -2144,32 +3004,67 @@ export const aiMasteryQuizzes: CourseQuizzes = {
       {
         type: "mc",
         question:
-          "When using Claude's computer use capability, what is the correct tool type identifier?",
+          "What is the correct tool type identifier for Claude's computer use capability?",
         options: [
           "desktop_control_v1",
           "computer_20250124",
           "screen_interaction_tool",
-          "computer_use_2025_01_24",
         ],
         correctIndex: 1,
+        explanation:
+          "The tool type is `computer_20250124` — a versioned identifier that Anthropic uses to track the capability version. `desktop_control_v1` and `screen_interaction_tool` are made-up names that do not exist in the API. Always use the exact identifier from the documentation since the API will reject unrecognized tool types.",
       },
       {
         type: "mc",
         question:
-          "How are PDF documents sent to Claude via the API for analysis?",
+          "How do you send a PDF document to Claude via the API for analysis?",
         options: [
-          "As a URL pointing to a publicly hosted PDF file",
-          "As plain text extracted by a third-party parser",
+          "As plain text extracted by a third-party PDF parser before sending",
           "As base64-encoded data in a document content block with media_type 'application/pdf'",
           "By uploading to Anthropic's file storage API and referencing the file ID",
         ],
-        correctIndex: 2,
+        correctIndex: 1,
+        explanation:
+          "PDFs are sent as base64-encoded data inside a document content block with `type: 'document'` and `media_type: 'application/pdf'`. Claude processes the PDF directly — no third-party parser needed (which would lose formatting and layout). Anthropic does not have a separate file storage/upload API — the document is embedded inline in the request.",
       },
       {
-        type: "short",
+        type: "mc",
         question:
-          "Describe a multimodal pipeline that combines at least three Claude capabilities (vision, PDF analysis, tool use, computer use, extended thinking). Explain each step and what business problem it solves.",
-        minLength: 50,
+          "What actions can Claude perform through the computer use tool?",
+        options: [
+          "Only taking screenshots and reading screen content",
+          "Screenshots, mouse clicks, keyboard input, and cursor movement — full desktop interaction",
+          "Only filling out web forms through a browser automation API",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Computer use gives Claude full desktop interaction: it takes screenshots to see the screen, then issues mouse clicks, keyboard typing, and cursor movements to interact with any application. It is not limited to screenshots (that would be read-only) or browser forms (it works with any desktop application, not just web browsers).",
+      },
+      {
+        type: "mc",
+        question:
+          "What is a multimodal pipeline in the context of Claude's capabilities?",
+        options: [
+          "A system that routes requests to different AI providers based on the input type",
+          "A workflow that chains multiple Claude capabilities — such as vision, PDF analysis, and tool use — to process different data types in sequence",
+          "A way to run Claude on multiple GPUs simultaneously for faster inference",
+        ],
+        correctIndex: 1,
+        explanation:
+          "A multimodal pipeline chains Claude's capabilities together: for example, extracting data from a PDF, analyzing an image, using tools to look up additional data, then generating a final report. It is not about routing to different providers (it all stays within Claude) or GPU parallelism (that is infrastructure, not an application pattern).",
+      },
+      {
+        type: "mc",
+        question:
+          "When combining vision and tool use in a single workflow, what is the correct approach?",
+        options: [
+          "You must make separate API calls — one for vision analysis and one for tool use",
+          "Include the image in the message content and define tools in the same request so Claude can see and act in one turn",
+          "Vision and tool use cannot be used together in the current API",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Claude can handle images and tools in the same request — you include the image as a content block and define your tools in the request. Claude analyzes the image and can immediately call a tool based on what it sees, all in a single turn. Separate calls would lose context. And these capabilities absolutely work together — combining them is one of Claude's key strengths for automation.",
       },
     ],
   },
@@ -2179,32 +3074,67 @@ export const aiMasteryQuizzes: CourseQuizzes = {
       {
         type: "mc",
         question:
-          "What cost reduction does the Claude Batch API provide compared to standard synchronous API calls?",
+          "What cost reduction does the Claude Batch API provide compared to standard synchronous calls?",
         options: [
           "25% cost reduction with results in 1 hour",
           "50% cost reduction with results within 24 hours",
-          "75% cost reduction with results within 7 days",
-          "90% cost reduction but only for Haiku model requests",
+          "90% cost reduction but only for the Haiku model",
         ],
         correctIndex: 1,
+        explanation:
+          "The Batch API gives you a 50% cost reduction in exchange for asynchronous processing with results delivered within 24 hours. The 25% figure is incorrect — the actual discount is 50%. The 90% reduction applies to prompt caching, not the Batch API, and the Batch API works with all Claude models, not just Haiku.",
       },
       {
         type: "mc",
         question:
-          "Regarding data privacy, which statement about Anthropic's API data handling is correct?",
+          "How does Anthropic handle API data regarding privacy and model training?",
         options: [
-          "API data is used to train future Claude models unless you opt out",
-          "API inputs and outputs are stored indefinitely for quality assurance",
-          "API data is not used for model training, and is retained for 30 days for abuse monitoring then deleted",
+          "API data is used to train future models unless you submit an opt-out form",
+          "API data is not used for model training and is retained for 30 days for abuse monitoring, then deleted",
           "API data is immediately deleted after the response is generated",
         ],
-        correctIndex: 2,
+        correctIndex: 1,
+        explanation:
+          "Anthropic does not use API data for model training — period, no opt-out form needed. Data is retained for 30 days for trust and safety (abuse monitoring), then deleted. It is not immediately deleted (the 30-day retention is necessary for safety compliance). This is a strong privacy posture that makes Claude suitable for enterprise and sensitive data workloads.",
       },
       {
-        type: "short",
+        type: "mc",
         question:
-          "You are designing an AI system that processes 100,000 customer support tickets per day using Claude. Describe your architecture including model selection, cost optimization, rate limit handling, and how to maintain quality under $5,000/month.",
-        minLength: 50,
+          "When designing a high-volume system that processes 100K+ requests per day, which cost optimization strategy has the biggest impact?",
+        options: [
+          "Using the longest possible system prompts to reduce back-and-forth",
+          "Combining prompt caching for repeated prefixes with the Batch API for non-urgent requests",
+          "Switching to the most expensive model since it requires fewer retries",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Stacking prompt caching (90% input savings) with the Batch API (50% savings for async work) is the highest-impact cost strategy at scale. Longer system prompts increase cost, not reduce it. And using the most expensive model rarely pays off in retry savings — the cost-per-token difference far outweighs occasional retries with a cheaper model.",
+      },
+      {
+        type: "mc",
+        question:
+          "What is the correct approach to handling rate limits in a production Claude API system?",
+        options: [
+          "Exponential backoff with retry logic, request queuing, and monitoring usage against tier limits",
+          "Sending all requests simultaneously and letting the API handle the queuing internally",
+          "Creating multiple Anthropic accounts to multiply your rate limits",
+        ],
+        correctIndex: 0,
+        explanation:
+          "Production systems need exponential backoff (wait longer between retries), a request queue to smooth traffic spikes, and monitoring to stay within your tier's limits. The API does not queue requests for you — it returns 429 errors when you exceed limits. And creating multiple accounts to bypass limits violates Anthropic's terms of service.",
+      },
+      {
+        type: "mc",
+        question:
+          "For an enterprise deployment processing sensitive customer data, what architecture decision ensures both cost efficiency and data privacy?",
+        options: [
+          "Route all traffic through a third-party AI gateway that caches responses publicly",
+          "Use the API directly (not the consumer chat product), enable prompt caching for repeated context, and leverage the 30-day retention policy with no training guarantee",
+          "Fine-tune a custom Claude model on your data so it memorizes the answers",
+        ],
+        correctIndex: 1,
+        explanation:
+          "The API's privacy guarantees (no training, 30-day retention) make it enterprise-ready. Combining this with prompt caching keeps costs down for repetitive workflows. A third-party cache that stores responses publicly would violate data privacy. And Claude does not currently support fine-tuning — you work with prompt engineering, caching, and RAG instead.",
       },
     ],
   },

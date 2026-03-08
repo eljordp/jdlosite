@@ -16,7 +16,7 @@ const milestones = [
 const stats = [
   { value: "40+", label: "Hours saved per week", sub: "What AI systems replace when you stop doing everything manually." },
   { value: "90 days", label: "Zero to enterprise clients", sub: "From scratch. No warm intros. Just systems." },
-  { value: "$20K+", label: "Revenue generated for clients", sub: "Websites, AI systems, and sales ops that actually make money." },
+  { value: "$20K+", label: "Avg client revenue / month", sub: "Websites, AI systems, and sales ops that actually make money." },
 ];
 
 export default function AboutPage() {

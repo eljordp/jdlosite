@@ -25,9 +25,9 @@ export default function QuizPage() {
 
   const [authorized, setAuthorized] = useState(false);
   const [checking, setChecking] = useState(true);
-  const [answers, setAnswers] = useState<Record<number, string | number>>({});
+  const [answers, setAnswers] = useState<Record<number, number>>({});
   const [submitted, setSubmitted] = useState(false);
-  const [wrongIndices, setWrongIndices] = useState<number[]>([]);
+  const [score, setScore] = useState({ correct: 0, total: 0 });
   const [passed, setPassed] = useState(false);
   const [alreadyPassed, setAlreadyPassed] = useState(false);
 
@@ -66,9 +66,16 @@ export default function QuizPage() {
     if (!authorized) return;
     if (isModuleQuizPassed(slug, moduleNum)) {
       setAlreadyPassed(true);
+      setSubmitted(true);
       const progress = getQuizProgress(slug);
       const saved = progress[moduleNum]?.answers;
-      if (saved) setAnswers(saved);
+      if (saved) {
+        const parsed: Record<number, number> = {};
+        Object.entries(saved).forEach(([k, v]) => {
+          parsed[Number(k)] = v as number;
+        });
+        setAnswers(parsed);
+      }
     }
   }, [authorized, slug, moduleNum]);
 
@@ -80,7 +87,7 @@ export default function QuizPage() {
 
   if (!course || !quiz || !mod) {
     return (
-      <div className="min-h-screen bg-[#050505] flex items-center justify-center cursor-none">
+      <div className="min-h-screen bg-[#050505] flex items-center justify-center">
         <CustomCursor />
         <p className="text-text-secondary">Quiz not found.</p>
       </div>
@@ -89,7 +96,7 @@ export default function QuizPage() {
 
   if (checking) {
     return (
-      <div className="min-h-screen bg-[#050505] flex items-center justify-center cursor-none">
+      <div className="min-h-screen bg-[#050505] flex items-center justify-center">
         <CustomCursor />
         <p className="text-text-secondary text-sm font-mono">
           Verifying access...
@@ -117,29 +124,35 @@ export default function QuizPage() {
   }
 
   const handleSubmit = () => {
-    const wrong: number[] = [];
-
+    let correct = 0;
     quiz.questions.forEach((q, i) => {
-      if (q.type === "mc") {
-        if (answers[i] !== q.correctIndex) wrong.push(i);
-      } else if (q.type === "short") {
-        const text = (answers[i] as string) || "";
-        if (text.trim().length < q.minLength) wrong.push(i);
-      }
+      if (answers[i] === q.correctIndex) correct++;
     });
 
-    setWrongIndices(wrong);
+    const total = quiz.questions.length;
+    setScore({ correct, total });
     setSubmitted(true);
 
-    if (wrong.length === 0) {
+    if (correct === total) {
       setPassed(true);
       saveQuizPass(slug, moduleNum, answers);
-      syncQuizPass(slug, moduleNum, answers, quiz.questions.length);
+      syncQuizPass(slug, moduleNum, answers, total);
     }
   };
 
+  const handleRetry = () => {
+    setAnswers({});
+    setSubmitted(false);
+    setScore({ correct: 0, total: 0 });
+    setPassed(false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const pct = score.total > 0 ? Math.round((score.correct / score.total) * 100) : 0;
+  const allAnswered = quiz.questions.every((_, i) => answers[i] !== undefined);
+
   return (
-    <div className="min-h-screen bg-[#050505] cursor-none">
+    <div className="min-h-screen bg-[#050505]">
       <CustomCursor />
       <div className="max-w-[700px] mx-auto px-6 py-10">
         {/* Nav */}
@@ -147,19 +160,19 @@ export default function QuizPage() {
           href={`/learn/${slug}${codeParam}`}
           className="text-text-muted text-[12px] font-mono hover:text-accent transition-colors"
         >
-          ← Back to {course.title}
+          &larr; Back to {course.title}
         </Link>
 
         {/* Header */}
         <div className="mt-8 mb-10">
           <p className="text-accent text-[11px] tracking-[0.5em] uppercase font-mono mb-3">
-            Module {moduleNum} — {mod.title}
+            Module {moduleNum} &mdash; {mod.title}
           </p>
           <h1 className="text-2xl md:text-3xl font-bold text-text tracking-[-0.03em] mb-3">
             {quiz.title}
           </h1>
           <p className="text-text-muted text-[12px] font-mono">
-            {quiz.questions.length} questions
+            {quiz.questions.length} questions &middot; Multiple choice &middot; Must get 100% to pass
           </p>
         </div>
 
@@ -171,48 +184,84 @@ export default function QuizPage() {
               You&apos;ve passed this quiz
             </p>
             <p className="text-text-muted text-[13px]">
-              Your answers are shown below.
+              Your answers and explanations are shown below.
             </p>
           </div>
         )}
 
-        {/* Just passed banner */}
-        {passed && (
-          <div className="mb-8 p-5 border border-accent/30 rounded-2xl bg-accent/[0.05] text-center">
-            <div className="text-3xl text-accent mb-2">&#10003;</div>
-            <p className="text-text font-semibold mb-1">Quiz passed!</p>
-            <p className="text-text-muted text-[13px] mb-4">
-              Nice work. Keep going.
-            </p>
-            <Link
-              href={`/learn/${slug}${codeParam}`}
-              className="inline-block py-2.5 px-6 rounded-xl font-semibold text-white text-sm transition-all hover:scale-[1.02]"
-              style={{
-                background: "linear-gradient(135deg, #2997ff, #0a84ff)",
-              }}
-            >
-              Continue →
-            </Link>
+        {/* Score banner after submit */}
+        {submitted && !alreadyPassed && (
+          <div className={`mb-8 p-5 border rounded-2xl text-center ${
+            passed
+              ? "border-accent/30 bg-accent/[0.05]"
+              : "border-red-400/30 bg-red-400/[0.05]"
+          }`}>
+            {passed ? (
+              <>
+                <div className="text-3xl text-accent mb-2">&#10003;</div>
+                <p className="text-text font-semibold mb-1">Quiz passed!</p>
+                <p className="text-accent text-2xl font-bold font-mono mb-1">{pct}%</p>
+                <p className="text-text-muted text-[13px] mb-4">
+                  {score.correct}/{score.total} correct. Nice work.
+                </p>
+                <Link
+                  href={`/learn/${slug}${codeParam}`}
+                  className="inline-block py-2.5 px-6 rounded-xl font-semibold text-white text-sm transition-all hover:scale-[1.02]"
+                  style={{
+                    background: "linear-gradient(135deg, #2997ff, #0a84ff)",
+                  }}
+                >
+                  Continue &rarr;
+                </Link>
+              </>
+            ) : (
+              <>
+                <p className="text-red-400 text-2xl font-bold font-mono mb-1">{pct}%</p>
+                <p className="text-text font-semibold mb-1">
+                  {score.correct}/{score.total} correct
+                </p>
+                <p className="text-text-muted text-[13px] mb-4">
+                  Review the explanations below, then retry.
+                </p>
+                <button
+                  onClick={handleRetry}
+                  className="inline-block py-2.5 px-6 rounded-xl font-semibold text-white text-sm transition-all hover:scale-[1.02]"
+                  style={{
+                    background: "linear-gradient(135deg, #2997ff, #0a84ff)",
+                  }}
+                >
+                  Retry Quiz
+                </button>
+              </>
+            )}
           </div>
         )}
 
         {/* Questions */}
         <div className="space-y-8">
           {quiz.questions.map((q, i) => {
-            const isWrong = submitted && wrongIndices.includes(i);
-            const isReadOnly = alreadyPassed || passed;
+            const userAnswer = answers[i];
+            const isCorrect = submitted && userAnswer === q.correctIndex;
+            const isWrong = submitted && userAnswer !== undefined && userAnswer !== q.correctIndex;
+            const showExplanation = submitted;
 
             return (
               <div
                 key={i}
                 className={`p-6 border rounded-2xl transition-colors ${
-                  isWrong
-                    ? "border-red-400/40 bg-red-400/[0.03]"
+                  submitted
+                    ? isCorrect
+                      ? "border-accent/40 bg-accent/[0.03]"
+                      : isWrong
+                      ? "border-red-400/40 bg-red-400/[0.03]"
+                      : "border-border bg-surface/20"
                     : "border-border bg-surface/20"
                 }`}
               >
                 <div className="flex items-start gap-3 mb-4">
-                  <span className="text-accent text-[11px] font-mono mt-0.5 shrink-0">
+                  <span className={`text-[11px] font-mono mt-0.5 shrink-0 ${
+                    submitted ? (isCorrect ? "text-accent" : isWrong ? "text-red-400" : "text-accent") : "text-accent"
+                  }`}>
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <p className="text-[15px] text-text leading-relaxed">
@@ -220,71 +269,63 @@ export default function QuizPage() {
                   </p>
                 </div>
 
-                {q.type === "mc" && (
-                  <div className="space-y-2 ml-7">
-                    {q.options.map((opt, j) => {
-                      const selected = answers[i] === j;
-                      return (
-                        <button
-                          key={j}
-                          disabled={isReadOnly}
-                          onClick={() =>
-                            setAnswers((prev) => ({ ...prev, [i]: j }))
-                          }
-                          className={`w-full text-left px-4 py-3 rounded-xl border text-[14px] transition-all ${
-                            selected
-                              ? "border-accent bg-accent/10 text-text"
-                              : "border-border bg-surface/30 text-text-secondary hover:border-accent/40"
-                          } ${isReadOnly ? "opacity-70 cursor-default" : ""}`}
-                        >
-                          <span className="text-accent text-[11px] font-mono mr-3">
-                            {String.fromCharCode(65 + j)}
-                          </span>
-                          {opt}
-                        </button>
-                      );
-                    })}
-                  </div>
-                )}
+                <div className="space-y-2 ml-7">
+                  {q.options.map((opt, j) => {
+                    const selected = userAnswer === j;
+                    const isThisCorrect = j === q.correctIndex;
+                    const isReadOnly = submitted || alreadyPassed;
 
-                {q.type === "short" && (
-                  <div className="ml-7">
-                    <textarea
-                      disabled={isReadOnly}
-                      value={(answers[i] as string) || ""}
-                      onChange={(e) =>
-                        setAnswers((prev) => ({
-                          ...prev,
-                          [i]: e.target.value,
-                        }))
+                    let optionStyle = "";
+                    if (submitted) {
+                      if (isThisCorrect) {
+                        optionStyle = "border-accent bg-accent/10 text-text";
+                      } else if (selected && !isThisCorrect) {
+                        optionStyle = "border-red-400/60 bg-red-400/10 text-text line-through decoration-red-400/40";
+                      } else {
+                        optionStyle = "border-border/50 bg-surface/10 text-text-muted";
                       }
-                      placeholder="Write your answer..."
-                      rows={4}
-                      className="w-full px-4 py-3 rounded-xl border border-border bg-surface/30 text-text text-[14px] leading-relaxed resize-none focus:border-accent focus:outline-none disabled:opacity-70"
-                    />
-                    <div className="flex justify-between mt-1">
-                      <p className="text-text-muted text-[11px] font-mono">
-                        Min {q.minLength} characters
-                      </p>
-                      <p
-                        className={`text-[11px] font-mono ${
-                          ((answers[i] as string) || "").length >= q.minLength
-                            ? "text-accent"
-                            : "text-text-muted"
+                    } else {
+                      optionStyle = selected
+                        ? "border-accent bg-accent/10 text-text"
+                        : "border-border bg-surface/30 text-text-secondary hover:border-accent/40";
+                    }
+
+                    return (
+                      <button
+                        key={j}
+                        disabled={isReadOnly}
+                        onClick={() =>
+                          setAnswers((prev) => ({ ...prev, [i]: j }))
+                        }
+                        className={`w-full text-left px-4 py-3 rounded-xl border text-[14px] transition-all ${optionStyle} ${
+                          isReadOnly ? "cursor-default" : ""
                         }`}
                       >
-                        {((answers[i] as string) || "").length}/{q.minLength}
-                      </p>
-                    </div>
-                  </div>
-                )}
+                        <span className={`text-[11px] font-mono mr-3 ${
+                          submitted && isThisCorrect ? "text-accent" : submitted && selected && !isThisCorrect ? "text-red-400" : "text-accent"
+                        }`}>
+                          {submitted && isThisCorrect ? "\u2713" : submitted && selected && !isThisCorrect ? "\u2717" : String.fromCharCode(65 + j)}
+                        </span>
+                        {opt}
+                      </button>
+                    );
+                  })}
+                </div>
 
-                {isWrong && (
-                  <p className="text-red-400 text-[12px] font-mono mt-2 ml-7">
-                    {q.type === "mc"
-                      ? "Incorrect — try again"
-                      : "Answer too short"}
-                  </p>
+                {/* Explanation */}
+                {showExplanation && q.explanation && (
+                  <div className={`mt-4 ml-7 p-4 rounded-xl text-[13px] leading-relaxed ${
+                    isCorrect
+                      ? "bg-accent/[0.06] border border-accent/20 text-text-secondary"
+                      : "bg-red-400/[0.06] border border-red-400/20 text-text-secondary"
+                  }`}>
+                    <span className={`font-semibold font-mono text-[11px] uppercase tracking-wider ${
+                      isCorrect ? "text-accent" : "text-red-400"
+                    }`}>
+                      {isCorrect ? "Correct" : "Incorrect"} &mdash;{" "}
+                    </span>
+                    {q.explanation}
+                  </div>
                 )}
               </div>
             );
@@ -292,11 +333,12 @@ export default function QuizPage() {
         </div>
 
         {/* Submit */}
-        {!alreadyPassed && !passed && (
+        {!submitted && !alreadyPassed && (
           <div className="mt-10 flex justify-center">
             <button
               onClick={handleSubmit}
-              className="px-8 py-3 rounded-xl font-semibold text-sm text-white transition-all hover:scale-[1.02]"
+              disabled={!allAnswered}
+              className="px-8 py-3 rounded-xl font-semibold text-sm text-white transition-all hover:scale-[1.02] disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:scale-100"
               style={{
                 background: "linear-gradient(135deg, #2997ff, #0a84ff)",
               }}
@@ -306,11 +348,9 @@ export default function QuizPage() {
           </div>
         )}
 
-        {submitted && !passed && wrongIndices.length > 0 && (
-          <p className="text-center text-text-muted text-[13px] mt-4">
-            {wrongIndices.length} question
-            {wrongIndices.length > 1 ? "s" : ""} need attention. Fix and
-            resubmit.
+        {!submitted && !allAnswered && (
+          <p className="text-center text-text-muted text-[12px] font-mono mt-4">
+            Answer all {quiz.questions.length} questions to submit
           </p>
         )}
       </div>

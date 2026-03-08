@@ -12,14 +12,41 @@ import {
   hydrateFromServer,
 } from "@/lib/progress-sync";
 import CustomCursor from "@/components/CustomCursor";
+import InlineCheck from "@/components/InlineCheck";
+import type { KnowledgeCheck } from "@/lib/content/types";
 
 const STORAGE_PREFIX = "jdlo_access_";
 const PROGRESS_PREFIX = "jdlo_progress_";
 
-function renderContent(raw: string) {
+const CHECK_REGEX = /^<!--\s*check:(\d+)\s*-->$/;
+
+function renderContent(
+  raw: string,
+  checks?: KnowledgeCheck[],
+  slug?: string,
+  lessonKey?: string
+) {
   const blocks = raw.trim().split("\n\n");
   return blocks.map((block, i) => {
     const trimmed = block.trim();
+
+    // Inline knowledge check marker
+    const checkMatch = trimmed.match(CHECK_REGEX);
+    if (checkMatch && checks && slug && lessonKey) {
+      const checkIdx = parseInt(checkMatch[1], 10);
+      const check = checks[checkIdx];
+      if (check) {
+        return (
+          <InlineCheck
+            key={`check-${checkIdx}`}
+            check={check}
+            index={checkIdx}
+            slug={slug}
+            lessonKey={lessonKey}
+          />
+        );
+      }
+    }
 
     // Subheading
     if (trimmed.startsWith("## ")) {
@@ -209,7 +236,7 @@ export default function LessonPage() {
 
   if (!course || !lesson) {
     return (
-      <div className="min-h-screen bg-[#050505] flex items-center justify-center cursor-none">
+      <div className="min-h-screen bg-[#050505] flex items-center justify-center">
         <CustomCursor />
         <p className="text-text-secondary">Lesson not found.</p>
       </div>
@@ -218,7 +245,7 @@ export default function LessonPage() {
 
   if (checking) {
     return (
-      <div className="min-h-screen bg-[#050505] flex items-center justify-center cursor-none">
+      <div className="min-h-screen bg-[#050505] flex items-center justify-center">
         <CustomCursor />
         <p className="text-text-secondary text-sm font-mono">
           Verifying access...
@@ -267,9 +294,9 @@ export default function LessonPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#050505] cursor-none">
+    <div className="min-h-screen bg-[#050505]">
       <CustomCursor />
-      <div className="max-w-[700px] mx-auto px-6 py-10">
+      <div className="max-w-[700px] mx-auto px-4 md:px-6 py-10">
         {/* Nav */}
         <Link
           href={`/learn/${slug}${codeParam}`}
@@ -310,7 +337,7 @@ export default function LessonPage() {
         </div>
 
         {/* Written content */}
-        <div className="mb-10">{renderContent(lesson.content)}</div>
+        <div className="mb-10">{renderContent(lesson.content, lesson.checks, slug, lessonKey)}</div>
 
         {/* Key takeaways */}
         <div className="mb-10 p-6 border border-border rounded-2xl bg-surface/20">

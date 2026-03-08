@@ -231,7 +231,7 @@ export default function MentorshipQuizPage() {
   // ── Intro ──
   if (step === 'intro') {
     return (
-      <main className="cursor-none min-h-screen flex flex-col items-center justify-center px-6 py-20 relative">
+      <main className="min-h-screen flex flex-col items-center justify-center px-6 py-20 relative">
         <CustomCursor />
         <Nav />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/[0.03] rounded-full blur-[180px] pointer-events-none" />
@@ -258,7 +258,7 @@ export default function MentorshipQuizPage() {
   // ── Contact capture ──
   if (step === 'contact') {
     return (
-      <main className="cursor-none min-h-screen flex flex-col items-center justify-center px-6 py-20 relative">
+      <main className="min-h-screen flex flex-col items-center justify-center px-6 py-20 relative">
         <CustomCursor />
         <Nav />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-accent/[0.03] rounded-full blur-[180px] pointer-events-none" />
@@ -314,7 +314,7 @@ export default function MentorshipQuizPage() {
     const result = getResult(raw, answers.map(a => a.value));
 
     return (
-      <main className="cursor-none min-h-screen px-6 py-24 relative">
+      <main className="min-h-screen px-6 py-24 relative">
         <CustomCursor />
         <Nav />
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-accent/[0.03] rounded-full blur-[180px] pointer-events-none" />
@@ -407,7 +407,7 @@ export default function MentorshipQuizPage() {
 
   // ── Question ──
   return (
-    <main className="cursor-none min-h-screen flex flex-col justify-center px-6 py-20">
+    <main className="min-h-screen flex flex-col justify-center px-6 py-20">
       <CustomCursor />
       <Nav />
       <div className="max-w-[560px] mx-auto w-full">

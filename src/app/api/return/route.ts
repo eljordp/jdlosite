@@ -33,6 +33,7 @@ export async function POST(req: NextRequest) {
       "Team & Operations": "sales-systems",
       "Personal Growth & Discipline": "operator-playbook",
       "AI for Business": "ai-automation",
+      "AI Mastery": "ai-mastery",
     };
     const courseSlug = courseSlugMap[courseName] || courseName.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 
