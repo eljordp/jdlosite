@@ -7,6 +7,27 @@ import CustomCursor from "@/components/CustomCursor";
 import { createClient } from "@/lib/supabase/client";
 import type { Profile, ConnectionWithProfile } from "@/lib/supabase/types";
 
+function timeAgo(dateStr: string): string {
+  const diff = Date.now() - new Date(dateStr).getTime();
+  const mins = Math.floor(diff / 60000);
+  if (mins < 1) return "Just now";
+  if (mins < 60) return `${mins}m ago`;
+  const hrs = Math.floor(mins / 60);
+  if (hrs < 24) return `${hrs}h ago`;
+  const days = Math.floor(hrs / 24);
+  if (days < 30) return `${days}d ago`;
+  const months = Math.floor(days / 30);
+  return `${months}mo ago`;
+}
+
+type ReferralData = {
+  code: string;
+  discount_percent: number;
+  commission_percent: number;
+  stats: { clicks: number; conversions: number; revenue: number; commission: number };
+  referrals: { id: string; referred_email: string; status: string; purchase_amount: number | null; created_at: string }[];
+};
+
 export default function NetworkPage() {
   const router = useRouter();
   const [userId, setUserId] = useState<string | null>(null);
@@ -17,8 +38,10 @@ export default function NetworkPage() {
   const [searching, setSearching] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [pendingSent, setPendingSent] = useState<string[]>([]);
+  const [referral, setReferral] = useState<ReferralData | null>(null);
+  const [copied, setCopied] = useState(false);
 
-  // Load user + connections
+  // Load user + connections + referral
   useEffect(() => {
     const supabase = createClient();
     supabase.auth.getUser().then(async ({ data }) => {
@@ -28,6 +51,23 @@ export default function NetworkPage() {
       }
       setUserId(data.user.id);
       await loadConnections(data.user.id);
+
+      // Load referral data
+      const session = await supabase.auth.getSession();
+      const token = session.data.session?.access_token;
+      if (token) {
+        try {
+          const res = await fetch("/api/referral", {
+            headers: { Authorization: `Bearer ${token}` },
+          });
+          if (res.ok) {
+            setReferral(await res.json());
+          }
+        } catch {
+          // silently fail
+        }
+      }
+
       setLoaded(true);
     });
   }, [router]);
@@ -36,7 +76,6 @@ export default function NetworkPage() {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const supabase = createClient() as any;
 
-    // Get all connections involving this user
     const { data: rows } = await supabase
       .from("connections")
       .select("*, requester:requester_id(id, display_name, email, bio, created_at, updated_at), addressee:addressee_id(id, display_name, email, bio, created_at, updated_at)")
@@ -131,6 +170,13 @@ export default function NetworkPage() {
     return incoming.some((c) => c.requester_id === profileId);
   }
 
+  function copyReferralLink() {
+    if (!referral) return;
+    navigator.clipboard.writeText(`https://jdlo.site?ref=${referral.code}`);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  }
+
   if (!loaded) {
     return (
       <div className="min-h-screen bg-[#050505] flex items-center justify-center">
@@ -162,6 +208,91 @@ export default function NetworkPage() {
             Connect with other students and professionals
           </p>
         </div>
+
+        {/* Referral Section */}
+        {referral && (
+          <div className="mb-10 border border-border rounded-2xl overflow-hidden">
+            <div className="px-6 py-5 bg-surface/30 flex items-center justify-between">
+              <div>
+                <h2 className="text-lg font-semibold text-text tracking-[-0.02em]">
+                  Your Referral Link
+                </h2>
+                <p className="text-text-muted text-[12px] mt-0.5">
+                  Share and earn {referral.commission_percent}% commission on every sale
+                </p>
+              </div>
+            </div>
+            <div className="px-6 py-5">
+              <div className="flex gap-2 mb-5">
+                <div className="flex-1 bg-[#111] border border-border rounded-xl px-4 py-3 text-accent text-sm font-mono truncate">
+                  jdlo.site?ref={referral.code}
+                </div>
+                <button
+                  onClick={copyReferralLink}
+                  className="px-5 py-3 rounded-xl font-semibold text-white text-sm transition-all hover:scale-[1.02] shrink-0"
+                  style={{
+                    background: "linear-gradient(135deg, #2997ff, #0a84ff)",
+                  }}
+                >
+                  {copied ? "Copied!" : "Copy"}
+                </button>
+              </div>
+              <div className="grid grid-cols-3 gap-3">
+                <div className="border border-border rounded-xl p-4 text-center">
+                  <p className="text-2xl font-bold text-text">{referral.stats.clicks}</p>
+                  <p className="text-text-muted text-[11px] font-mono mt-1">Clicks</p>
+                </div>
+                <div className="border border-border rounded-xl p-4 text-center">
+                  <p className="text-2xl font-bold text-text">{referral.stats.conversions}</p>
+                  <p className="text-text-muted text-[11px] font-mono mt-1">Sales</p>
+                </div>
+                <div className="border border-border rounded-xl p-4 text-center">
+                  <p className="text-2xl font-bold text-accent">
+                    ${(referral.stats.commission / 100).toFixed(0)}
+                  </p>
+                  <p className="text-text-muted text-[11px] font-mono mt-1">Earned</p>
+                </div>
+              </div>
+
+              {/* Referral history */}
+              {referral.referrals.length > 0 && (
+                <div className="mt-5 border-t border-border pt-4">
+                  <p className="text-text-muted text-[11px] font-mono mb-3">
+                    Recent Referrals
+                  </p>
+                  <div className="space-y-2">
+                    {referral.referrals.slice(0, 5).map((r) => (
+                      <div
+                        key={r.id}
+                        className="flex items-center justify-between text-[13px]"
+                      >
+                        <span className="text-text-secondary truncate">
+                          {r.referred_email}
+                        </span>
+                        <div className="flex items-center gap-3 shrink-0 ml-4">
+                          <span
+                            className={`text-[11px] font-mono ${
+                              r.status === "purchased"
+                                ? "text-green-400"
+                                : "text-text-muted"
+                            }`}
+                          >
+                            {r.status === "purchased"
+                              ? `$${((r.purchase_amount ?? 0) / 100).toFixed(0)}`
+                              : r.status}
+                          </span>
+                          <span className="text-text-muted text-[11px] font-mono">
+                            {timeAgo(r.created_at)}
+                          </span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
 
         {/* Search */}
         <div className="mb-10">
@@ -259,11 +390,9 @@ export default function NetworkPage() {
                       <p className="text-text text-[14px] font-medium truncate">
                         {person.display_name || "Unnamed"}
                       </p>
-                      {person.bio && (
-                        <p className="text-text-muted text-[12px] truncate mt-0.5">
-                          {person.bio}
-                        </p>
-                      )}
+                      <p className="text-text-muted text-[11px] font-mono mt-0.5">
+                        Sent {timeAgo(conn.created_at)}
+                      </p>
                     </div>
                     <div className="flex items-center gap-3 shrink-0 ml-4">
                       <button
@@ -314,11 +443,9 @@ export default function NetworkPage() {
                       <p className="text-text text-[14px] font-medium truncate">
                         {person.display_name || "Unnamed"}
                       </p>
-                      {person.bio && (
-                        <p className="text-text-muted text-[12px] truncate mt-0.5">
-                          {person.bio}
-                        </p>
-                      )}
+                      <p className="text-text-muted text-[11px] font-mono mt-0.5">
+                        Connected {timeAgo(conn.created_at)}
+                      </p>
                     </div>
                     <button
                       onClick={() => removeConnection(conn.id)}
