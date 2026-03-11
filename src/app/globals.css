@@ -17,6 +17,26 @@
   --font-mono: "SF Mono", "Fira Code", monospace;
 }
 
+/* ── Light mode override (scoped to specific pages) ── */
+.light-mode {
+  --color-bg: #ffffff;
+  --color-surface: #f5f5f7;
+  --color-surface-2: #e8e8ed;
+  --color-surface-3: #d2d2d7;
+  --color-border: rgba(0, 0, 0, 0.08);
+  --color-border-hover: rgba(0, 0, 0, 0.15);
+  --color-text: #1d1d1f;
+  --color-text-secondary: #6e6e73;
+  --color-text-muted: #86868b;
+  --color-glow: rgba(41, 151, 255, 0.1);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+.light-mode ::selection {
+  background: rgba(41, 151, 255, 0.2);
+  color: #1d1d1f;
+}
+
 html {
   scroll-behavior: smooth;
 }
