@@ -68,7 +68,7 @@ function renderContent(
           {items.map((item, j) => (
             <li
               key={j}
-              className="flex items-start gap-3 text-[15px] text-neutral-700 leading-relaxed"
+              className="flex items-start gap-3 text-[15px] text-neutral-900 leading-relaxed"
             >
               <span className="text-blue-500 text-[10px] mt-2 shrink-0">●</span>
               <span
@@ -90,7 +90,7 @@ function renderContent(
           {items.map((item, j) => (
             <li
               key={j}
-              className="flex items-start gap-3 text-[15px] text-neutral-700 leading-relaxed"
+              className="flex items-start gap-3 text-[15px] text-neutral-900 leading-relaxed"
             >
               <span className="text-blue-500 text-[11px] font-mono mt-0.5 shrink-0">
                 {String(j + 1).padStart(2, "0")}
@@ -123,7 +123,7 @@ function renderContent(
     return (
       <p
         key={i}
-        className="text-[15px] text-neutral-700 leading-relaxed my-3"
+        className="text-[15px] text-neutral-900 leading-relaxed my-3"
         dangerouslySetInnerHTML={{ __html: formatInline(trimmed) }}
       />
     );
@@ -364,7 +364,7 @@ export default function LessonPage() {
             <h3 className="text-[11px] tracking-[0.5em] uppercase font-mono text-blue-500 mb-3">
               Exercise
             </h3>
-            <p className="text-[14px] text-neutral-700 leading-relaxed">
+            <p className="text-[14px] text-neutral-900 leading-relaxed">
               {lesson.exercise}
             </p>
           </div>

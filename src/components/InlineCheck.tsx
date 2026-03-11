@@ -77,28 +77,28 @@ export default function InlineCheck({
         onClick={() => setCollapsed(false)}
         className={`my-6 w-full flex items-center gap-3 px-5 py-3 rounded-xl border text-[13px] font-mono transition-colors ${
           isCorrect
-            ? "border-accent/30 bg-accent/[0.04] text-accent hover:bg-accent/[0.08]"
-            : "border-red-400/30 bg-red-400/[0.04] text-red-400 hover:bg-red-400/[0.08]"
+            ? "border-blue-300 bg-blue-50 text-blue-600 hover:bg-blue-100"
+            : "border-red-300 bg-red-50 text-red-500 hover:bg-red-100"
         }`}
       >
         <span>{isCorrect ? "\u2713" : "\u2717"}</span>
         <span>Knowledge Check {index + 1}</span>
-        <span className="ml-auto text-text-muted text-[11px]">tap to review</span>
+        <span className="ml-auto text-neutral-400 text-[11px]">tap to review</span>
       </button>
     );
   }
 
   return (
-    <div className="my-8 p-5 border border-accent/20 rounded-2xl bg-accent/[0.02]">
+    <div className="my-8 p-5 border border-blue-200 rounded-2xl bg-blue-50/50">
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
-        <p className="text-accent text-[10px] tracking-[0.4em] uppercase font-mono">
+        <p className="text-blue-500 text-[10px] tracking-[0.4em] uppercase font-mono">
           Knowledge Check
         </p>
         {revealed && (
           <button
             onClick={() => setCollapsed(true)}
-            className="text-text-muted text-[11px] font-mono hover:text-text transition-colors"
+            className="text-neutral-400 text-[11px] font-mono hover:text-neutral-600 transition-colors"
           >
             collapse
           </button>
@@ -106,7 +106,7 @@ export default function InlineCheck({
       </div>
 
       {/* Question */}
-      <p className="text-[15px] text-text leading-relaxed mb-4">
+      <p className="text-[15px] text-neutral-900 leading-relaxed mb-4">
         {check.question}
       </p>
 
@@ -119,16 +119,16 @@ export default function InlineCheck({
           let style = "";
           if (revealed) {
             if (isThisCorrect) {
-              style = "border-accent bg-accent/10 text-text";
+              style = "border-blue-400 bg-blue-100 text-neutral-900";
             } else if (isSelected && !isThisCorrect) {
               style =
-                "border-red-400/60 bg-red-400/10 text-text line-through decoration-red-400/40";
+                "border-red-300 bg-red-50 text-neutral-900 line-through decoration-red-400/40";
             } else {
-              style = "border-border/50 bg-surface/10 text-text-muted";
+              style = "border-neutral-200 bg-neutral-50 text-neutral-400";
             }
           } else {
             style =
-              "border-border bg-surface/30 text-text-secondary hover:border-accent/40 cursor-pointer";
+              "border-neutral-200 bg-white text-neutral-900 hover:border-blue-300 cursor-pointer";
           }
 
           return (
@@ -143,10 +143,10 @@ export default function InlineCheck({
               <span
                 className={`text-[11px] font-mono mr-3 ${
                   revealed && isThisCorrect
-                    ? "text-accent"
+                    ? "text-blue-500"
                     : revealed && isSelected && !isThisCorrect
                     ? "text-red-400"
-                    : "text-accent"
+                    : "text-blue-500"
                 }`}
               >
                 {revealed && isThisCorrect
@@ -164,15 +164,15 @@ export default function InlineCheck({
       {/* Explanation */}
       {revealed && (
         <div
-          className={`mt-4 p-4 rounded-xl text-[13px] leading-relaxed ${
+          className={`mt-4 p-4 rounded-xl text-[13px] leading-relaxed text-neutral-700 ${
             isCorrect
-              ? "bg-accent/[0.06] border border-accent/20 text-text-secondary"
-              : "bg-red-400/[0.06] border border-red-400/20 text-text-secondary"
+              ? "bg-blue-50 border border-blue-200"
+              : "bg-red-50 border border-red-200"
           }`}
         >
           <span
             className={`font-semibold font-mono text-[11px] uppercase tracking-wider ${
-              isCorrect ? "text-accent" : "text-red-400"
+              isCorrect ? "text-blue-500" : "text-red-400"
             }`}
           >
             {isCorrect ? "Correct" : "Incorrect"} &mdash;{" "}
