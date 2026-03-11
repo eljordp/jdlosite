@@ -28,17 +28,18 @@ export async function POST(req: NextRequest) {
       ],
       mode: "payment",
       allow_promotion_codes: true,
-      return_url: `${process.env.NEXT_PUBLIC_URL?.replace(/\/$/, "")}/return?session_id={CHECKOUT_SESSION_ID}`,
+      return_url: `${(process.env.NEXT_PUBLIC_URL || "https://jdlo.site").replace(/\/$/, "")}/return?session_id={CHECKOUT_SESSION_ID}`,
       metadata: {
         course: courseName,
       },
     });
 
     return NextResponse.json({ clientSecret: session.client_secret });
-  } catch (err) {
-    console.error("Checkout error:", err);
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : String(err);
+    console.error("Checkout error:", message);
     return NextResponse.json(
-      { error: "Failed to create checkout session" },
+      { error: "Failed to create checkout session", detail: message },
       { status: 500 }
     );
   }

@@ -53,7 +53,7 @@ function renderContent(
       return (
         <h3
           key={i}
-          className="text-lg font-semibold text-text mt-8 mb-3 tracking-[-0.02em]"
+          className="text-lg font-semibold text-neutral-900 mt-8 mb-3 tracking-[-0.02em]"
         >
           {trimmed.slice(3)}
         </h3>
@@ -68,9 +68,9 @@ function renderContent(
           {items.map((item, j) => (
             <li
               key={j}
-              className="flex items-start gap-3 text-[15px] text-text-secondary leading-relaxed"
+              className="flex items-start gap-3 text-[15px] text-neutral-700 leading-relaxed"
             >
-              <span className="text-accent text-[10px] mt-2 shrink-0">●</span>
+              <span className="text-blue-500 text-[10px] mt-2 shrink-0">●</span>
               <span
                 dangerouslySetInnerHTML={{
                   __html: formatInline(item.slice(2)),
@@ -90,9 +90,9 @@ function renderContent(
           {items.map((item, j) => (
             <li
               key={j}
-              className="flex items-start gap-3 text-[15px] text-text-secondary leading-relaxed"
+              className="flex items-start gap-3 text-[15px] text-neutral-700 leading-relaxed"
             >
-              <span className="text-accent text-[11px] font-mono mt-0.5 shrink-0">
+              <span className="text-blue-500 text-[11px] font-mono mt-0.5 shrink-0">
                 {String(j + 1).padStart(2, "0")}
               </span>
               <span
@@ -112,7 +112,7 @@ function renderContent(
       return (
         <pre
           key={i}
-          className="bg-surface-2 border border-border rounded-xl p-4 my-4 overflow-x-auto text-[13px] text-text-secondary font-mono leading-relaxed"
+          className="bg-neutral-100 border border-neutral-200 rounded-xl p-4 my-4 overflow-x-auto text-[13px] text-neutral-800 font-mono leading-relaxed"
         >
           {code}
         </pre>
@@ -123,7 +123,7 @@ function renderContent(
     return (
       <p
         key={i}
-        className="text-[15px] text-text-secondary leading-relaxed my-3"
+        className="text-[15px] text-neutral-700 leading-relaxed my-3"
         dangerouslySetInnerHTML={{ __html: formatInline(trimmed) }}
       />
     );
@@ -134,11 +134,11 @@ function formatInline(text: string): string {
   return text
     .replace(
       /\*\*(.+?)\*\*/g,
-      '<strong class="text-text font-semibold">$1</strong>'
+      '<strong class="text-neutral-900 font-semibold">$1</strong>'
     )
     .replace(
       /`(.+?)`/g,
-      '<code class="bg-surface-2 px-1.5 py-0.5 rounded text-[13px] font-mono text-accent">$1</code>'
+      '<code class="bg-neutral-100 px-1.5 py-0.5 rounded text-[13px] font-mono text-blue-600">$1</code>'
     )
     .replace(/\n/g, "<br />");
 }
@@ -294,28 +294,28 @@ export default function LessonPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#050505]">
+    <div className="min-h-screen bg-white">
       <CustomCursor />
       <div className="max-w-[700px] mx-auto px-4 md:px-6 py-10">
         {/* Nav */}
         <Link
           href={`/learn/${slug}${codeParam}`}
-          className="text-text-muted text-[12px] font-mono hover:text-accent transition-colors"
+          className="text-neutral-400 text-[12px] font-mono hover:text-blue-500 transition-colors"
         >
           ← Back to {course.title}
         </Link>
 
         {/* Module + Lesson header */}
         <div className="mt-8 mb-10">
-          <p className="text-accent text-[11px] tracking-[0.5em] uppercase font-mono mb-3">
+          <p className="text-blue-500 text-[11px] tracking-[0.5em] uppercase font-mono mb-3">
             Module {modNum} — {mod?.title}
           </p>
-          <h1 className="text-2xl md:text-3xl font-bold text-text tracking-[-0.03em] mb-3">
+          <h1 className="text-2xl md:text-3xl font-bold text-neutral-900 tracking-[-0.03em] mb-3">
             {lesson.title}
           </h1>
-          <div className="flex items-center gap-4 text-text-muted text-[12px] font-mono">
+          <div className="flex items-center gap-4 text-neutral-400 text-[12px] font-mono">
             <span>{lesson.duration}</span>
-            <span className="w-px h-3 bg-border" />
+            <span className="w-px h-3 bg-neutral-200" />
             <span>
               Lesson {currentIdx + 1} of {allKeys.length}
             </span>
@@ -323,13 +323,13 @@ export default function LessonPage() {
         </div>
 
         {/* Video placeholder */}
-        <div className="mb-10 rounded-2xl border border-border bg-surface/30 overflow-hidden">
-          <div className="aspect-video flex items-center justify-center bg-surface-2/50">
+        <div className="mb-10 rounded-2xl border border-neutral-200 bg-neutral-50 overflow-hidden">
+          <div className="aspect-video flex items-center justify-center bg-neutral-100">
             <div className="text-center">
-              <div className="w-16 h-16 rounded-full bg-surface-3 flex items-center justify-center mx-auto mb-3">
-                <span className="text-2xl text-text-muted">▶</span>
+              <div className="w-16 h-16 rounded-full bg-neutral-200 flex items-center justify-center mx-auto mb-3">
+                <span className="text-2xl text-neutral-400">▶</span>
               </div>
-              <p className="text-text-muted text-[13px] font-mono">
+              <p className="text-neutral-400 text-[13px] font-mono">
                 Video coming soon
               </p>
             </div>
@@ -340,17 +340,17 @@ export default function LessonPage() {
         <div className="mb-10">{renderContent(lesson.content, lesson.checks, slug, lessonKey)}</div>
 
         {/* Key takeaways */}
-        <div className="mb-10 p-6 border border-border rounded-2xl bg-surface/20">
-          <h3 className="text-[11px] tracking-[0.5em] uppercase font-mono text-accent mb-4">
+        <div className="mb-10 p-6 border border-neutral-200 rounded-2xl bg-neutral-50">
+          <h3 className="text-[11px] tracking-[0.5em] uppercase font-mono text-blue-500 mb-4">
             Key Takeaways
           </h3>
           <div className="space-y-3">
             {lesson.takeaways.map((t, i) => (
               <div key={i} className="flex items-start gap-3">
-                <span className="text-accent text-[11px] font-mono mt-0.5 shrink-0">
+                <span className="text-blue-500 text-[11px] font-mono mt-0.5 shrink-0">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <p className="text-[14px] text-text-secondary leading-snug">
+                <p className="text-[14px] text-neutral-700 leading-snug">
                   {t}
                 </p>
               </div>
@@ -360,11 +360,11 @@ export default function LessonPage() {
 
         {/* Exercise */}
         {lesson.exercise && (
-          <div className="mb-10 p-6 border border-accent/20 rounded-2xl bg-accent/[0.03]">
-            <h3 className="text-[11px] tracking-[0.5em] uppercase font-mono text-accent mb-3">
+          <div className="mb-10 p-6 border border-blue-200 rounded-2xl bg-blue-50">
+            <h3 className="text-[11px] tracking-[0.5em] uppercase font-mono text-blue-500 mb-3">
               Exercise
             </h3>
-            <p className="text-[14px] text-text-secondary leading-relaxed">
+            <p className="text-[14px] text-neutral-700 leading-relaxed">
               {lesson.exercise}
             </p>
           </div>
@@ -376,8 +376,8 @@ export default function LessonPage() {
             onClick={toggleComplete}
             className={`px-8 py-3 rounded-xl font-semibold text-sm transition-all ${
               completed
-                ? "bg-accent/10 text-accent border border-accent/30"
-                : "bg-accent text-white hover:bg-accent/80"
+                ? "bg-blue-50 text-blue-500 border border-blue-200"
+                : "bg-blue-500 text-white hover:bg-blue-600"
             }`}
           >
             {completed ? "✓ Completed" : "Mark as Complete"}
@@ -385,11 +385,11 @@ export default function LessonPage() {
         </div>
 
         {/* Prev / Next */}
-        <div className="flex items-center justify-between border-t border-border pt-8">
+        <div className="flex items-center justify-between border-t border-neutral-200 pt-8">
           {prevKey ? (
             <Link
               href={`/learn/${slug}/${prevKey}${codeParam}`}
-              className="flex items-center gap-2 text-text-secondary hover:text-accent transition-colors group"
+              className="flex items-center gap-2 text-neutral-500 hover:text-blue-500 transition-colors group"
             >
               <span className="text-sm group-hover:-translate-x-1 transition-transform">
                 ←
@@ -402,7 +402,7 @@ export default function LessonPage() {
           {isLastInModule && moduleHasQuiz ? (
             <Link
               href={`/learn/${slug}/quiz/${modNum}${codeParam}`}
-              className="flex items-center gap-2 text-accent hover:text-accent/80 transition-colors group"
+              className="flex items-center gap-2 text-blue-500 hover:text-blue-600 transition-colors group"
             >
               <span className="text-[13px] font-mono font-medium">
                 Take Module Quiz
@@ -414,7 +414,7 @@ export default function LessonPage() {
           ) : nextKey ? (
             <Link
               href={`/learn/${slug}/${nextKey}${codeParam}`}
-              className="flex items-center gap-2 text-text-secondary hover:text-accent transition-colors group"
+              className="flex items-center gap-2 text-neutral-500 hover:text-blue-500 transition-colors group"
             >
               <span className="text-[13px] font-mono">Next</span>
               <span className="text-sm group-hover:translate-x-1 transition-transform">
@@ -424,7 +424,7 @@ export default function LessonPage() {
           ) : (
             <Link
               href={`/learn/${slug}${codeParam}`}
-              className="text-accent text-[13px] font-mono hover:underline"
+              className="text-blue-500 text-[13px] font-mono hover:underline"
             >
               Back to Dashboard →
             </Link>
