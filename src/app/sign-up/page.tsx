@@ -32,6 +32,15 @@ export default function SignUpPage() {
 
     // If session exists, user is logged in immediately (no email confirmation)
     if (data.session) {
+      // Track referral signup
+      const ref = localStorage.getItem("jdlo_ref");
+      if (ref) {
+        fetch("/api/referral/track", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ code: ref, email, event: "signed_up" }),
+        }).catch(() => {});
+      }
       router.push("/my-courses");
       router.refresh();
       return;

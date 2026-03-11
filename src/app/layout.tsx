@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import "./globals.css";
 import PostHogProvider from "@/components/PostHogProvider";
+import ReferralCapture from "@/components/ReferralCapture";
 
 export const metadata: Metadata = {
   title: "JDLO — AI Education & Operations",
@@ -47,7 +49,12 @@ export default function RootLayout({
         />
       </head>
       <body className="font-sans antialiased">
-        <PostHogProvider>{children}</PostHogProvider>
+        <PostHogProvider>
+          {children}
+          <Suspense fallback={null}>
+            <ReferralCapture />
+          </Suspense>
+        </PostHogProvider>
       </body>
     </html>
   );

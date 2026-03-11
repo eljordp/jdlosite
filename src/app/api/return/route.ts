@@ -5,7 +5,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
 export async function POST(req: NextRequest) {
   try {
-    const { sessionId } = await req.json();
+    const { sessionId, refCode } = await req.json();
 
     if (!sessionId) {
       return NextResponse.json({ error: "Missing session ID" }, { status: 400 });
@@ -55,6 +55,22 @@ export async function POST(req: NextRequest) {
     });
 
     const accessData = await accessRes.json();
+
+    // Track referral purchase if ref code present
+    if (refCode && email) {
+      const baseUrl = process.env.NEXT_PUBLIC_URL || "https://jdlosite.vercel.app";
+      fetch(`${baseUrl}/api/referral/track`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          code: refCode,
+          email,
+          event: "purchased",
+          amount: session.amount_total || 0,
+          course_slug: courseSlug,
+        }),
+      }).catch(() => {});
+    }
 
     return NextResponse.json({
       code: accessData.code,

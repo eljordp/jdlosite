@@ -24,11 +24,14 @@ function ReturnContent() {
       return;
     }
 
+    // Get referral code if present
+    const refCode = typeof window !== "undefined" ? localStorage.getItem("jdlo_ref") : null;
+
     // Verify session and create access
     fetch(`/api/return`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ sessionId }),
+      body: JSON.stringify({ sessionId, refCode }),
     })
       .then((r) => r.json())
       .then((data) => {
