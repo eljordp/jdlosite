@@ -287,6 +287,10 @@ details summary { list-style: none; }
   html, body, *, *::before, *::after {
     cursor: none !important;
   }
+  /* Override Tailwind utilities that set cursor */
+  .cursor-pointer, .cursor-not-allowed, .cursor-default {
+    cursor: none !important;
+  }
 }
 
 /* ── Custom cursor ── */
@@ -299,7 +303,6 @@ details summary { list-style: none; }
   pointer-events: none;
   z-index: 99999;
   transition: transform 0.15s ease, opacity 0.15s ease;
-  mix-blend-mode: difference;
   transform: translate(-50%, -50%);
 }
 @media (pointer: coarse) {
