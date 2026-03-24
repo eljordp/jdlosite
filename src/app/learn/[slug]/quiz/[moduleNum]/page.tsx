@@ -86,16 +86,16 @@ export default function QuizPage() {
 
   if (!course || !quiz || !mod) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
-        <p className="text-gray-500">Quiz not found.</p>
+      <div className="light-mode min-h-screen bg-bg flex items-center justify-center">
+        <p className="text-text-secondary">Quiz not found.</p>
       </div>
     );
   }
 
   if (checking) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
-        <p className="text-gray-500 text-sm font-mono">
+      <div className="light-mode min-h-screen bg-bg flex items-center justify-center">
+        <p className="text-text-secondary text-sm font-mono">
           Verifying access...
         </p>
       </div>
@@ -149,37 +149,37 @@ export default function QuizPage() {
   const allAnswered = quiz.questions.every((_, i) => answers[i] !== undefined);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="light-mode min-h-screen bg-bg">
       <div className="max-w-[700px] mx-auto px-6 py-10">
         {/* Nav */}
         <Link
           href={`/learn/${slug}${codeParam}`}
-          className="text-gray-400 text-[12px] font-mono hover:text-blue-500 transition-colors"
+          className="text-text-muted text-[12px] font-mono hover:text-accent transition-colors"
         >
           &larr; Back to {course.title}
         </Link>
 
         {/* Header */}
         <div className="mt-8 mb-10">
-          <p className="text-blue-500 text-[11px] tracking-[0.5em] uppercase font-mono mb-3">
+          <p className="text-accent text-[11px] tracking-[0.5em] uppercase font-mono mb-3">
             Module {moduleNum} &mdash; {mod.title}
           </p>
-          <h1 className="text-2xl md:text-3xl font-bold text-gray-900 tracking-[-0.03em] mb-3">
+          <h1 className="text-2xl md:text-3xl font-bold text-text tracking-[-0.03em] mb-3">
             {quiz.title}
           </h1>
-          <p className="text-gray-400 text-[12px] font-mono">
+          <p className="text-text-muted text-[12px] font-mono">
             {quiz.questions.length} questions &middot; Multiple choice &middot; Must get 100% to pass
           </p>
         </div>
 
         {/* Already passed banner */}
         {alreadyPassed && !passed && (
-          <div className="mb-8 p-5 border border-blue-200 rounded-2xl bg-blue-50 text-center">
-            <div className="text-3xl text-blue-500 mb-2">&#10003;</div>
-            <p className="text-gray-900 font-semibold mb-1">
+          <div className="mb-8 p-5 border border-accent/30 rounded-2xl bg-accent/[0.05] text-center">
+            <div className="text-3xl text-accent mb-2">&#10003;</div>
+            <p className="text-text font-semibold mb-1">
               You&apos;ve passed this quiz
             </p>
-            <p className="text-gray-500 text-[13px]">
+            <p className="text-text-muted text-[13px]">
               Your answers and explanations are shown below.
             </p>
           </div>
@@ -189,15 +189,15 @@ export default function QuizPage() {
         {submitted && !alreadyPassed && (
           <div className={`mb-8 p-5 border rounded-2xl text-center ${
             passed
-              ? "border-blue-200 bg-blue-50"
-              : "border-red-200 bg-red-50"
+              ? "border-accent/30 bg-accent/[0.05]"
+              : "border-red-400/30 bg-red-400/[0.05]"
           }`}>
             {passed ? (
               <>
-                <div className="text-3xl text-blue-500 mb-2">&#10003;</div>
-                <p className="text-gray-900 font-semibold mb-1">Quiz passed!</p>
-                <p className="text-blue-500 text-2xl font-bold font-mono mb-1">{pct}%</p>
-                <p className="text-gray-500 text-[13px] mb-4">
+                <div className="text-3xl text-accent mb-2">&#10003;</div>
+                <p className="text-text font-semibold mb-1">Quiz passed!</p>
+                <p className="text-accent text-2xl font-bold font-mono mb-1">{pct}%</p>
+                <p className="text-text-muted text-[13px] mb-4">
                   {score.correct}/{score.total} correct. Nice work.
                 </p>
                 <Link
@@ -212,11 +212,11 @@ export default function QuizPage() {
               </>
             ) : (
               <>
-                <p className="text-red-500 text-2xl font-bold font-mono mb-1">{pct}%</p>
-                <p className="text-gray-900 font-semibold mb-1">
+                <p className="text-red-400 text-2xl font-bold font-mono mb-1">{pct}%</p>
+                <p className="text-text font-semibold mb-1">
                   {score.correct}/{score.total} correct
                 </p>
-                <p className="text-gray-500 text-[13px] mb-4">
+                <p className="text-text-muted text-[13px] mb-4">
                   Review the explanations below, then retry.
                 </p>
                 <button
@@ -247,20 +247,20 @@ export default function QuizPage() {
                 className={`p-6 border rounded-2xl transition-colors ${
                   submitted
                     ? isCorrect
-                      ? "border-blue-200 bg-blue-50/50"
+                      ? "border-accent/40 bg-accent/[0.03]"
                       : isWrong
-                      ? "border-red-200 bg-red-50/50"
-                      : "border-gray-200 bg-gray-50/50"
-                    : "border-gray-200 bg-gray-50/50"
+                      ? "border-red-400/40 bg-red-400/[0.03]"
+                      : "border-border bg-surface/20"
+                    : "border-border bg-surface/20"
                 }`}
               >
                 <div className="flex items-start gap-3 mb-4">
                   <span className={`text-[11px] font-mono mt-0.5 shrink-0 ${
-                    submitted ? (isCorrect ? "text-blue-500" : isWrong ? "text-red-500" : "text-blue-500") : "text-blue-500"
+                    submitted ? (isCorrect ? "text-accent" : isWrong ? "text-red-400" : "text-accent") : "text-accent"
                   }`}>
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <p className="text-[15px] text-gray-900 leading-relaxed">
+                  <p className="text-[15px] text-text leading-relaxed">
                     {q.question}
                   </p>
                 </div>
@@ -274,16 +274,16 @@ export default function QuizPage() {
                     let optionStyle = "";
                     if (submitted) {
                       if (isThisCorrect) {
-                        optionStyle = "border-blue-300 bg-blue-50 text-gray-900";
+                        optionStyle = "border-accent bg-accent/10 text-text";
                       } else if (selected && !isThisCorrect) {
-                        optionStyle = "border-red-300 bg-red-50 text-gray-900 line-through decoration-red-300";
+                        optionStyle = "border-red-400/60 bg-red-400/10 text-text line-through decoration-red-400/40";
                       } else {
-                        optionStyle = "border-gray-200 bg-white text-gray-400";
+                        optionStyle = "border-border/50 bg-surface/10 text-text-muted";
                       }
                     } else {
                       optionStyle = selected
-                        ? "border-blue-300 bg-blue-50 text-gray-900"
-                        : "border-gray-200 bg-white text-gray-600 hover:border-blue-300";
+                        ? "border-accent bg-accent/10 text-text"
+                        : "border-border bg-surface/30 text-text-secondary hover:border-accent/40";
                     }
 
                     return (
@@ -298,7 +298,7 @@ export default function QuizPage() {
                         }`}
                       >
                         <span className={`text-[11px] font-mono mr-3 ${
-                          submitted && isThisCorrect ? "text-blue-500" : submitted && selected && !isThisCorrect ? "text-red-500" : "text-blue-500"
+                          submitted && isThisCorrect ? "text-accent" : submitted && selected && !isThisCorrect ? "text-red-400" : "text-accent"
                         }`}>
                           {submitted && isThisCorrect ? "\u2713" : submitted && selected && !isThisCorrect ? "\u2717" : String.fromCharCode(65 + j)}
                         </span>
@@ -312,11 +312,11 @@ export default function QuizPage() {
                 {showExplanation && q.explanation && (
                   <div className={`mt-4 ml-7 p-4 rounded-xl text-[13px] leading-relaxed ${
                     isCorrect
-                      ? "bg-blue-50 border border-blue-200 text-gray-600"
-                      : "bg-red-50 border border-red-200 text-gray-600"
+                      ? "bg-accent/[0.06] border border-accent/20 text-text-secondary"
+                      : "bg-red-400/[0.06] border border-red-400/20 text-text-secondary"
                   }`}>
                     <span className={`font-semibold font-mono text-[11px] uppercase tracking-wider ${
-                      isCorrect ? "text-blue-500" : "text-red-500"
+                      isCorrect ? "text-accent" : "text-red-400"
                     }`}>
                       {isCorrect ? "Correct" : "Incorrect"} &mdash;{" "}
                     </span>
@@ -345,7 +345,7 @@ export default function QuizPage() {
         )}
 
         {!submitted && !allAnswered && (
-          <p className="text-center text-gray-400 text-[12px] font-mono mt-4">
+          <p className="text-center text-text-muted text-[12px] font-mono mt-4">
             Answer all {quiz.questions.length} questions to submit
           </p>
         )}
