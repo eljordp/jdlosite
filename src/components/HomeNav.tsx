@@ -104,7 +104,7 @@ export default function HomeNav() {
             <Link
               href="/my-courses"
               onClick={() => setOpen(false)}
-              className="text-[2rem] font-semibold tracking-[-0.03em] text-accent hover:text-text transition-colors duration-200 py-2.5 border-b border-border/40"
+              className="text-[1.5rem] sm:text-[2rem] font-semibold tracking-[-0.03em] text-accent hover:text-text transition-colors duration-200 py-2.5 border-b border-border/40"
             >
               My Courses
             </Link>
@@ -114,7 +114,7 @@ export default function HomeNav() {
               key={link.label}
               href={link.href}
               onClick={() => setOpen(false)}
-              className="text-[2rem] font-semibold tracking-[-0.03em] text-text-secondary hover:text-text transition-colors duration-200 py-2.5 border-b border-border/40 last:border-0"
+              className="text-[1.5rem] sm:text-[2rem] font-semibold tracking-[-0.03em] text-text-secondary hover:text-text transition-colors duration-200 py-2.5 border-b border-border/40 last:border-0"
             >
               {link.label}
             </Link>
@@ -122,7 +122,7 @@ export default function HomeNav() {
           <Link
             href="/quiz"
             onClick={() => setOpen(false)}
-            className="text-[2rem] font-semibold tracking-[-0.03em] text-accent hover:text-text transition-colors duration-200 py-2.5 border-b border-border/40"
+            className="text-[1.5rem] sm:text-[2rem] font-semibold tracking-[-0.03em] text-accent hover:text-text transition-colors duration-200 py-2.5 border-b border-border/40"
           >
             Skills Quiz
           </Link>
@@ -130,7 +130,7 @@ export default function HomeNav() {
             <Link
               href="/sign-in"
               onClick={() => setOpen(false)}
-              className="text-[2rem] font-semibold tracking-[-0.03em] text-text-secondary hover:text-text transition-colors duration-200 py-2.5"
+              className="text-[1.5rem] sm:text-[2rem] font-semibold tracking-[-0.03em] text-text-secondary hover:text-text transition-colors duration-200 py-2.5"
             >
               Sign In
             </Link>
