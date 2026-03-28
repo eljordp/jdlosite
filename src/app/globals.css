@@ -13,7 +13,7 @@
   --color-accent: #2997ff;
   --color-glow: rgba(41, 151, 255, 0.15);
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-display: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: "Instrument Serif", "Georgia", "Times New Roman", serif;
   --font-mono: "SF Mono", "Fira Code", monospace;
 }
 
@@ -114,10 +114,15 @@ body::after {
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: center;
-  padding: 2rem 0;
+  padding: 1.5rem 0;
   border-bottom: 1px solid var(--color-border);
   cursor: pointer;
   position: relative;
+}
+@media (min-width: 640px) {
+  .skill-row {
+    padding: 2rem 0;
+  }
 }
 .skill-row .skill-title {
   font-size: clamp(1.5rem, 3.5vw, 3rem);
@@ -154,6 +159,13 @@ body::after {
   max-height: 120px;
   opacity: 1;
 }
+/* On touch devices, always show description since hover doesn't exist */
+@media (pointer: coarse) {
+  .skill-row .skill-desc {
+    max-height: 120px;
+    opacity: 1;
+  }
+}
 .skill-row .skill-number {
   position: absolute;
   right: 0;
@@ -172,6 +184,12 @@ body::after {
 .skill-row:hover .skill-number {
   opacity: 1;
   -webkit-text-stroke-color: var(--color-border-hover);
+}
+/* Hide number overlay on small screens — clips and overlaps text */
+@media (max-width: 640px) {
+  .skill-row .skill-number {
+    display: none;
+  }
 }
 
 /* ── Magnetic glow button ── */

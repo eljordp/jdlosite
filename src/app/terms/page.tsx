@@ -7,7 +7,7 @@ export const metadata = {
 
 export default function TermsPage() {
   return (
-    <PageShell ctaText="Browse Courses" ctaHref="/courses">
+    <PageShell>
       <section className="py-24 md:py-32">
         <div className="max-w-[720px] mx-auto px-6">
           <p className="text-accent text-[11px] tracking-[0.5em] uppercase font-mono mb-8">

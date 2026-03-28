@@ -1,26 +1,18 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import { GlowLink } from '@/components/GlowButton';
-import { createClient } from '@/lib/supabase/client';
-import type { User } from '@supabase/supabase-js';
 
 const links = [
-  { label: 'Courses', href: '/courses' },
+  { label: 'Services', href: '/#services' },
+  { label: 'Work', href: '/#work' },
   { label: 'About', href: '/about' },
-  { label: 'Mentorship', href: '/mentorship' },
-  { label: 'FAQ', href: '#faq' },
+  { label: 'Contact', href: '/contact' },
 ];
 
 export default function HomeNav() {
   const [open, setOpen] = useState(false);
-  const [user, setUser] = useState<User | null>(null);
-
-  useEffect(() => {
-    const supabase = createClient();
-    supabase.auth.getUser().then(({ data }) => setUser(data.user));
-  }, []);
 
   return (
     <>
@@ -41,28 +33,11 @@ export default function HomeNav() {
                 {link.label}
               </Link>
             ))}
-            <Link href="/quiz" className="text-accent hover:text-accent/80 transition-colors duration-300 font-mono text-[12px]">
-              Skills Quiz →
-            </Link>
-            {user && (
-              <Link href="/my-courses" className="text-accent hover:text-accent/80 transition-colors duration-300 font-medium">
-                My Courses
-              </Link>
-            )}
           </div>
 
           <div className="flex items-center gap-3">
-            {!user ? (
-              <Link href="/sign-in" className="text-text-secondary hover:text-text text-[13px] transition-colors duration-300">
-                Sign In
-              </Link>
-            ) : (
-              <Link href="/profile" className="text-text-secondary hover:text-text text-[13px] transition-colors duration-300">
-                {user.email?.split("@")[0]}
-              </Link>
-            )}
-            <GlowLink href="/courses" className="!py-1.5 !px-5 !text-[13px]">
-              Get Started
+            <GlowLink href="/contact" className="!py-1.5 !px-5 !text-[13px]">
+              Let&apos;s Talk
             </GlowLink>
             {/* Mobile hamburger */}
             <button
@@ -100,15 +75,6 @@ export default function HomeNav() {
         </div>
 
         <div className="flex flex-col flex-1">
-          {user && (
-            <Link
-              href="/my-courses"
-              onClick={() => setOpen(false)}
-              className="text-[1.5rem] sm:text-[2rem] font-semibold tracking-[-0.03em] text-accent hover:text-text transition-colors duration-200 py-2.5 border-b border-border/40"
-            >
-              My Courses
-            </Link>
-          )}
           {links.map((link) => (
             <Link
               key={link.label}
@@ -119,27 +85,11 @@ export default function HomeNav() {
               {link.label}
             </Link>
           ))}
-          <Link
-            href="/quiz"
-            onClick={() => setOpen(false)}
-            className="text-[1.5rem] sm:text-[2rem] font-semibold tracking-[-0.03em] text-accent hover:text-text transition-colors duration-200 py-2.5 border-b border-border/40"
-          >
-            Skills Quiz
-          </Link>
-          {!user && (
-            <Link
-              href="/sign-in"
-              onClick={() => setOpen(false)}
-              className="text-[1.5rem] sm:text-[2rem] font-semibold tracking-[-0.03em] text-text-secondary hover:text-text transition-colors duration-200 py-2.5"
-            >
-              Sign In
-            </Link>
-          )}
         </div>
 
         <div className="pt-8">
-          <GlowLink href="/courses" className="w-full justify-center">
-            Get Started
+          <GlowLink href="/contact" className="w-full justify-center">
+            Let&apos;s Talk
           </GlowLink>
         </div>
       </div>

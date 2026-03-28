@@ -1,11 +1,9 @@
 import Link from "next/link";
-import CustomCursor from "@/components/CustomCursor";
 import { GlowLink } from "@/components/GlowButton";
 
 export default function NotFound() {
   return (
     <main className="min-h-screen flex flex-col items-center justify-center px-6 relative">
-      <CustomCursor />
       <nav className="fixed top-0 left-0 right-0 z-50 nav-blur border-b border-border">
         <div className="max-w-[1400px] mx-auto px-6 h-12 flex items-center">
           <Link href="/" className="text-[15px] font-semibold tracking-tight">JDLO</Link>

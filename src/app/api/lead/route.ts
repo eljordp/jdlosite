@@ -1,6 +1,7 @@
 import { Resend } from "resend";
 import { NextRequest, NextResponse } from "next/server";
 import { kv } from "@vercel/kv";
+import { createAdminClient } from "@/lib/supabase/admin";
 
 async function tryKv(fn: () => Promise<unknown>) {
   if (!process.env.KV_REST_API_URL) return;
@@ -181,8 +182,22 @@ export async function POST(req: NextRequest) {
     // Track form submission count
     await tryKv(() => kv.incr(`lead:${type}`));
 
+    // Store lead in Supabase for pipeline tracking
+    const admin = createAdminClient();
+    try {
+      await admin.from("leads").insert({
+        type,
+        name,
+        email: email.toLowerCase(),
+        course: course || null,
+        message: rest.message || null,
+        extra: Object.keys(rest).length > 0 ? rest : {},
+        status: "new",
+      });
+    } catch { /* table may not exist yet */ }
+
     // Send both emails — allSettled so one failure doesn't block the other
-    await Promise.allSettled([
+    const [notifResult, replyResult] = await Promise.allSettled([
       getResend().emails.send({
         from: "JDLO Leads <noreply@jdlo.site>",
         to: process.env.LEAD_EMAIL || "eljordp@gmail.com",
@@ -198,6 +213,30 @@ export async function POST(req: NextRequest) {
         replyTo: process.env.LEAD_EMAIL || "eljordp@gmail.com",
       }),
     ]);
+
+    // Log emails to Supabase
+    const emailLogs = [];
+    if (notifResult.status === "fulfilled" && notifResult.value?.data?.id) {
+      emailLogs.push({
+        to_email: process.env.LEAD_EMAIL || "eljordp@gmail.com",
+        subject: `New ${labels[type] || "Lead"}: ${name}`,
+        type: "notification",
+        status: "sent",
+        resend_id: notifResult.value.data.id,
+      });
+    }
+    if (replyResult.status === "fulfilled" && replyResult.value?.data?.id) {
+      emailLogs.push({
+        to_email: email,
+        subject: reply.subject,
+        type: "auto_reply",
+        status: "sent",
+        resend_id: replyResult.value.data.id,
+      });
+    }
+    if (emailLogs.length > 0) {
+      try { await admin.from("email_logs").insert(emailLogs); } catch { /* ignore */ }
+    }
 
     return NextResponse.json({ success: true });
   } catch (error) {

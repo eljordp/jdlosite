@@ -3,7 +3,6 @@
 import { Suspense, useEffect, useState, useRef } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
-import CustomCursor from "@/components/CustomCursor";
 
 function ReturnContent() {
   const searchParams = useSearchParams();
@@ -53,7 +52,6 @@ function ReturnContent() {
 
   return (
     <div className="min-h-screen bg-[#050505] flex items-center justify-center px-6">
-      <CustomCursor />
       <div className="max-w-md w-full text-center">
         {status === "loading" && (
           <div>

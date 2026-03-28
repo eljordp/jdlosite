@@ -1,35 +1,23 @@
 'use client';
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { GlowLink } from "@/components/GlowButton";
-import { createClient } from "@/lib/supabase/client";
-import type { User } from "@supabase/supabase-js";
 
-const disciplines = [
-  { label: "AI & Automation", href: "/courses/ai-automation", slug: "ai-automation" },
-  { label: "Sales Systems", href: "/courses/sales-systems", slug: "sales-systems" },
-  { label: "Operator Playbook", href: "/courses/operator-playbook", slug: "operator-playbook" },
-  { label: "AI Mastery", href: "/courses/ai-mastery", slug: "ai-mastery" },
-  { label: "Mentorship", href: "/mentorship", slug: "mentorship" },
+const navLinks = [
+  { label: "Services", href: "/#services" },
+  { label: "Work", href: "/#work" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
 ];
 
 interface PageShellProps {
   children: React.ReactNode;
-  ctaText: string;
-  ctaHref: string;
-  ctaExternal?: boolean;
   activeSlug?: string;
 }
 
-export default function PageShell({ children, ctaText, ctaHref, ctaExternal, activeSlug }: PageShellProps) {
+export default function PageShell({ children, activeSlug }: PageShellProps) {
   const [open, setOpen] = useState(false);
-  const [user, setUser] = useState<User | null>(null);
-
-  useEffect(() => {
-    const supabase = createClient();
-    supabase.auth.getUser().then(({ data }) => setUser(data.user));
-  }, []);
 
   return (
     <main>
@@ -39,51 +27,28 @@ export default function PageShell({ children, ctaText, ctaHref, ctaExternal, act
             JDLO
           </Link>
 
-          {/* Desktop discipline links */}
-          <div className="hidden lg:flex items-center gap-1 overflow-x-auto">
-            {disciplines.map((d) => {
-              const isActive = activeSlug === d.slug;
+          <div className="hidden md:flex items-center gap-8 text-[13px] text-text-secondary">
+            {navLinks.map((link) => {
+              const isActive = activeSlug === link.label.toLowerCase();
               return (
                 <Link
-                  key={d.slug}
-                  href={d.href}
-                  className={`whitespace-nowrap px-3 py-1.5 rounded-full text-[12px] transition-all duration-300 ${
-                    isActive
-                      ? "bg-accent/10 text-accent font-medium"
-                      : "text-text-muted hover:text-text"
-                  }`}
+                  key={link.label}
+                  href={link.href}
+                  className={`hover:text-text transition-colors duration-300 ${isActive ? "text-text font-medium" : ""}`}
                 >
-                  {d.label}
+                  {link.label}
                 </Link>
               );
             })}
-            {user && (
-              <Link
-                href="/my-courses"
-                className="whitespace-nowrap px-3 py-1.5 rounded-full text-[12px] transition-all duration-300 text-accent hover:text-accent/80 font-medium"
-              >
-                My Courses
-              </Link>
-            )}
           </div>
 
           <div className="flex items-center gap-3">
-            {!user ? (
-              <Link href="/sign-in" className="text-text-secondary hover:text-text text-[12px] transition-colors duration-300 shrink-0">
-                Sign In
-              </Link>
-            ) : (
-              <Link href="/profile" className="text-text-secondary hover:text-text text-[12px] transition-colors duration-300 shrink-0">
-                {user.email?.split("@")[0]}
-              </Link>
-            )}
-            <GlowLink href={ctaHref} external={ctaExternal} className="!py-1.5 !px-4 !text-[13px] shrink-0">
-              {ctaText}
+            <GlowLink href="/contact" className="!py-1.5 !px-4 !text-[13px] shrink-0">
+              Let&apos;s Talk
             </GlowLink>
-            {/* Mobile hamburger */}
             <button
               onClick={() => setOpen(true)}
-              className="lg:hidden p-2 -mr-1 text-text-muted hover:text-text transition-colors"
+              className="md:hidden p-2 -mr-1 text-text-muted hover:text-text transition-colors"
               aria-label="Open menu"
             >
               <svg width="20" height="14" viewBox="0 0 20 14" fill="currentColor">
@@ -98,7 +63,7 @@ export default function PageShell({ children, ctaText, ctaHref, ctaExternal, act
 
       {/* Mobile overlay */}
       <div
-        className={`fixed inset-0 z-[100] bg-bg flex flex-col px-6 py-5 transition-opacity duration-300 lg:hidden ${
+        className={`fixed inset-0 z-[100] bg-bg flex flex-col px-6 py-5 transition-opacity duration-300 md:hidden ${
           open ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
       >
@@ -116,41 +81,23 @@ export default function PageShell({ children, ctaText, ctaHref, ctaExternal, act
         </div>
 
         <div className="flex flex-col flex-1">
-          {user && (
+          {navLinks.map((link) => (
             <Link
-              href="/my-courses"
-              onClick={() => setOpen(false)}
-              className="text-[2rem] font-semibold tracking-[-0.03em] text-accent hover:text-text transition-colors duration-200 py-2.5 border-b border-border/40"
-            >
-              My Courses
-            </Link>
-          )}
-          {disciplines.map((d) => (
-            <Link
-              key={d.slug}
-              href={d.href}
+              key={link.label}
+              href={link.href}
               onClick={() => setOpen(false)}
               className={`text-[2rem] font-semibold tracking-[-0.03em] transition-colors duration-200 py-2.5 border-b border-border/40 last:border-0 ${
-                activeSlug === d.slug ? 'text-accent' : 'text-text-secondary hover:text-text'
+                activeSlug === link.label.toLowerCase() ? 'text-accent' : 'text-text-secondary hover:text-text'
               }`}
             >
-              {d.label}
+              {link.label}
             </Link>
           ))}
-          {!user && (
-            <Link
-              href="/sign-in"
-              onClick={() => setOpen(false)}
-              className="text-[2rem] font-semibold tracking-[-0.03em] text-text-secondary hover:text-text transition-colors duration-200 py-2.5"
-            >
-              Sign In
-            </Link>
-          )}
         </div>
 
         <div className="pt-8">
-          <GlowLink href={ctaHref} external={ctaExternal} className="w-full justify-center">
-            {ctaText}
+          <GlowLink href="/contact" className="w-full justify-center">
+            Let&apos;s Talk
           </GlowLink>
         </div>
       </div>
@@ -159,13 +106,10 @@ export default function PageShell({ children, ctaText, ctaHref, ctaExternal, act
       <footer className="py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-6">
           <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mb-6">
-            <Link href="/courses" className="text-text-muted text-[12px] hover:text-text transition-colors">Courses</Link>
             <Link href="/about" className="text-text-muted text-[12px] hover:text-text transition-colors">About</Link>
-            <Link href="/mentorship" className="text-text-muted text-[12px] hover:text-text transition-colors">Mentorship</Link>
             <Link href="/contact" className="text-text-muted text-[12px] hover:text-text transition-colors">Contact</Link>
             <Link href="/terms" className="text-text-muted text-[12px] hover:text-text transition-colors">Terms</Link>
             <Link href="/privacy" className="text-text-muted text-[12px] hover:text-text transition-colors">Privacy</Link>
-            <Link href="/refund" className="text-text-muted text-[12px] hover:text-text transition-colors">Refund Policy</Link>
           </div>
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-border">
             <span className="text-text-muted text-[11px] font-mono tracking-wider">
