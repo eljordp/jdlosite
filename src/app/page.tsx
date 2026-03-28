@@ -25,10 +25,18 @@ function Hero() {
           <p className="text-text-secondary text-lg md:text-xl leading-relaxed max-w-[480px]">
             Websites. Apps. AI systems. Games. Dashboards. Online casinos. If it lives on a screen and makes you money, I build it.
           </p>
-          <div>
+          <div className="flex items-center gap-4">
             <GlowLink href="/contact">
               Start a Project
             </GlowLink>
+            <a
+              href="https://instagram.com/jdlo"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ghost-btn"
+            >
+              DM @jdlo
+            </a>
           </div>
         </div>
       </div>
@@ -412,29 +420,60 @@ function FAQ() {
   );
 }
 
-/* ── CTA ── */
-function CTA() {
+/* ── Reach Out ── */
+function ReachOut() {
   return (
     <section className="section-gap relative">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-text/[0.02] rounded-full blur-[150px] pointer-events-none" />
 
       <div className="max-w-[1400px] mx-auto px-6 md:px-10 relative z-10">
         <RevealOnScroll>
-          <div className="max-w-[700px] mx-auto text-center">
-            <h2 className="font-display text-[clamp(2.8rem,6vw,5.5rem)] tracking-[-0.03em] leading-[0.95] mb-8">
-              Ready to build?
-            </h2>
-            <p className="text-text-secondary text-lg md:text-xl leading-relaxed mb-14 max-w-[500px] mx-auto">
-              Tell me what you need. I&apos;ll tell you exactly how I&apos;d build it, what it costs, and how fast you&apos;ll see results.
+          <div className="max-w-[800px] mx-auto text-center">
+            <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-8">
+              Let&apos;s work together
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <GlowLink href="/contact">
-                Start a Project
-              </GlowLink>
-              <Link href="/#work" className="ghost-btn">
-                See My Work
+            <h2 className="font-display text-[clamp(2.8rem,6vw,5.5rem)] tracking-[-0.03em] leading-[0.95] mb-8">
+              I only take on a few
+              <br />projects at a time.
+            </h2>
+            <p className="text-text-secondary text-lg md:text-xl leading-relaxed mb-14 max-w-[520px] mx-auto">
+              If you&apos;re serious about building something, reach out now. I respond to every message within 24 hours.
+            </p>
+
+            {/* Two paths */}
+            <div className="grid sm:grid-cols-2 gap-6 max-w-[640px] mx-auto mb-10">
+              {/* Instagram DM */}
+              <a
+                href="https://instagram.com/jdlo"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group border border-border rounded-2xl p-8 text-center hover:border-text/20 transition-all duration-300"
+              >
+                <span className="text-[2rem] block mb-4">&#9998;</span>
+                <span className="block text-[15px] font-semibold mb-2">DM me on Instagram</span>
+                <span className="block text-text-secondary text-[14px] mb-4">Fastest way to reach me. Send a message and I&apos;ll respond same day.</span>
+                <span className="inline-flex items-center gap-1.5 text-text font-mono text-[13px] font-medium group-hover:gap-2.5 transition-all duration-300">
+                  @jdlo <span>&rarr;</span>
+                </span>
+              </a>
+
+              {/* Contact Form */}
+              <Link
+                href="/contact"
+                className="group border border-border rounded-2xl p-8 text-center hover:border-text/20 transition-all duration-300"
+              >
+                <span className="text-[2rem] block mb-4">&#9993;</span>
+                <span className="block text-[15px] font-semibold mb-2">Fill out the form</span>
+                <span className="block text-text-secondary text-[14px] mb-4">Tell me about your project, budget, and timeline. I&apos;ll send you a plan.</span>
+                <span className="inline-flex items-center gap-1.5 text-text font-mono text-[13px] font-medium group-hover:gap-2.5 transition-all duration-300">
+                  Start a project <span>&rarr;</span>
+                </span>
               </Link>
             </div>
+
+            <p className="text-text-muted text-[13px]">
+              Or email directly: <a href="mailto:eljordp@gmail.com" className="text-text hover:underline transition-colors">eljordp@gmail.com</a>
+            </p>
           </div>
         </RevealOnScroll>
       </div>
@@ -445,7 +484,7 @@ function CTA() {
 /* ── Footer ── */
 function Footer() {
   return (
-    <footer className="py-16 border-t border-border">
+    <footer className="py-16 pb-24 md:pb-16 border-t border-border">
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-12 mb-16">
           <div>
@@ -495,6 +534,27 @@ function Footer() {
   );
 }
 
+/* ── Sticky Mobile CTA ── */
+function StickyMobileCTA() {
+  return (
+    <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden border-t border-border bg-bg/90 backdrop-blur-lg px-4 py-3">
+      <div className="flex gap-3">
+        <Link href="/contact" className="magnetic-btn flex-1 justify-center !py-2.5 !text-[13px]">
+          <span className="relative z-10">Start a Project</span>
+        </Link>
+        <a
+          href="https://instagram.com/jdlo"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="ghost-btn flex-1 justify-center !py-2.5 !text-[13px]"
+        >
+          DM @jdlo
+        </a>
+      </div>
+    </div>
+  );
+}
+
 /* ── Page ── */
 export default function Home() {
   return (
@@ -508,8 +568,9 @@ export default function Home() {
       <Statement />
       <About />
       <FAQ />
-      <CTA />
+      <ReachOut />
       <Footer />
+      <StickyMobileCTA />
     </main>
   );
 }

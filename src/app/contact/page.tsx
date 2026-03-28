@@ -72,9 +72,12 @@ export default function ContactPage() {
             <h1 className="font-display text-[clamp(2.5rem,6vw,4.5rem)] tracking-[-0.03em] leading-[1] mb-6">
               Let&apos;s work together.
             </h1>
-            <p className="text-text-secondary text-[17px] leading-relaxed max-w-[440px] mx-auto">
+            <p className="text-text-secondary text-[17px] leading-relaxed max-w-[440px] mx-auto mb-6">
               Tell me about your project and I&apos;ll get back to you within 24
               hours.
+            </p>
+            <p className="text-text-muted text-[14px]">
+              Want a faster response? <a href="https://instagram.com/jdlo" target="_blank" rel="noopener noreferrer" className="text-text font-medium hover:underline">DM me on Instagram @jdlo</a>
             </p>
           </div>
 
