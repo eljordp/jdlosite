@@ -145,35 +145,12 @@ function Process() {
   );
 }
 
-/* ── Work ── */
-const projects = [
-  {
-    category: "Agency",
-    name: "Pomaika\u2018i Co",
-    headline: "Centralized operations for a six-figure consultancy",
-    desc: "Full agency website with a custom admin dashboard that tracks leads, revenue, team performance, and client engagement in real time. One system replaced five different tools they were paying for.",
-    stats: [
-      { value: "$5K", label: "Project value" },
-      { value: "5+", label: "Tools replaced" },
-      { value: "20hrs/wk", label: "Time saved" },
-    ],
-  },
-  {
-    category: "AI System",
-    name: "Club Bot",
-    headline: "AI concierge that runs a Vegas nightclub operation",
-    desc: "Automated guest list management for a promoter moving 500+ people per week across Tao Group venues. AI handles bookings, follow-ups, and referral tracking — replaced an entire manual workflow.",
-    stats: [
-      { value: "500+", label: "Guests/week" },
-      { value: "30hrs/wk", label: "Time saved" },
-      { value: "3x", label: "List capacity" },
-    ],
-  },
+/* ── Work (featured 3) ── */
+const featured = [
   {
     category: "Casino",
     name: "Quanta",
     headline: "Full online sweepstakes casino from scratch",
-    desc: "Real-time multiplayer casino with slots, crash games, blackjack, and a complete admin panel. Live player balances, house edge management, promotional systems, and compliance-ready architecture.",
     stats: [
       { value: "6", label: "Game types" },
       { value: "Real-time", label: "Multiplayer" },
@@ -181,80 +158,23 @@ const projects = [
     ],
   },
   {
-    category: "Enterprise",
-    name: "DHL Translator",
-    headline: "Desktop app processing thousands of shipments monthly",
-    desc: "Translation system built for a DHL premier partner handling international logistics. Processes shipping documents, customs forms, and manifests at scale — eliminating hours of manual translation work.",
-    stats: [
-      { value: "10K+", label: "Shipments/mo" },
-      { value: "15hrs/wk", label: "Time saved" },
-      { value: "Desktop", label: "Native app" },
-    ],
-  },
-  {
-    category: "Enterprise",
-    name: "DHL CRA Quiz",
-    headline: "Competency assessment for enterprise onboarding",
-    desc: "Full assessment system that evaluates new hires across compliance, operations, and role-specific knowledge. Automated scoring, progress tracking, and certification — built for a company with 200+ employees.",
-    stats: [
-      { value: "200+", label: "Employees" },
-      { value: "85%", label: "Faster onboarding" },
-      { value: "Auto", label: "Certification" },
-    ],
-  },
-  {
-    category: "E-commerce",
-    name: "West Coast Terpz",
-    headline: "E-commerce platform that turned a local brand online",
-    desc: "Full online store with wholesale ordering, product management, and integrated checkout. Took a business from Instagram DMs to a real e-commerce operation processing orders 24/7.",
-    stats: [
-      { value: "$12K+", label: "Monthly revenue" },
-      { value: "24/7", label: "Order processing" },
-      { value: "3x", label: "Customer reach" },
-    ],
-  },
-  {
     category: "AI System",
-    name: "Vacaville Appliance",
-    headline: "AI receptionist that books appointments while they sleep",
-    desc: "Website plus an AI-powered receptionist that answers calls, qualifies leads, and books appointments automatically. Targeted specifically at property managers — their highest-value customer segment.",
+    name: "Club Bot",
+    headline: "AI concierge running a Vegas nightclub operation",
     stats: [
-      { value: "40+", label: "Bookings/mo" },
-      { value: "24/7", label: "Availability" },
-      { value: "$8K+", label: "Revenue added" },
+      { value: "500+", label: "Guests/week" },
+      { value: "30hrs/wk", label: "Time saved" },
+      { value: "3x", label: "List capacity" },
     ],
   },
   {
-    category: "Website",
-    name: "The Sticker Smith",
-    headline: "Brand website that turned a print shop into a real business",
-    desc: "Complete brand identity, website, and marketing system for a Bay Area print shop. Went from word-of-mouth only to showing up online, getting orders, and looking legitimate to wholesale buyers.",
+    category: "Agency",
+    name: "Pomaika\u2018i Co",
+    headline: "Centralized operations for a six-figure consultancy",
     stats: [
-      { value: "5x", label: "Online visibility" },
-      { value: "New", label: "Revenue channel" },
-      { value: "Pro", label: "Brand identity" },
-    ],
-  },
-  {
-    category: "Game",
-    name: "JDLO The Game",
-    headline: "Full RPG video game with 7 chapters and cutscenes",
-    desc: "Pokemon Platinum-style RPG built as an interactive portfolio. 7 playable chapters, original story, boss battles, minigames, and cinematic cutscenes. Not a demo — a real game people play.",
-    stats: [
-      { value: "7", label: "Chapters" },
-      { value: "20+", label: "Characters" },
-      { value: "Full", label: "Original story" },
-    ],
-  },
-  {
-    category: "Fashion",
-    name: "Onhizm",
-    headline: "Custom site for a brand worn by celebrities",
-    desc: "Replaced a basic Shopify setup with a custom-designed site that matches the brand's level. Onhizm has traction with rappers and artists out of the Bay — their site needed to match that energy.",
-    stats: [
-      { value: "Empire", label: "Label connections" },
-      { value: "Custom", label: "Full redesign" },
-      { value: "Premium", label: "Brand elevation" },
+      { value: "$5K", label: "Project value" },
+      { value: "5+", label: "Tools replaced" },
+      { value: "20hrs/wk", label: "Time saved" },
     ],
   },
 ];
@@ -264,54 +184,54 @@ function Work() {
     <section id="work" className="section-gap border-t border-border">
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
         <RevealOnScroll>
-          <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-6">
-            Selected Work
-          </p>
-          <h2 className="font-display text-[clamp(2.2rem,5vw,4.5rem)] tracking-[-0.03em] leading-[0.95] mb-6">
-            Real clients.<br />
-            <span className="text-text-secondary">Real results.</span>
-          </h2>
-          <p className="text-text-secondary text-[15px] leading-relaxed max-w-[500px] mb-20">
-            Websites, apps, AI systems, games, casinos, enterprise tools. Here&apos;s a sample of what I&apos;ve shipped.
-          </p>
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-16">
+            <div>
+              <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-6">
+                Selected Work
+              </p>
+              <h2 className="font-display text-[clamp(2.2rem,5vw,4.5rem)] tracking-[-0.03em] leading-[0.95]">
+                Real clients.<br />
+                <span className="text-text-secondary">Real results.</span>
+              </h2>
+            </div>
+            <Link
+              href="/work"
+              className="inline-flex items-center gap-2 text-text-secondary text-[14px] font-mono font-medium hover:text-text border-b border-border-hover hover:border-text pb-0.5 transition-all duration-300 group shrink-0"
+            >
+              See all work
+              <span className="group-hover:translate-x-1 transition-transform duration-200">&rarr;</span>
+            </Link>
+          </div>
         </RevealOnScroll>
 
         <div className="space-y-0">
-          {projects.map((project, i) => (
-            <RevealOnScroll key={project.name} delay={(i % 3) + 1}>
+          {featured.map((project, i) => (
+            <RevealOnScroll key={project.name} delay={i + 1}>
               <div className="py-10 sm:py-14 border-b border-border last:border-0">
-                {/* Category + Name */}
-                <div className="mb-6">
-                  <span className="text-[11px] font-mono text-text-muted tracking-[0.15em] uppercase">
-                    {project.category}
-                  </span>
-                  <h3 className="font-display text-[clamp(1.6rem,4vw,3rem)] tracking-[-0.02em] leading-[1.05] mt-2">
-                    {project.name}
-                  </h3>
-                </div>
-
-                {/* Headline */}
-                <p className="text-text-secondary text-[clamp(1rem,2vw,1.25rem)] leading-relaxed font-medium mb-4 max-w-[640px]">
-                  {project.headline}
-                </p>
-
-                {/* Description */}
-                <p className="text-text-muted text-[14px] leading-relaxed max-w-[640px] mb-8">
-                  {project.desc}
-                </p>
-
-                {/* Stats */}
-                <div className="flex flex-wrap gap-x-8 gap-y-4">
-                  {project.stats.map((stat) => (
-                    <div key={stat.label}>
-                      <span className="text-[clamp(1.4rem,2.5vw,1.8rem)] font-semibold tracking-[-0.03em] block leading-none">
-                        {stat.value}
-                      </span>
-                      <span className="text-text-muted text-[11px] font-mono tracking-wider uppercase mt-1 block">
-                        {stat.label}
-                      </span>
-                    </div>
-                  ))}
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6">
+                  <div className="flex-1">
+                    <span className="text-[11px] font-mono text-text-muted tracking-[0.15em] uppercase">
+                      {project.category}
+                    </span>
+                    <h3 className="font-display text-[clamp(1.6rem,4vw,3rem)] tracking-[-0.02em] leading-[1.05] mt-2 mb-3">
+                      {project.name}
+                    </h3>
+                    <p className="text-text-secondary text-[clamp(1rem,2vw,1.15rem)] leading-relaxed max-w-[500px]">
+                      {project.headline}
+                    </p>
+                  </div>
+                  <div className="flex flex-wrap sm:flex-col gap-x-8 gap-y-4 sm:gap-y-5 sm:items-end sm:text-right shrink-0">
+                    {project.stats.map((stat) => (
+                      <div key={stat.label}>
+                        <span className="text-[1.4rem] sm:text-[1.6rem] font-semibold tracking-[-0.03em] block leading-none">
+                          {stat.value}
+                        </span>
+                        <span className="text-text-muted text-[10px] font-mono tracking-wider uppercase mt-1 block">
+                          {stat.label}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </RevealOnScroll>
