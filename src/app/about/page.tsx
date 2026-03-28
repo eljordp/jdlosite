@@ -19,7 +19,7 @@ export default function AboutPage() {
               <h1 className="font-[family-name:var(--font-display)] text-[clamp(3rem,8vw,6.5rem)] font-normal tracking-[-0.03em] leading-[0.9] mb-10 hero-animate hero-delay-2">
                 I build things
                 <br />
-                <span className="gradient-text-blue">that work.</span>
+                <span className="text-text-secondary">that work.</span>
               </h1>
               <p className="text-text-secondary text-xl leading-relaxed max-w-[500px] hero-animate hero-delay-3">
                 Not a guru. Not a course creator. I&apos;m a builder and operator
@@ -58,11 +58,11 @@ export default function AboutPage() {
                 className="text-[18px] font-normal leading-[1.85] tracking-normal"
               />
               <ScrollHighlightText
-                text="In about five months I taught myself the entire modern stack. React, TypeScript, Next.js, Tailwind, databases, APIs, deployment. Not from a bootcamp. From building real things for real clients who were paying me to figure it out."
+                text="In about five months I taught myself how to build anything. Websites, apps, AI tools, dashboards, games — not from a bootcamp. From building real things for real clients who were paying me to figure it out."
                 className="text-[18px] font-normal leading-[1.85] tracking-normal"
               />
               <ScrollHighlightText
-                text="Now I build AI systems that replace manual work, sales operations that actually close, and websites that make money. Restaurants, cannabis brands, clothing labels, nightclub promoters, appliance companies, print shops. 30+ projects shipped. I use AI as my entire operations stack — Claude Code, automation, the full toolkit."
+                text="Now I build whatever businesses need. Websites that convert, AI systems that save 40 hours a week, apps, games, online casinos, enterprise tools. Restaurants, cannabis brands, clothing labels, nightclub promoters, appliance companies, print shops. 30+ projects shipped."
                 className="text-[18px] font-normal leading-[1.85] tracking-normal"
               />
               <ScrollHighlightText

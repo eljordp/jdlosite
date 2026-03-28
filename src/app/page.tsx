@@ -9,7 +9,7 @@ import HomeNav from "@/components/HomeNav";
 function Hero() {
   return (
     <section className="min-h-screen flex flex-col justify-end relative px-6 md:px-10 pb-[12vh]">
-      <div className="absolute top-[20%] right-[8%] w-[500px] h-[500px] bg-accent/[0.03] rounded-full blur-[200px] pointer-events-none" />
+      <div className="absolute top-[20%] right-[8%] w-[500px] h-[500px] bg-text/[0.02] rounded-full blur-[200px] pointer-events-none" />
 
       <div className="max-w-[1400px] mx-auto w-full relative z-10">
         <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase mb-10 hero-animate hero-delay-1 font-mono">
@@ -17,13 +17,13 @@ function Hero() {
         </p>
 
         <h1 className="font-display hero-animate hero-delay-2 text-[clamp(2.8rem,7.5vw,7.5rem)] leading-[0.95] tracking-[-0.03em] max-w-[1100px]">
-          I build websites that
-          <span className="gradient-text-blue"> make money.</span>
+          If you can think it,
+          <br />I can build it.
         </h1>
 
         <div className="hero-animate hero-delay-3 mt-12 flex flex-col md:flex-row md:items-end md:justify-between gap-10">
           <p className="text-text-secondary text-lg md:text-xl leading-relaxed max-w-[480px]">
-            Plus AI systems and sales operations. For local businesses, brands, and anyone serious about growing.
+            Websites. Apps. AI systems. Games. Dashboards. Online casinos. If it lives on a screen and makes you money, I build it.
           </p>
           <div>
             <GlowLink href="/contact">
@@ -39,21 +39,21 @@ function Hero() {
 /* ── Services ── */
 const services = [
   {
-    title: "Websites",
-    desc: "Custom sites that look like you spent six figures. Built to convert visitors into customers — not just sit there looking pretty. Real code, real design, real results.",
+    title: "Websites & E-commerce",
+    desc: "Sites that make you money and make people take you seriously. Not templates — custom built, designed to convert, ready to grow with you.",
     price: "From $3K",
     href: "/contact",
   },
   {
-    title: "AI Systems",
-    desc: "Chatbots, AI receptionists, automation workflows. Systems that replace 40+ hours of manual work per week and run while you sleep.",
+    title: "Apps & Systems",
+    desc: "AI tools, dashboards, booking systems, automation, internal ops — anything your business needs to run faster, save time, and make more money.",
     price: "From $5K",
     href: "/contact",
   },
   {
-    title: "Sales Operations",
-    desc: "Pipeline setup, CRM automation, booking flows, outbound systems. Everything your sales team needs to close more without hiring more.",
-    price: "From $2K",
+    title: "Creative & Custom",
+    desc: "Video games, online casinos, enterprise tools, quizzes, whatever you can imagine. If it can be built, I've probably already built something like it.",
+    price: "Let\u2019s talk",
     href: "/contact",
   },
 ];
@@ -149,8 +149,28 @@ function Process() {
 const clients = [
   {
     name: "Pomaika\u2018i Co",
-    desc: "Full-service agency website + internal ops dashboard",
+    desc: "Agency website + internal team ops dashboard",
     tags: ["Website", "Dashboard"],
+  },
+  {
+    name: "Club Bot",
+    desc: "AI concierge that automates guest lists for Vegas nightclub promoters",
+    tags: ["App", "AI"],
+  },
+  {
+    name: "Quanta",
+    desc: "Full online sweepstakes casino with real-time multiplayer games",
+    tags: ["Casino", "App"],
+  },
+  {
+    name: "DHL Translator",
+    desc: "Desktop translation app for a DHL premier shipping partner",
+    tags: ["App", "Enterprise"],
+  },
+  {
+    name: "DHL CRA Quiz",
+    desc: "Competency assessment system for enterprise-level onboarding",
+    tags: ["App", "Enterprise"],
   },
   {
     name: "West Coast Terpz",
@@ -158,19 +178,19 @@ const clients = [
     tags: ["Website", "E-commerce"],
   },
   {
-    name: "Club Bot",
-    desc: "AI concierge that automates guest lists for Vegas nightclub promoters",
-    tags: ["AI System", "Automation"],
-  },
-  {
     name: "Vacaville Appliance",
-    desc: "Website + AI receptionist targeting property managers",
-    tags: ["Website", "AI System"],
+    desc: "Website + AI receptionist that books appointments automatically",
+    tags: ["Website", "AI"],
   },
   {
     name: "The Sticker Smith",
-    desc: "Brand website + marketing system for Bay Area print shop",
+    desc: "Full brand website + marketing system for Bay Area print shop",
     tags: ["Website", "Marketing"],
+  },
+  {
+    name: "JDLO The Game",
+    desc: "Pokemon-style RPG video game — 7 chapters, cutscenes, minigames",
+    tags: ["Game", "Creative"],
   },
   {
     name: "Onhizm",
@@ -234,13 +254,13 @@ function Results() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-0">
           {[
-            { num: "30+", label: "Projects shipped", desc: "Websites, AI systems, dashboards, e-commerce — across every kind of business." },
-            { num: "2 weeks", label: "Average turnaround", desc: "Most websites go from first message to live in under 14 days. No dragging it out." },
-            { num: "$0", label: "Templates used", desc: "Every project is custom. No Wix. No Squarespace. No Shopify themes. Real code, real design." },
+            { num: "30+", label: "Projects shipped", desc: "Websites, apps, games, AI tools, dashboards, casinos — for every kind of business and idea." },
+            { num: "2 weeks", label: "Average turnaround", desc: "Most projects go from first message to live fast. No dragging it out, no endless meetings." },
+            { num: "100%", label: "Custom built", desc: "No templates. No page builders. No shortcuts. Everything is built from scratch, designed for you." },
           ].map((stat, i) => (
             <RevealOnScroll key={stat.label} delay={i + 1}>
               <div className={`py-5 md:py-0 md:pr-12 ${i < 2 ? "md:border-r border-b md:border-b-0 border-border" : ""} ${i > 0 ? "md:pl-12" : ""}`}>
-                <span className="text-[clamp(2rem,4vw,3.5rem)] font-bold tracking-[-0.04em] gradient-text-blue">
+                <span className="text-[clamp(2rem,4vw,3.5rem)] font-bold tracking-[-0.04em] gradient-text">
                   {stat.num}
                 </span>
                 <h3 className="text-[15px] font-medium mt-2 mb-2">
@@ -264,7 +284,7 @@ function Statement() {
     <section className="section-gap">
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
         <ScrollHighlightText
-          text="Your website is the first thing people see. If it looks like a template, they treat you like a template. I build sites that make people take you seriously — then I build the systems behind them that actually make you money."
+          text="Websites. Apps. AI systems. Games. Casinos. Enterprise tools. I don't specialize in one thing — I specialize in building whatever you need, fast, and making sure it actually works."
           className="font-display text-[clamp(1.8rem,4vw,3.5rem)] tracking-[-0.03em] leading-[1.2] max-w-[900px]"
         />
       </div>
@@ -288,10 +308,10 @@ function About() {
             </h2>
             <div className="space-y-6 max-w-[500px]">
               <p className="text-text-secondary text-[16px] leading-relaxed">
-                I started selling websites for a few hundred bucks with no portfolio and no connections. Taught myself the entire modern stack in 5 months. Now I build AI&nbsp;systems, sales operations, and custom platforms for businesses that need to grow.
+                I started with nothing &mdash; no portfolio, no connections, no playbook. Taught myself how to build anything a business could need. Websites, apps, AI tools, games, enterprise systems &mdash; 30+ projects shipped and counting.
               </p>
               <p className="text-text-secondary text-[16px] leading-relaxed">
-                Everything I offer, I run myself. My own businesses use the same tools, the same automation, the same systems I build for clients. If it doesn&apos;t work for me, I&apos;m not selling it to you.
+                Everything I build for clients, I use in my own businesses. If it doesn&apos;t make me money or save me time, I&apos;m not selling it to you.
               </p>
             </div>
             <Link
@@ -395,7 +415,7 @@ function FAQ() {
 function CTA() {
   return (
     <section className="section-gap relative">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/[0.03] rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-text/[0.02] rounded-full blur-[150px] pointer-events-none" />
 
       <div className="max-w-[1400px] mx-auto px-6 md:px-10 relative z-10">
         <RevealOnScroll>
