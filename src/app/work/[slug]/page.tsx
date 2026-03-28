@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import PageShell from "@/components/PageShell";
 import RevealOnScroll from "@/components/RevealOnScroll";
@@ -11,7 +12,7 @@ const projects: Record<string, {
   stats: { value: string; label: string }[];
   link?: string;
   revenue?: string;
-  video?: string;
+  screenshot?: string;
 }> = {
   quanta: {
     name: "Quanta",
@@ -24,7 +25,7 @@ const projects: Record<string, {
       { value: "$50K+", label: "Platform value" },
     ],
     link: "https://quantplay-ten.vercel.app/play",
-    video: "/videos/quanta.mp4",
+    screenshot: "/screenshots/quanta.png",
   },
   "club-bot": {
     name: "Club Bot",
@@ -36,7 +37,7 @@ const projects: Record<string, {
       { value: "30hrs/wk", label: "Time saved" },
       { value: "3x", label: "List capacity" },
     ],
-    video: "/videos/club-bot.mp4",
+    screenshot: "/screenshots/club-bot.png",
   },
   pomaikai: {
     name: "Pomaika\u2018i Co",
@@ -49,7 +50,7 @@ const projects: Record<string, {
       { value: "20hrs/wk", label: "Time saved" },
     ],
     revenue: "$5,000",
-    video: "/videos/pomaikai.mp4",
+    screenshot: "/screenshots/pomaikai.png",
   },
   "dhl-translator": {
     name: "DHL Translator",
@@ -61,7 +62,7 @@ const projects: Record<string, {
       { value: "15hrs/wk", label: "Time saved" },
       { value: "Native", label: "Desktop app" },
     ],
-    video: "/videos/dhl-translator.mp4",
+    screenshot: "/screenshots/cubicship.png",
   },
   "dhl-cra-quiz": {
     name: "DHL CRA Quiz",
@@ -73,7 +74,7 @@ const projects: Record<string, {
       { value: "85%", label: "Faster onboarding" },
       { value: "Auto", label: "Certification" },
     ],
-    video: "/videos/dhl-cra-quiz.mp4",
+    screenshot: "/screenshots/cubicship.png",
   },
   "pf-changs": {
     name: "PF Chang\u2019s AI Receptionist",
@@ -119,7 +120,7 @@ const projects: Record<string, {
       { value: "3x", label: "Customer reach" },
     ],
     revenue: "$900+",
-    video: "/videos/west-coast-terpz.mp4",
+    screenshot: "/screenshots/west-coast-terpz.png",
   },
   "vacaville-appliance": {
     name: "Vacaville Appliance",
@@ -132,7 +133,7 @@ const projects: Record<string, {
       { value: "$8K+", label: "Revenue added" },
     ],
     revenue: "$1,300",
-    video: "/videos/vacaville-appliance.mp4",
+    screenshot: "/screenshots/vacaville-appliance.png",
   },
   "sticker-smith": {
     name: "The Sticker Smith",
@@ -145,7 +146,7 @@ const projects: Record<string, {
       { value: "Pro", label: "Brand identity" },
     ],
     revenue: "~$1,000",
-    video: "/videos/sticker-smith.mp4",
+    screenshot: "/screenshots/sticker-smith.png",
   },
   "dank-slaps": {
     name: "Dank Slaps",
@@ -168,6 +169,7 @@ const projects: Record<string, {
       { value: "3", label: "License tiers" },
       { value: "Auto", label: "Delivery" },
     ],
+    screenshot: "/screenshots/miiir-beats.png",
   },
   "fw-wheels": {
     name: "fw.wheels",
@@ -180,6 +182,7 @@ const projects: Record<string, {
       { value: "Custom", label: "Built" },
     ],
     revenue: "$650",
+    screenshot: "/screenshots/fw-wheels.png",
   },
   onhizm: {
     name: "Onhizm",
@@ -191,7 +194,7 @@ const projects: Record<string, {
       { value: "Custom", label: "Full redesign" },
       { value: "Premium", label: "Brand elevation" },
     ],
-    video: "/videos/onhizm.mp4",
+    screenshot: "/screenshots/fw-wheels.png",
   },
   cubicship: {
     name: "Cubicship",
@@ -203,6 +206,7 @@ const projects: Record<string, {
       { value: "Returns", label: "Portal" },
       { value: "2", label: "Platforms" },
     ],
+    screenshot: "/screenshots/cubicship.png",
   },
   "robot-producer": {
     name: "Robot Producer",
@@ -236,7 +240,7 @@ const projects: Record<string, {
       { value: "20+", label: "Characters" },
       { value: "Full", label: "Original story" },
     ],
-    video: "/videos/jdlo-the-game.mp4",
+    screenshot: "/screenshots/jdlo-the-game.png",
   },
   "jdlo-wii": {
     name: "JDLO Wii",
@@ -259,6 +263,7 @@ const projects: Record<string, {
       { value: "Team", label: "Tracking" },
       { value: "Revenue", label: "Metrics" },
     ],
+    screenshot: "/screenshots/pomaikai-dashboard.png",
   },
   "eagles-automotive": {
     name: "Eagles Automotive",
@@ -348,26 +353,17 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             </div>
           </RevealOnScroll>
 
-          {/* Video */}
-          {project.video ? (
+          {/* Screenshot */}
+          {project.screenshot && (
             <RevealOnScroll>
-              <div className="mt-16 rounded-2xl border border-border overflow-hidden max-w-[800px]">
-                <video
-                  src={project.video}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  className="w-full aspect-video object-cover"
+              <div className="mt-16 rounded-2xl border border-border overflow-hidden max-w-[900px] shadow-lg">
+                <Image
+                  src={project.screenshot}
+                  alt={`${project.name} screenshot`}
+                  width={1200}
+                  height={700}
+                  className="w-full h-auto"
                 />
-              </div>
-            </RevealOnScroll>
-          ) : (
-            <RevealOnScroll>
-              <div className="mt-16 rounded-2xl border border-border bg-surface flex items-center justify-center aspect-video max-w-[800px]">
-                <p className="text-text-muted text-[14px] font-mono">
-                  Walkthrough video coming soon
-                </p>
               </div>
             </RevealOnScroll>
           )}
