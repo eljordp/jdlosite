@@ -300,32 +300,7 @@ details summary { list-style: none; }
   padding-bottom: clamp(6rem, 14vh, 12rem);
 }
 
-/* ── Hide default cursor everywhere (fine-pointer only) ── */
-@media (pointer: fine) {
-  html, body, *, *::before, *::after {
-    cursor: none !important;
-  }
-  /* Override Tailwind utilities that set cursor */
-  .cursor-pointer, .cursor-not-allowed, .cursor-default {
-    cursor: none !important;
-  }
-}
-
-/* ── Custom cursor ── */
-.cursor-dot {
-  width: 8px;
-  height: 8px;
-  background: var(--color-accent);
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  z-index: 99999;
-  transition: transform 0.15s ease, opacity 0.15s ease;
-  transform: translate(-50%, -50%);
-}
-@media (pointer: coarse) {
-  .cursor-dot { display: none; }
-}
+/* cursor: default system cursor (custom cursor component removed) */
 
 /* ── Bounce arrows ── */
 @keyframes bounce-left {
