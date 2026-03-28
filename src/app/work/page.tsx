@@ -16,16 +16,22 @@ type Category =
   | "E-commerce"
   | "Casino"
   | "Game"
-  | "Fashion";
+  | "Fashion"
+  | "SaaS"
+  | "Pitch"
+  | "Tool";
 
 const CATEGORIES: Category[] = [
   "All",
   "Website",
   "AI",
-  "Enterprise",
   "E-commerce",
+  "Enterprise",
+  "SaaS",
   "Casino",
   "Game",
+  "Pitch",
+  "Tool",
   "Fashion",
 ];
 
@@ -37,6 +43,7 @@ interface Project {
 }
 
 const PROJECTS: Project[] = [
+  // ── Flagship ──
   {
     name: "Quanta",
     categories: ["Casino"],
@@ -45,7 +52,7 @@ const PROJECTS: Project[] = [
   },
   {
     name: "Club Bot",
-    categories: ["AI"],
+    categories: ["AI", "SaaS"],
     headline: "AI concierge running a Vegas nightclub operation",
     stats: ["500+ guests/week", "30hrs/wk saved", "3x list capacity"],
   },
@@ -55,9 +62,10 @@ const PROJECTS: Project[] = [
     headline: "Centralized operations for a six-figure consultancy",
     stats: ["$5K project", "5+ tools replaced", "20hrs/wk saved"],
   },
+  // ── Enterprise ──
   {
     name: "DHL Translator",
-    categories: ["Enterprise"],
+    categories: ["Enterprise", "Tool"],
     headline: "Desktop app processing thousands of shipments monthly",
     stats: ["10K+ shipments/mo", "15hrs/wk saved", "Desktop native app"],
   },
@@ -67,6 +75,38 @@ const PROJECTS: Project[] = [
     headline: "Competency assessment for enterprise onboarding",
     stats: ["200+ employees", "85% faster onboarding", "Auto certification"],
   },
+  {
+    name: "PF Chang\u2019s AI Receptionist",
+    categories: ["AI", "Enterprise"],
+    headline: "AI phone system demo for national restaurant chain",
+    stats: ["Enterprise demo", "Auto call routing", "Lead qualification"],
+  },
+  // ── AI & SaaS ──
+  {
+    name: "AI Receptionist",
+    categories: ["AI", "SaaS"],
+    headline: "White-label AI phone system for local businesses",
+    stats: ["Multi-tenant", "24/7 call handling", "Auto booking"],
+  },
+  {
+    name: "Pomaika\u2018i Jarvis",
+    categories: ["AI", "Tool"],
+    headline: "AI business automation agent for agency operations",
+    stats: ["Full automation", "Custom AI agent", "Biz intelligence"],
+  },
+  {
+    name: "Loan Agent",
+    categories: ["AI", "Enterprise", "SaaS"],
+    headline: "Multi-tenant loan processing system with AI underwriting",
+    stats: ["Multi-tenant", "Auto processing", "PDF generation"],
+  },
+  {
+    name: "VINATask",
+    categories: ["Tool", "AI"],
+    headline: "Voice-input task manager that works offline",
+    stats: ["Voice control", "Works offline", "PWA app"],
+  },
+  // ── E-commerce & Websites ──
   {
     name: "West Coast Terpz",
     categories: ["Website", "E-commerce"],
@@ -81,14 +121,79 @@ const PROJECTS: Project[] = [
   },
   {
     name: "The Sticker Smith",
-    categories: ["Website"],
+    categories: ["Website", "E-commerce"],
     headline: "Brand website that turned a print shop into a real business",
-    stats: [
-      "5x online visibility",
-      "New revenue channel",
-      "Pro brand identity",
-    ],
+    stats: ["5x online visibility", "New revenue channel", "Pro brand identity"],
   },
+  {
+    name: "Dank Slaps",
+    categories: ["E-commerce"],
+    headline: "Niche dropship store system \u2014 one template, infinite niches",
+    stats: ["Instant deploy", "Auto fulfillment", "Scalable system"],
+  },
+  {
+    name: "Created by Mase",
+    categories: ["Website", "E-commerce"],
+    headline: "Multi-brand e-commerce for clothing + home goods",
+    stats: ["$3K project", "2 brands, 1 site", "Full store"],
+  },
+  {
+    name: "Miiir Beats",
+    categories: ["Website", "E-commerce"],
+    headline: "Beat store for a producer with 107M+ streams",
+    stats: ["107M+ streams", "3 license tiers", "Auto delivery"],
+  },
+  {
+    name: "fw.wheels",
+    categories: ["Website"],
+    headline: "Wheel catalog and ordering system for auto dealer",
+    stats: ["Full catalog", "MRR potential", "Custom built"],
+  },
+  {
+    name: "Onhizm",
+    categories: ["Website", "Fashion"],
+    headline: "Custom site for a brand worn by celebrities",
+    stats: ["Empire connections", "Custom redesign", "Premium brand"],
+  },
+  {
+    name: "Cubicship",
+    categories: ["Website", "Enterprise"],
+    headline: "Returns portal and main site for DHL premier partner",
+    stats: ["Refund workflow", "Returns portal", "2 platforms"],
+  },
+  // ── Pitch Decks & Presentations ──
+  {
+    name: "Robot Pitch",
+    categories: ["Pitch"],
+    headline: "B2B sales pitch deck for selling robots to businesses",
+    stats: ["ROI calculator", "Video demos", "Full sales kit"],
+  },
+  {
+    name: "Best Odds Slideshow",
+    categories: ["Pitch"],
+    headline: "Interactive presentation for casino odds and strategy",
+    stats: ["Data-driven", "Visual slides", "Animated"],
+  },
+  {
+    name: "Robot Store",
+    categories: ["Website", "Pitch"],
+    headline: "Storefront and sales tool for B2B robotics",
+    stats: ["Video assets", "ROI calculator", "Product catalog"],
+  },
+  // ── Real Estate ──
+  {
+    name: "Abby Dream Homes",
+    categories: ["Website"],
+    headline: "Website for relocation specialist in real estate",
+    stats: ["Lead capture", "Listing integration", "Custom design"],
+  },
+  {
+    name: "Mason Roos",
+    categories: ["Website"],
+    headline: "Personal brand site for eXp Realty agent",
+    stats: ["Agent branding", "Lead funnel", "Custom built"],
+  },
+  // ── Games & Creative ──
   {
     name: "JDLO The Game",
     categories: ["Game"],
@@ -96,14 +201,35 @@ const PROJECTS: Project[] = [
     stats: ["7 chapters", "20+ characters", "Full original story"],
   },
   {
-    name: "Onhizm",
-    categories: ["Website", "Fashion"],
-    headline: "Custom site for a brand worn by celebrities",
-    stats: [
-      "Empire label connections",
-      "Custom full redesign",
-      "Premium brand elevation",
-    ],
+    name: "JDLO Wii",
+    categories: ["Game"],
+    headline: "Wii Sports-inspired multiplayer web game",
+    stats: ["1v1 multiplayer", "Web-based", "Original game"],
+  },
+  {
+    name: "Pomaika\u2018i Dashboard",
+    categories: ["Tool", "AI"],
+    headline: "Internal team ops dashboard tracking everything in real time",
+    stats: ["Real-time data", "Team tracking", "Revenue metrics"],
+  },
+  // ── More ──
+  {
+    name: "Eagles Automotive",
+    categories: ["Website"],
+    headline: "Auto dealership site with real inventory and photos",
+    stats: ["Live inventory", "Photo gallery", "Lead capture"],
+  },
+  {
+    name: "JDLO Video",
+    categories: ["Tool"],
+    headline: "Programmatic video generation engine",
+    stats: ["Auto rendering", "Template system", "Batch export"],
+  },
+  {
+    name: "Napa Network",
+    categories: ["Website", "Pitch"],
+    headline: "Regional business network site for Napa area",
+    stats: ["Local directory", "Business network", "Lead gen"],
   },
 ];
 
