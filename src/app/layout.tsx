@@ -3,11 +3,12 @@ import { Suspense } from "react";
 import "./globals.css";
 import PostHogProvider from "@/components/PostHogProvider";
 import ReferralCapture from "@/components/ReferralCapture";
+import PageTransition from "@/components/PageTransition";
 
 export const metadata: Metadata = {
-  title: "JDLO — Websites, AI Systems & Sales Operations",
+  title: "JDLO — I Build Whatever You Need",
   description:
-    "I build websites that convert, AI systems that replace manual work, and sales operations that close. Jordan Lopez — operator, builder.",
+    "Websites, apps, AI systems, games, casinos, enterprise tools. If you can think it, I can build it. Jordan Lopez — operator, builder.",
   icons: {
     icon: "/jordan.jpg",
   },
@@ -50,7 +51,7 @@ export default function RootLayout({
       </head>
       <body className="font-sans antialiased">
         <PostHogProvider>
-          {children}
+          <PageTransition>{children}</PageTransition>
           <Suspense fallback={null}>
             <ReferralCapture />
           </Suspense>

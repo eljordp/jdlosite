@@ -279,7 +279,17 @@ details summary { list-style: none; }
   padding-bottom: clamp(6rem, 14vh, 12rem);
 }
 
-/* cursor: default system cursor (custom cursor component removed) */
+/* ── Page transitions ── */
+.page-transition {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.page-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 /* ── Bounce arrows ── */
 @keyframes bounce-left {

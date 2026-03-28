@@ -42,19 +42,19 @@ const services = [
     title: "Websites & E-commerce",
     desc: "Sites that make you money and make people take you seriously. Not templates — custom built, designed to convert, ready to grow with you.",
     price: "From $3K",
-    href: "/contact",
+    href: "/services/websites",
   },
   {
     title: "Apps & Systems",
     desc: "AI tools, dashboards, booking systems, automation, internal ops — anything your business needs to run faster, save time, and make more money.",
     price: "From $5K",
-    href: "/contact",
+    href: "/services/apps-systems",
   },
   {
     title: "Creative & Custom",
     desc: "Video games, online casinos, enterprise tools, quizzes, whatever you can imagine. If it can be built, I've probably already built something like it.",
     price: "Let\u2019s talk",
-    href: "/contact",
+    href: "/services/creative",
   },
 ];
 
