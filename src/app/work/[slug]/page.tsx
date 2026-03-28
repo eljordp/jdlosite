@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import PageShell from "@/components/PageShell";
 import RevealOnScroll from "@/components/RevealOnScroll";
 
-/* Project data — add details here as we build out each page */
 const projects: Record<string, {
   name: string;
   category: string;
@@ -39,7 +38,7 @@ const projects: Record<string, {
     ],
     video: "/videos/club-bot.mp4",
   },
-  "pomaikai": {
+  pomaikai: {
     name: "Pomaika\u2018i Co",
     category: "Agency",
     headline: "Centralized operations for a six-figure consultancy",
@@ -51,6 +50,226 @@ const projects: Record<string, {
     ],
     revenue: "$5,000",
     video: "/videos/pomaikai.mp4",
+  },
+  "dhl-translator": {
+    name: "DHL Translator",
+    category: "Enterprise",
+    headline: "Desktop app processing thousands of shipments monthly",
+    description: "Translation system built for a DHL premier partner handling international logistics. Processes shipping documents, customs forms, and manifests at scale — eliminating hours of manual translation work every single day.",
+    stats: [
+      { value: "10K+", label: "Shipments/mo" },
+      { value: "15hrs/wk", label: "Time saved" },
+      { value: "Native", label: "Desktop app" },
+    ],
+    video: "/videos/dhl-translator.mp4",
+  },
+  "dhl-cra-quiz": {
+    name: "DHL CRA Quiz",
+    category: "Enterprise",
+    headline: "Competency assessment for enterprise onboarding",
+    description: "Full assessment system that evaluates new hires across compliance, operations, and role-specific knowledge. Automated scoring, progress tracking, and certification — built for a company with 200+ employees.",
+    stats: [
+      { value: "200+", label: "Employees" },
+      { value: "85%", label: "Faster onboarding" },
+      { value: "Auto", label: "Certification" },
+    ],
+    video: "/videos/dhl-cra-quiz.mp4",
+  },
+  "pf-changs": {
+    name: "PF Chang\u2019s AI Receptionist",
+    category: "AI / Enterprise",
+    headline: "AI phone system demo for national restaurant chain",
+    description: "Built an AI-powered phone system that handles incoming calls, routes them to the right department, qualifies leads, and books reservations automatically. Demoed to a national chain.",
+    stats: [
+      { value: "Enterprise", label: "Demo" },
+      { value: "Auto", label: "Call routing" },
+      { value: "AI", label: "Lead qualification" },
+    ],
+  },
+  "ai-receptionist": {
+    name: "AI Receptionist",
+    category: "AI / SaaS",
+    headline: "White-label AI phone system for local businesses",
+    description: "A multi-tenant AI receptionist product that any local business can use. Answers calls 24/7, qualifies leads, books appointments, and sends follow-ups. Designed to be white-labeled and resold.",
+    stats: [
+      { value: "Multi-tenant", label: "Architecture" },
+      { value: "24/7", label: "Call handling" },
+      { value: "Auto", label: "Booking" },
+    ],
+  },
+  "loan-agent": {
+    name: "Loan Agent",
+    category: "AI / SaaS",
+    headline: "Multi-tenant loan processing system with AI underwriting",
+    description: "Full loan processing platform that automates applications, document review, and underwriting decisions. Multi-tenant so multiple brokerages can use it. Generates PDFs, tracks pipelines, and manages compliance.",
+    stats: [
+      { value: "Multi-tenant", label: "Platform" },
+      { value: "Auto", label: "Processing" },
+      { value: "PDF", label: "Generation" },
+    ],
+  },
+  "west-coast-terpz": {
+    name: "West Coast Terpz",
+    category: "E-commerce",
+    headline: "E-commerce platform that turned a local brand online",
+    description: "Full online store with wholesale ordering, product management, and integrated checkout. Took a business from Instagram DMs to a real e-commerce operation processing orders 24/7.",
+    stats: [
+      { value: "$12K+", label: "Monthly revenue" },
+      { value: "24/7", label: "Order processing" },
+      { value: "3x", label: "Customer reach" },
+    ],
+    revenue: "$900+",
+    video: "/videos/west-coast-terpz.mp4",
+  },
+  "vacaville-appliance": {
+    name: "Vacaville Appliance",
+    category: "AI System",
+    headline: "AI receptionist that books appointments while they sleep",
+    description: "Website plus an AI-powered receptionist that answers calls, qualifies leads, and books appointments automatically. Targeted specifically at property managers — their highest-value customer segment.",
+    stats: [
+      { value: "40+", label: "Bookings/mo" },
+      { value: "24/7", label: "Availability" },
+      { value: "$8K+", label: "Revenue added" },
+    ],
+    revenue: "$1,300",
+    video: "/videos/vacaville-appliance.mp4",
+  },
+  "sticker-smith": {
+    name: "The Sticker Smith",
+    category: "Website + Marketing",
+    headline: "Brand website that turned a print shop into a real business",
+    description: "Complete brand identity, website, and marketing system for a Bay Area print shop. Went from word-of-mouth only to showing up online, getting orders, and looking legitimate to wholesale buyers.",
+    stats: [
+      { value: "5x", label: "Online visibility" },
+      { value: "New", label: "Revenue channel" },
+      { value: "Pro", label: "Brand identity" },
+    ],
+    revenue: "~$1,000",
+    video: "/videos/sticker-smith.mp4",
+  },
+  "dank-slaps": {
+    name: "Dank Slaps",
+    category: "E-commerce",
+    headline: "Niche dropship store system — one template, infinite niches",
+    description: "A reusable e-commerce template system where JP drops a niche and a full store gets deployed. Sticker Smith handles fulfillment. Instant deploy, auto fulfillment, infinitely scalable.",
+    stats: [
+      { value: "Instant", label: "Deploy" },
+      { value: "Auto", label: "Fulfillment" },
+      { value: "Scalable", label: "System" },
+    ],
+  },
+  "miiir-beats": {
+    name: "Miiir Beats",
+    category: "E-commerce",
+    headline: "Beat store for a producer with 107M+ streams",
+    description: "Custom beat store for 415miiir — a Bay Area producer with 107M+ streams and 205 credits. Browse beats, audio preview, 3 license tiers (Basic Lease, Ultimate Lease, Exclusive Buyout), Stripe checkout, and auto-delivery.",
+    stats: [
+      { value: "107M+", label: "Streams" },
+      { value: "3", label: "License tiers" },
+      { value: "Auto", label: "Delivery" },
+    ],
+  },
+  "fw-wheels": {
+    name: "fw.wheels",
+    category: "Website",
+    headline: "Wheel catalog and ordering system for auto dealer",
+    description: "Full product catalog with ordering system for a wheel dealer. Clean design, easy browsing, built for repeat customers. MRR revenue share model in discussion.",
+    stats: [
+      { value: "Full", label: "Catalog" },
+      { value: "MRR", label: "Potential" },
+      { value: "Custom", label: "Built" },
+    ],
+    revenue: "$650",
+  },
+  onhizm: {
+    name: "Onhizm",
+    category: "Fashion",
+    headline: "Custom site for a brand worn by celebrities",
+    description: "Replaced a basic Shopify setup with a custom-designed site that matches the brand's level. Onhizm has traction with rappers and artists out of the Bay — was at Empire. Their site needed to match that energy.",
+    stats: [
+      { value: "Empire", label: "Connections" },
+      { value: "Custom", label: "Full redesign" },
+      { value: "Premium", label: "Brand elevation" },
+    ],
+    video: "/videos/onhizm.mp4",
+  },
+  cubicship: {
+    name: "Cubicship",
+    category: "Enterprise",
+    headline: "Returns portal and main site for DHL premier partner",
+    description: "Two platforms for a DHL premier shipping partner: the main business site with a refund workflow system, and a standalone returns portal. Handles customer refunds, return processing, and tracking.",
+    stats: [
+      { value: "Refund", label: "Workflow" },
+      { value: "Returns", label: "Portal" },
+      { value: "2", label: "Platforms" },
+    ],
+  },
+  "robot-producer": {
+    name: "Robot Producer",
+    category: "B2B Sales",
+    headline: "Full B2B sales system for selling robots to businesses",
+    description: "Complete sales infrastructure: pitch deck with ROI calculator, product storefront with video demos, and regional network sites for Napa and Suisun areas. Four platforms working together as one sales machine.",
+    stats: [
+      { value: "Full", label: "Sales kit" },
+      { value: "ROI", label: "Calculator" },
+      { value: "4", label: "Platforms" },
+    ],
+  },
+  "best-odds": {
+    name: "Best Odds",
+    category: "Pitch / Presentation",
+    headline: "Interactive presentation for casino odds and strategy",
+    description: "Data-driven interactive slideshow that breaks down casino odds, house edges, and strategy. Animated transitions, visual data, and a compelling narrative flow. Built to educate and entertain.",
+    stats: [
+      { value: "Data", label: "Driven" },
+      { value: "Visual", label: "Slides" },
+      { value: "Animated", label: "Transitions" },
+    ],
+  },
+  "jdlo-the-game": {
+    name: "JDLO The Game",
+    category: "Video Game",
+    headline: "Full RPG video game with 7 chapters and cutscenes",
+    description: "Pokemon Platinum-style RPG built as an interactive portfolio. 7 playable chapters, original story, boss battles, minigames, and cinematic cutscenes. Not a demo — a real game people play start to finish.",
+    stats: [
+      { value: "7", label: "Chapters" },
+      { value: "20+", label: "Characters" },
+      { value: "Full", label: "Original story" },
+    ],
+    video: "/videos/jdlo-the-game.mp4",
+  },
+  "jdlo-wii": {
+    name: "JDLO Wii",
+    category: "Video Game",
+    headline: "Wii Sports-inspired multiplayer web game",
+    description: "A Wii Sports-inspired web game with 1v1 multiplayer. Play directly in the browser — no downloads, no installs. Original game mechanics and design.",
+    stats: [
+      { value: "1v1", label: "Multiplayer" },
+      { value: "Web", label: "Based" },
+      { value: "Original", label: "Game" },
+    ],
+  },
+  "pomaikai-dashboard": {
+    name: "Pomaika\u2018i Dashboard",
+    category: "Tool / AI",
+    headline: "Internal team ops dashboard tracking everything in real time",
+    description: "Custom internal dashboard for Pomaika\u2018i Co that tracks leads, revenue, team performance, and client engagement all in one place. Real-time data, clean interface, replaces spreadsheets and multiple tools.",
+    stats: [
+      { value: "Real-time", label: "Data" },
+      { value: "Team", label: "Tracking" },
+      { value: "Revenue", label: "Metrics" },
+    ],
+  },
+  "eagles-automotive": {
+    name: "Eagles Automotive",
+    category: "Website",
+    headline: "Auto dealership site with real inventory and photos",
+    description: "Full dealership website with live inventory management, photo galleries for each vehicle, and lead capture forms. Built for a real auto dealer who needed to look professional online.",
+    stats: [
+      { value: "Live", label: "Inventory" },
+      { value: "Photo", label: "Gallery" },
+      { value: "Lead", label: "Capture" },
+    ],
   },
 };
 

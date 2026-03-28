@@ -37,150 +37,35 @@ const CATEGORIES: Category[] = [
 
 interface Project {
   name: string;
+  slug: string;
   categories: Category[];
   headline: string;
   stats: [string, string, string];
 }
 
 const PROJECTS: Project[] = [
-  // ── Flagship ──
-  {
-    name: "Quanta",
-    categories: ["Casino"],
-    headline: "Full online sweepstakes casino from scratch",
-    stats: ["6 game types", "Real-time multiplayer", "$50K+ platform value"],
-  },
-  {
-    name: "Club Bot",
-    categories: ["AI", "SaaS"],
-    headline: "AI concierge running a Vegas nightclub operation",
-    stats: ["500+ guests/week", "30hrs/wk saved", "3x list capacity"],
-  },
-  {
-    name: "Pomaika\u2018i Co",
-    categories: ["Website", "AI"],
-    headline: "Centralized operations for a six-figure consultancy",
-    stats: ["$5K project", "5+ tools replaced", "20hrs/wk saved"],
-  },
-  // ── Enterprise ──
-  {
-    name: "DHL Translator",
-    categories: ["Enterprise", "Tool"],
-    headline: "Desktop app processing thousands of shipments monthly",
-    stats: ["10K+ shipments/mo", "15hrs/wk saved", "Desktop native app"],
-  },
-  {
-    name: "DHL CRA Quiz",
-    categories: ["Enterprise"],
-    headline: "Competency assessment for enterprise onboarding",
-    stats: ["200+ employees", "85% faster onboarding", "Auto certification"],
-  },
-  {
-    name: "PF Chang\u2019s AI Receptionist",
-    categories: ["AI", "Enterprise"],
-    headline: "AI phone system demo for national restaurant chain",
-    stats: ["Enterprise demo", "Auto call routing", "Lead qualification"],
-  },
-  // ── AI & SaaS ──
-  {
-    name: "AI Receptionist",
-    categories: ["AI", "SaaS"],
-    headline: "White-label AI phone system for local businesses",
-    stats: ["Multi-tenant", "24/7 call handling", "Auto booking"],
-  },
-  {
-    name: "Loan Agent",
-    categories: ["AI", "SaaS"],
-    headline: "Multi-tenant loan processing system with AI underwriting",
-    stats: ["Multi-tenant", "Auto processing", "PDF generation"],
-  },
-  // ── E-commerce & Websites ──
-  {
-    name: "West Coast Terpz",
-    categories: ["Website", "E-commerce"],
-    headline: "E-commerce platform that turned a local brand online",
-    stats: ["$12K+/mo revenue", "24/7 order processing", "3x customer reach"],
-  },
-  {
-    name: "Vacaville Appliance",
-    categories: ["Website", "AI"],
-    headline: "AI receptionist that books appointments while they sleep",
-    stats: ["40+ bookings/mo", "24/7 availability", "$8K+ revenue added"],
-  },
-  {
-    name: "The Sticker Smith",
-    categories: ["Website", "E-commerce"],
-    headline: "Brand website that turned a print shop into a real business",
-    stats: ["5x online visibility", "New revenue channel", "Pro brand identity"],
-  },
-  {
-    name: "Dank Slaps",
-    categories: ["E-commerce"],
-    headline: "Niche dropship store system \u2014 one template, infinite niches",
-    stats: ["Instant deploy", "Auto fulfillment", "Scalable system"],
-  },
-  {
-    name: "Miiir Beats",
-    categories: ["Website", "E-commerce"],
-    headline: "Beat store for a producer with 107M+ streams",
-    stats: ["107M+ streams", "3 license tiers", "Auto delivery"],
-  },
-  {
-    name: "fw.wheels",
-    categories: ["Website"],
-    headline: "Wheel catalog and ordering system for auto dealer",
-    stats: ["Full catalog", "MRR potential", "Custom built"],
-  },
-  {
-    name: "Onhizm",
-    categories: ["Website", "Fashion"],
-    headline: "Custom site for a brand worn by celebrities",
-    stats: ["Empire connections", "Custom redesign", "Premium brand"],
-  },
-  {
-    name: "Cubicship",
-    categories: ["Website", "Enterprise"],
-    headline: "Returns portal and main site for DHL premier partner",
-    stats: ["Refund workflow", "Returns portal", "2 platforms"],
-  },
-  // ── B2B & Pitch ──
-  {
-    name: "Robot Producer",
-    categories: ["Pitch", "Website"],
-    headline: "Full B2B sales system for selling robots to businesses \u2014 pitch deck, storefront, ROI calculator, regional network sites",
-    stats: ["Full sales kit", "ROI calculator", "4 platforms"],
-  },
-  {
-    name: "Best Odds",
-    categories: ["Pitch"],
-    headline: "Interactive presentation for casino odds and strategy",
-    stats: ["Data-driven", "Visual slides", "Animated"],
-  },
-  // ── Games & Creative ──
-  {
-    name: "JDLO The Game",
-    categories: ["Game"],
-    headline: "Full RPG video game with 7 chapters and cutscenes",
-    stats: ["7 chapters", "20+ characters", "Full original story"],
-  },
-  {
-    name: "JDLO Wii",
-    categories: ["Game"],
-    headline: "Wii Sports-inspired multiplayer web game",
-    stats: ["1v1 multiplayer", "Web-based", "Original game"],
-  },
-  {
-    name: "Pomaika\u2018i Dashboard",
-    categories: ["Tool", "AI"],
-    headline: "Internal team ops dashboard tracking everything in real time",
-    stats: ["Real-time data", "Team tracking", "Revenue metrics"],
-  },
-  {
-    name: "Eagles Automotive",
-    categories: ["Website"],
-    headline: "Auto dealership site with real inventory and photos",
-    stats: ["Live inventory", "Photo gallery", "Lead capture"],
-  },
+  { name: "Quanta", slug: "quanta", categories: ["Casino"], headline: "Full online sweepstakes casino from scratch", stats: ["6 game types", "Real-time multiplayer", "$50K+ platform value"] },
+  { name: "Club Bot", slug: "club-bot", categories: ["AI", "SaaS"], headline: "AI concierge running a Vegas nightclub operation", stats: ["500+ guests/week", "30hrs/wk saved", "3x list capacity"] },
+  { name: "Pomaika\u2018i Co", slug: "pomaikai", categories: ["Website", "AI"], headline: "Centralized operations for a six-figure consultancy", stats: ["$5K project", "5+ tools replaced", "20hrs/wk saved"] },
+  { name: "DHL Translator", slug: "dhl-translator", categories: ["Enterprise", "Tool"], headline: "Desktop app processing thousands of shipments monthly", stats: ["10K+ shipments/mo", "15hrs/wk saved", "Desktop native app"] },
+  { name: "DHL CRA Quiz", slug: "dhl-cra-quiz", categories: ["Enterprise"], headline: "Competency assessment for enterprise onboarding", stats: ["200+ employees", "85% faster onboarding", "Auto certification"] },
+  { name: "PF Chang\u2019s AI Receptionist", slug: "pf-changs", categories: ["AI", "Enterprise"], headline: "AI phone system demo for national restaurant chain", stats: ["Enterprise demo", "Auto call routing", "Lead qualification"] },
+  { name: "AI Receptionist", slug: "ai-receptionist", categories: ["AI", "SaaS"], headline: "White-label AI phone system for local businesses", stats: ["Multi-tenant", "24/7 call handling", "Auto booking"] },
+  { name: "Loan Agent", slug: "loan-agent", categories: ["AI", "SaaS"], headline: "Multi-tenant loan processing system with AI underwriting", stats: ["Multi-tenant", "Auto processing", "PDF generation"] },
+  { name: "West Coast Terpz", slug: "west-coast-terpz", categories: ["Website", "E-commerce"], headline: "E-commerce platform that turned a local brand online", stats: ["$12K+/mo revenue", "24/7 order processing", "3x customer reach"] },
+  { name: "Vacaville Appliance", slug: "vacaville-appliance", categories: ["Website", "AI"], headline: "AI receptionist that books appointments while they sleep", stats: ["40+ bookings/mo", "24/7 availability", "$8K+ revenue added"] },
+  { name: "The Sticker Smith", slug: "sticker-smith", categories: ["Website", "E-commerce"], headline: "Brand website that turned a print shop into a real business", stats: ["5x online visibility", "New revenue channel", "Pro brand identity"] },
+  { name: "Dank Slaps", slug: "dank-slaps", categories: ["E-commerce"], headline: "Niche dropship store system \u2014 one template, infinite niches", stats: ["Instant deploy", "Auto fulfillment", "Scalable system"] },
+  { name: "Miiir Beats", slug: "miiir-beats", categories: ["Website", "E-commerce"], headline: "Beat store for a producer with 107M+ streams", stats: ["107M+ streams", "3 license tiers", "Auto delivery"] },
+  { name: "fw.wheels", slug: "fw-wheels", categories: ["Website"], headline: "Wheel catalog and ordering system for auto dealer", stats: ["Full catalog", "MRR potential", "Custom built"] },
+  { name: "Onhizm", slug: "onhizm", categories: ["Website", "Fashion"], headline: "Custom site for a brand worn by celebrities", stats: ["Empire connections", "Custom redesign", "Premium brand"] },
+  { name: "Cubicship", slug: "cubicship", categories: ["Website", "Enterprise"], headline: "Returns portal and main site for DHL premier partner", stats: ["Refund workflow", "Returns portal", "2 platforms"] },
+  { name: "Robot Producer", slug: "robot-producer", categories: ["Pitch", "Website"], headline: "Full B2B sales system for selling robots to businesses", stats: ["Full sales kit", "ROI calculator", "4 platforms"] },
+  { name: "Best Odds", slug: "best-odds", categories: ["Pitch"], headline: "Interactive presentation for casino odds and strategy", stats: ["Data-driven", "Visual slides", "Animated"] },
+  { name: "JDLO The Game", slug: "jdlo-the-game", categories: ["Game"], headline: "Full RPG video game with 7 chapters and cutscenes", stats: ["7 chapters", "20+ characters", "Full original story"] },
+  { name: "JDLO Wii", slug: "jdlo-wii", categories: ["Game"], headline: "Wii Sports-inspired multiplayer web game", stats: ["1v1 multiplayer", "Web-based", "Original game"] },
+  { name: "Pomaika\u2018i Dashboard", slug: "pomaikai-dashboard", categories: ["Tool", "AI"], headline: "Internal team ops dashboard tracking everything in real time", stats: ["Real-time data", "Team tracking", "Revenue metrics"] },
+  { name: "Eagles Automotive", slug: "eagles-automotive", categories: ["Website"], headline: "Auto dealership site with real inventory and photos", stats: ["Live inventory", "Photo gallery", "Lead capture"] },
 ];
 
 /* ────────────────────────────────────────────────────────────
@@ -387,9 +272,10 @@ export default function WorkPage() {
             style={{ animation: "fadeIn 0.5s ease-out" }}
           >
             {filtered.map((project, i) => (
-              <div
+              <Link
                 key={project.name}
-                className="py-10 sm:py-14 border-b border-border last:border-b-0"
+                href={`/work/${project.slug}`}
+                className="block py-10 sm:py-14 border-b border-border last:border-b-0 group hover:bg-surface/50 -mx-6 px-6 sm:-mx-10 sm:px-10 transition-colors duration-300"
               >
                 {/* Category tag */}
                 <p className="font-mono text-[11px] tracking-[0.4em] uppercase text-text-muted mb-4">
@@ -397,8 +283,9 @@ export default function WorkPage() {
                 </p>
 
                 {/* Project name */}
-                <h2 className="font-display text-[clamp(1.75rem,4vw,3.5rem)] tracking-[-0.03em] leading-[1] mb-3">
+                <h2 className="font-display text-[clamp(1.75rem,4vw,3.5rem)] tracking-[-0.03em] leading-[1] mb-3 group-hover:text-text-secondary transition-colors duration-300">
                   {project.name}
+                  <span className="inline-block ml-3 text-text-muted text-[0.5em] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300">&rarr;</span>
                 </h2>
 
                 {/* Headline */}
@@ -417,7 +304,7 @@ export default function WorkPage() {
                     </div>
                   ))}
                 </div>
-              </div>
+              </Link>
             ))}
 
             {filtered.length === 0 && (
