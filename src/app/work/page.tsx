@@ -89,22 +89,10 @@ const PROJECTS: Project[] = [
     stats: ["Multi-tenant", "24/7 call handling", "Auto booking"],
   },
   {
-    name: "Pomaika\u2018i Jarvis",
-    categories: ["AI", "Tool"],
-    headline: "AI business automation agent for agency operations",
-    stats: ["Full automation", "Custom AI agent", "Biz intelligence"],
-  },
-  {
     name: "Loan Agent",
-    categories: ["AI", "Enterprise", "SaaS"],
+    categories: ["AI", "SaaS"],
     headline: "Multi-tenant loan processing system with AI underwriting",
     stats: ["Multi-tenant", "Auto processing", "PDF generation"],
-  },
-  {
-    name: "VINATask",
-    categories: ["Tool", "AI"],
-    headline: "Voice-input task manager that works offline",
-    stats: ["Voice control", "Works offline", "PWA app"],
   },
   // ── E-commerce & Websites ──
   {
@@ -132,12 +120,6 @@ const PROJECTS: Project[] = [
     stats: ["Instant deploy", "Auto fulfillment", "Scalable system"],
   },
   {
-    name: "Created by Mase",
-    categories: ["Website", "E-commerce"],
-    headline: "Multi-brand e-commerce for clothing + home goods",
-    stats: ["$3K project", "2 brands, 1 site", "Full store"],
-  },
-  {
     name: "Miiir Beats",
     categories: ["Website", "E-commerce"],
     headline: "Beat store for a producer with 107M+ streams",
@@ -161,37 +143,18 @@ const PROJECTS: Project[] = [
     headline: "Returns portal and main site for DHL premier partner",
     stats: ["Refund workflow", "Returns portal", "2 platforms"],
   },
-  // ── Pitch Decks & Presentations ──
+  // ── B2B & Pitch ──
   {
-    name: "Robot Pitch",
-    categories: ["Pitch"],
-    headline: "B2B sales pitch deck for selling robots to businesses",
-    stats: ["ROI calculator", "Video demos", "Full sales kit"],
+    name: "Robot Producer",
+    categories: ["Pitch", "Website"],
+    headline: "Full B2B sales system for selling robots to businesses \u2014 pitch deck, storefront, ROI calculator, regional network sites",
+    stats: ["Full sales kit", "ROI calculator", "4 platforms"],
   },
   {
-    name: "Best Odds Slideshow",
+    name: "Best Odds",
     categories: ["Pitch"],
     headline: "Interactive presentation for casino odds and strategy",
     stats: ["Data-driven", "Visual slides", "Animated"],
-  },
-  {
-    name: "Robot Store",
-    categories: ["Website", "Pitch"],
-    headline: "Storefront and sales tool for B2B robotics",
-    stats: ["Video assets", "ROI calculator", "Product catalog"],
-  },
-  // ── Real Estate ──
-  {
-    name: "Abby Dream Homes",
-    categories: ["Website"],
-    headline: "Website for relocation specialist in real estate",
-    stats: ["Lead capture", "Listing integration", "Custom design"],
-  },
-  {
-    name: "Mason Roos",
-    categories: ["Website"],
-    headline: "Personal brand site for eXp Realty agent",
-    stats: ["Agent branding", "Lead funnel", "Custom built"],
   },
   // ── Games & Creative ──
   {
@@ -212,24 +175,11 @@ const PROJECTS: Project[] = [
     headline: "Internal team ops dashboard tracking everything in real time",
     stats: ["Real-time data", "Team tracking", "Revenue metrics"],
   },
-  // ── More ──
   {
     name: "Eagles Automotive",
     categories: ["Website"],
     headline: "Auto dealership site with real inventory and photos",
     stats: ["Live inventory", "Photo gallery", "Lead capture"],
-  },
-  {
-    name: "JDLO Video",
-    categories: ["Tool"],
-    headline: "Programmatic video generation engine",
-    stats: ["Auto rendering", "Template system", "Batch export"],
-  },
-  {
-    name: "Napa Network",
-    categories: ["Website", "Pitch"],
-    headline: "Regional business network site for Napa area",
-    stats: ["Local directory", "Business network", "Lead gen"],
   },
 ];
 

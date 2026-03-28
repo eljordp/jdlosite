@@ -172,7 +172,7 @@ function Work() {
             Selected Work
           </p>
           <h2 className="font-display text-[clamp(2.2rem,5vw,4.5rem)] tracking-[-0.03em] leading-[0.95] mb-16">
-            30+ projects shipped.<br />
+            20+ projects shipped.<br />
             <span className="text-text-secondary">Here are a few.</span>
           </h2>
         </RevealOnScroll>
@@ -208,7 +208,7 @@ function Work() {
             className="group block mt-12 py-8 sm:py-10 border border-border rounded-2xl text-center hover:border-text/20 transition-all duration-300"
           >
             <span className="font-display text-[clamp(1.4rem,3vw,2.2rem)] tracking-[-0.02em] group-hover:text-text-secondary transition-colors duration-300">
-              See all 30+ projects
+              See all 20+ projects
             </span>
             <span className="block text-text-muted text-[14px] mt-2">
               Websites, apps, AI systems, games, casinos, enterprise tools &mdash; filter by category
@@ -258,7 +258,7 @@ function Results() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-0">
           {[
-            { num: "30+", label: "Projects shipped", desc: "Websites, apps, games, AI tools, dashboards, casinos — for every kind of business and idea." },
+            { num: "20+", label: "Projects shipped", desc: "Websites, apps, games, AI tools, dashboards, casinos — for every kind of business and idea." },
             { num: "2 weeks", label: "Average turnaround", desc: "Most projects go from first message to live fast. No dragging it out, no endless meetings." },
             { num: "100%", label: "Custom built", desc: "No templates. No page builders. No shortcuts. Everything is built from scratch, designed for you." },
           ].map((stat, i) => (
@@ -312,7 +312,7 @@ function About() {
             </h2>
             <div className="space-y-6 max-w-[500px]">
               <p className="text-text-secondary text-[16px] leading-relaxed">
-                I started with nothing &mdash; no portfolio, no connections, no playbook. Taught myself how to build anything a business could need. Websites, apps, AI tools, games, enterprise systems &mdash; 30+ projects shipped and counting.
+                I started with nothing &mdash; no portfolio, no connections, no playbook. Taught myself how to build anything a business could need. Websites, apps, AI tools, games, enterprise systems &mdash; 20+ projects shipped and counting.
               </p>
               <p className="text-text-secondary text-[16px] leading-relaxed">
                 Everything I build for clients, I use in my own businesses. If it doesn&apos;t make me money or save me time, I&apos;m not selling it to you.
