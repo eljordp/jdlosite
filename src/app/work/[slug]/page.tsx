@@ -12,6 +12,7 @@ const projects: Record<string, {
   stats: { value: string; label: string }[];
   link?: string;
   revenue?: string;
+  video?: string;
 }> = {
   quanta: {
     name: "Quanta",
@@ -24,6 +25,7 @@ const projects: Record<string, {
       { value: "$50K+", label: "Platform value" },
     ],
     link: "https://quantplay-ten.vercel.app/play",
+    video: "/videos/quanta.mp4",
   },
   "club-bot": {
     name: "Club Bot",
@@ -35,6 +37,7 @@ const projects: Record<string, {
       { value: "30hrs/wk", label: "Time saved" },
       { value: "3x", label: "List capacity" },
     ],
+    video: "/videos/club-bot.mp4",
   },
   "pomaikai": {
     name: "Pomaika\u2018i Co",
@@ -47,6 +50,7 @@ const projects: Record<string, {
       { value: "20hrs/wk", label: "Time saved" },
     ],
     revenue: "$5,000",
+    video: "/videos/pomaikai.mp4",
   },
 };
 
@@ -125,14 +129,29 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             </div>
           </RevealOnScroll>
 
-          {/* Video placeholder — Remotion videos go here */}
-          <RevealOnScroll>
-            <div className="mt-16 rounded-2xl border border-border bg-surface flex items-center justify-center aspect-video max-w-[800px]">
-              <p className="text-text-muted text-[14px] font-mono">
-                Walkthrough video coming soon
-              </p>
-            </div>
-          </RevealOnScroll>
+          {/* Video */}
+          {project.video ? (
+            <RevealOnScroll>
+              <div className="mt-16 rounded-2xl border border-border overflow-hidden max-w-[800px]">
+                <video
+                  src={project.video}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="w-full aspect-video object-cover"
+                />
+              </div>
+            </RevealOnScroll>
+          ) : (
+            <RevealOnScroll>
+              <div className="mt-16 rounded-2xl border border-border bg-surface flex items-center justify-center aspect-video max-w-[800px]">
+                <p className="text-text-muted text-[14px] font-mono">
+                  Walkthrough video coming soon
+                </p>
+              </div>
+            </RevealOnScroll>
+          )}
         </div>
       </section>
 
