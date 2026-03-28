@@ -153,38 +153,14 @@ function Process() {
   );
 }
 
-/* ── Work (featured 3) ── */
+/* ── Work (featured 6) ── */
 const featured = [
-  {
-    category: "Casino",
-    name: "Quanta",
-    headline: "Full online sweepstakes casino from scratch",
-    stats: [
-      { value: "6", label: "Game types" },
-      { value: "Real-time", label: "Multiplayer" },
-      { value: "$50K+", label: "Platform value" },
-    ],
-  },
-  {
-    category: "AI System",
-    name: "Club Bot",
-    headline: "AI concierge running a Vegas nightclub operation",
-    stats: [
-      { value: "500+", label: "Guests/week" },
-      { value: "30hrs/wk", label: "Time saved" },
-      { value: "3x", label: "List capacity" },
-    ],
-  },
-  {
-    category: "Agency",
-    name: "Pomaika\u2018i Co",
-    headline: "Centralized operations for a six-figure consultancy",
-    stats: [
-      { value: "$5K", label: "Project value" },
-      { value: "5+", label: "Tools replaced" },
-      { value: "20hrs/wk", label: "Time saved" },
-    ],
-  },
+  { category: "Casino", name: "Quanta", headline: "Full online sweepstakes casino from scratch", stat: "$50K+" },
+  { category: "AI System", name: "Club Bot", headline: "AI concierge running a Vegas nightclub operation", stat: "500+ guests/wk" },
+  { category: "Agency", name: "Pomaika\u2018i Co", headline: "Website + ops dashboard for a six-figure consultancy", stat: "$5K project" },
+  { category: "Enterprise", name: "DHL Translator", headline: "Desktop app processing thousands of shipments monthly", stat: "10K+ shipments/mo" },
+  { category: "E-commerce", name: "West Coast Terpz", headline: "E-commerce platform doing $12K+ per month", stat: "$12K+/mo" },
+  { category: "Game", name: "JDLO The Game", headline: "Full RPG video game with 7 chapters and cutscenes", stat: "7 chapters" },
 ];
 
 function Work() {
@@ -192,59 +168,78 @@ function Work() {
     <section id="work" className="section-gap border-t border-border">
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
         <RevealOnScroll>
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-16">
-            <div>
-              <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-6">
-                Selected Work
-              </p>
-              <h2 className="font-display text-[clamp(2.2rem,5vw,4.5rem)] tracking-[-0.03em] leading-[0.95]">
-                Real clients.<br />
-                <span className="text-text-secondary">Real results.</span>
-              </h2>
-            </div>
-            <Link
-              href="/work"
-              className="inline-flex items-center gap-2 text-text-secondary text-[14px] font-mono font-medium hover:text-text border-b border-border-hover hover:border-text pb-0.5 transition-all duration-300 group shrink-0"
-            >
-              See all work
-              <span className="group-hover:translate-x-1 transition-transform duration-200">&rarr;</span>
-            </Link>
-          </div>
+          <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-6">
+            Selected Work
+          </p>
+          <h2 className="font-display text-[clamp(2.2rem,5vw,4.5rem)] tracking-[-0.03em] leading-[0.95] mb-16">
+            30+ projects shipped.<br />
+            <span className="text-text-secondary">Here are a few.</span>
+          </h2>
         </RevealOnScroll>
 
-        <div className="space-y-0">
+        {/* Project list — tight rows */}
+        <div>
           {featured.map((project, i) => (
-            <RevealOnScroll key={project.name} delay={i + 1}>
-              <div className="py-10 sm:py-14 border-b border-border last:border-0">
-                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6">
-                  <div className="flex-1">
-                    <span className="text-[11px] font-mono text-text-muted tracking-[0.15em] uppercase">
-                      {project.category}
-                    </span>
-                    <h3 className="font-display text-[clamp(1.6rem,4vw,3rem)] tracking-[-0.02em] leading-[1.05] mt-2 mb-3">
-                      {project.name}
-                    </h3>
-                    <p className="text-text-secondary text-[clamp(1rem,2vw,1.15rem)] leading-relaxed max-w-[500px]">
-                      {project.headline}
-                    </p>
-                  </div>
-                  <div className="flex flex-wrap sm:flex-col gap-x-8 gap-y-4 sm:gap-y-5 sm:items-end sm:text-right shrink-0">
-                    {project.stats.map((stat) => (
-                      <div key={stat.label}>
-                        <span className="text-[1.4rem] sm:text-[1.6rem] font-semibold tracking-[-0.03em] block leading-none">
-                          {stat.value}
-                        </span>
-                        <span className="text-text-muted text-[10px] font-mono tracking-wider uppercase mt-1 block">
-                          {stat.label}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
+            <RevealOnScroll key={project.name} delay={(i % 3) + 1}>
+              <div className="py-5 sm:py-6 border-b border-border flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 sm:gap-8 group">
+                <div className="flex items-baseline gap-3 sm:gap-4 flex-1 min-w-0">
+                  <span className="text-[10px] font-mono text-text-muted tracking-[0.1em] uppercase shrink-0 w-[80px] hidden sm:block">
+                    {project.category}
+                  </span>
+                  <h3 className="font-display text-[clamp(1.2rem,2.5vw,1.8rem)] tracking-[-0.02em] leading-[1.1] group-hover:text-text-secondary transition-colors duration-300">
+                    {project.name}
+                  </h3>
+                  <span className="text-text-muted text-[13px] hidden md:block truncate">
+                    {project.headline}
+                  </span>
                 </div>
+                <span className="text-[14px] font-semibold tracking-[-0.02em] shrink-0">
+                  {project.stat}
+                </span>
               </div>
             </RevealOnScroll>
           ))}
         </div>
+
+        {/* Big CTA to see all work */}
+        <RevealOnScroll>
+          <Link
+            href="/work"
+            className="group block mt-12 py-8 sm:py-10 border border-border rounded-2xl text-center hover:border-text/20 transition-all duration-300"
+          >
+            <span className="font-display text-[clamp(1.4rem,3vw,2.2rem)] tracking-[-0.02em] group-hover:text-text-secondary transition-colors duration-300">
+              See all 30+ projects
+            </span>
+            <span className="block text-text-muted text-[14px] mt-2">
+              Websites, apps, AI systems, games, casinos, enterprise tools &mdash; filter by category
+            </span>
+          </Link>
+        </RevealOnScroll>
+      </div>
+    </section>
+  );
+}
+
+/* ── Mid-page CTA ── */
+function MidCTA({ text, href, label }: { text: string; href: string; label: string }) {
+  return (
+    <section className="py-16 sm:py-20">
+      <div className="max-w-[1400px] mx-auto px-6 md:px-10">
+        <RevealOnScroll>
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 py-8 sm:py-10 px-8 sm:px-12 border border-border rounded-2xl">
+            <p className="text-[clamp(1.1rem,2vw,1.4rem)] font-medium tracking-[-0.02em] max-w-[500px]">
+              {text}
+            </p>
+            <div className="flex gap-3 shrink-0">
+              <Link href={href} className="magnetic-btn !py-2.5 !px-6 !text-[13px]">
+                <span className="relative z-10">{label}</span>
+              </Link>
+              <a href="https://instagram.com/jdlo" target="_blank" rel="noopener noreferrer" className="ghost-btn !py-2.5 !px-6 !text-[13px]">
+                DM @jdlo
+              </a>
+            </div>
+          </div>
+        </RevealOnScroll>
       </div>
     </section>
   );
@@ -562,8 +557,10 @@ export default function Home() {
       <HomeNav />
       <Hero />
       <Services />
+      <MidCTA text="Know what you need? Skip the browsing." href="/contact" label="Start a Project" />
       <Process />
       <Work />
+      <MidCTA text="Have an idea that doesn't fit a category? I love those." href="/services/creative" label="See Creative Work" />
       <Results />
       <Statement />
       <About />
