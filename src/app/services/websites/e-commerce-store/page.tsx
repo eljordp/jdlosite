@@ -1,6 +1,7 @@
 import Link from "next/link";
 import PageShell from "@/components/PageShell";
 import RevealOnScroll from "@/components/RevealOnScroll";
+import ROICalculator from "@/components/ROICalculator";
 
 export const metadata = {
   title: "E-commerce Store | JDLO",
@@ -92,6 +93,22 @@ export default function EcommerceStoreProduct() {
           </RevealOnScroll>
         </div>
       </section>
+
+      <ROICalculator
+        title="Project Your Revenue"
+        subtitle="Input your numbers. See what an online store could do for your business."
+        product="e-commerce-store"
+        sliders={[
+          { label: "Products you'd sell", min: 5, max: 500, step: 5, default: 30 },
+          { label: "Average product price", min: 10, max: 500, step: 10, default: 50, prefix: "$" },
+          { label: "Expected orders per month", min: 10, max: 1000, step: 10, default: 100 },
+        ]}
+        results={[
+          { label: "Monthly revenue", calculate: (v) => `$${Math.round(v[1] * v[2]).toLocaleString()}` },
+          { label: "Annual revenue", calculate: (v) => `$${Math.round(v[1] * v[2] * 12).toLocaleString()}` },
+          { label: "ROI on a $3,500 store", calculate: (v) => `${Math.round((v[1] * v[2] * 12) / 3500)}x return` },
+        ]}
+      />
 
     </PageShell>
   );

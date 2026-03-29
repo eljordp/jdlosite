@@ -1,6 +1,7 @@
 import Link from "next/link";
 import PageShell from "@/components/PageShell";
 import RevealOnScroll from "@/components/RevealOnScroll";
+import ROICalculator from "@/components/ROICalculator";
 
 export const metadata = {
   title: "AI Receptionist | JDLO",
@@ -72,6 +73,22 @@ export default function ProductPage() {
           </RevealOnScroll>
         </div>
       </section>
+      <ROICalculator
+        title="See What You're Missing"
+        subtitle="How many calls does your business get? See how much revenue an AI receptionist would recover."
+        product="ai-receptionist"
+        sliders={[
+          { label: "Calls per day", min: 5, max: 100, step: 5, default: 20 },
+          { label: "Missed calls (%)", min: 10, max: 80, step: 5, default: 30, suffix: "%" },
+          { label: "Average customer value", min: 50, max: 2000, step: 50, default: 200, prefix: "$" },
+        ]}
+        results={[
+          { label: "Missed calls per month", calculate: (v) => `${Math.round(v[0] * 30 * (v[1] / 100))} calls` },
+          { label: "Revenue you're losing monthly", calculate: (v) => `$${Math.round(v[0] * 30 * (v[1] / 100) * v[2] * 0.3).toLocaleString()}` },
+          { label: "Annual revenue recovered", calculate: (v) => `$${Math.round(v[0] * 30 * (v[1] / 100) * v[2] * 0.3 * 12).toLocaleString()}` },
+        ]}
+      />
+
     </PageShell>
   );
 }

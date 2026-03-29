@@ -1,6 +1,7 @@
 import Link from "next/link";
 import PageShell from "@/components/PageShell";
 import RevealOnScroll from "@/components/RevealOnScroll";
+import ROICalculator from "@/components/ROICalculator";
 
 export const metadata = {
   title: "Automation Workflows | JDLO",
@@ -72,6 +73,22 @@ export default function ProductPage() {
           </RevealOnScroll>
         </div>
       </section>
+      <ROICalculator
+        title="Calculate Your Savings"
+        subtitle="How much time does your team waste on repetitive work? See what automation would save you."
+        product="automation-workflows"
+        sliders={[
+          { label: "Hours spent on manual tasks per week", min: 5, max: 80, step: 5, default: 25 },
+          { label: "Hourly cost of that labor", min: 15, max: 100, step: 5, default: 30, prefix: "$" },
+          { label: "Team members doing this work", min: 1, max: 20, step: 1, default: 2 },
+        ]}
+        results={[
+          { label: "Hours saved per month", calculate: (v) => `${Math.round(v[0] * v[2] * 4 * 0.8)} hours` },
+          { label: "Monthly savings", calculate: (v) => `$${Math.round(v[0] * v[2] * 4 * 0.8 * v[1]).toLocaleString()}` },
+          { label: "Annual savings", calculate: (v) => `$${Math.round(v[0] * v[2] * 4 * 0.8 * v[1] * 12).toLocaleString()}` },
+        ]}
+      />
+
     </PageShell>
   );
 }

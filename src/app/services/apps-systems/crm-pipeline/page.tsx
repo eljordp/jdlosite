@@ -1,6 +1,7 @@
 import Link from "next/link";
 import PageShell from "@/components/PageShell";
 import RevealOnScroll from "@/components/RevealOnScroll";
+import ROICalculator from "@/components/ROICalculator";
 
 export const metadata = {
   title: "CRM & Pipeline Systems | JDLO",
@@ -72,6 +73,22 @@ export default function ProductPage() {
           </RevealOnScroll>
         </div>
       </section>
+      <ROICalculator
+        title="What Are Lost Leads Costing You?"
+        subtitle="Most businesses lose 20-40% of leads to disorganization. See what a CRM would recover."
+        product="crm-pipeline"
+        sliders={[
+          { label: "Leads per month", min: 10, max: 500, step: 10, default: 50 },
+          { label: "Leads you lose to follow-up gaps (%)", min: 10, max: 50, step: 5, default: 25, suffix: "%" },
+          { label: "Average deal value", min: 100, max: 10000, step: 100, default: 1000, prefix: "$" },
+        ]}
+        results={[
+          { label: "Deals lost per month", calculate: (v) => `${Math.round(v[0] * (v[1] / 100))} deals` },
+          { label: "Revenue lost monthly", calculate: (v) => `$${Math.round(v[0] * (v[1] / 100) * v[2]).toLocaleString()}` },
+          { label: "Revenue recovered annually", calculate: (v) => `$${Math.round(v[0] * (v[1] / 100) * v[2] * 12 * 0.5).toLocaleString()}` },
+        ]}
+      />
+
     </PageShell>
   );
 }
