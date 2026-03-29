@@ -114,6 +114,23 @@ function getAutoReply(type: string, firstName: string, course?: string) {
         ...base,
       };
 
+    case "audit":
+      return {
+        subject: "Your free website audit is on the way",
+        body: `
+          <p>Thanks for requesting a free audit. I'm going to personally review your current online presence and send you a breakdown of exactly what I'd improve.</p>
+          <p>You'll hear from me within 24 hours with:</p>
+          <table style="width:100%;border-collapse:collapse;margin:24px 0">
+            <tr><td style="padding:10px 0;border-bottom:1px solid rgba(0,0,0,0.08);font-size:14px"><strong>01</strong> &nbsp; What's working on your current site</td></tr>
+            <tr><td style="padding:10px 0;border-bottom:1px solid rgba(0,0,0,0.08);font-size:14px"><strong>02</strong> &nbsp; What's costing you customers</td></tr>
+            <tr><td style="padding:10px 0;font-size:14px"><strong>03</strong> &nbsp; What I'd build differently and why</td></tr>
+          </table>
+          <p>No strings attached. If you like what you see, we can talk next steps. If not, you still walk away with a free audit.</p>
+          <p>In the meantime, check out some of my work: <a href="https://jdlo.site/work" style="color:#141414;font-weight:600">jdlo.site/work</a></p>
+        `,
+        ...base,
+      };
+
     case "contact":
       return {
         subject: "Got your message — I'll be in touch",
@@ -146,6 +163,7 @@ export async function POST(req: NextRequest) {
     }
 
     const labels: Record<string, string> = {
+      audit: "Free Audit Request",
       inquiry: "Project Inquiry",
       business: "Business Inquiry",
       contact: "Contact Form",

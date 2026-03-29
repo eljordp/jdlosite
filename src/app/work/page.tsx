@@ -122,6 +122,9 @@ export default function WorkPage() {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<Answers>(EMPTY_ANSWERS);
   const [stepVisible, setStepVisible] = useState(true);
+  const [quoteEmail, setQuoteEmail] = useState("");
+  const [quoteName, setQuoteName] = useState("");
+  const [quoteSent, setQuoteSent] = useState(false);
 
   const advanceTo = useCallback((next: number) => {
     setStepVisible(false);
@@ -604,15 +607,49 @@ export default function WorkPage() {
                       </div>
                     </div>
 
-                    {/* CTA */}
+                    {/* Email capture + CTA */}
+                    {!quoteSent ? (
+                      <div className="bg-bg rounded-2xl border border-border p-8 mb-8">
+                        <p className="text-[15px] font-medium mb-1">Get this as a personalized quote</p>
+                        <p className="text-text-muted text-[13px] mb-6">Drop your info and I&apos;ll send you a detailed plan within 24 hours.</p>
+                        <form onSubmit={async (e) => {
+                          e.preventDefault();
+                          if (!quoteEmail) return;
+                          await fetch("/api/lead", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({
+                              type: "inquiry",
+                              name: quoteName || "Calculator visitor",
+                              email: quoteEmail,
+                              message: `Calculator results — Industry: ${answers.industry}, Website: ${answers.hasWebsite}, Bookings: ${answers.bookings}, Marketing: ${answers.marketing}, Team: ${answers.teamSize}. Recommendations: ${getRecommendations().join(", ")}. Est value: ${getEstimatedValue()}`,
+                              service: "Calculator quote",
+                              budget: getEstimatedValue(),
+                            }),
+                          });
+                          setQuoteSent(true);
+                        }} className="flex flex-col sm:flex-row gap-3">
+                          <input type="text" placeholder="Your name" value={quoteName} onChange={(e) => setQuoteName(e.target.value)} className="flex-1 bg-surface border border-border rounded-xl px-4 py-3 text-text text-[15px] placeholder:text-text-muted/50 focus:outline-none focus:border-text/30 min-h-[48px]" />
+                          <input type="email" required placeholder="Your email" value={quoteEmail} onChange={(e) => setQuoteEmail(e.target.value)} className="flex-1 bg-surface border border-border rounded-xl px-4 py-3 text-text text-[15px] placeholder:text-text-muted/50 focus:outline-none focus:border-text/30 min-h-[48px]" />
+                          <button type="submit" className="magnetic-btn shrink-0 !py-3 !px-6"><span className="relative z-10">Send My Quote</span></button>
+                        </form>
+                      </div>
+                    ) : (
+                      <div className="bg-bg rounded-2xl border border-text/10 p-8 mb-8 text-center">
+                        <p className="text-[17px] font-semibold mb-2">Quote sent.</p>
+                        <p className="text-text-secondary text-[14px]">Check your inbox — I&apos;ll follow up with a detailed plan within 24 hours.</p>
+                      </div>
+                    )}
+
                     <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
-                      <Link href="/contact" className="magnetic-btn">
-                        <span className="relative z-10">
-                          Let&apos;s make this happen
-                        </span>
+                      <Link href="/contact" className="ghost-btn">
+                        Or fill out the full form
                       </Link>
+                      <a href="https://instagram.com/jdlo" target="_blank" rel="noopener noreferrer" className="text-text-muted text-[14px] hover:text-text transition-colors">
+                        DM @jdlo
+                      </a>
                       <button
-                        onClick={resetCalc}
+                        onClick={() => { resetCalc(); setQuoteSent(false); setQuoteEmail(""); setQuoteName(""); }}
                         className="text-text-muted text-[14px] hover:text-text transition-colors cursor-pointer"
                       >
                         Start over

@@ -4,6 +4,7 @@ import RevealOnScroll from "@/components/RevealOnScroll";
 import { GlowLink } from "@/components/GlowButton";
 import ScrollHighlightText from "@/components/ScrollHighlightText";
 import HomeNav from "@/components/HomeNav";
+import EmailCapture from "@/components/EmailCapture";
 
 /* ── Hero ── */
 function Hero() {
@@ -307,6 +308,30 @@ function Results() {
   );
 }
 
+/* ── Free Audit Capture ── */
+function FreeAudit() {
+  return (
+    <section className="py-16 sm:py-20 bg-surface">
+      <div className="max-w-[1400px] mx-auto px-6 md:px-10">
+        <RevealOnScroll>
+          <div className="max-w-[700px] mx-auto text-center">
+            <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-6">
+              Free
+            </p>
+            <h2 className="font-display text-[clamp(1.8rem,4vw,3rem)] tracking-[-0.03em] leading-[1] mb-4">
+              Get a free audit of your website.
+            </h2>
+            <p className="text-text-secondary text-[15px] leading-relaxed mb-10 max-w-[440px] mx-auto">
+              Drop your name and email. I&apos;ll personally review your current site and send you exactly what I&apos;d change &mdash; for free.
+            </p>
+            <EmailCapture />
+          </div>
+        </RevealOnScroll>
+      </div>
+    </section>
+  );
+}
+
 /* ── Statement ── */
 function Statement() {
   return (
@@ -587,6 +612,7 @@ export default function Home() {
       <Work />
       <MidCTA text="Have an idea that doesn't fit a category? I love those." href="/services/creative" label="See Creative Work" />
       <Results />
+      <FreeAudit />
       <Statement />
       <About />
       <FAQ />

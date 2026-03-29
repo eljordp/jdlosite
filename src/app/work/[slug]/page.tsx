@@ -311,30 +311,6 @@ const projects: Record<string, {
     ],
     liveUrl: "https://muddledbymia.com",
   },
-  "lonely-love": {
-    name: "Lonely Love",
-    category: "Fashion",
-    headline: "E-commerce site for a clothing brand with a following",
-    description: "Custom online store for Lonely Love — a clothing brand building a community. Clean design, full product catalog, and a shopping experience that matches the brand's aesthetic and energy.",
-    stats: [
-      { value: "Custom", label: "E-commerce" },
-      { value: "Brand", label: "Identity" },
-      { value: "Full", label: "Store" },
-    ],
-    liveUrl: "https://www.shoplonelylove.com",
-  },
-  "cwby-studios": {
-    name: "CWBY Studios",
-    category: "Agency",
-    headline: "Creative studio and agency site based in Hollywood",
-    description: "Website for CWBY Studios — a creative studio and agency operating out of Hollywood. Showcases their creative work, services, and team with a design that reflects their high-end production quality.",
-    stats: [
-      { value: "Hollywood", label: "Based" },
-      { value: "Creative", label: "Agency" },
-      { value: "Premium", label: "Design" },
-    ],
-    liveUrl: "https://www.cwbystudio.com",
-  },
 };
 
 export function generateStaticParams() {
