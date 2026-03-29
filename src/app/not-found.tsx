@@ -22,7 +22,7 @@ export default function NotFound() {
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <GlowLink href="/">Back to Home</GlowLink>
-          <Link href="/quiz" className="ghost-btn">Take the Quiz</Link>
+          <Link href="/work" className="ghost-btn">See My Work</Link>
         </div>
       </div>
     </main>

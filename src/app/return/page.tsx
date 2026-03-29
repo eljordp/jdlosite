@@ -80,7 +80,7 @@ function ReturnContent() {
                   {accessCode}
                 </p>
                 <p className="text-text-muted text-[11px] mt-2">
-                  Save this — you&apos;ll need it to access your course.
+                  Save this for your records.
                 </p>
               </div>
             )}
@@ -94,14 +94,14 @@ function ReturnContent() {
                     background: "linear-gradient(135deg, #2997ff, #0a84ff)",
                   }}
                 >
-                  Start Course →
+                  View Details →
                 </Link>
               )}
               <Link
-                href="/my-courses"
+                href="/work"
                 className="text-text-muted text-[13px] font-mono hover:text-accent transition-colors"
               >
-                My Courses
+                See My Work
               </Link>
               <Link
                 href="/"

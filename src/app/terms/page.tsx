@@ -35,7 +35,7 @@ export default function TermsPage() {
                 Products &amp; Access
               </h2>
               <p className="text-text-secondary text-[15px] leading-[1.8]">
-                JDLO offers digital courses ($197&ndash;$997) and mentorship ($2,500/mo). Courses are delivered as digital products. Upon purchase, you&apos;ll receive an access code to unlock your course content. This access is for your personal use only.
+                JDLO provides custom development services including websites, apps, AI systems, and other digital products. All project work is scoped, quoted, and agreed upon before development begins. Deliverables are owned by the client upon full payment.
               </p>
             </div>
 
@@ -44,7 +44,7 @@ export default function TermsPage() {
                 No Redistribution
               </h2>
               <p className="text-text-secondary text-[15px] leading-[1.8]">
-                You may not copy, share, resell, redistribute, or publicly display any course content, materials, templates, or resources provided through JDLO. Violating this will result in immediate access revocation with no refund.
+                Custom work delivered to you is yours to use. However, JDLO retains the right to showcase the work in our portfolio unless otherwise agreed in writing. You may not resell or redistribute any proprietary tools, templates, or systems provided by JDLO to third parties.
               </p>
             </div>
 
@@ -53,7 +53,7 @@ export default function TermsPage() {
                 Refunds
               </h2>
               <p className="text-text-secondary text-[15px] leading-[1.8]">
-                Because courses are digital products, all sales are final once your access code has been delivered. Mentorship subscriptions can be cancelled but are not refunded for the current billing period. For full details, see our{" "}
+                Project deposits are non-refundable. Final payments are due upon delivery. Retainer agreements can be cancelled with 30 days notice. For full details, see our{" "}
                 <a href="/refund" className="text-accent hover:underline">
                   Refund Policy
                 </a>
@@ -66,7 +66,7 @@ export default function TermsPage() {
                 Content Updates
               </h2>
               <p className="text-text-secondary text-[15px] leading-[1.8]">
-                JDLO reserves the right to update, modify, or remove course content at any time. We do this to keep the material current and valuable. Updated content will be available to existing customers at no additional cost.
+                JDLO reserves the right to update tools, processes, and service offerings at any time. Active projects will be completed as scoped.
               </p>
             </div>
 
@@ -75,7 +75,7 @@ export default function TermsPage() {
                 Limitation of Liability
               </h2>
               <p className="text-text-secondary text-[15px] leading-[1.8]">
-                JDLO provides educational content and mentorship. Results vary and depend on individual effort. We make no guarantees of specific outcomes, income, or results. JDLO is not liable for any direct, indirect, incidental, or consequential damages arising from your use of our products or services. Our total liability is limited to the amount you paid for the specific product or service in question.
+                JDLO provides custom development services. Results depend on project scope, client input, and market conditions. We make no guarantees of specific revenue outcomes. JDLO is not liable for any indirect, incidental, or consequential damages arising from your use of our services. Our total liability is limited to the amount you paid for the specific service in question.
               </p>
             </div>
 

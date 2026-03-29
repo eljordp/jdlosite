@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
 import "./globals.css";
 import PostHogProvider from "@/components/PostHogProvider";
-import ReferralCapture from "@/components/ReferralCapture";
 import PageTransition from "@/components/PageTransition";
 
 export const metadata: Metadata = {
@@ -52,9 +50,6 @@ export default function RootLayout({
       <body className="font-sans antialiased">
         <PostHogProvider>
           <PageTransition>{children}</PageTransition>
-          <Suspense fallback={null}>
-            <ReferralCapture />
-          </Suspense>
         </PostHogProvider>
       </body>
     </html>

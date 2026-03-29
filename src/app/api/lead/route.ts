@@ -97,6 +97,23 @@ function getAutoReply(type: string, firstName: string, course?: string) {
         ...base,
       };
 
+    case "inquiry":
+      return {
+        subject: "Got your project inquiry — I'll be in touch",
+        body: `
+          <p>Thanks for reaching out about your project. I review every inquiry personally.</p>
+          <p>Here's what happens next:</p>
+          <table style="width:100%;border-collapse:collapse;margin:24px 0">
+            <tr><td style="padding:10px 0;border-bottom:1px solid rgba(0,0,0,0.08);font-size:14px"><strong>01</strong> &nbsp; I review your project details</td></tr>
+            <tr><td style="padding:10px 0;border-bottom:1px solid rgba(0,0,0,0.08);font-size:14px"><strong>02</strong> &nbsp; I send you a clear plan, timeline, and price within 24 hours</td></tr>
+            <tr><td style="padding:10px 0;font-size:14px"><strong>03</strong> &nbsp; If it's a fit, we get started</td></tr>
+          </table>
+          <p>No discovery calls, no runaround. Just a straight answer on what I'd build and what it costs.</p>
+          <p>Talk soon.</p>
+        `,
+        ...base,
+      };
+
     case "contact":
       return {
         subject: "Got your message — I'll be in touch",
@@ -129,11 +146,12 @@ export async function POST(req: NextRequest) {
     }
 
     const labels: Record<string, string> = {
-      student: "Course Waitlist",
+      inquiry: "Project Inquiry",
       business: "Business Inquiry",
+      contact: "Contact Form",
+      student: "Course Waitlist",
       mentorship: "Mentorship Application",
       careers: "Career Application",
-      contact: "Contact Form",
     };
 
     const firstName = name.split(" ")[0];

@@ -32,19 +32,19 @@ export default function RefundPage() {
 
             <div>
               <h2 className="text-[18px] font-semibold tracking-[-0.02em] mb-4">
-                Courses ($197&ndash;$997)
+                Service Projects
               </h2>
               <p className="text-text-secondary text-[15px] leading-[1.8]">
-                All course purchases are final once your access code has been delivered. Courses are digital products &mdash; once you have access, the sale is complete. No refunds, no exceptions on delivered access codes.
+                All projects require a deposit before work begins. Deposits are non-refundable as they cover initial design, planning, and development time. Final payment is due upon project completion. If you&apos;re not satisfied with the deliverables, we&apos;ll work with you to make revisions until it&apos;s right.
               </p>
             </div>
 
             <div>
               <h2 className="text-[18px] font-semibold tracking-[-0.02em] mb-4">
-                Mentorship ($2,500/mo)
+                Retainer Agreements
               </h2>
               <p className="text-text-secondary text-[15px] leading-[1.8]">
-                Mentorship is a monthly subscription. You can cancel anytime and won&apos;t be charged for the next billing cycle. However, there are no refunds for the current billing period. Once a month has started, that month is paid for.
+                Monthly retainers can be cancelled anytime with 30 days notice. There are no refunds for the current billing period. Once a month has started, that month is paid for.
               </p>
             </div>
 

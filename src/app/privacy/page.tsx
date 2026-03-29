@@ -84,7 +84,7 @@ export default function PrivacyPage() {
               <ul className="space-y-3">
                 <li className="text-text-secondary text-[15px] leading-[1.8] flex gap-3">
                   <span className="text-accent shrink-0">-</span>
-                  <span>To deliver courses and mentorship you&apos;ve purchased</span>
+                  <span>To deliver services and projects you&apos;ve contracted</span>
                 </li>
                 <li className="text-text-secondary text-[15px] leading-[1.8] flex gap-3">
                   <span className="text-accent shrink-0">-</span>
