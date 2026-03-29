@@ -61,7 +61,7 @@ export default function ProductPage() {
           <RevealOnScroll>
             <div className="max-w-[600px]">
               <p className="font-display text-[clamp(2.5rem,5vw,4.5rem)] tracking-[-0.03em] leading-[0.95] mb-6">From $10,000</p>
-              <p className="text-text-secondary text-[16px] leading-relaxed mb-8">Enterprise tools require proper architecture. Scoped based on users, data volume, and integration complexity.</p>
+              <p className="text-text-secondary text-[16px] leading-relaxed mb-8">Enterprise tools need proper architecture — multi-user support, role-based permissions, data processing at scale, security, and integration with existing systems. For $10K+ you&apos;re getting software that companies normally pay six figures for from agencies that take 6 months. I build it in weeks. You own it. No licensing fees, no per-seat charges, no monthly subscription to use your own tool.</p>
               <div className="flex flex-wrap gap-4">
                 <Link href="/contact?product=enterprise-tools" className="magnetic-btn">
                   <span className="relative z-10">Get Started</span>

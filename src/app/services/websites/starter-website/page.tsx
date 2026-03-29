@@ -52,8 +52,7 @@ export default function StarterWebsiteProduct() {
           <RevealOnScroll>
             <div className="max-w-[600px]">
               <p className="font-display text-[clamp(2.5rem,5vw,4.5rem)] tracking-[-0.03em] leading-[0.95] mb-6">$997</p>
-              <p className="text-text-secondary text-[16px] leading-relaxed mb-4">Everything you need to get your business online and looking professional.</p>
-              <p className="text-text-secondary text-[14px] leading-relaxed mb-8">Delivered in about 2 weeks. Payment plans available.</p>
+              <p className="text-text-secondary text-[16px] leading-relaxed mb-8">5 custom pages, SEO, mobile responsive, contact forms — everything a small business needs to look real online. Delivered in 2 weeks. Payment plans available.</p>
               <div className="flex flex-wrap gap-4">
                 <Link href="/contact?product=starter-website" className="magnetic-btn"><span className="relative z-10">Get Started</span></Link>
                 <a href="https://instagram.com/jdlo" target="_blank" rel="noopener noreferrer" className="ghost-btn">DM @jdlo</a>

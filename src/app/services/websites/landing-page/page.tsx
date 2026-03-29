@@ -51,8 +51,7 @@ export default function LandingPageProduct() {
           <RevealOnScroll>
             <div className="max-w-[600px]">
               <p className="font-display text-[clamp(2.5rem,5vw,4.5rem)] tracking-[-0.03em] leading-[0.95] mb-6">$497</p>
-              <p className="text-text-secondary text-[16px] leading-relaxed mb-4">Flat rate. No hidden fees. No monthly costs.</p>
-              <p className="text-text-secondary text-[14px] leading-relaxed mb-8">Delivered in 3-5 business days. You send me your info, I send you a site.</p>
+              <p className="text-text-secondary text-[16px] leading-relaxed mb-8">Flat rate. No hidden fees. One page, one price. You send me your content, I send you a live site in 3-5 days.</p>
               <div className="flex flex-wrap gap-4">
                 <Link href="/contact?product=landing-page" className="magnetic-btn"><span className="relative z-10">Get Started</span></Link>
                 <a href="https://instagram.com/jdlo" target="_blank" rel="noopener noreferrer" className="ghost-btn">DM @jdlo</a>

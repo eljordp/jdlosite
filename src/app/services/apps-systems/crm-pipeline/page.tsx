@@ -61,7 +61,7 @@ export default function ProductPage() {
           <RevealOnScroll>
             <div className="max-w-[600px]">
               <p className="font-display text-[clamp(2.5rem,5vw,4.5rem)] tracking-[-0.03em] leading-[0.95] mb-6">From $2,500</p>
-              <p className="text-text-secondary text-[16px] leading-relaxed mb-8">From simple lead trackers to full multi-pipeline CRM. Scoped to your sales process.</p>
+              <p className="text-text-secondary text-[16px] leading-relaxed mb-8">A CRM built around YOUR sales process — not some generic tool you have to bend your workflow around. Lead capture from your website, pipeline stages that match how you actually sell, deal tracking with revenue forecasting, follow-up reminders so nothing falls through the cracks, team assignments if you have salespeople, and reporting that shows you where your money is coming from. HubSpot charges $800/month for this. Salesforce charges $1,500/month. This is a one-time build and it&apos;s yours.</p>
               <div className="flex flex-wrap gap-4">
                 <Link href="/contact?product=crm-pipeline" className="magnetic-btn">
                   <span className="relative z-10">Get Started</span>

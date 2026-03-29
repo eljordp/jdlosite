@@ -61,7 +61,7 @@ export default function ProductPage() {
           <RevealOnScroll>
             <div className="max-w-[600px]">
               <p className="font-display text-[clamp(2.5rem,5vw,4.5rem)] tracking-[-0.03em] leading-[0.95] mb-6">From $1,000</p>
-              <p className="text-text-secondary text-[16px] leading-relaxed mb-8">Simple booking systems start at $1K. Complex scheduling with team management runs higher.</p>
+              <p className="text-text-secondary text-[16px] leading-relaxed mb-8">Simple booking systems that let customers pick a time without the back-and-forth. Calendar syncs, automatic confirmations, reminder texts/emails, rescheduling. Starts at $1K for basic booking. Complex scheduling with team management, multiple locations, or custom rules runs higher.</p>
               <div className="flex flex-wrap gap-4">
                 <Link href="/contact?product=booking-scheduling" className="magnetic-btn">
                   <span className="relative z-10">Get Started</span>

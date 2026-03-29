@@ -61,7 +61,7 @@ export default function ProductPage() {
           <RevealOnScroll>
             <div className="max-w-[600px]">
               <p className="font-display text-[clamp(2.5rem,5vw,4.5rem)] tracking-[-0.03em] leading-[0.95] mb-6">From $25,000</p>
-              <p className="text-text-secondary text-[16px] leading-relaxed mb-8">Full casino platforms are complex. Price depends on number of games, features, and compliance requirements.</p>
+              <p className="text-text-secondary text-[16px] leading-relaxed mb-8">This is the most complex thing I build. A full online casino includes: multiple game types (slots, blackjack, crash, poker, dice, roulette — you pick which ones), real-time multiplayer so players see each other, player accounts with wallets and transaction history, house edge management so the math works, admin panel with full control over games/players/promotions, compliance-ready architecture, leaderboards and social features, and a promotional system for bonuses and rewards. I built Quanta — a full casino with 23 game types — from scratch. This is not a template. This is a real platform.</p>
               <div className="flex flex-wrap gap-4">
                 <Link href="/contact?product=online-casinos" className="magnetic-btn">
                   <span className="relative z-10">Get Started</span>

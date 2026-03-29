@@ -61,7 +61,7 @@ export default function ProductPage() {
           <RevealOnScroll>
             <div className="max-w-[600px]">
               <p className="font-display text-[clamp(2.5rem,5vw,4.5rem)] tracking-[-0.03em] leading-[0.95] mb-6">Custom quote</p>
-              <p className="text-text-secondary text-[16px] leading-relaxed mb-8">Every platform is unique. Start with a conversation and I&apos;ll tell you exactly what it takes.</p>
+              <p className="text-text-secondary text-[16px] leading-relaxed mb-8">If you&apos;re reading this page, you probably have an idea that doesn&apos;t fit any category. Good. Those are my favorite projects. Tell me what you&apos;re imagining and I&apos;ll tell you exactly what it takes — timeline, cost, and whether it&apos;s even possible. No charge for the conversation.</p>
               <div className="flex flex-wrap gap-4">
                 <Link href="/contact?product=custom-platforms" className="magnetic-btn">
                   <span className="relative z-10">Get Started</span>

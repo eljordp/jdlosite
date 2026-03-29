@@ -61,7 +61,7 @@ export default function ProductPage() {
           <RevealOnScroll>
             <div className="max-w-[600px]">
               <p className="font-display text-[clamp(2.5rem,5vw,4.5rem)] tracking-[-0.03em] leading-[0.95] mb-6">From $2,000</p>
-              <p className="text-text-secondary text-[16px] leading-relaxed mb-8">Simple quizzes start around $2K. Complex configurators and interactive tools run higher.</p>
+              <p className="text-text-secondary text-[16px] leading-relaxed mb-8">Quizzes, calculators, configurators — anything that turns a passive visitor into an engaged lead. These convert 3-5x better than static pages. At $2K that&apos;s one of the highest-ROI things you can add to your site.</p>
               <div className="flex flex-wrap gap-4">
                 <Link href="/contact?product=interactive-experiences" className="magnetic-btn">
                   <span className="relative z-10">Get Started</span>

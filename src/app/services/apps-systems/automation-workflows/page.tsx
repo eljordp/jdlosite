@@ -61,7 +61,7 @@ export default function ProductPage() {
           <RevealOnScroll>
             <div className="max-w-[600px]">
               <p className="font-display text-[clamp(2.5rem,5vw,4.5rem)] tracking-[-0.03em] leading-[0.95] mb-6">From $2,000</p>
-              <p className="text-text-secondary text-[16px] leading-relaxed mb-8">Depends on complexity. Most automations are built and running within 2 weeks.</p>
+              <p className="text-text-secondary text-[16px] leading-relaxed mb-8">I map out every repetitive task in your business, then build systems that handle them automatically. Data entry, follow-ups, scheduling, invoicing, reporting — gone. Most clients save 20-40 hours per week. At even $25/hr that&apos;s $2K-$4K/month in saved labor. This pays for itself before the first invoice is due.</p>
               <div className="flex flex-wrap gap-4">
                 <Link href="/contact?product=automation-workflows" className="magnetic-btn">
                   <span className="relative z-10">Get Started</span>

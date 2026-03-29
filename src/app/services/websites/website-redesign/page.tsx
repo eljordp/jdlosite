@@ -52,8 +52,7 @@ export default function WebsiteRedesignProduct() {
           <RevealOnScroll>
             <div className="max-w-[600px]">
               <p className="font-display text-[clamp(2.5rem,5vw,4.5rem)] tracking-[-0.03em] leading-[0.95] mb-6">From $1,500</p>
-              <p className="text-text-secondary text-[16px] leading-relaxed mb-4">Depends on the size of your current site and how much needs to change.</p>
-              <p className="text-text-secondary text-[14px] leading-relaxed mb-8">2-3 weeks. I&apos;ll audit your current site first and give you a plan.</p>
+              <p className="text-text-secondary text-[16px] leading-relaxed mb-8">Your current site audited, then rebuilt from scratch. I migrate your content, preserve your Google ranking with proper redirects, and give you something you&apos;re actually proud to send people to. Price depends on how many pages and how much needs to change.</p>
               <div className="flex flex-wrap gap-4">
                 <Link href="/contact?product=website-redesign" className="magnetic-btn"><span className="relative z-10">Get Started</span></Link>
                 <a href="https://instagram.com/jdlo" target="_blank" rel="noopener noreferrer" className="ghost-btn">DM @jdlo</a>

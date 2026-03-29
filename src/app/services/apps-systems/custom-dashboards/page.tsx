@@ -61,7 +61,7 @@ export default function ProductPage() {
           <RevealOnScroll>
             <div className="max-w-[600px]">
               <p className="font-display text-[clamp(2.5rem,5vw,4.5rem)] tracking-[-0.03em] leading-[0.95] mb-6">From $3,000</p>
-              <p className="text-text-secondary text-[16px] leading-relaxed mb-8">Scoped based on data sources and complexity. Most dashboards ship in 2-3 weeks.</p>
+              <p className="text-text-secondary text-[16px] leading-relaxed mb-8">For $3K you get a custom-built command center for your business. Real-time revenue tracking, lead pipeline visibility, team performance metrics, customer activity feeds — all on one screen, updated live. No more switching between 5 different tools. No more asking &apos;how are we doing this month?&apos; and waiting for someone to pull a spreadsheet. You open one page and know everything. Includes mobile access, export/reporting, and admin controls.</p>
               <div className="flex flex-wrap gap-4">
                 <Link href="/contact?product=custom-dashboards" className="magnetic-btn">
                   <span className="relative z-10">Get Started</span>

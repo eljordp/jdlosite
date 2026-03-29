@@ -61,7 +61,7 @@ export default function ProductPage() {
           <RevealOnScroll>
             <div className="max-w-[600px]">
               <p className="font-display text-[clamp(2.5rem,5vw,4.5rem)] tracking-[-0.03em] leading-[0.95] mb-6">From $5,000</p>
-              <p className="text-text-secondary text-[16px] leading-relaxed mb-8">Every internal tool is different. Tell me what your team needs and I'll scope it.</p>
+              <p className="text-text-secondary text-[16px] leading-relaxed mb-8">This isn&apos;t a quick build — this is a custom application for your team. Role-based access so everyone sees what they need and nothing they don&apos;t. Custom workflows that match exactly how your team operates. Data management, integrations with your existing tools, mobile + desktop access. The kind of software companies pay $50K-$100K to have built by an agency with a 6-month timeline. I build it in weeks, not months, and you own it forever.</p>
               <div className="flex flex-wrap gap-4">
                 <Link href="/contact?product=internal-tools" className="magnetic-btn">
                   <span className="relative z-10">Get Started</span>

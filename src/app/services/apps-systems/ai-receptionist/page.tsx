@@ -61,7 +61,7 @@ export default function ProductPage() {
           <RevealOnScroll>
             <div className="max-w-[600px]">
               <p className="font-display text-[clamp(2.5rem,5vw,4.5rem)] tracking-[-0.03em] leading-[0.95] mb-6">From $1,500</p>
-              <p className="text-text-secondary text-[16px] leading-relaxed mb-8">Setup + monthly management. Custom scoped based on call volume and integrations needed.</p>
+              <p className="text-text-secondary text-[16px] leading-relaxed mb-8">That&apos;s the setup fee. Here&apos;s what you&apos;re getting: an AI that answers every call to your business 24/7 — qualifies whether the person is worth your time, books appointments directly on your calendar, sends confirmation texts, follows up with no-shows, and gives you a dashboard showing every call, every lead, every booking. The alternative is hiring a receptionist at $3K/month who still misses calls and takes lunch breaks. This pays for itself in the first month.</p>
               <div className="flex flex-wrap gap-4">
                 <Link href="/contact?product=ai-receptionist" className="magnetic-btn">
                   <span className="relative z-10">Get Started</span>

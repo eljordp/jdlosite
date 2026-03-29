@@ -53,8 +53,7 @@ export default function BusinessWebsiteProduct() {
           <RevealOnScroll>
             <div className="max-w-[600px]">
               <p className="font-display text-[clamp(2.5rem,5vw,4.5rem)] tracking-[-0.03em] leading-[0.95] mb-6">From $3,000</p>
-              <p className="text-text-secondary text-[16px] leading-relaxed mb-4">Price depends on scope. Most business websites land between $3K-$5K.</p>
-              <p className="text-text-secondary text-[14px] leading-relaxed mb-8">2-3 weeks typical. Complex sites may take longer.</p>
+              <p className="text-text-secondary text-[16px] leading-relaxed mb-8">Here&apos;s what $3K gets you that a $997 site doesn&apos;t: unlimited pages designed around YOUR customer journey. A/B tested layouts. Advanced SEO that actually ranks. Analytics so you know what&apos;s working. Email capture with automated follow-ups. An admin panel so you can update content yourself. 30 days of support after launch. Payment plans available. Most agencies charge $10K-$20K for this — and take 3 months.</p>
               <div className="flex flex-wrap gap-4">
                 <Link href="/contact?product=business-website" className="magnetic-btn"><span className="relative z-10">Get Started</span></Link>
                 <a href="https://instagram.com/jdlo" target="_blank" rel="noopener noreferrer" className="ghost-btn">DM @jdlo</a>

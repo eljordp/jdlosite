@@ -8,16 +8,19 @@ export const metadata = {
 };
 
 export default function EcommerceStoreProduct() {
-  const includes = [
-    "Full product catalog",
-    "Shopping cart + checkout",
-    "Payment processing (Stripe/PayPal)",
-    "Order management",
-    "Inventory tracking",
-    "Customer accounts",
-    "Shipping integration",
-    "Mobile optimized",
-    "SEO + marketing foundations",
+  const tiers = [
+    {
+      name: "Quick Store — $497",
+      desc: "Pre-built template customized with your brand, colors, and up to 20 products. Stripe checkout. Live in 24-48 hours. Perfect for dropshipping, testing an idea, or just getting started.",
+    },
+    {
+      name: "Starter Store — $1,500",
+      desc: "Custom design, up to 50 products, payment processing, inventory management, shipping setup, SEO foundations. Delivered in 1 week.",
+    },
+    {
+      name: "Full Store — $3,500+",
+      desc: "This is the real deal. Custom design from scratch, unlimited products, advanced inventory with variant management, customer accounts with order history, automated shipping labels + tracking, discount/promo system, abandoned cart recovery emails, analytics dashboard showing revenue + conversion rates, admin panel for managing everything, and 30 days post-launch support. Agencies charge $15K-$30K for this stack. Payment plans available.",
+    },
   ];
 
   return (
@@ -33,14 +36,14 @@ export default function EcommerceStoreProduct() {
       <section className="section-gap border-t border-border">
         <div className="max-w-[1400px] mx-auto px-6 md:px-10">
           <RevealOnScroll>
-            <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-6">What&apos;s Included</p>
+            <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-6">Three Tiers</p>
           </RevealOnScroll>
           <div className="max-w-[640px]">
-            {includes.map((item, i) => (
+            {tiers.map((tier, i) => (
               <RevealOnScroll key={i} delay={(i % 4) + 1}>
-                <div className="py-4 border-b border-border flex items-start gap-4">
-                  <span className="w-1.5 h-1.5 rounded-full bg-text mt-2.5 shrink-0" />
-                  <span className="text-text-secondary text-[15px] leading-relaxed">{item}</span>
+                <div className="py-6 border-b border-border">
+                  <p className="text-text font-medium text-[16px] mb-2">{tier.name}</p>
+                  <p className="text-text-secondary text-[15px] leading-relaxed">{tier.desc}</p>
                 </div>
               </RevealOnScroll>
             ))}
@@ -52,9 +55,8 @@ export default function EcommerceStoreProduct() {
         <div className="max-w-[1400px] mx-auto px-6 md:px-10">
           <RevealOnScroll>
             <div className="max-w-[600px]">
-              <p className="font-display text-[clamp(2.5rem,5vw,4.5rem)] tracking-[-0.03em] leading-[0.95] mb-6">From $3,500</p>
-              <p className="text-text-secondary text-[16px] leading-relaxed mb-4">Depends on number of products, payment integrations, and features needed.</p>
-              <p className="text-text-secondary text-[14px] leading-relaxed mb-8">2-4 weeks depending on catalog size and features.</p>
+              <p className="font-display text-[clamp(2.5rem,5vw,4.5rem)] tracking-[-0.03em] leading-[0.95] mb-6">Starting at $497</p>
+              <p className="text-text-secondary text-[16px] leading-relaxed mb-8">Three tiers depending on what you need. From a quick template store live in 48 hours to a full custom e-commerce platform with everything built in.</p>
               <div className="flex flex-wrap gap-4">
                 <Link href="/contact?product=e-commerce-store" className="magnetic-btn"><span className="relative z-10">Get Started</span></Link>
                 <a href="https://instagram.com/jdlo" target="_blank" rel="noopener noreferrer" className="ghost-btn">DM @jdlo</a>

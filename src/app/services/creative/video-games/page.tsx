@@ -61,7 +61,7 @@ export default function ProductPage() {
           <RevealOnScroll>
             <div className="max-w-[600px]">
               <p className="font-display text-[clamp(2.5rem,5vw,4.5rem)] tracking-[-0.03em] leading-[0.95] mb-6">Custom quote</p>
-              <p className="text-text-secondary text-[16px] leading-relaxed mb-8">Every game is different. From simple web games to full RPGs with 7+ chapters. Tell me your vision and I&apos;ll scope it.</p>
+              <p className="text-text-secondary text-[16px] leading-relaxed mb-8">Every game is different. A simple web game might be $5K. A full RPG with 7 chapters, cutscenes, and original art could be $25K+. Tell me your vision and I&apos;ll scope it honestly.</p>
               <div className="flex flex-wrap gap-4">
                 <Link href="/contact?product=video-games" className="magnetic-btn">
                   <span className="relative z-10">Get Started</span>
