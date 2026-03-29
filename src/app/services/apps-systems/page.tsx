@@ -150,40 +150,94 @@ export default function AppsSystemsPage() {
         </div>
       </section>
 
-      {/* ── Pricing ── */}
+      {/* ── Packages ── */}
       <section className="section-gap border-t border-border">
         <div className="max-w-[1400px] mx-auto px-6 md:px-10">
-          <div className="grid lg:grid-cols-[200px_1fr] gap-8 lg:gap-20">
-            <RevealOnScroll>
-              <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono lg:pt-2">
-                Pricing
-              </p>
-            </RevealOnScroll>
+          <RevealOnScroll>
+            <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-4">
+              Packages
+            </p>
+            <h2 className="font-[family-name:var(--font-display)] text-[clamp(2.2rem,5vw,4.5rem)] tracking-[-0.03em] leading-[0.95] mb-3">
+              Pick your level.
+            </h2>
+            <p className="text-text-secondary text-lg leading-relaxed mb-16">
+              Start small or go all in.
+            </p>
+          </RevealOnScroll>
 
-            <div className="max-w-[680px]">
-              <RevealOnScroll>
-                <h2 className="font-[family-name:var(--font-display)] text-[clamp(2rem,5vw,4rem)] font-normal tracking-[-0.03em] leading-[0.95] mb-8">
-                  Apps &amp; systems start at $5,000.
-                </h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              {
+                name: "Business Automation Audit",
+                price: "$500",
+                desc: "I\u2019ll analyze your current workflow and tell you exactly what to automate and how much time you\u2019ll save.",
+                includes: [
+                  "Full workflow analysis",
+                  "Automation roadmap",
+                  "Time savings estimate",
+                  "Priority recommendations",
+                ],
+                popular: false,
+                cta: "Buy Now",
+                href: "/contact?package=automation-audit",
+              },
+              {
+                name: "Starter Automation",
+                price: "$2,000",
+                desc: "One key system automated. Pick your biggest time waster and I\u2019ll eliminate it.",
+                includes: [
+                  "1 custom automation",
+                  "Setup + integration",
+                  "Training walkthrough",
+                  "30 days support",
+                ],
+                popular: true,
+                cta: "Buy Now",
+                href: "/contact?package=starter-automation",
+              },
+              {
+                name: "Full System Build",
+                price: "From $5K",
+                desc: "AI receptionists, dashboards, CRM automation, booking systems \u2014 the whole operation.",
+                includes: [
+                  "Custom scoped",
+                  "Multiple integrations",
+                  "Admin dashboard",
+                  "Ongoing support",
+                  "Payment plans available",
+                ],
+                popular: false,
+                cta: "Let\u2019s Talk",
+                href: "/contact?package=full-system",
+              },
+            ].map((pkg, i) => (
+              <RevealOnScroll key={pkg.name} delay={i + 1}>
+                <div className={`rounded-2xl border ${pkg.popular ? "border-text" : "border-border"} p-8 flex flex-col h-full relative`}>
+                  {pkg.popular && (
+                    <span className="absolute -top-3 left-6 bg-text text-bg text-[11px] font-mono tracking-wider uppercase px-3 py-1 rounded-full">
+                      Most Popular
+                    </span>
+                  )}
+                  <p className="text-[11px] font-mono text-text-muted tracking-[0.2em] uppercase mb-3">{pkg.name}</p>
+                  <p className="font-[family-name:var(--font-display)] text-[clamp(2rem,4vw,3rem)] tracking-[-0.03em] leading-none mb-4">{pkg.price}</p>
+                  <p className="text-text-secondary text-[14px] leading-relaxed mb-8">{pkg.desc}</p>
+                  <ul className="space-y-3 mb-10 flex-1">
+                    {pkg.includes.map((item) => (
+                      <li key={item} className="flex items-start gap-3 text-[14px] text-text-secondary">
+                        <span className="w-1 h-1 rounded-full bg-text mt-2 shrink-0" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                  <Link href={pkg.href} className={`${pkg.popular ? "magnetic-btn" : "ghost-btn"} w-full justify-center`}>
+                    {pkg.popular ? <span className="relative z-10">{pkg.cta}</span> : pkg.cta}
+                  </Link>
+                </div>
               </RevealOnScroll>
-              <RevealOnScroll delay={1}>
-                <p className="text-text-secondary text-[16px] leading-relaxed mb-6">
-                  Scope determines the final price. A booking system is different
-                  from a full CRM. An AI receptionist is different from a
-                  multi-user platform. I&apos;ll give you an exact number within
-                  24 hours of your first message.
-                </p>
-              </RevealOnScroll>
-              <RevealOnScroll delay={2}>
-                <p className="text-text-secondary text-[16px] leading-relaxed border-l-2 border-border pl-6">
-                  Complex platforms &mdash; casinos, enterprise tools, multi-user
-                  systems with real-time features &mdash; are quoted individually.
-                  These are bigger builds with bigger impact, and the investment
-                  reflects that.
-                </p>
-              </RevealOnScroll>
-            </div>
+            ))}
           </div>
+
+          <p className="text-text-muted text-[13px] text-center mt-10">Not sure which one? <a href="https://instagram.com/jdlo" target="_blank" rel="noopener noreferrer" className="text-text hover:underline">DM me on Instagram</a> and I&apos;ll help you pick.</p>
         </div>
       </section>
 

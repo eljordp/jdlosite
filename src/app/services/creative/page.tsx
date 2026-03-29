@@ -88,42 +88,107 @@ export default function CreativePage() {
         </div>
       </section>
 
-      {/* ── Pricing ── */}
+      {/* ── Packages ── */}
       <section className="section-gap border-t border-border">
         <div className="max-w-[1400px] mx-auto px-6 md:px-10">
-          <div className="grid lg:grid-cols-[200px_1fr] gap-8 lg:gap-20">
-            <RevealOnScroll>
-              <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono lg:pt-2">
-                Pricing
-              </p>
-            </RevealOnScroll>
+          <RevealOnScroll>
+            <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-6">
+              Packages
+            </p>
+            <h2 className="font-display text-[clamp(2.2rem,5vw,4.5rem)] tracking-[-0.03em] leading-[0.95] mb-4">
+              Every project starts somewhere.
+            </h2>
+            <p className="text-text-secondary text-lg md:text-xl leading-relaxed mb-20 max-w-[540px]">
+              From a conversation to a full build.
+            </p>
+          </RevealOnScroll>
 
-            <RevealOnScroll delay={1}>
-              <div className="max-w-[640px]">
-                <h2 className="font-display text-[clamp(2rem,5vw,4rem)] tracking-[-0.03em] leading-[0.95] mb-8">
-                  Creative &amp; custom projects
-                  <br />
-                  <span className="text-text-secondary">
-                    are quoted individually.
-                  </span>
-                </h2>
-                <p className="text-text-secondary text-[16px] leading-relaxed mb-6">
-                  Every project is different. A browser-based game is a different
-                  conversation than an enterprise assessment platform. There&apos;s
-                  no starting price because there&apos;s no starting template.
-                </p>
-                <p className="text-text-secondary text-[16px] leading-relaxed">
-                  Tell me what you&apos;re imagining and I&apos;ll tell you exactly
-                  what it takes to make it real.
-                </p>
-                <div className="mt-12">
-                  <Link href="/contact" className="magnetic-btn">
-                    <span className="relative z-10">Tell Me Your Idea</span>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              {
+                name: "Discovery Session",
+                price: "$250",
+                desc: "1-hour deep dive into your idea. I\u2019ll tell you exactly what it takes to build it, what it costs, and how long.",
+                includes: [
+                  "1-hour call",
+                  "Technical feasibility review",
+                  "Budget estimate",
+                  "Timeline breakdown",
+                ],
+                popular: false,
+                cta: "Book Now",
+                href: "/contact?package=discovery-session",
+              },
+              {
+                name: "Prototype / MVP",
+                price: "From $3K",
+                desc: "A working version of your idea. Not a mockup \u2014 a real thing people can use and test.",
+                includes: [
+                  "Working prototype",
+                  "Core features only",
+                  "User testing ready",
+                  "Feedback + iteration plan",
+                ],
+                popular: true,
+                cta: "Let\u2019s Talk",
+                href: "/contact?package=prototype",
+              },
+              {
+                name: "Full Build",
+                price: "Custom Quote",
+                desc: "Games, casinos, enterprise tools, interactive experiences \u2014 whatever you\u2019re imagining, built completely.",
+                includes: [
+                  "Full scope + architecture",
+                  "Complete development",
+                  "Launch ready",
+                  "Ongoing support",
+                  "Equity/rev-share options",
+                ],
+                popular: false,
+                cta: "Let\u2019s Talk",
+                href: "/contact?package=full-creative",
+              },
+            ].map((pkg, i) => (
+              <RevealOnScroll key={pkg.name} delay={i + 1}>
+                <div className={`rounded-2xl border ${pkg.popular ? "border-text" : "border-border"} p-8 flex flex-col h-full relative`}>
+                  {pkg.popular && (
+                    <span className="absolute -top-3 left-6 bg-text text-bg text-[11px] font-mono tracking-wider uppercase px-3 py-1 rounded-full">
+                      Most Popular
+                    </span>
+                  )}
+                  <p className="text-[11px] font-mono text-text-muted tracking-[0.2em] uppercase mb-3">{pkg.name}</p>
+                  <p className="font-display text-[clamp(2rem,4vw,3rem)] tracking-[-0.03em] leading-none mb-4">{pkg.price}</p>
+                  <p className="text-text-secondary text-[14px] leading-relaxed mb-8">{pkg.desc}</p>
+                  <ul className="space-y-3 mb-10 flex-1">
+                    {pkg.includes.map((item) => (
+                      <li key={item} className="flex items-start gap-3 text-[14px] text-text-secondary">
+                        <span className="w-1 h-1 rounded-full bg-text mt-2 shrink-0" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                  <Link href={pkg.href} className={`${pkg.popular ? "magnetic-btn" : "ghost-btn"} w-full justify-center`}>
+                    {pkg.popular ? <span className="relative z-10">{pkg.cta}</span> : pkg.cta}
                   </Link>
                 </div>
-              </div>
-            </RevealOnScroll>
+              </RevealOnScroll>
+            ))}
           </div>
+
+          <RevealOnScroll delay={4}>
+            <p className="text-text-muted text-[14px] text-center mt-12">
+              Not sure which one fits?{" "}
+              <a
+                href="https://instagram.com/jdlo"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-text-secondary hover:text-text underline underline-offset-4 transition-colors duration-300"
+              >
+                DM me on Instagram
+              </a>{" "}
+              and I&apos;ll point you in the right direction.
+            </p>
+          </RevealOnScroll>
         </div>
       </section>
 
