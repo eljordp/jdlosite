@@ -275,6 +275,66 @@ const projects: Record<string, {
     ],
     liveUrl: "https://www.cwbystudio.com",
   },
+  "jdlo-crm": {
+    name: "JDLO CRM",
+    category: "SaaS / Tool",
+    headline: "Custom CRM for managing clients, leads, and pipeline",
+    description: "Built a full CRM system from scratch to manage my own client pipeline. Track leads, deals, follow-ups, and revenue all in one place. Uses it daily to run my business.",
+    stats: [
+      { value: "Full", label: "CRM" },
+      { value: "Pipeline", label: "Management" },
+      { value: "Custom", label: "Built" },
+    ],
+    liveUrl: "https://jdlo-crm.vercel.app",
+  },
+  "joon11ee": {
+    name: "Joon11ee",
+    category: "Casino / 3D",
+    headline: "3D casino experience with voice chat and real-time multiplayer",
+    description: "The most complex project in the portfolio. A full 3D casino environment with WebRTC voice chat, real-time multiplayer, player avatars, and immersive gameplay. Built entirely from scratch.",
+    stats: [
+      { value: "3D", label: "Environment" },
+      { value: "Voice", label: "Chat" },
+      { value: "Real-time", label: "Multiplayer" },
+    ],
+    liveUrl: "https://www.joon11ee.com",
+  },
+  "muddled-by-mia": {
+    name: "Muddled by Mia",
+    category: "Website",
+    headline: "Website for a cocktail and mixology brand",
+    description: "Custom website for Muddled by Mia — a cocktail and mixology brand. Clean, appetizing design that showcases recipes, services, and brand identity.",
+    stats: [
+      { value: "Custom", label: "Design" },
+      { value: "Brand", label: "Identity" },
+      { value: "Full", label: "Website" },
+    ],
+    liveUrl: "https://muddledbymia.com",
+  },
+  "lonely-love": {
+    name: "Lonely Love",
+    category: "Fashion",
+    headline: "E-commerce site for a clothing brand with a following",
+    description: "Custom online store for Lonely Love — a clothing brand building a community. Clean design, full product catalog, and a shopping experience that matches the brand's aesthetic and energy.",
+    stats: [
+      { value: "Custom", label: "E-commerce" },
+      { value: "Brand", label: "Identity" },
+      { value: "Full", label: "Store" },
+    ],
+    liveUrl: "https://www.shoplonelylove.com",
+  },
+  "cwby-studios": {
+    name: "CWBY Studios",
+    category: "Agency",
+    headline: "Creative studio and agency site based in Hollywood",
+    description: "Website for CWBY Studios — a creative studio and agency operating out of Hollywood. Showcases their creative work, services, and team with a design that reflects their high-end production quality.",
+    stats: [
+      { value: "Hollywood", label: "Based" },
+      { value: "Creative", label: "Agency" },
+      { value: "Premium", label: "Design" },
+    ],
+    liveUrl: "https://www.cwbystudio.com",
+  },
 };
 
 export function generateStaticParams() {
