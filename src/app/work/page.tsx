@@ -44,26 +44,31 @@ interface Project {
 }
 
 const PROJECTS: Project[] = [
+  // ── Flagship (most impressive) ──
   { name: "Quanta", slug: "quanta", categories: ["Casino"], headline: "Full online sweepstakes casino from scratch", stats: ["6 game types", "Real-time multiplayer", "$50K+ platform value"] },
   { name: "Club Bot / Velvet", slug: "club-bot", categories: ["AI", "SaaS"], headline: "AI nightclub promoter platform — custom product turned SaaS", stats: ["500+ guests/week", "30hrs/wk saved", "SaaS platform"] },
+  { name: "Best Odds", slug: "best-odds", categories: ["Pitch"], headline: "Interactive presentation for casino odds and strategy", stats: ["Data-driven", "Visual slides", "Animated"] },
+  // ── Enterprise ──
   { name: "Pomaika\u2018i Co", slug: "pomaikai", categories: ["Website", "AI"], headline: "Centralized operations for a six-figure consultancy", stats: ["$5K project", "5+ tools replaced", "20hrs/wk saved"] },
   { name: "DHL Translator", slug: "dhl-translator", categories: ["Enterprise", "Tool"], headline: "Desktop app processing thousands of shipments monthly", stats: ["10K+ shipments/mo", "15hrs/wk saved", "Desktop native app"] },
   { name: "DHL CRA Quiz", slug: "dhl-cra-quiz", categories: ["Enterprise"], headline: "Competency assessment for enterprise onboarding", stats: ["200+ employees", "85% faster onboarding", "Auto certification"] },
-  { name: "Loan Agent", slug: "loan-agent", categories: ["AI", "SaaS"], headline: "Multi-tenant loan processing system with AI underwriting", stats: ["Multi-tenant", "Auto processing", "PDF generation"] },
+  { name: "Cubicship", slug: "cubicship", categories: ["Website", "Enterprise"], headline: "Returns portal and main site for DHL premier partner", stats: ["Refund workflow", "Returns portal", "2 platforms"] },
+  { name: "Pomaika\u2018i Dashboard", slug: "pomaikai-dashboard", categories: ["Tool", "AI"], headline: "Internal team ops dashboard tracking everything in real time", stats: ["Real-time data", "Team tracking", "Revenue metrics"] },
+  // ── Client websites & e-commerce ──
+  { name: "CWBY Studios", slug: "cwby-studios", categories: ["Website"], headline: "Creative studio and agency site based in Hollywood", stats: ["Hollywood", "Creative agency", "Premium design"] },
   { name: "West Coast Terpz", slug: "west-coast-terpz", categories: ["Website", "E-commerce"], headline: "E-commerce platform that turned a local brand online", stats: ["$12K+/mo revenue", "24/7 order processing", "3x customer reach"] },
   { name: "Vacaville Appliance", slug: "vacaville-appliance", categories: ["Website", "AI"], headline: "AI receptionist that books appointments while they sleep", stats: ["40+ bookings/mo", "24/7 availability", "$8K+ revenue added"] },
-  { name: "The Sticker Smith", slug: "sticker-smith", categories: ["Website", "E-commerce"], headline: "Brand website that turned a print shop into a real business", stats: ["5x online visibility", "New revenue channel", "Pro brand identity"] },
-  { name: "fw.wheels", slug: "fw-wheels", categories: ["Website"], headline: "Wheel catalog and ordering system for auto dealer", stats: ["Full catalog", "MRR potential", "Custom built"] },
+  { name: "Lonely Love", slug: "lonely-love", categories: ["Website", "Fashion", "E-commerce"], headline: "E-commerce site for a clothing brand with a following", stats: ["Custom e-commerce", "Brand identity", "Full store"] },
   { name: "Onhizm", slug: "onhizm", categories: ["Website", "Fashion"], headline: "Custom site for a brand worn by celebrities", stats: ["Empire connections", "Custom redesign", "Premium brand"] },
-  { name: "Cubicship", slug: "cubicship", categories: ["Website", "Enterprise"], headline: "Returns portal and main site for DHL premier partner", stats: ["Refund workflow", "Returns portal", "2 platforms"] },
-  { name: "Robot Producer", slug: "robot-producer", categories: ["Pitch", "Website"], headline: "Full B2B sales system for selling robots to businesses", stats: ["Full sales kit", "ROI calculator", "4 platforms"] },
-  { name: "Best Odds", slug: "best-odds", categories: ["Pitch"], headline: "Interactive presentation for casino odds and strategy", stats: ["Data-driven", "Visual slides", "Animated"] },
+  { name: "The Sticker Smith", slug: "sticker-smith", categories: ["Website", "E-commerce"], headline: "Brand website that turned a print shop into a real business", stats: ["5x online visibility", "New revenue channel", "Pro brand identity"] },
+  { name: "Manza Visuals", slug: "manza-visuals", categories: ["Website"], headline: "Portfolio site for a Bay Area videographer and visual artist", stats: ["Custom design", "Video portfolio", "Lead capture"] },
+  { name: "fw.wheels", slug: "fw-wheels", categories: ["Website"], headline: "Wheel catalog and ordering system for auto dealer", stats: ["Full catalog", "MRR potential", "Custom built"] },
+  // ── Games & creative ──
   { name: "JDLO The Game", slug: "jdlo-the-game", categories: ["Game"], headline: "Full RPG video game with 7 chapters and cutscenes", stats: ["7 chapters", "20+ characters", "Full original story"] },
   { name: "JDLO Wii", slug: "jdlo-wii", categories: ["Game"], headline: "Wii Sports-inspired multiplayer web game", stats: ["1v1 multiplayer", "Web-based", "Original game"] },
-  { name: "Pomaika\u2018i Dashboard", slug: "pomaikai-dashboard", categories: ["Tool", "AI"], headline: "Internal team ops dashboard tracking everything in real time", stats: ["Real-time data", "Team tracking", "Revenue metrics"] },
-  { name: "Manza Visuals", slug: "manza-visuals", categories: ["Website"], headline: "Portfolio site for a Bay Area videographer and visual artist", stats: ["Custom design", "Video portfolio", "Lead capture"] },
-  { name: "Lonely Love", slug: "lonely-love", categories: ["Website", "Fashion", "E-commerce"], headline: "E-commerce site for a clothing brand with a following", stats: ["Custom e-commerce", "Brand identity", "Full store"] },
-  { name: "CWBY Studios", slug: "cwby-studios", categories: ["Website"], headline: "Creative studio and agency site based in Hollywood", stats: ["Hollywood", "Creative agency", "Premium design"] },
+  { name: "Robot Producer", slug: "robot-producer", categories: ["Pitch", "Website"], headline: "Full B2B sales system for selling robots to businesses", stats: ["Full sales kit", "ROI calculator", "4 platforms"] },
+  // ── Private / inquire ──
+  { name: "Loan Agent", slug: "loan-agent", categories: ["AI", "SaaS"], headline: "Multi-tenant loan processing system with AI underwriting — private system, inquire for details", stats: ["Multi-tenant", "Auto processing", "Inquire"] },
 ];
 
 /* ────────────────────────────────────────────────────────────
