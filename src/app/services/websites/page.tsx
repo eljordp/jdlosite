@@ -55,36 +55,41 @@ function Hero() {
 /* ────────────────────────────────────────────────── */
 /*  What You Get                                      */
 /* ────────────────────────────────────────────────── */
-const deliverables = [
+const products = [
   {
     num: "01",
-    title: "Custom design that matches your brand",
-    desc: "Not a template with your logo slapped on. Every page is designed around your business, your customers, and what makes you different.",
+    title: "Landing Page",
+    desc: "One high-converting page. Perfect for launches, funnels, link-in-bio, or just getting online fast. Delivered in 3-5 days.",
+    price: "$497",
+    href: "/services/websites/landing-page",
   },
   {
     num: "02",
-    title: "Built to convert",
-    desc: "Every page has a job. Whether it's booking a call, buying a product, or filling out a form — your site moves people to action.",
+    title: "Starter Website",
+    desc: "A real multi-page website that makes your business look professional and shows up when people search for you.",
+    price: "$997",
+    href: "/services/websites/starter-website",
   },
   {
     num: "03",
-    title: "Mobile-first",
-    desc: "Over half your visitors are on their phone. Your site will look and work perfectly on every screen size, every time.",
+    title: "Business Website",
+    desc: "Fully custom, designed to convert, built to grow with you. For businesses that are done looking amateur online.",
+    price: "From $3K",
+    href: "/services/websites/business-website",
   },
   {
     num: "04",
-    title: "Fast load times",
-    desc: "Slow sites lose customers. Your pages load instantly — which means better search rankings, lower bounce rates, and more revenue.",
+    title: "E-commerce Store",
+    desc: "Full online store with product management, checkout, and everything you need to sell online 24/7.",
+    price: "From $3.5K",
+    href: "/services/websites/e-commerce-store",
   },
   {
     num: "05",
-    title: "SEO foundations",
-    desc: "Show up when people search for what you sell. Every site is built with the technical foundations that search engines reward.",
-  },
-  {
-    num: "06",
-    title: "Full ownership",
-    desc: "No monthly lock-in. No hostage situation. You own your site, your domain, your content — forever.",
+    title: "Website Redesign",
+    desc: "Your current site is costing you money. I'll rebuild it from scratch — faster, cleaner, designed to convert.",
+    price: "From $1.5K",
+    href: "/services/websites/website-redesign",
   },
 ];
 
@@ -93,29 +98,38 @@ function WhatYouGet() {
     <section className="section-gap border-t border-border">
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
         <RevealOnScroll>
-          <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-20">
-            What You Get
-          </p>
+          <div className="flex items-baseline justify-between mb-4">
+            <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono">
+              Products
+            </p>
+            <p className="text-text-muted text-[11px] font-mono hidden md:block">
+              05 options
+            </p>
+          </div>
         </RevealOnScroll>
 
         <div className="max-w-[960px]">
-          {deliverables.map((item, i) => (
+          {products.map((item, i) => (
             <RevealOnScroll key={item.num} delay={(i % 5) + 1}>
-              <div className="py-10 md:py-14 border-b border-border first:border-t first:border-border group">
+              <Link href={item.href} className="block py-10 md:py-14 border-b border-border group hover:bg-surface/50 -mx-6 px-6 sm:-mx-10 sm:px-10 transition-colors duration-300">
                 <div className="flex items-baseline gap-6 md:gap-10">
                   <span className="text-text-muted text-[12px] font-mono tracking-wider shrink-0 pt-1">
                     {item.num}
                   </span>
-                  <div>
-                    <h3 className="font-display text-[clamp(1.5rem,3vw,2.5rem)] leading-[1.1] tracking-[-0.02em] mb-4">
-                      {item.title}
-                    </h3>
+                  <div className="flex-1">
+                    <div className="flex items-baseline justify-between gap-4 mb-4">
+                      <h3 className="font-display text-[clamp(1.5rem,3vw,2.5rem)] leading-[1.1] tracking-[-0.02em] group-hover:text-text-secondary transition-colors duration-300">
+                        {item.title}
+                        <span className="inline-block ml-2 text-text-muted text-[0.5em] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300">&rarr;</span>
+                      </h3>
+                      <span className="text-[14px] font-semibold tracking-[-0.02em] shrink-0 font-mono">{item.price}</span>
+                    </div>
                     <p className="text-text-secondary text-base md:text-lg leading-relaxed max-w-[600px]">
                       {item.desc}
                     </p>
                   </div>
                 </div>
-              </div>
+              </Link>
             </RevealOnScroll>
           ))}
         </div>

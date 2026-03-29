@@ -50,7 +50,7 @@ const PROJECTS: Project[] = [
   { name: "Best Odds", slug: "best-odds", categories: ["Pitch"], headline: "Interactive presentation for casino odds and strategy", stats: ["Data-driven", "Visual slides", "Animated"] },
   // ── Enterprise ──
   { name: "Pomaika\u2018i Co", slug: "pomaikai", categories: ["Website", "AI"], headline: "Centralized operations for a six-figure consultancy", stats: ["$5K project", "5+ tools replaced", "20hrs/wk saved"] },
-  { name: "DHL Translator", slug: "dhl-translator", categories: ["Enterprise", "Tool"], headline: "Desktop app processing thousands of shipments monthly", stats: ["10K+ shipments/mo", "15hrs/wk saved", "Desktop native app"] },
+  { name: "Cubicship Translator", slug: "dhl-translator", categories: ["Enterprise", "Tool"], headline: "Translation system for DHL premier partner in 100+ stores, expanding to Canada", stats: ["100+ stores", "DHL Premier Partner", "Expanding to Canada"] },
   { name: "DHL CRA Quiz", slug: "dhl-cra-quiz", categories: ["Enterprise"], headline: "Competency assessment for enterprise onboarding", stats: ["200+ employees", "85% faster onboarding", "Auto certification"] },
   { name: "Cubicship", slug: "cubicship", categories: ["Website", "Enterprise"], headline: "Returns portal and main site for DHL premier partner", stats: ["Refund workflow", "Returns portal", "2 platforms"] },
   { name: "Pomaika\u2018i Dashboard", slug: "pomaikai-dashboard", categories: ["Tool", "AI"], headline: "Internal team ops dashboard tracking everything in real time", stats: ["Real-time data", "Team tracking", "Revenue metrics"] },

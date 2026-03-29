@@ -177,7 +177,7 @@ const featured = [
   { category: "Casino", name: "Quanta", headline: "Full online sweepstakes casino from scratch", stat: "$50K+", img: "/screenshots/quanta.png", slug: "quanta" },
   { category: "AI / SaaS", name: "Club Bot / Velvet", headline: "AI nightclub promoter platform — product + SaaS", stat: "500+ guests/wk", img: "/screenshots/club-bot.png", slug: "club-bot" },
   { category: "Agency", name: "Pomaika\u2018i Co", headline: "Website + ops dashboard for a six-figure consultancy", stat: "$5K project", img: "/screenshots/pomaikai.png", slug: "pomaikai" },
-  { category: "Enterprise", name: "DHL Translator", headline: "Desktop app processing thousands of shipments monthly", stat: "10K+ shipments/mo", img: "/screenshots/cubicship.png", slug: "dhl-translator" },
+  { category: "Enterprise", name: "Cubicship Translator", headline: "DHL premier partner — 100+ stores, expanding to Canada", stat: "100+ stores", img: "/screenshots/cubicship.png", slug: "dhl-translator" },
   { category: "E-commerce", name: "West Coast Terpz", headline: "E-commerce platform doing $12K+ per month", stat: "$12K+/mo", img: "/screenshots/west-coast-terpz.png", slug: "west-coast-terpz" },
   { category: "Game", name: "JDLO The Game", headline: "Full RPG video game with 7 chapters and cutscenes", stat: "7 chapters", img: "/screenshots/jdlo-the-game.png", slug: "jdlo-the-game" },
 ];
@@ -232,13 +232,13 @@ function Work() {
         <RevealOnScroll>
           <Link
             href="/work"
-            className="group block mt-12 py-8 sm:py-10 border border-border rounded-2xl text-center hover:border-text/20 transition-all duration-300"
+            className="group block mt-12 py-6 sm:py-8 bg-text text-bg rounded-2xl text-center hover:bg-text/90 transition-all duration-300"
           >
-            <span className="font-display text-[clamp(1.4rem,3vw,2.2rem)] tracking-[-0.02em] group-hover:text-text-secondary transition-colors duration-300">
-              See all 20+ projects
+            <span className="text-[clamp(1rem,2vw,1.3rem)] font-semibold tracking-[-0.01em]">
+              See all 20+ projects &rarr;
             </span>
-            <span className="block text-text-muted text-[14px] mt-2">
-              Websites, apps, AI systems, games, casinos, enterprise tools &mdash; filter by category
+            <span className="block text-bg/60 text-[13px] mt-1">
+              Filter by category &mdash; websites, apps, AI, games, casinos, enterprise
             </span>
           </Link>
         </RevealOnScroll>
