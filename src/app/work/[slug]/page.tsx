@@ -13,6 +13,7 @@ const projects: Record<string, {
   link?: string;
   revenue?: string;
   screenshot?: string;
+  video?: string;
 }> = {
   quanta: {
     name: "Quanta",
@@ -26,6 +27,7 @@ const projects: Record<string, {
     ],
     link: "https://quantplay-ten.vercel.app/play",
     screenshot: "/screenshots/quanta.png",
+    video: "/videos/quanta.mp4",
   },
   "club-bot": {
     name: "Club Bot",
@@ -38,6 +40,7 @@ const projects: Record<string, {
       { value: "3x", label: "List capacity" },
     ],
     screenshot: "/screenshots/club-bot.png",
+    video: "/videos/club-bot.mp4",
   },
   pomaikai: {
     name: "Pomaika\u2018i Co",
@@ -51,6 +54,7 @@ const projects: Record<string, {
     ],
     revenue: "$5,000",
     screenshot: "/screenshots/pomaikai.png",
+    video: "/videos/pomaikai.mp4",
   },
   "dhl-translator": {
     name: "DHL Translator",
@@ -363,6 +367,22 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                   width={1200}
                   height={700}
                   className="w-full h-auto"
+                />
+              </div>
+            </RevealOnScroll>
+          )}
+
+          {/* Showcase Video */}
+          {project.video && (
+            <RevealOnScroll>
+              <div className="mt-10 rounded-2xl border border-border overflow-hidden max-w-[900px]">
+                <video
+                  src={project.video}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="w-full aspect-video object-cover"
                 />
               </div>
             </RevealOnScroll>

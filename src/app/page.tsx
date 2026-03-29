@@ -8,18 +8,19 @@ import HomeNav from "@/components/HomeNav";
 /* ── Hero ── */
 function Hero() {
   return (
-    <section className="min-h-screen flex flex-col justify-end relative px-6 md:px-10 pb-[12vh]">
-      <div className="absolute top-[20%] right-[8%] w-[500px] h-[500px] bg-text/[0.02] rounded-full blur-[200px] pointer-events-none" />
+    <section className="min-h-screen flex flex-col justify-center relative px-6 md:px-10">
 
       <div className="max-w-[1400px] mx-auto w-full relative z-10">
-        <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase mb-10 hero-animate hero-delay-1 font-mono">
-          Jordan Lopez &mdash; Operator
-        </p>
+        <div className="grid lg:grid-cols-[1.3fr_1fr] gap-12 lg:gap-20 items-center">
+          <div>
+            <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase mb-10 hero-animate hero-delay-1 font-mono">
+              Jordan Lopez &mdash; Operator
+            </p>
 
-        <h1 className="font-display hero-animate hero-delay-2 text-[clamp(2.8rem,7.5vw,7.5rem)] leading-[0.95] tracking-[-0.03em] max-w-[1100px]">
-          If you can think it,
-          <br />I can build it.
-        </h1>
+            <h1 className="font-display hero-animate hero-delay-2 text-[clamp(2.8rem,7.5vw,6.5rem)] leading-[0.95] tracking-[-0.03em]">
+              If you can think it,
+              <br />I can build it.
+            </h1>
 
         <div className="hero-animate hero-delay-3 mt-12 flex flex-col md:flex-row md:items-end md:justify-between gap-10">
           <p className="text-text-secondary text-lg md:text-xl leading-relaxed max-w-[480px]">
@@ -37,6 +38,22 @@ function Hero() {
             >
               DM @jdlo
             </a>
+          </div>
+        </div>
+          </div>
+
+          {/* Photo */}
+          <div className="hidden lg:block hero-animate hero-delay-4">
+            <div className="relative w-full aspect-[3/4] rounded-2xl overflow-hidden border border-border">
+              <Image
+                src="/jordan-3.jpg"
+                alt="Jordan Lopez"
+                fill
+                className="object-cover object-top"
+                sizes="40vw"
+                priority
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -155,12 +172,12 @@ function Process() {
 
 /* ── Work (featured 6) ── */
 const featured = [
-  { category: "Casino", name: "Quanta", headline: "Full online sweepstakes casino from scratch", stat: "$50K+" },
-  { category: "AI System", name: "Club Bot", headline: "AI concierge running a Vegas nightclub operation", stat: "500+ guests/wk" },
-  { category: "Agency", name: "Pomaika\u2018i Co", headline: "Website + ops dashboard for a six-figure consultancy", stat: "$5K project" },
-  { category: "Enterprise", name: "DHL Translator", headline: "Desktop app processing thousands of shipments monthly", stat: "10K+ shipments/mo" },
-  { category: "E-commerce", name: "West Coast Terpz", headline: "E-commerce platform doing $12K+ per month", stat: "$12K+/mo" },
-  { category: "Game", name: "JDLO The Game", headline: "Full RPG video game with 7 chapters and cutscenes", stat: "7 chapters" },
+  { category: "Casino", name: "Quanta", headline: "Full online sweepstakes casino from scratch", stat: "$50K+", img: "/screenshots/quanta.png", slug: "quanta" },
+  { category: "AI System", name: "Club Bot", headline: "AI concierge running a Vegas nightclub operation", stat: "500+ guests/wk", img: "/screenshots/club-bot.png", slug: "club-bot" },
+  { category: "Agency", name: "Pomaika\u2018i Co", headline: "Website + ops dashboard for a six-figure consultancy", stat: "$5K project", img: "/screenshots/pomaikai.png", slug: "pomaikai" },
+  { category: "Enterprise", name: "DHL Translator", headline: "Desktop app processing thousands of shipments monthly", stat: "10K+ shipments/mo", img: "/screenshots/cubicship.png", slug: "dhl-translator" },
+  { category: "E-commerce", name: "West Coast Terpz", headline: "E-commerce platform doing $12K+ per month", stat: "$12K+/mo", img: "/screenshots/west-coast-terpz.png", slug: "west-coast-terpz" },
+  { category: "Game", name: "JDLO The Game", headline: "Full RPG video game with 7 chapters and cutscenes", stat: "7 chapters", img: "/screenshots/jdlo-the-game.png", slug: "jdlo-the-game" },
 ];
 
 function Work() {
@@ -177,26 +194,34 @@ function Work() {
           </h2>
         </RevealOnScroll>
 
-        {/* Project list — tight rows */}
-        <div>
+        {/* Project grid with screenshots */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {featured.map((project, i) => (
             <RevealOnScroll key={project.name} delay={(i % 3) + 1}>
-              <div className="py-5 sm:py-6 border-b border-border flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 sm:gap-8 group">
-                <div className="flex items-baseline gap-3 sm:gap-4 flex-1 min-w-0">
-                  <span className="text-[10px] font-mono text-text-muted tracking-[0.1em] uppercase shrink-0 w-[80px] hidden sm:block">
-                    {project.category}
-                  </span>
-                  <h3 className="font-display text-[clamp(1.2rem,2.5vw,1.8rem)] tracking-[-0.02em] leading-[1.1] group-hover:text-text-secondary transition-colors duration-300">
-                    {project.name}
-                  </h3>
-                  <span className="text-text-muted text-[13px] hidden md:block truncate">
-                    {project.headline}
+              <Link href={`/work/${project.slug}`} className="group block">
+                <div className="rounded-xl border border-border overflow-hidden mb-4 bg-surface">
+                  <Image
+                    src={project.img}
+                    alt={project.name}
+                    width={600}
+                    height={350}
+                    className="w-full aspect-[16/10] object-cover object-top group-hover:scale-[1.02] transition-transform duration-500"
+                  />
+                </div>
+                <div className="flex items-baseline justify-between gap-3">
+                  <div>
+                    <span className="text-[10px] font-mono text-text-muted tracking-[0.1em] uppercase block mb-1">
+                      {project.category}
+                    </span>
+                    <h3 className="font-display text-[clamp(1.1rem,2vw,1.5rem)] tracking-[-0.02em] leading-[1.1] group-hover:text-text-secondary transition-colors duration-300">
+                      {project.name}
+                    </h3>
+                  </div>
+                  <span className="text-[13px] font-semibold tracking-[-0.02em] shrink-0">
+                    {project.stat}
                   </span>
                 </div>
-                <span className="text-[14px] font-semibold tracking-[-0.02em] shrink-0">
-                  {project.stat}
-                </span>
-              </div>
+              </Link>
             </RevealOnScroll>
           ))}
         </div>
