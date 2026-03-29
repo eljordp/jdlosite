@@ -45,7 +45,7 @@ interface Project {
 
 const PROJECTS: Project[] = [
   { name: "Quanta", slug: "quanta", categories: ["Casino"], headline: "Full online sweepstakes casino from scratch", stats: ["6 game types", "Real-time multiplayer", "$50K+ platform value"] },
-  { name: "Club Bot", slug: "club-bot", categories: ["AI", "SaaS"], headline: "AI concierge running a Vegas nightclub operation", stats: ["500+ guests/week", "30hrs/wk saved", "3x list capacity"] },
+  { name: "Club Bot / Velvet", slug: "club-bot", categories: ["AI", "SaaS"], headline: "AI nightclub promoter platform — custom product turned SaaS", stats: ["500+ guests/week", "30hrs/wk saved", "SaaS platform"] },
   { name: "Pomaika\u2018i Co", slug: "pomaikai", categories: ["Website", "AI"], headline: "Centralized operations for a six-figure consultancy", stats: ["$5K project", "5+ tools replaced", "20hrs/wk saved"] },
   { name: "DHL Translator", slug: "dhl-translator", categories: ["Enterprise", "Tool"], headline: "Desktop app processing thousands of shipments monthly", stats: ["10K+ shipments/mo", "15hrs/wk saved", "Desktop native app"] },
   { name: "DHL CRA Quiz", slug: "dhl-cra-quiz", categories: ["Enterprise"], headline: "Competency assessment for enterprise onboarding", stats: ["200+ employees", "85% faster onboarding", "Auto certification"] },

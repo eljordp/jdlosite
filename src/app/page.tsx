@@ -173,7 +173,7 @@ function Process() {
 /* ── Work (featured 6) ── */
 const featured = [
   { category: "Casino", name: "Quanta", headline: "Full online sweepstakes casino from scratch", stat: "$50K+", img: "/screenshots/quanta.png", slug: "quanta" },
-  { category: "AI System", name: "Club Bot", headline: "AI concierge running a Vegas nightclub operation", stat: "500+ guests/wk", img: "/screenshots/club-bot.png", slug: "club-bot" },
+  { category: "AI / SaaS", name: "Club Bot / Velvet", headline: "AI nightclub promoter platform — product + SaaS", stat: "500+ guests/wk", img: "/screenshots/club-bot.png", slug: "club-bot" },
   { category: "Agency", name: "Pomaika\u2018i Co", headline: "Website + ops dashboard for a six-figure consultancy", stat: "$5K project", img: "/screenshots/pomaikai.png", slug: "pomaikai" },
   { category: "Enterprise", name: "DHL Translator", headline: "Desktop app processing thousands of shipments monthly", stat: "10K+ shipments/mo", img: "/screenshots/cubicship.png", slug: "dhl-translator" },
   { category: "E-commerce", name: "West Coast Terpz", headline: "E-commerce platform doing $12K+ per month", stat: "$12K+/mo", img: "/screenshots/west-coast-terpz.png", slug: "west-coast-terpz" },

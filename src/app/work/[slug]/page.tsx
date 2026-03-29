@@ -32,17 +32,16 @@ const projects: Record<string, {
     liveUrl: "https://quantplay-ten.vercel.app/play",
   },
   "club-bot": {
-    name: "Club Bot",
-    category: "AI System",
-    headline: "AI concierge running a Vegas nightclub operation",
-    description: "Automated guest list management for a promoter moving 500+ people per week across Tao Group venues. AI handles bookings, follow-ups, and referral tracking — replaced an entire manual workflow.",
+    name: "Club Bot / Velvet",
+    category: "AI System / SaaS",
+    headline: "AI-powered nightclub promoter platform — the product and the SaaS behind it",
+    description: "Club Bot started as a custom AI concierge for Lauren Rees, a Vegas nightclub promoter moving 500+ people per week across Tao Group venues (Hakkasan, OMNIA, TAO, Marquee, Jewel). The system automates guest list signups, AI chat concierge, follow-ups, and referral tracking — replacing her entire manual workflow of texting every person individually. Velvet is the SaaS version — a white-label platform so any promoter can deploy their own Club Bot. One product built for a client, turned into a scalable business.",
     stats: [
       { value: "500+", label: "Guests/week" },
       { value: "30hrs/wk", label: "Time saved" },
-      { value: "3x", label: "List capacity" },
+      { value: "SaaS", label: "Velvet platform" },
     ],
     screenshot: "/screenshots/club-bot.png",
-    video: "/videos/club-bot.mp4",
     liveUrl: "https://www.reesvip.com",
   },
   pomaikai: {
