@@ -65,31 +65,17 @@ const products = [
   },
   {
     num: "02",
-    title: "Starter Website",
-    desc: "A real multi-page website that makes your business look professional and shows up when people search for you.",
-    price: "$997",
-    href: "/services/websites/starter-website",
+    title: "Website",
+    desc: "A full custom website for your business. Two tiers: $1,500 standard or $3,500 premium with advanced SEO, email capture, admin panel, and 30 days support.",
+    price: "From $1.5K",
+    href: "/services/websites/website",
   },
   {
     num: "03",
-    title: "Business Website",
-    desc: "Fully custom, designed to convert, built to grow with you. For businesses that are done looking amateur online.",
-    price: "From $3K",
-    href: "/services/websites/business-website",
-  },
-  {
-    num: "04",
     title: "E-commerce Store",
-    desc: "Full online store with product management, checkout, and everything you need to sell online 24/7.",
-    price: "From $3.5K",
+    desc: "Sell online 24/7. Quick store for $497 if you just need to get selling, up to a full custom store with inventory, shipping, and customer accounts.",
+    price: "From $497",
     href: "/services/websites/e-commerce-store",
-  },
-  {
-    num: "05",
-    title: "Website Redesign",
-    desc: "Your current site is costing you money. I'll rebuild it from scratch — faster, cleaner, designed to convert.",
-    price: "From $1.5K",
-    href: "/services/websites/website-redesign",
   },
 ];
 
@@ -103,7 +89,7 @@ function WhatYouGet() {
               Products
             </p>
             <p className="text-text-muted text-[11px] font-mono hidden md:block">
-              05 options
+              03 products
             </p>
           </div>
         </RevealOnScroll>
