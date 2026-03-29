@@ -83,28 +83,6 @@ const projects: Record<string, {
     ],
     screenshot: "/screenshots/cubicship.png",
   },
-  "pf-changs": {
-    name: "PF Chang\u2019s AI Receptionist",
-    category: "AI / Enterprise",
-    headline: "AI phone system demo for national restaurant chain",
-    description: "Built an AI-powered phone system that handles incoming calls, routes them to the right department, qualifies leads, and books reservations automatically. Demoed to a national chain.",
-    stats: [
-      { value: "Enterprise", label: "Demo" },
-      { value: "Auto", label: "Call routing" },
-      { value: "AI", label: "Lead qualification" },
-    ],
-  },
-  "ai-receptionist": {
-    name: "AI Receptionist",
-    category: "AI / SaaS",
-    headline: "White-label AI phone system for local businesses",
-    description: "A multi-tenant AI receptionist product that any local business can use. Answers calls 24/7, qualifies leads, books appointments, and sends follow-ups. Designed to be white-labeled and resold.",
-    stats: [
-      { value: "Multi-tenant", label: "Architecture" },
-      { value: "24/7", label: "Call handling" },
-      { value: "Auto", label: "Booking" },
-    ],
-  },
   "loan-agent": {
     name: "Loan Agent",
     category: "AI / SaaS",
@@ -157,30 +135,6 @@ const projects: Record<string, {
     revenue: "~$1,000",
     screenshot: "/screenshots/sticker-smith.png",
     liveUrl: "https://the-sticker-smith.vercel.app",
-  },
-  "dank-slaps": {
-    name: "Dank Slaps",
-    category: "E-commerce",
-    headline: "Niche dropship store system — one template, infinite niches",
-    description: "A reusable e-commerce template system where JP drops a niche and a full store gets deployed. Sticker Smith handles fulfillment. Instant deploy, auto fulfillment, infinitely scalable.",
-    stats: [
-      { value: "Instant", label: "Deploy" },
-      { value: "Auto", label: "Fulfillment" },
-      { value: "Scalable", label: "System" },
-    ],
-  },
-  "miiir-beats": {
-    name: "Miiir Beats",
-    category: "E-commerce",
-    headline: "Beat store for a producer with 107M+ streams",
-    description: "Custom beat store for 415miiir — a Bay Area producer with 107M+ streams and 205 credits. Browse beats, audio preview, 3 license tiers (Basic Lease, Ultimate Lease, Exclusive Buyout), Stripe checkout, and auto-delivery.",
-    stats: [
-      { value: "107M+", label: "Streams" },
-      { value: "3", label: "License tiers" },
-      { value: "Auto", label: "Delivery" },
-    ],
-    screenshot: "/screenshots/miiir-beats.png",
-    liveUrl: "https://miiir-beats.vercel.app",
   },
   "fw-wheels": {
     name: "fw.wheels",
@@ -279,16 +233,17 @@ const projects: Record<string, {
     ],
     screenshot: "/screenshots/pomaikai-dashboard.png",
   },
-  "eagles-automotive": {
-    name: "Eagles Automotive",
+  "manza-visuals": {
+    name: "Manza Visuals",
     category: "Website",
-    headline: "Auto dealership site with real inventory and photos",
-    description: "Full dealership website with live inventory management, photo galleries for each vehicle, and lead capture forms. Built for a real auto dealer who needed to look professional online.",
+    headline: "Portfolio site for a Bay Area videographer and visual artist",
+    description: "Custom portfolio website for Manza Visuals — a videographer and visual artist out of the Bay Area. Showcases video work, photography, and client projects with a clean, cinematic design that lets the visuals speak for themselves.",
     stats: [
-      { value: "Live", label: "Inventory" },
-      { value: "Photo", label: "Gallery" },
+      { value: "Custom", label: "Design" },
+      { value: "Video", label: "Portfolio" },
       { value: "Lead", label: "Capture" },
     ],
+    liveUrl: "https://manzavisuals.com",
   },
 };
 

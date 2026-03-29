@@ -49,14 +49,10 @@ const PROJECTS: Project[] = [
   { name: "Pomaika\u2018i Co", slug: "pomaikai", categories: ["Website", "AI"], headline: "Centralized operations for a six-figure consultancy", stats: ["$5K project", "5+ tools replaced", "20hrs/wk saved"] },
   { name: "DHL Translator", slug: "dhl-translator", categories: ["Enterprise", "Tool"], headline: "Desktop app processing thousands of shipments monthly", stats: ["10K+ shipments/mo", "15hrs/wk saved", "Desktop native app"] },
   { name: "DHL CRA Quiz", slug: "dhl-cra-quiz", categories: ["Enterprise"], headline: "Competency assessment for enterprise onboarding", stats: ["200+ employees", "85% faster onboarding", "Auto certification"] },
-  { name: "PF Chang\u2019s AI Receptionist", slug: "pf-changs", categories: ["AI", "Enterprise"], headline: "AI phone system demo for national restaurant chain", stats: ["Enterprise demo", "Auto call routing", "Lead qualification"] },
-  { name: "AI Receptionist", slug: "ai-receptionist", categories: ["AI", "SaaS"], headline: "White-label AI phone system for local businesses", stats: ["Multi-tenant", "24/7 call handling", "Auto booking"] },
   { name: "Loan Agent", slug: "loan-agent", categories: ["AI", "SaaS"], headline: "Multi-tenant loan processing system with AI underwriting", stats: ["Multi-tenant", "Auto processing", "PDF generation"] },
   { name: "West Coast Terpz", slug: "west-coast-terpz", categories: ["Website", "E-commerce"], headline: "E-commerce platform that turned a local brand online", stats: ["$12K+/mo revenue", "24/7 order processing", "3x customer reach"] },
   { name: "Vacaville Appliance", slug: "vacaville-appliance", categories: ["Website", "AI"], headline: "AI receptionist that books appointments while they sleep", stats: ["40+ bookings/mo", "24/7 availability", "$8K+ revenue added"] },
   { name: "The Sticker Smith", slug: "sticker-smith", categories: ["Website", "E-commerce"], headline: "Brand website that turned a print shop into a real business", stats: ["5x online visibility", "New revenue channel", "Pro brand identity"] },
-  { name: "Dank Slaps", slug: "dank-slaps", categories: ["E-commerce"], headline: "Niche dropship store system \u2014 one template, infinite niches", stats: ["Instant deploy", "Auto fulfillment", "Scalable system"] },
-  { name: "Miiir Beats", slug: "miiir-beats", categories: ["Website", "E-commerce"], headline: "Beat store for a producer with 107M+ streams", stats: ["107M+ streams", "3 license tiers", "Auto delivery"] },
   { name: "fw.wheels", slug: "fw-wheels", categories: ["Website"], headline: "Wheel catalog and ordering system for auto dealer", stats: ["Full catalog", "MRR potential", "Custom built"] },
   { name: "Onhizm", slug: "onhizm", categories: ["Website", "Fashion"], headline: "Custom site for a brand worn by celebrities", stats: ["Empire connections", "Custom redesign", "Premium brand"] },
   { name: "Cubicship", slug: "cubicship", categories: ["Website", "Enterprise"], headline: "Returns portal and main site for DHL premier partner", stats: ["Refund workflow", "Returns portal", "2 platforms"] },
@@ -65,7 +61,7 @@ const PROJECTS: Project[] = [
   { name: "JDLO The Game", slug: "jdlo-the-game", categories: ["Game"], headline: "Full RPG video game with 7 chapters and cutscenes", stats: ["7 chapters", "20+ characters", "Full original story"] },
   { name: "JDLO Wii", slug: "jdlo-wii", categories: ["Game"], headline: "Wii Sports-inspired multiplayer web game", stats: ["1v1 multiplayer", "Web-based", "Original game"] },
   { name: "Pomaika\u2018i Dashboard", slug: "pomaikai-dashboard", categories: ["Tool", "AI"], headline: "Internal team ops dashboard tracking everything in real time", stats: ["Real-time data", "Team tracking", "Revenue metrics"] },
-  { name: "Eagles Automotive", slug: "eagles-automotive", categories: ["Website"], headline: "Auto dealership site with real inventory and photos", stats: ["Live inventory", "Photo gallery", "Lead capture"] },
+  { name: "Manza Visuals", slug: "manza-visuals", categories: ["Website"], headline: "Portfolio site for a Bay Area videographer and visual artist", stats: ["Custom design", "Video portfolio", "Lead capture"] },
 ];
 
 /* ────────────────────────────────────────────────────────────
