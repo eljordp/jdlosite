@@ -1,12 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import PageShell from "@/components/PageShell";
 import RevealOnScroll from "@/components/RevealOnScroll";
 import ROICalculator from "@/components/ROICalculator";
 
-export const metadata = {
-  title: "E-commerce Store | JDLO",
-  description: "A full online store with product management, checkout, and everything you need to process orders while you sleep.",
-};
 
 export default function EcommerceStoreProduct() {
   const tiers = [

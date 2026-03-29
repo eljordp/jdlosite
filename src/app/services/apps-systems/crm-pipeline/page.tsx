@@ -1,12 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import PageShell from "@/components/PageShell";
 import RevealOnScroll from "@/components/RevealOnScroll";
 import ROICalculator from "@/components/ROICalculator";
 
-export const metadata = {
-  title: "CRM & Pipeline Systems | JDLO",
-  description: "Track every lead from first touch to closed deal. Know exactly where your money is coming from.",
-};
 
 export default function ProductPage() {
   const includes = [

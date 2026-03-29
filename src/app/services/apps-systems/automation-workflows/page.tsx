@@ -1,12 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import PageShell from "@/components/PageShell";
 import RevealOnScroll from "@/components/RevealOnScroll";
 import ROICalculator from "@/components/ROICalculator";
 
-export const metadata = {
-  title: "Automation Workflows | JDLO",
-  description: "Custom automation systems that handle your repetitive work — data entry, follow-ups, scheduling, reporting.",
-};
 
 export default function ProductPage() {
   const includes = [

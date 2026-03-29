@@ -1,12 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import PageShell from "@/components/PageShell";
 import RevealOnScroll from "@/components/RevealOnScroll";
 import ROICalculator from "@/components/ROICalculator";
 
-export const metadata = {
-  title: "AI Receptionist | JDLO",
-  description: "An AI-powered phone system that answers calls, qualifies leads, books appointments, and follows up — 24/7.",
-};
 
 export default function ProductPage() {
   const includes = [
