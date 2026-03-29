@@ -70,6 +70,7 @@ const projects: Record<string, {
       { value: "Native", label: "Desktop app" },
     ],
     screenshot: "/screenshots/cubicship.png",
+    liveUrl: "https://dhltranslator.vercel.app",
   },
   "dhl-cra-quiz": {
     name: "DHL CRA Quiz",
@@ -220,6 +221,7 @@ const projects: Record<string, {
       { value: "Web", label: "Based" },
       { value: "Original", label: "Game" },
     ],
+    liveUrl: "https://jdlo-wii.vercel.app",
   },
   "pomaikai-dashboard": {
     name: "Pomaika\u2018i Dashboard",
@@ -232,6 +234,7 @@ const projects: Record<string, {
       { value: "Revenue", label: "Metrics" },
     ],
     screenshot: "/screenshots/pomaikai-dashboard.png",
+    liveUrl: "https://pomaikai-dashboard.vercel.app",
   },
   "manza-visuals": {
     name: "Manza Visuals",
