@@ -162,82 +162,54 @@ const included = [
 ];
 
 function Pricing() {
-  const packages = [
-    {
-      name: "Landing Page",
-      price: "$997",
-      desc: "One high-converting page. Perfect for launches, funnels, or testing an idea fast.",
-      includes: ["1 custom-designed page", "Mobile responsive", "Contact form or CTA", "Delivered in 5 days"],
-      cta: "Buy Now",
-      href: "/contact?package=landing-page",
-    },
-    {
-      name: "Starter Website",
-      price: "$1,500",
-      desc: "A real website that makes you look legit. 5 pages, fully custom, ready to grow.",
-      includes: ["Up to 5 pages", "Custom design", "Mobile responsive", "Basic SEO setup", "Contact form", "Delivered in 10 days"],
-      cta: "Buy Now",
-      href: "/contact?package=starter-website",
-      popular: true,
-    },
-    {
-      name: "Full Custom",
-      price: "From $3K",
-      desc: "E-commerce, dashboards, complex sites, integrations. Tell me what you need.",
-      includes: ["Unlimited pages", "Custom everything", "E-commerce / booking / portal", "SEO + analytics", "30 days post-launch support", "Payment plans available"],
-      cta: "Let\u2019s Talk",
-      href: "/contact?package=full-custom",
-    },
-  ];
-
   return (
     <section className="section-gap border-t border-border">
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
         <RevealOnScroll>
-          <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-6">
-            Packages
-          </p>
-          <h2 className="font-display text-[clamp(2rem,5vw,4rem)] leading-[0.95] tracking-[-0.03em] mb-4">
-            Pick your level.
-          </h2>
-          <p className="text-text-secondary text-lg leading-relaxed max-w-[500px] mb-16">
-            Start small or go all in. Every package is custom built &mdash; no templates, no shortcuts.
+          <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-20">
+            Pricing
           </p>
         </RevealOnScroll>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {packages.map((pkg, i) => (
-            <RevealOnScroll key={pkg.name} delay={i + 1}>
-              <div className={`rounded-2xl border ${pkg.popular ? "border-text" : "border-border"} p-8 flex flex-col h-full relative`}>
-                {pkg.popular && (
-                  <span className="absolute -top-3 left-6 bg-text text-bg text-[11px] font-mono tracking-wider uppercase px-3 py-1 rounded-full">
-                    Most Popular
+        <div className="max-w-[900px]">
+          <RevealOnScroll>
+            <h2 className="font-display text-[clamp(2.4rem,5.5vw,5rem)] leading-[0.95] tracking-[-0.03em] mb-8">
+              Websites start at $997.
+            </h2>
+          </RevealOnScroll>
+
+          <RevealOnScroll delay={1}>
+            <p className="text-text-secondary text-lg md:text-xl leading-relaxed max-w-[560px] mb-6">
+              Most projects deliver in under 2 weeks. Payment plans available. Price depends on scope.
+            </p>
+          </RevealOnScroll>
+
+          <RevealOnScroll delay={2}>
+            <Link href="/packages" className="inline-flex items-center gap-2 text-text text-[14px] font-mono font-medium border-b border-text/30 hover:border-text pb-0.5 transition-all duration-300 mb-16 group">
+              See all digital presence packages
+              <span className="group-hover:translate-x-1 transition-transform duration-200">&rarr;</span>
+            </Link>
+          </RevealOnScroll>
+
+          <RevealOnScroll delay={2}>
+            <p className="text-text-muted text-[11px] tracking-[0.3em] uppercase font-mono mb-8">
+              Every build includes
+            </p>
+          </RevealOnScroll>
+
+          <div className="max-w-[640px]">
+            {included.map((item, i) => (
+              <RevealOnScroll key={i} delay={(i % 4) + 1}>
+                <div className="py-4 border-b border-border flex items-start gap-4">
+                  <span className="w-1.5 h-1.5 rounded-full bg-text mt-2.5 shrink-0" />
+                  <span className="text-text-secondary text-[15px] md:text-base leading-relaxed">
+                    {item}
                   </span>
-                )}
-                <p className="text-[11px] font-mono text-text-muted tracking-[0.2em] uppercase mb-3">{pkg.name}</p>
-                <p className="font-display text-[clamp(2rem,4vw,3rem)] tracking-[-0.03em] leading-none mb-4">{pkg.price}</p>
-                <p className="text-text-secondary text-[14px] leading-relaxed mb-8">{pkg.desc}</p>
-                <ul className="space-y-3 mb-10 flex-1">
-                  {pkg.includes.map((item) => (
-                    <li key={item} className="flex items-start gap-3 text-[14px] text-text-secondary">
-                      <span className="w-1 h-1 rounded-full bg-text mt-2 shrink-0" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                <Link href={pkg.href} className={`${pkg.popular ? "magnetic-btn" : "ghost-btn"} w-full justify-center`}>
-                  {pkg.popular ? <span className="relative z-10">{pkg.cta}</span> : pkg.cta}
-                </Link>
-              </div>
-            </RevealOnScroll>
-          ))}
+                </div>
+              </RevealOnScroll>
+            ))}
+          </div>
         </div>
-
-        <RevealOnScroll>
-          <p className="text-text-muted text-[13px] text-center mt-10">
-            Not sure which one? <a href="https://instagram.com/jdlo" target="_blank" rel="noopener noreferrer" className="text-text hover:underline">DM me on Instagram</a> and I&apos;ll help you pick.
-          </p>
-        </RevealOnScroll>
       </div>
     </section>
   );
