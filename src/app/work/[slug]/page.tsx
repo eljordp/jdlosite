@@ -15,6 +15,7 @@ const projects: Record<string, {
   screenshot?: string;
   video?: string;
   liveUrl?: string;
+  customSections?: boolean;
 }> = {
   quanta: {
     name: "Quanta",
@@ -35,7 +36,7 @@ const projects: Record<string, {
     name: "Club Bot / Velvet",
     category: "AI System / SaaS",
     headline: "AI-powered nightclub promoter platform — the product and the SaaS behind it",
-    description: "Club Bot started as a custom AI concierge for Lauren Rees, a Vegas nightclub promoter moving 500+ people per week across Tao Group venues (Hakkasan, OMNIA, TAO, Marquee, Jewel). The system automates guest list signups, AI chat concierge, follow-ups, and referral tracking — replacing her entire manual workflow of texting every person individually. Velvet is the SaaS version — a white-label platform so any promoter can deploy their own Club Bot. One product built for a client, turned into a scalable business.",
+    description: "Club Bot started as a custom build for Lauren Rees, a Vegas nightclub promoter moving 500+ people per week across Tao Group venues — Hakkasan, OMNIA, TAO, Marquee, Jewel. She was manually texting every single person, saving contacts one by one to her phone, and inputting info into Tao's system by hand. Club Bot replaced all of that: AI concierge chat handles bookings, guest list signups happen automatically, follow-ups go out on their own, and referral tracking runs in the background. One system replaced an entire manual operation.",
     stats: [
       { value: "500+", label: "Guests/week" },
       { value: "30hrs/wk", label: "Time saved" },
@@ -43,6 +44,7 @@ const projects: Record<string, {
     ],
     screenshot: "/screenshots/club-bot.png",
     liveUrl: "https://www.reesvip.com",
+    customSections: true,
   },
   pomaikai: {
     name: "Pomaika\u2018i Co",
@@ -432,6 +434,107 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           )}
         </div>
       </section>
+
+      {/* Club Bot / Velvet custom sections */}
+      {slug === "club-bot" && (
+        <>
+          {/* The Product — ReesVIP */}
+          <section className="section-gap border-t border-border">
+            <div className="max-w-[1400px] mx-auto px-6 md:px-10">
+              <RevealOnScroll>
+                <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-6">
+                  The Product
+                </p>
+                <h2 className="font-display text-[clamp(2rem,4vw,3.5rem)] tracking-[-0.03em] leading-[0.95] mb-4">
+                  ReesVIP
+                </h2>
+                <p className="text-text-secondary text-[17px] leading-[1.8] max-w-[680px] mb-4">
+                  The client-facing product. Lauren&apos;s guests visit reesvip.com, browse upcoming events at every Tao Group venue, and get on the guest list in seconds. The AI concierge answers questions about dress codes, venues, and availability — then handles the signup automatically. No more Lauren texting 500 people one by one.
+                </p>
+              </RevealOnScroll>
+              <RevealOnScroll delay={1}>
+                <div className="max-w-[640px] mt-8">
+                  {["AI chat concierge that knows every venue, event, and policy", "Automated guest list signup — name, party size, done", "Event calendar with venue filtering and date selection", "Referral tracking — see who's bringing the most people", "SMS/email confirmations sent automatically", "Promoter dashboard with real-time guest counts"].map((item, i) => (
+                    <div key={i} className="py-3 border-b border-border flex items-start gap-4">
+                      <span className="w-1.5 h-1.5 rounded-full bg-text mt-2.5 shrink-0" />
+                      <span className="text-text-secondary text-[15px] leading-relaxed">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </RevealOnScroll>
+            </div>
+          </section>
+
+          {/* The SaaS — Velvet */}
+          <section className="section-gap border-t border-border bg-surface">
+            <div className="max-w-[1400px] mx-auto px-6 md:px-10">
+              <RevealOnScroll>
+                <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-6">
+                  The SaaS
+                </p>
+                <h2 className="font-display text-[clamp(2rem,4vw,3.5rem)] tracking-[-0.03em] leading-[0.95] mb-4">
+                  Velvet
+                </h2>
+                <p className="text-text-secondary text-[17px] leading-[1.8] max-w-[680px] mb-4">
+                  Velvet is the white-label platform behind Club Bot. Any nightclub promoter can deploy their own version — their own branding, their own venues, their own AI concierge. One codebase, infinite deployments. ReesVIP was the first. Velvet is the business.
+                </p>
+              </RevealOnScroll>
+              <RevealOnScroll delay={1}>
+                <div className="max-w-[640px] mt-8 mb-12">
+                  {["White-label — each promoter gets their own branded site", "Multi-tenant architecture — one platform, unlimited promoters", "AI concierge customized per promoter's venues and style", "CRM with contact management and guest history", "Revenue tracking and referral analytics", "Self-serve onboarding for new promoters", "Subscription pricing model"].map((item, i) => (
+                    <div key={i} className="py-3 border-b border-border flex items-start gap-4">
+                      <span className="w-1.5 h-1.5 rounded-full bg-text mt-2.5 shrink-0" />
+                      <span className="text-text-secondary text-[15px] leading-relaxed">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </RevealOnScroll>
+              <RevealOnScroll delay={2}>
+                <div className="mb-4 flex items-center justify-between">
+                  <p className="text-text-muted text-[11px] font-mono tracking-[0.3em] uppercase">Velvet — Live Preview</p>
+                  <a href="https://velvet-ai.vercel.app" target="_blank" rel="noopener noreferrer" className="text-text-muted text-[12px] font-mono hover:text-text transition-colors">
+                    Open full site &rarr;
+                  </a>
+                </div>
+                <div className="rounded-2xl border border-border overflow-hidden max-w-[960px] shadow-lg">
+                  <iframe
+                    src="https://velvet-ai.vercel.app"
+                    title="Velvet SaaS platform"
+                    className="w-full aspect-[16/10] border-0"
+                    loading="lazy"
+                    sandbox="allow-scripts allow-same-origin allow-popups"
+                  />
+                </div>
+              </RevealOnScroll>
+            </div>
+          </section>
+
+          {/* The Story */}
+          <section className="section-gap border-t border-border">
+            <div className="max-w-[1400px] mx-auto px-6 md:px-10">
+              <RevealOnScroll>
+                <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-6">
+                  The Story
+                </p>
+                <h2 className="font-display text-[clamp(2rem,4vw,3.5rem)] tracking-[-0.03em] leading-[0.95] mb-8">
+                  One client. One product. One SaaS.
+                </h2>
+                <div className="max-w-[680px] space-y-6">
+                  <p className="text-text-secondary text-[17px] leading-[1.8]">
+                    Lauren Rees promotes at Tao Group venues in Vegas — Hakkasan, OMNIA, TAO, Marquee, Jewel. She moves 400-500+ people per week through guest lists. Her workflow before Club Bot: manually text every person, manually save contacts to her phone one by one, manually input info into Tao&apos;s system. No CRM. Just her phone contacts and the Notes app.
+                  </p>
+                  <p className="text-text-secondary text-[17px] leading-[1.8]">
+                    Club Bot replaced all of that. AI concierge handles the conversations, guest list signups are automatic, follow-ups go out on their own, referral tracking runs in the background. One system replaced an entire manual operation — and freed up 30+ hours per week.
+                  </p>
+                  <p className="text-text-secondary text-[17px] leading-[1.8]">
+                    Then the question became: if it works for Lauren, why not every promoter? That&apos;s Velvet. Same system, white-labeled, multi-tenant. Any promoter can spin up their own Club Bot in minutes. The product became the SaaS.
+                  </p>
+                </div>
+              </RevealOnScroll>
+            </div>
+          </section>
+        </>
+      )}
 
       {/* CTA */}
       <section className="section-gap border-t border-border">
