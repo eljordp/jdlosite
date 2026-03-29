@@ -58,24 +58,31 @@ function Hero() {
 const products = [
   {
     num: "01",
-    title: "Landing Page",
-    desc: "One high-converting page. Perfect for launches, funnels, link-in-bio, or just getting online fast. Delivered in 3-5 days.",
-    price: "$497",
-    href: "/services/websites/landing-page",
-  },
-  {
-    num: "02",
     title: "Website",
-    desc: "A full custom website for your business. Two tiers: $1,500 standard or $3,500 premium with advanced SEO, email capture, admin panel, and 30 days support.",
-    price: "From $1.5K",
+    desc: "Three tiers: Quick Site ($497), Standard ($1,500), or Premium ($3,500). From a single landing page to a full business site with admin panel and automated email capture.",
+    price: "From $497",
     href: "/services/websites/website",
   },
   {
-    num: "03",
+    num: "02",
     title: "E-commerce Store",
-    desc: "Sell online 24/7. Quick store for $497 if you just need to get selling, up to a full custom store with inventory, shipping, and customer accounts.",
+    desc: "Sell online 24/7. Quick store for $497 to start selling fast, up to a full custom store with inventory, shipping, and customer accounts at $3,500.",
     price: "From $497",
     href: "/services/websites/e-commerce-store",
+  },
+  {
+    num: "03",
+    title: "Portfolio / Personal Brand",
+    desc: "For creators, freelancers, and artists who need a site that shows off their work and gets them hired. Clean, fast, designed to impress.",
+    price: "From $997",
+    href: "/contact?product=portfolio",
+  },
+  {
+    num: "04",
+    title: "Website Redesign",
+    desc: "Your current site is losing you money. I audit it, tear it down, and rebuild from scratch. Your Google ranking stays intact. Same pricing as a new build.",
+    price: "From $1.5K",
+    href: "/contact?product=website-redesign",
   },
 ];
 
@@ -89,7 +96,7 @@ function WhatYouGet() {
               Products
             </p>
             <p className="text-text-muted text-[11px] font-mono hidden md:block">
-              03 products
+              04 products
             </p>
           </div>
         </RevealOnScroll>
