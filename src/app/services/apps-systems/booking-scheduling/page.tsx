@@ -1,11 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import PageShell from "@/components/PageShell";
 import RevealOnScroll from "@/components/RevealOnScroll";
-
-export const metadata = {
-  title: "Booking & Scheduling | JDLO",
-  description: "Online booking systems that let customers pick a time without the back-and-forth.",
-};
+import ROICalculator from "@/components/ROICalculator";
 
 export default function ProductPage() {
   const includes = [
@@ -72,6 +70,21 @@ export default function ProductPage() {
           </RevealOnScroll>
         </div>
       </section>
+      <ROICalculator
+        title="Calculate Your Recovered Revenue"
+        subtitle="How many appointments does your business lose to phone tag and scheduling friction?"
+        product="booking-scheduling"
+        sliders={[
+          { label: "Appointment requests per week", min: 5, max: 100, step: 5, default: 20 },
+          { label: "Lost to scheduling friction (%)", min: 10, max: 60, step: 5, default: 30, suffix: "%" },
+          { label: "Average appointment value", min: 25, max: 500, step: 25, default: 100, prefix: "$" },
+        ]}
+        results={[
+          { label: "Appointments lost per month", calculate: (v) => `${Math.round(v[0] * 4 * (v[1] / 100))} appointments` },
+          { label: "Revenue lost monthly", calculate: (v) => `$${Math.round(v[0] * 4 * (v[1] / 100) * v[2]).toLocaleString()}` },
+          { label: "Annual revenue recovered", calculate: (v) => `$${Math.round(v[0] * 4 * (v[1] / 100) * v[2] * 12).toLocaleString()}` },
+        ]}
+      />
     </PageShell>
   );
 }

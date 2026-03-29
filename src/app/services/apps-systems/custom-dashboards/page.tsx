@@ -1,11 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import PageShell from "@/components/PageShell";
 import RevealOnScroll from "@/components/RevealOnScroll";
-
-export const metadata = {
-  title: "Custom Dashboards | JDLO",
-  description: "Real-time business dashboards with clean interfaces, designed for how you actually make decisions.",
-};
+import ROICalculator from "@/components/ROICalculator";
 
 export default function ProductPage() {
   const includes = [
@@ -72,6 +70,21 @@ export default function ProductPage() {
           </RevealOnScroll>
         </div>
       </section>
+      <ROICalculator
+        title="How Much Time Are You Wasting?"
+        subtitle="How many hours does your team spend pulling reports and checking different tools?"
+        product="custom-dashboards"
+        sliders={[
+          { label: "Hours pulling reports per week", min: 2, max: 40, step: 2, default: 10 },
+          { label: "Tools you switch between", min: 2, max: 10, step: 1, default: 5 },
+          { label: "Hourly cost of that time", min: 20, max: 100, step: 10, default: 40, prefix: "$" },
+        ]}
+        results={[
+          { label: "Hours saved per month", calculate: (v) => `${Math.round(v[0] * 4 * 0.8)} hours` },
+          { label: "Monthly savings", calculate: (v) => `$${Math.round(v[0] * 4 * 0.8 * v[2]).toLocaleString()}` },
+          { label: "Tools replaced", calculate: (v) => `${v[1]} → 1` },
+        ]}
+      />
     </PageShell>
   );
 }

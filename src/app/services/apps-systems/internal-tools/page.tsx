@@ -1,11 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import PageShell from "@/components/PageShell";
 import RevealOnScroll from "@/components/RevealOnScroll";
-
-export const metadata = {
-  title: "Internal Tools | JDLO",
-  description: "Custom internal tools built for exactly how your team works — not off-the-shelf software you bend your process around.",
-};
+import BeforeAfter from "@/components/BeforeAfter";
 
 export default function ProductPage() {
   const includes = [
@@ -72,6 +70,31 @@ export default function ProductPage() {
           </RevealOnScroll>
         </div>
       </section>
+      <BeforeAfter
+        product="internal-tools"
+        before={{
+          title: "Without a custom tool",
+          items: [
+            "5 different apps that don't talk to each other",
+            "Manual data entry between systems",
+            "Team wastes hours on workarounds",
+            "No visibility into what's actually happening",
+            "Paying $500+/month for tools that don't fit",
+            "New hires take weeks to learn the workflow",
+          ],
+        }}
+        after={{
+          title: "With a custom internal tool",
+          items: [
+            "One tool built for exactly how your team works",
+            "Data flows automatically between everything",
+            "Team focuses on real work, not busywork",
+            "Real-time visibility into every operation",
+            "One-time build, no monthly software fees",
+            "New hires onboard in hours, not weeks",
+          ],
+        }}
+      />
     </PageShell>
   );
 }

@@ -1,11 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import PageShell from "@/components/PageShell";
 import RevealOnScroll from "@/components/RevealOnScroll";
-
-export const metadata = {
-  title: "Enterprise Tools | JDLO",
-  description: "Assessment systems, onboarding platforms, translation tools, internal dashboards — the kind of tools that run real operations.",
-};
+import BeforeAfter from "@/components/BeforeAfter";
 
 export default function ProductPage() {
   const includes = [
@@ -72,6 +70,31 @@ export default function ProductPage() {
           </RevealOnScroll>
         </div>
       </section>
+      <BeforeAfter
+        product="enterprise-tools"
+        before={{
+          title: "Without a custom enterprise tool",
+          items: [
+            "Paying six figures for off-the-shelf software",
+            "Per-seat licensing that scales with your headcount",
+            "Features you don't need, missing features you do",
+            "6-month implementation timelines",
+            "Vendor lock-in — they own your data",
+            "Support tickets that go nowhere",
+          ],
+        }}
+        after={{
+          title: "With a custom build",
+          items: [
+            "One-time build, no recurring license fees",
+            "Every feature built for YOUR operations",
+            "Deployed in weeks, not months",
+            "You own the code and the data — forever",
+            "Direct line to the person who built it",
+            "Scales with you, no per-seat charges",
+          ],
+        }}
+      />
     </PageShell>
   );
 }

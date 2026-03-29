@@ -1,11 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import PageShell from "@/components/PageShell";
 import RevealOnScroll from "@/components/RevealOnScroll";
-
-export const metadata = {
-  title: "Interactive Experiences | JDLO",
-  description: "Quizzes, calculators, configurators, interactive stories — anything that turns passive visitors into engaged users.",
-};
+import BeforeAfter from "@/components/BeforeAfter";
 
 export default function ProductPage() {
   const includes = [
@@ -72,6 +70,29 @@ export default function ProductPage() {
           </RevealOnScroll>
         </div>
       </section>
+      <BeforeAfter
+        product="interactive-experiences"
+        before={{
+          title: "Without interactive content",
+          items: [
+            "Static pages that people scroll past",
+            "1-2% conversion rate on landing pages",
+            "No way to qualify leads before they reach out",
+            "Generic contact forms that everyone ignores",
+            "Content that looks like every other business",
+          ],
+        }}
+        after={{
+          title: "With an interactive experience",
+          items: [
+            "Visitors stop scrolling and start engaging",
+            "3-5x higher conversion rates",
+            "Leads qualify themselves through your quiz/calculator",
+            "You capture email + data before they even contact you",
+            "Content that people share and come back to",
+          ],
+        }}
+      />
     </PageShell>
   );
 }

@@ -1,11 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import PageShell from "@/components/PageShell";
 import RevealOnScroll from "@/components/RevealOnScroll";
-
-export const metadata = {
-  title: "Custom Platforms | JDLO",
-  description: "Whatever your business needs that you can't find off the shelf. You describe it, I make it real.",
-};
+import IsThisForYou from "@/components/IsThisForYou";
 
 export default function ProductPage() {
   const includes = [
@@ -72,6 +70,19 @@ export default function ProductPage() {
           </RevealOnScroll>
         </div>
       </section>
+      <IsThisForYou
+        product="custom-platforms"
+        statements={[
+          "I have an idea for something that doesn't exist yet",
+          "I've looked for off-the-shelf solutions and nothing fits",
+          "I need user accounts, admin panels, or complex logic",
+          "I want to own the platform, not rent it",
+          "I'm ready to invest in building something real",
+          "I want one person who builds the whole thing, not an agency",
+        ]}
+        threshold={3}
+        yesMessage="This is exactly what I do. Let's talk."
+      />
     </PageShell>
   );
 }

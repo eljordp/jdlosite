@@ -1,11 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import PageShell from "@/components/PageShell";
 import RevealOnScroll from "@/components/RevealOnScroll";
-
-export const metadata = {
-  title: "Website | JDLO",
-  description: "Custom websites from $497 to $3,500. Three tiers — pick what fits your business and budget.",
-};
+import BeforeAfter from "@/components/BeforeAfter";
 
 const tiers = [
   {
@@ -150,6 +148,32 @@ export default function ProductPage() {
           </div>
         </div>
       </section>
+
+      <BeforeAfter
+        product="website"
+        before={{
+          title: "Without a real website",
+          items: [
+            "People Google you and find nothing",
+            "Your Instagram bio link goes to Linktree",
+            "Customers can't tell if you're legit",
+            "You're losing business to competitors who look professional",
+            "No way to capture leads while you sleep",
+            "You send people your IG instead of a real site",
+          ],
+        }}
+        after={{
+          title: "With a JDLO website",
+          items: [
+            "Show up when people search for what you sell",
+            "Custom site that looks like you spent six figures",
+            "Visitors turn into leads and customers automatically",
+            "You look more established than businesses 10x your size",
+            "Email capture and booking working 24/7",
+            "A link you're actually proud to share",
+          ],
+        }}
+      />
 
       {/* Case Study */}
       <section className="section-gap border-t border-border">

@@ -1,11 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import PageShell from "@/components/PageShell";
 import RevealOnScroll from "@/components/RevealOnScroll";
-
-export const metadata = {
-  title: "Online Casinos | JDLO",
-  description: "Real-time multiplayer platforms with slots, table games, house edge management, and compliance-ready architecture.",
-};
+import IsThisForYou from "@/components/IsThisForYou";
 
 export default function ProductPage() {
   const includes = [
@@ -72,6 +70,20 @@ export default function ProductPage() {
           </RevealOnScroll>
         </div>
       </section>
+      <IsThisForYou
+        product="online-casinos"
+        statements={[
+          "I want a real casino platform, not a template",
+          "I need real-time multiplayer — players see each other",
+          "I need house edge management that actually works",
+          "I want multiple game types (slots, blackjack, crash, etc.)",
+          "I need an admin panel to manage players and promotions",
+          "I have $25K+ budgeted for this project",
+          "I need compliance-ready architecture",
+        ]}
+        threshold={4}
+        yesMessage="You're serious. Let's build your casino."
+      />
     </PageShell>
   );
 }

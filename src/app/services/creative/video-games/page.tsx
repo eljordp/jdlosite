@@ -1,11 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import PageShell from "@/components/PageShell";
 import RevealOnScroll from "@/components/RevealOnScroll";
-
-export const metadata = {
-  title: "Video Games | JDLO",
-  description: "Full playable games with stories, characters, progression systems, and original art. Not demos — finished products.",
-};
+import IsThisForYou from "@/components/IsThisForYou";
 
 export default function ProductPage() {
   const includes = [
@@ -72,6 +70,18 @@ export default function ProductPage() {
           </RevealOnScroll>
         </div>
       </section>
+      <IsThisForYou
+        product="video-games"
+        statements={[
+          "I have a game concept or story I want to bring to life",
+          "I want a playable game, not just a mockup or demo",
+          "I have a budget set aside for this project",
+          "I want original characters, art, and world design",
+          "I'm building this for my audience, portfolio, or business",
+          "I want someone who's actually shipped a full game before",
+        ]}
+        threshold={3}
+      />
     </PageShell>
   );
 }
