@@ -14,31 +14,37 @@ const offerings = [
     num: "01",
     title: "AI Receptionists",
     desc: "Answers calls, books appointments, qualifies leads, and follows up with customers — 24 hours a day, 7 days a week. Never misses a call. Never takes a day off. Never loses a lead.",
+    href: "/services/apps-systems/ai-receptionist",
   },
   {
     num: "02",
     title: "Automation Workflows",
     desc: "Replace 40+ hours of manual work every week. The repetitive tasks eating your team alive — data entry, follow-ups, scheduling, reporting — handled automatically, every time, without mistakes.",
+    href: "/services/apps-systems/automation-workflows",
   },
   {
     num: "03",
     title: "Custom Dashboards",
     desc: "See your entire business on one screen. Revenue, leads, team performance, customer activity — real-time, always current, designed for how you actually make decisions.",
+    href: "/services/apps-systems/custom-dashboards",
   },
   {
     num: "04",
     title: "Booking & Scheduling",
     desc: "Let customers book without the back-and-forth. No more phone tag, no more email chains. They pick a time, it shows up on your calendar, and everyone gets a confirmation. Done.",
+    href: "/services/apps-systems/booking-scheduling",
   },
   {
     num: "05",
     title: "Internal Tools",
     desc: "Custom apps built for exactly how your team works. Not some off-the-shelf software you have to bend your process around — a tool that bends around you.",
+    href: "/services/apps-systems/internal-tools",
   },
   {
     num: "06",
     title: "CRM & Pipeline Systems",
     desc: "Track every lead from first touch to closed deal. Know exactly where your money is coming from, what's stuck, and what needs attention — so you never lose a sale to disorganization.",
+    href: "/services/apps-systems/crm-pipeline",
   },
 ];
 
@@ -119,21 +125,23 @@ export default function AppsSystemsPage() {
           <div className="max-w-[860px]">
             {offerings.map((item, i) => (
               <RevealOnScroll key={item.num} delay={(i % 3) + 1}>
-                <div
-                  className={`py-10 ${i < offerings.length - 1 ? "border-b border-border" : ""}`}
+                <Link
+                  href={item.href}
+                  className={`block py-10 group hover:bg-surface/50 -mx-6 px-6 sm:-mx-10 sm:px-10 transition-colors duration-300 ${i < offerings.length - 1 ? "border-b border-border" : ""}`}
                 >
                   <div className="flex items-baseline gap-6 mb-4">
                     <span className="text-accent text-[11px] font-mono shrink-0">
                       {item.num}
                     </span>
-                    <h3 className="font-[family-name:var(--font-display)] text-[clamp(1.5rem,3vw,2.2rem)] tracking-[-0.02em] leading-[1.1]">
+                    <h3 className="font-[family-name:var(--font-display)] text-[clamp(1.5rem,3vw,2.2rem)] tracking-[-0.02em] leading-[1.1] group-hover:text-text-secondary transition-colors duration-300">
                       {item.title}
+                      <span className="inline-block ml-2 text-text-muted text-[0.5em] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300">&rarr;</span>
                     </h3>
                   </div>
                   <p className="text-text-secondary text-[15px] leading-relaxed max-w-[580px] pl-[calc(11px+1.5rem)] sm:pl-[calc(22px+1.5rem)]">
                     {item.desc}
                   </p>
-                </div>
+                </Link>
               </RevealOnScroll>
             ))}
           </div>

@@ -43,35 +43,41 @@ export default function CreativePage() {
               {
                 title: "Video games",
                 desc: "Full playable games with stories, characters, and progression. Not prototypes. Not demos. Real games people actually play.",
+                href: "/services/creative/video-games",
               },
               {
                 title: "Online casinos",
                 desc: "Real-time multiplayer platforms with house edge management, promotional systems, and compliance-ready architecture. The whole thing, from slots to admin panel.",
+                href: "/services/creative/online-casinos",
               },
               {
                 title: "Enterprise tools",
                 desc: "Assessment systems, onboarding platforms, translation tools, internal dashboards. The kind of software companies pay six figures for, built faster and better.",
+                href: "/services/creative/enterprise-tools",
               },
               {
                 title: "Interactive experiences",
                 desc: "Quizzes, calculators, product configurators, interactive stories. Anything that makes someone stop scrolling and start engaging.",
+                href: "/services/creative/interactive-experiences",
               },
               {
                 title: "Custom platforms",
                 desc: "Whatever your business needs that doesn't exist yet. If you've looked for it and can't find it, that's where I come in.",
+                href: "/services/creative/custom-platforms",
               },
             ].map((item, i) => (
               <RevealOnScroll key={item.title} delay={(i % 3) + 1}>
-                <div className="py-10 border-b border-border last:border-0">
+                <Link href={item.href} className="block py-10 border-b border-border last:border-0 group hover:bg-surface/50 -mx-6 px-6 sm:-mx-10 sm:px-10 transition-colors duration-300">
                   <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-16">
-                    <h3 className="font-display text-[clamp(1.6rem,3vw,2.4rem)] tracking-[-0.02em] leading-[1.05] shrink-0 sm:w-[260px]">
+                    <h3 className="font-display text-[clamp(1.6rem,3vw,2.4rem)] tracking-[-0.02em] leading-[1.05] shrink-0 sm:w-[260px] group-hover:text-text-secondary transition-colors duration-300">
                       {item.title}
+                      <span className="inline-block ml-2 text-text-muted text-[0.5em] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300">&rarr;</span>
                     </h3>
                     <p className="text-text-secondary text-[16px] leading-relaxed max-w-[480px]">
                       {item.desc}
                     </p>
                   </div>
-                </div>
+                </Link>
               </RevealOnScroll>
             ))}
           </div>
