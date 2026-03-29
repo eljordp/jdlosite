@@ -15,8 +15,11 @@ function Hero() {
       <div className="max-w-[1400px] mx-auto w-full relative z-10">
         <div className="grid lg:grid-cols-[1.3fr_1fr] gap-12 lg:gap-20 items-center">
           <div>
-            <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase mb-10 hero-animate hero-delay-1 font-mono">
+            <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase mb-2 hero-animate hero-delay-1 font-mono">
               Jordan Lopez &mdash; Operator
+            </p>
+            <p className="text-text-secondary text-[13px] mb-10 hero-animate hero-delay-1">
+              20+ businesses built &middot; Restaurants, nightclubs, cannabis, real estate, DHL, fashion, print shops
             </p>
 
             <h1 className="font-display hero-animate hero-delay-2 text-[clamp(2.8rem,7.5vw,6.5rem)] leading-[0.95] tracking-[-0.03em]">
@@ -174,12 +177,12 @@ function Process() {
 
 /* ── Work (featured 6) ── */
 const featured = [
-  { category: "Casino", name: "Quanta", headline: "Full online sweepstakes casino from scratch", stat: "$50K+", img: "/screenshots/quanta.png", slug: "quanta" },
-  { category: "AI / SaaS", name: "Club Bot / Velvet", headline: "AI nightclub promoter platform — product + SaaS", stat: "500+ guests/wk", img: "/screenshots/club-bot.png", slug: "club-bot" },
-  { category: "Agency", name: "Pomaika\u2018i Co", headline: "Website + ops dashboard for a six-figure consultancy", stat: "$5K project", img: "/screenshots/pomaikai.png", slug: "pomaikai" },
-  { category: "Enterprise", name: "Cubicship Translator", headline: "DHL premier partner — 100+ stores, expanding to Canada", stat: "100+ stores", img: "/screenshots/cubicship.png", slug: "dhl-translator" },
-  { category: "E-commerce", name: "West Coast Terpz", headline: "E-commerce platform doing $12K+ per month", stat: "$12K+/mo", img: "/screenshots/west-coast-terpz.png", slug: "west-coast-terpz" },
-  { category: "Game", name: "JDLO The Game", headline: "Full RPG video game with 7 chapters and cutscenes", stat: "7 chapters", img: "/screenshots/jdlo-the-game.png", slug: "jdlo-the-game" },
+  { category: "Casino", name: "Quanta", headline: "23 games, real-time multiplayer, $50K+ platform", stat: "$50K+", img: "/screenshots/quanta.png", slug: "quanta" },
+  { category: "AI / SaaS", name: "Club Bot / Velvet", headline: "Automates 500+ guest lists/week for Vegas promoters", stat: "500+ guests/wk", img: "/screenshots/club-bot.png", slug: "club-bot" },
+  { category: "Agency", name: "Pomaika\u2018i Co", headline: "Replaced 5 tools, saved 20hrs/week for a six-figure agency", stat: "$5K project", img: "/screenshots/pomaikai.png", slug: "pomaikai" },
+  { category: "Enterprise", name: "Cubicship Translator", headline: "100+ stores in Chicago, expanding to Canada, DHL premier partner", stat: "100+ stores", img: "/screenshots/cubicship.png", slug: "dhl-translator" },
+  { category: "E-commerce", name: "West Coast Terpz", headline: "Went from Instagram DMs to $12K+/mo in online sales", stat: "$12K+/mo", img: "/screenshots/west-coast-terpz.png", slug: "west-coast-terpz" },
+  { category: "Game", name: "JDLO The Game", headline: "Full RPG — 7 chapters, 20+ characters, original story", stat: "7 chapters", img: "/screenshots/jdlo-the-game.png", slug: "jdlo-the-game" },
 ];
 
 function Work() {
@@ -210,18 +213,18 @@ function Work() {
                     className="w-full aspect-[16/10] object-cover object-top group-hover:scale-[1.02] transition-transform duration-500"
                   />
                 </div>
-                <div className="flex items-baseline justify-between gap-3">
-                  <div>
-                    <span className="text-[10px] font-mono text-text-muted tracking-[0.1em] uppercase block mb-1">
-                      {project.category}
-                    </span>
+                <div>
+                  <div className="flex items-baseline justify-between gap-3 mb-1">
                     <h3 className="font-display text-[clamp(1.1rem,2vw,1.5rem)] tracking-[-0.02em] leading-[1.1] group-hover:text-text-secondary transition-colors duration-300">
                       {project.name}
                     </h3>
+                    <span className="text-[13px] font-semibold tracking-[-0.02em] shrink-0">
+                      {project.stat}
+                    </span>
                   </div>
-                  <span className="text-[13px] font-semibold tracking-[-0.02em] shrink-0">
-                    {project.stat}
-                  </span>
+                  <p className="text-text-muted text-[12px] leading-relaxed">
+                    {project.headline}
+                  </p>
                 </div>
               </Link>
             </RevealOnScroll>
@@ -610,13 +613,8 @@ export default function Home() {
       <HomeNav />
       <Hero />
       <Services />
-      <MidCTA text="Know what you need? Skip the browsing." href="/contact" label="Start a Project" />
-      <Process />
       <Work />
-      <MidCTA text="Have an idea that doesn't fit a category? I love those." href="/services/creative" label="See Creative Work" />
-      <Results />
       <QuickQuoteSection />
-      <Statement />
       <About />
       <FAQ />
       <ReachOut />
