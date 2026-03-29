@@ -83,6 +83,7 @@ const projects: Record<string, {
       { value: "Auto", label: "Certification" },
     ],
     screenshot: "/screenshots/cubicship.png",
+    liveUrl: "https://dhl.training.cubic.guru",
   },
   "loan-agent": {
     name: "Loan Agent",
@@ -161,7 +162,7 @@ const projects: Record<string, {
       { value: "Custom", label: "Full redesign" },
       { value: "Premium", label: "Brand elevation" },
     ],
-    screenshot: "/screenshots/fw-wheels.png",
+    liveUrl: "https://onhizm.com",
   },
   cubicship: {
     name: "Cubicship",
@@ -186,6 +187,7 @@ const projects: Record<string, {
       { value: "ROI", label: "Calculator" },
       { value: "4", label: "Platforms" },
     ],
+    liveUrl: "https://robotstore.vercel.app",
   },
   "best-odds": {
     name: "Best Odds",
@@ -197,6 +199,7 @@ const projects: Record<string, {
       { value: "Visual", label: "Slides" },
       { value: "Animated", label: "Transitions" },
     ],
+    liveUrl: "https://bestoddscorp.com",
   },
   "jdlo-the-game": {
     name: "JDLO The Game",
@@ -247,6 +250,30 @@ const projects: Record<string, {
       { value: "Lead", label: "Capture" },
     ],
     liveUrl: "https://manzavisuals.com",
+  },
+  "lonely-love": {
+    name: "Lonely Love",
+    category: "Fashion",
+    headline: "E-commerce site for a clothing brand with a following",
+    description: "Custom online store for Lonely Love — a clothing brand building a community. Clean design, full product catalog, and a shopping experience that matches the brand's aesthetic and energy.",
+    stats: [
+      { value: "Custom", label: "E-commerce" },
+      { value: "Brand", label: "Identity" },
+      { value: "Full", label: "Store" },
+    ],
+    liveUrl: "https://www.shoplonelylove.com",
+  },
+  "cwby-studios": {
+    name: "CWBY Studios",
+    category: "Agency",
+    headline: "Creative studio and agency site based in Hollywood",
+    description: "Website for CWBY Studios — a creative studio and agency operating out of Hollywood. Showcases their creative work, services, and team with a design that reflects their high-end production quality.",
+    stats: [
+      { value: "Hollywood", label: "Based" },
+      { value: "Creative", label: "Agency" },
+      { value: "Premium", label: "Design" },
+    ],
+    liveUrl: "https://www.cwbystudio.com",
   },
 };
 

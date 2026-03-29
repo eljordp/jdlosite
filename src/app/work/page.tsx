@@ -62,6 +62,8 @@ const PROJECTS: Project[] = [
   { name: "JDLO Wii", slug: "jdlo-wii", categories: ["Game"], headline: "Wii Sports-inspired multiplayer web game", stats: ["1v1 multiplayer", "Web-based", "Original game"] },
   { name: "Pomaika\u2018i Dashboard", slug: "pomaikai-dashboard", categories: ["Tool", "AI"], headline: "Internal team ops dashboard tracking everything in real time", stats: ["Real-time data", "Team tracking", "Revenue metrics"] },
   { name: "Manza Visuals", slug: "manza-visuals", categories: ["Website"], headline: "Portfolio site for a Bay Area videographer and visual artist", stats: ["Custom design", "Video portfolio", "Lead capture"] },
+  { name: "Lonely Love", slug: "lonely-love", categories: ["Website", "Fashion", "E-commerce"], headline: "E-commerce site for a clothing brand with a following", stats: ["Custom e-commerce", "Brand identity", "Full store"] },
+  { name: "CWBY Studios", slug: "cwby-studios", categories: ["Website"], headline: "Creative studio and agency site based in Hollywood", stats: ["Hollywood", "Creative agency", "Premium design"] },
 ];
 
 /* ────────────────────────────────────────────────────────────
