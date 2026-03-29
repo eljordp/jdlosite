@@ -14,6 +14,7 @@ const projects: Record<string, {
   revenue?: string;
   screenshot?: string;
   video?: string;
+  liveUrl?: string;
 }> = {
   quanta: {
     name: "Quanta",
@@ -28,6 +29,7 @@ const projects: Record<string, {
     link: "https://quantplay-ten.vercel.app/play",
     screenshot: "/screenshots/quanta.png",
     video: "/videos/quanta.mp4",
+    liveUrl: "https://quantplay-ten.vercel.app/play",
   },
   "club-bot": {
     name: "Club Bot",
@@ -41,6 +43,7 @@ const projects: Record<string, {
     ],
     screenshot: "/screenshots/club-bot.png",
     video: "/videos/club-bot.mp4",
+    liveUrl: "https://www.reesvip.com",
   },
   pomaikai: {
     name: "Pomaika\u2018i Co",
@@ -55,6 +58,7 @@ const projects: Record<string, {
     revenue: "$5,000",
     screenshot: "/screenshots/pomaikai.png",
     video: "/videos/pomaikai.mp4",
+    liveUrl: "https://poika.vercel.app",
   },
   "dhl-translator": {
     name: "DHL Translator",
@@ -125,6 +129,7 @@ const projects: Record<string, {
     ],
     revenue: "$900+",
     screenshot: "/screenshots/west-coast-terpz.png",
+    liveUrl: "https://west-coast-terpz.vercel.app",
   },
   "vacaville-appliance": {
     name: "Vacaville Appliance",
@@ -138,6 +143,7 @@ const projects: Record<string, {
     ],
     revenue: "$1,300",
     screenshot: "/screenshots/vacaville-appliance.png",
+    liveUrl: "https://vacavilleappliance.vercel.app",
   },
   "sticker-smith": {
     name: "The Sticker Smith",
@@ -151,6 +157,7 @@ const projects: Record<string, {
     ],
     revenue: "~$1,000",
     screenshot: "/screenshots/sticker-smith.png",
+    liveUrl: "https://the-sticker-smith.vercel.app",
   },
   "dank-slaps": {
     name: "Dank Slaps",
@@ -174,6 +181,7 @@ const projects: Record<string, {
       { value: "Auto", label: "Delivery" },
     ],
     screenshot: "/screenshots/miiir-beats.png",
+    liveUrl: "https://miiir-beats.vercel.app",
   },
   "fw-wheels": {
     name: "fw.wheels",
@@ -187,6 +195,7 @@ const projects: Record<string, {
     ],
     revenue: "$650",
     screenshot: "/screenshots/fw-wheels.png",
+    liveUrl: "https://fw-wheels.vercel.app",
   },
   onhizm: {
     name: "Onhizm",
@@ -211,6 +220,7 @@ const projects: Record<string, {
       { value: "2", label: "Platforms" },
     ],
     screenshot: "/screenshots/cubicship.png",
+    liveUrl: "https://cubicship.vercel.app",
   },
   "robot-producer": {
     name: "Robot Producer",
@@ -245,6 +255,7 @@ const projects: Record<string, {
       { value: "Full", label: "Original story" },
     ],
     screenshot: "/screenshots/jdlo-the-game.png",
+    liveUrl: "https://jdlo-game.vercel.app",
   },
   "jdlo-wii": {
     name: "JDLO Wii",
@@ -357,8 +368,36 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             </div>
           </RevealOnScroll>
 
-          {/* Screenshot */}
-          {project.screenshot && (
+          {/* Live Preview */}
+          {project.liveUrl && (
+            <RevealOnScroll>
+              <div className="mt-16">
+                <div className="flex items-center justify-between mb-4">
+                  <p className="text-text-muted text-[11px] font-mono tracking-[0.3em] uppercase">Live Preview</p>
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-text-muted text-[12px] font-mono hover:text-text transition-colors"
+                  >
+                    Open full site &rarr;
+                  </a>
+                </div>
+                <div className="rounded-2xl border border-border overflow-hidden max-w-[960px] shadow-lg bg-surface">
+                  <iframe
+                    src={project.liveUrl}
+                    title={`${project.name} live preview`}
+                    className="w-full aspect-[16/10] border-0"
+                    loading="lazy"
+                    sandbox="allow-scripts allow-same-origin allow-popups"
+                  />
+                </div>
+              </div>
+            </RevealOnScroll>
+          )}
+
+          {/* Screenshot fallback (no live URL) */}
+          {!project.liveUrl && project.screenshot && (
             <RevealOnScroll>
               <div className="mt-16 rounded-2xl border border-border overflow-hidden max-w-[900px] shadow-lg">
                 <Image
@@ -367,22 +406,6 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                   width={1200}
                   height={700}
                   className="w-full h-auto"
-                />
-              </div>
-            </RevealOnScroll>
-          )}
-
-          {/* Showcase Video */}
-          {project.video && (
-            <RevealOnScroll>
-              <div className="mt-10 rounded-2xl border border-border overflow-hidden max-w-[900px]">
-                <video
-                  src={project.video}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  className="w-full aspect-video object-cover"
                 />
               </div>
             </RevealOnScroll>
