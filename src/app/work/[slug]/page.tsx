@@ -228,19 +228,6 @@ const projects: Record<string, {
     ],
     liveUrl: "https://jdlo-wii.vercel.app",
   },
-  "pomaikai-dashboard": {
-    name: "Pomaika\u2018i Dashboard",
-    category: "Tool / AI",
-    headline: "Internal team ops dashboard tracking everything in real time",
-    description: "Custom internal dashboard for Pomaika\u2018i Co that tracks leads, revenue, team performance, and client engagement all in one place. Real-time data, clean interface, replaces spreadsheets and multiple tools.",
-    stats: [
-      { value: "Real-time", label: "Data" },
-      { value: "Team", label: "Tracking" },
-      { value: "Revenue", label: "Metrics" },
-    ],
-    screenshot: "/screenshots/pomaikai-dashboard.png",
-    liveUrl: "https://pomaikai-dashboard.vercel.app",
-  },
   "manza-visuals": {
     name: "Manza Visuals",
     category: "Website",

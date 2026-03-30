@@ -235,14 +235,14 @@ export async function POST(req: NextRequest) {
     // Send both emails — allSettled so one failure doesn't block the other
     const [notifResult, replyResult] = await Promise.allSettled([
       getResend().emails.send({
-        from: "JDLO Leads <noreply@jdlo.site>",
+        from: "JDLO Leads <onboarding@resend.dev>",
         to: process.env.LEAD_EMAIL || "eljordp@gmail.com",
         subject: `New ${labels[type] || "Lead"}: ${name}${course ? ` — ${course}` : ""}`,
         html: notificationHtml,
         replyTo: email,
       }),
       getResend().emails.send({
-        from: "JDLO <noreply@jdlo.site>",
+        from: "JDLO <onboarding@resend.dev>",
         to: email,
         subject: reply.subject,
         html: autoReplyHtml,

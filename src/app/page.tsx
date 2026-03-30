@@ -388,7 +388,7 @@ function About() {
           <RevealOnScroll delay={2}>
             <div className="relative w-full aspect-[4/5] rounded-3xl overflow-hidden border border-border">
               <Image
-                src="/jordan.jpg"
+                src="/jordan-2.jpg"
                 alt="Jordan Lopez"
                 fill
                 className="object-cover object-center"

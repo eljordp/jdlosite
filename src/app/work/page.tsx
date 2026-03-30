@@ -53,7 +53,6 @@ const PROJECTS: Project[] = [
   { name: "Cubicship Translator", slug: "dhl-translator", categories: ["Enterprise", "Tool"], headline: "Translation system for DHL premier partner in 100+ stores, expanding to Canada", stats: ["100+ stores", "DHL Premier Partner", "Expanding to Canada"] },
   { name: "DHL CRA Quiz", slug: "dhl-cra-quiz", categories: ["Enterprise"], headline: "Competency assessment for enterprise onboarding", stats: ["200+ employees", "85% faster onboarding", "Auto certification"] },
   { name: "Cubicship", slug: "cubicship", categories: ["Website", "Enterprise"], headline: "Returns portal and main site for DHL premier partner", stats: ["Refund workflow", "Returns portal", "2 platforms"] },
-  { name: "Pomaika\u2018i Dashboard", slug: "pomaikai-dashboard", categories: ["Tool", "AI"], headline: "Internal team ops dashboard tracking everything in real time", stats: ["Real-time data", "Team tracking", "Revenue metrics"] },
   // ── Client websites & e-commerce ──
   { name: "CWBY Studios", slug: "cwby-studios", categories: ["Website"], headline: "Creative studio and agency site based in Hollywood", stats: ["Hollywood", "Creative agency", "Premium design"] },
   { name: "West Coast Terpz", slug: "west-coast-terpz", categories: ["Website", "E-commerce"], headline: "E-commerce platform that turned a local brand online", stats: ["$12K+/mo revenue", "24/7 order processing", "3x customer reach"] },
