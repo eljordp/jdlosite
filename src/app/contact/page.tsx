@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PageShell from "@/components/PageShell";
 
 const serviceOptions = [
@@ -29,6 +29,16 @@ export default function ContactPage() {
     message: "",
     budget: "",
   });
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const product = params.get("product");
+    const pkg = params.get("package");
+    if (product || pkg) {
+      const label = (product || pkg || "").replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+      setForm(f => ({ ...f, message: f.message || `Interested in: ${label}` }));
+    }
+  }, []);
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
     "idle"
   );

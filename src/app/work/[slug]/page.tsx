@@ -13,7 +13,6 @@ const projects: Record<string, {
   link?: string;
   revenue?: string;
   screenshot?: string;
-  video?: string;
   liveUrl?: string;
   customSections?: boolean;
 }> = {
@@ -29,7 +28,6 @@ const projects: Record<string, {
     ],
     link: "https://quantplay-ten.vercel.app/play",
     screenshot: "/screenshots/quanta.png",
-    video: "/videos/quanta.mp4",
     liveUrl: "https://quantplay-ten.vercel.app/play",
   },
   "club-bot": {
@@ -58,7 +56,6 @@ const projects: Record<string, {
     ],
     revenue: "$5,000",
     screenshot: "/screenshots/pomaikai.png",
-    video: "/videos/pomaikai.mp4",
     liveUrl: "https://poika.vercel.app",
   },
   "dhl-translator": {

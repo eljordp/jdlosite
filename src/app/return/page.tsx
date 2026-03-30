@@ -51,7 +51,7 @@ function ReturnContent() {
   }, [searchParams]);
 
   return (
-    <div className="min-h-screen bg-[#050505] flex items-center justify-center px-6">
+    <div className="min-h-screen bg-bg flex items-center justify-center px-6">
       <div className="max-w-md w-full text-center">
         {status === "loading" && (
           <div>
@@ -119,7 +119,7 @@ function ReturnContent() {
               Something went wrong
             </h1>
             <p className="text-text-secondary text-[15px] leading-relaxed mb-8">
-              No worries — reach out at jordan@jdlo.online and we&apos;ll sort
+              No worries — reach out at eljordp@gmail.com and we&apos;ll sort
               it out.
             </p>
             <Link
@@ -142,7 +142,7 @@ export default function ReturnPage() {
   return (
     <Suspense
       fallback={
-        <div className="min-h-screen bg-[#050505] flex items-center justify-center">
+        <div className="min-h-screen bg-bg flex items-center justify-center">
           <p className="text-text-secondary text-sm font-mono">
             Setting up your access...
           </p>
