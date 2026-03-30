@@ -180,7 +180,7 @@ const featured = [
   { category: "Casino", name: "Quanta", headline: "23 games, real-time multiplayer, $50K+ platform", stat: "$50K+", img: "/screenshots/quanta.png", slug: "quanta" },
   { category: "AI / SaaS", name: "Club Bot / Velvet", headline: "Automates 500+ guest lists/week for Vegas promoters", stat: "500+ guests/wk", img: "/screenshots/club-bot.png", slug: "club-bot" },
   { category: "Agency", name: "Pomaika\u2018i Co", headline: "Replaced 5 tools, saved 20hrs/week for a six-figure agency", stat: "$5K project", img: "/screenshots/pomaikai.png", slug: "pomaikai" },
-  { category: "Enterprise", name: "Cubicship Translator", headline: "100+ stores in Chicago, expanding to Canada, DHL premier partner", stat: "100+ stores", img: "/screenshots/cubicship.png", slug: "dhl-translator", link: "https://dhltranslator.vercel.app" },
+  { category: "Enterprise", name: "Cubicship Translator", headline: "100+ stores in Chicago, expanding to Canada, DHL premier partner", stat: "100+ stores", img: "/screenshots/dhl-translator.png", slug: "dhl-translator", link: "https://dhltranslator.vercel.app" },
   { category: "E-commerce", name: "West Coast Terpz", headline: "Went from Instagram DMs to $12K+/mo in online sales", stat: "$12K+/mo", img: "/screenshots/west-coast-terpz.png", slug: "west-coast-terpz" },
   { category: "Game", name: "JDLO The Game", headline: "Full RPG — 7 chapters, 20+ characters, original story", stat: "7 chapters", img: "/screenshots/jdlo-the-game.png", slug: "jdlo-the-game" },
 ];
