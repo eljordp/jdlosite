@@ -3,7 +3,20 @@
 import { useState, useEffect } from "react";
 import { getVisitor, saveVisitor } from "@/lib/visitor";
 
-const industries = ["Restaurant", "Retail", "E-commerce", "Real Estate", "Agency", "Service Business", "Entertainment", "Other"];
+const industries = [
+  "Restaurant", "Bar / Nightclub", "Catering", "Bakery",
+  "Retail", "E-commerce", "Clothing Brand", "Dropshipping",
+  "Salon", "Barber Shop", "Auto Shop", "Cleaning Service", "Landscaping", "Plumbing", "HVAC", "Appliance Repair",
+  "Real Estate", "Property Management",
+  "Gym / Fitness", "Personal Trainer", "Med Spa", "Dentist", "Chiropractor", "Therapist",
+  "Agency", "Law Firm", "Accounting", "Consulting", "Insurance",
+  "Photography", "Videography", "Music Producer", "Content Creator", "Tattoo Artist",
+  "Dispensary", "Cannabis Brand",
+  "Event Planner", "Promoter",
+  "Construction", "Roofing", "Electrician",
+  "Tech Startup", "Logistics", "Automotive",
+  "Non-Profit", "Other",
+];
 const needs = ["Website", "AI System", "App / Dashboard", "E-commerce Store", "Automation", "Something Custom"];
 
 export default function QuickQuote() {
