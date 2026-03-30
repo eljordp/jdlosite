@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import PostHogProvider from "@/components/PostHogProvider";
 import PageTransition from "@/components/PageTransition";
+import { PortalProvider } from "@/components/PortalTransition";
 
 export const metadata: Metadata = {
   title: "JDLO — I Build Whatever You Need",
@@ -49,7 +50,9 @@ export default function RootLayout({
       </head>
       <body className="font-sans antialiased">
         <PostHogProvider>
-          <PageTransition>{children}</PageTransition>
+          <PortalProvider>
+            <PageTransition>{children}</PageTransition>
+          </PortalProvider>
         </PostHogProvider>
       </body>
     </html>

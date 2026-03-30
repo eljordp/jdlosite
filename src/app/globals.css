@@ -359,3 +359,81 @@ details[open] > div {
   border-color: rgba(0, 0, 0, 0.12);
   transform: translateY(-2px);
 }
+
+/* ── Academy theme (dark) ── */
+[data-theme="academy"] {
+  --color-bg: #0a0a0a;
+  --color-surface: #141414;
+  --color-surface-2: #1a1a1a;
+  --color-surface-3: #222222;
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-hover: rgba(255, 255, 255, 0.16);
+  --color-text: #f5f5f5;
+  --color-text-secondary: #a3a3a3;
+  --color-text-muted: #525252;
+  --color-accent: #f5f5f5;
+  --color-glow: rgba(255, 255, 255, 0.04);
+}
+
+/* ── Portal transition overlay ── */
+.portal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: all;
+}
+.portal-overlay.portal-to-academy {
+  background: #0a0a0a;
+}
+.portal-overlay.portal-to-services {
+  background: #fafafa;
+}
+
+.portal-overlay.portal-covering.portal-to-academy {
+  animation: portalCoverRight 0.55s cubic-bezier(0.7, 0, 0.3, 1) forwards;
+}
+.portal-overlay.portal-uncovering.portal-to-academy {
+  animation: portalUncoverLeft 0.55s cubic-bezier(0.7, 0, 0.3, 1) forwards;
+}
+.portal-overlay.portal-covering.portal-to-services {
+  animation: portalCoverLeft 0.55s cubic-bezier(0.7, 0, 0.3, 1) forwards;
+}
+.portal-overlay.portal-uncovering.portal-to-services {
+  animation: portalUncoverRight 0.55s cubic-bezier(0.7, 0, 0.3, 1) forwards;
+}
+
+@keyframes portalCoverRight {
+  from { clip-path: circle(0% at 92% 3%); }
+  to   { clip-path: circle(160% at 92% 3%); }
+}
+@keyframes portalUncoverLeft {
+  from { clip-path: circle(160% at 8% 3%); }
+  to   { clip-path: circle(0% at 8% 3%); }
+}
+@keyframes portalCoverLeft {
+  from { clip-path: circle(0% at 8% 3%); }
+  to   { clip-path: circle(160% at 8% 3%); }
+}
+@keyframes portalUncoverRight {
+  from { clip-path: circle(160% at 92% 3%); }
+  to   { clip-path: circle(0% at 92% 3%); }
+}
+
+.portal-word {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 14vw, 11rem);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  animation: portalWordIn 0.35s 0.15s both;
+}
+.portal-overlay.portal-to-academy .portal-word { color: #f5f5f5; }
+.portal-overlay.portal-to-services .portal-word { color: #141414; }
+
+@keyframes portalWordIn {
+  from { opacity: 0; transform: scale(0.88); filter: blur(12px); }
+  to   { opacity: 1; transform: scale(1);    filter: blur(0px);  }
+}

@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { GlowLink } from '@/components/GlowButton';
+import { usePortal } from '@/components/PortalTransition';
 
 const links = [
   { label: 'Services', href: '/#services' },
@@ -14,6 +15,7 @@ const links = [
 
 export default function HomeNav() {
   const [open, setOpen] = useState(false);
+  const { portal } = usePortal();
 
   return (
     <>
@@ -37,6 +39,12 @@ export default function HomeNav() {
           </div>
 
           <div className="flex items-center gap-3">
+            <button
+              onClick={() => portal('/academy', 'to-academy')}
+              className="hidden md:inline-flex items-center gap-1.5 text-[13px] text-text-secondary hover:text-text transition-colors duration-300 font-mono tracking-wide"
+            >
+              Academy <span className="text-text-muted">↗</span>
+            </button>
             <GlowLink href="/contact" className="!py-1.5 !px-5 !text-[13px]">
               Let&apos;s Talk
             </GlowLink>
@@ -86,6 +94,12 @@ export default function HomeNav() {
               {link.label}
             </Link>
           ))}
+          <button
+            onClick={() => { setOpen(false); portal('/academy', 'to-academy'); }}
+            className="text-left text-[1.5rem] sm:text-[2rem] font-semibold tracking-[-0.03em] text-text-secondary hover:text-text transition-colors duration-200 py-2.5"
+          >
+            Academy ↗
+          </button>
         </div>
 
         <div className="pt-8">
