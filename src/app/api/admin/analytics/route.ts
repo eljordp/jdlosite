@@ -12,7 +12,15 @@ export async function GET() {
       .order("created_at", { ascending: false });
 
     if (error) {
-      return NextResponse.json({ error: error.message }, { status: 500 });
+      // Return empty state if DB is unreachable
+      return NextResponse.json({
+        totalLeads: 0,
+        todayLeads: 0,
+        weekLeads: 0,
+        byType: {},
+        recentLeads: [],
+        error: error.message,
+      });
     }
 
     const allLeads = leads || [];

@@ -53,6 +53,14 @@ export default function AdminPage() {
       }
     } catch (e) {
       console.error("Failed to load analytics", e);
+      // Show empty state instead of blank page
+      setAnalytics({
+        totalLeads: 0,
+        todayLeads: 0,
+        weekLeads: 0,
+        byType: {},
+        recentLeads: [],
+      });
     }
     setLoading(false);
   }, []);
