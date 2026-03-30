@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { getVisitor, saveVisitor } from "@/lib/visitor";
 
 const industries = ["Restaurant", "Retail", "E-commerce", "Real Estate", "Agency", "Service Business", "Entertainment", "Other"];
 const needs = ["Website", "AI System", "App / Dashboard", "E-commerce Store", "Automation", "Something Custom"];
@@ -9,11 +10,26 @@ export default function QuickQuote() {
   const [form, setForm] = useState({ name: "", email: "", industry: "", needs: [] as string[], details: "" });
   const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
 
+  // Load saved visitor data
+  useEffect(() => {
+    const v = getVisitor();
+    if (v.industry || v.needs || v.name || v.email) {
+      setForm(f => ({
+        ...f,
+        industry: v.industry || f.industry,
+        needs: v.needs || f.needs,
+        name: v.name || f.name,
+        email: v.email || f.email,
+      }));
+    }
+  }, []);
+
   const toggleNeed = (need: string) => {
-    setForm(f => ({
-      ...f,
-      needs: f.needs.includes(need) ? f.needs.filter(n => n !== need) : [...f.needs, need],
-    }));
+    setForm(f => {
+      const updated = f.needs.includes(need) ? f.needs.filter(n => n !== need) : [...f.needs, need];
+      saveVisitor({ needs: updated });
+      return { ...f, needs: updated };
+    });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -32,6 +48,7 @@ export default function QuickQuote() {
         budget: "Quick quote request",
       }),
     });
+    saveVisitor({ name: form.name, email: form.email, industry: form.industry, needs: form.needs });
     setStatus("sent");
   };
 
@@ -80,7 +97,7 @@ export default function QuickQuote() {
             <button
               key={ind}
               type="button"
-              onClick={() => setForm(f => ({ ...f, industry: ind }))}
+              onClick={() => { setForm(f => ({ ...f, industry: ind })); saveVisitor({ industry: ind }); }}
               className={`px-4 py-2 rounded-full text-[13px] border transition-all duration-200 ${
                 form.industry === ind
                   ? "bg-text text-bg border-text"

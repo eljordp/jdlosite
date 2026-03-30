@@ -6,6 +6,7 @@ import ScrollHighlightText from "@/components/ScrollHighlightText";
 import HomeNav from "@/components/HomeNav";
 import EmailCapture from "@/components/EmailCapture";
 import QuickQuote from "@/components/QuickQuote";
+import NewsletterCapture from "@/components/NewsletterCapture";
 
 /* ── Hero ── */
 function Hero() {
@@ -538,13 +539,15 @@ function Footer() {
     <footer className="py-16 pb-24 md:pb-16 border-t border-border">
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-12 mb-16">
-          <div>
+          <div className="max-w-[280px]">
             <p className="text-text text-[14px] font-semibold tracking-[-0.02em] mb-2">
               JDLO
             </p>
-            <p className="text-text-muted text-[13px] leading-relaxed max-w-[280px]">
-              Websites, AI systems, and sales operations for businesses that want to grow.
+            <p className="text-text-muted text-[13px] leading-relaxed mb-6">
+              Apps, AI systems, websites, games, casinos &mdash; whatever your business needs.
             </p>
+            <p className="text-text text-[12px] font-medium mb-3">Stay in the loop</p>
+            <NewsletterCapture />
           </div>
 
           <div className="flex gap-16 flex-wrap">

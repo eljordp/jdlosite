@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import { trackPage } from "@/lib/visitor";
 
 export default function PageTransition({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -9,6 +10,7 @@ export default function PageTransition({ children }: { children: React.ReactNode
 
   useEffect(() => {
     setVisible(false);
+    trackPage(pathname);
     const frame = requestAnimationFrame(() => {
       requestAnimationFrame(() => setVisible(true));
     });
