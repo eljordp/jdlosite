@@ -211,7 +211,7 @@ export async function POST(req: NextRequest) {
           ${reply.signoff}
         </p>
         <hr style="border:none;border-top:1px solid rgba(255,255,255,0.06);margin:24px 0 16px" />
-        <p style="color:#48484a;font-size:11px;margin:0">JDLO — AI Education & Operations</p>
+        <p style="color:#48484a;font-size:11px;margin:0">JDLO — I Build Whatever You Need</p>
       </div>
     `;
 

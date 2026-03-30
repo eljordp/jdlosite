@@ -30,7 +30,7 @@ export default function AboutPage() {
 
             <div className="relative w-full aspect-[3/4] rounded-2xl overflow-hidden border border-border hero-animate hero-delay-4">
               <Image
-                src="/jordan-3.jpg"
+                src="/jordan.jpg"
                 alt="Jordan Lopez"
                 fill
                 className="object-cover object-top"
