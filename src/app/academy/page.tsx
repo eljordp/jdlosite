@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 const modules = [
   {
@@ -37,27 +38,41 @@ export default function AcademyPage() {
       {/* ── Hero ── */}
       <section className="min-h-screen flex flex-col justify-center px-6 md:px-10 border-b border-[rgba(255,255,255,0.06)]">
         <div className="max-w-[1400px] mx-auto w-full">
-          <p className="text-[#525252] text-[11px] tracking-[0.5em] uppercase font-mono mb-6">
-            JDLO Academy
-          </p>
-          <h1 className="font-display text-[clamp(3rem,8vw,7.5rem)] leading-[0.92] tracking-[-0.03em] mb-10 max-w-[900px]">
-            Not a course.
-            <br />
-            <span className="text-[#525252]">An operating system.</span>
-          </h1>
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-10 max-w-[900px]">
-            <p className="text-[#a3a3a3] text-lg md:text-xl leading-relaxed max-w-[500px]">
-              I taught myself to build anything in 5 months. Then I used it to build 20+ real businesses.
-              This is the exact way I think, sell, and operate — laid out so you can install it yourself.
-            </p>
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 shrink-0">
-              <Link
-                href="/academy/login?mode=signup"
-                className="inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-[#f5f5f5] text-[#0a0a0a] text-[14px] font-semibold hover:bg-white transition-colors duration-300"
-              >
-                Start free — 7 days
-              </Link>
-              <p className="text-[#525252] text-[12px] font-mono">No credit card required</p>
+          <div className="grid lg:grid-cols-[1.3fr_1fr] gap-12 lg:gap-20 items-center">
+            <div>
+              <p className="text-[#525252] text-[11px] tracking-[0.5em] uppercase font-mono mb-6">
+                JDLO Academy
+              </p>
+              <h1 className="font-display text-[clamp(3rem,8vw,7.5rem)] leading-[0.92] tracking-[-0.03em] mb-10">
+                Not a course.
+                <br />
+                <span className="text-[#525252]">An operating system.</span>
+              </h1>
+              <p className="text-[#a3a3a3] text-lg md:text-xl leading-relaxed max-w-[500px] mb-10">
+                I taught myself to build anything in 5 months. Then I used it to build 20+ real businesses.
+                This is the exact way I think, sell, and operate — laid out so you can install it yourself.
+              </p>
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                <Link
+                  href="/academy/login?mode=signup"
+                  className="inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-[#f5f5f5] text-[#0a0a0a] text-[14px] font-semibold hover:bg-white transition-colors duration-300"
+                >
+                  Start free — 7 days
+                </Link>
+                <p className="text-[#525252] text-[12px] font-mono">No credit card required</p>
+              </div>
+            </div>
+            <div className="hidden lg:block">
+              <div className="relative w-full aspect-[4/5] rounded-3xl overflow-hidden border border-[rgba(255,255,255,0.08)]">
+                <Image
+                  src="/jordan-2.jpg"
+                  alt="Jordan Lopez"
+                  fill
+                  className="object-cover object-center"
+                  sizes="40vw"
+                  priority
+                />
+              </div>
             </div>
           </div>
         </div>
