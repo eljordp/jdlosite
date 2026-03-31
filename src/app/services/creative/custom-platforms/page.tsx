@@ -4,6 +4,7 @@ import Link from "next/link";
 import PageShell from "@/components/PageShell";
 import RevealOnScroll from "@/components/RevealOnScroll";
 import IsThisForYou from "@/components/IsThisForYou";
+import BeforeAfter from "@/components/BeforeAfter";
 
 export default function ProductPage() {
   const includes = [
@@ -59,7 +60,7 @@ export default function ProductPage() {
           <RevealOnScroll>
             <div className="max-w-[600px]">
               <p className="font-display text-[clamp(2.5rem,5vw,4.5rem)] tracking-[-0.03em] leading-[0.95] mb-6">Custom quote</p>
-              <p className="text-text-secondary text-[16px] leading-relaxed mb-8">If you&apos;re reading this page, you probably have an idea that doesn&apos;t fit any category. Good. Those are my favorite projects. Tell me what you&apos;re imagining and I&apos;ll tell you exactly what it takes — timeline, cost, and whether it&apos;s even possible. No charge for the conversation.</p>
+              <p className="text-text-secondary text-[16px] leading-relaxed mb-8">If you&apos;re reading this page, you probably have an idea that doesn&apos;t fit any category. Good. Those are my favorite projects. Tell me what you&apos;re imagining and I&apos;ll tell you exactly what it takes: timeline, cost, and whether it&apos;s even possible. No charge for the conversation.</p>
               <div className="flex flex-wrap gap-4">
                 <Link href="/contact?product=custom-platforms" className="magnetic-btn">
                   <span className="relative z-10">Get Started</span>
@@ -70,6 +71,32 @@ export default function ProductPage() {
           </RevealOnScroll>
         </div>
       </section>
+      <BeforeAfter
+        product="custom-platforms"
+        before={{
+          title: "Without a custom platform",
+          items: [
+            "Using 5 different tools duct-taped together",
+            "Paying monthly for software that doesn&apos;t fit",
+            "Manual processes that should be automated",
+            "Your team works around the tool, not with it",
+            "No competitive advantage — everyone uses the same stuff",
+            "Scaling means paying more per seat",
+          ],
+        }}
+        after={{
+          title: "With a JDLO platform",
+          items: [
+            "One platform built for exactly what you need",
+            "Automated workflows that save hours daily",
+            "Your team&apos;s actual process, digitized",
+            "Competitive edge no one else has",
+            "One-time build, no per-seat licensing",
+            "Built to scale with you",
+          ],
+        }}
+      />
+
       <IsThisForYou
         product="custom-platforms"
         statements={[
@@ -83,6 +110,52 @@ export default function ProductPage() {
         threshold={3}
         yesMessage="This is exactly what I do. Let's talk."
       />
+
+      {/* Case Study */}
+      <section className="section-gap border-t border-border">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-10">
+          <RevealOnScroll>
+            <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-6">Related Work</p>
+            <div className="py-10 border-b border-border">
+              <p className="text-[11px] font-mono text-text-muted tracking-[0.15em] uppercase mb-2">Enterprise</p>
+              <h3 className="font-display text-[clamp(1.4rem,3vw,2.2rem)] tracking-[-0.02em] leading-[1.1] mb-3">Cubicship Translator</h3>
+              <p className="text-text-secondary text-[15px] leading-relaxed mb-6 max-w-[500px]">Enterprise translation app for DHL covering 100+ stores across Chicago</p>
+              <div className="flex flex-wrap gap-x-8 gap-y-3">
+                {[{ v: "100+", l: "stores" }, { v: "DHL", l: "partner" }, { v: "Expanding to", l: "Canada" }].map(s => (
+                  <div key={s.l} className="flex items-center gap-2.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-text/20 shrink-0" />
+                    <span className="text-text font-medium text-[14px]">{s.v} {s.l}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </RevealOnScroll>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="section-gap border-t border-border">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-10">
+          <RevealOnScroll>
+            <div className="max-w-[600px]">
+              <h2 className="font-display text-[clamp(2rem,4vw,3.5rem)] tracking-[-0.03em] leading-[0.95] mb-6">
+                Ready to build yours?
+              </h2>
+              <p className="text-text-secondary text-[16px] leading-relaxed mb-8">
+                Tell me about your project and I&apos;ll give you a clear plan, timeline, and price within 24 hours.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <Link href="/contact?product=custom-platforms" className="magnetic-btn">
+                  <span className="relative z-10">Get Started</span>
+                </Link>
+                <a href="https://instagram.com/jdlo" target="_blank" rel="noopener noreferrer" className="ghost-btn">
+                  DM @jdlo
+                </a>
+              </div>
+            </div>
+          </RevealOnScroll>
+        </div>
+      </section>
     </PageShell>
   );
 }

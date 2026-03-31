@@ -13,19 +13,19 @@ const offerings = [
   {
     num: "01",
     title: "AI Receptionists",
-    desc: "Answers calls, books appointments, qualifies leads, and follows up with customers — 24 hours a day, 7 days a week. Never misses a call. Never takes a day off. Never loses a lead.",
+    desc: "Answers calls, books appointments, qualifies leads, and follows up with customers. 24 hours a day, 7 days a week. Never misses a call. Never takes a day off. Never loses a lead.",
     href: "/services/apps-systems/ai-receptionist",
   },
   {
     num: "02",
     title: "Automation Workflows",
-    desc: "Replace 40+ hours of manual work every week. The repetitive tasks eating your team alive — data entry, follow-ups, scheduling, reporting — handled automatically, every time, without mistakes.",
+    desc: "Replace 40+ hours of manual work every week. The repetitive tasks eating your team alive: data entry, follow-ups, scheduling, reporting. Handled automatically, every time, without mistakes.",
     href: "/services/apps-systems/automation-workflows",
   },
   {
     num: "03",
     title: "Custom Dashboards",
-    desc: "See your entire business on one screen. Revenue, leads, team performance, customer activity — real-time, always current, designed for how you actually make decisions.",
+    desc: "See your entire business on one screen. Revenue, leads, team performance, customer activity. Real-time, always current, designed for how you actually make decisions.",
     href: "/services/apps-systems/custom-dashboards",
   },
   {
@@ -37,13 +37,13 @@ const offerings = [
   {
     num: "05",
     title: "Internal Tools",
-    desc: "Custom apps built for exactly how your team works. Not some off-the-shelf software you have to bend your process around — a tool that bends around you.",
+    desc: "Custom apps built for exactly how your team works. Not some off-the-shelf software you have to bend your process around. A tool that bends around you.",
     href: "/services/apps-systems/internal-tools",
   },
   {
     num: "06",
     title: "CRM & Pipeline Systems",
-    desc: "Track every lead from first touch to closed deal. Know exactly where your money is coming from, what's stuck, and what needs attention — so you never lose a sale to disorganization.",
+    desc: "Track every lead from first touch to closed deal. Know exactly where your money is coming from, what's stuck, and what needs attention. So you never lose a sale to disorganization.",
     href: "/services/apps-systems/crm-pipeline",
   },
 ];
@@ -53,7 +53,7 @@ const caseStudies = [
     category: "AI System",
     name: "Club Bot",
     headline: "AI concierge handling 500+ guests a week for Vegas nightclub promoters",
-    desc: "Automated the entire guest list operation — bookings, follow-ups, referral tracking, and capacity management. Replaced a workflow that used to take a full-time person and still dropped the ball.",
+    desc: "Automated the entire guest list operation: bookings, follow-ups, referral tracking, and capacity management. Replaced a workflow that used to take a full-time person and still dropped the ball.",
     stats: [
       { value: "500+", label: "Guests/week" },
       { value: "30hrs/wk", label: "Time saved" },
@@ -64,7 +64,7 @@ const caseStudies = [
     category: "AI Receptionist",
     name: "Vacaville Appliance",
     headline: "AI receptionist booking 40+ appointments per month, automatically, 24/7",
-    desc: "Built a system that answers calls, qualifies whether the lead is worth pursuing, and books the appointment — all without a human touching it. Targeted property managers specifically, their highest-value segment.",
+    desc: "Built a system that answers calls, qualifies whether the lead is worth pursuing, and books the appointment, all without a human touching it. Targeted property managers specifically, their highest-value segment.",
     stats: [
       { value: "40+", label: "Bookings/mo" },
       { value: "24/7", label: "Availability" },
@@ -74,7 +74,7 @@ const caseStudies = [
   {
     category: "Full Platform",
     name: "Quanta Casino",
-    headline: "Complete online sweepstakes casino — 6 game types, real-time multiplayer, admin panel",
+    headline: "Complete online sweepstakes casino. 6 game types, real-time multiplayer, admin panel",
     desc: "Built the entire platform from nothing. Slots, crash games, blackjack, live player balances, house edge management, promotional systems, and compliance-ready architecture. A $50K+ platform.",
     stats: [
       { value: "6", label: "Game types" },
@@ -102,7 +102,7 @@ export default function AppsSystemsPage() {
           </h1>
           <p className="text-text-secondary text-lg md:text-xl leading-relaxed max-w-[520px] hero-animate hero-delay-3">
             You shouldn&apos;t be doing the same thing twice. I build the apps,
-            automations, and AI tools that replace manual work &mdash; so your
+            automations, and AI tools that replace manual work, so your
             business makes money and saves time without you in the middle of it.
           </p>
         </div>
@@ -152,7 +152,7 @@ export default function AppsSystemsPage() {
       <section className="section-gap">
         <div className="max-w-[1400px] mx-auto px-6 md:px-10">
           <ScrollHighlightText
-            text="Most businesses waste 20 to 40 hours a week on things a system could handle. Answering the same questions. Manually booking appointments. Copying data between spreadsheets. I build the thing that does it all for you — and it never calls in sick."
+            text="Most businesses waste 20 to 40 hours a week on things a system could handle. Answering the same questions. Manually booking appointments. Copying data between spreadsheets. I build the thing that does it all for you. And it never calls in sick."
             className="font-[family-name:var(--font-display)] text-[clamp(1.8rem,4vw,3.5rem)] tracking-[-0.03em] leading-[1.2] max-w-[900px]"
           />
         </div>

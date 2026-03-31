@@ -1,26 +1,33 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { usePathname } from "next/navigation";
 import { trackPage } from "@/lib/visitor";
 
 export default function PageTransition({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const [visible, setVisible] = useState(false);
+  const [state, setState] = useState<"entering" | "visible" | "exiting">("visible");
+  const prevPathRef = useRef(pathname);
 
   useEffect(() => {
-    setVisible(false);
+    if (prevPathRef.current === pathname) {
+      // Initial load
+      setState("entering");
+      trackPage(pathname);
+      const t = setTimeout(() => setState("visible"), 50);
+      return () => clearTimeout(t);
+    }
+
+    // Route change
     trackPage(pathname);
-    const frame = requestAnimationFrame(() => {
-      requestAnimationFrame(() => setVisible(true));
-    });
-    return () => cancelAnimationFrame(frame);
+    setState("entering");
+    const t = setTimeout(() => setState("visible"), 50);
+    prevPathRef.current = pathname;
+    return () => clearTimeout(t);
   }, [pathname]);
 
   return (
-    <div
-      className={`page-transition ${visible ? "page-visible" : ""}`}
-    >
+    <div className={`page-transition page-${state}`}>
       {children}
     </div>
   );

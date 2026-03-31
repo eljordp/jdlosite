@@ -1,9 +1,9 @@
 import AcademyNav from '@/components/AcademyNav';
 
 export const metadata = {
-  title: 'JDLO Academy — Operate Like an Operator',
+  title: 'JDLO Academy | Operate Like an Operator',
   description:
-    'Not a course. An operating system. Learn to build, sell, and move like someone who has done it — with real projects and real receipts behind every lesson.',
+    'Not a course. An operating system. Learn to build, sell, and move like someone who has done it, with real projects and real receipts behind every lesson.',
 };
 
 export default function AcademyLayout({ children }: { children: React.ReactNode }) {

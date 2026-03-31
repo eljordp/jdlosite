@@ -23,7 +23,7 @@ export default function CreativePage() {
 
           <p className="text-text-secondary text-lg md:text-xl leading-relaxed max-w-[540px] mt-12 hero-animate hero-delay-3">
             The projects that don&apos;t fit in a box. Games, casinos, enterprise
-            platforms, custom tools &mdash; whatever you can imagine, brought to
+            platforms, custom tools, whatever you can imagine, brought to
             life from scratch.
           </p>
         </div>
@@ -223,8 +223,8 @@ export default function CreativePage() {
                   Quanta
                 </h3>
                 <p className="text-text-secondary text-[clamp(1rem,2vw,1.25rem)] leading-relaxed font-medium mt-4 mb-4 max-w-[640px]">
-                  Full online sweepstakes casino built from scratch &mdash;
-                  real-time multiplayer, six game types, and a complete operations
+                  Full online sweepstakes casino built from scratch.
+                  Real-time multiplayer, six game types, and a complete operations
                   backend.
                 </p>
                 <p className="text-text-muted text-[14px] leading-relaxed max-w-[640px] mb-8">
@@ -292,7 +292,7 @@ export default function CreativePage() {
                   Pokemon Platinum-style adventure built from the ground up.
                   Twenty-plus characters, boss battles, minigames, cinematic
                   cutscenes, and a progression system that keeps people playing.
-                  Not a demo &mdash; a real game.
+                  Not a demo. A real game.
                 </p>
 
                 <div className="flex flex-wrap gap-x-8 gap-y-4">
@@ -340,7 +340,7 @@ export default function CreativePage() {
                 <p className="text-text-muted text-[14px] leading-relaxed max-w-[640px] mb-8">
                   Evaluates new hires across compliance, operations, and
                   role-specific knowledge. Automated scoring, progress tracking,
-                  and certification &mdash; replacing a manual process that used
+                  and certification, replacing a manual process that used
                   to take weeks.
                 </p>
 

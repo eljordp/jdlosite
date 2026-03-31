@@ -4,6 +4,7 @@ import Link from "next/link";
 import PageShell from "@/components/PageShell";
 import RevealOnScroll from "@/components/RevealOnScroll";
 import IsThisForYou from "@/components/IsThisForYou";
+import BeforeAfter from "@/components/BeforeAfter";
 
 export default function ProductPage() {
   const includes = [
@@ -29,7 +30,7 @@ export default function ProductPage() {
             Real games people actually play.
           </h1>
           <p className="text-text-secondary text-xl leading-relaxed max-w-[540px] hero-animate hero-delay-3">
-            Full playable games with stories, characters, progression systems, and original art. Not demos — finished products.
+            Full playable games with stories, characters, progression systems, and original art. Not demos. Finished products.
           </p>
         </div>
       </section>
@@ -70,6 +71,32 @@ export default function ProductPage() {
           </RevealOnScroll>
         </div>
       </section>
+      <BeforeAfter
+        product="video-games"
+        before={{
+          title: "Without a real game",
+          items: [
+            "You have a game idea stuck in your head",
+            "Mockups that never become playable",
+            "No one takes the concept seriously",
+            "Developers quote $100K and 12 months",
+            "The idea dies in a Google Doc",
+            "You settle for something generic",
+          ],
+        }}
+        after={{
+          title: "With a JDLO game",
+          items: [
+            "Fully playable game people can actually play",
+            "Original characters, story, and world",
+            "Shipped in weeks, not years",
+            "Something you can show investors and audiences",
+            "A portfolio piece that makes people stop scrolling",
+            "Built by someone who shipped a 7-chapter RPG",
+          ],
+        }}
+      />
+
       <IsThisForYou
         product="video-games"
         statements={[
@@ -82,6 +109,52 @@ export default function ProductPage() {
         ]}
         threshold={3}
       />
+
+      {/* Case Study */}
+      <section className="section-gap border-t border-border">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-10">
+          <RevealOnScroll>
+            <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-6">Related Work</p>
+            <div className="py-10 border-b border-border">
+              <p className="text-[11px] font-mono text-text-muted tracking-[0.15em] uppercase mb-2">Game</p>
+              <h3 className="font-display text-[clamp(1.4rem,3vw,2.2rem)] tracking-[-0.02em] leading-[1.1] mb-3">JDLO The Game</h3>
+              <p className="text-text-secondary text-[15px] leading-relaxed mb-6 max-w-[500px]">Full RPG with 7 chapters, 20+ characters, original story and art</p>
+              <div className="flex flex-wrap gap-x-8 gap-y-3">
+                {[{ v: "7", l: "chapters" }, { v: "222+", l: "interactables" }, { v: "Full", l: "RPG" }].map(s => (
+                  <div key={s.l} className="flex items-center gap-2.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-text/20 shrink-0" />
+                    <span className="text-text font-medium text-[14px]">{s.v} {s.l}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </RevealOnScroll>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="section-gap border-t border-border">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-10">
+          <RevealOnScroll>
+            <div className="max-w-[600px]">
+              <h2 className="font-display text-[clamp(2rem,4vw,3.5rem)] tracking-[-0.03em] leading-[0.95] mb-6">
+                Ready to build yours?
+              </h2>
+              <p className="text-text-secondary text-[16px] leading-relaxed mb-8">
+                Tell me about your project and I&apos;ll give you a clear plan, timeline, and price within 24 hours.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <Link href="/contact?product=video-games" className="magnetic-btn">
+                  <span className="relative z-10">Get Started</span>
+                </Link>
+                <a href="https://instagram.com/jdlo" target="_blank" rel="noopener noreferrer" className="ghost-btn">
+                  DM @jdlo
+                </a>
+              </div>
+            </div>
+          </RevealOnScroll>
+        </div>
+      </section>
     </PageShell>
   );
 }

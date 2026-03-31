@@ -37,15 +37,15 @@ export default function PrivacyPage() {
               <ul className="space-y-3">
                 <li className="text-text-secondary text-[15px] leading-[1.8] flex gap-3">
                   <span className="text-accent shrink-0">-</span>
-                  <span><strong className="text-text">Name &amp; email</strong> &mdash; when you create an account or make a purchase</span>
+                  <span><strong className="text-text">Name &amp; email</strong> - when you create an account or make a purchase</span>
                 </li>
                 <li className="text-text-secondary text-[15px] leading-[1.8] flex gap-3">
                   <span className="text-accent shrink-0">-</span>
-                  <span><strong className="text-text">Payment information</strong> &mdash; processed securely through Stripe (we never store your card details)</span>
+                  <span><strong className="text-text">Payment information</strong> - processed securely through Stripe (we never store your card details)</span>
                 </li>
                 <li className="text-text-secondary text-[15px] leading-[1.8] flex gap-3">
                   <span className="text-accent shrink-0">-</span>
-                  <span><strong className="text-text">Usage data</strong> &mdash; pages visited, features used, collected via analytics</span>
+                  <span><strong className="text-text">Usage data</strong> - pages visited, features used, collected via analytics</span>
                 </li>
               </ul>
             </div>
@@ -60,19 +60,19 @@ export default function PrivacyPage() {
               <ul className="space-y-3">
                 <li className="text-text-secondary text-[15px] leading-[1.8] flex gap-3">
                   <span className="text-accent shrink-0">-</span>
-                  <span><strong className="text-text">Supabase</strong> &mdash; authentication and database</span>
+                  <span><strong className="text-text">Supabase</strong> - authentication and database</span>
                 </li>
                 <li className="text-text-secondary text-[15px] leading-[1.8] flex gap-3">
                   <span className="text-accent shrink-0">-</span>
-                  <span><strong className="text-text">Stripe</strong> &mdash; payment processing</span>
+                  <span><strong className="text-text">Stripe</strong> - payment processing</span>
                 </li>
                 <li className="text-text-secondary text-[15px] leading-[1.8] flex gap-3">
                   <span className="text-accent shrink-0">-</span>
-                  <span><strong className="text-text">Resend</strong> &mdash; transactional emails</span>
+                  <span><strong className="text-text">Resend</strong> - transactional emails</span>
                 </li>
                 <li className="text-text-secondary text-[15px] leading-[1.8] flex gap-3">
                   <span className="text-accent shrink-0">-</span>
-                  <span><strong className="text-text">PostHog</strong> &mdash; product analytics</span>
+                  <span><strong className="text-text">PostHog</strong> - product analytics</span>
                 </li>
               </ul>
             </div>

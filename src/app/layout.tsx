@@ -3,26 +3,27 @@ import "./globals.css";
 import PostHogProvider from "@/components/PostHogProvider";
 import PageTransition from "@/components/PageTransition";
 import { PortalProvider } from "@/components/PortalTransition";
+import CustomCursor from "@/components/CustomCursor";
 
 export const metadata: Metadata = {
-  title: "JDLO — I Build Whatever You Need",
+  title: "JDLO | I Build Whatever You Need",
   description:
-    "Websites, apps, AI systems, games, casinos, enterprise tools. If you can think it, I can build it. Jordan Lopez — operator, builder.",
+    "Websites, apps, AI systems, games, casinos, enterprise tools. If you can think it, I can build it. Jordan Lopez, operator, builder.",
   icons: {
     icon: "/jordan.jpg",
   },
   openGraph: {
-    title: "JDLO — Websites, AI Systems & Sales Operations",
+    title: "JDLO | Websites, AI Systems & Sales Operations",
     description:
       "I build websites that convert, AI systems that replace manual work, and sales operations that close.",
     url: "https://jdlo.site",
     siteName: "JDLO",
-    images: [{ url: "https://jdlo.site/jordan.jpg", width: 1200, height: 1500, alt: "Jordan Lopez — JDLO" }],
+    images: [{ url: "https://jdlo.site/jordan.jpg", width: 1200, height: 1500, alt: "Jordan Lopez | JDLO" }],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "JDLO — Websites, AI Systems & Sales Operations",
+    title: "JDLO | Websites, AI Systems & Sales Operations",
     description:
       "I build websites that convert, AI systems that replace manual work, and sales operations that close.",
     images: ["https://jdlo.site/jordan.jpg"],
@@ -49,6 +50,7 @@ export default function RootLayout({
         />
       </head>
       <body className="font-sans antialiased">
+        <CustomCursor />
         <PostHogProvider>
           <PortalProvider>
             <PageTransition>{children}</PageTransition>

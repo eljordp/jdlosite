@@ -110,7 +110,7 @@ function LoginForm() {
             disabled={loading}
             className="w-full py-3.5 rounded-xl bg-[#f5f5f5] text-[#0a0a0a] text-[14px] font-semibold hover:bg-white transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {loading ? 'Loading...' : isSignup ? 'Create account — start free' : 'Sign in'}
+            {loading ? 'Loading...' : isSignup ? 'Create account, start free' : 'Sign in'}
           </button>
         </form>
 

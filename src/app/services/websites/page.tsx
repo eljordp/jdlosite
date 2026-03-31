@@ -6,11 +6,11 @@ import { GlowLink } from "@/components/GlowButton";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Websites — JDLO",
+  title: "Websites | JDLO",
   description:
     "Custom websites that generate revenue, build credibility, and convert visitors into customers. Starting at $3,000.",
   openGraph: {
-    title: "Websites — JDLO",
+    title: "Websites | JDLO",
     description:
       "Custom websites that generate revenue, build credibility, and convert visitors into customers.",
   },
@@ -27,7 +27,7 @@ function Hero() {
 
       <div className="max-w-[1400px] mx-auto w-full relative z-10">
         <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase mb-10 hero-animate hero-delay-1 font-mono">
-          Service &mdash; Websites
+          Service / Websites
         </p>
 
         <h1 className="font-display hero-animate hero-delay-2 text-[clamp(2.6rem,7vw,7rem)] leading-[0.95] tracking-[-0.03em] max-w-[900px]">
@@ -39,7 +39,7 @@ function Hero() {
         <div className="hero-animate hero-delay-3 mt-14 max-w-[520px]">
           <p className="text-text-secondary text-lg md:text-xl leading-relaxed">
             Your website is the first thing customers see. If it doesn&apos;t
-            look credible, load fast, and make it dead simple to buy &mdash; you&apos;re
+            look credible, load fast, and make it dead simple to buy, you&apos;re
             losing money every single day.
           </p>
         </div>
@@ -160,9 +160,9 @@ function WhoThisIsFor() {
 /* ────────────────────────────────────────────────── */
 const included = [
   "Strategy call to understand your business and goals",
-  "Custom design — no templates, no shortcuts",
+  "Custom design. No templates, no shortcuts",
   "Fully responsive across all devices",
-  "Contact forms, booking, or e-commerce — whatever you need",
+  "Contact forms, booking, or e-commerce, whatever you need",
   "SEO setup so search engines can find you",
   "Launch support and handoff",
   "30 days of post-launch fixes included",
@@ -241,7 +241,7 @@ const caseStudies = [
   {
     name: "West Coast Terpz",
     result:
-      "E-commerce storefront processing orders around the clock — no manual work, no missed sales.",
+      "E-commerce storefront processing orders around the clock. No manual work, no missed sales.",
     stats: ["$12K+/mo revenue", "24/7 order processing"],
   },
 ];

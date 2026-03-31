@@ -4,23 +4,22 @@ import { useState, useEffect } from "react";
 import { getVisitor, saveVisitor } from "@/lib/visitor";
 
 const industries = [
-  "Restaurant", "Bar / Nightclub", "Catering", "Bakery",
-  "Retail", "E-commerce", "Clothing Brand", "Dropshipping",
-  "Salon", "Barber Shop", "Auto Shop", "Cleaning Service", "Landscaping", "Plumbing", "HVAC", "Appliance Repair",
-  "Real Estate", "Property Management",
-  "Gym / Fitness", "Personal Trainer", "Med Spa", "Dentist", "Chiropractor", "Therapist",
-  "Agency", "Law Firm", "Accounting", "Consulting", "Insurance",
-  "Photography", "Videography", "Music Producer", "Content Creator", "Tattoo Artist",
-  "Dispensary", "Cannabis Brand",
-  "Event Planner", "Promoter",
-  "Construction", "Roofing", "Electrician",
-  "Tech Startup", "Logistics", "Automotive",
-  "Non-Profit", "Other",
+  "Restaurant / Food",
+  "E-Commerce",
+  "Real Estate",
+  "Nightlife / Events",
+  "Cannabis / Dispensary",
+  "Salon / Barber",
+  "Gym / Fitness",
+  "Agency / Consulting",
+  "Service Business",
+  "Other",
 ];
 const needs = ["Website", "AI System", "App / Dashboard", "E-commerce Store", "Automation", "Something Custom"];
 
 export default function QuickQuote() {
   const [form, setForm] = useState({ name: "", email: "", industry: "", needs: [] as string[], details: "" });
+  const [otherIndustry, setOtherIndustry] = useState("");
   const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
 
   // Load saved visitor data
@@ -57,7 +56,7 @@ export default function QuickQuote() {
         name: form.name,
         email: form.email,
         service: form.needs.join(", ") || "Not specified",
-        message: `Industry: ${form.industry || "Not specified"}. Needs: ${form.needs.join(", ") || "Not specified"}. Details: ${form.details || "None"}`,
+        message: `Industry: ${form.industry === "Other" ? (otherIndustry || "Other") : (form.industry || "Not specified")}. Needs: ${form.needs.join(", ") || "Not specified"}. Details: ${form.details || "None"}`,
         budget: "Quick quote request",
       }),
     });
@@ -121,6 +120,16 @@ export default function QuickQuote() {
             </button>
           ))}
         </div>
+        {form.industry === "Other" && (
+          <input
+            type="text"
+            placeholder="What kind of business?"
+            value={otherIndustry}
+            onChange={e => setOtherIndustry(e.target.value)}
+            className="mt-3 w-full bg-bg border border-border rounded-xl px-4 py-3 text-text text-[15px] placeholder:text-text-muted/50 focus:outline-none focus:border-text/30 transition-colors"
+            autoFocus
+          />
+        )}
       </div>
 
       {/* What do you need */}

@@ -8,7 +8,7 @@ const plans = [
     key: 'monthly',
     label: 'Monthly',
     price: '$97',
-    per: '/month — cancel anytime',
+    per: '/month, cancel anytime',
     features: ['All 4 modules', 'Weekly drops', 'Community access'],
     highlight: false,
   },
@@ -16,7 +16,7 @@ const plans = [
     key: 'lifetime',
     label: 'Lifetime',
     price: '$497',
-    per: 'one-time — own it forever',
+    per: 'one-time, own it forever',
     features: ['Everything in monthly', 'Lifetime updates', 'Direct access to JP'],
     highlight: true,
   },
@@ -53,7 +53,7 @@ export default function SubscribePage() {
           Keep the access.
         </h1>
         <p className="text-[#525252] text-[14px] text-center mb-14 max-w-[400px] mx-auto">
-          Your 7-day trial is over. Pick a plan to continue — everything you&apos;ve started stays with you.
+          Your 7-day trial is over. Pick a plan to continue. Everything you&apos;ve started stays with you.
         </p>
 
         <div className="grid sm:grid-cols-2 gap-6">

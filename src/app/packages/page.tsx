@@ -7,18 +7,17 @@ import RevealOnScroll from "@/components/RevealOnScroll";
 import { getVisitor, saveVisitor } from "@/lib/visitor";
 
 const niches = [
-  "Restaurant", "Bar / Nightclub", "Catering", "Bakery",
-  "Retail", "E-commerce", "Clothing Brand", "Dropshipping",
-  "Salon", "Barber Shop", "Auto Shop", "Cleaning Service", "Landscaping", "Plumbing", "HVAC",
-  "Real Estate", "Property Management",
-  "Gym / Fitness", "Personal Trainer", "Med Spa", "Dentist", "Chiropractor",
-  "Agency", "Law Firm", "Accounting", "Consulting", "Insurance",
-  "Photography", "Videography", "Music Producer", "Content Creator", "Tattoo Artist",
-  "Dispensary", "Cannabis Brand",
-  "Event Planner", "Promoter",
-  "Construction", "Roofing", "Electrician",
-  "Tech Startup", "Logistics", "Automotive",
-  "Non-Profit", "Other",
+  "Restaurant / Food",
+  "E-Commerce",
+  "Real Estate",
+  "Nightlife / Events",
+  "Cannabis / Dispensary",
+  "Salon / Barber",
+  "Beauty / Lash & Nails",
+  "Gym / Fitness",
+  "Agency / Consulting",
+  "Service Business",
+  "Other",
 ];
 
 interface PackageData {
@@ -28,153 +27,308 @@ interface PackageData {
   desc: string;
   includes: string[];
   popular?: boolean;
+  inquire?: boolean;
 }
 
 function getPackagesForNiche(niche: string): PackageData[] {
-  // High-ticket niches
-  const highTicket = ["Law Firm", "Real Estate", "Consulting", "Insurance", "Property Management", "Construction", "Roofing", "Med Spa"];
-  // Appointment-based
-  const appointment = ["Salon", "Barber Shop", "Dentist", "Chiropractor", "Personal Trainer", "Therapist", "Gym / Fitness", "Tattoo Artist"];
-  // Local service
-  const localService = ["Restaurant", "Bar / Nightclub", "Catering", "Bakery", "Auto Shop", "Cleaning Service", "Landscaping", "Plumbing", "HVAC", "Electrician", "Appliance Repair", "Dispensary"];
-  // E-commerce / product
-  const ecommerce = ["E-commerce", "Clothing Brand", "Dropshipping", "Cannabis Brand", "Retail"];
-  // Creative
-  const creative = ["Photography", "Videography", "Music Producer", "Content Creator", "Agency", "Event Planner", "Promoter"];
+  switch (niche) {
+    case "Restaurant / Food":
+      return [
+        {
+          name: "Get Online",
+          price: "$1,500",
+          tagline: "Look real. Get found.",
+          desc: "Custom website with your menu, hours, location, and a way to order or reserve. Built to show up when people search for you.",
+          includes: ["Custom multi-page website", "Menu + hours integration", "Google Business setup", "Contact / reservation form", "Mobile responsive", "SEO foundations"],
+        },
+        {
+          name: "Fill the Room",
+          price: "$3,500",
+          tagline: "Reservations and reviews on autopilot.",
+          popular: true,
+          desc: "Website + online ordering or reservation system + automated review requests after every visit. The combo that drives repeat business without lifting a finger.",
+          includes: ["Everything in Get Online", "Online ordering or reservation system", "Automated review follow-up SMS/email", "Email capture + loyalty sequence", "Analytics dashboard", "30 days support"],
+        },
+        {
+          name: "Full Operation",
+          price: "$6,500",
+          tagline: "Your restaurant runs itself online.",
+          desc: "Online ordering, reservations, waitlist management, AI phone receptionist, loyalty program, and a staff ops dashboard. Built this exact system for real restaurants.",
+          includes: ["Everything in Fill the Room", "AI phone receptionist (never miss a call)", "Waitlist + table management system", "SMS loyalty program", "Staff scheduling dashboard", "Payment plans available"],
+          inquire: true,
+        },
+      ];
 
-  if (highTicket.includes(niche)) {
-    return [
-      {
-        name: "Starter",
-        price: "$1,500",
-        tagline: "Professional online presence.",
-        desc: `A clean, professional website for your ${niche.toLowerCase()} that builds trust before the first meeting. Contact forms, booking, SEO — everything you need to look established.`,
-        includes: ["Custom multi-page website", "Mobile responsive", "Contact forms + booking", "SEO + Google Business", "Delivered in 2 weeks"],
-      },
-      {
-        name: "Growth",
-        price: "$5,000",
-        tagline: "Attract and convert high-value clients.",
-        popular: true,
-        desc: `Website + lead capture + CRM pipeline. For ${niche.toLowerCase()} businesses that want to stop losing leads to disorganization and start closing more.`,
-        includes: ["Full custom website", "CRM + lead pipeline", "Automated follow-ups", "Email capture system", "Analytics + tracking", "Admin panel", "30 days support"],
-      },
-      {
-        name: "Full Operation",
-        price: "$10,000+",
-        tagline: "Your entire digital operation.",
-        desc: `Everything your ${niche.toLowerCase()} needs online. Website, automation, AI intake, client portal, CRM — one system that runs your business while you focus on clients.`,
-        includes: ["Everything in Growth", "AI receptionist / intake", "Client portal", "Advanced automation", "Internal dashboard", "Team onboarding", "Payment plans available"],
-      },
-    ];
+    case "Nightlife / Events":
+      return [
+        {
+          name: "Presence",
+          price: "$1,500",
+          tagline: "Look like the move.",
+          desc: "A site that makes your venue or events look elite. Event listings, ticket links, table inquiry form. Built for nightlife. Not some generic template.",
+          includes: ["Custom website", "Event listings page", "Table / bottle inquiry form", "Social media integration", "Mobile responsive", "SEO + Google setup"],
+        },
+        {
+          name: "Club Bot",
+          price: "$3,500",
+          tagline: "Automate your guest list.",
+          popular: true,
+          desc: "The system I built for Vegas promoters. Handles 500+ guest list RSVPs/week automatically via DM. No more spreadsheets, no more chasing people. Built and proven.",
+          includes: ["Custom website", "Automated guest list via Instagram / SMS", "RSVP confirmation + reminder flows", "Promoter tracking dashboard", "VIP table booking system", "Ticket sales integration", "30 days support"],
+        },
+        {
+          name: "Full Ops",
+          price: "$6,500",
+          tagline: "Run the whole operation.",
+          desc: "Club Bot + ticketing + payout automation + promoter management dashboard. Everything a venue or promoter needs to run a professional operation at scale.",
+          includes: ["Everything in Club Bot", "Multi-promoter dashboard", "Automated payout tracking", "Event analytics + check-in system", "Email / SMS marketing flows", "Admin panel", "Payment plans available"],
+          inquire: true,
+        },
+      ];
+
+    case "Cannabis / Dispensary":
+      return [
+        {
+          name: "Compliant & Online",
+          price: "$2,000",
+          tagline: "Age-gated, legal, professional.",
+          desc: "A dispensary website built right. Age verification, compliance-ready design, menu integration, and local SEO so people find you over the competition.",
+          includes: ["Age-gated custom website", "Menu integration (Jane, Dutchie, or custom)", "Compliance-ready design", "Google Business + local SEO", "Contact + order form", "Mobile responsive"],
+        },
+        {
+          name: "Loyalty Machine",
+          price: "$4,000",
+          tagline: "Turn one-time buyers into regulars.",
+          popular: true,
+          desc: "Website + SMS loyalty program + reorder campaigns. Dispensaries that do this see 40-60% repeat purchase rates. I've built this system. It works.",
+          includes: ["Everything in Compliant & Online", "SMS loyalty + points system", "Automated reorder campaigns", "New product drop announcements", "Email capture + nurture sequence", "Analytics dashboard", "30 days support"],
+        },
+        {
+          name: "Full Dispensary OS",
+          price: "$7,500",
+          tagline: "Your dispensary runs itself.",
+          desc: "Loyalty, e-commerce, inventory alerts, staff scheduling, compliance tracking, and a full admin dashboard. One system for the whole operation.",
+          includes: ["Everything in Loyalty Machine", "Online pre-order system", "Inventory + restock alerts", "Staff scheduling tool", "Compliance tracking dashboard", "Admin panel", "Payment plans available"],
+          inquire: true,
+        },
+      ];
+
+    case "E-Commerce":
+      return [
+        {
+          name: "Launch Store",
+          price: "$1,500",
+          tagline: "Start selling this week.",
+          desc: "Custom branded store with your products, Stripe checkout, and shipping setup. No templates. Built around your brand. Most stores go live in under a week.",
+          includes: ["Custom store design", "Up to 30 products", "Stripe / payment processing", "Shipping setup", "Mobile responsive", "SEO foundations"],
+        },
+        {
+          name: "Growth Store",
+          price: "$3,500",
+          tagline: "Built to scale.",
+          popular: true,
+          desc: "Full e-commerce build with abandoned cart recovery, upsells, discount system, and customer accounts. This is the store that actually makes money. Not just looks good.",
+          includes: ["Everything in Launch Store", "Unlimited products", "Abandoned cart recovery", "Upsell + cross-sell flows", "Customer accounts + order history", "Discount / promo system", "Analytics dashboard", "30 days support"],
+        },
+        {
+          name: "Brand Machine",
+          price: "$6,000",
+          tagline: "Store + marketing on autopilot.",
+          desc: "Full store + email marketing sequences + influencer outreach automation + drop launch funnels. The setup that turns a store into a real brand.",
+          includes: ["Everything in Growth Store", "Drop launch waitlist funnel", "Post-purchase email sequences", "Review + referral automation", "Influencer outreach system", "AI product descriptions at scale", "Payment plans available"],
+          inquire: true,
+        },
+      ];
+
+    case "Real Estate":
+      return [
+        {
+          name: "Agent Site",
+          price: "$1,500",
+          tagline: "Look like a top producer.",
+          desc: "A professional site that makes you look like you've been in the game for 20 years. Listing pages, bio, testimonials, lead capture. Show up when people search your area.",
+          includes: ["Custom agent website", "Listing showcase pages", "Lead capture forms", "Testimonials section", "Google Business + local SEO", "Mobile responsive"],
+        },
+        {
+          name: "Lead Machine",
+          price: "$4,500",
+          tagline: "Never lose a lead again.",
+          popular: true,
+          desc: "Website + CRM + instant lead follow-up automation. 78% of deals go to the first agent who responds. This system responds in under 5 minutes, every time.",
+          includes: ["Everything in Agent Site", "CRM + lead pipeline", "Instant lead follow-up (< 5 min)", "Automated nurture sequences", "Showing scheduler", "AI-generated listing descriptions", "Analytics dashboard", "30 days support"],
+        },
+        {
+          name: "Full Brokerage OS",
+          price: "$8,500",
+          tagline: "Run a team like a machine.",
+          desc: "Lead machine + AI listing tools + team pipeline + client portal. For brokers and team leads who want the whole operation running without micromanaging.",
+          includes: ["Everything in Lead Machine", "Team pipeline + lead routing", "Client portal + document sharing", "Market report automation", "AI listing description generator", "Admin dashboard", "Payment plans available"],
+          inquire: true,
+        },
+      ];
+
+    case "Salon / Barber":
+      return [
+        {
+          name: "Book Online",
+          price: "$997",
+          tagline: "Stop losing clients to phone tag.",
+          desc: "Clean website with online booking so clients can schedule 24/7 without calling. Calendar syncs, confirmations sent automatically. Most shops recoup this in a month.",
+          includes: ["Custom website", "Online booking system", "Calendar sync", "Automated confirmations + reminders", "Google Business setup", "Mobile responsive"],
+        },
+        {
+          name: "Full Calendar",
+          price: "$2,500",
+          tagline: "Stay booked solid.",
+          popular: true,
+          desc: "Booking + automated review requests after every appointment + rebooking reminders. The shops doing this are always full. It's not luck, it's the system.",
+          includes: ["Everything in Book Online", "Automated review requests (SMS)", "Rebooking reminder sequences", "Waitlist management", "Email capture + loyalty", "SEO + analytics", "30 days support"],
+        },
+        {
+          name: "Grow the Brand",
+          price: "$4,500",
+          tagline: "Multi-stylist. Multi-location ready.",
+          desc: "Full booking system for multiple stylists + AI receptionist for calls + referral program. Scale past one chair without losing quality or clients.",
+          includes: ["Everything in Full Calendar", "Multi-stylist booking management", "AI phone receptionist", "Referral program automation", "Staff performance dashboard", "Payment plans available"],
+          inquire: true,
+        },
+      ];
+
+    case "Beauty / Lash & Nails":
+      return [
+        {
+          name: "Book Me",
+          price: "$897",
+          tagline: "Clients book you 24/7. No more DM tag.",
+          desc: "A clean website with online booking so clients can see your availability and book anytime without messaging you back and forth. Automated confirmations and reminders so nobody no-shows. You wake up to a full calendar.",
+          includes: ["Custom website with your portfolio", "Online booking system", "Automated confirmation texts", "24hr reminder before appointment", "Google Business setup", "Mobile responsive", "Link-in-bio ready"],
+        },
+        {
+          name: "Stay Booked",
+          price: "$2,200",
+          tagline: "ManyChat + booking + rebooking on autopilot.",
+          popular: true,
+          desc: "Website + ManyChat automation for Instagram DMs. When someone comments or DMs, they get auto-replied with your booking link, prices, and availability. Plus automatic rebooking reminders so clients come back every 2-3 weeks without you chasing them.",
+          includes: ["Everything in Book Me", "ManyChat Instagram automation", "Auto-reply with booking link + prices", "Comment-to-DM funnels", "Rebooking reminder sequences (SMS)", "Review request after every appointment", "Deposit collection upfront", "30 days support"],
+        },
+        {
+          name: "Full Beauty OS",
+          price: "$4,000",
+          tagline: "Run your whole business from your phone.",
+          desc: "Booking + ManyChat + waitlist + referral program + client gallery. For artists scaling past walk-ins who want a real business, not just a chair. Clients refer friends automatically, your waitlist fills itself, and you never chase a payment again.",
+          includes: ["Everything in Stay Booked", "Waitlist management system", "Referral program (clients get credit)", "Client gallery / portfolio page", "Gift card + package deals system", "No-show protection (deposits + policy)", "Payment plans available"],
+          inquire: true,
+        },
+      ];
+
+    case "Gym / Fitness":
+      return [
+        {
+          name: "Get Found",
+          price: "$1,200",
+          tagline: "Show up when people are looking.",
+          desc: "Custom website with class schedule, pricing, and a free trial signup form. SEO-optimized so you show up when people search for gyms in your area.",
+          includes: ["Custom website", "Class schedule + pricing page", "Free trial / lead capture form", "Google Business + local SEO", "Mobile responsive", "Social media integration"],
+        },
+        {
+          name: "Fill the Floor",
+          price: "$3,000",
+          tagline: "Turn leads into members automatically.",
+          popular: true,
+          desc: "Website + trial booking funnel + automated onboarding + churn prevention. Gyms doing this keep members 2x longer on average. I'll show you exactly how.",
+          includes: ["Everything in Get Found", "Trial booking funnel", "Automated member onboarding", "Class reminder + no-show follow-up", "Churn prevention sequences", "Analytics dashboard", "30 days support"],
+        },
+        {
+          name: "Full Gym OS",
+          price: "$5,500",
+          tagline: "Run the whole operation.",
+          desc: "Booking + check-in system + member portal + referral program + staff scheduling. One platform that handles everything from front desk to retention.",
+          includes: ["Everything in Fill the Floor", "Digital check-in system", "Member portal + progress tracking", "Referral program automation", "Staff scheduling tool", "Admin dashboard", "Payment plans available"],
+          inquire: true,
+        },
+      ];
+
+    case "Agency / Consulting":
+      return [
+        {
+          name: "Presence",
+          price: "$2,000",
+          tagline: "Look like the real deal.",
+          desc: "A website that positions you as a premium agency. Case studies, service pages, testimonials, and a clear path to getting on the phone with you.",
+          includes: ["Custom multi-page website", "Case study / work section", "Services pages", "Lead capture + contact form", "SEO + Google Business", "Mobile responsive"],
+        },
+        {
+          name: "Lead Engine",
+          price: "$4,500",
+          tagline: "Fill your pipeline consistently.",
+          popular: true,
+          desc: "Website + CRM + automated proposal delivery + follow-up sequences. Stop manually chasing every lead. The system handles it so you can focus on closing.",
+          includes: ["Everything in Presence", "CRM + client pipeline", "Automated proposal delivery", "Follow-up sequences", "Intake form + project qualifier", "Client portal", "Analytics dashboard", "30 days support"],
+        },
+        {
+          name: "Agency OS",
+          price: "$8,000",
+          tagline: "Your entire operation in one place.",
+          desc: "Lead engine + internal ops dashboard + client reporting + team workflows. Built for agencies scaling past one person who need systems, not chaos.",
+          includes: ["Everything in Lead Engine", "Internal ops dashboard", "Automated client reporting", "Team task + workflow management", "Onboarding automation", "Admin panel", "Payment plans available"],
+          inquire: true,
+        },
+      ];
+
+    case "Service Business":
+      return [
+        {
+          name: "Get Found",
+          price: "$1,200",
+          tagline: "Show up. Look legit. Get calls.",
+          desc: "A clean website that makes your service business look professional and shows up when people search locally. Contact form, Google maps, reviews section.",
+          includes: ["Custom website (up to 5 pages)", "Contact + quote request form", "Google Business + local SEO", "Reviews / testimonials section", "Mobile responsive", "Delivered in 2 weeks"],
+        },
+        {
+          name: "Never Miss a Job",
+          price: "$3,000",
+          tagline: "Stop losing leads to missed calls.",
+          popular: true,
+          desc: "Website + AI receptionist + automated follow-up. Every call gets answered, every lead gets followed up with. The service businesses doing this are booked out weeks ahead.",
+          includes: ["Everything in Get Found", "AI phone receptionist (24/7)", "Automated lead follow-up", "Online quote + booking request", "Review request automation", "Analytics dashboard", "30 days support"],
+        },
+        {
+          name: "Full Service OS",
+          price: "$5,500",
+          tagline: "Run the whole operation.",
+          desc: "AI receptionist + CRM + job scheduling + invoicing automation + customer portal. One system that handles everything from first call to getting paid.",
+          includes: ["Everything in Never Miss a Job", "CRM + job pipeline", "Scheduling + dispatch system", "Invoicing automation", "Customer portal", "Admin dashboard", "Payment plans available"],
+          inquire: true,
+        },
+      ];
+
+    default: // Other
+      return [
+        {
+          name: "Custom Starter",
+          price: "From $1,500",
+          tagline: "Built around your business.",
+          desc: "Tell me what you do and I'll tell you exactly what you need. Every build starts with a conversation. No packages that don't fit, no upsells on stuff you won't use.",
+          includes: ["Custom website", "Contact / lead forms", "Mobile responsive", "SEO foundations", "Google Business setup", "Delivered in 2 weeks"],
+        },
+        {
+          name: "Custom Growth",
+          price: "From $3,500",
+          tagline: "Systems that grow with you.",
+          popular: true,
+          desc: "Website + the specific automation your business needs, whether that's booking, CRM, AI receptionist, e-commerce, or something else entirely. Built to your situation.",
+          includes: ["Custom website", "Your specific automation stack", "CRM or booking (as needed)", "Email + SMS sequences", "Analytics dashboard", "30 days support"],
+        },
+        {
+          name: "Full Build",
+          price: "From $6,000",
+          tagline: "The whole digital operation.",
+          desc: "Website + full automation + admin dashboard. Everything your business needs to run and grow online, built custom for how you actually operate.",
+          includes: ["Everything in Custom Growth", "Full automation stack", "Admin + ops dashboard", "Team access", "Advanced integrations", "Payment plans available"],
+          inquire: true,
+        },
+      ];
   }
-
-  if (appointment.includes(niche)) {
-    return [
-      {
-        name: "Starter",
-        price: "$997",
-        tagline: "Get booked online.",
-        desc: `A clean website with online booking so your ${niche.toLowerCase()} clients can schedule without calling. Stop losing appointments to phone tag.`,
-        includes: ["Custom website", "Online booking system", "Mobile responsive", "Google Business setup", "Delivered in 10 days"],
-      },
-      {
-        name: "Growth",
-        price: "$2,500",
-        tagline: "Fill your calendar automatically.",
-        popular: true,
-        desc: `Website + booking + automated reminders + review requests. For ${niche.toLowerCase()} businesses that want a full calendar without chasing people.`,
-        includes: ["Full custom website", "Advanced booking system", "Automated reminders (SMS/email)", "Review request automation", "Email capture", "SEO + analytics", "30 days support"],
-      },
-      {
-        name: "Full Operation",
-        price: "$5,000",
-        tagline: "Run your business on autopilot.",
-        desc: `Website + booking + AI receptionist + CRM. Never miss a call, never lose a client, never double-book. Everything automated.`,
-        includes: ["Everything in Growth", "AI receptionist (24/7 calls)", "CRM + client management", "Automated follow-ups", "Admin dashboard", "Team scheduling", "Payment plans available"],
-      },
-    ];
-  }
-
-  if (ecommerce.includes(niche)) {
-    return [
-      {
-        name: "Quick Store",
-        price: "$497",
-        tagline: "Start selling today.",
-        desc: `Get your ${niche.toLowerCase()} store live in 24-48 hours. Your branding, your products, Stripe checkout. Perfect for testing an idea or getting started fast.`,
-        includes: ["Custom branded store", "Up to 20 products", "Stripe checkout", "Mobile responsive", "Live in 24-48 hours"],
-      },
-      {
-        name: "Starter Store",
-        price: "$1,500",
-        tagline: "A real online store.",
-        popular: true,
-        desc: `Custom design, up to 50 products, payment processing, inventory management. For ${niche.toLowerCase()} businesses ready to sell online seriously.`,
-        includes: ["Custom design", "Up to 50 products", "Payment processing", "Inventory management", "Shipping setup", "SEO foundations", "Delivered in 1 week"],
-      },
-      {
-        name: "Full Store",
-        price: "$3,500+",
-        tagline: "The whole e-commerce operation.",
-        desc: `Unlimited products, customer accounts, automated shipping, abandoned cart recovery, discount system, analytics dashboard. Agencies charge $15K-$30K for this.`,
-        includes: ["Everything in Starter", "Unlimited products", "Customer accounts", "Abandoned cart recovery", "Discount / promo system", "Analytics dashboard", "Admin panel", "30 days support"],
-      },
-    ];
-  }
-
-  if (creative.includes(niche)) {
-    return [
-      {
-        name: "Portfolio",
-        price: "$997",
-        tagline: "Show your work. Get hired.",
-        desc: `A portfolio site that makes your ${niche.toLowerCase()} work look incredible. Clean, fast, designed to get you booked.`,
-        includes: ["Custom portfolio website", "Work showcase / gallery", "Contact form", "Social media integration", "Mobile responsive", "Delivered in 10 days"],
-      },
-      {
-        name: "Growth",
-        price: "$2,500",
-        tagline: "Attract clients on autopilot.",
-        popular: true,
-        desc: `Portfolio + email capture + SEO + booking. For ${niche.toLowerCase()} professionals who want inbound clients, not just a pretty site.`,
-        includes: ["Full custom website", "Portfolio / gallery", "Online booking", "Email capture system", "SEO + analytics", "Social proof section", "30 days support"],
-      },
-      {
-        name: "Full Brand",
-        price: "$5,000",
-        tagline: "Your entire online brand.",
-        desc: `Website + brand identity + content system + automation. For ${niche.toLowerCase()} businesses that want to look like a premium operation.`,
-        includes: ["Everything in Growth", "Brand kit (logo, colors, fonts)", "Content templates", "Automated follow-ups", "CRM + pipeline", "Admin panel", "Payment plans available"],
-      },
-    ];
-  }
-
-  // Local service (default)
-  return [
-    {
-      name: "Starter",
-      price: "$997",
-      tagline: "Get found. Look legit.",
-      desc: `A professional website for your ${niche.toLowerCase()} business. Show up on Google, look trustworthy, and give customers a way to reach you.`,
-      includes: ["Custom website (up to 5 pages)", "Mobile responsive", "Contact forms", "Google Business setup", "SEO foundations", "Delivered in 2 weeks"],
-    },
-    {
-      name: "Growth",
-      price: "$2,500",
-      tagline: "Get more customers automatically.",
-      popular: true,
-      desc: `Website + AI receptionist + email capture. For ${niche.toLowerCase()} businesses that want to stop missing calls and start getting more jobs.`,
-      includes: ["Full custom website", "AI receptionist (answers calls 24/7)", "Email capture", "Automated follow-ups", "Review request system", "SEO + analytics", "30 days support"],
-    },
-    {
-      name: "Full Operation",
-      price: "$5,000",
-      tagline: "Your entire business online.",
-      desc: `Everything your ${niche.toLowerCase()} business needs. Website, AI phone system, CRM, booking, automation — one system that runs while you're on the job.`,
-      includes: ["Everything in Growth", "CRM + pipeline", "Online booking", "Automated scheduling", "Internal dashboard", "Team management", "Payment plans available"],
-    },
-  ];
 }
 
 const addons = [
@@ -187,7 +341,7 @@ const addons = [
 ];
 
 export default function PackagesPage() {
-  const [niche, setNiche] = useState("Other");
+  const [niche, setNiche] = useState("Restaurant / Food");
   const [showNiches, setShowNiches] = useState(false);
 
   useEffect(() => {
@@ -283,9 +437,13 @@ export default function PackagesPage() {
                 </ul>
                 <Link
                   href={`/contact?package=${pkg.name.toLowerCase().replace(/ /g, "-")}&niche=${encodeURIComponent(niche)}`}
-                  className={`${pkg.popular ? "magnetic-btn" : "ghost-btn"} w-full justify-center`}
+                  className={`${pkg.inquire ? "ghost-btn" : pkg.popular ? "magnetic-btn" : "ghost-btn"} w-full justify-center`}
                 >
-                  {pkg.popular ? <span className="relative z-10">Get Started</span> : "Get Started"}
+                  {pkg.inquire
+                    ? "Inquire →"
+                    : pkg.popular
+                    ? <span className="relative z-10">Get Started</span>
+                    : "Get Started"}
                 </Link>
               </div>
             ))}

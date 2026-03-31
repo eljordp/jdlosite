@@ -46,7 +46,7 @@ interface Project {
 const PROJECTS: Project[] = [
   // ── Flagship (most impressive) ──
   { name: "Quanta", slug: "quanta", categories: ["Casino"], headline: "Full online sweepstakes casino from scratch", stats: ["6 game types", "Real-time multiplayer", "$50K+ platform value"] },
-  { name: "Club Bot / Velvet", slug: "club-bot", categories: ["AI", "SaaS"], headline: "AI nightclub promoter platform — custom product turned SaaS", stats: ["500+ guests/week", "30hrs/wk saved", "SaaS platform"] },
+  { name: "Club Bot / Velvet", slug: "club-bot", categories: ["AI", "SaaS"], headline: "AI nightclub promoter platform, custom product turned SaaS", stats: ["500+ guests/week", "30hrs/wk saved", "SaaS platform"] },
   { name: "Best Odds", slug: "best-odds", categories: ["Pitch"], headline: "Interactive presentation for casino odds and strategy", stats: ["Data-driven", "Visual slides", "Animated"] },
   // ── Enterprise ──
   { name: "Pomaika\u2018i Co", slug: "pomaikai", categories: ["Website", "AI"], headline: "Centralized operations for a six-figure consultancy", stats: ["$5K project", "5+ tools replaced", "20hrs/wk saved"] },
@@ -67,11 +67,13 @@ const PROJECTS: Project[] = [
   { name: "JDLO Wii", slug: "jdlo-wii", categories: ["Game"], headline: "Wii Sports-inspired multiplayer web game", stats: ["1v1 multiplayer", "Web-based", "Original game"] },
   { name: "Robot Producer", slug: "robot-producer", categories: ["Pitch", "Website"], headline: "Full B2B sales system for selling robots to businesses", stats: ["Full sales kit", "ROI calculator", "4 platforms"] },
   { name: "Muddled by Mia", slug: "muddled-by-mia", categories: ["Website"], headline: "Website for a cocktail and mixology brand", stats: ["Custom design", "Brand identity", "Full website"] },
+  { name: "Aesthetics By Kayy", slug: "aesthetics-by-kayy", categories: ["Website"], headline: "Luxury skin, brow & lash studio on the Big Island of Hawaii", stats: ["Hawaii-based", "Booking system", "Local SEO"] },
+  { name: "OlyLife Ohana", slug: "olylife-ohana", categories: ["Website", "E-commerce"], headline: "Health & wellness brand site for PEMF and Terahertz therapy devices", stats: ["50K+ customers", "E-commerce", "Custom design"] },
   // ── SaaS / Tools ──
   { name: "JDLO CRM", slug: "jdlo-crm", categories: ["SaaS", "Tool"], headline: "Custom CRM for managing clients, leads, and pipeline", stats: ["Full CRM", "Pipeline mgmt", "Custom built"] },
   { name: "Joon11ee", slug: "joon11ee", categories: ["Casino"], headline: "3D casino with voice chat and real-time multiplayer", stats: ["3D environment", "Voice chat", "Real-time multiplayer"] },
   // ── Private / inquire ──
-  { name: "Loan Agent", slug: "loan-agent", categories: ["AI", "SaaS"], headline: "Multi-tenant loan processing system with AI underwriting — private system, inquire for details", stats: ["Multi-tenant", "Auto processing", "Inquire"] },
+  { name: "Loan Agent", slug: "loan-agent", categories: ["AI", "SaaS"], headline: "Multi-tenant loan processing system with AI underwriting. Private system, inquire for details", stats: ["Multi-tenant", "Auto processing", "Inquire"] },
 ];
 
 /* ────────────────────────────────────────────────────────────
@@ -254,7 +256,7 @@ export default function WorkPage() {
             </h1>
             <p className="text-text-secondary text-xl leading-relaxed max-w-[560px] hero-animate hero-delay-3">
               Casinos, enterprise tools, e-commerce platforms, AI systems,
-              games, brand sites &mdash; for businesses from local shops to
+              games, brand sites, for businesses from local shops to
               six-figure operations.
             </p>
           </div>
@@ -636,7 +638,7 @@ export default function WorkPage() {
                     ) : (
                       <div className="bg-bg rounded-2xl border border-text/10 p-8 mb-8 text-center">
                         <p className="text-[17px] font-semibold mb-2">Quote sent.</p>
-                        <p className="text-text-secondary text-[14px]">Check your inbox — I&apos;ll follow up with a detailed plan within 24 hours.</p>
+                        <p className="text-text-secondary text-[14px]">Check your inbox. I&apos;ll follow up with a detailed plan within 24 hours.</p>
                       </div>
                     )}
 
@@ -672,8 +674,8 @@ export default function WorkPage() {
               Ready to start?
             </h2>
             <p className="text-text-secondary text-lg leading-relaxed max-w-[440px] mx-auto mb-10">
-              Tell me what you need. No discovery calls, no runaround &mdash;
-              just a straight answer on what I&apos;d build and what it costs.
+              Tell me what you need. No discovery calls, no runaround.
+              Just a straight answer on what I&apos;d build and what it costs.
             </p>
             <Link href="/contact" className="magnetic-btn">
               <span className="relative z-10">Get in Touch</span>

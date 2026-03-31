@@ -1,53 +1,7 @@
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import Link from 'next/link';
-
-const modules = [
-  {
-    num: '01',
-    title: 'Identity & Operator Mindset',
-    lessons: [
-      'Who you have to become',
-      'Removing your internal ceiling',
-      'Building your operator identity',
-      'The daily system that compounds',
-    ],
-    unlocked: true,
-  },
-  {
-    num: '02',
-    title: 'AI as Leverage',
-    lessons: [
-      'The exact stack: Claude, GPT, Lovable',
-      'How to build in days not months',
-      'Prompting for production, not play',
-      'Shipping your first real thing',
-    ],
-    unlocked: true,
-  },
-  {
-    num: '03',
-    title: 'Sales & Closing',
-    lessons: [
-      'How to set appointments that show up',
-      'Objection handling that actually works',
-      'Closing without desperation',
-      'Follow-up that doesn\'t feel like begging',
-    ],
-    unlocked: true,
-  },
-  {
-    num: '04',
-    title: 'Network & Positioning',
-    lessons: [
-      'Getting into rooms that matter',
-      'How to be someone worth knowing',
-      'Making yourself impossible to ignore',
-      'Long-game relationship building',
-    ],
-    unlocked: true,
-  },
-];
+import AcademyModules from '@/components/AcademyModules';
 
 export default async function AcademyDashboard() {
   const supabase = await createClient();
@@ -102,7 +56,7 @@ export default async function AcademyDashboard() {
             <div className="mt-6 inline-flex items-center gap-3 px-4 py-2.5 border border-[rgba(255,255,255,0.08)] rounded-xl">
               <span className="w-1.5 h-1.5 rounded-full bg-green-400 shrink-0" />
               <p className="text-[#a3a3a3] text-[13px]">
-                Free trial — <span className="text-[#f5f5f5]">{daysLeft} day{daysLeft !== 1 ? 's' : ''} left</span>
+                Free trial, <span className="text-[#f5f5f5]">{daysLeft} day{daysLeft !== 1 ? 's' : ''} left</span>
                 {' '}·{' '}
                 <Link href="/academy/subscribe" className="text-[#f5f5f5] underline underline-offset-2">
                   Subscribe to keep access
@@ -113,43 +67,7 @@ export default async function AcademyDashboard() {
         </div>
 
         {/* Modules */}
-        <div className="space-y-4">
-          {modules.map((mod) => (
-            <details key={mod.num} className="group border border-[rgba(255,255,255,0.06)] rounded-2xl overflow-hidden">
-              <summary className="flex items-center justify-between px-8 py-6 cursor-pointer list-none">
-                <div className="flex items-center gap-6">
-                  <span className="text-[#525252] text-[11px] font-mono">{mod.num}</span>
-                  <h2 className="font-display text-[clamp(1.2rem,2.5vw,1.8rem)] tracking-[-0.02em]">
-                    {mod.title}
-                  </h2>
-                </div>
-                <span className="text-[#525252] group-open:rotate-45 transition-transform duration-300 text-xl shrink-0 ml-6">
-                  +
-                </span>
-              </summary>
-              <div className="px-8 pb-6 border-t border-[rgba(255,255,255,0.06)]">
-                <div className="pt-6 space-y-2">
-                  {mod.lessons.map((lesson, i) => (
-                    <div
-                      key={i}
-                      className="flex items-center gap-4 py-3 px-4 rounded-xl hover:bg-[rgba(255,255,255,0.04)] transition-colors duration-200 cursor-pointer group/lesson"
-                    >
-                      <span className="text-[#525252] text-[11px] font-mono w-5 shrink-0">
-                        {String(i + 1).padStart(2, '0')}
-                      </span>
-                      <p className="text-[#a3a3a3] text-[14px] group-hover/lesson:text-[#f5f5f5] transition-colors duration-200">
-                        {lesson}
-                      </p>
-                      <span className="ml-auto text-[#525252] text-[11px] font-mono opacity-0 group-hover/lesson:opacity-100 transition-opacity duration-200">
-                        Soon →
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </details>
-          ))}
-        </div>
+        <AcademyModules />
 
         {/* Live layer */}
         <div className="mt-16 p-8 border border-[rgba(255,255,255,0.06)] rounded-2xl">

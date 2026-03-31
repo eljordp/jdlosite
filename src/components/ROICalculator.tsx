@@ -18,16 +18,23 @@ interface ROIResult {
   calculate: (values: number[]) => string;
 }
 
+interface NichePreset {
+  label: string;
+  values: number[];
+}
+
 interface ROICalculatorProps {
   title?: string;
   subtitle?: string;
   sliders: SliderConfig[];
   results: ROIResult[];
   product: string;
+  nichePresets?: NichePreset[];
 }
 
-export default function ROICalculator({ title, subtitle, sliders, results, product }: ROICalculatorProps) {
+export default function ROICalculator({ title, subtitle, sliders, results, product, nichePresets }: ROICalculatorProps) {
   const [values, setValues] = useState(sliders.map(s => s.default));
+  const [activeNiche, setActiveNiche] = useState<string | null>(null);
 
   const updateValue = (index: number, val: number) => {
     setValues(prev => {
@@ -37,15 +44,44 @@ export default function ROICalculator({ title, subtitle, sliders, results, produ
     });
   };
 
+  const applyPreset = (preset: NichePreset) => {
+    if (activeNiche === preset.label) {
+      setActiveNiche(null);
+      setValues(sliders.map(s => s.default));
+    } else {
+      setActiveNiche(preset.label);
+      setValues(preset.values);
+    }
+  };
+
   return (
     <section className="section-gap bg-surface">
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
         <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-6">
           {title || "See Your ROI"}
         </p>
-        <p className="text-text-secondary text-[15px] leading-relaxed max-w-[500px] mb-12">
+        <p className="text-text-secondary text-[15px] leading-relaxed max-w-[500px] mb-8">
           {subtitle || "Drag the sliders to match your business. See what this system would do for you."}
         </p>
+
+        {/* Niche presets */}
+        {nichePresets && nichePresets.length > 0 && (
+          <div className="flex flex-wrap gap-2 mb-10">
+            {nichePresets.map((preset) => (
+              <button
+                key={preset.label}
+                onClick={() => applyPreset(preset)}
+                className={`px-4 py-2 rounded-full text-[12px] font-medium border transition-all duration-200 ${
+                  activeNiche === preset.label
+                    ? "bg-text text-bg border-text"
+                    : "border-border text-text-muted hover:text-text hover:border-text/30"
+                }`}
+              >
+                {preset.label}
+              </button>
+            ))}
+          </div>
+        )}
 
         <div className="grid lg:grid-cols-[1fr_1fr] gap-12 lg:gap-20">
           {/* Sliders */}
@@ -64,7 +100,7 @@ export default function ROICalculator({ title, subtitle, sliders, results, produ
                   max={slider.max}
                   step={slider.step}
                   value={values[i]}
-                  onChange={(e) => updateValue(i, Number(e.target.value))}
+                  onChange={(e) => { setActiveNiche(null); updateValue(i, Number(e.target.value)); }}
                   className="w-full h-2 bg-border rounded-full appearance-none cursor-pointer accent-text [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:bg-text [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:cursor-pointer"
                 />
                 <div className="flex justify-between mt-1">

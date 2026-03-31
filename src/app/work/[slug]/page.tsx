@@ -33,8 +33,8 @@ const projects: Record<string, {
   "club-bot": {
     name: "Club Bot / Velvet",
     category: "AI System / SaaS",
-    headline: "AI-powered nightclub promoter platform — the product and the SaaS behind it",
-    description: "Club Bot started as a custom build for Lauren Rees, a Vegas nightclub promoter moving 500+ people per week across Tao Group venues — Hakkasan, OMNIA, TAO, Marquee, Jewel. She was manually texting every single person, saving contacts one by one to her phone, and inputting info into Tao's system by hand. Club Bot replaced all of that: AI concierge chat handles bookings, guest list signups happen automatically, follow-ups go out on their own, and referral tracking runs in the background. One system replaced an entire manual operation.",
+    headline: "AI-powered nightclub promoter platform, the product and the SaaS behind it",
+    description: "Club Bot started as a custom build for Lauren Rees, a Vegas nightclub promoter moving 500+ people per week across Tao Group venues: Hakkasan, OMNIA, TAO, Marquee, Jewel. She was manually texting every single person, saving contacts one by one to her phone, and inputting info into Tao's system by hand. Club Bot replaced all of that: AI concierge chat handles bookings, guest list signups happen automatically, follow-ups go out on their own, and referral tracking runs in the background. One system replaced an entire manual operation.",
     stats: [
       { value: "500+", label: "Guests/week" },
       { value: "30hrs/wk", label: "Time saved" },
@@ -62,7 +62,7 @@ const projects: Record<string, {
     name: "Cubicship Translator",
     category: "Enterprise",
     headline: "Translation system for a DHL premier partner operating in 100+ stores",
-    description: "Built for Cubicship — a DHL premier partner currently operating in over 100 stores in Chicago and expanding to Canada. The translator processes shipping documents, customs forms, and manifests at scale, eliminating hours of manual translation work across every location. Handles international logistics documentation so staff can focus on customers instead of paperwork.",
+    description: "Built for Cubicship, a DHL premier partner currently operating in over 100 stores in Chicago and expanding to Canada. The translator processes shipping documents, customs forms, and manifests at scale, eliminating hours of manual translation work across every location. Handles international logistics documentation so staff can focus on customers instead of paperwork.",
     stats: [
       { value: "100+", label: "Stores" },
       { value: "Canada", label: "Expanding to" },
@@ -75,7 +75,7 @@ const projects: Record<string, {
     name: "DHL CRA Quiz",
     category: "Enterprise",
     headline: "Competency assessment for enterprise onboarding",
-    description: "Full assessment system that evaluates new hires across compliance, operations, and role-specific knowledge. Automated scoring, progress tracking, and certification — built for a company with 200+ employees.",
+    description: "Full assessment system that evaluates new hires across compliance, operations, and role-specific knowledge. Automated scoring, progress tracking, and certification, built for a company with 200+ employees.",
     stats: [
       { value: "200+", label: "Employees" },
       { value: "85%", label: "Faster onboarding" },
@@ -113,7 +113,7 @@ const projects: Record<string, {
     name: "Vacaville Appliance",
     category: "AI System",
     headline: "AI receptionist that books appointments while they sleep",
-    description: "Website plus an AI-powered receptionist that answers calls, qualifies leads, and books appointments automatically. Targeted specifically at property managers — their highest-value customer segment.",
+    description: "Website plus an AI-powered receptionist that answers calls, qualifies leads, and books appointments automatically. Targeted specifically at property managers, their highest-value customer segment.",
     stats: [
       { value: "40+", label: "Bookings/mo" },
       { value: "24/7", label: "Availability" },
@@ -155,7 +155,7 @@ const projects: Record<string, {
     name: "Onhizm",
     category: "Fashion",
     headline: "Custom site for a brand worn by celebrities",
-    description: "Replaced a basic Shopify setup with a custom-designed site that matches the brand's level. Onhizm has traction with rappers and artists out of the Bay — was at Empire. Their site needed to match that energy.",
+    description: "Replaced a basic Shopify setup with a custom-designed site that matches the brand's level. Onhizm has traction with rappers and artists out of the Bay, was at Empire. Their site needed to match that energy.",
     stats: [
       { value: "Empire", label: "Connections" },
       { value: "Custom", label: "Full redesign" },
@@ -204,7 +204,7 @@ const projects: Record<string, {
     name: "JDLO The Game",
     category: "Video Game",
     headline: "Full RPG video game with 7 chapters and cutscenes",
-    description: "Pokemon Platinum-style RPG built as an interactive portfolio. 7 playable chapters, original story, boss battles, minigames, and cinematic cutscenes. Not a demo — a real game people play start to finish.",
+    description: "Pokemon Platinum-style RPG built as an interactive portfolio. 7 playable chapters, original story, boss battles, minigames, and cinematic cutscenes. Not a demo. A real game people play start to finish.",
     stats: [
       { value: "7", label: "Chapters" },
       { value: "20+", label: "Characters" },
@@ -217,7 +217,7 @@ const projects: Record<string, {
     name: "JDLO Wii",
     category: "Video Game",
     headline: "Wii Sports-inspired multiplayer web game",
-    description: "A Wii Sports-inspired web game with 1v1 multiplayer. Play directly in the browser — no downloads, no installs. Original game mechanics and design.",
+    description: "A Wii Sports-inspired web game with 1v1 multiplayer. Play directly in the browser. No downloads, no installs. Original game mechanics and design.",
     stats: [
       { value: "1v1", label: "Multiplayer" },
       { value: "Web", label: "Based" },
@@ -229,7 +229,7 @@ const projects: Record<string, {
     name: "Manza Visuals",
     category: "Website",
     headline: "Portfolio site for a Bay Area videographer and visual artist",
-    description: "Custom portfolio website for Manza Visuals — a videographer and visual artist out of the Bay Area. Showcases video work, photography, and client projects with a clean, cinematic design that lets the visuals speak for themselves.",
+    description: "Custom portfolio website for Manza Visuals, a videographer and visual artist out of the Bay Area. Showcases video work, photography, and client projects with a clean, cinematic design that lets the visuals speak for themselves.",
     stats: [
       { value: "Custom", label: "Design" },
       { value: "Video", label: "Portfolio" },
@@ -241,7 +241,7 @@ const projects: Record<string, {
     name: "Lonely Love",
     category: "Fashion",
     headline: "E-commerce site for a clothing brand with a following",
-    description: "Custom online store for Lonely Love — a clothing brand building a community. Clean design, full product catalog, and a shopping experience that matches the brand's aesthetic and energy.",
+    description: "Custom online store for Lonely Love, a clothing brand building a community. Clean design, full product catalog, and a shopping experience that matches the brand's aesthetic and energy.",
     stats: [
       { value: "Custom", label: "E-commerce" },
       { value: "Brand", label: "Identity" },
@@ -253,7 +253,7 @@ const projects: Record<string, {
     name: "CWBY Studios",
     category: "Agency",
     headline: "Creative studio and agency site based in Hollywood",
-    description: "Website for CWBY Studios — a creative studio and agency operating out of Hollywood. Showcases their creative work, services, and team with a design that reflects their high-end production quality.",
+    description: "Website for CWBY Studios, a creative studio and agency operating out of Hollywood. Showcases their creative work, services, and team with a design that reflects their high-end production quality.",
     stats: [
       { value: "Hollywood", label: "Based" },
       { value: "Creative", label: "Agency" },
@@ -285,11 +285,35 @@ const projects: Record<string, {
     ],
     liveUrl: "https://www.joon11ee.com",
   },
+  "olylife-ohana": {
+    name: "OlyLife Ohana",
+    category: "Website + E-commerce",
+    headline: "Health & wellness brand site for PEMF and Terahertz therapy devices",
+    description: "Custom website for OlyLife Ohana, a health and wellness brand selling PEMF and Terahertz therapy devices trusted by 50,000+ people worldwide. Product showcase, how-it-works flow, customer stories, and a full e-commerce setup built to convert.",
+    stats: [
+      { value: "50K+", label: "Customers worldwide" },
+      { value: "E-commerce", label: "Product store" },
+      { value: "Custom", label: "Design" },
+    ],
+    liveUrl: "https://www.olylifeohana.com",
+  },
+  "aesthetics-by-kayy": {
+    name: "Aesthetics By Kayy",
+    category: "Website",
+    headline: "Luxury skin, brow & lash studio on the Big Island of Hawaii",
+    description: "Custom website for Aesthetics By Kayy, a licensed esthetician serving Waimea and Kona on Hawaii's Big Island. Full service menu, booking system, SEO-optimized for local search, and a design that matches the luxury feel of the brand.",
+    stats: [
+      { value: "Hawaii", label: "Big Island" },
+      { value: "Booking", label: "System" },
+      { value: "Local", label: "SEO" },
+    ],
+    liveUrl: "https://www.aestheticsbykayy.com",
+  },
   "muddled-by-mia": {
     name: "Muddled by Mia",
     category: "Website",
     headline: "Website for a cocktail and mixology brand",
-    description: "Custom website for Muddled by Mia — a cocktail and mixology brand. Clean, appetizing design that showcases recipes, services, and brand identity.",
+    description: "Custom website for Muddled by Mia, a cocktail and mixology brand. Clean, appetizing design that showcases recipes, services, and brand identity.",
     stats: [
       { value: "Custom", label: "Design" },
       { value: "Brand", label: "Identity" },
@@ -422,7 +446,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       {/* Club Bot / Velvet custom sections */}
       {slug === "club-bot" && (
         <>
-          {/* The Product — ReesVIP */}
+          {/* The Product - ReesVIP */}
           <section className="section-gap border-t border-border">
             <div className="max-w-[1400px] mx-auto px-6 md:px-10">
               <RevealOnScroll>
@@ -433,12 +457,12 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                   ReesVIP
                 </h2>
                 <p className="text-text-secondary text-[17px] leading-[1.8] max-w-[680px] mb-4">
-                  The client-facing product. Lauren&apos;s guests visit reesvip.com, browse upcoming events at every Tao Group venue, and get on the guest list in seconds. The AI concierge answers questions about dress codes, venues, and availability — then handles the signup automatically. No more Lauren texting 500 people one by one.
+                  The client-facing product. Lauren&apos;s guests visit reesvip.com, browse upcoming events at every Tao Group venue, and get on the guest list in seconds. The AI concierge answers questions about dress codes, venues, and availability, then handles the signup automatically. No more Lauren texting 500 people one by one.
                 </p>
               </RevealOnScroll>
               <RevealOnScroll delay={1}>
                 <div className="max-w-[640px] mt-8">
-                  {["AI chat concierge that knows every venue, event, and policy", "Automated guest list signup — name, party size, done", "Event calendar with venue filtering and date selection", "Referral tracking — see who's bringing the most people", "SMS/email confirmations sent automatically", "Promoter dashboard with real-time guest counts"].map((item, i) => (
+                  {["AI chat concierge that knows every venue, event, and policy", "Automated guest list signup: name, party size, done", "Event calendar with venue filtering and date selection", "Referral tracking, see who's bringing the most people", "SMS/email confirmations sent automatically", "Promoter dashboard with real-time guest counts"].map((item, i) => (
                     <div key={i} className="py-3 border-b border-border flex items-start gap-4">
                       <span className="w-1.5 h-1.5 rounded-full bg-text mt-2.5 shrink-0" />
                       <span className="text-text-secondary text-[15px] leading-relaxed">{item}</span>
@@ -449,7 +473,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             </div>
           </section>
 
-          {/* The SaaS — Velvet */}
+          {/* The SaaS - Velvet */}
           <section className="section-gap border-t border-border bg-surface">
             <div className="max-w-[1400px] mx-auto px-6 md:px-10">
               <RevealOnScroll>
@@ -460,12 +484,12 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                   Velvet
                 </h2>
                 <p className="text-text-secondary text-[17px] leading-[1.8] max-w-[680px] mb-4">
-                  Velvet is the white-label platform behind Club Bot. Any nightclub promoter can deploy their own version — their own branding, their own venues, their own AI concierge. One codebase, infinite deployments. ReesVIP was the first. Velvet is the business.
+                  Velvet is the white-label platform behind Club Bot. Any nightclub promoter can deploy their own version: their own branding, their own venues, their own AI concierge. One codebase, infinite deployments. ReesVIP was the first. Velvet is the business.
                 </p>
               </RevealOnScroll>
               <RevealOnScroll delay={1}>
                 <div className="max-w-[640px] mt-8 mb-12">
-                  {["White-label — each promoter gets their own branded site", "Multi-tenant architecture — one platform, unlimited promoters", "AI concierge customized per promoter's venues and style", "CRM with contact management and guest history", "Revenue tracking and referral analytics", "Self-serve onboarding for new promoters", "Subscription pricing model"].map((item, i) => (
+                  {["White-label: each promoter gets their own branded site", "Multi-tenant architecture: one platform, unlimited promoters", "AI concierge customized per promoter's venues and style", "CRM with contact management and guest history", "Revenue tracking and referral analytics", "Self-serve onboarding for new promoters", "Subscription pricing model"].map((item, i) => (
                     <div key={i} className="py-3 border-b border-border flex items-start gap-4">
                       <span className="w-1.5 h-1.5 rounded-full bg-text mt-2.5 shrink-0" />
                       <span className="text-text-secondary text-[15px] leading-relaxed">{item}</span>
@@ -475,7 +499,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               </RevealOnScroll>
               <RevealOnScroll delay={2}>
                 <div className="mb-4 flex items-center justify-between">
-                  <p className="text-text-muted text-[11px] font-mono tracking-[0.3em] uppercase">Velvet — Live Preview</p>
+                  <p className="text-text-muted text-[11px] font-mono tracking-[0.3em] uppercase">Velvet / Live Preview</p>
                   <a href="https://velvet-ai.vercel.app" target="_blank" rel="noopener noreferrer" className="text-text-muted text-[12px] font-mono hover:text-text transition-colors">
                     Open full site &rarr;
                   </a>
@@ -505,10 +529,10 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                 </h2>
                 <div className="max-w-[680px] space-y-6">
                   <p className="text-text-secondary text-[17px] leading-[1.8]">
-                    Lauren Rees promotes at Tao Group venues in Vegas — Hakkasan, OMNIA, TAO, Marquee, Jewel. She moves 400-500+ people per week through guest lists. Her workflow before Club Bot: manually text every person, manually save contacts to her phone one by one, manually input info into Tao&apos;s system. No CRM. Just her phone contacts and the Notes app.
+                    Lauren Rees promotes at Tao Group venues in Vegas: Hakkasan, OMNIA, TAO, Marquee, Jewel. She moves 400-500+ people per week through guest lists. Her workflow before Club Bot: manually text every person, manually save contacts to her phone one by one, manually input info into Tao&apos;s system. No CRM. Just her phone contacts and the Notes app.
                   </p>
                   <p className="text-text-secondary text-[17px] leading-[1.8]">
-                    Club Bot replaced all of that. AI concierge handles the conversations, guest list signups are automatic, follow-ups go out on their own, referral tracking runs in the background. One system replaced an entire manual operation — and freed up 30+ hours per week.
+                    Club Bot replaced all of that. AI concierge handles the conversations, guest list signups are automatic, follow-ups go out on their own, referral tracking runs in the background. One system replaced an entire manual operation and freed up 30+ hours per week.
                   </p>
                   <p className="text-text-secondary text-[17px] leading-[1.8]">
                     Then the question became: if it works for Lauren, why not every promoter? That&apos;s Velvet. Same system, white-labeled, multi-tenant. Any promoter can spin up their own Club Bot in minutes. The product became the SaaS.

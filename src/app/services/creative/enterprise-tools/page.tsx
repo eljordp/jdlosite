@@ -29,7 +29,7 @@ export default function ProductPage() {
             Software companies charge six figures. I don&apos;t.
           </h1>
           <p className="text-text-secondary text-xl leading-relaxed max-w-[540px] hero-animate hero-delay-3">
-            Assessment systems, onboarding platforms, translation tools, internal dashboards — the kind of tools that run real operations.
+            Assessment systems, onboarding platforms, translation tools, internal dashboards. The kind of tools that run real operations.
           </p>
         </div>
       </section>
@@ -59,7 +59,7 @@ export default function ProductPage() {
           <RevealOnScroll>
             <div className="max-w-[600px]">
               <p className="font-display text-[clamp(2.5rem,5vw,4.5rem)] tracking-[-0.03em] leading-[0.95] mb-6">From $10,000</p>
-              <p className="text-text-secondary text-[16px] leading-relaxed mb-8">Enterprise tools need proper architecture — multi-user support, role-based permissions, data processing at scale, security, and integration with existing systems. For $10K+ you&apos;re getting software that companies normally pay six figures for from agencies that take 6 months. I build it in weeks. You own it. No licensing fees, no per-seat charges, no monthly subscription to use your own tool.</p>
+              <p className="text-text-secondary text-[16px] leading-relaxed mb-8">Enterprise tools need proper architecture: multi-user support, role-based permissions, data processing at scale, security, and integration with existing systems. For $10K+ you&apos;re getting software that companies normally pay six figures for from agencies that take 6 months. I build it in weeks. You own it. No licensing fees, no per-seat charges, no monthly subscription to use your own tool.</p>
               <div className="flex flex-wrap gap-4">
                 <Link href="/contact?product=enterprise-tools" className="magnetic-btn">
                   <span className="relative z-10">Get Started</span>
@@ -79,7 +79,7 @@ export default function ProductPage() {
             "Per-seat licensing that scales with your headcount",
             "Features you don't need, missing features you do",
             "6-month implementation timelines",
-            "Vendor lock-in — they own your data",
+            "Vendor lock-in. They own your data",
             "Support tickets that go nowhere",
           ],
         }}
@@ -89,7 +89,7 @@ export default function ProductPage() {
             "One-time build, no recurring license fees",
             "Every feature built for YOUR operations",
             "Deployed in weeks, not months",
-            "You own the code and the data — forever",
+            "You own the code and the data. Forever",
             "Direct line to the person who built it",
             "Scales with you, no per-seat charges",
           ],

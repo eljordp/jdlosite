@@ -10,7 +10,7 @@ const modules = [
   {
     num: '02',
     title: 'AI as Leverage',
-    desc: 'Claude, GPT, Lovable — not as toys, but as multipliers. How I build in days what used to take months. The exact stack, the exact workflow.',
+    desc: 'Claude, GPT, Lovable. Not as toys, but as multipliers. How I build in days what used to take months. The exact stack, the exact workflow.',
   },
   {
     num: '03',
@@ -50,14 +50,14 @@ export default function AcademyPage() {
               </h1>
               <p className="text-[#a3a3a3] text-lg md:text-xl leading-relaxed max-w-[500px] mb-10">
                 I taught myself to build anything in 5 months. Then I used it to build 20+ real businesses.
-                This is the exact way I think, sell, and operate — laid out so you can install it yourself.
+                This is the exact way I think, sell, and operate, laid out so you can install it yourself.
               </p>
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
                 <Link
                   href="/academy/login?mode=signup"
                   className="inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-[#f5f5f5] text-[#0a0a0a] text-[14px] font-semibold hover:bg-white transition-colors duration-300"
                 >
-                  Start free — 7 days
+                  Start free, 7 days
                 </Link>
                 <p className="text-[#525252] text-[12px] font-mono">No credit card required</p>
               </div>
@@ -210,7 +210,7 @@ export default function AcademyPage() {
             <div className="p-8 border border-[rgba(255,255,255,0.08)] rounded-2xl">
               <p className="text-[#525252] text-[11px] font-mono tracking-widest uppercase mb-4">Monthly</p>
               <p className="font-display text-[3.5rem] tracking-[-0.04em] leading-none mb-2">$97</p>
-              <p className="text-[#525252] text-[13px] mb-8">/month — cancel anytime</p>
+              <p className="text-[#525252] text-[13px] mb-8">/month, cancel anytime</p>
               <ul className="space-y-2.5 mb-8">
                 {['All 4 modules', 'Weekly drops', 'Community access', '7-day free trial'].map((f) => (
                   <li key={f} className="flex items-center gap-3 text-[14px] text-[#a3a3a3]">
@@ -233,7 +233,7 @@ export default function AcademyPage() {
               </span>
               <p className="text-[#525252] text-[11px] font-mono tracking-widest uppercase mb-4">Lifetime</p>
               <p className="font-display text-[3.5rem] tracking-[-0.04em] leading-none mb-2">$497</p>
-              <p className="text-[#525252] text-[13px] mb-8">one-time — own it forever</p>
+              <p className="text-[#525252] text-[13px] mb-8">one-time, own it forever</p>
               <ul className="space-y-2.5 mb-8">
                 {['Everything in monthly', 'Lifetime updates', 'Direct access to JP', '7-day free trial'].map((f) => (
                   <li key={f} className="flex items-center gap-3 text-[14px] text-[#a3a3a3]">
@@ -265,7 +265,7 @@ export default function AcademyPage() {
             href="/academy/login?mode=signup"
             className="inline-flex items-center justify-center px-10 py-4 rounded-full bg-[#f5f5f5] text-[#0a0a0a] text-[15px] font-semibold hover:bg-white transition-colors duration-300"
           >
-            Start free — 7 days →
+            Start free, 7 days →
           </Link>
         </div>
       </section>

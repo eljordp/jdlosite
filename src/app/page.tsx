@@ -2,7 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import RevealOnScroll from "@/components/RevealOnScroll";
 import { GlowLink } from "@/components/GlowButton";
-import ScrollHighlightText from "@/components/ScrollHighlightText";
 import HomeNav from "@/components/HomeNav";
 import EmailCapture from "@/components/EmailCapture";
 import QuickQuote from "@/components/QuickQuote";
@@ -17,7 +16,7 @@ function Hero() {
         <div className="grid lg:grid-cols-[1.3fr_1fr] gap-12 lg:gap-20 items-center">
           <div>
             <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase mb-2 hero-animate hero-delay-1 font-mono">
-              Jordan Lopez &mdash; Operator
+              Jordan Lopez, Operator
             </p>
             <p className="text-text-secondary text-[13px] mb-10 hero-animate hero-delay-1">
               20+ businesses built &middot; Restaurants, nightclubs, cannabis, real estate, DHL, fashion, print shops
@@ -52,7 +51,7 @@ function Hero() {
           <div className="hidden lg:block hero-animate hero-delay-4">
             <div className="relative w-full aspect-[3/4] rounded-2xl overflow-hidden border border-border">
               <Image
-                src="/jordan-3.jpg"
+                src="/photos/suit-lv.jpg"
                 alt="Jordan Lopez"
                 fill
                 className="object-cover object-top"
@@ -71,7 +70,7 @@ function Hero() {
 const services = [
   {
     title: "Apps & Systems",
-    desc: "AI tools, dashboards, booking systems, automation, internal ops — anything your business needs to run faster, save time, and make more money.",
+    desc: "AI tools, dashboards, booking systems, automation, internal ops. Anything your business needs to run faster, save time, and make more money.",
     tag: "See products",
     href: "/services/apps-systems",
   },
@@ -83,7 +82,7 @@ const services = [
   },
   {
     title: "Websites & E-commerce",
-    desc: "Sites that make you money and make people take you seriously. Not templates — custom built, designed to convert, ready to grow with you.",
+    desc: "Sites that make you money and make people take you seriously. Not templates. Custom built, designed to convert, ready to grow with you.",
     tag: "See products",
     href: "/services/websites",
   },
@@ -150,7 +149,7 @@ function Process() {
             {
               num: "02",
               title: "I build it",
-              desc: "You get progress updates along the way. I move fast — most websites ship in under 2 weeks. AI systems and sales ops depend on scope.",
+              desc: "You get progress updates along the way. I move fast. Most websites ship in under 2 weeks. AI systems and sales ops depend on scope.",
             },
             {
               num: "03",
@@ -183,7 +182,7 @@ const featured = [
   { category: "Agency", name: "Pomaika\u2018i Co", headline: "Replaced 5 tools, saved 20hrs/week for a six-figure agency", stat: "$5K project", img: "/screenshots/pomaikai.png", slug: "pomaikai" },
   { category: "Enterprise", name: "Cubicship Translator", headline: "100+ stores in Chicago, expanding to Canada, DHL premier partner", stat: "100+ stores", img: "/screenshots/dhl-translator.png", slug: "dhl-translator", link: "https://dhltranslator.vercel.app" },
   { category: "E-commerce", name: "West Coast Terpz", headline: "Went from Instagram DMs to $12K+/mo in online sales", stat: "$12K+/mo", img: "/screenshots/west-coast-terpz.png", slug: "west-coast-terpz" },
-  { category: "Game", name: "JDLO The Game", headline: "Full RPG — 7 chapters, 20+ characters, original story", stat: "7 chapters", img: "/screenshots/jdlo-the-game.png", slug: "jdlo-the-game" },
+  { category: "Game", name: "JDLO The Game", headline: "Full RPG. 7 chapters, 20+ characters, original story", stat: "7 chapters", img: "/screenshots/jdlo-the-game.png", slug: "jdlo-the-game" },
 ];
 
 function Work() {
@@ -242,7 +241,7 @@ function Work() {
               See all 20+ projects &rarr;
             </span>
             <span className="block text-bg/60 text-[13px] mt-1">
-              Filter by category &mdash; websites, apps, AI, games, casinos, enterprise
+              Filter by category: websites, apps, AI, games, casinos, enterprise
             </span>
           </Link>
         </RevealOnScroll>
@@ -289,7 +288,7 @@ function Results() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-0">
           {[
-            { num: "20+", label: "Projects shipped", desc: "Websites, apps, games, AI tools, dashboards, casinos — for every kind of business and idea." },
+            { num: "20+", label: "Projects shipped", desc: "Websites, apps, games, AI tools, dashboards, casinos, for every kind of business and idea." },
             { num: "2 weeks", label: "Average turnaround", desc: "Most projects go from first message to live fast. No dragging it out, no endless meetings." },
             { num: "100%", label: "Custom built", desc: "No templates. No page builders. No shortcuts. Everything is built from scratch, designed for you." },
           ].map((stat, i) => (
@@ -304,6 +303,72 @@ function Results() {
                 <p className="text-text-secondary text-[14px] leading-relaxed">
                   {stat.desc}
                 </p>
+              </div>
+            </RevealOnScroll>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── Testimonials ── */
+function Testimonials() {
+  return (
+    <section className="section-gap border-t border-border">
+      <div className="max-w-[1400px] mx-auto px-6 md:px-10">
+        <RevealOnScroll>
+          <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-16">
+            What They Say
+          </p>
+        </RevealOnScroll>
+
+        {/* Featured testimonial - Malachi (big quote) */}
+        <RevealOnScroll>
+          <div className="max-w-[800px] mb-20">
+            <blockquote className="font-display text-[clamp(1.6rem,3.5vw,2.8rem)] tracking-[-0.02em] leading-[1.25] mb-8">
+              &ldquo;JP built our entire digital operation in two weeks. Website, dashboard, client portal — all of it. We were paying for five different tools and none of them talked to each other. He replaced all of that with one system. I don&apos;t know how he does it that fast, but it works and it hasn&apos;t broken once.&rdquo;
+            </blockquote>
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-full bg-surface border border-border flex items-center justify-center">
+                <span className="text-text font-display text-lg">M</span>
+              </div>
+              <div>
+                <p className="text-text text-[14px] font-medium">Malachi Pesta</p>
+                <p className="text-text-muted text-[13px]">CEO & Founder, Pomaika&apos;i Co</p>
+              </div>
+            </div>
+          </div>
+        </RevealOnScroll>
+
+        {/* Additional shorter testimonials */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {[
+            {
+              quote: "Went from DMs and spreadsheets to a full e-commerce site doing $12K a month. Jordan built it in like 10 days. Still can't believe it.",
+              name: "West Coast Terpz",
+              role: "E-commerce",
+            },
+            {
+              quote: "We needed something to handle 500+ guest lists a week. He built an AI system that does it automatically. Our promoters just send a name and it handles everything.",
+              name: "Club Bot / Velvet",
+              role: "AI Platform",
+            },
+            {
+              quote: "He built us a translator app that handles 100+ stores across Chicago. We're expanding to Canada now. The app just works.",
+              name: "Cubicship / DHL",
+              role: "Enterprise",
+            },
+          ].map((t, i) => (
+            <RevealOnScroll key={t.name} delay={i + 1}>
+              <div className="border border-border rounded-xl p-6 h-full flex flex-col">
+                <p className="text-text-secondary text-[14px] leading-relaxed mb-6 flex-1">
+                  &ldquo;{t.quote}&rdquo;
+                </p>
+                <div>
+                  <p className="text-text text-[14px] font-medium">{t.name}</p>
+                  <p className="text-text-muted text-[12px]">{t.role}</p>
+                </div>
               </div>
             </RevealOnScroll>
           ))}
@@ -339,64 +404,71 @@ function QuickQuoteSection() {
   );
 }
 
-/* ── Statement ── */
-function Statement() {
-  return (
-    <section className="section-gap">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-10">
-        <ScrollHighlightText
-          text="Websites. Apps. AI systems. Games. Casinos. Enterprise tools. I don't specialize in one thing — I specialize in building whatever you need, fast, and making sure it actually works."
-          className="font-display text-[clamp(1.8rem,4vw,3.5rem)] tracking-[-0.03em] leading-[1.2] max-w-[900px]"
-        />
-      </div>
-    </section>
-  );
-}
+/* ── Clients ── */
+const clients = [
+  { name: "West Coast Terpz", built: "E-commerce store", result: "$12K+/mo online sales" },
+  { name: "Club Bot / Velvet", built: "AI promoter platform", result: "500+ guests/wk automated" },
+  { name: "Cubicship / DHL", built: "Enterprise translator", result: "100+ stores" },
+  { name: "Pomaika\u2018i Co", built: "Agency site + dashboard", result: "Replaced 5 tools" },
+  { name: "Quanta Casino", built: "Full online casino", result: "23 games, multiplayer" },
+  { name: "Aesthetics By Kayy", built: "Website + booking", result: "Luxury studio, Hawaii" },
+];
 
-/* ── About ── */
-function About() {
+function Clients() {
   return (
     <section id="about" className="section-gap border-t border-border">
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
-        <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-12 lg:gap-24">
+        <div className="grid grid-cols-1 lg:grid-cols-[auto_1fr] gap-12 lg:gap-20 items-start">
+          {/* Photo accent */}
           <RevealOnScroll>
-            <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-10">
-              About
-            </p>
-            <h2 className="font-display text-[clamp(2.4rem,5vw,5rem)] tracking-[-0.03em] leading-[0.95] mb-10">
-              Not a guru.<br />
-              <span className="text-text-secondary">An operator.</span>
-            </h2>
-            <div className="space-y-6 max-w-[500px]">
-              <p className="text-text-secondary text-[16px] leading-relaxed">
-                I started with nothing &mdash; no portfolio, no connections, no playbook. Taught myself how to build anything a business could need. Websites, apps, AI tools, games, enterprise systems &mdash; 20+ projects shipped and counting.
-              </p>
-              <p className="text-text-secondary text-[16px] leading-relaxed">
-                Everything I build for clients, I use in my own businesses. If it doesn&apos;t make me money or save me time, I&apos;m not selling it to you.
-              </p>
-            </div>
-            <Link
-              href="/about"
-              className="inline-flex items-center gap-2 text-accent text-[14px] font-mono font-medium hover:text-white border-b border-accent/40 hover:border-white pb-0.5 transition-all duration-300 mt-10 group"
-            >
-              The full story
-              <span className="group-hover:translate-x-1 transition-transform duration-200">
-                &rarr;
-              </span>
-            </Link>
-          </RevealOnScroll>
-
-          <RevealOnScroll delay={2}>
-            <div className="relative w-full aspect-[4/5] rounded-3xl overflow-hidden border border-border">
+            <div className="relative w-24 h-24 lg:w-32 lg:h-32 rounded-2xl overflow-hidden border border-border shrink-0">
               <Image
                 src="/jordan-2.jpg"
                 alt="Jordan Lopez"
                 fill
                 className="object-cover object-center"
-                sizes="(max-width: 1024px) 100vw, 50vw"
+                sizes="128px"
               />
             </div>
           </RevealOnScroll>
+
+          <div>
+            <RevealOnScroll>
+              <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-6">
+                Who I&apos;ve Built For
+              </p>
+            </RevealOnScroll>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {clients.map((client, i) => (
+                <RevealOnScroll key={client.name} delay={(i % 3) + 1}>
+                  <div className="border border-border rounded-xl p-5 bg-surface">
+                    <p className="text-[15px] font-semibold tracking-[-0.02em] mb-1">
+                      {client.name}
+                    </p>
+                    <p className="text-text-muted text-[13px] mb-3">
+                      {client.built}
+                    </p>
+                    <p className="text-text-secondary text-[13px] font-medium">
+                      {client.result}
+                    </p>
+                  </div>
+                </RevealOnScroll>
+              ))}
+            </div>
+
+            <RevealOnScroll>
+              <Link
+                href="/work"
+                className="inline-flex items-center gap-2 text-accent text-[14px] font-mono font-medium hover:text-white border-b border-accent/40 hover:border-white pb-0.5 transition-all duration-300 mt-8 group"
+              >
+                See all projects
+                <span className="group-hover:translate-x-1 transition-transform duration-200">
+                  &rarr;
+                </span>
+              </Link>
+            </RevealOnScroll>
+          </div>
         </div>
       </div>
     </section>
@@ -408,7 +480,7 @@ function FAQ() {
   const faqs = [
     {
       q: "How much does a website cost?",
-      a: "Websites start at $3K. Price depends on scope — a 5-page business site is different from a full e-commerce platform. I'll give you an exact quote within 24 hours of your first message.",
+      a: "Websites start at $3K. Price depends on scope. A 5-page business site is different from a full e-commerce platform. I'll give you an exact quote within 24 hours of your first message.",
     },
     {
       q: "How long does it take?",
@@ -416,7 +488,7 @@ function FAQ() {
     },
     {
       q: "Do I own the code?",
-      a: "100%. Everything I build is yours. Full source code, deployed on your infrastructure, no vendor lock-in. You can hire someone else to maintain it if you want — but you won't need to.",
+      a: "100%. Everything I build is yours. Full source code, deployed on your infrastructure, no vendor lock-in. You can hire someone else to maintain it if you want, but you won't need to.",
     },
     {
       q: "What makes you different from agencies?",
@@ -428,7 +500,7 @@ function FAQ() {
     },
     {
       q: "What if I just need one thing?",
-      a: "That's fine. Most clients start with a website and come back for AI or sales ops later. No pressure to buy a package — just tell me what you need right now.",
+      a: "That's fine. Most clients start with a website and come back for AI or sales ops later. No pressure to buy a package. Just tell me what you need right now.",
     },
   ];
 
@@ -544,7 +616,7 @@ function Footer() {
               JDLO
             </p>
             <p className="text-text-muted text-[13px] leading-relaxed mb-6">
-              Apps, AI systems, websites, games, casinos &mdash; whatever your business needs.
+              Apps, AI systems, websites, games, casinos. Whatever your business needs.
             </p>
             <p className="text-text text-[12px] font-medium mb-3">Stay in the loop</p>
             <NewsletterCapture />
@@ -617,8 +689,11 @@ export default function Home() {
       <Hero />
       <Services />
       <Work />
+      <MidCTA text="Know what you need? Let's skip the small talk." href="/contact" label="Start a Project" />
+      <Results />
+      <Testimonials />
       <QuickQuoteSection />
-      <About />
+      <Clients />
       <FAQ />
       <ReachOut />
       <Footer />

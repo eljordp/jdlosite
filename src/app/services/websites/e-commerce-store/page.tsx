@@ -9,15 +9,15 @@ import ROICalculator from "@/components/ROICalculator";
 export default function EcommerceStoreProduct() {
   const tiers = [
     {
-      name: "Quick Store — $497",
+      name: "Quick Store, $497",
       desc: "Pre-built template customized with your brand, colors, and up to 20 products. Stripe checkout. Live in 24-48 hours. Perfect for dropshipping, testing an idea, or just getting started.",
     },
     {
-      name: "Starter Store — $1,500",
+      name: "Starter Store, $1,500",
       desc: "Custom design, up to 50 products, payment processing, inventory management, shipping setup, SEO foundations. Delivered in 1 week.",
     },
     {
-      name: "Full Store — $3,500+",
+      name: "Full Store, $3,500+",
       desc: "This is the real deal. Custom design from scratch, unlimited products, advanced inventory with variant management, customer accounts with order history, automated shipping labels + tracking, discount/promo system, abandoned cart recovery emails, analytics dashboard showing revenue + conversion rates, admin panel for managing everything, and 30 days post-launch support. Agencies charge $15K-$30K for this stack. Payment plans available.",
     },
   ];
@@ -94,8 +94,16 @@ export default function EcommerceStoreProduct() {
 
       <ROICalculator
         title="Project Your Revenue"
-        subtitle="Input your numbers. See what an online store could do for your business."
+        subtitle="Pick your industry or drag the sliders to match your business."
         product="e-commerce-store"
+        nichePresets={[
+          { label: "Fashion", values: [50, 65, 150] },
+          { label: "Cannabis", values: [30, 45, 200] },
+          { label: "Supplements", values: [20, 55, 120] },
+          { label: "Art / Prints", values: [40, 35, 80] },
+          { label: "Electronics", values: [15, 120, 60] },
+          { label: "Handmade", values: [25, 40, 100] },
+        ]}
         sliders={[
           { label: "Products you'd sell", min: 5, max: 500, step: 5, default: 30 },
           { label: "Average product price", min: 10, max: 500, step: 10, default: 50, prefix: "$" },
