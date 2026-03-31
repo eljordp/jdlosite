@@ -6,6 +6,8 @@ import HomeNav from "@/components/HomeNav";
 import EmailCapture from "@/components/EmailCapture";
 import QuickQuote from "@/components/QuickQuote";
 import NewsletterCapture from "@/components/NewsletterCapture";
+import SplitText from "@/components/SplitText";
+import CountUp from "@/components/CountUp";
 
 /* ── Hero ── */
 function Hero() {
@@ -18,13 +20,14 @@ function Hero() {
             <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase mb-2 hero-animate hero-delay-1 font-mono">
               Jordan Lopez, Operator
             </p>
-            <p className="text-text-secondary text-[13px] mb-10 hero-animate hero-delay-1">
+            <p className="text-text-muted text-[11px] tracking-[0.08em] mb-10 hero-animate hero-delay-1 font-mono">
               20+ businesses built &middot; Restaurants, nightclubs, cannabis, real estate, DHL, fashion, print shops
             </p>
 
             <h1 className="font-display hero-animate hero-delay-2 text-[clamp(2.8rem,7.5vw,6.5rem)] leading-[0.95] tracking-[-0.03em]">
-              If you can think it,
-              <br />I can build it.
+              <SplitText staggerMs={55}>If you can think it,</SplitText>
+              <br />
+              <SplitText delay={0.3} staggerMs={55}>I can build it.</SplitText>
             </h1>
 
         <div className="hero-animate hero-delay-3 mt-12 flex flex-col md:flex-row md:items-end md:justify-between gap-10">
@@ -49,7 +52,7 @@ function Hero() {
 
           {/* Photo */}
           <div className="hidden lg:block hero-animate hero-delay-4">
-            <div className="relative w-full aspect-[3/4] rounded-2xl overflow-hidden border border-border">
+            <div className="relative w-full aspect-[3/4] rounded-2xl overflow-hidden border border-border clip-reveal visible" style={{transition: 'clip-path 1.6s 0.8s cubic-bezier(0.16, 1, 0.3, 1)'}}>
               <Image
                 src="/photos/suit-lv.jpg"
                 alt="Jordan Lopez"
@@ -93,7 +96,7 @@ function Services() {
     <section id="services" className="section-gap border-t border-border">
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
         <RevealOnScroll>
-          <div className="flex items-baseline justify-between mb-4">
+          <div className="flex items-baseline justify-between mb-6">
             <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono">
               Services
             </p>
@@ -178,9 +181,9 @@ function Process() {
 /* ── Work (featured 6) ── */
 const featured = [
   { category: "Casino", name: "Quanta", headline: "23 games, real-time multiplayer, $50K+ platform", stat: "$50K+", img: "/screenshots/quanta.png", slug: "quanta" },
-  { category: "AI / SaaS", name: "Club Bot / Velvet", headline: "Automates 500+ guest lists/week for Vegas promoters", stat: "500+ guests/wk", img: "/screenshots/club-bot.png", slug: "club-bot" },
+  { category: "AI / SaaS", name: "Velvet", headline: "Automates 500+ guest lists/week for Vegas promoters", stat: "500+ guests/wk", img: "/screenshots/club-bot.png", slug: "club-bot" },
   { category: "Agency", name: "Pomaika\u2018i Co", headline: "Replaced 5 tools, saved 20hrs/week for a six-figure agency", stat: "$5K project", img: "/screenshots/pomaikai.png", slug: "pomaikai" },
-  { category: "Enterprise", name: "Cubicship Translator", headline: "100+ stores in Chicago, expanding to Canada, DHL premier partner", stat: "100+ stores", img: "/screenshots/dhl-translator.png", slug: "dhl-translator", link: "https://dhltranslator.vercel.app" },
+  { category: "Enterprise", name: "DHL Training", headline: "Gamified training app for 100+ stores across Chicago, DHL premier partner", stat: "100+ stores", img: "/screenshots/dhl-translator.png", slug: "dhl-translator", link: "https://dhltranslator.vercel.app" },
   { category: "E-commerce", name: "West Coast Terpz", headline: "Went from Instagram DMs to $12K+/mo in online sales", stat: "$12K+/mo", img: "/screenshots/west-coast-terpz.png", slug: "west-coast-terpz" },
   { category: "Game", name: "JDLO The Game", headline: "Full RPG. 7 chapters, 20+ characters, original story", stat: "7 chapters", img: "/screenshots/jdlo-the-game.png", slug: "jdlo-the-game" },
 ];
@@ -215,14 +218,14 @@ function Work() {
                 </div>
                 <div>
                   <div className="flex items-baseline justify-between gap-3 mb-1">
-                    <h3 className="font-display text-[clamp(1.1rem,2vw,1.5rem)] tracking-[-0.02em] leading-[1.1] group-hover:text-text-secondary transition-colors duration-300">
+                    <h3 className="font-display text-[clamp(1.1rem,2vw,1.5rem)] tracking-[-0.02em] leading-[1.1] group-hover:text-text-muted transition-colors duration-300">
                       {project.name}
                     </h3>
                     <span className="text-[13px] font-semibold tracking-[-0.02em] shrink-0">
                       {project.stat}
                     </span>
                   </div>
-                  <p className="text-text-muted text-[12px] leading-relaxed">
+                  <p className="text-[11px] font-mono tracking-[0.15em] uppercase text-text-muted leading-relaxed">
                     {project.headline}
                   </p>
                 </div>
@@ -288,15 +291,19 @@ function Results() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-0">
           {[
-            { num: "20+", label: "Projects shipped", desc: "Websites, apps, games, AI tools, dashboards, casinos, for every kind of business and idea." },
-            { num: "2 weeks", label: "Average turnaround", desc: "Most projects go from first message to live fast. No dragging it out, no endless meetings." },
-            { num: "100%", label: "Custom built", desc: "No templates. No page builders. No shortcuts. Everything is built from scratch, designed for you." },
+            { label: "Projects shipped", desc: "Websites, apps, games, AI tools, dashboards, casinos, for every kind of business and idea.", countEnd: 20, suffix: "+", plainNum: null },
+            { label: "Average turnaround", desc: "Most projects go from first message to live fast. No dragging it out, no endless meetings.", countEnd: null, suffix: "", plainNum: "2 weeks" },
+            { label: "Custom built", desc: "No templates. No page builders. No shortcuts. Everything is built from scratch, designed for you.", countEnd: 100, suffix: "%", plainNum: null },
           ].map((stat, i) => (
             <RevealOnScroll key={stat.label} delay={i + 1}>
               <div className={`py-5 md:py-0 md:pr-12 ${i < 2 ? "md:border-r border-b md:border-b-0 border-border" : ""} ${i > 0 ? "md:pl-12" : ""}`}>
-                <span className="text-[clamp(2rem,4vw,3.5rem)] font-bold tracking-[-0.04em] gradient-text">
-                  {stat.num}
-                </span>
+                {stat.countEnd !== null ? (
+                  <CountUp end={stat.countEnd} suffix={stat.suffix} className="text-[clamp(2rem,4vw,3.5rem)] font-display tracking-[-0.04em] gradient-text" />
+                ) : (
+                  <span className="text-[clamp(2rem,4vw,3.5rem)] font-display tracking-[-0.04em] gradient-text">
+                    {stat.plainNum}
+                  </span>
+                )}
                 <h3 className="text-[15px] font-medium mt-2 mb-2">
                   {stat.label}
                 </h3>
@@ -326,8 +333,9 @@ function Testimonials() {
         {/* Featured testimonial - Malachi (big quote) */}
         <RevealOnScroll>
           <div className="max-w-[800px] mb-20">
-            <blockquote className="font-display text-[clamp(1.6rem,3.5vw,2.8rem)] tracking-[-0.02em] leading-[1.25] mb-8">
-              &ldquo;JP built our entire digital operation in two weeks. Website, dashboard, client portal — all of it. We were paying for five different tools and none of them talked to each other. He replaced all of that with one system. I don&apos;t know how he does it that fast, but it works and it hasn&apos;t broken once.&rdquo;
+            <p className="font-display text-[8rem] leading-none text-text/10 mb-[-2rem]">&ldquo;</p>
+            <blockquote className="font-display italic text-[clamp(1.8rem,3.8vw,3.2rem)] tracking-[-0.02em] leading-[1.25] mb-8">
+              JP built our entire digital operation in two weeks. Website, dashboard, client portal — all of it. We were paying for five different tools and none of them talked to each other. He replaced all of that with one system. I don&apos;t know how he does it that fast, but it works and it hasn&apos;t broken once.
             </blockquote>
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 rounded-full bg-surface border border-border flex items-center justify-center">
@@ -442,7 +450,7 @@ function Clients() {
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {clients.map((client, i) => (
                 <RevealOnScroll key={client.name} delay={(i % 3) + 1}>
-                  <div className="border border-border rounded-xl p-5 bg-surface">
+                  <div className="border border-border rounded-xl p-5 bg-surface hover:border-border-hover hover:bg-bg transition-all duration-300">
                     <p className="text-[15px] font-semibold tracking-[-0.02em] mb-1">
                       {client.name}
                     </p>
@@ -524,7 +532,7 @@ function FAQ() {
               <RevealOnScroll key={i} delay={(i % 3) + 1}>
                 <details className="group border-b border-border">
                   <summary className="flex items-center justify-between py-6 cursor-pointer">
-                    <span className="text-[15px] font-medium pr-6">{faq.q}</span>
+                    <span className="text-[16px] font-medium pr-6">{faq.q}</span>
                     <span className="text-text-muted group-open:rotate-45 transition-transform duration-500 text-lg shrink-0">
                       +
                     </span>
@@ -571,7 +579,7 @@ function ReachOut() {
                 href="https://instagram.com/jdlo"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group border border-border rounded-2xl p-8 text-center hover:border-text/20 transition-all duration-300"
+                className="group border border-border rounded-2xl p-8 text-center hover:border-text/20 transition-all duration-300 glow-pulse"
               >
                 <span className="text-[2rem] block mb-4">&#9998;</span>
                 <span className="block text-[15px] font-semibold mb-2">DM me on Instagram</span>
@@ -688,6 +696,7 @@ export default function Home() {
       <HomeNav />
       <Hero />
       <Services />
+      <Process />
       <Work />
       <MidCTA text="Know what you need? Let's skip the small talk." href="/contact" label="Start a Project" />
       <Results />

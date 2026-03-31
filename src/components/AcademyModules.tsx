@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 type Lesson = {
   title: string;
   content: string;
+  assignment?: string;
 };
 
 type Module = {
@@ -44,21 +45,29 @@ export const modulesData: Module[] = [
         title: 'Who you have to become',
         content:
           "Before you learn any skill, you need to kill the version of yourself that's comfortable being broke. Not in a motivational poster way. In a 'I'm going to stop pretending I'm fine with this' way. The person you are right now has habits, beliefs, and a daily routine that got you exactly where you are. If where you are isn't where you want to be, something has to change. Not your tools. Not your strategy. You. Write down who you'd need to become to make $10K/month. What does that person do at 7am? What do they say no to? That's your new operating system.",
+        assignment:
+          "Write down who you need to become to make $10K/month. Be specific: what they do at 7am, what they charge, what they say no to, how they talk about themselves. Put it somewhere you'll see it daily.",
       },
       {
         title: 'Removing your internal ceiling',
         content:
           "You have a number in your head. It's the most you think you can charge, the most you think you can make, the most you think someone like you deserves. That number is fake. It was set by your environment, not by reality. I was charging $200 for websites because I thought that's what 'someone like me' could charge. Then I met people doing $400K/month who treated me like an equal. The ceiling broke. Not because I got smarter. Because I saw proof it was possible. Your job this week: find one person making 10x what you make. Study them. Not to copy them. To break your ceiling.",
+        assignment:
+          "Find one person making 10x what you make right now. Study their content for 30 minutes. Not to copy. To break your ceiling. Write down 3 things they believe about themselves that you currently don't.",
       },
       {
         title: 'Building your operator identity',
         content:
           "An operator doesn't wait for permission. An operator sees a problem, builds a solution, and charges for it. You're not an employee. You're not a freelancer waiting for someone to hand you work. You're an operator who builds systems that make money. Start calling yourself that. Not on Instagram. In your head. When someone asks what you do, say 'I build systems for businesses.' Watch how different that hits compared to 'I'm learning to code' or 'I do freelance web stuff.'",
+        assignment:
+          "For the next 7 days, every time someone asks what you do — say 'I build systems for businesses.' Notice how it feels. Notice how they respond.",
       },
       {
         title: 'The daily system that compounds',
         content:
           "Here's my actual daily schedule. It's printed on my wall. 6:30 AM wake up. No phone until 2:30 PM. Morning walk. Workout. Then 3 hours of deep work on the highest priority thing. No email, no calls, no distractions. Everything else happens after noon. This isn't discipline. It's architecture. You design your day so the important stuff happens before the world can interrupt you. Write your schedule. Print it. Put it on your wall. Follow it for 7 days straight. That's the assignment.",
+        assignment:
+          "Write your daily schedule. Not ideal — actual. Then write your target schedule. Print the target one. Put it on your wall. Follow it for 7 days straight.",
       },
     ],
   },
@@ -71,21 +80,29 @@ export const modulesData: Module[] = [
         title: 'The exact stack',
         content:
           "Claude Code for building. ChatGPT for research and first drafts. Lovable for quick prototypes. That's it. Three tools. Not fifteen. I built 20+ projects with this stack. The tool doesn't matter as much as knowing when to use which one. Claude Code is for real engineering \u2014 when you need production-quality code that actually works. ChatGPT is for brainstorming, writing, and quick answers. Lovable is for when a client needs to see something visual fast. Learn all three. Master the handoffs between them.",
+        assignment:
+          "Set up all three tools this week if you haven't: Claude Code (claude.ai/code), ChatGPT (chatgpt.com), Lovable (lovable.dev). Open all three and do one thing in each — even just ask a question. Get familiar.",
       },
       {
         title: 'How to build in days not months',
         content:
           "Speed comes from three things: clear requirements, the right tool, and not overthinking. When a client says 'I need a website,' I don't spend a week on mockups. I ask them 5 questions, open Claude Code, and start building. First version ships in 2-3 days. Then we iterate. Perfect is the enemy of paid. Ship something that works, get feedback, improve. Every project I've built that made real money was built fast and improved later.",
+        assignment:
+          "Find one business in your area — restaurant, barbershop, gym, whatever. Look at their current website. Write down 3 things wrong with it. That's your pitch.",
       },
       {
         title: 'Prompting for production',
         content:
           "Most people use AI like a search engine. 'Write me a website.' That's garbage prompting. Here's how I prompt: I give context (what the business does, who the customer is, what the goal is), I give constraints (tech stack, timeline, budget), and I give examples (here's a site I like, do something in this style). The more specific your input, the less cleanup you do on the output. Treat AI like a senior developer you're briefing, not a magic genie.",
+        assignment:
+          "Take one real project you want to build (or already have) and write a Claude prompt using the context + constraints + examples format. Test it. Iterate until the output is 80%+ usable.",
       },
       {
         title: 'Shipping your first real thing',
         content:
           "Stop building portfolios. Build something for someone. Find a business in your area \u2014 a restaurant, a barbershop, a gym \u2014 and build them a website for free or cheap. Not to practice. To prove to yourself you can deliver. The confidence from one shipped project is worth more than 100 tutorials. This week: find one business. Build their site. Ship it. Come back and tell me what happened.",
+        assignment:
+          "Ship something this week. It can be a landing page, a simple tool, anything. The only rule: it has to be live at a real URL. Send it to one real person and get feedback.",
       },
     ],
   },

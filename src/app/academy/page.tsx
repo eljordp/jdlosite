@@ -5,21 +5,25 @@ const modules = [
   {
     num: '01',
     title: 'Identity & Operator Mindset',
+    tagline: 'The foundation everything else is built on',
     desc: 'Who you have to become before anything else changes. Remove the ceiling you put on yourself. This is where the real work starts.',
   },
   {
     num: '02',
     title: 'AI as Leverage',
+    tagline: 'Build in days. Deliver in weeks. Charge accordingly.',
     desc: 'Claude, GPT, Lovable. Not as toys, but as multipliers. How I build in days what used to take months. The exact stack, the exact workflow.',
   },
   {
     num: '03',
     title: 'Sales & Closing',
+    tagline: 'The difference between broke and paid is this module',
     desc: 'Setting appointments, handling objections, closing without begging. The difference between people who make money and people who stay broke is this module.',
   },
   {
     num: '04',
     title: 'Network & Positioning',
+    tagline: 'Get in rooms that change your life',
     desc: 'How to get in rooms that matter and make yourself impossible to ignore. I was a nobody. Now people doing $400K/mo treat me as an equal. Here\'s exactly how.',
   },
 ];
