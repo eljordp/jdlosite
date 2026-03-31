@@ -31,7 +31,7 @@ function LoginForm() {
     setLoading(true);
 
     if (isSignup) {
-      const { error: signUpError } = await supabase.auth.signUp({
+      const { data, error: signUpError } = await supabase.auth.signUp({
         email,
         password,
         options: {
@@ -41,13 +41,21 @@ function LoginForm() {
       });
       if (signUpError) {
         setError(signUpError.message);
+      } else if (data.session) {
+        // Confirm email is off — session returned immediately, go straight in
+        router.push('/academy/dashboard');
       } else {
-        setSuccess('Check your email to confirm your account, then come back to log in.');
+        // Confirm email is on — user needs to verify
+        setSuccess('Check your email to confirm your account, then come back to sign in.');
       }
     } else {
       const { error: signInError } = await supabase.auth.signInWithPassword({ email, password });
       if (signInError) {
-        setError(signInError.message);
+        if (signInError.message === 'Email not confirmed') {
+          setError('Your email isn\'t confirmed yet. Check your inbox for a confirmation link, or contact us to get access.');
+        } else {
+          setError(signInError.message);
+        }
       } else {
         router.push('/academy/dashboard');
       }
