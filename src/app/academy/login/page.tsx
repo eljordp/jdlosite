@@ -52,7 +52,23 @@ function LoginForm() {
       const { error: signInError } = await supabase.auth.signInWithPassword({ email, password });
       if (signInError) {
         if (signInError.message === 'Email not confirmed') {
-          setError('Your email isn\'t confirmed yet. Check your inbox for a confirmation link, or contact us to get access.');
+          // Auto-confirm the user server-side then retry sign in
+          const res = await fetch('/api/academy/confirm-user', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email }),
+          });
+          if (res.ok) {
+            // Retry sign in now that they're confirmed
+            const { error: retryError } = await supabase.auth.signInWithPassword({ email, password });
+            if (retryError) {
+              setError(retryError.message);
+            } else {
+              router.push('/academy/dashboard');
+            }
+          } else {
+            setError('Something went wrong. DM @jdlo on Instagram to get access.');
+          }
         } else {
           setError(signInError.message);
         }
