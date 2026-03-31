@@ -71,41 +71,21 @@ export default function CustomCursor() {
   if (!visible) return null;
 
   return (
-    <>
-      {/* Dot */}
+    <div
+      className="fixed top-0 left-0 z-[99999] pointer-events-none mix-blend-difference"
+      style={{
+        transform: `translate(${pos.x - (hovering ? 6 : 4)}px, ${pos.y - (hovering ? 6 : 4)}px) scale(${clicking ? 0.6 : 1})`,
+        transition: "transform 0.06s ease-out, width 0.2s ease, height 0.2s ease",
+      }}
+    >
       <div
-        className="fixed top-0 left-0 z-[99999] pointer-events-none mix-blend-difference"
+        className="rounded-full bg-white"
         style={{
-          transform: `translate(${pos.x - 4}px, ${pos.y - 4}px) scale(${clicking ? 0.6 : 1})`,
-          transition: "transform 0.08s ease-out",
+          width: hovering ? 12 : 8,
+          height: hovering ? 12 : 8,
+          transition: "width 0.2s ease, height 0.2s ease",
         }}
-      >
-        <div
-          className="rounded-full bg-white"
-          style={{
-            width: 8,
-            height: 8,
-          }}
-        />
-      </div>
-      {/* Ring */}
-      <div
-        className="fixed top-0 left-0 z-[99998] pointer-events-none mix-blend-difference"
-        style={{
-          transform: `translate(${pos.x - (hovering ? 24 : 16)}px, ${pos.y - (hovering ? 24 : 16)}px) scale(${clicking ? 0.8 : 1})`,
-          transition: "transform 0.15s ease-out, width 0.3s ease, height 0.3s ease",
-        }}
-      >
-        <div
-          className="rounded-full border border-white/50"
-          style={{
-            width: hovering ? 48 : 32,
-            height: hovering ? 48 : 32,
-            transition: "width 0.3s ease, height 0.3s ease, opacity 0.2s ease",
-            opacity: hovering ? 0.8 : 0.4,
-          }}
-        />
-      </div>
-    </>
+      />
+    </div>
   );
 }
