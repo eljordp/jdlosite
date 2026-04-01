@@ -389,20 +389,37 @@ export default function PackagesPage() {
           </div>
 
           {showNiches && (
-            <div className="mt-5 flex flex-wrap justify-center gap-x-3 gap-y-3 pb-4" style={{ animation: "fadeIn 0.2s ease-out" }}>
-              {niches.map(n => (
-                <button
-                  key={n}
-                  onClick={() => selectNiche(n)}
-                  className={`px-5 py-2.5 rounded-full text-[14px] border transition-all duration-200 ${
-                    niche === n
-                      ? "bg-text text-bg border-text"
-                      : "border-border text-text-secondary hover:text-text hover:border-text/40"
-                  }`}
-                >
-                  {n}
-                </button>
-              ))}
+            <div className="mt-5 pb-4" style={{ animation: "fadeIn 0.2s ease-out" }}>
+              <div className="flex justify-between gap-3 mb-3">
+                {niches.slice(0, 6).map(n => (
+                  <button
+                    key={n}
+                    onClick={() => selectNiche(n)}
+                    className={`flex-1 py-2.5 rounded-full text-[14px] border transition-all duration-200 ${
+                      niche === n
+                        ? "bg-text text-bg border-text"
+                        : "border-border text-text-secondary hover:text-text hover:border-text/40"
+                    }`}
+                  >
+                    {n}
+                  </button>
+                ))}
+              </div>
+              <div className="flex justify-between gap-3">
+                {niches.slice(6).map(n => (
+                  <button
+                    key={n}
+                    onClick={() => selectNiche(n)}
+                    className={`flex-1 py-2.5 rounded-full text-[14px] border transition-all duration-200 ${
+                      niche === n
+                        ? "bg-text text-bg border-text"
+                        : "border-border text-text-secondary hover:text-text hover:border-text/40"
+                    }`}
+                  >
+                    {n}
+                  </button>
+                ))}
+              </div>
             </div>
           )}
         </div>
