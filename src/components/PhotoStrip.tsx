@@ -7,7 +7,7 @@ const BASE = 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/
 const photos = [
   { src: '/photos/suit-lv.jpg', alt: 'Suit in front of Louis Vuitton, Vegas' },
   { src: `${BASE}4b6dbfd71_image.png`, alt: 'Palm Trees' },
-  { src: `${BASE}12b79f88f_image.png`, alt: 'Beach Vibes', lobster: true },
+  { src: '/jordan-2.jpg', alt: 'Jordan Lopez' },
   { src: `${BASE}f97897ac6_image.png`, alt: 'Squad Up' },
   { src: `${BASE}654292d81_image.png`, alt: 'Boat Trip' },
   { src: `${BASE}af179ee70_image.png`, alt: 'Lake Day' },
@@ -22,7 +22,6 @@ const photos = [
   { src: `${BASE}75b63b68e_image.png`, alt: 'Store Run' },
   { src: `${BASE}070611cda_image.png`, alt: 'Car Vibes' },
   { src: `${BASE}fe27f9341_image.png`, alt: 'Money Moves' },
-  { src: '/jordan-2.jpg', alt: 'Jordan Lopez' },
   { src: `${BASE}0ac9313e2_image.png`, alt: 'Mirror Check' },
   { src: `${BASE}18559c7bf_image.png`, alt: 'Corvette Dreams' },
   { src: `${BASE}e11b820b2_image.png`, alt: 'Little One' },
@@ -108,31 +107,17 @@ export default function PhotoStrip() {
         onTouchMove={(e) => moveDrag(e.touches[0].clientX)}
         onTouchEnd={endDrag}
       >
-        {[...photos, ...photos].map((photo, i) =>
-          'lobster' in photo && photo.lobster ? (
-            <div key={i} className="h-[220px] md:h-[300px] rounded-xl overflow-hidden flex-shrink-0">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={photo.src}
-                alt={photo.alt}
-                loading="lazy"
-                draggable={false}
-                className="h-full w-auto object-cover scale-110"
-                style={{ objectPosition: 'center 40%' }}
-              />
-            </div>
-          ) : (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              key={i}
-              src={photo.src}
-              alt={photo.alt}
-              loading="lazy"
-              draggable={false}
-              className="h-[220px] md:h-[300px] w-auto rounded-xl object-cover flex-shrink-0"
-            />
-          )
-        )}
+        {[...photos, ...photos].map((photo, i) => (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            key={i}
+            src={photo.src}
+            alt={photo.alt}
+            loading="lazy"
+            draggable={false}
+            className="h-[220px] md:h-[300px] w-auto rounded-xl object-cover flex-shrink-0"
+          />
+        ))}
       </div>
     </>
   );
