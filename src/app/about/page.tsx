@@ -1,7 +1,7 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import PageShell from '@/components/PageShell';
 import RevealOnScroll from '@/components/RevealOnScroll';
+import PhotoStrip from '@/components/PhotoStrip';
 
 export default function AboutPage() {
   return (
@@ -61,12 +61,12 @@ export default function AboutPage() {
 
               <RevealOnScroll delay={2}>
                 <div className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden border border-border mb-10">
-                  <Image
-                    src="/jordan-2.jpg"
-                    alt="Jordan Lopez"
-                    fill
-                    className="object-cover object-top"
-                    sizes="(max-width: 1024px) 100vw, 680px"
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69705b759c8dc226ae265997/12b79f88f_image.png"
+                    alt="Beach Vibes"
+                    className="w-full h-full object-cover"
+                    style={{ objectPosition: 'center 40%' }}
                   />
                 </div>
               </RevealOnScroll>
@@ -88,58 +88,8 @@ export default function AboutPage() {
       </section>
 
       {/* ── Photo Strip ── */}
-      <style dangerouslySetInnerHTML={{ __html: `
-        @keyframes photoScroll {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-      ` }} />
       <section className="py-16 md:py-24 overflow-hidden">
-        <div
-          className="flex gap-[5px] hover:[animation-play-state:paused]"
-          style={{
-            animation: 'photoScroll 50s linear infinite',
-          }}
-        >
-          {[...Array(2)].flatMap((_, setIdx) =>
-            [
-              { src: "/photos/suit-lv.jpg", alt: "Suit in front of Louis Vuitton, Vegas" },
-              { src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69705b759c8dc226ae265997/4b6dbfd71_image.png", alt: "Palm trees LA street" },
-              { src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69705b759c8dc226ae265997/12b79f88f_image.png", alt: "Beach lobster", lobster: true },
-              { src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69705b759c8dc226ae265997/654292d81_image.png", alt: "Boat trip turquoise water" },
-              { src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69705b759c8dc226ae265997/4bf5d8f06_image.png", alt: "Universal Studios night, Challenger" },
-              { src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69705b759c8dc226ae265997/841333415_image.png", alt: "Best friend neon background" },
-              { src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69705b759c8dc226ae265997/39df25997_image.png", alt: "Vineyard work" },
-              { src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69705b759c8dc226ae265997/d5f039ffb_image.png", alt: "Dino attack Hawaii mountains" },
-            ].map((photo, i) => {
-              const key = `${setIdx}-${i}`;
-              if ('lobster' in photo && photo.lobster) {
-                return (
-                  <div key={key} className="h-[220px] md:h-[300px] rounded-xl overflow-hidden flex-shrink-0">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={photo.src}
-                      alt={photo.alt}
-                      loading="lazy"
-                      className="h-full w-auto object-cover scale-110"
-                      style={{ objectPosition: 'center 40%' }}
-                    />
-                  </div>
-                );
-              }
-              return (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  key={key}
-                  src={photo.src}
-                  alt={photo.alt}
-                  loading="lazy"
-                  className="h-[220px] md:h-[300px] w-auto rounded-xl object-cover flex-shrink-0"
-                />
-              );
-            })
-          )}
-        </div>
+        <PhotoStrip />
       </section>
 
       {/* ── Receipts ── */}
