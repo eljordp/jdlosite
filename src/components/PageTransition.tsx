@@ -10,20 +10,16 @@ export default function PageTransition({ children }: { children: React.ReactNode
   const prevPathRef = useRef(pathname);
 
   useEffect(() => {
-    if (prevPathRef.current === pathname) {
-      // Initial load
-      setState("entering");
-      trackPage(pathname);
-      const t = setTimeout(() => setState("visible"), 50);
-      return () => clearTimeout(t);
-    }
-
-    // Route change
     trackPage(pathname);
-    setState("entering");
-    const t = setTimeout(() => setState("visible"), 50);
     prevPathRef.current = pathname;
-    return () => clearTimeout(t);
+    // Force entering state, then flip to visible on next paint
+    setState("entering");
+    const raf = requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        setState("visible");
+      });
+    });
+    return () => cancelAnimationFrame(raf);
   }, [pathname]);
 
   return (
