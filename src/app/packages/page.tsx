@@ -409,7 +409,7 @@ export default function PackagesPage() {
       </section>
 
       {/* Packages */}
-      <section className="section-gap">
+      <section className="py-16 md:py-20">
         <div className="max-w-[1400px] mx-auto px-6 md:px-10">
           <div className="grid md:grid-cols-3 gap-6" key={niche}>
             {packages.map((pkg, i) => (
