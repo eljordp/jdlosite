@@ -389,7 +389,7 @@ export default function PackagesPage() {
           </div>
 
           {showNiches && (
-            <div className="mt-5 flex flex-wrap gap-x-3 gap-y-3 pb-4" style={{ animation: "fadeIn 0.2s ease-out" }}>
+            <div className="mt-5 flex flex-wrap justify-center gap-x-3 gap-y-3 pb-4" style={{ animation: "fadeIn 0.2s ease-out" }}>
               {niches.map(n => (
                 <button
                   key={n}
