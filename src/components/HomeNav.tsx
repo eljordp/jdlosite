@@ -6,7 +6,7 @@ import { GlowLink } from '@/components/GlowButton';
 import { usePortal } from '@/components/PortalTransition';
 
 const links = [
-  { label: 'Services', href: '/services' },
+  { label: 'Services', href: '/#services' },
   { label: 'Work', href: '/work' },
   { label: 'Packages', href: '/packages' },
   { label: 'About', href: '/about' },
