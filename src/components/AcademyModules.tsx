@@ -115,21 +115,29 @@ export const modulesData: Module[] = [
         title: 'Setting appointments that show up',
         content:
           "The DM template is simple. 'Hey [name], I build [thing] for [their industry]. Just finished one for [similar business]. Want to see it?' That's it. No pitch. No price. No essay. You're opening a conversation, not closing a deal. 80% of people who say yes to seeing your work will book a call. The call is where you close. But the DM gets you in the door.",
+        assignment:
+          "Write your DM template today. 3 sentences max. No pitch, no price, no essay. Open a conversation. Send it to 5 people this week.",
       },
       {
         title: 'Objection handling',
         content:
           "Every objection is the same objection wearing a different costume. 'Too expensive' means they don't see the value yet. 'I need to think about it' means they're scared. 'I have a guy' means they're not sure you're better. The fix for all three: show proof. Screenshots. Results. A live demo. When someone can see what you built for someone just like them, objections dissolve. Stop arguing. Start showing.",
+        assignment:
+          "Write down the last 3 times someone said no or hesitated. What was the real objection? What proof could you have shown them? Build that proof this week.",
       },
       {
         title: 'Closing without desperation',
         content:
           "If you need the money, you'll smell like it. And people don't buy from desperate. The fix: always have more leads than you need. When you have 5 people interested, you stop chasing the one who's dragging their feet. You say 'no rush, let me know when you're ready' and mean it. That energy closes more deals than any script. Build your pipeline so you're never one 'no' away from panic.",
+        assignment:
+          "List everyone currently interested in working with you. If it's less than 5, your job this week is to get 5 people interested. Use the DM template from lesson 1.",
       },
       {
         title: "Follow-up that doesn't beg",
         content:
           "Follow up once at 48 hours. Once at one week. Once at two weeks. Then stop. Each follow-up adds value: share a relevant project, mention a result, or ask a genuine question about their business. Never send 'just checking in' or 'circling back.' Those emails go straight to trash. If they don't respond after three touchpoints, they're not ready. Move on. They'll come back when they are.",
+        assignment:
+          "Create a follow-up sequence for one lead right now: Day 2, Day 7, Day 14. Write all 3 messages. Each one adds value — share a project, a result, or ask a genuine question. Schedule reminders.",
       },
     ],
   },
@@ -142,21 +150,29 @@ export const modulesData: Module[] = [
         title: 'Getting into rooms that matter',
         content:
           "You don't need a big following. You need to be in the right rooms with the right people. Go where business owners hang out. Not networking events \u2014 those are full of people selling to each other. Go to industry events, private dinners, member clubs. Offer value before you ask for anything. I got my biggest clients by being useful in rooms I technically didn't belong in. Show up. Be helpful. The deals follow.",
+        assignment:
+          "Find one event, dinner, or room happening this month where business owners you want to know will be. Register or show up. Your only goal: be useful to two people.",
       },
       {
         title: 'Being someone worth knowing',
         content:
           "People remember you for what you've built, not what you say you can build. Every project you ship is a business card. Every result you generate is a referral. Stop trying to market yourself and start shipping things worth talking about. My best marketing has always been the work itself. When West Coast Terpz did $12K in a month, I didn't need to pitch anyone \u2014 the result did the pitching.",
+        assignment:
+          "Post your most recent project this week. Not a tip. Not a caption. The actual work — screenshot, result, real number. Ship it.",
       },
       {
         title: 'Making yourself impossible to ignore',
         content:
           "Post your work. Not a carousel about '5 tips for entrepreneurs.' Your actual work. Screenshots. Before and afters. Client results with numbers. The content that's gotten me the most traction isn't polished \u2014 it's real. A screen recording of me building a site in 2 hours gets more engagement than a produced video about 'why you need a website.' Be undeniable, not marketable.",
+        assignment:
+          "Look at your last 5 pieces of content. Were any of them about your actual work? If not, create one this week. Real project. Real result. No fluff.",
       },
       {
         title: 'Long-game relationship building',
         content:
           "The person you help for free today sends you a $5K client next year. I've seen it happen over and over. Build relationships with no agenda. Be genuinely interested in what people are building. Remember details. Follow up after their launch. The network you build in year one pays dividends for a decade. Stop thinking transactionally and start thinking generationally.",
+        assignment:
+          "Pick 3 people in your network you haven't talked to in 30+ days. Reach out with no agenda — just check in on what they're building. That's it.",
       },
     ],
   },
@@ -290,13 +306,19 @@ export default function AcademyModules() {
                       {/* Expanded lesson content */}
                       <div
                         className={`overflow-hidden transition-all duration-300 ${
-                          isOpen ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'
+                          isOpen ? 'max-h-[800px] opacity-100' : 'max-h-0 opacity-0'
                         }`}
                       >
                         <div className="ml-9 mr-4 mb-4 mt-1 p-5 rounded-xl bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.04)]">
                           <p className="text-[#a3a3a3] text-[14px] leading-[1.8]">
                             {lesson.content}
                           </p>
+                          {lesson.assignment && (
+                            <div className="mt-6 p-5 border border-[rgba(255,255,255,0.08)] rounded-xl bg-[rgba(255,255,255,0.02)]">
+                              <p className="text-[#525252] text-[10px] font-mono tracking-[0.3em] uppercase mb-3">This week</p>
+                              <p className="text-[#a3a3a3] text-[14px] leading-relaxed">{lesson.assignment}</p>
+                            </div>
+                          )}
                         </div>
                       </div>
                     </div>

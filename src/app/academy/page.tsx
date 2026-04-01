@@ -112,6 +112,42 @@ export default function AcademyPage() {
         </div>
       </section>
 
+      {/* ── Who This Is For ── */}
+      <section className="py-24 md:py-32 px-6 md:px-10 border-b border-[rgba(255,255,255,0.06)]">
+        <div className="max-w-[1400px] mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-32">
+            <div>
+              <p className="text-[#525252] text-[11px] tracking-[0.5em] uppercase font-mono mb-8">
+                Who this is for
+              </p>
+              <h2 className="font-display text-[clamp(2rem,4vw,3.5rem)] tracking-[-0.03em] leading-[0.95] mb-6">
+                You already know<br />you&apos;re capable.<br />
+                <span className="text-[#525252]">You just need the system.</span>
+              </h2>
+            </div>
+            <div className="space-y-0">
+              {[
+                { yes: true, text: "You're trying to build a real service business — not a side hustle" },
+                { yes: true, text: "You want to use AI as leverage, not just play with it" },
+                { yes: true, text: "You're willing to do the work. You just need a clear path" },
+                { yes: true, text: "You're done consuming. You want to execute" },
+                { yes: false, text: "You want a get-rich-quick system with no effort" },
+                { yes: false, text: "You're looking for someone to do the work for you" },
+              ].map((item, i) => (
+                <div key={i} className="flex items-start gap-5 py-5 border-b border-[rgba(255,255,255,0.06)] last:border-0">
+                  <span className={`text-[13px] font-mono mt-0.5 shrink-0 ${item.yes ? 'text-[#f5f5f5]' : 'text-[#525252]'}`}>
+                    {item.yes ? '✓' : '✕'}
+                  </span>
+                  <p className={`text-[15px] leading-relaxed ${item.yes ? 'text-[#f5f5f5]' : 'text-[#525252]'}`}>
+                    {item.text}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── The Receipts ── */}
       <section className="py-24 md:py-32 px-6 md:px-10 border-b border-[rgba(255,255,255,0.06)]">
         <div className="max-w-[1400px] mx-auto">
@@ -149,9 +185,10 @@ export default function AcademyPage() {
               >
                 <span className="text-[#525252] text-[11px] font-mono mt-1">{mod.num}</span>
                 <div>
-                  <h3 className="font-display text-[clamp(1.4rem,3vw,2.2rem)] tracking-[-0.02em] leading-[1.1] mb-3 group-hover:text-[#a3a3a3] transition-colors duration-300">
+                  <h3 className="font-display text-[clamp(1.4rem,3vw,2.2rem)] tracking-[-0.02em] leading-[1.1] mb-1 group-hover:text-[#a3a3a3] transition-colors duration-300">
                     {mod.title}
                   </h3>
+                  <p className="text-[#525252] text-[13px] mt-1 mb-3">{mod.tagline}</p>
                   <p className="text-[#525252] text-[14px] leading-relaxed max-w-[550px]">
                     {mod.desc}
                   </p>
