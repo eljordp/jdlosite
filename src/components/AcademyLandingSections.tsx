@@ -27,6 +27,12 @@ const modules = [
     tagline: 'Get in rooms that change your life',
     desc: "How to get in rooms that matter and make yourself impossible to ignore. I was a nobody. Now people doing $400K/mo treat me as an equal. Here's exactly how.",
   },
+  {
+    num: '05',
+    title: 'Systems & Scale',
+    tagline: 'Build the infrastructure that runs without you',
+    desc: 'Productized services, retainer architecture, your first hire, and the exact blueprint to $10K/month. This is where solo operator becomes a scalable business.',
+  },
 ];
 
 const qualifiers = [

@@ -24,7 +24,7 @@ export default function AcademyPage() {
               <h1 className="font-display text-[clamp(3rem,8vw,7.5rem)] leading-[0.92] tracking-[-0.03em] mb-10">
                 Not a course.
                 <br />
-                <span className="text-[#525252]">An operating system.</span>
+                <span className="text-[#888]">An operating system.</span>
               </h1>
               <p className="text-[#a3a3a3] text-lg md:text-xl leading-relaxed max-w-[500px] mb-10">
                 I taught myself to build anything in 5 months. Then I used it to build 20+ real businesses.

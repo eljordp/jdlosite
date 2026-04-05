@@ -13,6 +13,7 @@ export default function AcademyNav() {
   const pathname = usePathname();
 
   const isLanding = pathname === '/academy';
+  const isLogin = pathname.startsWith('/academy/login') || pathname.startsWith('/academy/subscribe');
   const isDashboard = pathname.startsWith('/academy/dashboard') || pathname.startsWith('/academy/lesson');
 
   useEffect(() => {
@@ -80,7 +81,7 @@ export default function AcademyNav() {
             >
               ← Services
             </button>
-            {!isDashboard ? (
+            {!isDashboard && !isLogin ? (
               <Link
                 href={isLoggedIn ? '/academy/dashboard' : '/academy/login'}
                 className={`inline-flex items-center justify-center px-5 py-1.5 text-[13px] font-medium rounded-full transition-all duration-300 ${
@@ -181,19 +182,21 @@ export default function AcademyNav() {
           </button>
         </div>
 
-        <div className="pt-8">
-          <Link
-            href={isLoggedIn ? '/academy/dashboard' : '/academy/login'}
-            onClick={() => setOpen(false)}
-            className={`flex items-center justify-center w-full px-6 py-3 text-[15px] font-medium rounded-xl transition-all duration-300 ${
-              isLanding
-                ? 'border border-[rgba(255,255,255,0.15)] text-[#f5f5f5] hover:bg-[rgba(255,255,255,0.06)]'
-                : 'border border-[#ddd] text-[#111] hover:bg-[#f5f5f5]'
-            }`}
-          >
-            {isLoggedIn ? 'Dashboard' : 'Sign in'}
-          </Link>
-        </div>
+        {!isLogin && (
+          <div className="pt-8">
+            <Link
+              href={isLoggedIn ? '/academy/dashboard' : '/academy/login'}
+              onClick={() => setOpen(false)}
+              className={`flex items-center justify-center w-full px-6 py-3 text-[15px] font-medium rounded-xl transition-all duration-300 ${
+                isLanding
+                  ? 'border border-[rgba(255,255,255,0.15)] text-[#f5f5f5] hover:bg-[rgba(255,255,255,0.06)]'
+                  : 'border border-[#ddd] text-[#111] hover:bg-[#f5f5f5]'
+              }`}
+            >
+              {isLoggedIn ? 'Dashboard' : 'Sign in'}
+            </Link>
+          </div>
+        )}
       </div>
     </>
   );
