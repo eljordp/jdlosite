@@ -81,21 +81,21 @@ function LoginForm() {
   }
 
   return (
-    <main className="pt-14 min-h-screen flex items-center justify-center px-6">
+    <main className="pt-14 min-h-screen bg-white text-[#1a1a1a] flex items-center justify-center px-6">
       <div className="w-full max-w-[440px]">
-        <p className="text-[#525252] text-[11px] tracking-[0.5em] uppercase font-mono mb-6">
+        <p className="text-[#888] text-[11px] tracking-[0.5em] uppercase font-mono mb-6">
           JDLO Academy
         </p>
         <h1 className="font-display text-[clamp(2rem,5vw,3.5rem)] tracking-[-0.03em] leading-[0.95] mb-2">
           {isSignup ? 'Start your free trial.' : 'Welcome back.'}
         </h1>
-        <p className="text-[#525252] text-[14px] mb-10">
+        <p className="text-[#666] text-[14px] mb-10">
           {isSignup ? '7 days free. No credit card required.' : 'Sign in to continue.'}
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-[11px] font-mono text-[#525252] tracking-widest uppercase mb-2">
+            <label className="block text-[11px] font-mono text-[#555] tracking-widest uppercase mb-2">
               Email
             </label>
             <input
@@ -103,12 +103,12 @@ function LoginForm() {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full bg-[#141414] border border-[rgba(255,255,255,0.08)] rounded-xl px-4 py-3 text-[#f5f5f5] text-[14px] placeholder-[#525252] focus:outline-none focus:border-[rgba(255,255,255,0.2)] transition-colors"
+              className="w-full bg-white border border-[#e0e0e0] rounded-xl px-4 py-3 text-[#111] text-[14px] placeholder-[#aaa] focus:outline-none focus:border-[#bbb] transition-colors"
               placeholder="you@example.com"
             />
           </div>
           <div>
-            <label className="block text-[11px] font-mono text-[#525252] tracking-widest uppercase mb-2">
+            <label className="block text-[11px] font-mono text-[#555] tracking-widest uppercase mb-2">
               Password
             </label>
             <input
@@ -117,41 +117,41 @@ function LoginForm() {
               minLength={8}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full bg-[#141414] border border-[rgba(255,255,255,0.08)] rounded-xl px-4 py-3 text-[#f5f5f5] text-[14px] placeholder-[#525252] focus:outline-none focus:border-[rgba(255,255,255,0.2)] transition-colors"
+              className="w-full bg-white border border-[#e0e0e0] rounded-xl px-4 py-3 text-[#111] text-[14px] placeholder-[#aaa] focus:outline-none focus:border-[#bbb] transition-colors"
               placeholder={isSignup ? 'Create a password (8+ chars)' : 'Your password'}
             />
           </div>
 
           {error && (
-            <p className="text-red-400 text-[13px] font-mono">{error}</p>
+            <p className="text-red-500 text-[13px] font-mono">{error}</p>
           )}
           {success && (
-            <p className="text-green-400 text-[13px] font-mono">{success}</p>
+            <p className="text-green-600 text-[13px] font-mono">{success}</p>
           )}
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3.5 rounded-xl bg-[#f5f5f5] text-[#0a0a0a] text-[14px] font-semibold hover:bg-white transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full py-3.5 rounded-xl bg-[#111] text-white text-[14px] font-semibold hover:bg-[#222] transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {loading ? 'Loading...' : isSignup ? 'Create account, start free' : 'Sign in'}
           </button>
         </form>
 
-        <div className="mt-6 pt-6 border-t border-[rgba(255,255,255,0.06)] flex items-center justify-between">
-          <p className="text-[#525252] text-[13px]">
+        <div className="mt-6 pt-6 border-t border-[#e5e5e5] flex items-center justify-between">
+          <p className="text-[#666] text-[13px]">
             {isSignup ? 'Already have an account?' : "Don't have an account?"}
           </p>
           <button
             onClick={() => { setError(''); setSuccess(''); setIsSignup(!isSignup); }}
-            className="text-[#f5f5f5] text-[13px] hover:underline"
+            className="text-[#111] text-[13px] hover:underline"
           >
             {isSignup ? 'Sign in' : 'Start free trial'}
           </button>
         </div>
 
         <p className="text-center mt-8">
-          <Link href="/academy" className="text-[#525252] text-[12px] hover:text-[#a3a3a3] transition-colors">
+          <Link href="/academy" className="text-[#888] text-[12px] hover:text-[#555] transition-colors">
             ← Back to Academy
           </Link>
         </p>

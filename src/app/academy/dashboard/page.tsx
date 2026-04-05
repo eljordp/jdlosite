@@ -41,24 +41,30 @@ export default async function AcademyDashboard() {
   }
 
   return (
-    <main className="pt-14 px-6 md:px-10 pb-24">
-      <div className="max-w-[1400px] mx-auto">
+    <main className="min-h-screen bg-white text-[#1a1a1a] pt-14">
+      <div className="px-6 md:px-10 pb-24 max-w-[1400px] mx-auto">
 
         {/* Header */}
-        <div className="py-16 border-b border-[rgba(255,255,255,0.06)] mb-12">
-          <p className="text-[#525252] text-[11px] tracking-[0.5em] uppercase font-mono mb-4">
+        <div className="py-16 border-b border-[#e5e5e5] mb-10">
+          <p className="text-[11px] font-mono tracking-[0.5em] uppercase text-[#888] mb-4">
             Dashboard
           </p>
-          <h1 className="font-display text-[clamp(2rem,5vw,4rem)] tracking-[-0.03em] leading-[0.95]">
+          <h1 className="font-display text-[clamp(2rem,5vw,4rem)] tracking-[-0.03em] leading-[0.95] text-[#1a1a1a]">
             Welcome back.
           </h1>
           {trialActive && !isActive && (
-            <div className="mt-6 inline-flex items-center gap-3 px-4 py-2.5 border border-[rgba(255,255,255,0.08)] rounded-xl">
-              <span className="w-1.5 h-1.5 rounded-full bg-green-400 shrink-0" />
-              <p className="text-[#a3a3a3] text-[13px]">
-                Free trial, <span className="text-[#f5f5f5]">{daysLeft} day{daysLeft !== 1 ? 's' : ''} left</span>
+            <div className="mt-6 inline-flex items-center gap-3 px-4 py-2.5 border border-[#e5e5e5] rounded-xl">
+              <span className="w-1.5 h-1.5 rounded-full bg-green-500 shrink-0" />
+              <p className="text-[#555] text-[13px]">
+                Free trial,{' '}
+                <span className="text-[#1a1a1a] font-medium">
+                  {daysLeft} day{daysLeft !== 1 ? 's' : ''} left
+                </span>
                 {' '}·{' '}
-                <Link href="/academy/subscribe" className="text-[#f5f5f5] underline underline-offset-2">
+                <Link
+                  href="/academy/subscribe"
+                  className="text-[#1a1a1a] underline underline-offset-2 font-medium"
+                >
                   Subscribe to keep access
                 </Link>
               </p>
@@ -66,28 +72,37 @@ export default async function AcademyDashboard() {
           )}
         </div>
 
-        {/* Modules */}
+        {/* Course outline */}
         <AcademyModules />
 
-        {/* Live layer */}
-        <div className="mt-16 p-8 border border-[rgba(255,255,255,0.06)] rounded-2xl">
-          <p className="text-[#525252] text-[11px] tracking-[0.5em] uppercase font-mono mb-4">
-            Live layer
-          </p>
-          <h3 className="font-display text-[1.8rem] tracking-[-0.02em] mb-3">
-            Weekly drops + community
-          </h3>
-          <p className="text-[#525252] text-[14px] leading-relaxed max-w-[500px] mb-6">
-            New content drops every week. Real-time strategy, feedback, and community. This is what makes it compound.
-          </p>
-          <div className="flex flex-wrap gap-3">
-            <span className="px-4 py-2 border border-[rgba(255,255,255,0.08)] rounded-full text-[13px] text-[#a3a3a3]">
-              Weekly drops
+        {/* Weekly drops + community */}
+        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div className="border border-[#e5e5e5] rounded-2xl p-6">
+            <p className="text-[11px] font-mono text-[#888] tracking-[0.3em] uppercase mb-3">
+              Live layer
+            </p>
+            <h3 className="font-display text-[1.4rem] tracking-[-0.02em] text-[#1a1a1a] mb-2">
+              Weekly Drops
+            </h3>
+            <p className="text-[13px] text-[#555] leading-relaxed mb-4">
+              New content every week — real-time strategy, tactics, and updates from what&apos;s working right now.
+            </p>
+            <span className="inline-block px-3 py-1 border border-[#e5e5e5] rounded-full text-[11px] font-mono text-[#888]">
+              Coming soon
             </span>
-            <span className="px-4 py-2 border border-[rgba(255,255,255,0.08)] rounded-full text-[13px] text-[#a3a3a3]">
+          </div>
+
+          <div className="border border-[#e5e5e5] rounded-2xl p-6">
+            <p className="text-[11px] font-mono text-[#888] tracking-[0.3em] uppercase mb-3">
               Community
-            </span>
-            <span className="px-4 py-2 border border-[rgba(255,255,255,0.08)] rounded-full text-[13px] text-[#525252]">
+            </p>
+            <h3 className="font-display text-[1.4rem] tracking-[-0.02em] text-[#1a1a1a] mb-2">
+              Post wins, ask questions, get feedback.
+            </h3>
+            <p className="text-[13px] text-[#555] leading-relaxed mb-4">
+              The people in this program are building real things. Connect with them.
+            </p>
+            <span className="inline-block px-3 py-1 border border-[#e5e5e5] rounded-full text-[11px] font-mono text-[#888]">
               Coming soon
             </span>
           </div>
