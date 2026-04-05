@@ -89,7 +89,7 @@ export default function AcademyPage() {
             The default path
           </p>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-32">
-            <div className="space-y-4 text-[clamp(1.1rem,2vw,1.4rem)] leading-relaxed text-[#525252]">
+            <div className="space-y-4 text-[clamp(1.1rem,2vw,1.4rem)] leading-relaxed text-[#888]">
               <p>You wake up. You check your phone.</p>
               <p>You consume. You tell yourself you&apos;re learning.</p>
               <p>But nothing changes.</p>
@@ -104,7 +104,7 @@ export default function AcademyPage() {
               ].map((item) => (
                 <div key={item.label} className="p-6 border border-[rgba(255,255,255,0.06)] rounded-xl">
                   <p className="text-[#f5f5f5] font-medium mb-2 text-[15px]">{item.label}</p>
-                  <p className="text-[#525252] text-[14px]">{item.desc}</p>
+                  <p className="text-[#888] text-[14px]">{item.desc}</p>
                 </div>
               ))}
             </div>
@@ -135,10 +135,10 @@ export default function AcademyPage() {
                 { yes: false, text: "You're looking for someone to do the work for you" },
               ].map((item, i) => (
                 <div key={i} className="flex items-start gap-5 py-5 border-b border-[rgba(255,255,255,0.06)] last:border-0">
-                  <span className={`text-[13px] font-mono mt-0.5 shrink-0 ${item.yes ? 'text-[#f5f5f5]' : 'text-[#525252]'}`}>
+                  <span className={`text-[13px] font-mono mt-0.5 shrink-0 ${item.yes ? 'text-[#f5f5f5]' : 'text-[#888]'}`}>
                     {item.yes ? '✓' : '✕'}
                   </span>
-                  <p className={`text-[15px] leading-relaxed ${item.yes ? 'text-[#f5f5f5]' : 'text-[#525252]'}`}>
+                  <p className={`text-[15px] leading-relaxed ${item.yes ? 'text-[#f5f5f5]' : 'text-[#888]'}`}>
                     {item.text}
                   </p>
                 </div>
@@ -164,7 +164,7 @@ export default function AcademyPage() {
                   {r.stat}
                 </p>
                 <p className="text-[#f5f5f5] text-[14px] font-medium mb-1">{r.label}</p>
-                <p className="text-[#525252] text-[13px] leading-relaxed">{r.desc}</p>
+                <p className="text-[#888] text-[13px] leading-relaxed">{r.desc}</p>
               </div>
             ))}
           </div>
@@ -188,8 +188,8 @@ export default function AcademyPage() {
                   <h3 className="font-display text-[clamp(1.4rem,3vw,2.2rem)] tracking-[-0.02em] leading-[1.1] mb-1 group-hover:text-[#a3a3a3] transition-colors duration-300">
                     {mod.title}
                   </h3>
-                  <p className="text-[#525252] text-[13px] mt-1 mb-3">{mod.tagline}</p>
-                  <p className="text-[#525252] text-[14px] leading-relaxed max-w-[550px]">
+                  <p className="text-[#888] text-[13px] mt-1 mb-3">{mod.tagline}</p>
+                  <p className="text-[#888] text-[14px] leading-relaxed max-w-[550px]">
                     {mod.desc}
                   </p>
                 </div>
