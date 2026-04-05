@@ -106,19 +106,22 @@ export default async function AcademyDashboard() {
             <WeeklyDropsFeed initialDrops={recentDrops ?? []} />
           </div>
 
-          <div className="border border-[#e5e5e5] rounded-2xl p-6">
+          <div className="border border-[#e5e5e5] rounded-2xl p-6 flex flex-col">
             <p className="text-[11px] font-mono text-[#888] tracking-[0.3em] uppercase mb-3">
               Community
             </p>
             <h3 className="font-display text-[1.4rem] tracking-[-0.02em] text-[#1a1a1a] mb-2">
               Post wins, ask questions, get feedback.
             </h3>
-            <p className="text-[13px] text-[#555] leading-relaxed mb-4">
+            <p className="text-[13px] text-[#555] leading-relaxed mb-6">
               The people in this program are building real things. Connect with them.
             </p>
-            <span className="inline-block px-3 py-1 border border-[#e5e5e5] rounded-full text-[11px] font-mono text-[#888]">
-              Coming soon
-            </span>
+            <Link
+              href="/academy/community"
+              className="mt-auto inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#111] text-white text-[13px] font-medium hover:bg-[#222] transition-colors w-fit"
+            >
+              Go to community →
+            </Link>
           </div>
         </div>
 
