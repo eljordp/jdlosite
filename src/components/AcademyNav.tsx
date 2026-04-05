@@ -1,17 +1,34 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePortal } from '@/components/PortalTransition';
 import { usePathname } from 'next/navigation';
+import { createClient } from '@/lib/supabase/client';
 
 export default function AcademyNav() {
   const [open, setOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { portal } = usePortal();
   const pathname = usePathname();
 
   const isLanding = pathname === '/academy';
   const isDashboard = pathname.startsWith('/academy/dashboard') || pathname.startsWith('/academy/lesson');
+
+  useEffect(() => {
+    const supabase = createClient();
+    async function checkAuth() {
+      const { data } = await supabase.auth.getUser();
+      setIsLoggedIn(!!data.user);
+    }
+    checkAuth();
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (_event: import('@supabase/supabase-js').AuthChangeEvent, session: import('@supabase/supabase-js').Session | null) => {
+        setIsLoggedIn(!!session?.user);
+      }
+    );
+    return () => subscription.unsubscribe();
+  }, []);
 
   return (
     <>
@@ -65,14 +82,14 @@ export default function AcademyNav() {
             </button>
             {!isDashboard ? (
               <Link
-                href="/academy/login"
+                href={isLoggedIn ? '/academy/dashboard' : '/academy/login'}
                 className={`inline-flex items-center justify-center px-5 py-1.5 text-[13px] font-medium rounded-full transition-all duration-300 ${
                   isLanding
                     ? 'border border-[rgba(255,255,255,0.15)] text-[#f5f5f5] hover:bg-[rgba(255,255,255,0.06)]'
                     : 'border border-[#ddd] text-[#111] hover:bg-[#f5f5f5]'
                 }`}
               >
-                Sign in
+                {isLoggedIn ? 'Dashboard' : 'Sign in'}
               </Link>
             ) : null}
             {/* Mobile hamburger */}
@@ -166,7 +183,7 @@ export default function AcademyNav() {
 
         <div className="pt-8">
           <Link
-            href="/academy/login"
+            href={isLoggedIn ? '/academy/dashboard' : '/academy/login'}
             onClick={() => setOpen(false)}
             className={`flex items-center justify-center w-full px-6 py-3 text-[15px] font-medium rounded-xl transition-all duration-300 ${
               isLanding
@@ -174,7 +191,7 @@ export default function AcademyNav() {
                 : 'border border-[#ddd] text-[#111] hover:bg-[#f5f5f5]'
             }`}
           >
-            Sign in
+            {isLoggedIn ? 'Dashboard' : 'Sign in'}
           </Link>
         </div>
       </div>
