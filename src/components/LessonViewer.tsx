@@ -518,25 +518,23 @@ export default function LessonViewer({
 
         {/* RIGHT NOTES PANEL — desktop only */}
         <aside className="hidden md:flex flex-col w-[260px] shrink-0 border-l border-[#e8e8e8] fixed top-0 right-0 h-screen py-8 px-5 bg-[#fafafa] z-10">
-          <div className="mb-5">
-            <p className="text-[11px] font-mono tracking-[0.25em] text-[#888] uppercase">
-              My Notes
-            </p>
-            <p className="text-[11px] text-[#bbb] mt-1">Auto-saved</p>
+          <div className="mb-4">
+            <p className="text-[13px] font-semibold text-[#111]">My Notes</p>
+            <p className="text-[11px] text-[#aaa] mt-0.5 font-mono">Auto-saved per lesson</p>
           </div>
 
           <textarea
             key={lessonKey}
             defaultValue={notes}
             onChange={handleNotesChange}
-            placeholder="Write anything here... thoughts, questions, ideas."
-            className="flex-1 w-full resize-none bg-white border border-[#e8e8e8] rounded-lg p-3.5 text-[13px] text-[#333] leading-[1.7] placeholder-[#ccc] focus:outline-none focus:border-[#ccc] transition-colors"
+            placeholder="Jot down thoughts, questions, or ideas as you read..."
+            className="flex-1 w-full resize-none bg-white border border-[#e0e0e0] rounded-xl p-4 text-[13px] text-[#333] leading-[1.7] placeholder-[#bbb] focus:outline-none focus:border-[#999] transition-colors"
             spellCheck={false}
           />
 
-          <div className="mt-3 flex items-center justify-between">
+          <div className="mt-2 flex items-center justify-between">
             <p className="text-[11px] font-mono text-[#ccc]">
-              {notes.length} chars
+              {notes.length > 0 ? `${notes.length} chars` : 'Start typing...'}
             </p>
           </div>
 

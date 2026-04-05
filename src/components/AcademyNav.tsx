@@ -14,7 +14,7 @@ export default function AcademyNav() {
 
   const isLanding = pathname === '/academy';
   const isLogin = pathname.startsWith('/academy/login') || pathname.startsWith('/academy/subscribe');
-  const isDashboard = pathname.startsWith('/academy/dashboard') || pathname.startsWith('/academy/lesson');
+  const isDashboard = pathname.startsWith('/academy/dashboard') || pathname.startsWith('/academy/lesson') || pathname.startsWith('/academy/community');
 
   useEffect(() => {
     const supabase = createClient();
