@@ -1,7 +1,9 @@
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
+import { createAdminClient } from '@/lib/supabase/admin';
 import Link from 'next/link';
 import AcademyModules from '@/components/AcademyModules';
+import WeeklyDropsFeed from '@/components/WeeklyDropsFeed';
 
 export default async function AcademyDashboard() {
   const supabase = await createClient();
@@ -21,6 +23,12 @@ export default async function AcademyDashboard() {
   // If no record exists yet, create one (first login after email confirm)
   if (!academyUser) {
     await supabase.from('academy_users').insert({ id: user.id });
+    // Fire signup notification — best-effort, don't block page load
+    fetch(`${process.env.NEXT_PUBLIC_SITE_URL || 'https://jdlo.site'}/api/academy/notify-signup`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: user.email, userId: user.id }),
+    }).catch(() => { /* ignore — notification is non-critical */ });
   }
 
   const trialStart = academyUser?.trial_start ? new Date(academyUser.trial_start) : new Date();
@@ -39,6 +47,14 @@ export default async function AcademyDashboard() {
   if (!hasAccess) {
     redirect('/academy/subscribe');
   }
+
+  // Fetch 3 most recent drops server-side via service role
+  const admin = createAdminClient();
+  const { data: recentDrops } = await admin
+    .from('weekly_drops')
+    .select('id, title, body, category, published_at')
+    .order('published_at', { ascending: false })
+    .limit(3);
 
   return (
     <main className="min-h-screen bg-white text-[#1a1a1a] pt-14">
@@ -81,15 +97,13 @@ export default async function AcademyDashboard() {
             <p className="text-[11px] font-mono text-[#888] tracking-[0.3em] uppercase mb-3">
               Live layer
             </p>
-            <h3 className="font-display text-[1.4rem] tracking-[-0.02em] text-[#1a1a1a] mb-2">
+            <h3 className="font-display text-[1.4rem] tracking-[-0.02em] text-[#1a1a1a] mb-1">
               Weekly Drops
             </h3>
-            <p className="text-[13px] text-[#555] leading-relaxed mb-4">
-              New content every week — real-time strategy, tactics, and updates from what&apos;s working right now.
+            <p className="text-[13px] text-[#555] leading-relaxed">
+              Real-time strategy, tactics, and updates from what&apos;s working right now.
             </p>
-            <span className="inline-block px-3 py-1 border border-[#e5e5e5] rounded-full text-[11px] font-mono text-[#888]">
-              Coming soon
-            </span>
+            <WeeklyDropsFeed initialDrops={recentDrops ?? []} />
           </div>
 
           <div className="border border-[#e5e5e5] rounded-2xl p-6">

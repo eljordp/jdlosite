@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import type { Lesson } from '@/lib/courseData';
+import LessonQuiz from '@/components/LessonQuiz';
 
 interface LessonViewerProps {
   lesson: Lesson;
@@ -12,6 +13,7 @@ interface LessonViewerProps {
   moduleLessons: { title: string }[];
   lessonIdx: number;
   lessonKey: string;
+  userId: string;
   prevLesson: { mod: string; idx: number; title: string } | null;
   nextLesson: { mod: string; idx: number; title: string } | null;
 }
@@ -69,6 +71,7 @@ export default function LessonViewer({
   moduleLessons,
   lessonIdx,
   lessonKey,
+  userId,
   prevLesson,
   nextLesson,
 }: LessonViewerProps) {
@@ -85,8 +88,63 @@ export default function LessonViewer({
     sectionIdx: 0,
   });
 
+  // Assignment submission state
+  const [submission, setSubmission] = useState('');
+  const [submissionLoaded, setSubmissionLoaded] = useState(false);
+  const [savingSubmission, setSavingSubmission] = useState(false);
+  const [submissionSaved, setSubmissionSaved] = useState(false);
+
   const notesDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  // Load saved submission on mount
+  useEffect(() => {
+    async function loadSubmission() {
+      try {
+        const res = await fetch(`/api/academy/assignment?lessonKey=${encodeURIComponent(lessonKey)}`);
+        if (res.ok) {
+          const json = await res.json();
+          if (json.submission) {
+            setSubmission(json.submission);
+          }
+        }
+      } finally {
+        setSubmissionLoaded(true);
+      }
+    }
+    loadSubmission();
+  }, [lessonKey]);
+
+  async function saveSubmission() {
+    if (!submission.trim()) return;
+    setSavingSubmission(true);
+    setSubmissionSaved(false);
+    try {
+      const res = await fetch('/api/academy/assignment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ lessonKey, response: submission }),
+      });
+      if (res.ok) {
+        setSubmissionSaved(true);
+        // Auto-mark lesson complete in localStorage
+        try {
+          const raw = localStorage.getItem('academy-completed-lessons');
+          const completed: string[] = raw ? JSON.parse(raw) : [];
+          if (!completed.includes(lessonKey)) {
+            localStorage.setItem(
+              'academy-completed-lessons',
+              JSON.stringify([...completed, lessonKey])
+            );
+          }
+        } catch {
+          // ignore
+        }
+      }
+    } finally {
+      setSavingSubmission(false);
+    }
+  }
 
   // Dismiss tooltip on click outside
   useEffect(() => {
@@ -368,7 +426,36 @@ export default function LessonViewer({
                   {lesson.assignment.deliverable}
                 </p>
               </div>
+
+              {/* Submission */}
+              <textarea
+                value={submissionLoaded ? submission : ''}
+                onChange={(e) => {
+                  setSubmission(e.target.value);
+                  setSubmissionSaved(false);
+                }}
+                placeholder="Your submission"
+                className="w-full border border-[#e0e0e0] rounded-xl p-4 text-[14px] min-h-[100px] focus:border-[#111] outline-none resize-none mt-3"
+                spellCheck={false}
+              />
+              <div className="flex items-center gap-3 mt-2">
+                <button
+                  onClick={saveSubmission}
+                  disabled={savingSubmission || !submission.trim()}
+                  className="bg-[#111] text-white text-[13px] px-4 py-2 rounded-lg hover:bg-[#222] disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                >
+                  {savingSubmission ? 'Saving...' : 'Save submission'}
+                </button>
+                {submissionSaved && (
+                  <span className="text-[13px] text-green-600 font-mono">Saved ✓</span>
+                )}
+              </div>
             </div>
+
+            {/* Quiz */}
+            {lesson.quiz && lesson.quiz.length > 0 && (
+              <LessonQuiz quiz={lesson.quiz} lessonKey={lessonKey} userId={userId} />
+            )}
 
             {/* Bottom navigation */}
             <nav className="mt-14 pt-8 border-t border-[#efefef] flex items-center justify-between gap-4">

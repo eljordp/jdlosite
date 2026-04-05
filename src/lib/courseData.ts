@@ -1,5 +1,11 @@
 export type LessonSection = { heading: string; body: string };
 export type LessonAssignment = { title: string; description: string; deliverable: string };
+export type QuizQuestion = {
+  question: string;
+  options: string[];
+  correctIdx: number;
+  explanation: string;
+};
 export type Lesson = {
   title: string;
   readingTime: string;
@@ -7,6 +13,7 @@ export type Lesson = {
   sections: LessonSection[];
   keyTakeaways: string[];
   assignment: LessonAssignment;
+  quiz: QuizQuestion[];
 };
 export type CourseModule = { num: string; title: string; description: string; lessons: Lesson[] };
 
@@ -50,6 +57,32 @@ export const courseData: CourseModule[] = [
           description: 'Answer the four audit questions with zero softening: clients paid this month, what you charged and why, what you shipped that someone else can use, and where your last 20 hours went. Identify your bottleneck — pipeline, conversion, or delivery. Set one 90-day benchmark tied to that specific bottleneck.',
           deliverable: 'A one-page audit doc with your four answers, your diagnosed bottleneck, and your 90-day benchmark with a specific number attached.',
         },
+        quiz: [
+          {
+            question: "According to the operator audit, what's the first thing you should calculate before fixing anything?",
+            options: ["Your hourly rate", "Your real revenue numbers from the last 90 days", "Your social media following", "Your number of active clients"],
+            correctIdx: 1,
+            explanation: "You can't fix what you won't measure. The audit starts with real numbers — not estimates, not rounded up — so you know your actual baseline before diagnosing anything.",
+          },
+          {
+            question: "What are the three distinct bottlenecks the audit diagnoses?",
+            options: ["Branding, pricing, and delivery", "Pipeline, conversion, and delivery", "Marketing, sales, and operations", "Visibility, credibility, and capacity"],
+            correctIdx: 1,
+            explanation: "Pipeline (not enough people know what you do), conversion (they know but aren't buying), and delivery (buying but you're not shipping reliably) are three completely different problems requiring three completely different fixes.",
+          },
+          {
+            question: "What distinguishes a benchmark from a goal?",
+            options: ["A benchmark is more ambitious than a goal", "A benchmark is measurable and tied to one specific lever; a goal is vague", "A goal has a deadline and a benchmark doesn't", "Benchmarks are for businesses; goals are personal"],
+            correctIdx: 1,
+            explanation: "A goal is \"make more money.\" A benchmark is \"$3,000 in new cash collected in the next 90 days from two clients.\" Benchmarks are specific, time-bound, and tied to exactly one lever — that's what makes them actionable.",
+          },
+          {
+            question: "What does the audit column that matters actually measure?",
+            options: ["Activity and effort over the past month", "What shipped in the last 30 days that someone else can use", "Client satisfaction scores", "Revenue projections for the next quarter"],
+            correctIdx: 1,
+            explanation: "The audit only measures outputs — what shipped, not what was planned, started, or in progress. Intentions don't count. Only what shipped and someone else can use.",
+          },
+        ],
       },
       {
         title: 'Behavioral Architecture & Calendar Design',
@@ -85,6 +118,32 @@ export const courseData: CourseModule[] = [
           description: 'Map your current weekly schedule honestly, then design your target schedule. Identify your deep work window (minimum 2 hours), your communication window, and your review time. Build three hard rules with zero exceptions. Print the target schedule.',
           deliverable: 'Your target schedule printed and on your wall, with three non-negotiable rules written underneath it. Follow it for 7 consecutive days and note where the system broke.',
         },
+        quiz: [
+          {
+            question: "Why does architecture work better than willpower for building productive habits?",
+            options: ["Architecture is more inspiring than discipline", "Architecture eliminates the moment of decision so the right action becomes the default", "Architecture requires more initial effort so it feels more committed", "Architecture is easier to explain to others"],
+            correctIdx: 1,
+            explanation: "Willpower depletes. Architecture is a system you set up once — phone in another room, deep work blocked on the calendar — that removes the need for willpower entirely. No decision moment means no wrong decision.",
+          },
+          {
+            question: "What is the purpose of the weekly review in a behavioral architecture system?",
+            options: ["To celebrate wins and set new goals", "To catch drift before it becomes a new default and fix the failure point in the system", "To plan the upcoming week's meetings and calls", "To report progress to an accountability partner"],
+            correctIdx: 1,
+            explanation: "Without the weekly review, you drift back to reactive mode within two weeks. The review finds where the architecture broke and adjusts the system before drift becomes habit.",
+          },
+          {
+            question: "What type of work should fill your first block of the day?",
+            options: ["Email and client communications to clear the backlog", "The easiest task to build momentum", "Deep work on your highest-leverage task, before any communication", "Admin tasks to get them out of the way"],
+            correctIdx: 2,
+            explanation: "Deep work before communication, every day. Your first block is your highest-leverage block — mental energy is highest, interruptions haven't started. Admin and communication go in later windows after the needle-moving work is done.",
+          },
+          {
+            question: "Why does every exception to your schedule architecture weaken the system?",
+            options: ["Exceptions create resentment toward the system", "Each exception is a negotiation that teaches your brain the system is flexible, which dissolves it", "Exceptions signal to clients that you're inconsistent", "Exceptions interrupt your flow state and reduce creativity"],
+            correctIdx: 1,
+            explanation: "Once the system is flexible, it's not a system. Every exception trains your brain that negotiation is possible. The goal is zero-decision rules — no calls before noon, period — that eliminate the negotiation entirely.",
+          },
+        ],
       },
       {
         title: 'Decision Frameworks for Operators',
@@ -120,6 +179,32 @@ export const courseData: CourseModule[] = [
           description: 'Write your client filter with three specific gates (no vague criteria). Write your priority stack with concrete categories that match your actual work. Write your minimum project standard — the floor below which you decline regardless of circumstances.',
           deliverable: 'A one-page document with all three frameworks. Apply them to one real decision you\'re currently sitting on and document the outcome.',
         },
+        quiz: [
+          {
+            question: "What is the correct order of the operator priority stack?",
+            options: ["Admin, skill-building, pipeline, revenue", "Skill-building, pipeline, revenue, admin", "Revenue tasks, pipeline-building, skill-building, admin", "Pipeline-building, revenue tasks, admin, skill-building"],
+            correctIdx: 2,
+            explanation: "Revenue tasks always go first (calls, proposals, client deliverables). Pipeline second. Skill-building third. Admin last. Most operators do this in reverse — they clear email first because it feels productive, but an empty inbox doesn't move the business.",
+          },
+          {
+            question: "The three gates of the client filter check for:",
+            options: ["Budget, timeline, and team size", "Real budget, specific solvable problem, and a single decision-maker", "Industry fit, cultural alignment, and referral potential", "Payment history, company age, and project urgency"],
+            correctIdx: 1,
+            explanation: "Gate one: do they have a real budget? Gate two: do they have a specific, solvable problem? Gate three: is there one decision-maker? Failing two of three gates means you should decline or reprice aggressively.",
+          },
+          {
+            question: "What does \"hell yes or no\" mean for evaluating opportunities?",
+            options: ["Always negotiate before accepting — enthusiasm is a negotiating position", "Only say yes to opportunities that feel like an obvious yes; lukewarm is a no", "Be aggressive about accepting any project above your minimum rate", "Prioritize opportunities from your existing network over new prospects"],
+            correctIdx: 1,
+            explanation: "Lukewarm, maybe, let me think about it — all of those are nos. A mediocre yes fills the time slot a great opportunity would have occupied. The exception is early-stage when you need the experience or cash, with a clear minimum standard.",
+          },
+          {
+            question: "Why do bad operator decisions tend to be repeated rather than novel?",
+            options: ["Operators don't learn from their mistakes", "The same five decisions recur without frameworks, leaving them vulnerable to emotion and fatigue each time", "Bad decisions compound and create new bad decisions downstream", "Operators copy what other operators do without adapting to their situation"],
+            correctIdx: 1,
+            explanation: "Without a framework, every recurring decision is a fresh negotiation with yourself, vulnerable to the specific emotions and circumstances of that moment. A framework turns it into a checklist.",
+          },
+        ],
       },
       {
         title: 'Building Your Personal Board',
@@ -155,6 +240,32 @@ export const courseData: CourseModule[] = [
           description: 'Identify one specific person for each of the four board seats — challenger, domain expert, peer, connector. For each person, write one specific thing you can bring to them before making any ask. Then reach out to one of the four this week with that thing.',
           deliverable: 'A board map with four names, four value-brings, and a sent message to one of them. Document the response.',
         },
+        quiz: [
+          {
+            question: "What are the four seats on a personal board and what does each one do?",
+            options: ["Mentor, investor, friend, and employee", "Challenger (hard truth at higher level), domain expert (solved your current problem), peer (same level building aggressively), connector (wider network)", "Coach, sponsor, advisor, and advocate", "Boss, client, collaborator, and referral source"],
+            correctIdx: 1,
+            explanation: "Four seats, four functions: challenger pushes you with hard truth from 2-5x your level. Domain expert has solved the specific problem you're working on. Peer matches your level and holds you to standards. Connector opens doors through introductions.",
+          },
+          {
+            question: "What is the correct approach to getting into a relationship with someone operating above your current level?",
+            options: ["Ask them directly to mentor you with a clear proposal of what you need", "Demonstrate value until the relationship forms naturally around your output", "Network at events where they're likely to be and follow up consistently", "Reference shared connections to establish credibility before reaching out"],
+            correctIdx: 1,
+            explanation: "You don't ask someone to be your mentor. You ship work so fast and so well that the relationship forms around the output. Show up with something useful — a referral, a solved problem, work they didn't have to do.",
+          },
+          {
+            question: "Why does your board composition need to evolve as you grow?",
+            options: ["Because relationships naturally expire after two to three years", "Because the challenger pushing you at $1K/month may not be the right challenger at $10K/month", "Because diversity of perspectives requires rotating board members", "Because your domain expertise changes and your expert contacts become less relevant"],
+            correctIdx: 1,
+            explanation: "A personal board goes stale if you don't update it. As you grow, some seats need upgrading. This isn't disrespectful — it's necessary. The right people for where you are now may not be the right people for where you're going.",
+          },
+          {
+            question: "What is the minimum maintenance required to keep board relationships real rather than transactional?",
+            options: ["Quarterly check-ins and annual in-person meetings", "Monthly touchpoints — even a single update message showing them you're moving", "Only reaching out when you have something valuable to offer them", "Weekly messages and regular referrals to keep them engaged"],
+            correctIdx: 1,
+            explanation: "Set a recurring monthly touchpoint with each board member. Even a single message updating them on your progress counts. The maintenance is what keeps the relationship real instead of transactional.",
+          },
+        ],
       },
     ],
   },
@@ -197,6 +308,32 @@ export const courseData: CourseModule[] = [
           description: 'List every tool you\'ve used in the last 30 days for client work. Identify which ones are actually in your stack versus which ones you tried once. Cut everything that isn\'t Claude Code, ChatGPT, or Lovable unless you have a specific, irreplaceable reason for it. Set up GitHub for any active project that doesn\'t have it.',
           deliverable: 'A cleaned stack with three primary tools and a list of everything you cut. One project moved to GitHub with at least five descriptive commits.',
         },
+        quiz: [
+          {
+            question: "In the three-tool operator stack, what is Claude Code specifically used for?",
+            options: ["Research, drafting, and market analysis", "Visual prototypes and client mockups", "Production builds — anything that needs to actually work in a client's hands", "Scheduling, project management, and client communication"],
+            correctIdx: 2,
+            explanation: "Claude Code is the production builder. Use it for complex, multi-file projects — client sites, apps, automation logic — where it needs to actually work. It's overkill for prototypes and the wrong tool for research drafts.",
+          },
+          {
+            question: "What is the role of Lovable in the operator stack?",
+            options: ["Production code for client deliverables", "Backend logic and API integrations", "Visual prototypes to show a client before committing to a production build", "Social content and marketing copy generation"],
+            correctIdx: 2,
+            explanation: "Lovable is the prototype layer — use it when a client needs to see something visual before you commit to building it properly. Using it for production code is a liability. The tools are not interchangeable.",
+          },
+          {
+            question: "What does a complete handoff spec include when passing a project to Claude Code?",
+            options: ["A wireframe, brand guide, and two-sentence description", "What the thing does, who it's for, tech stack, success criteria, and edge cases that matter", "The client's name, deadline, and budget", "A Lovable prototype and a list of required features"],
+            correctIdx: 1,
+            explanation: "A 400-word spec covering what the thing does, who it's for, the tech stack, success criteria, and edge cases produces production-ready output in hours. A three-sentence description produces two days of back-and-forth.",
+          },
+          {
+            question: "Why does every project go to GitHub before it goes to a client — no exceptions?",
+            options: ["Clients expect GitHub links as part of the professional standard", "GitHub commit messages help you communicate progress to your team", "It provides rollback capability, version history, and forces you to articulate what changed", "GitHub deployment integrates directly with Vercel for seamless hosting"],
+            correctIdx: 2,
+            explanation: "GitHub has saved projects three ways: rolling back to a pre-change version, recovering a clean version after a build was destroyed, and fixing broken features. Descriptive commit messages also force you to articulate what changed, surfacing errors you'd otherwise miss.",
+          },
+        ],
       },
       {
         title: 'Advanced Prompting for Production',
@@ -232,6 +369,32 @@ export const courseData: CourseModule[] = [
           description: 'Write three production prompts using the CCER framework for the three project types you build most often. Test each one and iterate until the first output is 80% usable without changes. Save the final version of each as a reusable template.',
           deliverable: 'Three saved prompt templates with the CCER structure, each proven to produce 80%+ usable output on the first pass.',
         },
+        quiz: [
+          {
+            question: "What does the CCER framework stand for?",
+            options: ["Copy, Code, Execute, Review", "Context, Constraints, Examples, Result", "Client, Criteria, Execution, Revision", "Concept, Creation, Edit, Release"],
+            correctIdx: 1,
+            explanation: "CCER: Context (who it's for, what problem, what environment), Constraints (tech stack, scope, what to avoid), Examples (what to emulate, what to avoid, one piece of your own work), Result (what does done look like). Use it on every production prompt.",
+          },
+          {
+            question: "What is the correct approach when the first output from a production prompt is at 60-70%?",
+            options: ["Start over with a new prompt from scratch", "Iterate surgically — identify the three biggest gaps and prompt to close one at a time", "Accept it and manually rewrite the remaining 30-40%", "Ask the AI to self-improve by pointing out what's wrong overall"],
+            correctIdx: 1,
+            explanation: "The first output is always 60-70%. Starting over wastes what you have. Iterate surgically: \"The navigation is correct. The typography is wrong — change it to X because Y. Keep everything else.\" One gap at a time gets you to 95% fastest.",
+          },
+          {
+            question: "What is the purpose of the \"Result\" component in the CCER framework?",
+            options: ["To set a deadline for when the project must be completed", "To define what done looks like before you start so you recognize when you've arrived", "To describe the final deliverable format the client expects", "To summarize the other three components in a single sentence"],
+            correctIdx: 1,
+            explanation: "The Result component forces you to define success before you start, which means you'll recognize when you've arrived instead of iterating forever. Without it, you keep refining past the point of diminishing return.",
+          },
+          {
+            question: "When should you stop prompting and start editing manually?",
+            options: ["After the third iteration, regardless of quality", "When the output is at 95% — the final 5% is almost always faster to edit by hand", "Only when the AI explicitly says it cannot improve further", "After applying the CCER framework at least twice"],
+            correctIdx: 1,
+            explanation: "The last 5% is almost always a manual edit that's faster to do yourself than to prompt for. Know when to stop prompting and start editing — iterating past 95% through prompting wastes time that a direct manual fix would recover in minutes.",
+          },
+        ],
       },
       {
         title: 'Automation Chains',
@@ -267,6 +430,32 @@ export const courseData: CourseModule[] = [
           description: 'Identify the single most repetitive manual task in your workflow. Write out every manual step with the decision logic. Build a minimum three-step chain using Claude Code and the chain spec. Test it with three real inputs before considering it live.',
           deliverable: 'A running automation chain with a documented spec, three successful test cases, and an error notification configured.',
         },
+        quiz: [
+          {
+            question: "What distinguishes a real automation chain from a basic notification integration?",
+            options: ["A real chain uses multiple tools and has a dashboard", "A real chain has a trigger, logic, and output requiring zero manual steps after it fires", "A real chain involves AI at every step", "A real chain runs on a schedule rather than being event-triggered"],
+            correctIdx: 1,
+            explanation: "A chain that requires you to do anything after the trigger fires isn't fully automated. A real chain fires, processes through its logic, and produces a finished output — no human in the loop until the output arrives.",
+          },
+          {
+            question: "Which of the five core chains recovers the most time for operators who don't have one?",
+            options: ["The weekly reporting chain", "The content distribution chain", "The lead intake chain — form submission through CRM entry through welcome message through calendar invite", "The client onboarding chain"],
+            correctIdx: 2,
+            explanation: "The lead intake chain eliminates the most repetitive manual work for most operators. Every inbound lead requires the same four steps — and without the chain, each one is manual, inconsistent, and likely to fall through the cracks.",
+          },
+          {
+            question: "Why should you start with a three-step chain with no branching logic?",
+            options: ["Three-step chains are all most operators actually need", "Starting simple gets a reliable, running chain before adding complexity that can break it", "Branching logic requires a paid automation tool", "Three steps is the maximum Claude Code can handle in a single session"],
+            correctIdx: 1,
+            explanation: "A three-step chain that runs without errors is worth more than a ten-step chain that breaks twice a week. Start simple, get it reliable, then layer in complexity. Complexity kills chains that aren't tested first.",
+          },
+          {
+            question: "What three things does every automation chain require to run safely in production?",
+            options: ["A backup, a dashboard, and a team member who knows how to fix it", "A test case, an error notification, and a monthly audit for drift", "Documentation, version control, and a rollback procedure", "A staging environment, production environment, and monitoring tool"],
+            correctIdx: 1,
+            explanation: "A chain that breaks silently is worse than no chain at all. Test case confirms it works. Error notification (email or text, not Slack) ensures you see failures. Monthly audit catches drift — when the workflow changed but the chain didn't.",
+          },
+        ],
       },
       {
         title: 'The 72-Hour Build Framework',
@@ -302,6 +491,32 @@ export const courseData: CourseModule[] = [
           description: 'Pick a real project — a client site, a tool, a landing page — and run the full 72-hour framework on it. Write the spec in hours 0-4. Build in vertical slices through hour 60. Harden and deploy in hours 60-72. Document where the framework broke down and why.',
           deliverable: 'A live project at a real URL, built and deployed in 72 hours or less, with a one-paragraph post-mortem on where the framework held and where it didn\'t.',
         },
+        quiz: [
+          {
+            question: "According to the 72-hour framework, what are the three real reasons projects take longer than they should?",
+            options: ["Scope complexity, team communication, and unclear tech stack", "Unclear requirements at the start, scope creep in the middle, and perfectionism at the end", "Client revisions, dependency management, and deployment issues", "Poor time estimates, context switching, and technical debt"],
+            correctIdx: 1,
+            explanation: "Projects don't go long because building is slow. They go long because requirements weren't clear at the start, scope expanded in the middle, and the operator kept polishing instead of shipping at the end.",
+          },
+          {
+            question: "What happens during hours 0-4 of the 72-hour framework?",
+            options: ["Environment setup, tool configuration, and initial scaffolding", "Spec only — no code until the scope is signed off by both parties", "Client kickoff call and design mockups", "Research, competitive analysis, and feature planning"],
+            correctIdx: 1,
+            explanation: "The first four hours go entirely to the spec. No code, no design, no setup. Just clear answers to: what is the primary action this needs to make possible, who is the user, what does success look like, and what is explicitly out of scope.",
+          },
+          {
+            question: "What does building in \"vertical slices\" mean and why does it matter?",
+            options: ["Building one complete user journey end-to-end before building the second — so you always have something shippable", "Building the visual layers first, then adding functionality underneath", "Cutting scope vertically to reduce the project to a minimum viable version", "Assigning different features to different team members simultaneously"],
+            correctIdx: 0,
+            explanation: "Horizontal building (all navigation, then all pages, then all forms) produces 60% done everywhere and 0% done anywhere. Vertical slices produce something shippable after every feature. By hour 16, you should have one complete working user flow.",
+          },
+          {
+            question: "What is the rule for hours 60-72 of the framework?",
+            options: ["Final polish, animations, and visual refinement", "Hardening and deployment only — no new features after hour 60", "Client review and revision incorporation", "Documentation and handoff preparation"],
+            correctIdx: 1,
+            explanation: "The last twelve hours are for testing every user flow with real inputs, fixing what breaks, running the deployment checklist, and going live. No new features. Everything after this point is iteration on a live product — which is where the best feedback comes from anyway.",
+          },
+        ],
       },
     ],
   },
@@ -344,6 +559,32 @@ export const courseData: CourseModule[] = [
           description: 'List every person you\'ve had a sales conversation with in the last 60 days. Assign each one to a pipeline stage. Calculate your conversion rate at each stage. Identify which stage has the worst conversion rate — that\'s your current sales bottleneck. Build a simple CRM tracker (spreadsheet, Notion, or dedicated tool) if you don\'t have one.',
           deliverable: 'A live pipeline with every active lead in the correct stage, conversion rates calculated for each stage, and your bottleneck stage identified with one hypothesis for why it\'s low.',
         },
+        quiz: [
+          {
+            question: "What is the correct definition of a pipeline for an operator?",
+            options: ["A list of everyone you've had a sales conversation with in the past year", "A stage-based action system that tells you what action is required for each lead today", "A CRM database of contacts organized by industry and company size", "A spreadsheet tracking your revenue projections for the next quarter"],
+            correctIdx: 1,
+            explanation: "A pipeline is not a list — it's a stage-based system. Each stage has one clear next action. Without this, you follow up with people you like talking to instead of the people closest to closing.",
+          },
+          {
+            question: "What do the five pipeline stages tell you about each lead?",
+            options: ["Their budget, timeline, and decision-maker status", "Where they are in the process and exactly what action is required next", "Their likelihood of closing and expected revenue value", "How long they've been in your pipeline and when to remove them"],
+            correctIdx: 1,
+            explanation: "Identified → first outreach. Contacted → follow-up at 48 hours. Engaged → send proposal. Proposed → close attempt with deadline. Closed → onboard or offboard. The stage tells you the action. No guessing.",
+          },
+          {
+            question: "What does low conversion from Engaged to Proposed indicate?",
+            options: ["Your pricing is too high for the leads you're attracting", "Your discovery process is failing — you're not converting conversations into proposals", "Your content isn't attracting the right type of prospect", "Your follow-up cadence after the first response is too slow"],
+            correctIdx: 1,
+            explanation: "Each stage conversion rate points to a specific problem. Low Engaged-to-Proposed means your discovery process is failing. Low Contacted-to-Engaged means your opening message is off. Low Proposed-to-Closed means pricing or proposals are missing something.",
+          },
+          {
+            question: "When should you remove a lead from your pipeline?",
+            options: ["After 30 days with no response", "After three touchpoints with no response", "After six months with no movement", "Only after they explicitly say they're not interested"],
+            correctIdx: 1,
+            explanation: "Three touchpoints with no response — remove the lead and move on. Keeping dead leads in your pipeline inflates the numbers and obscures your real conversion rates. A clean pipeline shows you accurately what's actually moving.",
+          },
+        ],
       },
       {
         title: 'Value-Based Pricing',
@@ -379,6 +620,32 @@ export const courseData: CourseModule[] = [
           description: 'Take your most common service. Calculate the value it delivers using the three questions: primary outcome, value to the client in dollars, traditional agency equivalent. Build a three-tier pricing structure with a floor, target, and anchor price. Write the exact language you\'ll use to present the target price, ending with a period — not a question mark.',
           deliverable: 'A repriced offer with three tiers, a written price presentation script, and a note on the last client you undercharged and what you\'d charge them today.',
         },
+        quiz: [
+          {
+            question: "Why does hourly pricing fundamentally cap your income as an operator?",
+            options: ["Clients don't respect hourly workers as much as project-based ones", "Hourly pricing ties your income to your hours — the only way to earn more is to work more", "Hourly rates are always lower than project rates for the same work", "Clients underestimate how many hours complex projects require"],
+            correctIdx: 1,
+            explanation: "Hourly pricing means your ceiling is determined by how many hours you can physically work. Value-based pricing ties your fee to the outcome — if a website generates $50K in its first year, charging $2K was a mistake regardless of how many hours it took.",
+          },
+          {
+            question: "What three questions do you answer before pricing any project?",
+            options: ["What's the scope, what's the timeline, and what's your hourly rate", "What's the primary outcome, what's it worth to the client in dollars, and what would a traditional agency charge", "Who is the decision-maker, what's their budget, and what's their deadline", "What's the deliverable, how many revisions are included, and what's the kill fee"],
+            correctIdx: 1,
+            explanation: "The first question gets you to the right conversation. The second anchors the price to their reality, not yours. The third sets your floor — you should not be charging less than an agency for comparable or better work just because you're faster.",
+          },
+          {
+            question: "What is the correct way to present a price in a client conversation?",
+            options: ["Start high and work down to create negotiating room", "State the outcome, state the investment, then stop talking and wait for their response", "Present three options and let the client choose based on their comfort level", "Frame the price as an estimate and refine it after the discovery call"],
+            correctIdx: 1,
+            explanation: "\"This project delivers X — the investment is $4,500.\" Then wait. The first person to speak after a price is stated is usually in the weaker position. Never discount before they ask — you're negotiating against yourself.",
+          },
+          {
+            question: "In a three-tier pricing structure, which tier do most clients typically choose?",
+            options: ["The lowest tier because it minimizes financial risk", "The middle tier — the target price designed to be the most appealing option", "The highest tier because it signals comprehensive value", "It varies equally across all three tiers"],
+            correctIdx: 1,
+            explanation: "Structure three tiers: a basic tier that's almost too lean (sets the floor), your target tier (what you actually want to sell), and a comprehensive tier (anchors the top). Most clients pick the middle. Structure accordingly.",
+          },
+        ],
       },
       {
         title: 'The Discovery Call Framework',
@@ -414,6 +681,32 @@ export const courseData: CourseModule[] = [
           description: 'Book one sales call this week using the seven discovery questions as your structure. Take written notes. Present the solution using the prospect\'s exact language from your notes. End with a specific next step and date. After the call, score yourself: what percentage of the call was you talking versus them talking?',
           deliverable: 'Notes from the call with the seven answers filled in, the next step you proposed with the date, and your talk-time percentage. Target: 30% or less of call time is you speaking.',
         },
+        quiz: [
+          {
+            question: "What is the correct ratio of talking to listening during a discovery call?",
+            options: ["50/50 — equal time to understand the client and present your solution", "70% listening, 20% reflecting back, 10% presenting a solution", "60% presenting your capabilities, 40% asking about their needs", "80% asking questions, 20% pitching your services"],
+            correctIdx: 1,
+            explanation: "Discovery is diagnostic, not a pitch. 70% listening, 20% reflecting back what you heard to confirm understanding, 10% presenting a solution framed in the prospect's own language. When the solution addresses their exact problem in their own terms, it doesn't need to be sold.",
+          },
+          {
+            question: "What does \"I need to think about it\" almost always mean in a sales conversation?",
+            options: ["The prospect genuinely needs more time to evaluate the options", "They have a concern they haven't voiced, they don't see enough value, or they're not the real decision-maker", "Your price is too high and they're looking for a polite way to say no", "They want to compare you to a competitor before deciding"],
+            correctIdx: 1,
+            explanation: "'I need to think about it' is a signal, not a wall. It's almost never about thinking. Respond: 'Of course — what specifically is giving you pause?' This surfaces the real objection so you can address it directly.",
+          },
+          {
+            question: "How should every discovery call end?",
+            options: ["With a follow-up email summarizing the conversation", "With a clear next step proposed by you with a specific date attached", "With a verbal agreement and a handshake", "With an open invitation to reach out whenever they're ready"],
+            correctIdx: 1,
+            explanation: "'I'll send the proposal by Thursday at noon and we can reconnect Friday to walk through it.' The specific date creates a micro-commitment and keeps the deal alive between touchpoints. 'I'll send something over' is not a next step.",
+          },
+          {
+            question: "When should you attempt to close on the discovery call itself?",
+            options: ["Always — every call should end with a signed agreement", "Only when they're a referral from an existing client", "When the prospect stops asking questions and starts asking about process — that's the buying signal", "After you've sent a formal proposal and given them 48 hours to review it"],
+            correctIdx: 2,
+            explanation: "When the prospect stops asking questions and starts asking about process (how do we get started, what happens next), close right there. 'Based on what you've shared, I'm confident in the approach. If you're ready to move forward, here's how we get started.' Then stop talking.",
+          },
+        ],
       },
       {
         title: 'Contracts and Payment Structure',
@@ -449,6 +742,32 @@ export const courseData: CourseModule[] = [
           description: 'Write a standard client contract with all six components. Use the /contract skill to generate a base version, then customize it for your specific services and payment terms. Send it to your next new client before doing any work. If you have a current client without a contract, send a scope-of-work addendum this week.',
           deliverable: 'A signed or acknowledged contract from one active or new client. The contract must include your 50% upfront payment term and your out-of-scope clause.',
         },
+        quiz: [
+          {
+            question: "What are the three most common ways operators get burned without contracts?",
+            options: ["Late delivery, poor communication, and quality disputes", "Scope creep, non-payment, and disputes where both parties remember the agreement differently", "Client cancellations, partial payment, and intellectual property claims", "Unclear timelines, missing deliverables, and refund demands"],
+            correctIdx: 1,
+            explanation: "Scope creep (project grows but price doesn't), non-payment (client ghosts after delivery), and disputes (both parties remember the agreement differently) are almost completely preventable with a simple written agreement.",
+          },
+          {
+            question: "What is the most important section in a client contract for preventing scope creep?",
+            options: ["The payment terms section", "The revision policy section", "The scope of work AND explicit out-of-scope section together", "The kill fee section"],
+            correctIdx: 2,
+            explanation: "Everything the client asks for after the contract is signed that isn't in the scope is a change order with a price. The out-of-scope clause is your protection against the single biggest project-killer. It must be explicit and specific.",
+          },
+          {
+            question: "What is the correct payment structure for client projects?",
+            options: ["100% on delivery to give the client confidence in your commitment", "Net-30 after delivery to match standard business payment terms", "50% upfront before any work begins, 50% on delivery", "25% upfront, 25% at midpoint, 50% on final delivery"],
+            correctIdx: 2,
+            explanation: "50% before you write a single line of code. It confirms the client is serious, covers your time and materials, and creates financial stake that motivates timely feedback. Delivery triggers the final invoice — not after their internal review process.",
+          },
+          {
+            question: "What is the correct protocol when payment hasn't arrived after 7 days past the due date?",
+            options: ["Send a final demand letter and immediately escalate to collections", "Pause work with written notice — work stops until payment is received", "Continue working but add a late fee to the outstanding balance", "Send a friendly reminder and give them another two weeks"],
+            correctIdx: 1,
+            explanation: "Invoice sent on agreed date → reminder at 48 hours → direct message or call at 72 hours → work paused at 7 days with written notice → demand letter at 14 days. Most late payments resolve at the 48-hour step because the client simply forgot.",
+          },
+        ],
       },
     ],
   },
@@ -491,6 +810,32 @@ export const courseData: CourseModule[] = [
           description: 'Choose your primary platform. Plan 12 posts (three per week for four weeks) using the three content types: at least four proof of work, four process visibility, four honest takes. Write the first three posts now. Schedule or create a reminder system for the rest. The content must be specific to real projects — no generic tips.',
           deliverable: 'A 12-post content plan with specific topics, three posts drafted and ready to publish, and a weekly recurring reminder to execute the plan.',
         },
+        quiz: [
+          {
+            question: "What is the primary goal of a personal media strategy for an operator?",
+            options: ["Maximize follower count and engagement rate", "Build authority signals to a specific buyer type who will pay for your work", "Create viral content that reaches the broadest possible audience", "Establish a posting schedule that demonstrates consistency to the algorithm"],
+            correctIdx: 1,
+            explanation: "You can have 50,000 followers and zero authority in your market. You can have 500 followers and a waiting list of clients. The goal is authority with the right people — not follower count. One right client is worth more than 10,000 likes from people who will never buy.",
+          },
+          {
+            question: "What are the three content types that build operator authority rather than just audience?",
+            options: ["Educational tips, motivational quotes, and industry news", "Proof of work, process visibility, and honest takes with a clear point of view", "Behind-the-scenes content, product demos, and client testimonials", "Daily updates, weekly recaps, and monthly results reports"],
+            correctIdx: 1,
+            explanation: "Proof of work (screenshots, recordings, before/afters), process visibility (how you work, what your stack looks like), and honest takes (opinions that show you have a point of view). Generic tips and engagement bait build followers. These three build clients.",
+          },
+          {
+            question: "Which posting approach produces better authority-building results?",
+            options: ["Seven posts per week with varied content types", "Three high-quality posts per week with a sustainable cadence", "Daily posting to maximize algorithmic reach", "Two posts per week with longer-form content"],
+            correctIdx: 1,
+            explanation: "Three high-quality posts per week beats seven mediocre ones. Cadence also signals reliability — if you can't maintain a content schedule, what does that say about your ability to maintain a project schedule? Pick a cadence you can sustain for six months.",
+          },
+          {
+            question: "When should you expand to a second platform?",
+            options: ["As soon as you have more than 1,000 followers on your first platform", "After 12 months of consistent output and a clear sense of what's working on the first platform", "When a client asks you to be active on a specific platform", "As soon as your first platform growth plateaus"],
+            correctIdx: 1,
+            explanation: "Build one platform deep before spreading to a second. Learning two simultaneously means being mediocre on both. The one-platform rule holds until you have 12 months of consistent output and a clear understanding of what resonates. Before that, you're diluting your effort.",
+          },
+        ],
       },
       {
         title: 'The Warm Intro System',
@@ -526,6 +871,32 @@ export const courseData: CourseModule[] = [
           description: 'List 10 people in your current network who interact with the type of clients you want. For three of them, write a specific intro ask using the format from this lesson — who you\'re looking for, the exact situation, and the forwarding email. Send all three this week.',
           deliverable: 'Three intro requests sent, with the specific ask format and a forwardable email draft attached to each. Track responses for 14 days.',
         },
+        quiz: [
+          {
+            question: "Why do warm intros convert at approximately 10x the rate of cold outreach?",
+            options: ["The intro comes from a mutual connection who can provide social proof", "Warm intros carry borrowed trust — the prospect comes in already 60% sold", "Warm intros are always to more qualified, higher-budget prospects", "The intro removes the cold DM filter and gets you directly into conversation"],
+            correctIdx: 1,
+            explanation: "When someone trusted introduces you, the prospect comes in already 60% sold because the introduction carries an implicit endorsement: 'I trust this person and think they can help you.' No cold DM produces that borrowed trust.",
+          },
+          {
+            question: "What is the most effective way to ask for an intro?",
+            options: ["Ask broadly: 'Do you know anyone who might need what I do?'", "Ask specifically: 'I'm looking to work with [type of business] in [specific situation]. Do you know anyone like that?'", "Send a LinkedIn message to the person you want to meet and CC your mutual connection", "Post publicly asking your network for referrals and tag relevant people"],
+            correctIdx: 1,
+            explanation: "Vague asks produce no intros. Specific asks produce fast ones. The more specific you are about the type of business and situation, the faster your contact's brain can match you to someone. Give their brain something to search for.",
+          },
+          {
+            question: "What format produces the highest rate of actual introductions when asking someone to make an intro?",
+            options: ["A detailed one-page bio they can share about you", "A short forwarding email (under 100 words) that the contact just hits forward on", "A LinkedIn profile link with a brief message explaining the connection", "A Calendly link with a description of what you offer"],
+            correctIdx: 1,
+            explanation: "Give them the email to forward. Two sentences about who you are and what you do, one on why the connection is relevant, one offering a 15-minute call. Under 100 words. People want to help — they just don't want to do work to do it.",
+          },
+          {
+            question: "What reciprocity ratio keeps an intro network healthy and growing?",
+            options: ["One intro given for every one received — maintain exact balance", "Two intros made for every one you receive", "Make intros only when you genuinely see a strong fit", "Give three intros before asking for your first one"],
+            correctIdx: 1,
+            explanation: "For every intro you receive, make two. Not because you're keeping score — because it makes the network real and valuable for everyone. When you connect two people who benefit from knowing each other, both associate that benefit with you. That compounds over time.",
+          },
+        ],
       },
       {
         title: 'Authority Building',
@@ -561,6 +932,32 @@ export const courseData: CourseModule[] = [
           description: 'Pick your strongest completed project (West Coast Terpz, Pomaika\'i, a client site, any real result). Write a case study using the format: client situation before the engagement, specific problem, your approach, result in measurable terms, client quote. Keep it under 800 words. Publish it — on your site, on LinkedIn, or as a PDF you can send to prospects.',
           deliverable: 'A published case study with a real measurable result, available at a URL or as a shareable document. Send it to three people in your intro network.',
         },
+        quiz: [
+          {
+            question: "Why is a well-written case study the highest-ROI content an operator can produce?",
+            options: ["Case studies rank well in search engines and drive organic traffic", "A single strong case study with real numbers outperforms a year of generic social content for converting serious prospects", "Case studies are faster to produce than regular social content", "Clients trust written case studies more than any other format"],
+            correctIdx: 1,
+            explanation: "A case study demonstrates capability (here's the problem I solved), methodology (here's how I solved it), and outcome (here's the specific result). One two-to-three page case study with real numbers outperforms a year of generic social content for converting serious buyers.",
+          },
+          {
+            question: "What does an authority signal actually consist of?",
+            options: ["Follower count, engagement rate, and posting frequency", "External evidence that your judgment and capability are validated by others — client results, published work, track record", "Professional certifications and industry awards", "Testimonials and five-star reviews from previous clients"],
+            correctIdx: 1,
+            explanation: "Authority signals are external validation: client results with specific numbers, published work others reference, being quoted by people already seen as authorities. Most operators are sitting on years of relevant experience with zero public evidence of it.",
+          },
+          {
+            question: "What is the correct order of the authority ladder?",
+            options: ["Speaking first, then writing to support the speaking, then case studies as backup", "Case studies (what you've done) → writing/publishing (what you know) → speaking (what you're known for)", "Social media first, then writing, then case studies once you have credibility", "Writing first, then case studies as proof, then speaking once you're known"],
+            correctIdx: 1,
+            explanation: "Build the ladder from the bottom. Case studies establish results. Writing on those results establishes a framework. Speaking opportunities come after the documented work and published thinking are in place. Skipping rungs means no foundation.",
+          },
+          {
+            question: "How long does consistent authority building take to feel like real traction?",
+            options: ["Two to three months if you post consistently every day", "Six months to feel like traction, twelve months to feel like authority", "One year minimum before any visible business results", "Thirty days with a viral post or high-profile mention"],
+            correctIdx: 1,
+            explanation: "Authority signals compound because they reference each other, but the cycle takes six months to feel like traction. Operators who quit at month four missed the compounding. Consistency over twelve months produces more authority than any single high-visibility moment.",
+          },
+        ],
       },
       {
         title: 'Strategic Partnerships',
@@ -596,6 +993,32 @@ export const courseData: CourseModule[] = [
           description: 'Identify two people in your existing network whose services are adjacent to yours. Have a 20-minute call with each one using the three-part partnership conversation structure. Propose a simple referral arrangement. Send the first referral or potential lead to one of them within 14 days.',
           deliverable: 'Two partnership conversations documented with the outcome, and one referral sent within 14 days. Track whether it converts.',
         },
+        quiz: [
+          {
+            question: "What distinguishes a strategic partnership from a vague 'let's collaborate' conversation?",
+            options: ["A strategic partnership involves a formal revenue share agreement", "A strategic partnership is a structured, recurring referral agreement with a specific trigger and process", "A strategic partnership requires both parties to be at the same revenue level", "A strategic partnership is a legally binding contract between two businesses"],
+            correctIdx: 1,
+            explanation: "A partnership is a specific agreement: what triggers a referral, what the referral process looks like, and what changes hands when a referral converts. Not a one-time referral. Not a vague conversation. A structured, recurring relationship.",
+          },
+          {
+            question: "Who are your ideal strategic partnership candidates?",
+            options: ["Operators with larger audiences who can promote your services", "People serving the same client type with adjacent, non-competing services", "Businesses in your exact niche who can send overflow work your way", "Former clients who understand your work and can provide referrals"],
+            correctIdx: 1,
+            explanation: "Ideal partners serve the same type of client with adjacent but non-competing services. The same client needs both. Neither of you is competing for the same project. Every client you get is a potential referral for them, and vice versa.",
+          },
+          {
+            question: "When should you send the first referral after establishing a partnership?",
+            options: ["Wait until you have a genuinely strong match to maintain quality", "Within two weeks of the partnership conversation, even if it's a small one", "Only after they've sent you at least one referral first", "After six months of building the relationship before introducing business"],
+            correctIdx: 1,
+            explanation: "A partnership is activated by the first referral you make, not the conversation you had about making referrals. Sending the first referral within two weeks signals seriousness and triggers reciprocity. The conversation alone is not a partnership.",
+          },
+          {
+            question: "What keeps a partnership active over time versus letting it go dormant?",
+            options: ["Formal quarterly review meetings with documented outcomes", "Monthly touchpoints: check-in on what each of you is building, note potential referrals, debrief when a referral converts", "Sending a referral every month regardless of fit", "A shared project or client that keeps both parties regularly communicating"],
+            correctIdx: 1,
+            explanation: "Partnerships maintained with regular communication outlast partnerships that only activate when one party needs something. Monthly touchpoints keep you top of mind for each other. The goal is to be the first person your partner thinks of when a client needs what you do.",
+          },
+        ],
       },
     ],
   },
@@ -638,6 +1061,32 @@ export const courseData: CourseModule[] = [
           description: 'Review your last eight to ten projects. Identify the most common type. Define the five components: name, target customer, scope (with explicit exclusions), fixed price, fixed timeline. Write the product description in under 200 words. Publish it on your website or portfolio this week.',
           deliverable: 'A live product page or listing with all five components, reachable at a URL. Pitch it to one person in your pipeline this week.',
         },
+        quiz: [
+          {
+            question: "What is the primary benefit of productizing a service versus custom scoping every project?",
+            options: ["Productized services always command a higher price than custom work", "Productized services eliminate the 2-4 hour proposal overhead and enable consistent delivery", "Clients prefer productized services because they know exactly what they're getting", "Productized services are easier to delegate to a junior team member"],
+            correctIdx: 1,
+            explanation: "Every custom proposal is a 10-20% time tax on the project before any work begins. Multiply across twelve projects and you've spent a full month writing proposals. A productized service writes itself in 20 minutes. The scope is defined. The price is set.",
+          },
+          {
+            question: "What are the five components of a well-defined productized service?",
+            options: ["Name, price, timeline, case study, and client testimonial", "Name, target customer, defined scope (with exclusions), fixed price, and fixed timeline", "Description, ideal client profile, deliverables list, rate card, and revision policy", "Tagline, target market, features, pricing tiers, and FAQ"],
+            correctIdx: 1,
+            explanation: "A productized service has five components: a name (makes it real), a clear target customer (who it's for), a defined scope with explicit exclusions (what's in and what's out), a fixed price (no ranges), and a fixed timeline (delivery by day X). A client reads it and decides in three minutes.",
+          },
+          {
+            question: "How do you determine the right scope and price for your first productized service?",
+            options: ["Research competitor pricing and position yourself 20% below market rate", "Look at your last 8-10 projects — the most common type at median scope and median price plus a 20% timeline buffer", "Start with the most complex version of your service and reduce it based on client feedback", "Set the price based on what your most valuable client has paid you"],
+            correctIdx: 1,
+            explanation: "Your first product is the intersection of your most common project type and client type. Median scope, median price, timeline plus 20% buffer. The buffer lets you consistently deliver early — 'said seven days, delivered in five' compounds into referrals faster than any other single thing.",
+          },
+          {
+            question: "How many real client iterations does it take before declaring a productized service fixed?",
+            options: ["One — if the first client is happy, the product is validated", "At least five to get a statistically significant sample", "Three — scope, price, and timeline adjust based on what actually happened", "Two — one internal test and one paying client"],
+            correctIdx: 2,
+            explanation: "A productized service is a hypothesis until a client buys it. Run three iterations: does it sell without negotiation? Does it deliver on scope and timeline? Does it refer? Update scope or timeline based on real delivery after each one. By iteration three, you have a fixed product.",
+          },
+        ],
       },
       {
         title: 'Retainer Architecture',
@@ -673,6 +1122,32 @@ export const courseData: CourseModule[] = [
           description: 'Pick your best current or recently completed client. Design a retainer structure using one of the three formats — choose based on what they actually need. Write the pitch script using the delivery-moment format. Send the pitch or schedule a call to present it this week. Write your monthly report template with three outcome bullets and one core metric.',
           deliverable: 'A written retainer offer with scope, price, and monthly deliverables. A sent or scheduled pitch to one client. A monthly report template ready to use.',
         },
+        quiz: [
+          {
+            question: "What two conditions must be true for a client to renew a retainer?",
+            options: ["The price is competitive and the relationship is friendly", "The ongoing value is clear and the cost of stopping is higher than the cost of continuing", "Monthly reporting is provided and the operator is responsive", "The client has budget and the project scope fits their needs"],
+            correctIdx: 1,
+            explanation: "Most retainers fail because neither condition is met. The client stops seeing new value delivered each month and can't articulate a specific outcome they'd lose if they cancelled. Report on outcomes, not activities — 23 lead form submissions beats 'I fixed a bug.'",
+          },
+          {
+            question: "When is the right moment to pitch a retainer to a client?",
+            options: ["At the start of the initial project to set expectations upfront", "In the original proposal as one of the three pricing tiers", "At the end of a successful project delivery — never at the beginning", "Six months after the project ends once you've built the relationship"],
+            correctIdx: 2,
+            explanation: "At delivery, you say: 'I've gotten familiar with your business over this engagement and I see real opportunity to keep driving [specific outcome].' The client already trusts you. You're offering more of what already worked. This is not a cold pitch — it's a natural continuation.",
+          },
+          {
+            question: "What does the growth retainer structure ($1,500-$3,500/month) cover?",
+            options: ["Unlimited support, on-call availability, and dedicated account management", "Everything in maintenance plus ongoing optimization toward a specific growth metric — leads, sales, signups", "Monthly strategy calls, content creation, and competitive analysis", "Site maintenance, one new feature per month, and priority response time"],
+            correctIdx: 1,
+            explanation: "Three structures: maintenance ($500-$1,500) covers upkeep and one new feature per month. Growth ($1,500-$3,500) adds ongoing optimization toward a measurable growth metric. Full-service ($3,500-$7,500) means you own an entire function. Oversell the retainer and you'll hate the client by month three.",
+          },
+          {
+            question: "What is the purpose of monthly reporting for retainer clients?",
+            options: ["To justify your fees and prevent cancellation conversations", "To document value delivered, surface problems early, and create a natural touchpoint for expansion or referrals", "To show the client what you worked on and how much time it took", "To provide transparency about your process and build client trust"],
+            correctIdx: 1,
+            explanation: "Monthly reporting does three things: documents the value delivered (makes cancellation psychologically harder), surfaces problems before they become crises, and creates a natural touchpoint for expanding the retainer or getting referrals. Under one page, same day every month.",
+          },
+        ],
       },
       {
         title: 'The First Hire',
@@ -708,6 +1183,32 @@ export const courseData: CourseModule[] = [
           description: 'Identify whether you currently meet both hiring conditions (overflow work and a specific 10+ hour weekly task). If yes, write a one-page role description: what the hire does, what the quality bar is, how success is measured, and what the test assignment will be. If no, define what condition you still need to meet and your timeline for meeting it.',
           deliverable: 'Either a one-page role description with a test assignment ready to send, or a written plan for when both conditions will be true with specific steps to get there.',
         },
+        quiz: [
+          {
+            question: "What two conditions must both be true before you should hire anyone?",
+            options: ["You have funding and a clear role description", "You have more paying work than you can handle AND one specific 10+ hour/week task someone else could do to 80% of your standard", "Your revenue is above $5K/month and you have at least two retainer clients", "You have a documented process and a clear onboarding plan"],
+            correctIdx: 1,
+            explanation: "If either condition is false, don't hire. Overflow work without a clear task means you'll spend your first month figuring out what to hand off. A clear task without overflow means you're managing someone who doesn't have enough to do. Both must be true.",
+          },
+          {
+            question: "What type of role should your first hire fill?",
+            options: ["The role most similar to your own expertise so you can evaluate their work", "The role you hate doing or are least qualified to do — the highest-leverage gap", "A junior version of your primary skill to handle overflow from your main service", "A client success role to maintain existing client relationships"],
+            correctIdx: 1,
+            explanation: "Hire for the role you hate, not the role you love. For most operators, that's some combination of client communication, admin, and project management. One generalist who handles follow-ups, scheduling, and invoicing frees up 15 hours a week of your highest-value time.",
+          },
+          {
+            question: "What is the most effective way to evaluate a candidate before committing to hiring them?",
+            options: ["A structured interview with behavioral and situational questions", "A paid test assignment (2-4 hours) that represents exactly what they'd do in the role", "A portfolio review and three professional references", "A trial week at full pay to observe their working style"],
+            correctIdx: 1,
+            explanation: "Don't hire from a resume. Give every serious candidate a paid 2-4 hour task — a real task from a real project. You're looking for three things: delivered on time, communicated when they hit a blocker, and work quality at 80%+ of your standard. $50-$100 for the test is worth it to avoid a bad hire.",
+          },
+          {
+            question: "Why do the standards you set in the first two weeks of an employment relationship matter so much?",
+            options: ["New hires form habits quickly and early impressions are hard to change", "The standards set in week one are the standards you'll live with for the entire working relationship", "Early performance predicts long-term quality better than any other indicator", "Legal protections for employees make it difficult to adjust standards later"],
+            correctIdx: 1,
+            explanation: "If you tolerate late deliveries in week one, you'll get late deliveries in month six. Document your communication expectations, your quality bar, and your project workflow. Show them a piece of work at your standard and explain what makes it that standard. Write it down.",
+          },
+        ],
       },
       {
         title: 'The $10K Blueprint',
@@ -743,6 +1244,32 @@ export const courseData: CourseModule[] = [
           description: 'Build a $10K/month plan using real names from your network. For each name: what service, what price, what timeline for the pitch or close. Calculate the math until you hit $10K. Identify the one constraint that needs to be resolved for the first domino to fall. Write the month-by-month sequence for the next 90 days with specific actions for each week.',
           deliverable: 'A one-page blueprint with real names, real services, real prices that add up to $10K/month, and a 90-day week-by-week execution sequence. Review it every Sunday during the 90 days and update based on what actually happened.',
         },
+        quiz: [
+          {
+            question: "What four elements separate a real $10K plan from a $10K wish?",
+            options: ["A vision, a mission, values, and measurable KPIs", "Names (specific people), services (specific offerings), a timeline, and one key constraint", "A marketing plan, a sales plan, a delivery plan, and a financial plan", "Goals, objectives, strategies, and tactics"],
+            correctIdx: 1,
+            explanation: "'Get more clients, charge higher prices, build my brand' is a direction, not a plan. A real plan has specific names of people who could become clients, specific services at fixed prices that add up to $10K, a timeline with milestones, and one constraint that needs to be true for the first domino to fall.",
+          },
+          {
+            question: "What is the clearest path to a first $10K month for most operators?",
+            options: ["Ten clients at $1K each — high volume, lowest risk per client", "One client at $10K — maximum leverage, minimum delivery complexity", "Three to five clients in the $2K-$3K range with one anchor retainer at $1,500-$2,000/month", "Five clients at $2K with no retainers — project work is more reliable than recurring"],
+            correctIdx: 2,
+            explanation: "Ten clients at $1K is high volume with low leverage. One client at $10K is high stakes. The clearest path for most operators is three to five clients at $2K-$3K with one anchor retainer providing predictable baseline revenue plus upside from project work.",
+          },
+          {
+            question: "When building the $10K math, where should you start?",
+            options: ["With new outreach to find fresh prospects in your target market", "With your existing contact list, CRM, and DMs — map what real people could realistically pay", "With market research to determine the right price points for your services", "With your current clients and what additional services you could upsell to them"],
+            correctIdx: 1,
+            explanation: "Open your contact list. Your CRM. Your DMs. Write down every person who has paid you or expressed serious interest in the last six months. Build the math from real names. If you can't get to $10K from your existing network, then pursue new leads.",
+          },
+          {
+            question: "What does the 90-day $10K blueprint prioritize in Month 1?",
+            options: ["Launching a new marketing campaign and building brand awareness", "Converting one current client to a retainer, pitching two new projects, and publishing your productized service", "Hiring a team member to handle client delivery and free up selling time", "Raising all existing client prices to move toward higher-value work"],
+            correctIdx: 1,
+            explanation: "Month one: convert one current client to a retainer. Pitch two new projects. Publish your productized service. Build pipeline to 10 active leads. This sequence builds predictable base revenue while simultaneously opening new project opportunities.",
+          },
+        ],
       },
     ],
   },

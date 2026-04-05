@@ -105,6 +105,7 @@ export default async function LessonPage({ params }: Props) {
       moduleLessons={moduleData.lessons.map((l) => ({ title: l.title }))}
       lessonIdx={lessonIdx}
       lessonKey={lessonKey}
+      userId={user.id}
       prevLesson={prevLesson}
       nextLesson={nextLesson}
     />
