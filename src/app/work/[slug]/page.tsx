@@ -275,15 +275,27 @@ const projects: Record<string, {
   },
   "joon11ee": {
     name: "Joon11ee",
-    category: "Casino / 3D",
-    headline: "3D casino experience with voice chat and real-time multiplayer",
-    description: "The most complex project in the portfolio. A full 3D casino environment with WebRTC voice chat, real-time multiplayer, player avatars, and immersive gameplay. Built entirely from scratch.",
+    category: "Website / E-commerce",
+    headline: "Luxury exotic rental platform for high-end vehicles and experiences",
+    description: "Custom platform for Joon11ee, a luxury exotic rental service. Built to showcase and book high-end vehicles and experiences with a premium design that matches the brand.",
     stats: [
-      { value: "3D", label: "Environment" },
-      { value: "Voice", label: "Chat" },
-      { value: "Real-time", label: "Multiplayer" },
+      { value: "Luxury", label: "Rentals" },
+      { value: "Custom", label: "Platform" },
+      { value: "Premium", label: "Design" },
     ],
     liveUrl: "https://www.joon11ee.com",
+  },
+  "hoa-dispute": {
+    name: "HOA Dispute Bot",
+    category: "AI / Tool",
+    headline: "AI desktop app that coaches homeowners through HOA disputes in real time",
+    description: "An Electron app built for hoadispute.com that runs alongside you during the dispute process, similar to how Cluely works during interviews. The app reads context from the screen, pulls relevant HOA laws and precedents, and feeds you the right language to use in real time. Homeowners go in prepared instead of getting steamrolled by property managers.",
+    stats: [
+      { value: "Electron", label: "Desktop app" },
+      { value: "AI overlay", label: "Real-time" },
+      { value: "On-screen", label: "Guidance" },
+    ],
+    liveUrl: "https://hoadispute.com",
   },
   "olylife-ohana": {
     name: "OlyLife Ohana",
