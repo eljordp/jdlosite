@@ -60,8 +60,8 @@ export default function ExperiencePage() {
 
       // ── Scene ────────────────────────────────────────────────────────────────
       const scene = new THREE.Scene();
-      scene.background = new THREE.Color(0x040810);
-      scene.fog = new THREE.FogExp2(0x040810, 0.006);
+      scene.background = new THREE.Color(0x060e1c);
+      scene.fog = new THREE.FogExp2(0x060e1c, 0.001);
 
       // ── Camera ───────────────────────────────────────────────────────────────
       const camera = new THREE.PerspectiveCamera(
@@ -419,13 +419,13 @@ export default function ExperiencePage() {
       const stars = buildStars();
       buildCity();
 
-      // ── Camera path ───────────────────────────────────────────────────────────
+      // ── Camera path — subtle arc, stays in the dense visual zone ─────────────
       const camPath = [
-        { r: 14,  theta: Math.PI * 0.28,  y: 2,   lookY: 12 },
-        { r: 12,  theta: Math.PI * 0.1,   y: 14,  lookY: 24 },
-        { r: 10,  theta: -Math.PI * 0.06, y: 28,  lookY: 38 },
-        { r: 7.5, theta: -Math.PI * 0.2,  y: 40,  lookY: 50 },
-        { r: 4.5, theta: -Math.PI * 0.32, y: 54,  lookY: 62 },
+        { r: 14,  theta: Math.PI * 0.28,  y: 4,  lookY: 14 },
+        { r: 13,  theta: Math.PI * 0.18,  y: 6,  lookY: 16 },
+        { r: 12,  theta: Math.PI * 0.08,  y: 8,  lookY: 18 },
+        { r: 11,  theta: -Math.PI * 0.04, y: 10, lookY: 20 },
+        { r: 10,  theta: -Math.PI * 0.14, y: 12, lookY: 22 },
       ];
       const camState = { t: 0 };
 
@@ -654,17 +654,7 @@ export default function ExperiencePage() {
         }}
       />
 
-      {/* Vignette */}
-      <div
-        style={{
-          position: "fixed",
-          inset: 0,
-          zIndex: 5,
-          pointerEvents: "none",
-          background:
-            "radial-gradient(ellipse at 50% 55%, transparent 30%, rgba(4,8,16,0.55) 65%, rgba(4,8,16,0.92) 100%)",
-        }}
-      />
+      {/* No vignette — full immersive scene everywhere */}
 
       {/* Back button */}
       <Link
