@@ -107,10 +107,26 @@ const EMPTY_ANSWERS: Answers = {
    PAGE
    ──────────────────────────────────────────────────────────── */
 
+/* ── Category accent colors ── */
+const CATEGORY_ACCENT: Record<string, string> = {
+  Casino: "#1a1a2e",
+  AI: "#0f1f0f",
+  Enterprise: "#1a1410",
+  "E-commerce": "#0f1a1a",
+  Website: "#111",
+  Game: "#1a0f1a",
+  SaaS: "#0f0f1a",
+  Fashion: "#1a1215",
+  Tool: "#111",
+  Pitch: "#1a1a0f",
+  "3D": "#0f1a1a",
+};
+
 export default function WorkPage() {
   /* ── Filter state ── */
   const [activeFilter, setActiveFilter] = useState<Category>("All");
   const [filterKey, setFilterKey] = useState(0);
+  const [hoveredProject, setHoveredProject] = useState<Project | null>(null);
 
   const handleFilter = (cat: Category) => {
     setActiveFilter(cat);
@@ -281,85 +297,109 @@ export default function WorkPage() {
             </div>
           </div>
 
-          {/* Projects list */}
-          <div
-            key={filterKey}
-            className="transition-opacity duration-500 ease-out"
-            style={{ animation: "fadeIn 0.5s ease-out" }}
-          >
-            {filtered.map((project, i) => (
-              project.url ? (
-              <a
-                key={project.name}
-                href={project.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block py-10 sm:py-14 border-b border-border last:border-b-0 group hover:bg-surface/50 -mx-6 px-6 sm:-mx-10 sm:px-10 transition-colors duration-300"
-              >
-                {/* Category tag */}
-                <p className="font-mono text-[11px] tracking-[0.4em] uppercase text-text-muted mb-4">
-                  {project.categories.join(" / ")}
-                </p>
-                <h2 className="font-display text-[clamp(1.75rem,4vw,3.5rem)] tracking-[-0.03em] leading-[1] mb-3 group-hover:text-text-secondary transition-colors duration-300">
-                  {project.name}
-                  <span className="inline-block ml-3 text-text-muted text-[0.5em] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300">&rarr;</span>
-                </h2>
-                <p className="text-text-secondary text-[17px] sm:text-lg leading-relaxed mb-8 max-w-[600px]">
-                  {project.headline}
-                </p>
-                <div className="flex flex-wrap gap-x-10 gap-y-3">
-                  {project.stats.map((stat) => (
-                    <div key={stat} className="flex items-center gap-2.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-text/20 shrink-0" />
-                      <span className="text-text font-medium text-[14px] tracking-[-0.01em]">{stat}</span>
-                    </div>
-                  ))}
+          {/* Projects list + hover card */}
+          <div className="flex gap-16 items-start">
+            {/* Left: project rows */}
+            <div
+              key={filterKey}
+              className="flex-1 min-w-0 transition-opacity duration-500 ease-out"
+              style={{ animation: "fadeIn 0.5s ease-out" }}
+            >
+              {filtered.map((project) => {
+                const rowClass = "block py-10 sm:py-12 border-b border-border last:border-b-0 group hover:bg-surface/50 -mx-6 px-6 sm:-mx-10 sm:px-10 transition-colors duration-300";
+                const inner = (
+                  <>
+                    <p className="font-mono text-[11px] tracking-[0.4em] uppercase text-text-muted mb-4">
+                      {project.categories.join(" / ")}
+                    </p>
+                    <h2 className="font-display text-[clamp(1.5rem,3vw,2.75rem)] tracking-[-0.03em] leading-[1] mb-3 group-hover:text-text-secondary transition-colors duration-300">
+                      {project.name}
+                      <span className="inline-block ml-3 text-text-muted text-[0.5em] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300">&rarr;</span>
+                    </h2>
+                    <p className="text-text-secondary text-[15px] leading-relaxed">
+                      {project.headline}
+                    </p>
+                  </>
+                );
+                return project.url ? (
+                  <a
+                    key={project.name}
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={rowClass}
+                    onMouseEnter={() => setHoveredProject(project)}
+                    onMouseLeave={() => setHoveredProject(null)}
+                  >
+                    {inner}
+                  </a>
+                ) : (
+                  <Link
+                    key={project.name}
+                    href={`/work/${project.slug}`}
+                    className={rowClass}
+                    onMouseEnter={() => setHoveredProject(project)}
+                    onMouseLeave={() => setHoveredProject(null)}
+                  >
+                    {inner}
+                  </Link>
+                );
+              })}
+
+              {filtered.length === 0 && (
+                <div className="py-20 text-center">
+                  <p className="text-text-muted text-lg">No projects in this category yet.</p>
                 </div>
-              </a>
-              ) : (
-              <Link
-                key={project.name}
-                href={`/work/${project.slug}`}
-                className="block py-10 sm:py-14 border-b border-border last:border-b-0 group hover:bg-surface/50 -mx-6 px-6 sm:-mx-10 sm:px-10 transition-colors duration-300"
+              )}
+            </div>
+
+            {/* Right: hover card — hidden on mobile */}
+            <div className="hidden lg:block w-[320px] shrink-0 sticky top-32">
+              <div
+                className="rounded-2xl border border-border overflow-hidden transition-all duration-300"
+                style={{
+                  opacity: hoveredProject ? 1 : 0,
+                  transform: hoveredProject ? "translateY(0)" : "translateY(8px)",
+                  pointerEvents: hoveredProject ? "auto" : "none",
+                  background: hoveredProject ? (CATEGORY_ACCENT[hoveredProject.categories[0]] ?? "#111") : "#111",
+                }}
               >
-                {/* Category tag */}
-                <p className="font-mono text-[11px] tracking-[0.4em] uppercase text-text-muted mb-4">
-                  {project.categories.join(" / ")}
-                </p>
-
-                {/* Project name */}
-                <h2 className="font-display text-[clamp(1.75rem,4vw,3.5rem)] tracking-[-0.03em] leading-[1] mb-3 group-hover:text-text-secondary transition-colors duration-300">
-                  {project.name}
-                  <span className="inline-block ml-3 text-text-muted text-[0.5em] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300">&rarr;</span>
-                </h2>
-
-                {/* Headline */}
-                <p className="text-text-secondary text-[17px] sm:text-lg leading-relaxed mb-8 max-w-[600px]">
-                  {project.headline}
-                </p>
-
-                {/* Stats row */}
-                <div className="flex flex-wrap gap-x-10 gap-y-3">
-                  {project.stats.map((stat) => (
-                    <div key={stat} className="flex items-center gap-2.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-text/20 shrink-0" />
-                      <span className="text-text font-medium text-[14px] tracking-[-0.01em]">
-                        {stat}
-                      </span>
-                    </div>
-                  ))}
+                <div className="p-8">
+                  <p className="font-mono text-[10px] tracking-[0.4em] uppercase text-white/40 mb-5">
+                    {hoveredProject?.categories.join(" / ")}
+                  </p>
+                  <h3 className="font-display text-[1.75rem] tracking-[-0.03em] leading-[1.1] text-white mb-3">
+                    {hoveredProject?.name}
+                  </h3>
+                  <p className="text-white/60 text-[14px] leading-relaxed mb-8">
+                    {hoveredProject?.headline}
+                  </p>
+                  <div className="flex flex-col gap-3">
+                    {hoveredProject?.stats.map((stat) => (
+                      <div key={stat} className="flex items-center gap-3">
+                        <span className="w-1 h-1 rounded-full bg-white/30 shrink-0" />
+                        <span className="text-white/80 text-[13px] font-medium tracking-[-0.01em]">{stat}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </Link>
-              )
-            ))}
+                <div className="border-t border-white/10 px-8 py-4">
+                  <p className="text-white/30 text-[11px] font-mono tracking-wider">
+                    {hoveredProject?.url ? "External project" : "View case study →"}
+                  </p>
+                </div>
+              </div>
 
-            {filtered.length === 0 && (
-              <div className="py-20 text-center">
-                <p className="text-text-muted text-lg">
-                  No projects in this category yet.
+              {/* Empty state hint */}
+              <div
+                className="transition-all duration-300"
+                style={{ opacity: hoveredProject ? 0 : 1 }}
+              >
+                <p className="text-text-muted text-[12px] font-mono tracking-wider text-center pt-4">
+                  Hover a project
                 </p>
               </div>
-            )}
+            </div>
           </div>
         </div>
       </section>
