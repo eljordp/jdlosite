@@ -3,20 +3,11 @@
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 import * as THREE from "three";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Lenis from "lenis";
 import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer.js";
 import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass.js";
 import { ShaderPass } from "three/examples/jsm/postprocessing/ShaderPass.js";
 import { OutputPass } from "three/examples/jsm/postprocessing/OutputPass.js";
-
-/* ─────────────────────────────────────────────────────────────────────────────
-   JDLO — Interactive Experience
-   Full-screen WebGL canvas, scroll-driven orbital camera,
-   bloom post-processing, velocity-trail particle physics.
-   ───────────────────────────────────────────────────────────────────────────── */
 
 export default function ExperiencePage() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -26,33 +17,14 @@ export default function ExperiencePage() {
     let destroyed = false;
     let rafId: number;
 
-    gsap.registerPlugin(ScrollTrigger);
-
     const init = () => {
-
-      // ── Device ──────────────────────────────────────────────────────────────
       const isMobile =
         window.innerWidth < 768 ||
         !window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
-      // ── Lenis ───────────────────────────────────────────────────────────────
-      const lenis = new Lenis({
-        duration: isMobile ? 1.4 : 2.4,
-        smoothWheel: true,
-        touchMultiplier: 1.2,
-        wheelMultiplier: 0.8,
-      });
-      lenis.on("scroll", ScrollTrigger.update);
-      gsap.ticker.add((time) => lenis.raf(time * 1000));
-      gsap.ticker.lagSmoothing(0);
-
       // ── Renderer ─────────────────────────────────────────────────────────────
       const canvas = canvasRef.current!;
-      const renderer = new THREE.WebGLRenderer({
-        canvas,
-        antialias: !isMobile,
-        alpha: false,
-      });
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: !isMobile, alpha: false });
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.5 : 2));
       renderer.setSize(window.innerWidth, window.innerHeight);
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -65,50 +37,31 @@ export default function ExperiencePage() {
       scene.fog = new THREE.FogExp2(0x060e1c, 0.001);
 
       // ── Camera ───────────────────────────────────────────────────────────────
-      const camera = new THREE.PerspectiveCamera(
-        55,
-        window.innerWidth / window.innerHeight,
-        0.1,
-        1000
-      );
+      const camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 1000);
       camera.position.set(12, 2, 12);
       camera.lookAt(0, 8, 0);
 
       // ── Post-processing ───────────────────────────────────────────────────────
       const composer = new EffectComposer(renderer);
       composer.addPass(new RenderPass(scene, camera));
-
       const bloom = new UnrealBloomPass(
         new THREE.Vector2(window.innerWidth, window.innerHeight),
-        isMobile ? 1.0 : 2.0,
-        0.65,
-        0.04
+        isMobile ? 1.0 : 2.0, 0.65, 0.04
       );
       composer.addPass(bloom);
-
       const chromaShader = {
-        uniforms: {
-          tDiffuse: { value: null },
-          amount: { value: isMobile ? 0.0007 : 0.0016 },
-        },
-        vertexShader: `
-          varying vec2 vUv;
-          void main() { vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }
-        `,
+        uniforms: { tDiffuse: { value: null }, amount: { value: isMobile ? 0.0007 : 0.0016 } },
+        vertexShader: `varying vec2 vUv; void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}`,
         fragmentShader: `
-          uniform sampler2D tDiffuse;
-          uniform float amount;
-          varying vec2 vUv;
-          void main() {
-            vec2 dir = vUv - 0.5;
-            float d = length(dir);
-            vec2 off = normalize(dir + 0.0001) * amount * d * d;
-            float r = texture2D(tDiffuse, vUv + off).r;
-            float g = texture2D(tDiffuse, vUv).g;
-            float b = texture2D(tDiffuse, vUv - off).b;
-            gl_FragColor = vec4(r, g, b, 1.0);
-          }
-        `,
+          uniform sampler2D tDiffuse; uniform float amount; varying vec2 vUv;
+          void main(){
+            vec2 dir=vUv-0.5; float d=length(dir);
+            vec2 off=normalize(dir+0.0001)*amount*d*d;
+            float r=texture2D(tDiffuse,vUv+off).r;
+            float g=texture2D(tDiffuse,vUv).g;
+            float b=texture2D(tDiffuse,vUv-off).b;
+            gl_FragColor=vec4(r,g,b,1.0);
+          }`,
       };
       composer.addPass(new ShaderPass(chromaShader));
       composer.addPass(new OutputPass());
@@ -116,100 +69,46 @@ export default function ExperiencePage() {
       // ── Lights ───────────────────────────────────────────────────────────────
       scene.add(new THREE.AmbientLight(0x0a1428, 3));
       const moon = new THREE.DirectionalLight(0x6688bb, 1.0);
-      moon.position.set(-12, 30, -8);
-      scene.add(moon);
-
+      moon.position.set(-12, 30, -8); scene.add(moon);
       const goldA = new THREE.PointLight(0xc9a84c, 12, 50);
-      goldA.position.set(5, 12, 5);
-      scene.add(goldA);
+      goldA.position.set(5, 12, 5); scene.add(goldA);
       const goldB = new THREE.PointLight(0xc9a84c, 8, 40);
-      goldB.position.set(-5, 28, 3);
-      scene.add(goldB);
+      goldB.position.set(-5, 28, 3); scene.add(goldB);
       const tealCore = new THREE.PointLight(0x4de8cc, 6, 28);
-      tealCore.position.set(0, 0, 6);
-      scene.add(tealCore);
+      tealCore.position.set(0, 0, 6); scene.add(tealCore);
       const apex = new THREE.PointLight(0xfff0cc, 18, 16);
-      apex.position.set(0, 55, 0);
-      scene.add(apex);
+      apex.position.set(0, 55, 0); scene.add(apex);
       const orbitLight = new THREE.PointLight(0x4de8cc, 2.5, 35);
       scene.add(orbitLight);
 
-      // ── Scene wrapper (tilts with mouse) ─────────────────────────────────────
       const wrapper = new THREE.Group();
       scene.add(wrapper);
 
-      // ── Central column — abstract light pillar ────────────────────────────────
+      // ── Pillar ────────────────────────────────────────────────────────────────
       function buildPillar() {
         const g = new THREE.Group();
         const segments = 14;
-        const goldMat = new THREE.MeshStandardMaterial({
-          color: 0xc9a84c,
-          metalness: 0.98,
-          roughness: 0.02,
-          emissive: 0x5a3a00,
-          emissiveIntensity: 1.2,
-        });
-        const glassMat = new THREE.MeshStandardMaterial({
-          color: 0x2244aa,
-          metalness: 0.96,
-          roughness: 0.04,
-          emissive: 0x0a1e40,
-          emissiveIntensity: 1.6,
-        });
-        // Tapering column segments
+        const goldMat = new THREE.MeshStandardMaterial({ color: 0xc9a84c, metalness: 0.98, roughness: 0.02, emissive: 0x5a3a00, emissiveIntensity: 1.2 });
+        const glassMat = new THREE.MeshStandardMaterial({ color: 0x2244aa, metalness: 0.96, roughness: 0.04, emissive: 0x0a1e40, emissiveIntensity: 1.6 });
         for (let i = 0; i < segments; i++) {
-          const t = i / segments;
-          const r = 1.4 * (1 - t * 0.75);
-          const h = 3.5;
-          const y = i * h;
-          const mat = i % 3 === 0 ? goldMat : glassMat;
-          const m = new THREE.Mesh(
-            new THREE.CylinderGeometry(r * 0.85, r, h, 6),
-            mat
-          );
-          m.position.y = y + h / 2;
-          m.rotation.y = i * 0.15;
-          g.add(m);
-          // Gold band every other tier
+          const t = i / segments, r = 1.4 * (1 - t * 0.75), h = 3.5, y = i * h;
+          const m = new THREE.Mesh(new THREE.CylinderGeometry(r * 0.85, r, h, 6), i % 3 === 0 ? goldMat : glassMat);
+          m.position.y = y + h / 2; m.rotation.y = i * 0.15; g.add(m);
           if (i % 2 === 0) {
-            const band = new THREE.Mesh(
-              new THREE.CylinderGeometry(r * 1.05, r * 1.05, 0.12, 24),
-              goldMat
-            );
-            band.position.y = y + h;
-            g.add(band);
+            const band = new THREE.Mesh(new THREE.CylinderGeometry(r * 1.05, r * 1.05, 0.12, 24), goldMat);
+            band.position.y = y + h; g.add(band);
           }
         }
-        // Spire
-        const spire = new THREE.Mesh(
-          new THREE.CylinderGeometry(0.01, 0.18, 12, 10),
-          goldMat
-        );
-        spire.position.y = segments * 3.5 + 2;
-        g.add(spire);
-        // Apex orb — MeshBasic = always max bright → max bloom
-        const orb = new THREE.Mesh(
-          new THREE.SphereGeometry(0.2, 12, 12),
-          new THREE.MeshBasicMaterial({ color: 0xfff8cc })
-        );
-        orb.position.y = segments * 3.5 + 14;
-        g.add(orb);
-        // Ground disk
-        const ground = new THREE.Mesh(
-          new THREE.CylinderGeometry(7, 7, 0.18, 64),
-          new THREE.MeshStandardMaterial({
-            color: 0x0b1520,
-            roughness: 0.9,
-            emissive: 0x020810,
-            emissiveIntensity: 0.7,
-          })
-        );
-        ground.position.y = -0.09;
-        g.add(ground);
+        const spire = new THREE.Mesh(new THREE.CylinderGeometry(0.01, 0.18, 12, 10), goldMat);
+        spire.position.y = segments * 3.5 + 2; g.add(spire);
+        const orb = new THREE.Mesh(new THREE.SphereGeometry(0.2, 12, 12), new THREE.MeshBasicMaterial({ color: 0xfff8cc }));
+        orb.position.y = segments * 3.5 + 14; g.add(orb);
+        const ground = new THREE.Mesh(new THREE.CylinderGeometry(7, 7, 0.18, 64), new THREE.MeshStandardMaterial({ color: 0x0b1520, roughness: 0.9, emissive: 0x020810, emissiveIntensity: 0.7 }));
+        ground.position.y = -0.09; g.add(ground);
         wrapper.add(g);
       }
 
-      // ── Spiral ribbons ────────────────────────────────────────────────────────
+      // ── Ribbons ───────────────────────────────────────────────────────────────
       function buildRibbons() {
         const list: THREE.Mesh[] = [];
         [
@@ -219,48 +118,32 @@ export default function ExperiencePage() {
           { color: 0x88bbff, opacity: 0.1,  turns: 1.5, radius: 4.4, thick: 0.04,  speed: -0.004 },
         ].forEach((cfg) => {
           const pts = [];
-          const totalH = 56;
           for (let i = 0; i <= 80; i++) {
-            const t = i / 80;
-            const a = t * cfg.turns * Math.PI * 2;
-            const r = cfg.radius * (1 - t * 0.5);
-            pts.push(new THREE.Vector3(Math.cos(a) * r, t * totalH, Math.sin(a) * r));
+            const t = i / 80, a = t * cfg.turns * Math.PI * 2, r = cfg.radius * (1 - t * 0.5);
+            pts.push(new THREE.Vector3(Math.cos(a) * r, t * 56, Math.sin(a) * r));
           }
-          const { CatmullRomCurve3, TubeGeometry, MeshBasicMaterial, Mesh, AdditiveBlending, DoubleSide } = THREE;
-          const curve = new CatmullRomCurve3(pts, false, "catmullrom", 0.5);
-          const geo = new TubeGeometry(curve, 200, cfg.thick, 6, false);
-          const mat = new MeshBasicMaterial({
-            color: cfg.color, transparent: true, opacity: cfg.opacity,
-            blending: AdditiveBlending, depthWrite: false, side: DoubleSide,
-          });
-          const mesh = new Mesh(geo, mat);
-          mesh.userData.speed = cfg.speed;
-          wrapper.add(mesh);
-          list.push(mesh);
+          const curve = new THREE.CatmullRomCurve3(pts, false, "catmullrom", 0.5);
+          const mat = new THREE.MeshBasicMaterial({ color: cfg.color, transparent: true, opacity: cfg.opacity, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide });
+          const mesh = new THREE.Mesh(new THREE.TubeGeometry(curve, 200, cfg.thick, 6, false), mat);
+          mesh.userData.speed = cfg.speed; wrapper.add(mesh); list.push(mesh);
         });
         return list;
       }
 
-      // ── Orbital rings ─────────────────────────────────────────────────────────
+      // ── Rings ─────────────────────────────────────────────────────────────────
       function buildRings() {
         const list: THREE.Mesh[] = [];
         [
-          { y: 32, r: 3.6, tube: 0.018, speed:  0.004,  color: 0xc9a84c, op: 0.32 },
-          { y: 42, r: 2.2, tube: 0.013, speed: -0.005,  color: 0x4de8cc, op: 0.38 },
-          { y: 50, r: 1.0, tube: 0.01,  speed:  0.009,  color: 0xc9a84c, op: 0.5  },
-          { y: 32, r: 4.4, tube: 0.009, speed: -0.002,  color: 0x88bbff, op: 0.14 },
-          { y: 22, r: 5.2, tube: 0.013, speed:  0.003,  color: 0x4de8cc, op: 0.1  },
+          { y: 32, r: 3.6, tube: 0.018, speed:  0.004, color: 0xc9a84c, op: 0.32 },
+          { y: 42, r: 2.2, tube: 0.013, speed: -0.005, color: 0x4de8cc, op: 0.38 },
+          { y: 50, r: 1.0, tube: 0.01,  speed:  0.009, color: 0xc9a84c, op: 0.5  },
+          { y: 32, r: 4.4, tube: 0.009, speed: -0.002, color: 0x88bbff, op: 0.14 },
+          { y: 22, r: 5.2, tube: 0.013, speed:  0.003, color: 0x4de8cc, op: 0.1  },
         ].forEach((cfg) => {
-          const mat = new THREE.MeshBasicMaterial({
-            color: cfg.color, transparent: true, opacity: cfg.op,
-            blending: THREE.AdditiveBlending, depthWrite: false,
-          });
-          const m = new THREE.Mesh(new THREE.TorusGeometry(cfg.r, cfg.tube, 8, 128), mat);
-          m.position.y = cfg.y;
-          m.rotation.x = Math.PI / 2;
-          m.userData.speed = cfg.speed;
-          wrapper.add(m);
-          list.push(m);
+          const m = new THREE.Mesh(new THREE.TorusGeometry(cfg.r, cfg.tube, 8, 128),
+            new THREE.MeshBasicMaterial({ color: cfg.color, transparent: true, opacity: cfg.op, blending: THREE.AdditiveBlending, depthWrite: false }));
+          m.position.y = cfg.y; m.rotation.x = Math.PI / 2; m.userData.speed = cfg.speed;
+          wrapper.add(m); list.push(m);
         });
         return list;
       }
@@ -269,17 +152,10 @@ export default function ExperiencePage() {
       function buildPulse() {
         const list: THREE.Mesh[] = [];
         for (let i = 0; i < 5; i++) {
-          const mat = new THREE.MeshBasicMaterial({
-            color: i % 2 === 0 ? 0x4de8cc : 0xc9a84c,
-            transparent: true, opacity: 0,
-            side: THREE.DoubleSide, blending: THREE.AdditiveBlending, depthWrite: false,
-          });
+          const mat = new THREE.MeshBasicMaterial({ color: i % 2 === 0 ? 0x4de8cc : 0xc9a84c, transparent: true, opacity: 0, side: THREE.DoubleSide, blending: THREE.AdditiveBlending, depthWrite: false });
           const m = new THREE.Mesh(new THREE.RingGeometry(0.8, 0.84, 80), mat);
-          m.rotation.x = -Math.PI / 2;
-          m.position.y = 0.3;
-          m.userData.phase = i / 5;
-          scene.add(m);
-          list.push(m);
+          m.rotation.x = -Math.PI / 2; m.position.y = 0.3; m.userData.phase = i / 5;
+          scene.add(m); list.push(m);
         }
         return list;
       }
@@ -295,122 +171,73 @@ export default function ExperiencePage() {
           const pos = new Float32Array(cfg.count * 3);
           for (let i = 0; i < cfg.count; i++) {
             const r = 3 + Math.random() * cfg.spread, a = Math.random() * Math.PI * 2;
-            pos[i * 3] = Math.cos(a) * r;
-            pos[i * 3 + 1] = -10 + Math.random() * 90;
-            pos[i * 3 + 2] = Math.sin(a) * r;
+            pos[i * 3] = Math.cos(a) * r; pos[i * 3 + 1] = -10 + Math.random() * 90; pos[i * 3 + 2] = Math.sin(a) * r;
           }
           const geo = new THREE.BufferGeometry();
           geo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
-          wrapper.add(
-            new THREE.Points(
-              geo,
-              new THREE.PointsMaterial({
-                color: cfg.color, size: cfg.size, transparent: true,
-                opacity: cfg.op, blending: THREE.AdditiveBlending,
-                depthWrite: false, sizeAttenuation: true,
-              })
-            )
-          );
+          wrapper.add(new THREE.Points(geo, new THREE.PointsMaterial({ color: cfg.color, size: cfg.size, transparent: true, opacity: cfg.op, blending: THREE.AdditiveBlending, depthWrite: false, sizeAttenuation: true })));
         });
       }
 
       // ── Atmospheric particles ─────────────────────────────────────────────────
       const ATMO = isMobile ? 600 : 2500;
-
       function buildAtmo() {
-        const pos = new Float32Array(ATMO * 3);
-        const vel = new Float32Array(ATMO * 3);
-        const col = new Float32Array(ATMO * 3);
+        const pos = new Float32Array(ATMO * 3), vel = new Float32Array(ATMO * 3), col = new Float32Array(ATMO * 3);
         for (let i = 0; i < ATMO; i++) {
           const r = 1.5 + Math.random() * 30, a = Math.random() * Math.PI * 2;
-          pos[i * 3] = Math.cos(a) * r;
-          pos[i * 3 + 1] = Math.random() * 62;
-          pos[i * 3 + 2] = Math.sin(a) * r;
-          vel[i * 3]     = (Math.random() - 0.5) * 0.003;
-          vel[i * 3 + 1] = 0.001 + Math.random() * 0.004;
-          vel[i * 3 + 2] = (Math.random() - 0.5) * 0.003;
-          const t = Math.random();
-          if (t < 0.55) { col[i * 3] = 0.99; col[i * 3 + 1] = 0.78; col[i * 3 + 2] = 0.35; }
-          else if (t < 0.85) { col[i * 3] = 0.3; col[i * 3 + 1] = 0.91; col[i * 3 + 2] = 0.8; }
-          else { col[i * 3] = 0.85; col[i * 3 + 1] = 0.9; col[i * 3 + 2] = 1.0; }
+          pos[i*3]=Math.cos(a)*r; pos[i*3+1]=Math.random()*62; pos[i*3+2]=Math.sin(a)*r;
+          vel[i*3]=(Math.random()-0.5)*0.003; vel[i*3+1]=0.001+Math.random()*0.004; vel[i*3+2]=(Math.random()-0.5)*0.003;
+          const t=Math.random();
+          if(t<0.55){col[i*3]=0.99;col[i*3+1]=0.78;col[i*3+2]=0.35;}
+          else if(t<0.85){col[i*3]=0.3;col[i*3+1]=0.91;col[i*3+2]=0.8;}
+          else{col[i*3]=0.85;col[i*3+1]=0.9;col[i*3+2]=1.0;}
         }
         const geo = new THREE.BufferGeometry();
         geo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
         geo.setAttribute("color", new THREE.BufferAttribute(col, 3));
-        const pts = new THREE.Points(
-          geo,
-          new THREE.PointsMaterial({
-            size: 0.13, vertexColors: true, transparent: true, opacity: 0.78,
-            blending: THREE.AdditiveBlending, depthWrite: false, sizeAttenuation: true,
-          })
-        );
+        const pts = new THREE.Points(geo, new THREE.PointsMaterial({ size: 0.13, vertexColors: true, transparent: true, opacity: 0.78, blending: THREE.AdditiveBlending, depthWrite: false, sizeAttenuation: true }));
         wrapper.add(pts);
-
-        // Velocity trails
         const tPos = new Float32Array(ATMO * 6);
         const tGeo = new THREE.BufferGeometry();
         tGeo.setAttribute("position", new THREE.BufferAttribute(tPos, 3));
-        const trails = new THREE.LineSegments(
-          tGeo,
-          new THREE.LineBasicMaterial({
-            color: 0xffffff, transparent: true, opacity: 0.38,
-            blending: THREE.AdditiveBlending, depthWrite: false,
-          })
-        );
+        const trails = new THREE.LineSegments(tGeo, new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.38, blending: THREE.AdditiveBlending, depthWrite: false }));
         wrapper.add(trails);
         return { pts, vel, pos, tPos, tGeo, trails };
       }
 
       // ── Stars ─────────────────────────────────────────────────────────────────
       function buildStars() {
-        const n = isMobile ? 3000 : 12000;
-        const p = new Float32Array(n * 3);
-        const c = new Float32Array(n * 3);
+        const n = isMobile ? 3000 : 12000, p = new Float32Array(n*3), c = new Float32Array(n*3);
         for (let i = 0; i < n; i++) {
-          // Mix of far stars and close mid-ground stars that fill the screen
           const far = Math.random() > 0.4;
-          p[i * 3] = (Math.random() - 0.5) * (far ? 800 : 120);
-          p[i * 3 + 1] = far ? Math.random() * 400 + 5 : -20 + Math.random() * 100;
-          p[i * 3 + 2] = (Math.random() - 0.5) * (far ? 800 : 120);
+          p[i*3]=(Math.random()-0.5)*(far?800:120); p[i*3+1]=far?Math.random()*400+5:-20+Math.random()*100; p[i*3+2]=(Math.random()-0.5)*(far?800:120);
           const warm = Math.random() > 0.5;
-          c[i * 3] = warm ? 1.0 : 0.7;
-          c[i * 3 + 1] = warm ? 0.92 : 0.82;
-          c[i * 3 + 2] = warm ? 0.7 : 1.0;
+          c[i*3]=warm?1.0:0.7; c[i*3+1]=warm?0.92:0.82; c[i*3+2]=warm?0.7:1.0;
         }
         const geo = new THREE.BufferGeometry();
         geo.setAttribute("position", new THREE.BufferAttribute(p, 3));
         geo.setAttribute("color", new THREE.BufferAttribute(c, 3));
-        const pts = new THREE.Points(
-          geo,
-          new THREE.PointsMaterial({
-            size: 0.16, vertexColors: true, transparent: true,
-            opacity: 0.65, sizeAttenuation: true,
-          })
-        );
-        scene.add(pts);
-        return pts;
+        const pts = new THREE.Points(geo, new THREE.PointsMaterial({ size: 0.16, vertexColors: true, transparent: true, opacity: 0.65, sizeAttenuation: true }));
+        scene.add(pts); return pts;
       }
 
       // ── City lights ───────────────────────────────────────────────────────────
       function buildCity() {
-        const n = 7000, p = new Float32Array(n * 3), c = new Float32Array(n * 3);
-        for (let i = 0; i < n; i++) {
-          const r = 8 + Math.random() * 200, a = Math.random() * Math.PI * 2;
-          p[i * 3] = Math.cos(a) * r; p[i * 3 + 1] = -0.4 + Math.random() * 0.8; p[i * 3 + 2] = Math.sin(a) * r;
-          const t = Math.random();
-          if (t < 0.3)      { c[i * 3] = 1; c[i * 3 + 1] = 0.82; c[i * 3 + 2] = 0.35; }
-          else if (t < 0.6) { c[i * 3] = 0.7; c[i * 3 + 1] = 0.88; c[i * 3 + 2] = 1; }
-          else               { c[i * 3] = 1; c[i * 3 + 1] = 1; c[i * 3 + 2] = 1; }
+        const n=7000, p=new Float32Array(n*3), c=new Float32Array(n*3);
+        for (let i=0;i<n;i++) {
+          const r=8+Math.random()*200,a=Math.random()*Math.PI*2;
+          p[i*3]=Math.cos(a)*r;p[i*3+1]=-0.4+Math.random()*0.8;p[i*3+2]=Math.sin(a)*r;
+          const t=Math.random();
+          if(t<0.3){c[i*3]=1;c[i*3+1]=0.82;c[i*3+2]=0.35;}
+          else if(t<0.6){c[i*3]=0.7;c[i*3+1]=0.88;c[i*3+2]=1;}
+          else{c[i*3]=1;c[i*3+1]=1;c[i*3+2]=1;}
         }
-        const geo = new THREE.BufferGeometry();
-        geo.setAttribute("position", new THREE.BufferAttribute(p, 3));
-        geo.setAttribute("color", new THREE.BufferAttribute(c, 3));
-        scene.add(new THREE.Points(geo, new THREE.PointsMaterial({
-          size: 0.22, vertexColors: true, transparent: true, opacity: 0.85, sizeAttenuation: true,
-        })));
+        const geo=new THREE.BufferGeometry();
+        geo.setAttribute("position",new THREE.BufferAttribute(p,3));
+        geo.setAttribute("color",new THREE.BufferAttribute(c,3));
+        scene.add(new THREE.Points(geo,new THREE.PointsMaterial({size:0.22,vertexColors:true,transparent:true,opacity:0.85,sizeAttenuation:true})));
       }
 
-      // ── Build ─────────────────────────────────────────────────────────────────
       buildPillar();
       const ribbons = buildRibbons();
       const rings   = buildRings();
@@ -420,96 +247,94 @@ export default function ExperiencePage() {
       const stars = buildStars();
       buildCity();
 
-      // ── Camera path — subtle arc, stays in the dense visual zone ─────────────
+      // ── Camera path ───────────────────────────────────────────────────────────
       const camPath = [
-        { r: 14,  theta: Math.PI * 0.28,  y: 4,  lookY: 14 },
-        { r: 13,  theta: Math.PI * 0.18,  y: 6,  lookY: 16 },
-        { r: 12,  theta: Math.PI * 0.08,  y: 8,  lookY: 18 },
-        { r: 11,  theta: -Math.PI * 0.04, y: 10, lookY: 20 },
-        { r: 10,  theta: -Math.PI * 0.14, y: 12, lookY: 22 },
+        { r: 14, theta: Math.PI*0.28,  y: 4,  lookY: 14 },
+        { r: 13, theta: Math.PI*0.18,  y: 6,  lookY: 16 },
+        { r: 12, theta: Math.PI*0.08,  y: 8,  lookY: 18 },
+        { r: 11, theta: -Math.PI*0.04, y: 10, lookY: 20 },
+        { r: 10, theta: -Math.PI*0.14, y: 12, lookY: 22 },
       ];
-      const camState = { t: 0 };
 
-      // Scroll drives camera + section fades
-      // 4 sections × 1 screen each = 400vh spacer
-      // progress 0→0.25 = hero, 0.25→0.5 = stats, 0.5→0.75 = story, 0.75→1 = cta
-      const s0 = document.getElementById("exp-s0");
-      const s1 = document.getElementById("exp-s1");
-      const s2 = document.getElementById("exp-s2");
-      const s3 = document.getElementById("exp-s3");
+      // ── Scroll lerp ───────────────────────────────────────────────────────────
+      let scrollTarget = 0;
+      let scrollCurrent = 0;
+      const LERP = 0.07;
 
-      const onScroll = () => {
-        const p = window.scrollY / (document.body.scrollHeight - window.innerHeight);
-        camState.t = p * (camPath.length - 1);
+      // ── Animation system — sign reveal + fade per element ─────────────────────
+      type AnimItem = {
+        el: HTMLElement;
+        kind: "sign" | "fade";
+        vs: number; ve: number;        // visible start/end (progress 0-1)
+        xs?: number; xe?: number;      // exit start/end
+      };
+      const animItems: AnimItem[] = [];
 
-        // Section fade logic — crossfade between sections
-        const fade = (el: HTMLElement | null, opacity: number, pointer: boolean, ty = 0) => {
-          if (!el) return;
+      const reg = (id: string, kind: "sign" | "fade", vs: number, ve: number, xs?: number, xe?: number) => {
+        const el = document.getElementById(id);
+        if (el) animItems.push({ el, kind, vs, ve, xs, xe });
+      };
+
+      // Hero — letters stagger up, fade out before stats
+      reg("h-J",   "sign", 0.00, 0.055, 0.22, 0.29);
+      reg("h-D",   "sign", 0.02, 0.075, 0.22, 0.29);
+      reg("h-L",   "sign", 0.04, 0.095, 0.22, 0.29);
+      reg("h-O",   "sign", 0.06, 0.115, 0.22, 0.29);
+      reg("h-sub", "fade", 0.08, 0.14,  0.22, 0.29);
+      reg("h-cue", "fade", 0.12, 0.18,  0.16, 0.24);
+
+      // Stats — each row is its own sign reveal
+      reg("s1-label", "sign", 0.28, 0.34, 0.55, 0.62);
+      reg("s1-r0",    "sign", 0.31, 0.38, 0.55, 0.62);
+      reg("s1-r1",    "sign", 0.35, 0.42, 0.55, 0.62);
+      reg("s1-r2",    "sign", 0.39, 0.46, 0.55, 0.62);
+
+      // Story — lines stagger in
+      reg("s2-label", "sign", 0.60, 0.66, 0.80, 0.86);
+      reg("s2-l0",    "sign", 0.63, 0.70, 0.80, 0.86);
+      reg("s2-l1",    "sign", 0.66, 0.73, 0.80, 0.86);
+      reg("s2-l2",    "sign", 0.69, 0.76, 0.80, 0.86);
+      reg("s2-body",  "fade", 0.71, 0.77, 0.80, 0.86);
+      reg("s2-cta",   "fade", 0.73, 0.79, 0.80, 0.86);
+
+      // Final CTA
+      reg("s3-label", "sign", 0.86, 0.91);
+      reg("s3-l0",    "sign", 0.88, 0.94);
+      reg("s3-l1",    "sign", 0.91, 0.97);
+      reg("s3-btns",  "fade", 0.93, 0.99);
+
+      const eOut = (t: number) => 1 - Math.pow(1 - t, 3);
+      const eIn  = (t: number) => t * t * t;
+      const clamp = (v: number, lo: number, hi: number) => Math.max(lo, Math.min(hi, v));
+
+      const updateElements = (p: number) => {
+        for (const { el, kind, vs, ve, xs, xe } of animItems) {
+          let opacity: number, ty: number;
+          const enterT = clamp((p - vs) / (ve - vs), 0, 1);
+
+          if (xs !== undefined && xe !== undefined && p > xs) {
+            // Exiting
+            const exitT = eIn(clamp((p - xs) / (xe - xs), 0, 1));
+            const entered = eOut(1); // already fully in
+            opacity = (1 - exitT) * (enterT >= 1 ? 1 : eOut(enterT));
+            ty = kind === "sign" ? -exitT * 30 : -exitT * 16;
+          } else {
+            // Entering
+            const e = eOut(enterT);
+            opacity = e;
+            ty = kind === "sign" ? (1 - e) * 108 : (1 - e) * 20;
+          }
+
           el.style.opacity = String(Math.max(0, Math.min(1, opacity)));
-          el.style.transform = `translateY(${ty}px)`;
-          el.style.pointerEvents = pointer ? "all" : "none";
-        };
-
-        // Breakpoints — longer holds, overlap crossfades for cinematic feel
-        if (p < 0.15) {
-          // Hero fully visible
-          fade(s0, 1,   false,  0);
-          fade(s1, 0,   false, 32);
-          fade(s2, 0,   false, 32);
-          fade(s3, 0,   false, 32);
-        } else if (p < 0.28) {
-          // Crossfade hero → stats
-          const t = (p - 0.15) / 0.13;
-          const e = t < 0.5 ? 2*t*t : -1+(4-2*t)*t; // ease in-out quad
-          fade(s0, 1 - e, false, -e * 40);
-          fade(s1, e,     true,  (1 - e) * 32);
-          fade(s2, 0,     false, 32);
-          fade(s3, 0,     false, 32);
-        } else if (p < 0.46) {
-          fade(s0, 0,  false, -40);
-          fade(s1, 1,  true,    0);
-          fade(s2, 0,  false,  32);
-          fade(s3, 0,  false,  32);
-        } else if (p < 0.60) {
-          const t = (p - 0.46) / 0.14;
-          const e = t < 0.5 ? 2*t*t : -1+(4-2*t)*t;
-          fade(s0, 0,     false, -40);
-          fade(s1, 1 - e, false, -e * 40);
-          fade(s2, e,     true,  (1 - e) * 32);
-          fade(s3, 0,     false,  32);
-        } else if (p < 0.76) {
-          fade(s0, 0,  false, -40);
-          fade(s1, 0,  false, -40);
-          fade(s2, 1,  true,    0);
-          fade(s3, 0,  false,  32);
-        } else if (p < 0.90) {
-          const t = (p - 0.76) / 0.14;
-          const e = t < 0.5 ? 2*t*t : -1+(4-2*t)*t;
-          fade(s0, 0,     false, -40);
-          fade(s1, 0,     false, -40);
-          fade(s2, 1 - e, false, -e * 40);
-          fade(s3, e,     true,  (1 - e) * 32);
-        } else {
-          fade(s0, 0, false, -40);
-          fade(s1, 0, false, -40);
-          fade(s2, 0, false, -40);
-          fade(s3, 1, true,    0);
+          el.style.transform = `translateY(${ty.toFixed(2)}%)`;
         }
       };
 
-      window.addEventListener("scroll", onScroll, { passive: true });
-      onScroll(); // init
-
-      // Hero reveal on load
-      gsap.to(".exp-hero-line", {
-        opacity: 1, y: 0, duration: 1.5, stagger: 0.12,
-        ease: "power3.out", delay: 0.4,
-      });
-      gsap.to(".exp-hero-sub", { opacity: 1, duration: 1.2, delay: 1.1 });
-      gsap.to(".exp-scroll-cue", { opacity: 1, duration: 1, delay: 1.8 });
+      // Init — all hidden
+      updateElements(0);
 
       // ── Mouse ─────────────────────────────────────────────────────────────────
-      let normX = 0, normY = 0, smoothX = 0, smoothY = 0;
+      let normX = 0, normY = 0, smoothX = 0, smoothY = 0, driftT = 0;
       const onMouse = (e: MouseEvent) => {
         normX = (e.clientX / window.innerWidth - 0.5) * 2;
         normY = (e.clientY / window.innerHeight - 0.5) * 2;
@@ -523,27 +348,17 @@ export default function ExperiencePage() {
 
       // ── Camera update ─────────────────────────────────────────────────────────
       const _look = new THREE.Vector3();
-      let driftT = 0;
-
       function updateCamera(t: number) {
         driftT += 0.0004;
-        const dX = Math.sin(driftT) * 0.35;
-        const dY = Math.sin(driftT * 0.6) * 0.18;
-        const dZ = Math.cos(driftT * 0.45) * 0.22;
-
-        const i = Math.min(Math.floor(t), camPath.length - 2);
-        const f = t - i;
+        const dX = Math.sin(driftT) * 0.35, dY = Math.sin(driftT*0.6)*0.18, dZ = Math.cos(driftT*0.45)*0.22;
+        const i = Math.min(Math.floor(t), camPath.length - 2), f = t - i;
         const a = camPath[i], b = camPath[i + 1];
-        const rI     = a.r     + (b.r     - a.r    ) * f;
-        const thetaI = a.theta + (b.theta - a.theta) * f;
-        const yI     = a.y     + (b.y     - a.y    ) * f;
-        const lookYI = a.lookY + (b.lookY - a.lookY) * f;
-
-        camera.position.x += ((rI * Math.cos(thetaI)) + smoothX * 2.2 + dX - camera.position.x) * 0.04;
-        camera.position.y += (yI - smoothY * 1.3 + dY - camera.position.y) * 0.04;
-        camera.position.z += ((rI * Math.sin(thetaI)) + dZ - camera.position.z) * 0.04;
-
-        _look.set(smoothX * 0.8, lookYI - smoothY * 0.6, 0);
+        const rI = a.r + (b.r - a.r) * f, thetaI = a.theta + (b.theta - a.theta) * f;
+        const yI = a.y + (b.y - a.y) * f, lookYI = a.lookY + (b.lookY - a.lookY) * f;
+        camera.position.x += ((rI*Math.cos(thetaI)) + smoothX*2.2 + dX - camera.position.x) * 0.04;
+        camera.position.y += (yI - smoothY*1.3 + dY - camera.position.y) * 0.04;
+        camera.position.z += ((rI*Math.sin(thetaI)) + dZ - camera.position.z) * 0.04;
+        _look.set(smoothX*0.8, lookYI - smoothY*0.6, 0);
         camera.lookAt(_look);
       }
 
@@ -558,107 +373,67 @@ export default function ExperiencePage() {
 
       // ── Render loop ───────────────────────────────────────────────────────────
       let frame = 0;
-
       const animate = () => {
         if (destroyed) return;
         rafId = requestAnimationFrame(animate);
         frame++;
 
+        // Scroll lerp — this is the heartbeat of the whole system
+        scrollTarget = window.scrollY;
+        scrollCurrent += (scrollTarget - scrollCurrent) * LERP;
+        const scrollRange = Math.max(1, document.body.scrollHeight - window.innerHeight);
+        const progress = clamp(scrollCurrent / scrollRange, 0, 1);
+
+        // Drive camera + elements from same progress value
+        updateCamera(progress * (camPath.length - 1));
+        updateElements(progress);
+
         smoothX += (normX - smoothX) * 0.048;
         smoothY += (normY - smoothY) * 0.048;
 
-        updateCamera(camState.t);
+        wrapper.rotation.x += ( smoothY*0.05 - wrapper.rotation.x) * 0.04;
+        wrapper.rotation.z += (-smoothX*0.05 - wrapper.rotation.z) * 0.04;
 
-        // Scene tilt
-        wrapper.rotation.x += ( smoothY * 0.05 - wrapper.rotation.x) * 0.04;
-        wrapper.rotation.z += (-smoothX * 0.05 - wrapper.rotation.z) * 0.04;
+        ribbons.forEach(r => { r.rotation.y += r.userData.speed; });
+        rings.forEach(r   => { r.rotation.z += r.userData.speed; });
 
-        // Spin ribbons & rings
-        ribbons.forEach((r) => { r.rotation.y += r.userData.speed; });
-        rings.forEach((r)   => { r.rotation.z += r.userData.speed; });
-
-        // Pulse rings
-        pulses.forEach((ring) => {
+        pulses.forEach(ring => {
           const ph = (frame * 0.007 + ring.userData.phase) % 1;
           const sc = 2 + ph * 22;
           ring.scale.set(sc, sc, sc);
           (ring.material as THREE.MeshBasicMaterial).opacity = Math.pow(1 - ph, 1.5) * 0.55;
         });
 
-        // Orbit light
-        orbitLight.position.set(
-          Math.cos(frame * 0.008) * 12,
-          18 + Math.sin(frame * 0.005) * 14,
-          Math.sin(frame * 0.008) * 12
-        );
+        orbitLight.position.set(Math.cos(frame*0.008)*12, 18+Math.sin(frame*0.005)*14, Math.sin(frame*0.008)*12);
 
-        // ── Particle physics ────────────────────────────────────────────────────
-        const aPos = atmo.pos, aVel = atmo.vel, tPos = atmo.tPos;
-        const mwx = smoothX * 10, mwz = smoothY * 6;
-
-        for (let i = 0; i < ATMO; i++) {
-          aVel[i * 3]     *= 0.94;
-          aVel[i * 3 + 1] *= 0.97;
-          aVel[i * 3 + 2] *= 0.94;
-
-          aVel[i * 3 + 1] += 0.0018;
-          if (aVel[i * 3 + 1] > 0.032) aVel[i * 3 + 1] = 0.032;
-
-          aPos[i * 3]     += aVel[i * 3];
-          aPos[i * 3 + 1] += aVel[i * 3 + 1];
-          aPos[i * 3 + 2] += aVel[i * 3 + 2];
-
-          aPos[i * 3]     *= 0.9999;
-          aPos[i * 3 + 2] *= 0.9999;
-
-          // Mouse repulsion — big radius, aggressive force
-          const dx = aPos[i * 3] - mwx, dz = aPos[i * 3 + 2] - mwz;
-          const d2 = dx * dx + dz * dz;
-          if (d2 < 120 && d2 > 0.01) {
-            const d = Math.sqrt(d2);
-            const f = ((11 - d) / 11) * 0.22;
-            aVel[i * 3]     += (dx / d) * f;
-            aVel[i * 3 + 2] += (dz / d) * f;
-          }
-
-          if (aPos[i * 3 + 1] > 64) {
-            aPos[i * 3 + 1] = -1 + Math.random();
-            aPos[i * 3]     = (Math.random() - 0.5) * 60;
-            aPos[i * 3 + 2] = (Math.random() - 0.5) * 60;
-            aVel[i * 3]     = (Math.random() - 0.5) * 0.003;
-            aVel[i * 3 + 1] = 0.001 + Math.random() * 0.004;
-            aVel[i * 3 + 2] = (Math.random() - 0.5) * 0.003;
-          }
-
-          // Trail
-          const spd = Math.sqrt(
-            aVel[i * 3] * aVel[i * 3] +
-            aVel[i * 3 + 1] * aVel[i * 3 + 1] +
-            aVel[i * 3 + 2] * aVel[i * 3 + 2]
-          );
-          const tLen = spd * 42;
-          tPos[i * 6]     = aPos[i * 3];
-          tPos[i * 6 + 1] = aPos[i * 3 + 1];
-          tPos[i * 6 + 2] = aPos[i * 3 + 2];
-          tPos[i * 6 + 3] = aPos[i * 3]     - (aVel[i * 3]     / spd) * (tLen || 0);
-          tPos[i * 6 + 4] = aPos[i * 3 + 1] - (aVel[i * 3 + 1] / spd) * (tLen || 0);
-          tPos[i * 6 + 5] = aPos[i * 3 + 2] - (aVel[i * 3 + 2] / spd) * (tLen || 0);
+        const aPos=atmo.pos, aVel=atmo.vel, tPos=atmo.tPos;
+        const mwx=smoothX*10, mwz=smoothY*6;
+        for (let i=0;i<ATMO;i++) {
+          aVel[i*3]*=0.94; aVel[i*3+1]*=0.97; aVel[i*3+2]*=0.94;
+          aVel[i*3+1]+=0.0018;
+          if(aVel[i*3+1]>0.032)aVel[i*3+1]=0.032;
+          aPos[i*3]+=aVel[i*3]; aPos[i*3+1]+=aVel[i*3+1]; aPos[i*3+2]+=aVel[i*3+2];
+          aPos[i*3]*=0.9999; aPos[i*3+2]*=0.9999;
+          const dx=aPos[i*3]-mwx, dz=aPos[i*3+2]-mwz, d2=dx*dx+dz*dz;
+          if(d2<120&&d2>0.01){const d=Math.sqrt(d2),f=((11-d)/11)*0.22;aVel[i*3]+=(dx/d)*f;aVel[i*3+2]+=(dz/d)*f;}
+          if(aPos[i*3+1]>64){aPos[i*3+1]=-1+Math.random();aPos[i*3]=(Math.random()-0.5)*60;aPos[i*3+2]=(Math.random()-0.5)*60;aVel[i*3]=(Math.random()-0.5)*0.003;aVel[i*3+1]=0.001+Math.random()*0.004;aVel[i*3+2]=(Math.random()-0.5)*0.003;}
+          const spd=Math.sqrt(aVel[i*3]*aVel[i*3]+aVel[i*3+1]*aVel[i*3+1]+aVel[i*3+2]*aVel[i*3+2]);
+          const tLen=spd*42;
+          tPos[i*6]=aPos[i*3]; tPos[i*6+1]=aPos[i*3+1]; tPos[i*6+2]=aPos[i*3+2];
+          tPos[i*6+3]=aPos[i*3]-(aVel[i*3]/spd)*(tLen||0);
+          tPos[i*6+4]=aPos[i*3+1]-(aVel[i*3+1]/spd)*(tLen||0);
+          tPos[i*6+5]=aPos[i*3+2]-(aVel[i*3+2]/spd)*(tLen||0);
         }
-
         atmo.pts.geometry.attributes.position.needsUpdate = true;
         atmo.tGeo.attributes.position.needsUpdate = true;
+        const cursorSpd = Math.sqrt(smoothX*smoothX+smoothY*smoothY);
+        (atmo.trails.material as THREE.LineBasicMaterial).opacity = 0.22 + cursorSpd*0.8;
 
-        const cursorSpd = Math.sqrt(smoothX * smoothX + smoothY * smoothY);
-        (atmo.trails.material as THREE.LineBasicMaterial).opacity = 0.22 + cursorSpd * 0.8;
-
-        // Pulse lights
-        goldA.intensity  = 10 + Math.sin(frame * 0.02)  * 5;
-        goldB.intensity  = 7  + Math.cos(frame * 0.015) * 3.5;
-        apex.intensity   = 16 + Math.sin(frame * 0.05)  * 9;
-        tealCore.intensity = 5 + Math.sin(frame * 0.03)  * 2.5;
-
-        bloom.strength = (isMobile ? 1.0 : 2.0) + Math.sin(frame * 0.01) * 0.2;
-
+        goldA.intensity  = 10 + Math.sin(frame*0.02)*5;
+        goldB.intensity  = 7  + Math.cos(frame*0.015)*3.5;
+        apex.intensity   = 16 + Math.sin(frame*0.05)*9;
+        tealCore.intensity = 5 + Math.sin(frame*0.03)*2.5;
+        bloom.strength = (isMobile ? 1.0 : 2.0) + Math.sin(frame*0.01)*0.2;
         stars.rotation.y = frame * 0.00004;
 
         composer.render();
@@ -670,15 +445,12 @@ export default function ExperiencePage() {
         window.removeEventListener("mousemove", onMouse);
         window.removeEventListener("touchmove", onTouch);
         window.removeEventListener("resize", onResize);
-        window.removeEventListener("scroll", onScroll);
-        lenis.destroy();
         renderer.dispose();
         composer.dispose();
       };
     };
 
     const cleanup = init();
-
     return () => {
       destroyed = true;
       cancelAnimationFrame(rafId);
@@ -686,320 +458,175 @@ export default function ExperiencePage() {
     };
   }, []);
 
+  // ── JSX — sign-reveal markup ──────────────────────────────────────────────
+  // Each animatable element is the INNER node. Wrappers have overflow:hidden.
+  const signWrap: React.CSSProperties = { overflow: "hidden", display: "block" };
+  const signInner: React.CSSProperties = { display: "block", willChange: "transform, opacity" };
+
   return (
     <>
-      {/* Canvas — fixed behind everything */}
       <canvas
         ref={canvasRef}
-        id="experience-canvas"
-        style={{
-          position: "fixed",
-          inset: 0,
-          zIndex: 0,
-          width: "100vw",
-          height: "100vh",
-          display: "block",
-        }}
+        style={{ position:"fixed", inset:0, zIndex:0, width:"100vw", height:"100vh", display:"block" }}
       />
 
-      {/* No vignette — full immersive scene everywhere */}
-
-      {/* Back button */}
+      {/* Back */}
       <Link
         href="/"
-        style={{
-          position: "fixed",
-          top: "1.8rem",
-          left: "2rem",
-          zIndex: 100,
-          fontFamily: "'Space Mono', monospace",
-          fontSize: "0.62rem",
-          letterSpacing: "0.2em",
-          color: "rgba(221,232,240,0.5)",
-          transition: "color 0.2s",
-          display: "flex",
-          alignItems: "center",
-          gap: "0.5rem",
-        }}
-        onMouseEnter={(e) => (e.currentTarget.style.color = "rgba(221,232,240,0.9)")}
-        onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(221,232,240,0.5)")}
+        style={{ position:"fixed", top:"1.8rem", left:"2rem", zIndex:100, fontFamily:"'Space Mono',monospace", fontSize:"0.62rem", letterSpacing:"0.2em", color:"rgba(221,232,240,0.5)", transition:"color 0.2s", display:"flex", alignItems:"center", gap:"0.5rem" }}
+        onMouseEnter={e => (e.currentTarget.style.color="rgba(221,232,240,0.9)")}
+        onMouseLeave={e => (e.currentTarget.style.color="rgba(221,232,240,0.5)")}
       >
         ← JDLO
       </Link>
 
-      {/* Invisible spacer — creates scroll height (4 screens) */}
-      <div id="exp-scroll" style={{ height: "400vh", position: "relative" }} />
+      {/* Spacer — 700vh gives lots of room between beats */}
+      <div style={{ height:"700vh", position:"relative", pointerEvents:"none" }} />
 
-      {/* ── Section 0: Hero — position fixed, always behind canvas ── */}
-      <section style={{
-          position: "fixed", inset: 0, zIndex: 10,
-          display: "flex", flexDirection: "column",
-          justifyContent: "flex-end",
-          padding: "0 0 8vh 7vw",
-          pointerEvents: "none",
-        }} id="exp-s0">
+      {/* ── Hero ── */}
+      <section style={{ position:"fixed", inset:0, zIndex:10, display:"flex", flexDirection:"column", justifyContent:"flex-end", padding:"0 0 10vh 7vw", pointerEvents:"none" }}>
 
-          <div style={{ lineHeight: 0.82, marginBottom: "2.5rem" }}>
-            {["JDLO"].map((line, i) => (
+        {/* JDLO — each letter is its own sign */}
+        <div style={{ display:"flex", lineHeight:0.85, marginBottom:"2.5rem", gap:"0.01em" }}>
+          {(["J","D","L","O"] as const).map((char) => (
+            <div key={char} style={signWrap}>
               <span
-                key={i}
-                className="exp-hero-line"
+                id={`h-${char}`}
                 style={{
-                  display: "block",
-                  fontFamily: "'Space Grotesk', sans-serif",
-                  fontSize: "clamp(6rem, 22vw, 20rem)",
-                  fontWeight: 300,
-                  letterSpacing: "-0.04em",
-                  color: "#dde8f0",
-                  opacity: 0,
-                  transform: "translateY(50px)",
+                  ...signInner,
+                  fontFamily:"'Space Grotesk',sans-serif",
+                  fontSize:"clamp(5.5rem,21vw,18rem)",
+                  fontWeight:300,
+                  letterSpacing:"-0.04em",
+                  color:"#dde8f0",
+                  opacity:0,
                 }}
               >
-                {line}
+                {char}
               </span>
-            ))}
-          </div>
-          <p
-            className="exp-hero-sub"
-            style={{
-              fontFamily: "'Space Mono', monospace",
-              fontSize: "0.72rem",
-              letterSpacing: "0.32em",
-              color: "#C9A84C",
-              opacity: 0,
-              marginBottom: "3rem",
-            }}
-          >
-            SYSTEMS · SITES · AI · EXPERIENCES
-          </p>
-          {/* Scroll cue */}
-          <div
-            className="exp-scroll-cue"
-            style={{
-              position: "absolute",
-              bottom: "6vh",
-              left: "50%",
-              transform: "translateX(-50%)",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              gap: "0.8rem",
-              opacity: 0,
-              pointerEvents: "none",
-            }}
-          >
-            <span style={{
-              fontFamily: "'Space Mono', monospace",
-              fontSize: "0.62rem",
-              letterSpacing: "0.28em",
-              color: "#C9A84C",
-              animation: "xblink 2.5s ease-in-out infinite",
-            }}>
-              SCROLL
-            </span>
-            <div style={{
-              width: 1,
-              height: 44,
-              background: "linear-gradient(to bottom, #C9A84C, transparent)",
-              animation: "xdrip 2.5s ease-in-out infinite",
-            }} />
-          </div>
-        </section>
+            </div>
+          ))}
+        </div>
 
-      {/* ── Section 1: Stats ── */}
-      <section style={{ position: "fixed", inset: 0, zIndex: 10, display: "flex", alignItems: "center", padding: "0 0 0 8vw", opacity: 0, pointerEvents: "none" }} id="exp-s1">
-          <div className="exp-reveal" style={{ maxWidth: 520 }}>
-            <p className="exp-item" style={{
-              fontFamily: "'Space Mono', monospace",
-              fontSize: "0.62rem",
-              letterSpacing: "0.3em",
-              color: "#C9A84C",
-              marginBottom: "3rem",
-            }}>
+        <div style={signWrap}>
+          <span id="h-sub" style={{ ...signInner, display:"block", fontFamily:"'Space Mono',monospace", fontSize:"0.72rem", letterSpacing:"0.32em", color:"#C9A84C", opacity:0, marginBottom:"3rem" }}>
+            SYSTEMS · SITES · AI · EXPERIENCES
+          </span>
+        </div>
+
+        {/* Scroll cue */}
+        <div id="h-cue" style={{ position:"absolute", bottom:"6vh", left:"50%", transform:"translateX(-50%)", display:"flex", flexDirection:"column", alignItems:"center", gap:"0.8rem", opacity:0, pointerEvents:"none", willChange:"opacity,transform" }}>
+          <span style={{ fontFamily:"'Space Mono',monospace", fontSize:"0.62rem", letterSpacing:"0.28em", color:"#C9A84C", animation:"xblink 2.5s ease-in-out infinite" }}>SCROLL</span>
+          <div style={{ width:1, height:44, background:"linear-gradient(to bottom,#C9A84C,transparent)", animation:"xdrip 2.5s ease-in-out infinite" }} />
+        </div>
+      </section>
+
+      {/* ── Stats ── */}
+      <section style={{ position:"fixed", inset:0, zIndex:10, display:"flex", alignItems:"center", padding:"0 0 0 8vw", pointerEvents:"none" }}>
+        <div style={{ maxWidth:540 }}>
+
+          <div style={signWrap}>
+            <span id="s1-label" style={{ ...signInner, fontFamily:"'Space Mono',monospace", fontSize:"0.62rem", letterSpacing:"0.3em", color:"#C9A84C", opacity:0, display:"block", marginBottom:"3rem" }}>
               01 — BY THE NUMBERS
-            </p>
-            {[
-              { n: "25+",    label: "Builds shipped" },
-              { n: "$200K+", label: "Revenue generated for clients" },
-              { n: "0",      label: "Templates ever used" },
-            ].map(({ n, label }) => (
+            </span>
+          </div>
+
+          {[
+            { id:"s1-r0", n:"25+",    label:"Builds shipped" },
+            { id:"s1-r1", n:"$200K+", label:"Revenue generated for clients" },
+            { id:"s1-r2", n:"0",      label:"Templates ever used" },
+          ].map(({ id, n, label }) => (
+            <div key={id} style={signWrap}>
               <div
-                key={n}
-                className="exp-item"
-                style={{
-                  borderTop: "1px solid rgba(221,232,240,0.08)",
-                  padding: "2rem 0",
-                  display: "flex",
-                  alignItems: "baseline",
-                  gap: "2rem",
-                }}
+                id={id}
+                style={{ ...signInner, borderTop:"1px solid rgba(221,232,240,0.08)", padding:"2rem 0", display:"flex", alignItems:"baseline", gap:"2rem", opacity:0 }}
               >
-                <span style={{
-                  fontFamily: "'Space Mono', monospace",
-                  fontSize: "clamp(2.5rem, 7vw, 5.5rem)",
-                  fontWeight: 700,
-                  color: "rgba(221,232,240,0.13)",
-                  letterSpacing: "-0.03em",
-                  lineHeight: 1,
-                  minWidth: "7rem",
-                }}>
+                <span style={{ fontFamily:"'Space Mono',monospace", fontSize:"clamp(2.5rem,7vw,5.5rem)", fontWeight:700, color:"rgba(221,232,240,0.13)", letterSpacing:"-0.03em", lineHeight:1, minWidth:"7rem" }}>
                   {n}
                 </span>
-                <span style={{
-                  fontFamily: "'Space Grotesk', sans-serif",
-                  fontSize: "clamp(1rem, 2vw, 1.4rem)",
-                  fontWeight: 300,
-                  color: "rgba(221,232,240,0.7)",
-                  letterSpacing: "-0.01em",
-                }}>
+                <span style={{ fontFamily:"'Space Grotesk',sans-serif", fontSize:"clamp(1rem,2vw,1.4rem)", fontWeight:300, color:"rgba(221,232,240,0.7)", letterSpacing:"-0.01em" }}>
                   {label}
                 </span>
               </div>
-            ))}
-          </div>
-        </section>
-
-      {/* ── Section 2: Story ── */}
-      <section style={{ position: "fixed", inset: 0, zIndex: 10, display: "flex", alignItems: "center", justifyContent: "flex-end", padding: "0 8vw 0 0", opacity: 0, pointerEvents: "none" }} id="exp-s2">
-          <div className="exp-reveal" style={{ maxWidth: 480 }}>
-            <p className="exp-item" style={{
-              fontFamily: "'Space Mono', monospace",
-              fontSize: "0.62rem",
-              letterSpacing: "0.3em",
-              color: "#C9A84C",
-              marginBottom: "3rem",
-            }}>
-              02 — WHO I AM
-            </p>
-            <h2 className="exp-item" style={{
-              fontFamily: "'Space Grotesk', sans-serif",
-              fontSize: "clamp(2rem, 4.5vw, 3.6rem)",
-              fontWeight: 300,
-              letterSpacing: "-0.03em",
-              lineHeight: 1.05,
-              color: "#dde8f0",
-              marginBottom: "2rem",
-            }}>
-              Self-taught.<br />Self-made.<br />No shortcuts.
-            </h2>
-            <p className="exp-item" style={{
-              fontFamily: "'Space Grotesk', sans-serif",
-              fontSize: "0.9rem",
-              lineHeight: 1.85,
-              color: "rgba(221,232,240,0.45)",
-              fontWeight: 300,
-              marginBottom: "2.5rem",
-            }}>
-              Learned the entire modern stack in under a year.
-              Built casinos, enterprise tools, AI systems, and games
-              for businesses from local shops to six-figure operations.
-              I move fast, build clean, and don&apos;t use templates.
-            </p>
-            <a
-              href="/work"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "0.6rem",
-                fontFamily: "'Space Mono', monospace",
-                fontSize: "0.65rem",
-                letterSpacing: "0.2em",
-                color: "#C9A84C",
-                pointerEvents: "all",
-              }}
-            >
-              SEE WHAT I&apos;VE BUILT <span>→</span>
-            </a>
-          </div>
-        </section>
-
-      {/* ── Section 3: CTA ── */}
-      <section style={{ position: "fixed", inset: 0, zIndex: 10, display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", textAlign: "center", padding: "0 6vw", opacity: 0, pointerEvents: "none" }} id="exp-s3">
-          <div className="exp-reveal">
-            <p className="exp-item" style={{
-              fontFamily: "'Space Mono', monospace",
-              fontSize: "0.62rem",
-              letterSpacing: "0.3em",
-              color: "#C9A84C",
-              marginBottom: "2rem",
-            }}>
-              03 — LET&apos;S BUILD
-            </p>
-            <h2
-              className="exp-item"
-              style={{
-                fontFamily: "'Space Grotesk', sans-serif",
-                fontSize: "clamp(3rem, 8vw, 7rem)",
-                fontWeight: 300,
-                letterSpacing: "-0.04em",
-                lineHeight: 0.9,
-                color: "#dde8f0",
-                marginBottom: "1.5rem",
-              }}
-            >
-              You bring<br />the vision.
-            </h2>
-            <p className="exp-item" style={{
-              fontFamily: "'Space Grotesk', sans-serif",
-              fontSize: "clamp(1rem, 2vw, 1.4rem)",
-              fontWeight: 300,
-              color: "rgba(221,232,240,0.35)",
-              letterSpacing: "-0.01em",
-              marginBottom: "3rem",
-            }}>
-              I&apos;ll build the rest.
-            </p>
-            <div className="exp-item" style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
-              <a
-                href="/contact"
-                style={{
-                  fontFamily: "'Space Mono', monospace",
-                  fontSize: "0.65rem",
-                  letterSpacing: "0.2em",
-                  padding: "0.9rem 2.4rem",
-                  background: "#C9A84C",
-                  border: "1px solid #C9A84C",
-                  borderRadius: "100px",
-                  color: "#060608",
-                  fontWeight: 700,
-                  pointerEvents: "all",
-                }}
-              >
-                START A PROJECT
-              </a>
-              <a
-                href="https://instagram.com/jdlo"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  fontFamily: "'Space Mono', monospace",
-                  fontSize: "0.65rem",
-                  letterSpacing: "0.2em",
-                  padding: "0.9rem 2.4rem",
-                  border: "1px solid rgba(221,232,240,0.2)",
-                  borderRadius: "100px",
-                  color: "rgba(221,232,240,0.7)",
-                  pointerEvents: "all",
-                }}
-              >
-                DM @JDLO
-              </a>
             </div>
-          </div>
+          ))}
+        </div>
       </section>
 
-      {/* Google Fonts + keyframes */}
+      {/* ── Story ── */}
+      <section style={{ position:"fixed", inset:0, zIndex:10, display:"flex", alignItems:"center", justifyContent:"flex-end", padding:"0 8vw 0 0", pointerEvents:"none" }}>
+        <div style={{ maxWidth:480 }}>
+
+          <div style={signWrap}>
+            <span id="s2-label" style={{ ...signInner, display:"block", fontFamily:"'Space Mono',monospace", fontSize:"0.62rem", letterSpacing:"0.3em", color:"#C9A84C", opacity:0, marginBottom:"3rem" }}>
+              02 — WHO I AM
+            </span>
+          </div>
+
+          {[
+            { id:"s2-l0", text:"Self-taught." },
+            { id:"s2-l1", text:"Self-made." },
+            { id:"s2-l2", text:"No shortcuts." },
+          ].map(({ id, text }) => (
+            <div key={id} style={{ ...signWrap, marginBottom:"0.1em" }}>
+              <span id={id} style={{ ...signInner, fontFamily:"'Space Grotesk',sans-serif", fontSize:"clamp(2rem,4.5vw,3.6rem)", fontWeight:300, letterSpacing:"-0.03em", lineHeight:1.05, color:"#dde8f0", opacity:0, display:"block" }}>
+                {text}
+              </span>
+            </div>
+          ))}
+
+          <p id="s2-body" style={{ ...signInner, fontFamily:"'Space Grotesk',sans-serif", fontSize:"0.9rem", lineHeight:1.85, color:"rgba(221,232,240,0.45)", fontWeight:300, marginTop:"2rem", marginBottom:"2.5rem", opacity:0 }}>
+            Learned the entire modern stack in under a year.
+            Built casinos, enterprise tools, AI systems, and games
+            for businesses from local shops to six-figure operations.
+            I move fast, build clean, and don&apos;t use templates.
+          </p>
+
+          <a id="s2-cta" href="/work" style={{ ...signInner, display:"inline-flex", alignItems:"center", gap:"0.6rem", fontFamily:"'Space Mono',monospace", fontSize:"0.65rem", letterSpacing:"0.2em", color:"#C9A84C", opacity:0, pointerEvents:"all" }}>
+            SEE WHAT I&apos;VE BUILT <span>→</span>
+          </a>
+        </div>
+      </section>
+
+      {/* ── Final CTA ── */}
+      <section style={{ position:"fixed", inset:0, zIndex:10, display:"flex", alignItems:"center", justifyContent:"center", flexDirection:"column", textAlign:"center", padding:"0 6vw", pointerEvents:"none" }}>
+
+        <div style={signWrap}>
+          <span id="s3-label" style={{ ...signInner, display:"block", fontFamily:"'Space Mono',monospace", fontSize:"0.62rem", letterSpacing:"0.3em", color:"#C9A84C", opacity:0, marginBottom:"2rem" }}>
+            03 — LET&apos;S BUILD
+          </span>
+        </div>
+
+        <div style={signWrap}>
+          <span id="s3-l0" style={{ ...signInner, display:"block", fontFamily:"'Space Grotesk',sans-serif", fontSize:"clamp(3rem,8vw,7rem)", fontWeight:300, letterSpacing:"-0.04em", lineHeight:0.9, color:"#dde8f0", opacity:0 }}>
+            You bring
+          </span>
+        </div>
+        <div style={{ ...signWrap, marginBottom:"1.5rem" }}>
+          <span id="s3-l1" style={{ ...signInner, display:"block", fontFamily:"'Space Grotesk',sans-serif", fontSize:"clamp(3rem,8vw,7rem)", fontWeight:300, letterSpacing:"-0.04em", lineHeight:0.9, color:"rgba(221,232,240,0.35)", opacity:0 }}>
+            the vision.
+          </span>
+        </div>
+
+        <div id="s3-btns" style={{ ...signInner, display:"flex", gap:"1rem", justifyContent:"center", flexWrap:"wrap", opacity:0, pointerEvents:"all" }}>
+          <a href="/contact" style={{ fontFamily:"'Space Mono',monospace", fontSize:"0.65rem", letterSpacing:"0.2em", padding:"0.9rem 2.4rem", background:"#C9A84C", border:"1px solid #C9A84C", borderRadius:"100px", color:"#060608", fontWeight:700 }}>
+            START A PROJECT
+          </a>
+          <a href="https://instagram.com/jdlo" target="_blank" rel="noopener noreferrer" style={{ fontFamily:"'Space Mono',monospace", fontSize:"0.65rem", letterSpacing:"0.2em", padding:"0.9rem 2.4rem", border:"1px solid rgba(221,232,240,0.2)", borderRadius:"100px", color:"rgba(221,232,240,0.7)" }}>
+            DM @JDLO
+          </a>
+        </div>
+      </section>
+
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Space+Grotesk:wght@300;400;500&display=swap');
-        @keyframes xblink { 0%,100% { opacity:0.3; } 50% { opacity:1; } }
+        @keyframes xblink { 0%,100%{opacity:0.3;}50%{opacity:1;} }
         @keyframes xdrip {
-          0%   { transform:scaleY(0); transform-origin:top;    opacity:0; }
-          30%  { transform:scaleY(1); transform-origin:top;    opacity:1; }
-          70%  { transform:scaleY(1); transform-origin:bottom; opacity:1; }
-          100% { transform:scaleY(0); transform-origin:bottom; opacity:0; }
+          0%  {transform:scaleY(0);transform-origin:top;opacity:0;}
+          30% {transform:scaleY(1);transform-origin:top;opacity:1;}
+          70% {transform:scaleY(1);transform-origin:bottom;opacity:1;}
+          100%{transform:scaleY(0);transform-origin:bottom;opacity:0;}
         }
-        .exp-hero-line { transition: opacity 0s, transform 0s; }
-        .exp-hero-line { transition: opacity 0s, transform 0s; }
       `}</style>
     </>
   );
