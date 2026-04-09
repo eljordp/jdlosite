@@ -48,10 +48,11 @@ interface Project {
 
 const PROJECTS: Project[] = [
   // ── Flagship (most impressive) ──
-  { name: "Burj Khalifa", slug: "burj-khalifa", url: "https://burj-khalifa-site.vercel.app", categories: ["Website", "3D"], headline: "Immersive 3D tourism experience — WebGL, bloom post-processing, scroll-driven orbital camera", stats: ["Three.js WebGL", "Bloom + chromatic aberration", "Live demo →"] },
   { name: "HOA Dispute Bot", slug: "hoa-dispute", categories: ["AI", "Tool"], headline: "AI desktop app that coaches homeowners through HOA disputes in real time", stats: ["Electron app", "AI overlay", "Real-time guidance"] },
+  { name: "Joon11ee", slug: "joon11ee", categories: ["Website", "E-commerce"], headline: "Luxury exotic rental platform for high-end vehicles and experiences", stats: ["Luxury rentals", "Custom platform", "Premium design"] },
   { name: "Quanta", slug: "quanta", categories: ["Casino"], headline: "Full online sweepstakes casino from scratch", stats: ["6 game types", "Real-time multiplayer", "$50K+ platform value"] },
   { name: "Club Bot / Velvet", slug: "club-bot", categories: ["AI", "SaaS"], headline: "AI nightclub promoter platform, custom product turned SaaS", stats: ["500+ guests/week", "30hrs/wk saved", "SaaS platform"] },
+  { name: "Burj Khalifa", slug: "burj-khalifa", url: "https://burj-khalifa-site.vercel.app", categories: ["Website", "3D"], headline: "Immersive 3D tourism experience — WebGL, bloom post-processing, scroll-driven orbital camera", stats: ["Three.js WebGL", "Bloom + chromatic aberration", "Live demo →"] },
   { name: "Best Odds", slug: "best-odds", categories: ["Pitch"], headline: "Interactive presentation for casino odds and strategy", stats: ["Data-driven", "Visual slides", "Animated"] },
   // ── Enterprise ──
   { name: "Pomaika\u2018i Co", slug: "pomaikai", categories: ["Website", "AI"], headline: "Centralized operations for a six-figure consultancy", stats: ["$5K project", "5+ tools replaced", "20hrs/wk saved"] },
@@ -76,7 +77,6 @@ const PROJECTS: Project[] = [
   { name: "OlyLife Ohana", slug: "olylife-ohana", categories: ["Website", "E-commerce"], headline: "Health & wellness brand site for PEMF and Terahertz therapy devices", stats: ["50K+ customers", "E-commerce", "Custom design"] },
   // ── SaaS / Tools ──
   { name: "JDLO CRM", slug: "jdlo-crm", categories: ["SaaS", "Tool"], headline: "Custom CRM for managing clients, leads, and pipeline", stats: ["Full CRM", "Pipeline mgmt", "Custom built"] },
-  { name: "Joon11ee", slug: "joon11ee", categories: ["Website", "E-commerce"], headline: "Luxury exotic rental platform for high-end vehicles and experiences", stats: ["Luxury rentals", "Custom platform", "Premium design"] },
   // ── Private / inquire ──
   { name: "Loan Agent", slug: "loan-agent", categories: ["AI", "SaaS"], headline: "Multi-tenant loan processing system with AI underwriting. Private system, inquire for details", stats: ["Multi-tenant", "Auto processing", "Inquire"] },
 ];
