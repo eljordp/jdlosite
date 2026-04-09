@@ -37,9 +37,10 @@ export default function ExperiencePage() {
 
       // ── Lenis ───────────────────────────────────────────────────────────────
       const lenis = new Lenis({
-        duration: isMobile ? 1.2 : 1.9,
+        duration: isMobile ? 1.4 : 2.4,
         smoothWheel: true,
-        touchMultiplier: 1.5,
+        touchMultiplier: 1.2,
+        wheelMultiplier: 0.8,
       });
       lenis.on("scroll", ScrollTrigger.update);
       gsap.ticker.add((time) => lenis.raf(time * 1000));
@@ -442,47 +443,57 @@ export default function ExperiencePage() {
         camState.t = p * (camPath.length - 1);
 
         // Section fade logic — crossfade between sections
-        const fade = (el: HTMLElement | null, opacity: number, pointer: boolean) => {
+        const fade = (el: HTMLElement | null, opacity: number, pointer: boolean, ty = 0) => {
           if (!el) return;
           el.style.opacity = String(Math.max(0, Math.min(1, opacity)));
+          el.style.transform = `translateY(${ty}px)`;
           el.style.pointerEvents = pointer ? "all" : "none";
         };
 
-        if (p < 0.2) {
+        // Breakpoints — longer holds, overlap crossfades for cinematic feel
+        if (p < 0.15) {
           // Hero fully visible
-          fade(s0, 1, false);
-          fade(s1, 0, false);
-          fade(s2, 0, false);
-          fade(s3, 0, false);
-        } else if (p < 0.35) {
-          // Crossfade hero→stats
-          const t = (p - 0.2) / 0.15;
-          fade(s0, 1 - t, false);
-          fade(s1, t, true);
-          fade(s2, 0, false);
-          fade(s3, 0, false);
-        } else if (p < 0.55) {
-          fade(s0, 0, false);
-          fade(s1, 1, true);
-          fade(s2, 0, false);
-          fade(s3, 0, false);
-        } else if (p < 0.7) {
-          const t = (p - 0.55) / 0.15;
-          fade(s0, 0, false);
-          fade(s1, 1 - t, false);
-          fade(s2, t, true);
-          fade(s3, 0, false);
-        } else if (p < 0.85) {
-          fade(s0, 0, false);
-          fade(s1, 0, false);
-          fade(s2, 1, true);
-          fade(s3, 0, false);
+          fade(s0, 1,   false,  0);
+          fade(s1, 0,   false, 32);
+          fade(s2, 0,   false, 32);
+          fade(s3, 0,   false, 32);
+        } else if (p < 0.28) {
+          // Crossfade hero → stats
+          const t = (p - 0.15) / 0.13;
+          const e = t < 0.5 ? 2*t*t : -1+(4-2*t)*t; // ease in-out quad
+          fade(s0, 1 - e, false, -e * 40);
+          fade(s1, e,     true,  (1 - e) * 32);
+          fade(s2, 0,     false, 32);
+          fade(s3, 0,     false, 32);
+        } else if (p < 0.46) {
+          fade(s0, 0,  false, -40);
+          fade(s1, 1,  true,    0);
+          fade(s2, 0,  false,  32);
+          fade(s3, 0,  false,  32);
+        } else if (p < 0.60) {
+          const t = (p - 0.46) / 0.14;
+          const e = t < 0.5 ? 2*t*t : -1+(4-2*t)*t;
+          fade(s0, 0,     false, -40);
+          fade(s1, 1 - e, false, -e * 40);
+          fade(s2, e,     true,  (1 - e) * 32);
+          fade(s3, 0,     false,  32);
+        } else if (p < 0.76) {
+          fade(s0, 0,  false, -40);
+          fade(s1, 0,  false, -40);
+          fade(s2, 1,  true,    0);
+          fade(s3, 0,  false,  32);
+        } else if (p < 0.90) {
+          const t = (p - 0.76) / 0.14;
+          const e = t < 0.5 ? 2*t*t : -1+(4-2*t)*t;
+          fade(s0, 0,     false, -40);
+          fade(s1, 0,     false, -40);
+          fade(s2, 1 - e, false, -e * 40);
+          fade(s3, e,     true,  (1 - e) * 32);
         } else {
-          const t = (p - 0.85) / 0.15;
-          fade(s0, 0, false);
-          fade(s1, 0, false);
-          fade(s2, 1 - t, false);
-          fade(s3, t, true);
+          fade(s0, 0, false, -40);
+          fade(s1, 0, false, -40);
+          fade(s2, 0, false, -40);
+          fade(s3, 1, true,    0);
         }
       };
 
@@ -754,7 +765,7 @@ export default function ExperiencePage() {
               fontFamily: "'Space Mono', monospace",
               fontSize: "0.72rem",
               letterSpacing: "0.32em",
-              color: "#4de8cc",
+              color: "#C9A84C",
               opacity: 0,
               marginBottom: "3rem",
             }}
@@ -781,7 +792,7 @@ export default function ExperiencePage() {
               fontFamily: "'Space Mono', monospace",
               fontSize: "0.62rem",
               letterSpacing: "0.28em",
-              color: "#4de8cc",
+              color: "#C9A84C",
               animation: "xblink 2.5s ease-in-out infinite",
             }}>
               SCROLL
@@ -789,7 +800,7 @@ export default function ExperiencePage() {
             <div style={{
               width: 1,
               height: 44,
-              background: "linear-gradient(to bottom, #4de8cc, transparent)",
+              background: "linear-gradient(to bottom, #C9A84C, transparent)",
               animation: "xdrip 2.5s ease-in-out infinite",
             }} />
           </div>
@@ -802,7 +813,7 @@ export default function ExperiencePage() {
               fontFamily: "'Space Mono', monospace",
               fontSize: "0.62rem",
               letterSpacing: "0.3em",
-              color: "#4de8cc",
+              color: "#C9A84C",
               marginBottom: "3rem",
             }}>
               01 — BY THE NUMBERS
@@ -827,7 +838,7 @@ export default function ExperiencePage() {
                   fontFamily: "'Space Mono', monospace",
                   fontSize: "clamp(2.5rem, 7vw, 5.5rem)",
                   fontWeight: 700,
-                  color: "rgba(221,232,240,0.07)",
+                  color: "rgba(221,232,240,0.13)",
                   letterSpacing: "-0.03em",
                   lineHeight: 1,
                   minWidth: "7rem",
@@ -855,7 +866,7 @@ export default function ExperiencePage() {
               fontFamily: "'Space Mono', monospace",
               fontSize: "0.62rem",
               letterSpacing: "0.3em",
-              color: "#4de8cc",
+              color: "#C9A84C",
               marginBottom: "3rem",
             }}>
               02 — WHO I AM
@@ -909,7 +920,7 @@ export default function ExperiencePage() {
               fontFamily: "'Space Mono', monospace",
               fontSize: "0.62rem",
               letterSpacing: "0.3em",
-              color: "#4de8cc",
+              color: "#C9A84C",
               marginBottom: "2rem",
             }}>
               03 — LET&apos;S BUILD
