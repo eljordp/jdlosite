@@ -272,7 +272,11 @@ export default function ExperiencePage() {
           }
 
           el.style.opacity=String(Math.max(0,Math.min(1,opacity)));
-          el.style.transform=`translateY(${ty.toFixed(2)}%)`;
+          // Store ty on dataset so spin pass can combine without overwriting
+          (el as HTMLElement&{dataset:DOMStringMap}).dataset.ty=ty.toFixed(2);
+          // Only set transform here if not a twirl/num target (those combine in spin pass)
+          const isSpinTarget=el.dataset.spin==="1";
+          if(!isSpinTarget)el.style.transform=`translateY(${ty.toFixed(2)}%)`;
 
           // Scramble — cycle random chars during enter, lock at 70%
           if(kind==="scramble"){
@@ -287,6 +291,7 @@ export default function ExperiencePage() {
       };
 
       // ── Stat counters ─────────────────────────────────────────────────────────
+      // Stat counters — text content only, no self-transform (scroll drives the spin)
       type Counter={el:HTMLElement;target:number;prefix:string;suffix:string;val:number;triggered:boolean;};
       const counters:Counter[]=[];
       ([
@@ -296,7 +301,6 @@ export default function ExperiencePage() {
       ] as const).forEach(({id,target,prefix,suffix,threshold})=>{
         const el=$(id);
         if(el)counters.push({el,target,prefix,suffix,val:0,triggered:false});
-        // store threshold on element for lookup
         if(el)(el as HTMLElement&{dataset:DOMStringMap}).dataset.threshold=String(threshold);
       });
 
@@ -304,19 +308,18 @@ export default function ExperiencePage() {
         counters.forEach(c=>{
           const thr=parseFloat((c.el as HTMLElement&{dataset:DOMStringMap}).dataset.threshold??"1");
           if(!c.triggered&&p>thr)c.triggered=true;
-          if(c.triggered){
-            const done=c.val>=c.target;
-            if(!done){
-              c.val=Math.min(c.target,c.val+(c.target-c.val)*0.08+0.6);
-              c.el.textContent=c.prefix+Math.floor(c.val)+c.suffix;
-            }
-            // Slot-machine spin — rotateX while counting, settle to 0 when done
-            const spin=done?0:(1-(c.val/Math.max(c.target,1)))*360;
-            c.el.style.transform=`perspective(400px) rotateX(${spin.toFixed(1)}deg)`;
-            c.el.style.transformOrigin="center center";
+          if(c.triggered&&c.val<c.target){
+            c.val=Math.min(c.target,c.val+(c.target-c.val)*0.08+0.6);
+            c.el.textContent=c.prefix+Math.floor(c.val)+c.suffix;
           }
         });
       };
+
+      // Scroll-driven number spin — accumulates on scroll, decays to flat
+      // Applied to stat number spans AND story lines in the RAF loop
+      let scrollSpin=0;
+      const numEls=[$(  "s1-n0"),$("s1-n1"),$("s1-n2")].filter(Boolean) as HTMLElement[];
+      const twirlEls=[$("s2-l0"),$("s2-l1"),$("s2-l2"),$("s3-l0"),$("s3-l1")].filter(Boolean) as HTMLElement[];
 
       // Init all hidden
       updateElements(0);
@@ -372,13 +375,38 @@ export default function ExperiencePage() {
         const scrollRange=Math.max(1,document.body.scrollHeight-window.innerHeight);
         const progress=clamp(scrollCurrent/scrollRange,0,1);
 
-        // Chromatic aberration boost from scroll velocity
-        const scrollVel=Math.abs(scrollCurrent-prevScroll);
+        // Signed scroll delta (positive = scrolling down)
+        const scrollDelta=scrollCurrent-prevScroll;
+        const scrollVel=Math.abs(scrollDelta);
         prevScroll=scrollCurrent;
+
+        // Chromatic aberration boost
         chromaPass.uniforms.amount.value=BASE_CHROMA+scrollVel*0.00028;
 
         // Progress bar
         if(progressBar)progressBar.style.width=(progress*100).toFixed(3)+"%";
+
+        // Scroll-driven spin — accumulate velocity, decay to 0
+        scrollSpin+=scrollDelta*3.5;   // how much each px of scroll adds
+        scrollSpin*=0.82;              // decay rate — how fast it settles flat
+
+        // Apply to stat numbers — combine sign-reveal Y with scroll X spin
+        numEls.forEach((el,i)=>{
+          const ty=parseFloat(el.dataset.ty??"0");
+          const stagger=i*6;
+          const rx=(scrollSpin+stagger*Math.sign(scrollDelta||1)).toFixed(2);
+          el.style.transform=`perspective(500px) translateY(${ty}%) rotateX(${rx}deg)`;
+          el.style.transformOrigin="50% 50%";
+        });
+
+        // Apply to story + CTA lines — gentler twirl
+        twirlEls.forEach((el,i)=>{
+          const ty=parseFloat(el.dataset.ty??"0");
+          const offset=i*4;
+          const rx=((scrollSpin*0.35)+offset*Math.sign(scrollDelta||1)).toFixed(2);
+          el.style.transform=`perspective(900px) translateY(${ty}%) rotateX(${rx}deg)`;
+          el.style.transformOrigin="50% 50%";
+        });
 
         void curX; void curY; // unused but tracked for future
 
@@ -510,7 +538,7 @@ export default function ExperiencePage() {
           ].map(({rowId,numId,n,label})=>(
             <div key={rowId} style={SW}>
               <div id={rowId} style={{...SI,borderTop:"1px solid rgba(221,232,240,0.08)",padding:"2rem 0",display:"flex",alignItems:"baseline",gap:"2rem",opacity:0}}>
-                <span id={numId} style={{fontFamily:"'Space Mono',monospace",fontSize:"clamp(2.5rem,7vw,5.5rem)",fontWeight:700,color:"rgba(221,232,240,0.13)",letterSpacing:"-0.03em",lineHeight:1,minWidth:"7rem"}}>
+                <span id={numId} data-spin="1" style={{fontFamily:"'Space Mono',monospace",fontSize:"clamp(2.5rem,7vw,5.5rem)",fontWeight:700,color:"rgba(221,232,240,0.13)",letterSpacing:"-0.03em",lineHeight:1,minWidth:"7rem",display:"inline-block"}}>
                   {n}
                 </span>
                 <span style={{fontFamily:"'Space Grotesk',sans-serif",fontSize:"clamp(1rem,2vw,1.4rem)",fontWeight:300,color:"rgba(221,232,240,0.7)",letterSpacing:"-0.01em"}}>
@@ -533,7 +561,7 @@ export default function ExperiencePage() {
 
           {[{id:"s2-l0",text:"Self-taught."},{id:"s2-l1",text:"Self-made."},{id:"s2-l2",text:"No shortcuts."}].map(({id,text})=>(
             <div key={id} style={{...SW,marginBottom:"0.1em"}}>
-              <span id={id} style={{...SI,fontFamily:"'Space Grotesk',sans-serif",fontSize:"clamp(2rem,4.5vw,3.6rem)",fontWeight:300,letterSpacing:"-0.03em",lineHeight:1.05,color:"#dde8f0",opacity:0,display:"block"}}>
+              <span id={id} data-spin="1" style={{...SI,fontFamily:"'Space Grotesk',sans-serif",fontSize:"clamp(2rem,4.5vw,3.6rem)",fontWeight:300,letterSpacing:"-0.03em",lineHeight:1.05,color:"#dde8f0",opacity:0,display:"block"}}>
                 {text}
               </span>
             </div>
@@ -559,12 +587,12 @@ export default function ExperiencePage() {
           </span>
         </div>
         <div style={SW}>
-          <span id="s3-l0" style={{...SI,display:"block",fontFamily:"'Space Grotesk',sans-serif",fontSize:"clamp(3rem,8vw,7rem)",fontWeight:300,letterSpacing:"-0.04em",lineHeight:0.9,color:"#dde8f0",opacity:0}}>
+          <span id="s3-l0" data-spin="1" style={{...SI,display:"block",fontFamily:"'Space Grotesk',sans-serif",fontSize:"clamp(3rem,8vw,7rem)",fontWeight:300,letterSpacing:"-0.04em",lineHeight:0.9,color:"#dde8f0",opacity:0}}>
             You bring
           </span>
         </div>
         <div style={{...SW,marginBottom:"1.5rem"}}>
-          <span id="s3-l1" style={{...SI,display:"block",fontFamily:"'Space Grotesk',sans-serif",fontSize:"clamp(3rem,8vw,7rem)",fontWeight:300,letterSpacing:"-0.04em",lineHeight:0.9,color:"rgba(221,232,240,0.35)",opacity:0}}>
+          <span id="s3-l1" data-spin="1" style={{...SI,display:"block",fontFamily:"'Space Grotesk',sans-serif",fontSize:"clamp(3rem,8vw,7rem)",fontWeight:300,letterSpacing:"-0.04em",lineHeight:0.9,color:"rgba(221,232,240,0.35)",opacity:0}}>
             the vision.
           </span>
         </div>
