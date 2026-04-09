@@ -22,7 +22,7 @@ export default function ExperiencePage() {
         window.innerWidth < 768 ||
         !window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
-      // ── Renderer ─────────────────────────────────────────────────────────────
+      // ── Renderer ──────────────────────────────────────────────────────────────
       const canvas = canvasRef.current!;
       const renderer = new THREE.WebGLRenderer({ canvas, antialias: !isMobile, alpha: false });
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.5 : 2));
@@ -31,12 +31,11 @@ export default function ExperiencePage() {
       renderer.toneMappingExposure = 0.9;
       renderer.outputColorSpace = THREE.SRGBColorSpace;
 
-      // ── Scene ────────────────────────────────────────────────────────────────
+      // ── Scene ─────────────────────────────────────────────────────────────────
       const scene = new THREE.Scene();
       scene.background = new THREE.Color(0x060e1c);
       scene.fog = new THREE.FogExp2(0x060e1c, 0.001);
 
-      // ── Camera ───────────────────────────────────────────────────────────────
       const camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 1000);
       camera.position.set(12, 2, 12);
       camera.lookAt(0, 8, 0);
@@ -49,21 +48,17 @@ export default function ExperiencePage() {
         isMobile ? 1.0 : 2.0, 0.65, 0.04
       );
       composer.addPass(bloom);
+      const BASE_CHROMA = isMobile ? 0.0007 : 0.0016;
       const chromaShader = {
-        uniforms: { tDiffuse: { value: null }, amount: { value: isMobile ? 0.0007 : 0.0016 } },
-        vertexShader: `varying vec2 vUv; void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}`,
-        fragmentShader: `
-          uniform sampler2D tDiffuse; uniform float amount; varying vec2 vUv;
-          void main(){
-            vec2 dir=vUv-0.5; float d=length(dir);
-            vec2 off=normalize(dir+0.0001)*amount*d*d;
-            float r=texture2D(tDiffuse,vUv+off).r;
-            float g=texture2D(tDiffuse,vUv).g;
-            float b=texture2D(tDiffuse,vUv-off).b;
-            gl_FragColor=vec4(r,g,b,1.0);
-          }`,
+        uniforms: { tDiffuse: { value: null }, amount: { value: BASE_CHROMA } },
+        vertexShader: `varying vec2 vUv;void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}`,
+        fragmentShader: `uniform sampler2D tDiffuse;uniform float amount;varying vec2 vUv;
+          void main(){vec2 dir=vUv-0.5;float d=length(dir);vec2 off=normalize(dir+0.0001)*amount*d*d;
+          float r=texture2D(tDiffuse,vUv+off).r;float g=texture2D(tDiffuse,vUv).g;float b=texture2D(tDiffuse,vUv-off).b;
+          gl_FragColor=vec4(r,g,b,1.0);}`,
       };
-      composer.addPass(new ShaderPass(chromaShader));
+      const chromaPass = new ShaderPass(chromaShader);
+      composer.addPass(chromaPass);
       composer.addPass(new OutputPass());
 
       // ── Lights ───────────────────────────────────────────────────────────────
@@ -86,46 +81,32 @@ export default function ExperiencePage() {
 
       // ── Pillar ────────────────────────────────────────────────────────────────
       function buildPillar() {
-        const g = new THREE.Group();
-        const segments = 14;
-        const goldMat = new THREE.MeshStandardMaterial({ color: 0xc9a84c, metalness: 0.98, roughness: 0.02, emissive: 0x5a3a00, emissiveIntensity: 1.2 });
-        const glassMat = new THREE.MeshStandardMaterial({ color: 0x2244aa, metalness: 0.96, roughness: 0.04, emissive: 0x0a1e40, emissiveIntensity: 1.6 });
-        for (let i = 0; i < segments; i++) {
-          const t = i / segments, r = 1.4 * (1 - t * 0.75), h = 3.5, y = i * h;
-          const m = new THREE.Mesh(new THREE.CylinderGeometry(r * 0.85, r, h, 6), i % 3 === 0 ? goldMat : glassMat);
-          m.position.y = y + h / 2; m.rotation.y = i * 0.15; g.add(m);
-          if (i % 2 === 0) {
-            const band = new THREE.Mesh(new THREE.CylinderGeometry(r * 1.05, r * 1.05, 0.12, 24), goldMat);
-            band.position.y = y + h; g.add(band);
-          }
+        const g = new THREE.Group(), segments = 14;
+        const goldMat = new THREE.MeshStandardMaterial({ color:0xc9a84c, metalness:0.98, roughness:0.02, emissive:0x5a3a00, emissiveIntensity:1.2 });
+        const glassMat = new THREE.MeshStandardMaterial({ color:0x2244aa, metalness:0.96, roughness:0.04, emissive:0x0a1e40, emissiveIntensity:1.6 });
+        for (let i=0;i<segments;i++) {
+          const t=i/segments,r=1.4*(1-t*0.75),h=3.5,y=i*h;
+          const m=new THREE.Mesh(new THREE.CylinderGeometry(r*0.85,r,h,6),i%3===0?goldMat:glassMat);
+          m.position.y=y+h/2;m.rotation.y=i*0.15;g.add(m);
+          if(i%2===0){const band=new THREE.Mesh(new THREE.CylinderGeometry(r*1.05,r*1.05,0.12,24),goldMat);band.position.y=y+h;g.add(band);}
         }
-        const spire = new THREE.Mesh(new THREE.CylinderGeometry(0.01, 0.18, 12, 10), goldMat);
-        spire.position.y = segments * 3.5 + 2; g.add(spire);
-        const orb = new THREE.Mesh(new THREE.SphereGeometry(0.2, 12, 12), new THREE.MeshBasicMaterial({ color: 0xfff8cc }));
-        orb.position.y = segments * 3.5 + 14; g.add(orb);
-        const ground = new THREE.Mesh(new THREE.CylinderGeometry(7, 7, 0.18, 64), new THREE.MeshStandardMaterial({ color: 0x0b1520, roughness: 0.9, emissive: 0x020810, emissiveIntensity: 0.7 }));
-        ground.position.y = -0.09; g.add(ground);
-        wrapper.add(g);
+        const spire=new THREE.Mesh(new THREE.CylinderGeometry(0.01,0.18,12,10),goldMat);
+        spire.position.y=segments*3.5+2;g.add(spire);
+        const orb=new THREE.Mesh(new THREE.SphereGeometry(0.2,12,12),new THREE.MeshBasicMaterial({color:0xfff8cc}));
+        orb.position.y=segments*3.5+14;g.add(orb);
+        const ground=new THREE.Mesh(new THREE.CylinderGeometry(7,7,0.18,64),new THREE.MeshStandardMaterial({color:0x0b1520,roughness:0.9,emissive:0x020810,emissiveIntensity:0.7}));
+        ground.position.y=-0.09;g.add(ground);wrapper.add(g);
       }
 
       // ── Ribbons ───────────────────────────────────────────────────────────────
       function buildRibbons() {
         const list: THREE.Mesh[] = [];
-        [
-          { color: 0xc9a84c, opacity: 0.3,  turns: 2.5, radius: 3.6, thick: 0.055, speed:  0.003 },
-          { color: 0x4de8cc, opacity: 0.22, turns: 2.0, radius: 5.0, thick: 0.045, speed: -0.002 },
-          { color: 0xc9a84c, opacity: 0.14, turns: 3.2, radius: 6.4, thick: 0.035, speed:  0.0015 },
-          { color: 0x88bbff, opacity: 0.1,  turns: 1.5, radius: 4.4, thick: 0.04,  speed: -0.004 },
-        ].forEach((cfg) => {
-          const pts = [];
-          for (let i = 0; i <= 80; i++) {
-            const t = i / 80, a = t * cfg.turns * Math.PI * 2, r = cfg.radius * (1 - t * 0.5);
-            pts.push(new THREE.Vector3(Math.cos(a) * r, t * 56, Math.sin(a) * r));
-          }
-          const curve = new THREE.CatmullRomCurve3(pts, false, "catmullrom", 0.5);
-          const mat = new THREE.MeshBasicMaterial({ color: cfg.color, transparent: true, opacity: cfg.opacity, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide });
-          const mesh = new THREE.Mesh(new THREE.TubeGeometry(curve, 200, cfg.thick, 6, false), mat);
-          mesh.userData.speed = cfg.speed; wrapper.add(mesh); list.push(mesh);
+        [{color:0xc9a84c,opacity:0.3,turns:2.5,radius:3.6,thick:0.055,speed:0.003},{color:0x4de8cc,opacity:0.22,turns:2.0,radius:5.0,thick:0.045,speed:-0.002},{color:0xc9a84c,opacity:0.14,turns:3.2,radius:6.4,thick:0.035,speed:0.0015},{color:0x88bbff,opacity:0.1,turns:1.5,radius:4.4,thick:0.04,speed:-0.004}].forEach(cfg=>{
+          const pts=[];
+          for(let i=0;i<=80;i++){const t=i/80,a=t*cfg.turns*Math.PI*2,r=cfg.radius*(1-t*0.5);pts.push(new THREE.Vector3(Math.cos(a)*r,t*56,Math.sin(a)*r));}
+          const mat=new THREE.MeshBasicMaterial({color:cfg.color,transparent:true,opacity:cfg.opacity,blending:THREE.AdditiveBlending,depthWrite:false,side:THREE.DoubleSide});
+          const mesh=new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts,false,"catmullrom",0.5),200,cfg.thick,6,false),mat);
+          mesh.userData.speed=cfg.speed;wrapper.add(mesh);list.push(mesh);
         });
         return list;
       }
@@ -133,17 +114,9 @@ export default function ExperiencePage() {
       // ── Rings ─────────────────────────────────────────────────────────────────
       function buildRings() {
         const list: THREE.Mesh[] = [];
-        [
-          { y: 32, r: 3.6, tube: 0.018, speed:  0.004, color: 0xc9a84c, op: 0.32 },
-          { y: 42, r: 2.2, tube: 0.013, speed: -0.005, color: 0x4de8cc, op: 0.38 },
-          { y: 50, r: 1.0, tube: 0.01,  speed:  0.009, color: 0xc9a84c, op: 0.5  },
-          { y: 32, r: 4.4, tube: 0.009, speed: -0.002, color: 0x88bbff, op: 0.14 },
-          { y: 22, r: 5.2, tube: 0.013, speed:  0.003, color: 0x4de8cc, op: 0.1  },
-        ].forEach((cfg) => {
-          const m = new THREE.Mesh(new THREE.TorusGeometry(cfg.r, cfg.tube, 8, 128),
-            new THREE.MeshBasicMaterial({ color: cfg.color, transparent: true, opacity: cfg.op, blending: THREE.AdditiveBlending, depthWrite: false }));
-          m.position.y = cfg.y; m.rotation.x = Math.PI / 2; m.userData.speed = cfg.speed;
-          wrapper.add(m); list.push(m);
+        [{y:32,r:3.6,tube:0.018,speed:0.004,color:0xc9a84c,op:0.32},{y:42,r:2.2,tube:0.013,speed:-0.005,color:0x4de8cc,op:0.38},{y:50,r:1.0,tube:0.01,speed:0.009,color:0xc9a84c,op:0.5},{y:32,r:4.4,tube:0.009,speed:-0.002,color:0x88bbff,op:0.14},{y:22,r:5.2,tube:0.013,speed:0.003,color:0x4de8cc,op:0.1}].forEach(cfg=>{
+          const m=new THREE.Mesh(new THREE.TorusGeometry(cfg.r,cfg.tube,8,128),new THREE.MeshBasicMaterial({color:cfg.color,transparent:true,opacity:cfg.op,blending:THREE.AdditiveBlending,depthWrite:false}));
+          m.position.y=cfg.y;m.rotation.x=Math.PI/2;m.userData.speed=cfg.speed;wrapper.add(m);list.push(m);
         });
         return list;
       }
@@ -151,400 +124,396 @@ export default function ExperiencePage() {
       // ── Pulse rings ───────────────────────────────────────────────────────────
       function buildPulse() {
         const list: THREE.Mesh[] = [];
-        for (let i = 0; i < 5; i++) {
-          const mat = new THREE.MeshBasicMaterial({ color: i % 2 === 0 ? 0x4de8cc : 0xc9a84c, transparent: true, opacity: 0, side: THREE.DoubleSide, blending: THREE.AdditiveBlending, depthWrite: false });
-          const m = new THREE.Mesh(new THREE.RingGeometry(0.8, 0.84, 80), mat);
-          m.rotation.x = -Math.PI / 2; m.position.y = 0.3; m.userData.phase = i / 5;
-          scene.add(m); list.push(m);
+        for(let i=0;i<5;i++){
+          const mat=new THREE.MeshBasicMaterial({color:i%2===0?0x4de8cc:0xc9a84c,transparent:true,opacity:0,side:THREE.DoubleSide,blending:THREE.AdditiveBlending,depthWrite:false});
+          const m=new THREE.Mesh(new THREE.RingGeometry(0.8,0.84,80),mat);
+          m.rotation.x=-Math.PI/2;m.position.y=0.3;m.userData.phase=i/5;scene.add(m);list.push(m);
         }
         return list;
       }
 
       // ── Nebula ────────────────────────────────────────────────────────────────
       function buildNebula() {
-        const mul = isMobile ? 0.5 : 1;
-        [
-          { count: Math.floor(400 * mul), size: 3.8, op: 0.022, color: 0x0a2848, spread: 50 },
-          { count: Math.floor(300 * mul), size: 2.0, op: 0.038, color: 0x163850, spread: 35 },
-          { count: Math.floor(200 * mul), size: 1.0, op: 0.065, color: 0x4de8cc, spread: 20 },
-        ].forEach((cfg) => {
-          const pos = new Float32Array(cfg.count * 3);
-          for (let i = 0; i < cfg.count; i++) {
-            const r = 3 + Math.random() * cfg.spread, a = Math.random() * Math.PI * 2;
-            pos[i * 3] = Math.cos(a) * r; pos[i * 3 + 1] = -10 + Math.random() * 90; pos[i * 3 + 2] = Math.sin(a) * r;
-          }
-          const geo = new THREE.BufferGeometry();
-          geo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
-          wrapper.add(new THREE.Points(geo, new THREE.PointsMaterial({ color: cfg.color, size: cfg.size, transparent: true, opacity: cfg.op, blending: THREE.AdditiveBlending, depthWrite: false, sizeAttenuation: true })));
+        [{count:Math.floor(400*(isMobile?.5:1)),size:3.8,op:0.022,color:0x0a2848,spread:50},{count:Math.floor(300*(isMobile?.5:1)),size:2.0,op:0.038,color:0x163850,spread:35},{count:Math.floor(200*(isMobile?.5:1)),size:1.0,op:0.065,color:0x4de8cc,spread:20}].forEach(cfg=>{
+          const pos=new Float32Array(cfg.count*3);
+          for(let i=0;i<cfg.count;i++){const r=3+Math.random()*cfg.spread,a=Math.random()*Math.PI*2;pos[i*3]=Math.cos(a)*r;pos[i*3+1]=-10+Math.random()*90;pos[i*3+2]=Math.sin(a)*r;}
+          const geo=new THREE.BufferGeometry();geo.setAttribute("position",new THREE.BufferAttribute(pos,3));
+          wrapper.add(new THREE.Points(geo,new THREE.PointsMaterial({color:cfg.color,size:cfg.size,transparent:true,opacity:cfg.op,blending:THREE.AdditiveBlending,depthWrite:false,sizeAttenuation:true})));
         });
       }
 
       // ── Atmospheric particles ─────────────────────────────────────────────────
-      const ATMO = isMobile ? 600 : 2500;
+      const ATMO=isMobile?600:2500;
       function buildAtmo() {
-        const pos = new Float32Array(ATMO * 3), vel = new Float32Array(ATMO * 3), col = new Float32Array(ATMO * 3);
-        for (let i = 0; i < ATMO; i++) {
-          const r = 1.5 + Math.random() * 30, a = Math.random() * Math.PI * 2;
-          pos[i*3]=Math.cos(a)*r; pos[i*3+1]=Math.random()*62; pos[i*3+2]=Math.sin(a)*r;
-          vel[i*3]=(Math.random()-0.5)*0.003; vel[i*3+1]=0.001+Math.random()*0.004; vel[i*3+2]=(Math.random()-0.5)*0.003;
+        const pos=new Float32Array(ATMO*3),vel=new Float32Array(ATMO*3),col=new Float32Array(ATMO*3);
+        for(let i=0;i<ATMO;i++){
+          const r=1.5+Math.random()*30,a=Math.random()*Math.PI*2;
+          pos[i*3]=Math.cos(a)*r;pos[i*3+1]=Math.random()*62;pos[i*3+2]=Math.sin(a)*r;
+          vel[i*3]=(Math.random()-0.5)*0.003;vel[i*3+1]=0.001+Math.random()*0.004;vel[i*3+2]=(Math.random()-0.5)*0.003;
           const t=Math.random();
           if(t<0.55){col[i*3]=0.99;col[i*3+1]=0.78;col[i*3+2]=0.35;}
           else if(t<0.85){col[i*3]=0.3;col[i*3+1]=0.91;col[i*3+2]=0.8;}
           else{col[i*3]=0.85;col[i*3+1]=0.9;col[i*3+2]=1.0;}
         }
-        const geo = new THREE.BufferGeometry();
-        geo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
-        geo.setAttribute("color", new THREE.BufferAttribute(col, 3));
-        const pts = new THREE.Points(geo, new THREE.PointsMaterial({ size: 0.13, vertexColors: true, transparent: true, opacity: 0.78, blending: THREE.AdditiveBlending, depthWrite: false, sizeAttenuation: true }));
+        const geo=new THREE.BufferGeometry();
+        geo.setAttribute("position",new THREE.BufferAttribute(pos,3));
+        geo.setAttribute("color",new THREE.BufferAttribute(col,3));
+        const pts=new THREE.Points(geo,new THREE.PointsMaterial({size:0.13,vertexColors:true,transparent:true,opacity:0.78,blending:THREE.AdditiveBlending,depthWrite:false,sizeAttenuation:true}));
         wrapper.add(pts);
-        const tPos = new Float32Array(ATMO * 6);
-        const tGeo = new THREE.BufferGeometry();
-        tGeo.setAttribute("position", new THREE.BufferAttribute(tPos, 3));
-        const trails = new THREE.LineSegments(tGeo, new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.38, blending: THREE.AdditiveBlending, depthWrite: false }));
+        const tPos=new Float32Array(ATMO*6),tGeo=new THREE.BufferGeometry();
+        tGeo.setAttribute("position",new THREE.BufferAttribute(tPos,3));
+        const trails=new THREE.LineSegments(tGeo,new THREE.LineBasicMaterial({color:0xffffff,transparent:true,opacity:0.38,blending:THREE.AdditiveBlending,depthWrite:false}));
         wrapper.add(trails);
-        return { pts, vel, pos, tPos, tGeo, trails };
+        return{pts,vel,pos,tPos,tGeo,trails};
       }
 
       // ── Stars ─────────────────────────────────────────────────────────────────
       function buildStars() {
-        const n = isMobile ? 3000 : 12000, p = new Float32Array(n*3), c = new Float32Array(n*3);
-        for (let i = 0; i < n; i++) {
-          const far = Math.random() > 0.4;
-          p[i*3]=(Math.random()-0.5)*(far?800:120); p[i*3+1]=far?Math.random()*400+5:-20+Math.random()*100; p[i*3+2]=(Math.random()-0.5)*(far?800:120);
-          const warm = Math.random() > 0.5;
-          c[i*3]=warm?1.0:0.7; c[i*3+1]=warm?0.92:0.82; c[i*3+2]=warm?0.7:1.0;
+        const n=isMobile?3000:12000,p=new Float32Array(n*3),c=new Float32Array(n*3);
+        for(let i=0;i<n;i++){
+          const far=Math.random()>0.4;
+          p[i*3]=(Math.random()-0.5)*(far?800:120);p[i*3+1]=far?Math.random()*400+5:-20+Math.random()*100;p[i*3+2]=(Math.random()-0.5)*(far?800:120);
+          const warm=Math.random()>0.5;c[i*3]=warm?1.0:0.7;c[i*3+1]=warm?0.92:0.82;c[i*3+2]=warm?0.7:1.0;
         }
-        const geo = new THREE.BufferGeometry();
-        geo.setAttribute("position", new THREE.BufferAttribute(p, 3));
-        geo.setAttribute("color", new THREE.BufferAttribute(c, 3));
-        const pts = new THREE.Points(geo, new THREE.PointsMaterial({ size: 0.16, vertexColors: true, transparent: true, opacity: 0.65, sizeAttenuation: true }));
-        scene.add(pts); return pts;
+        const geo=new THREE.BufferGeometry();geo.setAttribute("position",new THREE.BufferAttribute(p,3));geo.setAttribute("color",new THREE.BufferAttribute(c,3));
+        const pts=new THREE.Points(geo,new THREE.PointsMaterial({size:0.16,vertexColors:true,transparent:true,opacity:0.65,sizeAttenuation:true}));
+        scene.add(pts);return pts;
       }
 
       // ── City lights ───────────────────────────────────────────────────────────
       function buildCity() {
-        const n=7000, p=new Float32Array(n*3), c=new Float32Array(n*3);
-        for (let i=0;i<n;i++) {
-          const r=8+Math.random()*200,a=Math.random()*Math.PI*2;
-          p[i*3]=Math.cos(a)*r;p[i*3+1]=-0.4+Math.random()*0.8;p[i*3+2]=Math.sin(a)*r;
-          const t=Math.random();
-          if(t<0.3){c[i*3]=1;c[i*3+1]=0.82;c[i*3+2]=0.35;}
-          else if(t<0.6){c[i*3]=0.7;c[i*3+1]=0.88;c[i*3+2]=1;}
-          else{c[i*3]=1;c[i*3+1]=1;c[i*3+2]=1;}
-        }
-        const geo=new THREE.BufferGeometry();
-        geo.setAttribute("position",new THREE.BufferAttribute(p,3));
-        geo.setAttribute("color",new THREE.BufferAttribute(c,3));
+        const n=7000,p=new Float32Array(n*3),c=new Float32Array(n*3);
+        for(let i=0;i<n;i++){const r=8+Math.random()*200,a=Math.random()*Math.PI*2;p[i*3]=Math.cos(a)*r;p[i*3+1]=-0.4+Math.random()*0.8;p[i*3+2]=Math.sin(a)*r;const t=Math.random();if(t<0.3){c[i*3]=1;c[i*3+1]=0.82;c[i*3+2]=0.35;}else if(t<0.6){c[i*3]=0.7;c[i*3+1]=0.88;c[i*3+2]=1;}else{c[i*3]=1;c[i*3+1]=1;c[i*3+2]=1;}}
+        const geo=new THREE.BufferGeometry();geo.setAttribute("position",new THREE.BufferAttribute(p,3));geo.setAttribute("color",new THREE.BufferAttribute(c,3));
         scene.add(new THREE.Points(geo,new THREE.PointsMaterial({size:0.22,vertexColors:true,transparent:true,opacity:0.85,sizeAttenuation:true})));
       }
 
       buildPillar();
-      const ribbons = buildRibbons();
-      const rings   = buildRings();
-      const pulses  = buildPulse();
+      const ribbons=buildRibbons();
+      const rings=buildRings();
+      const pulses=buildPulse();
       buildNebula();
-      const atmo  = buildAtmo();
-      const stars = buildStars();
+      const atmo=buildAtmo();
+      const stars=buildStars();
       buildCity();
 
       // ── Camera path ───────────────────────────────────────────────────────────
-      const camPath = [
-        { r: 14, theta: Math.PI*0.28,  y: 4,  lookY: 14 },
-        { r: 13, theta: Math.PI*0.18,  y: 6,  lookY: 16 },
-        { r: 12, theta: Math.PI*0.08,  y: 8,  lookY: 18 },
-        { r: 11, theta: -Math.PI*0.04, y: 10, lookY: 20 },
-        { r: 10, theta: -Math.PI*0.14, y: 12, lookY: 22 },
+      const camPath=[
+        {r:14,theta:Math.PI*0.28,y:4,lookY:14},
+        {r:13,theta:Math.PI*0.18,y:6,lookY:16},
+        {r:12,theta:Math.PI*0.08,y:8,lookY:18},
+        {r:11,theta:-Math.PI*0.04,y:10,lookY:20},
+        {r:10,theta:-Math.PI*0.14,y:12,lookY:22},
       ];
 
       // ── Scroll lerp ───────────────────────────────────────────────────────────
-      let scrollTarget = 0;
-      let scrollCurrent = 0;
-      const LERP = 0.07;
+      let scrollTarget=0,scrollCurrent=0,prevScroll=0;
+      const LERP=0.07;
 
-      // ── Animation system — sign reveal + fade per element ─────────────────────
-      type AnimItem = {
-        el: HTMLElement;
-        kind: "sign" | "fade";
-        vs: number; ve: number;        // visible start/end (progress 0-1)
-        xs?: number; xe?: number;      // exit start/end
+      // ── DOM refs ──────────────────────────────────────────────────────────────
+      const $=<T extends HTMLElement>(id:string)=>document.getElementById(id) as T|null;
+      const progressBar=$("exp-pb");
+
+      // ── Scramble charset ──────────────────────────────────────────────────────
+      const CHARS="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$#@!";
+
+      // ── Animation system ──────────────────────────────────────────────────────
+      type AnimItem={el:HTMLElement;kind:"sign"|"fade"|"scramble";vs:number;ve:number;xs?:number;xe?:number;};
+      const animItems:AnimItem[]=[];
+      const reg=(id:string,kind:"sign"|"fade"|"scramble",vs:number,ve:number,xs?:number,xe?:number)=>{
+        const el=$(id);if(el)animItems.push({el,kind,vs,ve,xs,xe});
       };
-      const animItems: AnimItem[] = [];
 
-      const reg = (id: string, kind: "sign" | "fade", vs: number, ve: number, xs?: number, xe?: number) => {
-        const el = document.getElementById(id);
-        if (el) animItems.push({ el, kind, vs, ve, xs, xe });
-      };
+      // Hero letters — scramble kind
+      reg("h-J","scramble",0.00,0.055,0.22,0.29);
+      reg("h-D","scramble",0.02,0.075,0.22,0.29);
+      reg("h-L","scramble",0.04,0.095,0.22,0.29);
+      reg("h-O","scramble",0.06,0.115,0.22,0.29);
+      reg("h-sub","fade",0.08,0.14,0.22,0.29);
+      reg("h-cue","fade",0.12,0.18,0.16,0.24);
 
-      // Hero — letters stagger up, fade out before stats
-      reg("h-J",   "sign", 0.00, 0.055, 0.22, 0.29);
-      reg("h-D",   "sign", 0.02, 0.075, 0.22, 0.29);
-      reg("h-L",   "sign", 0.04, 0.095, 0.22, 0.29);
-      reg("h-O",   "sign", 0.06, 0.115, 0.22, 0.29);
-      reg("h-sub", "fade", 0.08, 0.14,  0.22, 0.29);
-      reg("h-cue", "fade", 0.12, 0.18,  0.16, 0.24);
+      // Stats
+      reg("s1-label","sign",0.28,0.34,0.55,0.62);
+      reg("s1-r0","sign",0.31,0.38,0.55,0.62);
+      reg("s1-r1","sign",0.35,0.42,0.55,0.62);
+      reg("s1-r2","sign",0.39,0.46,0.55,0.62);
 
-      // Stats — each row is its own sign reveal
-      reg("s1-label", "sign", 0.28, 0.34, 0.55, 0.62);
-      reg("s1-r0",    "sign", 0.31, 0.38, 0.55, 0.62);
-      reg("s1-r1",    "sign", 0.35, 0.42, 0.55, 0.62);
-      reg("s1-r2",    "sign", 0.39, 0.46, 0.55, 0.62);
+      // Story
+      reg("s2-label","sign",0.60,0.66,0.80,0.86);
+      reg("s2-l0","sign",0.63,0.70,0.80,0.86);
+      reg("s2-l1","sign",0.66,0.73,0.80,0.86);
+      reg("s2-l2","sign",0.69,0.76,0.80,0.86);
+      reg("s2-body","fade",0.71,0.77,0.80,0.86);
+      reg("s2-cta","fade",0.73,0.79,0.80,0.86);
 
-      // Story — lines stagger in
-      reg("s2-label", "sign", 0.60, 0.66, 0.80, 0.86);
-      reg("s2-l0",    "sign", 0.63, 0.70, 0.80, 0.86);
-      reg("s2-l1",    "sign", 0.66, 0.73, 0.80, 0.86);
-      reg("s2-l2",    "sign", 0.69, 0.76, 0.80, 0.86);
-      reg("s2-body",  "fade", 0.71, 0.77, 0.80, 0.86);
-      reg("s2-cta",   "fade", 0.73, 0.79, 0.80, 0.86);
+      // CTA
+      reg("s3-label","sign",0.86,0.91);
+      reg("s3-l0","sign",0.88,0.94);
+      reg("s3-l1","sign",0.91,0.97);
+      reg("s3-btns","fade",0.93,0.99);
 
-      // Final CTA
-      reg("s3-label", "sign", 0.86, 0.91);
-      reg("s3-l0",    "sign", 0.88, 0.94);
-      reg("s3-l1",    "sign", 0.91, 0.97);
-      reg("s3-btns",  "fade", 0.93, 0.99);
+      const eOut=(t:number)=>1-Math.pow(1-t,3);
+      const eIn=(t:number)=>t*t*t;
+      const clamp=(v:number,lo:number,hi:number)=>Math.max(lo,Math.min(hi,v));
 
-      const eOut = (t: number) => 1 - Math.pow(1 - t, 3);
-      const eIn  = (t: number) => t * t * t;
-      const clamp = (v: number, lo: number, hi: number) => Math.max(lo, Math.min(hi, v));
+      const updateElements=(p:number)=>{
+        for(const{el,kind,vs,ve,xs,xe}of animItems){
+          let opacity:number,ty:number;
+          const enterT=clamp((p-vs)/(ve-vs),0,1);
 
-      const updateElements = (p: number) => {
-        for (const { el, kind, vs, ve, xs, xe } of animItems) {
-          let opacity: number, ty: number;
-          const enterT = clamp((p - vs) / (ve - vs), 0, 1);
-
-          if (xs !== undefined && xe !== undefined && p > xs) {
-            // Exiting
-            const exitT = eIn(clamp((p - xs) / (xe - xs), 0, 1));
-            const entered = eOut(1); // already fully in
-            opacity = (1 - exitT) * (enterT >= 1 ? 1 : eOut(enterT));
-            ty = kind === "sign" ? -exitT * 30 : -exitT * 16;
+          if(xs!==undefined&&xe!==undefined&&p>xs){
+            const exitT=eIn(clamp((p-xs)/(xe-xs),0,1));
+            opacity=(1-exitT)*(enterT>=1?1:eOut(enterT));
+            ty=kind==="sign"||kind==="scramble"?-exitT*30:-exitT*16;
           } else {
-            // Entering
-            const e = eOut(enterT);
-            opacity = e;
-            ty = kind === "sign" ? (1 - e) * 108 : (1 - e) * 20;
+            const e=eOut(enterT);
+            opacity=e;
+            ty=kind==="sign"||kind==="scramble"?(1-e)*108:(1-e)*20;
           }
 
-          el.style.opacity = String(Math.max(0, Math.min(1, opacity)));
-          el.style.transform = `translateY(${ty.toFixed(2)}%)`;
+          el.style.opacity=String(Math.max(0,Math.min(1,opacity)));
+          el.style.transform=`translateY(${ty.toFixed(2)}%)`;
+
+          // Scramble — cycle random chars during enter, lock at 70%
+          if(kind==="scramble"){
+            const finalChar=el.dataset.final??"";
+            if(enterT>0&&enterT<0.70){
+              el.textContent=CHARS[Math.floor(Math.random()*CHARS.length)];
+            } else if(enterT>=0.70){
+              el.textContent=finalChar;
+            }
+          }
         }
       };
 
-      // Init — all hidden
+      // ── Stat counters ─────────────────────────────────────────────────────────
+      type Counter={el:HTMLElement;target:number;prefix:string;suffix:string;val:number;triggered:boolean;};
+      const counters:Counter[]=[];
+      ([
+        {id:"s1-n0",target:25, prefix:"",  suffix:"+", threshold:0.38},
+        {id:"s1-n1",target:200,prefix:"$", suffix:"K+",threshold:0.42},
+        {id:"s1-n2",target:0,  prefix:"",  suffix:"",  threshold:0.46},
+      ] as const).forEach(({id,target,prefix,suffix,threshold})=>{
+        const el=$(id);
+        if(el)counters.push({el,target,prefix,suffix,val:0,triggered:false});
+        // store threshold on element for lookup
+        if(el)(el as HTMLElement&{dataset:DOMStringMap}).dataset.threshold=String(threshold);
+      });
+
+      const updateCounters=(p:number)=>{
+        counters.forEach(c=>{
+          const thr=parseFloat((c.el as HTMLElement&{dataset:DOMStringMap}).dataset.threshold??"1");
+          if(!c.triggered&&p>thr)c.triggered=true;
+          if(c.triggered){
+            const done=c.val>=c.target;
+            if(!done){
+              c.val=Math.min(c.target,c.val+(c.target-c.val)*0.08+0.6);
+              c.el.textContent=c.prefix+Math.floor(c.val)+c.suffix;
+            }
+            // Slot-machine spin — rotateX while counting, settle to 0 when done
+            const spin=done?0:(1-(c.val/Math.max(c.target,1)))*360;
+            c.el.style.transform=`perspective(400px) rotateX(${spin.toFixed(1)}deg)`;
+            c.el.style.transformOrigin="center center";
+          }
+        });
+      };
+
+      // Init all hidden
       updateElements(0);
 
       // ── Mouse ─────────────────────────────────────────────────────────────────
-      let normX = 0, normY = 0, smoothX = 0, smoothY = 0, driftT = 0;
-      const onMouse = (e: MouseEvent) => {
-        normX = (e.clientX / window.innerWidth - 0.5) * 2;
-        normY = (e.clientY / window.innerHeight - 0.5) * 2;
+      let normX=0,normY=0,smoothX=0,smoothY=0,driftT=0;
+      let curX=0,curY=0;
+      const onMouse=(e:MouseEvent)=>{
+        curX=e.clientX;curY=e.clientY;
+        normX=(e.clientX/window.innerWidth-0.5)*2;
+        normY=(e.clientY/window.innerHeight-0.5)*2;
       };
-      const onTouch = (e: TouchEvent) => {
-        normX = (e.touches[0].clientX / window.innerWidth - 0.5) * 2;
-        normY = (e.touches[0].clientY / window.innerHeight - 0.5) * 2;
+      const onTouch=(e:TouchEvent)=>{
+        normX=(e.touches[0].clientX/window.innerWidth-0.5)*2;
+        normY=(e.touches[0].clientY/window.innerHeight-0.5)*2;
       };
-      window.addEventListener("mousemove", onMouse);
-      window.addEventListener("touchmove", onTouch, { passive: true });
+      window.addEventListener("mousemove",onMouse);
+      window.addEventListener("touchmove",onTouch,{passive:true});
+
 
       // ── Camera update ─────────────────────────────────────────────────────────
-      const _look = new THREE.Vector3();
-      function updateCamera(t: number) {
-        driftT += 0.0004;
-        const dX = Math.sin(driftT) * 0.35, dY = Math.sin(driftT*0.6)*0.18, dZ = Math.cos(driftT*0.45)*0.22;
-        const i = Math.min(Math.floor(t), camPath.length - 2), f = t - i;
-        const a = camPath[i], b = camPath[i + 1];
-        const rI = a.r + (b.r - a.r) * f, thetaI = a.theta + (b.theta - a.theta) * f;
-        const yI = a.y + (b.y - a.y) * f, lookYI = a.lookY + (b.lookY - a.lookY) * f;
-        camera.position.x += ((rI*Math.cos(thetaI)) + smoothX*2.2 + dX - camera.position.x) * 0.04;
-        camera.position.y += (yI - smoothY*1.3 + dY - camera.position.y) * 0.04;
-        camera.position.z += ((rI*Math.sin(thetaI)) + dZ - camera.position.z) * 0.04;
-        _look.set(smoothX*0.8, lookYI - smoothY*0.6, 0);
-        camera.lookAt(_look);
+      const _look=new THREE.Vector3();
+      function updateCamera(t:number){
+        driftT+=0.0004;
+        const dX=Math.sin(driftT)*0.35,dY=Math.sin(driftT*0.6)*0.18,dZ=Math.cos(driftT*0.45)*0.22;
+        const i=Math.min(Math.floor(t),camPath.length-2),f=t-i;
+        const a=camPath[i],b=camPath[i+1];
+        const rI=a.r+(b.r-a.r)*f,thetaI=a.theta+(b.theta-a.theta)*f;
+        const yI=a.y+(b.y-a.y)*f,lookYI=a.lookY+(b.lookY-a.lookY)*f;
+        camera.position.x+=((rI*Math.cos(thetaI))+smoothX*2.2+dX-camera.position.x)*0.04;
+        camera.position.y+=(yI-smoothY*1.3+dY-camera.position.y)*0.04;
+        camera.position.z+=((rI*Math.sin(thetaI))+dZ-camera.position.z)*0.04;
+        _look.set(smoothX*0.8,lookYI-smoothY*0.6,0);camera.lookAt(_look);
       }
 
       // ── Resize ────────────────────────────────────────────────────────────────
-      const onResize = () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        composer.setSize(window.innerWidth, window.innerHeight);
+      const onResize=()=>{
+        camera.aspect=window.innerWidth/window.innerHeight;camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth,window.innerHeight);composer.setSize(window.innerWidth,window.innerHeight);
       };
-      window.addEventListener("resize", onResize);
+      window.addEventListener("resize",onResize);
 
       // ── Render loop ───────────────────────────────────────────────────────────
-      let frame = 0;
-      const animate = () => {
-        if (destroyed) return;
-        rafId = requestAnimationFrame(animate);
+      let frame=0;
+      const animate=()=>{
+        if(destroyed)return;
+        rafId=requestAnimationFrame(animate);
         frame++;
 
-        // Scroll lerp — this is the heartbeat of the whole system
-        scrollTarget = window.scrollY;
-        scrollCurrent += (scrollTarget - scrollCurrent) * LERP;
-        const scrollRange = Math.max(1, document.body.scrollHeight - window.innerHeight);
-        const progress = clamp(scrollCurrent / scrollRange, 0, 1);
+        // Scroll lerp
+        scrollTarget=window.scrollY;
+        scrollCurrent+=(scrollTarget-scrollCurrent)*LERP;
+        const scrollRange=Math.max(1,document.body.scrollHeight-window.innerHeight);
+        const progress=clamp(scrollCurrent/scrollRange,0,1);
 
-        // Drive camera + elements from same progress value
-        updateCamera(progress * (camPath.length - 1));
+        // Chromatic aberration boost from scroll velocity
+        const scrollVel=Math.abs(scrollCurrent-prevScroll);
+        prevScroll=scrollCurrent;
+        chromaPass.uniforms.amount.value=BASE_CHROMA+scrollVel*0.00028;
+
+        // Progress bar
+        if(progressBar)progressBar.style.width=(progress*100).toFixed(3)+"%";
+
+        void curX; void curY; // unused but tracked for future
+
+        updateCamera(progress*(camPath.length-1));
         updateElements(progress);
+        updateCounters(progress);
 
-        smoothX += (normX - smoothX) * 0.048;
-        smoothY += (normY - smoothY) * 0.048;
+        smoothX+=(normX-smoothX)*0.048;
+        smoothY+=(normY-smoothY)*0.048;
 
-        wrapper.rotation.x += ( smoothY*0.05 - wrapper.rotation.x) * 0.04;
-        wrapper.rotation.z += (-smoothX*0.05 - wrapper.rotation.z) * 0.04;
+        wrapper.rotation.x+=(smoothY*0.05-wrapper.rotation.x)*0.04;
+        wrapper.rotation.z+=(-smoothX*0.05-wrapper.rotation.z)*0.04;
 
-        ribbons.forEach(r => { r.rotation.y += r.userData.speed; });
-        rings.forEach(r   => { r.rotation.z += r.userData.speed; });
+        ribbons.forEach(r=>{r.rotation.y+=r.userData.speed;});
+        rings.forEach(r=>{r.rotation.z+=r.userData.speed;});
 
-        pulses.forEach(ring => {
-          const ph = (frame * 0.007 + ring.userData.phase) % 1;
-          const sc = 2 + ph * 22;
-          ring.scale.set(sc, sc, sc);
-          (ring.material as THREE.MeshBasicMaterial).opacity = Math.pow(1 - ph, 1.5) * 0.55;
+        pulses.forEach(ring=>{
+          const ph=(frame*0.007+ring.userData.phase)%1,sc=2+ph*22;
+          ring.scale.set(sc,sc,sc);
+          (ring.material as THREE.MeshBasicMaterial).opacity=Math.pow(1-ph,1.5)*0.55;
         });
 
-        orbitLight.position.set(Math.cos(frame*0.008)*12, 18+Math.sin(frame*0.005)*14, Math.sin(frame*0.008)*12);
+        orbitLight.position.set(Math.cos(frame*0.008)*12,18+Math.sin(frame*0.005)*14,Math.sin(frame*0.008)*12);
 
-        const aPos=atmo.pos, aVel=atmo.vel, tPos=atmo.tPos;
-        const mwx=smoothX*10, mwz=smoothY*6;
-        for (let i=0;i<ATMO;i++) {
-          aVel[i*3]*=0.94; aVel[i*3+1]*=0.97; aVel[i*3+2]*=0.94;
-          aVel[i*3+1]+=0.0018;
-          if(aVel[i*3+1]>0.032)aVel[i*3+1]=0.032;
-          aPos[i*3]+=aVel[i*3]; aPos[i*3+1]+=aVel[i*3+1]; aPos[i*3+2]+=aVel[i*3+2];
-          aPos[i*3]*=0.9999; aPos[i*3+2]*=0.9999;
-          const dx=aPos[i*3]-mwx, dz=aPos[i*3+2]-mwz, d2=dx*dx+dz*dz;
+        const aPos=atmo.pos,aVel=atmo.vel,tPos=atmo.tPos,mwx=smoothX*10,mwz=smoothY*6;
+        for(let i=0;i<ATMO;i++){
+          aVel[i*3]*=0.94;aVel[i*3+1]*=0.97;aVel[i*3+2]*=0.94;
+          aVel[i*3+1]+=0.0018;if(aVel[i*3+1]>0.032)aVel[i*3+1]=0.032;
+          aPos[i*3]+=aVel[i*3];aPos[i*3+1]+=aVel[i*3+1];aPos[i*3+2]+=aVel[i*3+2];
+          aPos[i*3]*=0.9999;aPos[i*3+2]*=0.9999;
+          const dx=aPos[i*3]-mwx,dz=aPos[i*3+2]-mwz,d2=dx*dx+dz*dz;
           if(d2<120&&d2>0.01){const d=Math.sqrt(d2),f=((11-d)/11)*0.22;aVel[i*3]+=(dx/d)*f;aVel[i*3+2]+=(dz/d)*f;}
           if(aPos[i*3+1]>64){aPos[i*3+1]=-1+Math.random();aPos[i*3]=(Math.random()-0.5)*60;aPos[i*3+2]=(Math.random()-0.5)*60;aVel[i*3]=(Math.random()-0.5)*0.003;aVel[i*3+1]=0.001+Math.random()*0.004;aVel[i*3+2]=(Math.random()-0.5)*0.003;}
           const spd=Math.sqrt(aVel[i*3]*aVel[i*3]+aVel[i*3+1]*aVel[i*3+1]+aVel[i*3+2]*aVel[i*3+2]);
           const tLen=spd*42;
-          tPos[i*6]=aPos[i*3]; tPos[i*6+1]=aPos[i*3+1]; tPos[i*6+2]=aPos[i*3+2];
+          tPos[i*6]=aPos[i*3];tPos[i*6+1]=aPos[i*3+1];tPos[i*6+2]=aPos[i*3+2];
           tPos[i*6+3]=aPos[i*3]-(aVel[i*3]/spd)*(tLen||0);
           tPos[i*6+4]=aPos[i*3+1]-(aVel[i*3+1]/spd)*(tLen||0);
           tPos[i*6+5]=aPos[i*3+2]-(aVel[i*3+2]/spd)*(tLen||0);
         }
-        atmo.pts.geometry.attributes.position.needsUpdate = true;
-        atmo.tGeo.attributes.position.needsUpdate = true;
-        const cursorSpd = Math.sqrt(smoothX*smoothX+smoothY*smoothY);
-        (atmo.trails.material as THREE.LineBasicMaterial).opacity = 0.22 + cursorSpd*0.8;
+        atmo.pts.geometry.attributes.position.needsUpdate=true;
+        atmo.tGeo.attributes.position.needsUpdate=true;
+        const cursorSpd=Math.sqrt(smoothX*smoothX+smoothY*smoothY);
+        (atmo.trails.material as THREE.LineBasicMaterial).opacity=0.22+cursorSpd*0.8;
 
-        goldA.intensity  = 10 + Math.sin(frame*0.02)*5;
-        goldB.intensity  = 7  + Math.cos(frame*0.015)*3.5;
-        apex.intensity   = 16 + Math.sin(frame*0.05)*9;
-        tealCore.intensity = 5 + Math.sin(frame*0.03)*2.5;
-        bloom.strength = (isMobile ? 1.0 : 2.0) + Math.sin(frame*0.01)*0.2;
-        stars.rotation.y = frame * 0.00004;
+        goldA.intensity=10+Math.sin(frame*0.02)*5;
+        goldB.intensity=7+Math.cos(frame*0.015)*3.5;
+        apex.intensity=16+Math.sin(frame*0.05)*9;
+        tealCore.intensity=5+Math.sin(frame*0.03)*2.5;
+        bloom.strength=(isMobile?1.0:2.0)+Math.sin(frame*0.01)*0.2;
+        stars.rotation.y=frame*0.00004;
 
         composer.render();
       };
 
       animate();
 
-      return () => {
-        window.removeEventListener("mousemove", onMouse);
-        window.removeEventListener("touchmove", onTouch);
-        window.removeEventListener("resize", onResize);
-        renderer.dispose();
-        composer.dispose();
+      return()=>{
+        window.removeEventListener("mousemove",onMouse);
+        window.removeEventListener("touchmove",onTouch);
+        window.removeEventListener("resize",onResize);
+        renderer.dispose();composer.dispose();
       };
     };
 
-    const cleanup = init();
-    return () => {
-      destroyed = true;
-      cancelAnimationFrame(rafId);
-      if (cleanup) cleanup();
-    };
-  }, []);
+    const cleanup=init();
+    return()=>{destroyed=true;cancelAnimationFrame(rafId);if(cleanup)cleanup();};
+  },[]);
 
-  // ── JSX — sign-reveal markup ──────────────────────────────────────────────
-  // Each animatable element is the INNER node. Wrappers have overflow:hidden.
-  const signWrap: React.CSSProperties = { overflow: "hidden", display: "block" };
-  const signInner: React.CSSProperties = { display: "block", willChange: "transform, opacity" };
+  const SW:React.CSSProperties={overflow:"hidden",display:"block"};
+  const SI:React.CSSProperties={display:"block",willChange:"transform,opacity"};
 
   return (
     <>
-      <canvas
-        ref={canvasRef}
-        style={{ position:"fixed", inset:0, zIndex:0, width:"100vw", height:"100vh", display:"block" }}
-      />
+      <canvas ref={canvasRef} style={{position:"fixed",inset:0,zIndex:0,width:"100vw",height:"100vh",display:"block"}} />
+
+      {/* Gold progress bar — 1px at top */}
+      <div id="exp-pb" style={{position:"fixed",top:0,left:0,zIndex:200,height:1,width:"0%",background:"linear-gradient(to right,#C9A84C,#ffe5a0,#C9A84C)",pointerEvents:"none",transition:"none"}} />
 
       {/* Back */}
-      <Link
-        href="/"
-        style={{ position:"fixed", top:"1.8rem", left:"2rem", zIndex:100, fontFamily:"'Space Mono',monospace", fontSize:"0.62rem", letterSpacing:"0.2em", color:"rgba(221,232,240,0.5)", transition:"color 0.2s", display:"flex", alignItems:"center", gap:"0.5rem" }}
-        onMouseEnter={e => (e.currentTarget.style.color="rgba(221,232,240,0.9)")}
-        onMouseLeave={e => (e.currentTarget.style.color="rgba(221,232,240,0.5)")}
-      >
+      <Link href="/" style={{position:"fixed",top:"1.8rem",left:"2rem",zIndex:100,fontFamily:"'Space Mono',monospace",fontSize:"0.62rem",letterSpacing:"0.2em",color:"rgba(221,232,240,0.5)",transition:"color 0.2s",display:"flex",alignItems:"center",gap:"0.5rem"}}
+        onMouseEnter={e=>(e.currentTarget.style.color="rgba(221,232,240,0.9)")}
+        onMouseLeave={e=>(e.currentTarget.style.color="rgba(221,232,240,0.5)")}>
         ← JDLO
       </Link>
 
-      {/* Spacer — 700vh gives lots of room between beats */}
-      <div style={{ height:"700vh", position:"relative", pointerEvents:"none" }} />
+      {/* Spacer */}
+      <div style={{height:"700vh",position:"relative",pointerEvents:"none"}} />
 
       {/* ── Hero ── */}
-      <section style={{ position:"fixed", inset:0, zIndex:10, display:"flex", flexDirection:"column", justifyContent:"flex-end", padding:"0 0 10vh 7vw", pointerEvents:"none" }}>
+      <section style={{position:"fixed",inset:0,zIndex:10,display:"flex",flexDirection:"column",justifyContent:"flex-end",padding:"0 0 10vh 7vw",pointerEvents:"none"}}>
 
-        {/* JDLO — each letter is its own sign */}
-        <div style={{ display:"flex", lineHeight:0.85, marginBottom:"2.5rem", gap:"0.01em" }}>
-          {(["J","D","L","O"] as const).map((char) => (
-            <div key={char} style={signWrap}>
-              <span
-                id={`h-${char}`}
-                style={{
-                  ...signInner,
-                  fontFamily:"'Space Grotesk',sans-serif",
-                  fontSize:"clamp(5.5rem,21vw,18rem)",
-                  fontWeight:300,
-                  letterSpacing:"-0.04em",
-                  color:"#dde8f0",
-                  opacity:0,
-                }}
-              >
+        {/* JDLO — each letter scrambles in */}
+        <div style={{display:"flex",lineHeight:0.85,marginBottom:"2.5rem",gap:"0.01em"}}>
+          {(["J","D","L","O"] as const).map(char=>(
+            <div key={char} style={SW}>
+              <span id={`h-${char}`} data-final={char} style={{...SI,fontFamily:"'Space Grotesk',sans-serif",fontSize:"clamp(5.5rem,21vw,18rem)",fontWeight:300,letterSpacing:"-0.04em",color:"#dde8f0",opacity:0}}>
                 {char}
               </span>
             </div>
           ))}
         </div>
 
-        <div style={signWrap}>
-          <span id="h-sub" style={{ ...signInner, display:"block", fontFamily:"'Space Mono',monospace", fontSize:"0.72rem", letterSpacing:"0.32em", color:"#C9A84C", opacity:0, marginBottom:"3rem" }}>
+        <div style={SW}>
+          <span id="h-sub" style={{...SI,display:"block",fontFamily:"'Space Mono',monospace",fontSize:"0.72rem",letterSpacing:"0.32em",color:"#C9A84C",opacity:0,marginBottom:"3rem"}}>
             SYSTEMS · SITES · AI · EXPERIENCES
           </span>
         </div>
 
-        {/* Scroll cue */}
-        <div id="h-cue" style={{ position:"absolute", bottom:"6vh", left:"50%", transform:"translateX(-50%)", display:"flex", flexDirection:"column", alignItems:"center", gap:"0.8rem", opacity:0, pointerEvents:"none", willChange:"opacity,transform" }}>
-          <span style={{ fontFamily:"'Space Mono',monospace", fontSize:"0.62rem", letterSpacing:"0.28em", color:"#C9A84C", animation:"xblink 2.5s ease-in-out infinite" }}>SCROLL</span>
-          <div style={{ width:1, height:44, background:"linear-gradient(to bottom,#C9A84C,transparent)", animation:"xdrip 2.5s ease-in-out infinite" }} />
+        <div id="h-cue" style={{position:"absolute",bottom:"6vh",left:"50%",transform:"translateX(-50%)",display:"flex",flexDirection:"column",alignItems:"center",gap:"0.8rem",opacity:0,pointerEvents:"none",willChange:"opacity,transform"}}>
+          <span style={{fontFamily:"'Space Mono',monospace",fontSize:"0.62rem",letterSpacing:"0.28em",color:"#C9A84C",animation:"xblink 2.5s ease-in-out infinite"}}>SCROLL</span>
+          <div style={{width:1,height:44,background:"linear-gradient(to bottom,#C9A84C,transparent)",animation:"xdrip 2.5s ease-in-out infinite"}} />
         </div>
       </section>
 
       {/* ── Stats ── */}
-      <section style={{ position:"fixed", inset:0, zIndex:10, display:"flex", alignItems:"center", padding:"0 0 0 8vw", pointerEvents:"none" }}>
-        <div style={{ maxWidth:540 }}>
-
-          <div style={signWrap}>
-            <span id="s1-label" style={{ ...signInner, fontFamily:"'Space Mono',monospace", fontSize:"0.62rem", letterSpacing:"0.3em", color:"#C9A84C", opacity:0, display:"block", marginBottom:"3rem" }}>
+      <section style={{position:"fixed",inset:0,zIndex:10,display:"flex",alignItems:"center",padding:"0 0 0 8vw",pointerEvents:"none"}}>
+        <div style={{maxWidth:540}}>
+          <div style={SW}>
+            <span id="s1-label" style={{...SI,fontFamily:"'Space Mono',monospace",fontSize:"0.62rem",letterSpacing:"0.3em",color:"#C9A84C",opacity:0,display:"block",marginBottom:"3rem"}}>
               01 — BY THE NUMBERS
             </span>
           </div>
 
           {[
-            { id:"s1-r0", n:"25+",    label:"Builds shipped" },
-            { id:"s1-r1", n:"$200K+", label:"Revenue generated for clients" },
-            { id:"s1-r2", n:"0",      label:"Templates ever used" },
-          ].map(({ id, n, label }) => (
-            <div key={id} style={signWrap}>
-              <div
-                id={id}
-                style={{ ...signInner, borderTop:"1px solid rgba(221,232,240,0.08)", padding:"2rem 0", display:"flex", alignItems:"baseline", gap:"2rem", opacity:0 }}
-              >
-                <span style={{ fontFamily:"'Space Mono',monospace", fontSize:"clamp(2.5rem,7vw,5.5rem)", fontWeight:700, color:"rgba(221,232,240,0.13)", letterSpacing:"-0.03em", lineHeight:1, minWidth:"7rem" }}>
+            {rowId:"s1-r0",numId:"s1-n0",n:"0+",   label:"Builds shipped"},
+            {rowId:"s1-r1",numId:"s1-n1",n:"$0K+",  label:"Revenue generated for clients"},
+            {rowId:"s1-r2",numId:"s1-n2",n:"0",     label:"Templates ever used"},
+          ].map(({rowId,numId,n,label})=>(
+            <div key={rowId} style={SW}>
+              <div id={rowId} style={{...SI,borderTop:"1px solid rgba(221,232,240,0.08)",padding:"2rem 0",display:"flex",alignItems:"baseline",gap:"2rem",opacity:0}}>
+                <span id={numId} style={{fontFamily:"'Space Mono',monospace",fontSize:"clamp(2.5rem,7vw,5.5rem)",fontWeight:700,color:"rgba(221,232,240,0.13)",letterSpacing:"-0.03em",lineHeight:1,minWidth:"7rem"}}>
                   {n}
                 </span>
-                <span style={{ fontFamily:"'Space Grotesk',sans-serif", fontSize:"clamp(1rem,2vw,1.4rem)", fontWeight:300, color:"rgba(221,232,240,0.7)", letterSpacing:"-0.01em" }}>
+                <span style={{fontFamily:"'Space Grotesk',sans-serif",fontSize:"clamp(1rem,2vw,1.4rem)",fontWeight:300,color:"rgba(221,232,240,0.7)",letterSpacing:"-0.01em"}}>
                   {label}
                 </span>
               </div>
@@ -554,65 +523,56 @@ export default function ExperiencePage() {
       </section>
 
       {/* ── Story ── */}
-      <section style={{ position:"fixed", inset:0, zIndex:10, display:"flex", alignItems:"center", justifyContent:"flex-end", padding:"0 8vw 0 0", pointerEvents:"none" }}>
-        <div style={{ maxWidth:480 }}>
-
-          <div style={signWrap}>
-            <span id="s2-label" style={{ ...signInner, display:"block", fontFamily:"'Space Mono',monospace", fontSize:"0.62rem", letterSpacing:"0.3em", color:"#C9A84C", opacity:0, marginBottom:"3rem" }}>
+      <section style={{position:"fixed",inset:0,zIndex:10,display:"flex",alignItems:"center",justifyContent:"flex-end",padding:"0 8vw 0 0",pointerEvents:"none"}}>
+        <div style={{maxWidth:480}}>
+          <div style={SW}>
+            <span id="s2-label" style={{...SI,display:"block",fontFamily:"'Space Mono',monospace",fontSize:"0.62rem",letterSpacing:"0.3em",color:"#C9A84C",opacity:0,marginBottom:"3rem"}}>
               02 — WHO I AM
             </span>
           </div>
 
-          {[
-            { id:"s2-l0", text:"Self-taught." },
-            { id:"s2-l1", text:"Self-made." },
-            { id:"s2-l2", text:"No shortcuts." },
-          ].map(({ id, text }) => (
-            <div key={id} style={{ ...signWrap, marginBottom:"0.1em" }}>
-              <span id={id} style={{ ...signInner, fontFamily:"'Space Grotesk',sans-serif", fontSize:"clamp(2rem,4.5vw,3.6rem)", fontWeight:300, letterSpacing:"-0.03em", lineHeight:1.05, color:"#dde8f0", opacity:0, display:"block" }}>
+          {[{id:"s2-l0",text:"Self-taught."},{id:"s2-l1",text:"Self-made."},{id:"s2-l2",text:"No shortcuts."}].map(({id,text})=>(
+            <div key={id} style={{...SW,marginBottom:"0.1em"}}>
+              <span id={id} style={{...SI,fontFamily:"'Space Grotesk',sans-serif",fontSize:"clamp(2rem,4.5vw,3.6rem)",fontWeight:300,letterSpacing:"-0.03em",lineHeight:1.05,color:"#dde8f0",opacity:0,display:"block"}}>
                 {text}
               </span>
             </div>
           ))}
 
-          <p id="s2-body" style={{ ...signInner, fontFamily:"'Space Grotesk',sans-serif", fontSize:"0.9rem", lineHeight:1.85, color:"rgba(221,232,240,0.45)", fontWeight:300, marginTop:"2rem", marginBottom:"2.5rem", opacity:0 }}>
+          <p id="s2-body" style={{...SI,fontFamily:"'Space Grotesk',sans-serif",fontSize:"0.9rem",lineHeight:1.85,color:"rgba(221,232,240,0.45)",fontWeight:300,marginTop:"2rem",marginBottom:"2.5rem",opacity:0}}>
             Learned the entire modern stack in under a year.
             Built casinos, enterprise tools, AI systems, and games
             for businesses from local shops to six-figure operations.
             I move fast, build clean, and don&apos;t use templates.
           </p>
-
-          <a id="s2-cta" href="/work" style={{ ...signInner, display:"inline-flex", alignItems:"center", gap:"0.6rem", fontFamily:"'Space Mono',monospace", fontSize:"0.65rem", letterSpacing:"0.2em", color:"#C9A84C", opacity:0, pointerEvents:"all" }}>
+          <a id="s2-cta" href="/work" style={{...SI,display:"inline-flex",alignItems:"center",gap:"0.6rem",fontFamily:"'Space Mono',monospace",fontSize:"0.65rem",letterSpacing:"0.2em",color:"#C9A84C",opacity:0,pointerEvents:"all"}}>
             SEE WHAT I&apos;VE BUILT <span>→</span>
           </a>
         </div>
       </section>
 
-      {/* ── Final CTA ── */}
-      <section style={{ position:"fixed", inset:0, zIndex:10, display:"flex", alignItems:"center", justifyContent:"center", flexDirection:"column", textAlign:"center", padding:"0 6vw", pointerEvents:"none" }}>
-
-        <div style={signWrap}>
-          <span id="s3-label" style={{ ...signInner, display:"block", fontFamily:"'Space Mono',monospace", fontSize:"0.62rem", letterSpacing:"0.3em", color:"#C9A84C", opacity:0, marginBottom:"2rem" }}>
+      {/* ── CTA ── */}
+      <section style={{position:"fixed",inset:0,zIndex:10,display:"flex",alignItems:"center",justifyContent:"center",flexDirection:"column",textAlign:"center",padding:"0 6vw",pointerEvents:"none"}}>
+        <div style={SW}>
+          <span id="s3-label" style={{...SI,display:"block",fontFamily:"'Space Mono',monospace",fontSize:"0.62rem",letterSpacing:"0.3em",color:"#C9A84C",opacity:0,marginBottom:"2rem"}}>
             03 — LET&apos;S BUILD
           </span>
         </div>
-
-        <div style={signWrap}>
-          <span id="s3-l0" style={{ ...signInner, display:"block", fontFamily:"'Space Grotesk',sans-serif", fontSize:"clamp(3rem,8vw,7rem)", fontWeight:300, letterSpacing:"-0.04em", lineHeight:0.9, color:"#dde8f0", opacity:0 }}>
+        <div style={SW}>
+          <span id="s3-l0" style={{...SI,display:"block",fontFamily:"'Space Grotesk',sans-serif",fontSize:"clamp(3rem,8vw,7rem)",fontWeight:300,letterSpacing:"-0.04em",lineHeight:0.9,color:"#dde8f0",opacity:0}}>
             You bring
           </span>
         </div>
-        <div style={{ ...signWrap, marginBottom:"1.5rem" }}>
-          <span id="s3-l1" style={{ ...signInner, display:"block", fontFamily:"'Space Grotesk',sans-serif", fontSize:"clamp(3rem,8vw,7rem)", fontWeight:300, letterSpacing:"-0.04em", lineHeight:0.9, color:"rgba(221,232,240,0.35)", opacity:0 }}>
+        <div style={{...SW,marginBottom:"1.5rem"}}>
+          <span id="s3-l1" style={{...SI,display:"block",fontFamily:"'Space Grotesk',sans-serif",fontSize:"clamp(3rem,8vw,7rem)",fontWeight:300,letterSpacing:"-0.04em",lineHeight:0.9,color:"rgba(221,232,240,0.35)",opacity:0}}>
             the vision.
           </span>
         </div>
-
-        <div id="s3-btns" style={{ ...signInner, display:"flex", gap:"1rem", justifyContent:"center", flexWrap:"wrap", opacity:0, pointerEvents:"all" }}>
-          <a href="/contact" style={{ fontFamily:"'Space Mono',monospace", fontSize:"0.65rem", letterSpacing:"0.2em", padding:"0.9rem 2.4rem", background:"#C9A84C", border:"1px solid #C9A84C", borderRadius:"100px", color:"#060608", fontWeight:700 }}>
+        <div id="s3-btns" style={{...SI,display:"flex",gap:"1rem",justifyContent:"center",flexWrap:"wrap",opacity:0,pointerEvents:"all"}}>
+          <a href="/contact" style={{fontFamily:"'Space Mono',monospace",fontSize:"0.65rem",letterSpacing:"0.2em",padding:"0.9rem 2.4rem",background:"#C9A84C",border:"1px solid #C9A84C",borderRadius:"100px",color:"#060608",fontWeight:700}}>
             START A PROJECT
           </a>
-          <a href="https://instagram.com/jdlo" target="_blank" rel="noopener noreferrer" style={{ fontFamily:"'Space Mono',monospace", fontSize:"0.65rem", letterSpacing:"0.2em", padding:"0.9rem 2.4rem", border:"1px solid rgba(221,232,240,0.2)", borderRadius:"100px", color:"rgba(221,232,240,0.7)" }}>
+          <a href="https://instagram.com/jdlo" target="_blank" rel="noopener noreferrer" style={{fontFamily:"'Space Mono',monospace",fontSize:"0.65rem",letterSpacing:"0.2em",padding:"0.9rem 2.4rem",border:"1px solid rgba(221,232,240,0.2)",borderRadius:"100px",color:"rgba(221,232,240,0.7)"}}>
             DM @JDLO
           </a>
         </div>
@@ -620,13 +580,8 @@ export default function ExperiencePage() {
 
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Space+Grotesk:wght@300;400;500&display=swap');
-        @keyframes xblink { 0%,100%{opacity:0.3;}50%{opacity:1;} }
-        @keyframes xdrip {
-          0%  {transform:scaleY(0);transform-origin:top;opacity:0;}
-          30% {transform:scaleY(1);transform-origin:top;opacity:1;}
-          70% {transform:scaleY(1);transform-origin:bottom;opacity:1;}
-          100%{transform:scaleY(0);transform-origin:bottom;opacity:0;}
-        }
+        @keyframes xblink{0%,100%{opacity:0.3;}50%{opacity:1;}}
+        @keyframes xdrip{0%{transform:scaleY(0);transform-origin:top;opacity:0;}30%{transform:scaleY(1);transform-origin:top;opacity:1;}70%{transform:scaleY(1);transform-origin:bottom;opacity:1;}100%{transform:scaleY(0);transform-origin:bottom;opacity:0;}}
       `}</style>
     </>
   );
