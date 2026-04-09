@@ -689,6 +689,44 @@ function StickyMobileCTA() {
   );
 }
 
+/* ── Experience Teaser ── */
+function ExperienceTeaser() {
+  return (
+    <section className="border-t border-border">
+      <Link
+        href="/experience"
+        className="group block relative overflow-hidden bg-[#040810] px-6 md:px-10 py-16 sm:py-24 text-center hover:bg-[#060c18] transition-colors duration-700"
+      >
+        {/* Subtle glow */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] rounded-full bg-[#4de8cc]/5 blur-[80px] group-hover:bg-[#4de8cc]/10 transition-all duration-700" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[200px] rounded-full bg-[#C9A84C]/5 blur-[60px] group-hover:bg-[#C9A84C]/8 transition-all duration-700" />
+        </div>
+        <div className="relative z-10 max-w-[1400px] mx-auto">
+          <p className="font-mono text-[11px] tracking-[0.5em] uppercase text-[#4de8cc] mb-6 opacity-70">
+            Interactive Experience
+          </p>
+          <h2
+            className="font-mono text-[clamp(2rem,8vw,7rem)] tracking-[-0.04em] leading-[0.88] text-[#dde8f0] mb-8 group-hover:text-white transition-colors duration-500"
+            style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 300 }}
+          >
+            JDLO
+          </h2>
+          <p className="text-[#dde8f0]/50 text-[14px] sm:text-[16px] font-mono tracking-[0.15em] uppercase mb-10 group-hover:text-[#dde8f0]/70 transition-colors duration-500">
+            Enter the 3D experience →
+          </p>
+          <div className="inline-flex items-center gap-3 border border-[#dde8f0]/15 rounded-full px-6 py-3 group-hover:border-[#4de8cc]/40 transition-all duration-500">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#4de8cc] animate-pulse" />
+            <span className="font-mono text-[11px] tracking-[0.3em] text-[#dde8f0]/40 uppercase group-hover:text-[#4de8cc]/80 transition-colors duration-500">
+              WebGL · Three.js · Scroll-driven
+            </span>
+          </div>
+        </div>
+      </Link>
+    </section>
+  );
+}
+
 /* ── Page ── */
 export default function Home() {
   return (
@@ -698,6 +736,7 @@ export default function Home() {
       <Services />
       <Process />
       <Work />
+      <ExperienceTeaser />
       <MidCTA text="Know what you need? Let's skip the small talk." href="/contact" label="Start a Project" />
       <Results />
       <Testimonials />

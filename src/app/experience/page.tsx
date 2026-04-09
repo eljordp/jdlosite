@@ -688,7 +688,7 @@ export default function ExperiencePage() {
       </Link>
 
       {/* Scroll container */}
-      <div id="exp-scroll" style={{ position: "relative", zIndex: 20 }}>
+      <div id="exp-scroll" style={{ position: "relative", zIndex: 20, background: "transparent" }}>
 
         {/* ── Section 0: Hero ─────────────────────────────────────────────── */}
         <section style={{
@@ -767,7 +767,7 @@ export default function ExperiencePage() {
         </section>
 
         {/* ── Section 1: Stats ─────────────────────────────────────────────── */}
-        <section style={{ height: "100vh", display: "flex", alignItems: "center", padding: "0 0 0 8vw" }}>
+        <section style={{ height: "100vh", display: "flex", alignItems: "center", padding: "0 0 0 8vw", background: "transparent" }}>
           <div className="exp-reveal" style={{ maxWidth: 520 }}>
             <p className="exp-item" style={{
               fontFamily: "'Space Mono', monospace",
@@ -779,9 +779,9 @@ export default function ExperiencePage() {
               01 — BY THE NUMBERS
             </p>
             {[
-              { n: "25+",   label: "Builds shipped"            },
-              { n: "$200K+",label: "Revenue generated for clients" },
-              { n: "0",     label: "Templates used"            },
+              { n: "25+",    label: "Builds shipped" },
+              { n: "$200K+", label: "Revenue generated for clients" },
+              { n: "0",      label: "Templates ever used" },
             ].map(({ n, label }) => (
               <div
                 key={n}
@@ -819,12 +819,12 @@ export default function ExperiencePage() {
           </div>
         </section>
 
-        {/* ── Section 2: What I build ──────────────────────────────────────── */}
+        {/* ── Section 2: The story ──────────────────────────────────────────── */}
         <section style={{
           height: "100vh", display: "flex", alignItems: "center",
-          justifyContent: "flex-end", padding: "0 8vw 0 0",
+          justifyContent: "flex-end", padding: "0 8vw 0 0", background: "transparent",
         }}>
-          <div className="exp-reveal" style={{ maxWidth: 460 }}>
+          <div className="exp-reveal" style={{ maxWidth: 480 }}>
             <p className="exp-item" style={{
               fontFamily: "'Space Mono', monospace",
               fontSize: "0.62rem",
@@ -832,33 +832,34 @@ export default function ExperiencePage() {
               color: "#4de8cc",
               marginBottom: "3rem",
             }}>
-              02 — WHAT I BUILD
+              02 — WHO I AM
             </p>
             <h2 className="exp-item" style={{
               fontFamily: "'Space Grotesk', sans-serif",
-              fontSize: "clamp(2rem, 4.5vw, 3.8rem)",
+              fontSize: "clamp(2rem, 4.5vw, 3.6rem)",
               fontWeight: 300,
               letterSpacing: "-0.03em",
               lineHeight: 1.05,
               color: "#dde8f0",
               marginBottom: "2rem",
             }}>
-              Sites that close.<br />Systems that scale.<br />Things that stop traffic.
+              Self-taught.<br />Self-made.<br />No shortcuts.
             </h2>
             <p className="exp-item" style={{
               fontFamily: "'Space Grotesk', sans-serif",
               fontSize: "0.9rem",
-              lineHeight: 1.8,
+              lineHeight: 1.85,
               color: "rgba(221,232,240,0.45)",
               fontWeight: 300,
               marginBottom: "2.5rem",
             }}>
-              Websites. AI systems. E-commerce. Casinos. Games. Enterprise dashboards.
-              Whatever you need — I build the version that actually works.
+              Learned the entire modern stack in under a year.
+              Built casinos, enterprise tools, AI systems, and games
+              for businesses from local shops to six-figure operations.
+              I move fast, build clean, and don&apos;t use templates.
             </p>
             <a
               href="/work"
-              className="exp-item"
               style={{
                 display: "inline-flex",
                 alignItems: "center",
@@ -870,7 +871,7 @@ export default function ExperiencePage() {
                 pointerEvents: "all",
               }}
             >
-              SEE THE WORK <span>→</span>
+              SEE WHAT I&apos;VE BUILT <span>→</span>
             </a>
           </div>
         </section>
@@ -879,7 +880,7 @@ export default function ExperiencePage() {
         <section style={{
           height: "100vh", display: "flex", alignItems: "center",
           justifyContent: "center", flexDirection: "column", textAlign: "center",
-          padding: "0 6vw",
+          padding: "0 6vw", background: "transparent",
         }}>
           <div className="exp-reveal">
             <p className="exp-item" style={{
@@ -889,7 +890,7 @@ export default function ExperiencePage() {
               color: "#4de8cc",
               marginBottom: "2rem",
             }}>
-              03 — LET&apos;S GO
+              03 — LET&apos;S BUILD
             </p>
             <h2
               className="exp-item"
@@ -900,11 +901,21 @@ export default function ExperiencePage() {
                 letterSpacing: "-0.04em",
                 lineHeight: 0.9,
                 color: "#dde8f0",
-                marginBottom: "3rem",
+                marginBottom: "1.5rem",
               }}
             >
-              Ready to<br />build something.
+              You bring<br />the vision.
             </h2>
+            <p className="exp-item" style={{
+              fontFamily: "'Space Grotesk', sans-serif",
+              fontSize: "clamp(1rem, 2vw, 1.4rem)",
+              fontWeight: 300,
+              color: "rgba(221,232,240,0.35)",
+              letterSpacing: "-0.01em",
+              marginBottom: "3rem",
+            }}>
+              I&apos;ll build the rest.
+            </p>
             <div className="exp-item" style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
               <a
                 href="/contact"
@@ -912,7 +923,7 @@ export default function ExperiencePage() {
                   fontFamily: "'Space Mono', monospace",
                   fontSize: "0.65rem",
                   letterSpacing: "0.2em",
-                  padding: "0.9rem 2.2rem",
+                  padding: "0.9rem 2.4rem",
                   background: "#C9A84C",
                   border: "1px solid #C9A84C",
                   borderRadius: "100px",
@@ -921,22 +932,24 @@ export default function ExperiencePage() {
                   pointerEvents: "all",
                 }}
               >
-                GET IN TOUCH
+                START A PROJECT
               </a>
               <a
-                href="/work"
+                href="https://instagram.com/jdlo"
+                target="_blank"
+                rel="noopener noreferrer"
                 style={{
                   fontFamily: "'Space Mono', monospace",
                   fontSize: "0.65rem",
                   letterSpacing: "0.2em",
-                  padding: "0.9rem 2.2rem",
+                  padding: "0.9rem 2.4rem",
                   border: "1px solid rgba(221,232,240,0.2)",
                   borderRadius: "100px",
                   color: "rgba(221,232,240,0.7)",
                   pointerEvents: "all",
                 }}
               >
-                SEE WORK
+                DM @JDLO
               </a>
             </div>
           </div>
@@ -955,8 +968,9 @@ export default function ExperiencePage() {
           100% { transform:scaleY(0); transform-origin:bottom; opacity:0; }
         }
         .exp-hero-line { transition: opacity 0s, transform 0s; }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background: #040810; overflow-x: hidden; }
+        /* Override global site styles for this isolated page */
+        body::after { display: none !important; }
+        body::before { display: none !important; }
       `}</style>
     </>
   );
