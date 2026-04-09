@@ -217,73 +217,82 @@ export default function ExperiencePage() {
       // ── Scramble charset ──────────────────────────────────────────────────────
       const CHARS="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$#@!";
 
-      // ── Animation system ──────────────────────────────────────────────────────
-      type AnimItem={el:HTMLElement;kind:"sign"|"fade"|"scramble";vs:number;ve:number;xs?:number;xe?:number;};
+      // ── Animation system — Z-depth pull-out (Active Theory style) ───────────────
+      // Each element flies OUT from inside the 3D scene toward the viewer.
+      // No overflow:hidden needed — translateZ is the reveal mechanism.
+      type AnimItem={el:HTMLElement;kind:"pull"|"fade"|"scramble";vs:number;ve:number;xs?:number;xe?:number;};
       const animItems:AnimItem[]=[];
-      const reg=(id:string,kind:"sign"|"fade"|"scramble",vs:number,ve:number,xs?:number,xe?:number)=>{
+      const reg=(id:string,kind:"pull"|"fade"|"scramble",vs:number,ve:number,xs?:number,xe?:number)=>{
         const el=$(id);if(el)animItems.push({el,kind,vs,ve,xs,xe});
       };
 
-      // Hero letters — scramble kind
-      reg("h-J","scramble",0.00,0.055,0.22,0.29);
-      reg("h-D","scramble",0.02,0.075,0.22,0.29);
-      reg("h-L","scramble",0.04,0.095,0.22,0.29);
-      reg("h-O","scramble",0.06,0.115,0.22,0.29);
+      // Hero letters — fly in from very deep (500px behind screen plane)
+      reg("h-J","scramble",0.00,0.06,0.22,0.29);
+      reg("h-D","scramble",0.02,0.08,0.22,0.29);
+      reg("h-L","scramble",0.04,0.10,0.22,0.29);
+      reg("h-O","scramble",0.06,0.12,0.22,0.29);
       reg("h-sub","fade",0.08,0.14,0.22,0.29);
       reg("h-cue","fade",0.12,0.18,0.16,0.24);
 
-      // Stats
-      reg("s1-label","sign",0.28,0.34,0.55,0.62);
-      reg("s1-r0","sign",0.31,0.38,0.55,0.62);
-      reg("s1-r1","sign",0.35,0.42,0.55,0.62);
-      reg("s1-r2","sign",0.39,0.46,0.55,0.62);
+      // Stats — each sign pulls out from 220px deep, staggered
+      reg("s1-label","pull",0.28,0.35,0.55,0.62);
+      reg("s1-r0","pull",0.31,0.39,0.55,0.62);
+      reg("s1-r1","pull",0.35,0.43,0.55,0.62);
+      reg("s1-r2","pull",0.39,0.47,0.55,0.62);
 
-      // Story
-      reg("s2-label","sign",0.60,0.66,0.80,0.86);
-      reg("s2-l0","sign",0.63,0.70,0.80,0.86);
-      reg("s2-l1","sign",0.66,0.73,0.80,0.86);
-      reg("s2-l2","sign",0.69,0.76,0.80,0.86);
-      reg("s2-body","fade",0.71,0.77,0.80,0.86);
-      reg("s2-cta","fade",0.73,0.79,0.80,0.86);
+      // Story lines — pull out from right side, slight stagger
+      reg("s2-label","pull",0.60,0.67,0.80,0.86);
+      reg("s2-l0","pull",0.63,0.71,0.80,0.86);
+      reg("s2-l1","pull",0.66,0.74,0.80,0.86);
+      reg("s2-l2","pull",0.69,0.77,0.80,0.86);
+      reg("s2-body","fade",0.71,0.78,0.80,0.86);
+      reg("s2-cta","fade",0.73,0.80,0.80,0.86);
 
       // CTA
-      reg("s3-label","sign",0.86,0.91);
-      reg("s3-l0","sign",0.88,0.94);
-      reg("s3-l1","sign",0.91,0.97);
+      reg("s3-label","pull",0.86,0.92);
+      reg("s3-l0","pull",0.88,0.95);
+      reg("s3-l1","pull",0.91,0.98);
       reg("s3-btns","fade",0.93,0.99);
 
       const eOut=(t:number)=>1-Math.pow(1-t,3);
       const eIn=(t:number)=>t*t*t;
       const clamp=(v:number,lo:number,hi:number)=>Math.max(lo,Math.min(hi,v));
 
+      // Depth values per kind
+      const ENTER_Z:{[k:string]:number}={pull:-220,scramble:-500,fade:-40};
+      const EXIT_Z=80; // push slightly forward (past screen) on exit then opacity cuts it
+
       const updateElements=(p:number)=>{
         for(const{el,kind,vs,ve,xs,xe}of animItems){
-          let opacity:number,ty:number;
           const enterT=clamp((p-vs)/(ve-vs),0,1);
+          let opacity:number,tz:number;
 
           if(xs!==undefined&&xe!==undefined&&p>xs){
+            // Exit — sign retreats back into scene
             const exitT=eIn(clamp((p-xs)/(xe-xs),0,1));
             opacity=(1-exitT)*(enterT>=1?1:eOut(enterT));
-            ty=kind==="sign"||kind==="scramble"?-exitT*30:-exitT*16;
+            tz=-exitT*EXIT_Z; // pull back
           } else {
+            // Enter — sign flies out from behind screen
             const e=eOut(enterT);
             opacity=e;
-            ty=kind==="sign"||kind==="scramble"?(1-e)*108:(1-e)*20;
+            tz=(1-e)*(ENTER_Z[kind]??-220);
           }
 
           el.style.opacity=String(Math.max(0,Math.min(1,opacity)));
-          // Store ty on dataset so spin pass can combine without overwriting
-          (el as HTMLElement&{dataset:DOMStringMap}).dataset.ty=ty.toFixed(2);
-          // Only set transform here if not a twirl/num target (those combine in spin pass)
-          const isSpinTarget=el.dataset.spin==="1";
-          if(!isSpinTarget)el.style.transform=`translateY(${ty.toFixed(2)}%)`;
+          el.dataset.tz=tz.toFixed(1); // stored for spin pass to combine
 
-          // Scramble — cycle random chars during enter, lock at 70%
+          // Spin-target elements get their transform set in the spin pass
+          if(el.dataset.spin!=="1"){
+            el.style.transform=`perspective(1000px) translateZ(${tz.toFixed(1)}px)`;
+          }
+
+          // Scramble — cycle chars during the Z fly-in, lock at 65%
           if(kind==="scramble"){
             const finalChar=el.dataset.final??"";
-            if(enterT>0&&enterT<0.70){
+            if(enterT>0&&enterT<0.65){
               el.textContent=CHARS[Math.floor(Math.random()*CHARS.length)];
-            } else if(enterT>=0.70){
+            } else if(enterT>=0.65){
               el.textContent=finalChar;
             }
           }
@@ -390,22 +399,19 @@ export default function ExperiencePage() {
         scrollSpin+=scrollDelta*3.5;   // how much each px of scroll adds
         scrollSpin*=0.82;              // decay rate — how fast it settles flat
 
-        // Apply to stat numbers — combine sign-reveal Y with scroll X spin
+        // Spin pass — combine Z-depth (from anim system) + rotateX (from scroll vel)
         numEls.forEach((el,i)=>{
-          const ty=parseFloat(el.dataset.ty??"0");
-          const stagger=i*6;
+          const tz=parseFloat(el.dataset.tz??"0");
+          const stagger=i*7;
           const rx=(scrollSpin+stagger*Math.sign(scrollDelta||1)).toFixed(2);
-          el.style.transform=`perspective(500px) translateY(${ty}%) rotateX(${rx}deg)`;
-          el.style.transformOrigin="50% 50%";
+          el.style.transform=`perspective(600px) translateZ(${tz}px) rotateX(${rx}deg)`;
         });
 
-        // Apply to story + CTA lines — gentler twirl
         twirlEls.forEach((el,i)=>{
-          const ty=parseFloat(el.dataset.ty??"0");
-          const offset=i*4;
-          const rx=((scrollSpin*0.35)+offset*Math.sign(scrollDelta||1)).toFixed(2);
-          el.style.transform=`perspective(900px) translateY(${ty}%) rotateX(${rx}deg)`;
-          el.style.transformOrigin="50% 50%";
+          const tz=parseFloat(el.dataset.tz??"0");
+          const offset=i*5;
+          const rx=((scrollSpin*0.38)+offset*Math.sign(scrollDelta||1)).toFixed(2);
+          el.style.transform=`perspective(900px) translateZ(${tz}px) rotateX(${rx}deg)`;
         });
 
         void curX; void curY; // unused but tracked for future
@@ -476,15 +482,14 @@ export default function ExperiencePage() {
     return()=>{destroyed=true;cancelAnimationFrame(rafId);if(cleanup)cleanup();};
   },[]);
 
-  const SW:React.CSSProperties={overflow:"hidden",display:"block"};
-  const SI:React.CSSProperties={display:"block",willChange:"transform,opacity"};
+  const WC:React.CSSProperties={willChange:"transform,opacity"};
 
   return (
     <>
       <canvas ref={canvasRef} style={{position:"fixed",inset:0,zIndex:0,width:"100vw",height:"100vh",display:"block"}} />
 
-      {/* Gold progress bar — 1px at top */}
-      <div id="exp-pb" style={{position:"fixed",top:0,left:0,zIndex:200,height:1,width:"0%",background:"linear-gradient(to right,#C9A84C,#ffe5a0,#C9A84C)",pointerEvents:"none",transition:"none"}} />
+      {/* Gold progress bar */}
+      <div id="exp-pb" style={{position:"fixed",top:0,left:0,zIndex:200,height:1,width:"0%",background:"linear-gradient(to right,#C9A84C,#ffe5a0,#C9A84C)",pointerEvents:"none"}} />
 
       {/* Back */}
       <Link href="/" style={{position:"fixed",top:"1.8rem",left:"2rem",zIndex:100,fontFamily:"'Space Mono',monospace",fontSize:"0.62rem",letterSpacing:"0.2em",color:"rgba(221,232,240,0.5)",transition:"color 0.2s",display:"flex",alignItems:"center",gap:"0.5rem"}}
@@ -493,87 +498,73 @@ export default function ExperiencePage() {
         ← JDLO
       </Link>
 
-      {/* Spacer */}
+      {/* Spacer — 700vh scroll range */}
       <div style={{height:"700vh",position:"relative",pointerEvents:"none"}} />
 
-      {/* ── Hero ── */}
+      {/* ── Hero — letters fly in from 500px deep, scrambling as they approach ── */}
       <section style={{position:"fixed",inset:0,zIndex:10,display:"flex",flexDirection:"column",justifyContent:"flex-end",padding:"0 0 10vh 7vw",pointerEvents:"none"}}>
-
-        {/* JDLO — each letter scrambles in */}
         <div style={{display:"flex",lineHeight:0.85,marginBottom:"2.5rem",gap:"0.01em"}}>
           {(["J","D","L","O"] as const).map(char=>(
-            <div key={char} style={SW}>
-              <span id={`h-${char}`} data-final={char} style={{...SI,fontFamily:"'Space Grotesk',sans-serif",fontSize:"clamp(5.5rem,21vw,18rem)",fontWeight:300,letterSpacing:"-0.04em",color:"#dde8f0",opacity:0}}>
-                {char}
-              </span>
-            </div>
+            <span key={char} id={`h-${char}`} data-final={char} style={{...WC,fontFamily:"'Space Grotesk',sans-serif",fontSize:"clamp(5.5rem,21vw,18rem)",fontWeight:300,letterSpacing:"-0.04em",color:"#dde8f0",opacity:0,display:"inline-block"}}>
+              {char}
+            </span>
           ))}
         </div>
 
-        <div style={SW}>
-          <span id="h-sub" style={{...SI,display:"block",fontFamily:"'Space Mono',monospace",fontSize:"0.72rem",letterSpacing:"0.32em",color:"#C9A84C",opacity:0,marginBottom:"3rem"}}>
-            SYSTEMS · SITES · AI · EXPERIENCES
-          </span>
-        </div>
+        <span id="h-sub" style={{...WC,display:"block",fontFamily:"'Space Mono',monospace",fontSize:"0.72rem",letterSpacing:"0.32em",color:"#C9A84C",opacity:0,marginBottom:"3rem"}}>
+          SYSTEMS · SITES · AI · EXPERIENCES
+        </span>
 
-        <div id="h-cue" style={{position:"absolute",bottom:"6vh",left:"50%",transform:"translateX(-50%)",display:"flex",flexDirection:"column",alignItems:"center",gap:"0.8rem",opacity:0,pointerEvents:"none",willChange:"opacity,transform"}}>
+        <div id="h-cue" style={{...WC,position:"absolute",bottom:"6vh",left:"50%",display:"flex",flexDirection:"column",alignItems:"center",gap:"0.8rem",opacity:0,pointerEvents:"none"}}>
           <span style={{fontFamily:"'Space Mono',monospace",fontSize:"0.62rem",letterSpacing:"0.28em",color:"#C9A84C",animation:"xblink 2.5s ease-in-out infinite"}}>SCROLL</span>
           <div style={{width:1,height:44,background:"linear-gradient(to bottom,#C9A84C,transparent)",animation:"xdrip 2.5s ease-in-out infinite"}} />
         </div>
       </section>
 
-      {/* ── Stats ── */}
+      {/* ── Stats — each row is a sign that pulls out of the 3D scene ── */}
       <section style={{position:"fixed",inset:0,zIndex:10,display:"flex",alignItems:"center",padding:"0 0 0 8vw",pointerEvents:"none"}}>
         <div style={{maxWidth:540}}>
-          <div style={SW}>
-            <span id="s1-label" style={{...SI,fontFamily:"'Space Mono',monospace",fontSize:"0.62rem",letterSpacing:"0.3em",color:"#C9A84C",opacity:0,display:"block",marginBottom:"3rem"}}>
-              01 — BY THE NUMBERS
-            </span>
-          </div>
+          <span id="s1-label" style={{...WC,fontFamily:"'Space Mono',monospace",fontSize:"0.62rem",letterSpacing:"0.3em",color:"#C9A84C",opacity:0,display:"block",marginBottom:"3rem"}}>
+            01 — BY THE NUMBERS
+          </span>
 
           {[
-            {rowId:"s1-r0",numId:"s1-n0",n:"0+",   label:"Builds shipped"},
-            {rowId:"s1-r1",numId:"s1-n1",n:"$0K+",  label:"Revenue generated for clients"},
-            {rowId:"s1-r2",numId:"s1-n2",n:"0",     label:"Templates ever used"},
+            {rowId:"s1-r0",numId:"s1-n0",n:"0+",  label:"Builds shipped"},
+            {rowId:"s1-r1",numId:"s1-n1",n:"$0K+", label:"Revenue generated for clients"},
+            {rowId:"s1-r2",numId:"s1-n2",n:"0",    label:"Templates ever used"},
           ].map(({rowId,numId,n,label})=>(
-            <div key={rowId} style={SW}>
-              <div id={rowId} style={{...SI,borderTop:"1px solid rgba(221,232,240,0.08)",padding:"2rem 0",display:"flex",alignItems:"baseline",gap:"2rem",opacity:0}}>
-                <span id={numId} data-spin="1" style={{fontFamily:"'Space Mono',monospace",fontSize:"clamp(2.5rem,7vw,5.5rem)",fontWeight:700,color:"rgba(221,232,240,0.13)",letterSpacing:"-0.03em",lineHeight:1,minWidth:"7rem",display:"inline-block"}}>
-                  {n}
-                </span>
-                <span style={{fontFamily:"'Space Grotesk',sans-serif",fontSize:"clamp(1rem,2vw,1.4rem)",fontWeight:300,color:"rgba(221,232,240,0.7)",letterSpacing:"-0.01em"}}>
-                  {label}
-                </span>
-              </div>
+            <div key={rowId} id={rowId} style={{...WC,borderTop:"1px solid rgba(221,232,240,0.08)",padding:"2rem 0",display:"flex",alignItems:"baseline",gap:"2rem",opacity:0}}>
+              <span id={numId} data-spin="1" style={{...WC,fontFamily:"'Space Mono',monospace",fontSize:"clamp(2.5rem,7vw,5.5rem)",fontWeight:700,color:"rgba(221,232,240,0.13)",letterSpacing:"-0.03em",lineHeight:1,minWidth:"7rem",display:"inline-block"}}>
+                {n}
+              </span>
+              <span style={{fontFamily:"'Space Grotesk',sans-serif",fontSize:"clamp(1rem,2vw,1.4rem)",fontWeight:300,color:"rgba(221,232,240,0.7)",letterSpacing:"-0.01em"}}>
+                {label}
+              </span>
             </div>
           ))}
         </div>
       </section>
 
-      {/* ── Story ── */}
+      {/* ── Story — lines pull out staggered from the right ── */}
       <section style={{position:"fixed",inset:0,zIndex:10,display:"flex",alignItems:"center",justifyContent:"flex-end",padding:"0 8vw 0 0",pointerEvents:"none"}}>
         <div style={{maxWidth:480}}>
-          <div style={SW}>
-            <span id="s2-label" style={{...SI,display:"block",fontFamily:"'Space Mono',monospace",fontSize:"0.62rem",letterSpacing:"0.3em",color:"#C9A84C",opacity:0,marginBottom:"3rem"}}>
-              02 — WHO I AM
-            </span>
-          </div>
+          <span id="s2-label" style={{...WC,display:"block",fontFamily:"'Space Mono',monospace",fontSize:"0.62rem",letterSpacing:"0.3em",color:"#C9A84C",opacity:0,marginBottom:"3rem"}}>
+            02 — WHO I AM
+          </span>
 
           {[{id:"s2-l0",text:"Self-taught."},{id:"s2-l1",text:"Self-made."},{id:"s2-l2",text:"No shortcuts."}].map(({id,text})=>(
-            <div key={id} style={{...SW,marginBottom:"0.1em"}}>
-              <span id={id} data-spin="1" style={{...SI,fontFamily:"'Space Grotesk',sans-serif",fontSize:"clamp(2rem,4.5vw,3.6rem)",fontWeight:300,letterSpacing:"-0.03em",lineHeight:1.05,color:"#dde8f0",opacity:0,display:"block"}}>
-                {text}
-              </span>
-            </div>
+            <span key={id} id={id} data-spin="1" style={{...WC,fontFamily:"'Space Grotesk',sans-serif",fontSize:"clamp(2rem,4.5vw,3.6rem)",fontWeight:300,letterSpacing:"-0.03em",lineHeight:1.05,color:"#dde8f0",opacity:0,display:"block",marginBottom:"0.1em"}}>
+              {text}
+            </span>
           ))}
 
-          <p id="s2-body" style={{...SI,fontFamily:"'Space Grotesk',sans-serif",fontSize:"0.9rem",lineHeight:1.85,color:"rgba(221,232,240,0.45)",fontWeight:300,marginTop:"2rem",marginBottom:"2.5rem",opacity:0}}>
+          <p id="s2-body" style={{...WC,fontFamily:"'Space Grotesk',sans-serif",fontSize:"0.9rem",lineHeight:1.85,color:"rgba(221,232,240,0.45)",fontWeight:300,marginTop:"2rem",marginBottom:"2.5rem",opacity:0}}>
             Learned the entire modern stack in under a year.
             Built casinos, enterprise tools, AI systems, and games
             for businesses from local shops to six-figure operations.
             I move fast, build clean, and don&apos;t use templates.
           </p>
-          <a id="s2-cta" href="/work" style={{...SI,display:"inline-flex",alignItems:"center",gap:"0.6rem",fontFamily:"'Space Mono',monospace",fontSize:"0.65rem",letterSpacing:"0.2em",color:"#C9A84C",opacity:0,pointerEvents:"all"}}>
+          <a id="s2-cta" href="/work" style={{...WC,display:"inline-flex",alignItems:"center",gap:"0.6rem",fontFamily:"'Space Mono',monospace",fontSize:"0.65rem",letterSpacing:"0.2em",color:"#C9A84C",opacity:0,pointerEvents:"all"}}>
             SEE WHAT I&apos;VE BUILT <span>→</span>
           </a>
         </div>
@@ -581,22 +572,16 @@ export default function ExperiencePage() {
 
       {/* ── CTA ── */}
       <section style={{position:"fixed",inset:0,zIndex:10,display:"flex",alignItems:"center",justifyContent:"center",flexDirection:"column",textAlign:"center",padding:"0 6vw",pointerEvents:"none"}}>
-        <div style={SW}>
-          <span id="s3-label" style={{...SI,display:"block",fontFamily:"'Space Mono',monospace",fontSize:"0.62rem",letterSpacing:"0.3em",color:"#C9A84C",opacity:0,marginBottom:"2rem"}}>
-            03 — LET&apos;S BUILD
-          </span>
-        </div>
-        <div style={SW}>
-          <span id="s3-l0" data-spin="1" style={{...SI,display:"block",fontFamily:"'Space Grotesk',sans-serif",fontSize:"clamp(3rem,8vw,7rem)",fontWeight:300,letterSpacing:"-0.04em",lineHeight:0.9,color:"#dde8f0",opacity:0}}>
-            You bring
-          </span>
-        </div>
-        <div style={{...SW,marginBottom:"1.5rem"}}>
-          <span id="s3-l1" data-spin="1" style={{...SI,display:"block",fontFamily:"'Space Grotesk',sans-serif",fontSize:"clamp(3rem,8vw,7rem)",fontWeight:300,letterSpacing:"-0.04em",lineHeight:0.9,color:"rgba(221,232,240,0.35)",opacity:0}}>
-            the vision.
-          </span>
-        </div>
-        <div id="s3-btns" style={{...SI,display:"flex",gap:"1rem",justifyContent:"center",flexWrap:"wrap",opacity:0,pointerEvents:"all"}}>
+        <span id="s3-label" style={{...WC,display:"block",fontFamily:"'Space Mono',monospace",fontSize:"0.62rem",letterSpacing:"0.3em",color:"#C9A84C",opacity:0,marginBottom:"2rem"}}>
+          03 — LET&apos;S BUILD
+        </span>
+        <span id="s3-l0" data-spin="1" style={{...WC,display:"block",fontFamily:"'Space Grotesk',sans-serif",fontSize:"clamp(3rem,8vw,7rem)",fontWeight:300,letterSpacing:"-0.04em",lineHeight:0.9,color:"#dde8f0",opacity:0}}>
+          You bring
+        </span>
+        <span id="s3-l1" data-spin="1" style={{...WC,display:"block",fontFamily:"'Space Grotesk',sans-serif",fontSize:"clamp(3rem,8vw,7rem)",fontWeight:300,letterSpacing:"-0.04em",lineHeight:0.9,color:"rgba(221,232,240,0.35)",opacity:0,marginBottom:"1.5rem"}}>
+          the vision.
+        </span>
+        <div id="s3-btns" style={{...WC,display:"flex",gap:"1rem",justifyContent:"center",flexWrap:"wrap",opacity:0,pointerEvents:"all"}}>
           <a href="/contact" style={{fontFamily:"'Space Mono',monospace",fontSize:"0.65rem",letterSpacing:"0.2em",padding:"0.9rem 2.4rem",background:"#C9A84C",border:"1px solid #C9A84C",borderRadius:"100px",color:"#060608",fontWeight:700}}>
             START A PROJECT
           </a>
@@ -610,6 +595,7 @@ export default function ExperiencePage() {
         @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Space+Grotesk:wght@300;400;500&display=swap');
         @keyframes xblink{0%,100%{opacity:0.3;}50%{opacity:1;}}
         @keyframes xdrip{0%{transform:scaleY(0);transform-origin:top;opacity:0;}30%{transform:scaleY(1);transform-origin:top;opacity:1;}70%{transform:scaleY(1);transform-origin:bottom;opacity:1;}100%{transform:scaleY(0);transform-origin:bottom;opacity:0;}}
+        #h-cue{transform:translateX(-50%);}
       `}</style>
     </>
   );
