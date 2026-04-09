@@ -217,96 +217,98 @@ export default function ExperiencePage() {
       // ── Scramble charset ──────────────────────────────────────────────────────
       const CHARS="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$#@!";
 
-      // ── Animation system — Z-depth pull-out (Active Theory style) ───────────────
-      // Each element flies OUT from inside the 3D scene toward the viewer.
-      // No overflow:hidden needed — translateZ is the reveal mechanism.
-      type AnimItem={el:HTMLElement;kind:"pull"|"fade"|"scramble";vs:number;ve:number;xs?:number;xe?:number;};
-      const animItems:AnimItem[]=[];
-      const reg=(id:string,kind:"pull"|"fade"|"scramble",vs:number,ve:number,xs?:number,xe?:number)=>{
-        const el=$(id);if(el)animItems.push({el,kind,vs,ve,xs,xe});
+      // ── Hero scramble items (letters only) ────────────────────────────────────
+      type HeroItem={el:HTMLElement;kind:"scramble"|"fade";vs:number;ve:number;xs?:number;xe?:number;};
+      const heroItems:HeroItem[]=[];
+      const regHero=(id:string,kind:"scramble"|"fade",vs:number,ve:number,xs?:number,xe?:number)=>{
+        const el=$(id);if(el)heroItems.push({el,kind,vs,ve,xs,xe});
       };
 
-      // Hero letters — fly in from very deep (500px behind screen plane)
-      reg("h-J","scramble",0.00,0.06,0.22,0.29);
-      reg("h-D","scramble",0.02,0.08,0.22,0.29);
-      reg("h-L","scramble",0.04,0.10,0.22,0.29);
-      reg("h-O","scramble",0.06,0.12,0.22,0.29);
-      reg("h-sub","fade",0.08,0.14,0.22,0.29);
-      reg("h-cue","fade",0.12,0.18,0.16,0.24);
+      regHero("h-J","scramble",0.00,0.06,0.18,0.24);
+      regHero("h-D","scramble",0.02,0.08,0.18,0.24);
+      regHero("h-L","scramble",0.04,0.10,0.18,0.24);
+      regHero("h-O","scramble",0.06,0.12,0.18,0.24);
+      regHero("h-sub","fade",0.08,0.14,0.18,0.24);
+      regHero("h-cue","fade",0.12,0.18,0.14,0.20);
 
-      // Stats — each sign pulls out from 220px deep, staggered
-      reg("s1-label","pull",0.28,0.35,0.55,0.62);
-      reg("s1-r0","pull",0.31,0.39,0.55,0.62);
-      reg("s1-r1","pull",0.35,0.43,0.55,0.62);
-      reg("s1-r2","pull",0.39,0.47,0.55,0.62);
+      // ── Panel animation system ────────────────────────────────────────────────
+      // Each panel is a glass card that rotates from angled → face-on while
+      // flying forward out of the 3D scene (rotateY + rotateX + translateZ)
+      type PanelItem={el:HTMLElement;vs:number;ve:number;xs?:number;xe?:number;rotY:number;rotX:number;};
+      const panelItems:PanelItem[]=[];
+      const regPanel=(id:string,vs:number,ve:number,rotY:number,rotX:number,xs?:number,xe?:number)=>{
+        const el=$(id);if(el)panelItems.push({el,vs,ve,rotY,rotX,xs,xe});
+      };
 
-      // Story lines — pull out from right side, slight stagger
-      reg("s2-label","pull",0.60,0.67,0.80,0.86);
-      reg("s2-l0","pull",0.63,0.71,0.80,0.86);
-      reg("s2-l1","pull",0.66,0.74,0.80,0.86);
-      reg("s2-l2","pull",0.69,0.77,0.80,0.86);
-      reg("s2-body","fade",0.71,0.78,0.80,0.86);
-      reg("s2-cta","fade",0.73,0.80,0.80,0.86);
-
-      // CTA
-      reg("s3-label","pull",0.86,0.92);
-      reg("s3-l0","pull",0.88,0.95);
-      reg("s3-l1","pull",0.91,0.98);
-      reg("s3-btns","fade",0.93,0.99);
+      // Stats panel: enters from the left (rotateY negative = left edge toward viewer)
+      regPanel("panel-stats",0.22,0.42,-32,10,0.52,0.62);
+      // Story panel: enters from the right (rotateY positive = right edge toward viewer)
+      regPanel("panel-story",0.54,0.74,28,-8,0.82,0.90);
+      // CTA panel: straight-in (no Y tilt, slight X tilt for depth)
+      regPanel("panel-cta",0.84,0.97,0,16);
 
       const eOut=(t:number)=>1-Math.pow(1-t,3);
       const eIn=(t:number)=>t*t*t;
       const clamp=(v:number,lo:number,hi:number)=>Math.max(lo,Math.min(hi,v));
 
-      // Depth values per kind
-      const ENTER_Z:{[k:string]:number}={pull:-220,scramble:-500,fade:-40};
-      const EXIT_Z=80; // push slightly forward (past screen) on exit then opacity cuts it
-
-      const updateElements=(p:number)=>{
-        for(const{el,kind,vs,ve,xs,xe}of animItems){
+      // ── Update hero letters ───────────────────────────────────────────────────
+      const updateHero=(p:number)=>{
+        for(const{el,kind,vs,ve,xs,xe}of heroItems){
           const enterT=clamp((p-vs)/(ve-vs),0,1);
           let opacity:number,tz:number;
-
           if(xs!==undefined&&xe!==undefined&&p>xs){
-            // Exit — sign retreats back into scene
             const exitT=eIn(clamp((p-xs)/(xe-xs),0,1));
             opacity=(1-exitT)*(enterT>=1?1:eOut(enterT));
-            tz=-exitT*EXIT_Z; // pull back
-          } else {
-            // Enter — sign flies out from behind screen
+            tz=-exitT*80;
+          }else{
             const e=eOut(enterT);
             opacity=e;
-            tz=(1-e)*(ENTER_Z[kind]??-220);
+            tz=(1-e)*(kind==="scramble"?-500:-40);
           }
-
           el.style.opacity=String(Math.max(0,Math.min(1,opacity)));
-          el.dataset.tz=tz.toFixed(1); // stored for spin pass to combine
-
-          // Spin-target elements get their transform set in the spin pass
-          if(el.dataset.spin!=="1"){
-            el.style.transform=`perspective(1000px) translateZ(${tz.toFixed(1)}px)`;
-          }
-
-          // Scramble — cycle chars during the Z fly-in, lock at 65%
+          el.style.transform=`perspective(1000px) translateZ(${tz.toFixed(1)}px)`;
           if(kind==="scramble"){
             const finalChar=el.dataset.final??"";
-            if(enterT>0&&enterT<0.65){
-              el.textContent=CHARS[Math.floor(Math.random()*CHARS.length)];
-            } else if(enterT>=0.65){
-              el.textContent=finalChar;
-            }
+            if(enterT>0&&enterT<0.65)el.textContent=CHARS[Math.floor(Math.random()*CHARS.length)];
+            else if(enterT>=0.65)el.textContent=finalChar;
           }
         }
       };
 
+      // ── Update panels — the "sign pull-out" effect ────────────────────────────
+      const updatePanels=(p:number)=>{
+        for(const{el,vs,ve,xs,xe,rotY,rotX}of panelItems){
+          const enterT=clamp((p-vs)/(ve-vs),0,1);
+          let opacity:number,tz:number,ry:number,rx:number;
+          if(xs!==undefined&&xe!==undefined&&p>xs){
+            const exitT=eIn(clamp((p-xs)/(xe-xs),0,1));
+            const e=eOut(Math.min(enterT,1));
+            opacity=(1-exitT)*e;
+            tz=-exitT*100;
+            ry=exitT*rotY*0.4;   // re-tilt as it exits
+            rx=exitT*rotX*0.4;
+          }else{
+            const e=eOut(enterT);
+            opacity=e;
+            tz=(1-e)*-600;       // fly from 600px behind screen plane
+            ry=(1-e)*rotY;       // rotate from angled to face-on
+            rx=(1-e)*rotX;
+          }
+          el.style.opacity=String(Math.max(0,Math.min(1,opacity)));
+          // Store for spin pass to layer scroll-velocity tilt on top
+          el.dataset.pry=ry.toFixed(2);
+          el.dataset.prx=rx.toFixed(2);
+          el.dataset.ptz=tz.toFixed(1);
+        }
+      };
+
       // ── Stat counters ─────────────────────────────────────────────────────────
-      // Stat counters — text content only, no self-transform (scroll drives the spin)
       type Counter={el:HTMLElement;target:number;prefix:string;suffix:string;val:number;triggered:boolean;};
       const counters:Counter[]=[];
       ([
-        {id:"s1-n0",target:25, prefix:"",  suffix:"+", threshold:0.38},
-        {id:"s1-n1",target:200,prefix:"$", suffix:"K+",threshold:0.42},
-        {id:"s1-n2",target:0,  prefix:"",  suffix:"",  threshold:0.46},
+        {id:"s1-n0",target:25, prefix:"",  suffix:"+", threshold:0.34},
+        {id:"s1-n1",target:200,prefix:"$", suffix:"K+",threshold:0.37},
+        {id:"s1-n2",target:0,  prefix:"",  suffix:"",  threshold:0.40},
       ] as const).forEach(({id,target,prefix,suffix,threshold})=>{
         const el=$(id);
         if(el)counters.push({el,target,prefix,suffix,val:0,triggered:false});
@@ -324,20 +326,22 @@ export default function ExperiencePage() {
         });
       };
 
-      // Scroll-driven number spin — accumulates on scroll, decays to flat
-      // Applied to stat number spans AND story lines in the RAF loop
+      // ── Scroll-velocity spin (accumulates, decays) ────────────────────────────
       let scrollSpin=0;
-      const numEls=[$(  "s1-n0"),$("s1-n1"),$("s1-n2")].filter(Boolean) as HTMLElement[];
-      const twirlEls=[$("s2-l0"),$("s2-l1"),$("s2-l2"),$("s3-l0"),$("s3-l1")].filter(Boolean) as HTMLElement[];
+      // Stat numbers twirl hard on scroll
+      const numEls=[$("s1-n0"),$("s1-n1"),$("s1-n2")].filter(Boolean) as HTMLElement[];
 
       // Init all hidden
-      updateElements(0);
+      updateHero(0);
+      updatePanels(0);
+      // Apply initial panel transforms
+      for(const{el}of panelItems){
+        el.style.transform=`perspective(1200px) rotateY(${el.dataset.pry??"0"}deg) rotateX(${el.dataset.prx??"0"}deg) translateZ(${el.dataset.ptz??"0"}px)`;
+      }
 
       // ── Mouse ─────────────────────────────────────────────────────────────────
       let normX=0,normY=0,smoothX=0,smoothY=0,driftT=0;
-      let curX=0,curY=0;
       const onMouse=(e:MouseEvent)=>{
-        curX=e.clientX;curY=e.clientY;
         normX=(e.clientX/window.innerWidth-0.5)*2;
         normY=(e.clientY/window.innerHeight-0.5)*2;
       };
@@ -347,7 +351,6 @@ export default function ExperiencePage() {
       };
       window.addEventListener("mousemove",onMouse);
       window.addEventListener("touchmove",onTouch,{passive:true});
-
 
       // ── Camera update ─────────────────────────────────────────────────────────
       const _look=new THREE.Vector3();
@@ -378,46 +381,42 @@ export default function ExperiencePage() {
         rafId=requestAnimationFrame(animate);
         frame++;
 
-        // Scroll lerp
         scrollTarget=window.scrollY;
         scrollCurrent+=(scrollTarget-scrollCurrent)*LERP;
         const scrollRange=Math.max(1,document.body.scrollHeight-window.innerHeight);
         const progress=clamp(scrollCurrent/scrollRange,0,1);
 
-        // Signed scroll delta (positive = scrolling down)
         const scrollDelta=scrollCurrent-prevScroll;
         const scrollVel=Math.abs(scrollDelta);
         prevScroll=scrollCurrent;
 
-        // Chromatic aberration boost
         chromaPass.uniforms.amount.value=BASE_CHROMA+scrollVel*0.00028;
-
-        // Progress bar
         if(progressBar)progressBar.style.width=(progress*100).toFixed(3)+"%";
 
-        // Scroll-driven spin — accumulate velocity, decay to 0
-        scrollSpin+=scrollDelta*3.5;   // how much each px of scroll adds
-        scrollSpin*=0.82;              // decay rate — how fast it settles flat
+        // Scroll spin accumulator
+        scrollSpin+=scrollDelta*3.5;
+        scrollSpin*=0.82;
 
-        // Spin pass — combine Z-depth (from anim system) + rotateX (from scroll vel)
+        // ── Panel spin pass ──────────────────────────────────────────────────────
+        // Panels tilt with scroll velocity — layered on top of the reveal tilt
+        for(const{el}of panelItems){
+          const ry=parseFloat(el.dataset.pry??"0");
+          const rx=parseFloat(el.dataset.prx??"0");
+          const tz=parseFloat(el.dataset.ptz??"0");
+          const spinRx=(scrollSpin*0.3).toFixed(2);
+          el.style.transform=`perspective(1200px) rotateY(${ry}deg) rotateX(${(rx+parseFloat(spinRx)).toFixed(2)}deg) translateZ(${tz}px)`;
+        }
+
+        // ── Number twirl pass ────────────────────────────────────────────────────
+        // Stats numbers spin hard with scroll velocity (futuristic flip effect)
         numEls.forEach((el,i)=>{
-          const tz=parseFloat(el.dataset.tz??"0");
-          const stagger=i*7;
-          const rx=(scrollSpin+stagger*Math.sign(scrollDelta||1)).toFixed(2);
-          el.style.transform=`perspective(600px) translateZ(${tz}px) rotateX(${rx}deg)`;
+          const rx=(scrollSpin*2.8+i*9*Math.sign(scrollDelta||1)).toFixed(2);
+          el.style.transform=`perspective(280px) rotateX(${rx}deg)`;
         });
-
-        twirlEls.forEach((el,i)=>{
-          const tz=parseFloat(el.dataset.tz??"0");
-          const offset=i*5;
-          const rx=((scrollSpin*0.38)+offset*Math.sign(scrollDelta||1)).toFixed(2);
-          el.style.transform=`perspective(900px) translateZ(${tz}px) rotateX(${rx}deg)`;
-        });
-
-        void curX; void curY; // unused but tracked for future
 
         updateCamera(progress*(camPath.length-1));
-        updateElements(progress);
+        updateHero(progress);
+        updatePanels(progress);
         updateCounters(progress);
 
         smoothX+=(normX-smoothX)*0.048;
@@ -482,6 +481,29 @@ export default function ExperiencePage() {
     return()=>{destroyed=true;cancelAnimationFrame(rafId);if(cleanup)cleanup();};
   },[]);
 
+  // Shared glass panel style
+  const PANEL:React.CSSProperties={
+    position:"relative",
+    background:"rgba(6,14,28,0.82)",
+    backdropFilter:"blur(24px) saturate(1.1)",
+    WebkitBackdropFilter:"blur(24px) saturate(1.1)",
+    border:"1px solid rgba(201,168,76,0.22)",
+    borderRadius:"18px",
+    padding:"clamp(2rem,4vw,3.5rem) clamp(2rem,5vw,4rem)",
+    boxShadow:"0 0 80px rgba(201,168,76,0.07), 0 0 160px rgba(201,168,76,0.03), inset 0 1px 0 rgba(255,255,255,0.05)",
+    willChange:"transform,opacity",
+    opacity:0,
+  };
+
+  const LABEL:React.CSSProperties={
+    fontFamily:"'Space Mono',monospace",
+    fontSize:"0.62rem",
+    letterSpacing:"0.32em",
+    color:"#C9A84C",
+    display:"block",
+    marginBottom:"2.5rem",
+  };
+
   const WC:React.CSSProperties={willChange:"transform,opacity"};
 
   return (
@@ -498,46 +520,45 @@ export default function ExperiencePage() {
         ← JDLO
       </Link>
 
-      {/* Spacer — 700vh scroll range */}
+      {/* 700vh scroll range */}
       <div style={{height:"700vh",position:"relative",pointerEvents:"none"}} />
 
-      {/* ── Hero — letters fly in from 500px deep, scrambling as they approach ── */}
+      {/* ── Hero — JDLO letters scramble in from deep ── */}
       <section style={{position:"fixed",inset:0,zIndex:10,display:"flex",flexDirection:"column",justifyContent:"flex-end",padding:"0 0 10vh 7vw",pointerEvents:"none"}}>
         <div style={{display:"flex",lineHeight:0.85,marginBottom:"2.5rem",gap:"0.01em"}}>
           {(["J","D","L","O"] as const).map(char=>(
-            <span key={char} id={`h-${char}`} data-final={char} style={{...WC,fontFamily:"'Space Grotesk',sans-serif",fontSize:"clamp(5.5rem,21vw,18rem)",fontWeight:300,letterSpacing:"-0.04em",color:"#dde8f0",opacity:0,display:"inline-block"}}>
+            <span key={char} id={`h-${char}`} data-final={char} style={{...WC,fontFamily:"'Space Grotesk',sans-serif",fontSize:"clamp(5.5rem,21vw,18rem)",fontWeight:300,letterSpacing:"-0.04em",color:"#C9A84C",opacity:0,display:"inline-block",textShadow:"0 0 60px rgba(201,168,76,0.4)"}}>
               {char}
             </span>
           ))}
         </div>
-
-        <span id="h-sub" style={{...WC,display:"block",fontFamily:"'Space Mono',monospace",fontSize:"0.72rem",letterSpacing:"0.32em",color:"#C9A84C",opacity:0,marginBottom:"3rem"}}>
+        <span id="h-sub" style={{...WC,display:"block",fontFamily:"'Space Mono',monospace",fontSize:"0.72rem",letterSpacing:"0.32em",color:"rgba(221,232,240,0.6)",opacity:0,marginBottom:"3rem"}}>
           SYSTEMS · SITES · AI · EXPERIENCES
         </span>
-
         <div id="h-cue" style={{...WC,position:"absolute",bottom:"6vh",left:"50%",display:"flex",flexDirection:"column",alignItems:"center",gap:"0.8rem",opacity:0,pointerEvents:"none"}}>
           <span style={{fontFamily:"'Space Mono',monospace",fontSize:"0.62rem",letterSpacing:"0.28em",color:"#C9A84C",animation:"xblink 2.5s ease-in-out infinite"}}>SCROLL</span>
           <div style={{width:1,height:44,background:"linear-gradient(to bottom,#C9A84C,transparent)",animation:"xdrip 2.5s ease-in-out infinite"}} />
         </div>
       </section>
 
-      {/* ── Stats — each row is a sign that pulls out of the 3D scene ── */}
-      <section style={{position:"fixed",inset:0,zIndex:10,display:"flex",alignItems:"center",padding:"0 0 0 8vw",pointerEvents:"none"}}>
-        <div style={{maxWidth:540}}>
-          <span id="s1-label" style={{...WC,fontFamily:"'Space Mono',monospace",fontSize:"0.62rem",letterSpacing:"0.3em",color:"#C9A84C",opacity:0,display:"block",marginBottom:"3rem"}}>
-            01 — BY THE NUMBERS
-          </span>
+      {/* ── Stats Panel — glass sign flies out from the left ── */}
+      <section style={{position:"fixed",inset:0,zIndex:10,display:"flex",alignItems:"center",padding:"0 0 0 7vw",pointerEvents:"none"}}>
+        <div id="panel-stats" style={{...PANEL,maxWidth:"clamp(400px,55vw,620px)",width:"100%"}}>
+          {/* gold glint line across top */}
+          <div style={{position:"absolute",top:0,left:"15%",right:"15%",height:1,background:"linear-gradient(to right,transparent,rgba(201,168,76,0.5),transparent)",borderRadius:1}} />
+
+          <span style={LABEL}>01 — BY THE NUMBERS</span>
 
           {[
-            {rowId:"s1-r0",numId:"s1-n0",n:"0+",  label:"Builds shipped"},
-            {rowId:"s1-r1",numId:"s1-n1",n:"$0K+", label:"Revenue generated for clients"},
-            {rowId:"s1-r2",numId:"s1-n2",n:"0",    label:"Templates ever used"},
+            {rowId:"s1-r0",numId:"s1-n0",n:"0+",   label:"Builds shipped"},
+            {rowId:"s1-r1",numId:"s1-n1",n:"$0K+",  label:"Value delivered to clients"},
+            {rowId:"s1-r2",numId:"s1-n2",n:"0",     label:"Templates ever used"},
           ].map(({rowId,numId,n,label})=>(
-            <div key={rowId} id={rowId} style={{...WC,borderTop:"1px solid rgba(221,232,240,0.08)",padding:"2rem 0",display:"flex",alignItems:"baseline",gap:"2rem",opacity:0}}>
-              <span id={numId} data-spin="1" style={{...WC,fontFamily:"'Space Mono',monospace",fontSize:"clamp(2.5rem,7vw,5.5rem)",fontWeight:700,color:"rgba(221,232,240,0.13)",letterSpacing:"-0.03em",lineHeight:1,minWidth:"7rem",display:"inline-block"}}>
+            <div key={rowId} id={rowId} style={{borderTop:"1px solid rgba(201,168,76,0.12)",padding:"1.6rem 0",display:"flex",alignItems:"baseline",gap:"2rem"}}>
+              <span id={numId} style={{...WC,fontFamily:"'Space Mono',monospace",fontSize:"clamp(2rem,5.5vw,4rem)",fontWeight:700,color:"#C9A84C",letterSpacing:"-0.03em",lineHeight:1,minWidth:"6.5rem",display:"inline-block",textShadow:"0 0 30px rgba(201,168,76,0.35)"}}>
                 {n}
               </span>
-              <span style={{fontFamily:"'Space Grotesk',sans-serif",fontSize:"clamp(1rem,2vw,1.4rem)",fontWeight:300,color:"rgba(221,232,240,0.7)",letterSpacing:"-0.01em"}}>
+              <span style={{fontFamily:"'Space Grotesk',sans-serif",fontSize:"clamp(0.85rem,1.8vw,1.15rem)",fontWeight:300,color:"rgba(221,232,240,0.6)",letterSpacing:"-0.01em"}}>
                 {label}
               </span>
             </div>
@@ -545,49 +566,57 @@ export default function ExperiencePage() {
         </div>
       </section>
 
-      {/* ── Story — lines pull out staggered from the right ── */}
-      <section style={{position:"fixed",inset:0,zIndex:10,display:"flex",alignItems:"center",justifyContent:"flex-end",padding:"0 8vw 0 0",pointerEvents:"none"}}>
-        <div style={{maxWidth:480}}>
-          <span id="s2-label" style={{...WC,display:"block",fontFamily:"'Space Mono',monospace",fontSize:"0.62rem",letterSpacing:"0.3em",color:"#C9A84C",opacity:0,marginBottom:"3rem"}}>
-            02 — WHO I AM
-          </span>
+      {/* ── Story Panel — glass sign flies out from the right ── */}
+      <section style={{position:"fixed",inset:0,zIndex:10,display:"flex",alignItems:"center",justifyContent:"flex-end",padding:"0 7vw 0 0",pointerEvents:"none"}}>
+        <div id="panel-story" style={{...PANEL,maxWidth:"clamp(360px,50vw,560px)",width:"100%"}}>
+          <div style={{position:"absolute",top:0,left:"15%",right:"15%",height:1,background:"linear-gradient(to right,transparent,rgba(201,168,76,0.5),transparent)",borderRadius:1}} />
 
-          {[{id:"s2-l0",text:"Self-taught."},{id:"s2-l1",text:"Self-made."},{id:"s2-l2",text:"No shortcuts."}].map(({id,text})=>(
-            <span key={id} id={id} data-spin="1" style={{...WC,fontFamily:"'Space Grotesk',sans-serif",fontSize:"clamp(2rem,4.5vw,3.6rem)",fontWeight:300,letterSpacing:"-0.03em",lineHeight:1.05,color:"#dde8f0",opacity:0,display:"block",marginBottom:"0.1em"}}>
+          <span style={LABEL}>02 — WHO I AM</span>
+
+          {[
+            {id:"sl-0",text:"Self-taught."},
+            {id:"sl-1",text:"Self-made."},
+            {id:"sl-2",text:"No shortcuts."},
+          ].map(({id,text})=>(
+            <span key={id} id={id} style={{fontFamily:"'Space Grotesk',sans-serif",fontSize:"clamp(1.8rem,4vw,3.2rem)",fontWeight:300,letterSpacing:"-0.03em",lineHeight:1.1,color:"#dde8f0",display:"block",marginBottom:"0.05em"}}>
               {text}
             </span>
           ))}
 
-          <p id="s2-body" style={{...WC,fontFamily:"'Space Grotesk',sans-serif",fontSize:"0.9rem",lineHeight:1.85,color:"rgba(221,232,240,0.45)",fontWeight:300,marginTop:"2rem",marginBottom:"2.5rem",opacity:0}}>
+          <p style={{fontFamily:"'Space Grotesk',sans-serif",fontSize:"0.9rem",lineHeight:1.85,color:"rgba(221,232,240,0.45)",fontWeight:300,marginTop:"1.8rem",marginBottom:"2rem"}}>
             Learned the entire modern stack in under a year.
             Built casinos, enterprise tools, AI systems, and games
             for businesses from local shops to six-figure operations.
             I move fast, build clean, and don&apos;t use templates.
           </p>
-          <a id="s2-cta" href="/work" style={{...WC,display:"inline-flex",alignItems:"center",gap:"0.6rem",fontFamily:"'Space Mono',monospace",fontSize:"0.65rem",letterSpacing:"0.2em",color:"#C9A84C",opacity:0,pointerEvents:"all"}}>
+          <a href="/work" style={{display:"inline-flex",alignItems:"center",gap:"0.6rem",fontFamily:"'Space Mono',monospace",fontSize:"0.65rem",letterSpacing:"0.2em",color:"#C9A84C",pointerEvents:"all"}}>
             SEE WHAT I&apos;VE BUILT <span>→</span>
           </a>
         </div>
       </section>
 
-      {/* ── CTA ── */}
-      <section style={{position:"fixed",inset:0,zIndex:10,display:"flex",alignItems:"center",justifyContent:"center",flexDirection:"column",textAlign:"center",padding:"0 6vw",pointerEvents:"none"}}>
-        <span id="s3-label" style={{...WC,display:"block",fontFamily:"'Space Mono',monospace",fontSize:"0.62rem",letterSpacing:"0.3em",color:"#C9A84C",opacity:0,marginBottom:"2rem"}}>
-          03 — LET&apos;S BUILD
-        </span>
-        <span id="s3-l0" data-spin="1" style={{...WC,display:"block",fontFamily:"'Space Grotesk',sans-serif",fontSize:"clamp(3rem,8vw,7rem)",fontWeight:300,letterSpacing:"-0.04em",lineHeight:0.9,color:"#dde8f0",opacity:0}}>
-          You bring
-        </span>
-        <span id="s3-l1" data-spin="1" style={{...WC,display:"block",fontFamily:"'Space Grotesk',sans-serif",fontSize:"clamp(3rem,8vw,7rem)",fontWeight:300,letterSpacing:"-0.04em",lineHeight:0.9,color:"rgba(221,232,240,0.35)",opacity:0,marginBottom:"1.5rem"}}>
-          the vision.
-        </span>
-        <div id="s3-btns" style={{...WC,display:"flex",gap:"1rem",justifyContent:"center",flexWrap:"wrap",opacity:0,pointerEvents:"all"}}>
-          <a href="/contact" style={{fontFamily:"'Space Mono',monospace",fontSize:"0.65rem",letterSpacing:"0.2em",padding:"0.9rem 2.4rem",background:"#C9A84C",border:"1px solid #C9A84C",borderRadius:"100px",color:"#060608",fontWeight:700}}>
-            START A PROJECT
-          </a>
-          <a href="https://instagram.com/jdlo" target="_blank" rel="noopener noreferrer" style={{fontFamily:"'Space Mono',monospace",fontSize:"0.65rem",letterSpacing:"0.2em",padding:"0.9rem 2.4rem",border:"1px solid rgba(221,232,240,0.2)",borderRadius:"100px",color:"rgba(221,232,240,0.7)"}}>
-            DM @JDLO
-          </a>
+      {/* ── CTA Panel — glass sign comes straight out of the scene ── */}
+      <section style={{position:"fixed",inset:0,zIndex:10,display:"flex",alignItems:"center",justifyContent:"center",pointerEvents:"none"}}>
+        <div id="panel-cta" style={{...PANEL,maxWidth:"clamp(360px,60vw,680px)",width:"100%",textAlign:"center"}}>
+          <div style={{position:"absolute",top:0,left:"20%",right:"20%",height:1,background:"linear-gradient(to right,transparent,rgba(201,168,76,0.6),transparent)",borderRadius:1}} />
+
+          <span style={{...LABEL,textAlign:"center"}}>03 — LET&apos;S BUILD</span>
+
+          <div style={{fontFamily:"'Space Grotesk',sans-serif",fontSize:"clamp(2.8rem,7vw,6rem)",fontWeight:300,letterSpacing:"-0.04em",lineHeight:0.92,color:"#dde8f0",marginBottom:"0.1em"}}>
+            You bring
+          </div>
+          <div style={{fontFamily:"'Space Grotesk',sans-serif",fontSize:"clamp(2.8rem,7vw,6rem)",fontWeight:300,letterSpacing:"-0.04em",lineHeight:0.92,color:"rgba(201,168,76,0.7)",marginBottom:"2.5rem"}}>
+            the vision.
+          </div>
+
+          <div style={{display:"flex",gap:"1rem",justifyContent:"center",flexWrap:"wrap",pointerEvents:"all"}}>
+            <a href="/contact" style={{fontFamily:"'Space Mono',monospace",fontSize:"0.65rem",letterSpacing:"0.2em",padding:"0.9rem 2.4rem",background:"#C9A84C",border:"1px solid #C9A84C",borderRadius:"100px",color:"#060608",fontWeight:700}}>
+              START A PROJECT
+            </a>
+            <a href="https://instagram.com/jdlo" target="_blank" rel="noopener noreferrer" style={{fontFamily:"'Space Mono',monospace",fontSize:"0.65rem",letterSpacing:"0.2em",padding:"0.9rem 2.4rem",border:"1px solid rgba(221,232,240,0.2)",borderRadius:"100px",color:"rgba(221,232,240,0.7)"}}>
+              DM @JDLO
+            </a>
+          </div>
         </div>
       </section>
 
