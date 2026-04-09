@@ -7,6 +7,7 @@ import { GlowLink } from "@/components/GlowButton";
 const navLinks = [
   { label: "Services", href: "/#services" },
   { label: "Work", href: "/work" },
+  { label: "Experience", href: "/experience" },
   { label: "Packages", href: "/packages" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
