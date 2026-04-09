@@ -19,11 +19,13 @@ type Category =
   | "Fashion"
   | "SaaS"
   | "Pitch"
-  | "Tool";
+  | "Tool"
+  | "3D";
 
 const CATEGORIES: Category[] = [
   "All",
   "Website",
+  "3D",
   "AI",
   "E-commerce",
   "Enterprise",
@@ -38,6 +40,7 @@ const CATEGORIES: Category[] = [
 interface Project {
   name: string;
   slug: string;
+  url?: string; // external link — skips internal case study page
   categories: Category[];
   headline: string;
   stats: [string, string, string];
@@ -45,6 +48,7 @@ interface Project {
 
 const PROJECTS: Project[] = [
   // ── Flagship (most impressive) ──
+  { name: "Burj Khalifa", slug: "burj-khalifa", url: "https://burj-khalifa-site.vercel.app", categories: ["Website", "3D"], headline: "Immersive 3D tourism experience — WebGL, bloom post-processing, scroll-driven orbital camera", stats: ["Three.js WebGL", "Bloom + chromatic aberration", "Live demo →"] },
   { name: "HOA Dispute Bot", slug: "hoa-dispute", categories: ["AI", "Tool"], headline: "AI desktop app that coaches homeowners through HOA disputes in real time", stats: ["Electron app", "AI overlay", "Real-time guidance"] },
   { name: "Quanta", slug: "quanta", categories: ["Casino"], headline: "Full online sweepstakes casino from scratch", stats: ["6 game types", "Real-time multiplayer", "$50K+ platform value"] },
   { name: "Club Bot / Velvet", slug: "club-bot", categories: ["AI", "SaaS"], headline: "AI nightclub promoter platform, custom product turned SaaS", stats: ["500+ guests/week", "30hrs/wk saved", "SaaS platform"] },
@@ -284,6 +288,35 @@ export default function WorkPage() {
             style={{ animation: "fadeIn 0.5s ease-out" }}
           >
             {filtered.map((project, i) => (
+              project.url ? (
+              <a
+                key={project.name}
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block py-10 sm:py-14 border-b border-border last:border-b-0 group hover:bg-surface/50 -mx-6 px-6 sm:-mx-10 sm:px-10 transition-colors duration-300"
+              >
+                {/* Category tag */}
+                <p className="font-mono text-[11px] tracking-[0.4em] uppercase text-text-muted mb-4">
+                  {project.categories.join(" / ")}
+                </p>
+                <h2 className="font-display text-[clamp(1.75rem,4vw,3.5rem)] tracking-[-0.03em] leading-[1] mb-3 group-hover:text-text-secondary transition-colors duration-300">
+                  {project.name}
+                  <span className="inline-block ml-3 text-text-muted text-[0.5em] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300">&rarr;</span>
+                </h2>
+                <p className="text-text-secondary text-[17px] sm:text-lg leading-relaxed mb-8 max-w-[600px]">
+                  {project.headline}
+                </p>
+                <div className="flex flex-wrap gap-x-10 gap-y-3">
+                  {project.stats.map((stat) => (
+                    <div key={stat} className="flex items-center gap-2.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-text/20 shrink-0" />
+                      <span className="text-text font-medium text-[14px] tracking-[-0.01em]">{stat}</span>
+                    </div>
+                  ))}
+                </div>
+              </a>
+              ) : (
               <Link
                 key={project.name}
                 href={`/work/${project.slug}`}
@@ -317,6 +350,7 @@ export default function WorkPage() {
                   ))}
                 </div>
               </Link>
+              )
             ))}
 
             {filtered.length === 0 && (
