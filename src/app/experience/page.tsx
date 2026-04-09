@@ -429,32 +429,67 @@ export default function ExperiencePage() {
       ];
       const camState = { t: 0 };
 
-      const scrollEl = document.getElementById("exp-scroll");
-      if (scrollEl) {
-        ScrollTrigger.create({
-          trigger: scrollEl,
-          start: "top top",
-          end: "bottom bottom",
-          scrub: 2.5,
-          onUpdate(self) {
-            camState.t = self.progress * (camPath.length - 1);
-          },
-        });
-      }
+      // Scroll drives camera + section fades
+      // 4 sections × 1 screen each = 400vh spacer
+      // progress 0→0.25 = hero, 0.25→0.5 = stats, 0.5→0.75 = story, 0.75→1 = cta
+      const s0 = document.getElementById("exp-s0");
+      const s1 = document.getElementById("exp-s1");
+      const s2 = document.getElementById("exp-s2");
+      const s3 = document.getElementById("exp-s3");
 
-      // Section reveals
-      document.querySelectorAll(".exp-reveal").forEach((el) => {
-        const targets = el.querySelectorAll(".exp-item");
-        gsap.set(targets, { opacity: 0, y: 32 });
-        ScrollTrigger.create({
-          trigger: el,
-          start: "top 72%",
-          onEnter: () =>
-            gsap.to(targets, { opacity: 1, y: 0, duration: 1.1, stagger: 0.08, ease: "power3.out" }),
-        });
-      });
+      const onScroll = () => {
+        const p = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+        camState.t = p * (camPath.length - 1);
 
-      // Hero reveal
+        // Section fade logic — crossfade between sections
+        const fade = (el: HTMLElement | null, opacity: number, pointer: boolean) => {
+          if (!el) return;
+          el.style.opacity = String(Math.max(0, Math.min(1, opacity)));
+          el.style.pointerEvents = pointer ? "all" : "none";
+        };
+
+        if (p < 0.2) {
+          // Hero fully visible
+          fade(s0, 1, false);
+          fade(s1, 0, false);
+          fade(s2, 0, false);
+          fade(s3, 0, false);
+        } else if (p < 0.35) {
+          // Crossfade hero→stats
+          const t = (p - 0.2) / 0.15;
+          fade(s0, 1 - t, false);
+          fade(s1, t, true);
+          fade(s2, 0, false);
+          fade(s3, 0, false);
+        } else if (p < 0.55) {
+          fade(s0, 0, false);
+          fade(s1, 1, true);
+          fade(s2, 0, false);
+          fade(s3, 0, false);
+        } else if (p < 0.7) {
+          const t = (p - 0.55) / 0.15;
+          fade(s0, 0, false);
+          fade(s1, 1 - t, false);
+          fade(s2, t, true);
+          fade(s3, 0, false);
+        } else if (p < 0.85) {
+          fade(s0, 0, false);
+          fade(s1, 0, false);
+          fade(s2, 1, true);
+          fade(s3, 0, false);
+        } else {
+          const t = (p - 0.85) / 0.15;
+          fade(s0, 0, false);
+          fade(s1, 0, false);
+          fade(s2, 1 - t, false);
+          fade(s3, t, true);
+        }
+      };
+
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll(); // init
+
+      // Hero reveal on load
       gsap.to(".exp-hero-line", {
         opacity: 1, y: 0, duration: 1.5, stagger: 0.12,
         ease: "power3.out", delay: 0.4,
@@ -624,7 +659,7 @@ export default function ExperiencePage() {
         window.removeEventListener("mousemove", onMouse);
         window.removeEventListener("touchmove", onTouch);
         window.removeEventListener("resize", onResize);
-        ScrollTrigger.getAll().forEach((t) => t.kill());
+        window.removeEventListener("scroll", onScroll);
         lenis.destroy();
         renderer.dispose();
         composer.dispose();
@@ -681,18 +716,18 @@ export default function ExperiencePage() {
         ← JDLO
       </Link>
 
-      {/* Scroll container */}
-      <div id="exp-scroll" style={{ position: "relative", zIndex: 20, background: "transparent" }}>
+      {/* Invisible spacer — creates scroll height (4 screens) */}
+      <div id="exp-scroll" style={{ height: "400vh", position: "relative" }} />
 
-        {/* ── Section 0: Hero ─────────────────────────────────────────────── */}
-        <section style={{
-          height: "100vh",
-          display: "flex",
-          flexDirection: "column",
+      {/* ── Section 0: Hero — position fixed, always behind canvas ── */}
+      <section style={{
+          position: "fixed", inset: 0, zIndex: 10,
+          display: "flex", flexDirection: "column",
           justifyContent: "flex-end",
           padding: "0 0 8vh 7vw",
           pointerEvents: "none",
-        }}>
+        }} id="exp-s0">
+
           <div style={{ lineHeight: 0.82, marginBottom: "2.5rem" }}>
             {["JDLO"].map((line, i) => (
               <span
@@ -760,8 +795,8 @@ export default function ExperiencePage() {
           </div>
         </section>
 
-        {/* ── Section 1: Stats ─────────────────────────────────────────────── */}
-        <section style={{ height: "100vh", display: "flex", alignItems: "center", padding: "0 0 0 8vw", background: "transparent" }}>
+      {/* ── Section 1: Stats ── */}
+      <section style={{ position: "fixed", inset: 0, zIndex: 10, display: "flex", alignItems: "center", padding: "0 0 0 8vw", opacity: 0, pointerEvents: "none" }} id="exp-s1">
           <div className="exp-reveal" style={{ maxWidth: 520 }}>
             <p className="exp-item" style={{
               fontFamily: "'Space Mono', monospace",
@@ -813,11 +848,8 @@ export default function ExperiencePage() {
           </div>
         </section>
 
-        {/* ── Section 2: The story ──────────────────────────────────────────── */}
-        <section style={{
-          height: "100vh", display: "flex", alignItems: "center",
-          justifyContent: "flex-end", padding: "0 8vw 0 0", background: "transparent",
-        }}>
+      {/* ── Section 2: Story ── */}
+      <section style={{ position: "fixed", inset: 0, zIndex: 10, display: "flex", alignItems: "center", justifyContent: "flex-end", padding: "0 8vw 0 0", opacity: 0, pointerEvents: "none" }} id="exp-s2">
           <div className="exp-reveal" style={{ maxWidth: 480 }}>
             <p className="exp-item" style={{
               fontFamily: "'Space Mono', monospace",
@@ -870,12 +902,8 @@ export default function ExperiencePage() {
           </div>
         </section>
 
-        {/* ── Section 3: CTA ───────────────────────────────────────────────── */}
-        <section style={{
-          height: "100vh", display: "flex", alignItems: "center",
-          justifyContent: "center", flexDirection: "column", textAlign: "center",
-          padding: "0 6vw", background: "transparent",
-        }}>
+      {/* ── Section 3: CTA ── */}
+      <section style={{ position: "fixed", inset: 0, zIndex: 10, display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", textAlign: "center", padding: "0 6vw", opacity: 0, pointerEvents: "none" }} id="exp-s3">
           <div className="exp-reveal">
             <p className="exp-item" style={{
               fontFamily: "'Space Mono', monospace",
@@ -947,9 +975,7 @@ export default function ExperiencePage() {
               </a>
             </div>
           </div>
-        </section>
-
-      </div>
+      </section>
 
       {/* Google Fonts + keyframes */}
       <style>{`
