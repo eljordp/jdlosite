@@ -17,11 +17,13 @@ export default function ExperienceLayout({ children }: { children: React.ReactNo
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{
           __html: `
-            html { background: #060e1c !important; }
-            body { background: #060e1c !important; }
-            body::after { display: none !important; }
-            body::before { display: none !important; }
-            .page-transition { background: transparent !important; background-color: transparent !important; }
+            html, body { background: #060e1c !important; }
+            body::after, body::before { display: none !important; }
+            .page-transition, .page-visible, .page-entering {
+              transform: none !important;
+              will-change: auto !important;
+              background: transparent !important;
+            }
           `,
         }}
       />
