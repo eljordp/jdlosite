@@ -287,15 +287,15 @@ export default function ExperiencePage() {
       function buildNebula() {
         const mul = isMobile ? 0.5 : 1;
         [
-          { count: Math.floor(180 * mul), size: 2.4, op: 0.028, color: 0x0a2848, spread: 13 },
-          { count: Math.floor(140 * mul), size: 1.2, op: 0.05,  color: 0x163850, spread: 10 },
-          { count: Math.floor(110 * mul), size: 0.6, op: 0.085, color: 0x4de8cc, spread: 7  },
+          { count: Math.floor(400 * mul), size: 3.8, op: 0.022, color: 0x0a2848, spread: 50 },
+          { count: Math.floor(300 * mul), size: 2.0, op: 0.038, color: 0x163850, spread: 35 },
+          { count: Math.floor(200 * mul), size: 1.0, op: 0.065, color: 0x4de8cc, spread: 20 },
         ].forEach((cfg) => {
           const pos = new Float32Array(cfg.count * 3);
           for (let i = 0; i < cfg.count; i++) {
-            const r = 1 + Math.random() * cfg.spread, a = Math.random() * Math.PI * 2;
+            const r = 3 + Math.random() * cfg.spread, a = Math.random() * Math.PI * 2;
             pos[i * 3] = Math.cos(a) * r;
-            pos[i * 3 + 1] = Math.random() * 62;
+            pos[i * 3 + 1] = -10 + Math.random() * 90;
             pos[i * 3 + 2] = Math.sin(a) * r;
           }
           const geo = new THREE.BufferGeometry();
@@ -314,14 +314,14 @@ export default function ExperiencePage() {
       }
 
       // ── Atmospheric particles ─────────────────────────────────────────────────
-      const ATMO = isMobile ? 500 : 1800;
+      const ATMO = isMobile ? 600 : 2500;
 
       function buildAtmo() {
         const pos = new Float32Array(ATMO * 3);
         const vel = new Float32Array(ATMO * 3);
         const col = new Float32Array(ATMO * 3);
         for (let i = 0; i < ATMO; i++) {
-          const r = 1.5 + Math.random() * 10, a = Math.random() * Math.PI * 2;
+          const r = 1.5 + Math.random() * 30, a = Math.random() * Math.PI * 2;
           pos[i * 3] = Math.cos(a) * r;
           pos[i * 3 + 1] = Math.random() * 62;
           pos[i * 3 + 2] = Math.sin(a) * r;
@@ -362,13 +362,15 @@ export default function ExperiencePage() {
 
       // ── Stars ─────────────────────────────────────────────────────────────────
       function buildStars() {
-        const n = isMobile ? 2000 : 8000;
+        const n = isMobile ? 3000 : 12000;
         const p = new Float32Array(n * 3);
         const c = new Float32Array(n * 3);
         for (let i = 0; i < n; i++) {
-          p[i * 3] = (Math.random() - 0.5) * 700;
-          p[i * 3 + 1] = Math.random() * 350 + 5;
-          p[i * 3 + 2] = (Math.random() - 0.5) * 700;
+          // Mix of far stars and close mid-ground stars that fill the screen
+          const far = Math.random() > 0.4;
+          p[i * 3] = (Math.random() - 0.5) * (far ? 800 : 120);
+          p[i * 3 + 1] = far ? Math.random() * 400 + 5 : -20 + Math.random() * 100;
+          p[i * 3 + 2] = (Math.random() - 0.5) * (far ? 800 : 120);
           const warm = Math.random() > 0.5;
           c[i * 3] = warm ? 1.0 : 0.7;
           c[i * 3 + 1] = warm ? 0.92 : 0.82;
@@ -575,8 +577,8 @@ export default function ExperiencePage() {
 
           if (aPos[i * 3 + 1] > 64) {
             aPos[i * 3 + 1] = -1 + Math.random();
-            aPos[i * 3]     = (Math.random() - 0.5) * 10;
-            aPos[i * 3 + 2] = (Math.random() - 0.5) * 10;
+            aPos[i * 3]     = (Math.random() - 0.5) * 60;
+            aPos[i * 3 + 2] = (Math.random() - 0.5) * 60;
             aVel[i * 3]     = (Math.random() - 0.5) * 0.003;
             aVel[i * 3 + 1] = 0.001 + Math.random() * 0.004;
             aVel[i * 3 + 2] = (Math.random() - 0.5) * 0.003;
