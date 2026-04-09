@@ -645,12 +645,14 @@ export default function ExperiencePage() {
       {/* Canvas — fixed behind everything */}
       <canvas
         ref={canvasRef}
+        id="experience-canvas"
         style={{
           position: "fixed",
           inset: 0,
           zIndex: 0,
           width: "100vw",
           height: "100vh",
+          display: "block",
         }}
       />
 

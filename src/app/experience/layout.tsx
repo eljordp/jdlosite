@@ -8,14 +8,24 @@ export const metadata: Metadata = {
 export default function ExperienceLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <style>{`
-        html, body { background: #060e1c !important; }
-        body::after { display: none !important; }
-        .page-transition { background: transparent !important; }
-      `}</style>
-      <div style={{ minHeight: "100vh", background: "transparent" }}>
-        {children}
-      </div>
+      {/*
+        Inject a style tag that overrides EVERYTHING that could show a background.
+        The <style> tag in the head (via Next.js layout) runs before globals.css
+        in priority, so we use !important on everything.
+      */}
+      <style
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{
+          __html: `
+            html { background: #060e1c !important; }
+            body { background: #060e1c !important; }
+            body::after { display: none !important; }
+            body::before { display: none !important; }
+            .page-transition { background: transparent !important; background-color: transparent !important; }
+          `,
+        }}
+      />
+      {children}
     </>
   );
 }
