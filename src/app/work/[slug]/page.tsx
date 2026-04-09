@@ -283,7 +283,7 @@ const projects: Record<string, {
       { value: "Custom", label: "Platform" },
       { value: "Premium", label: "Design" },
     ],
-    liveUrl: "https://www.joon11ee.com",
+    link: "https://www.joon11ee.com",
   },
   "hoa-dispute": {
     name: "HOA Dispute Bot",
