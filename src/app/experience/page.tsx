@@ -971,6 +971,7 @@ export default function ExperiencePage() {
         }
         .exp-hero-line { transition: opacity 0s, transform 0s; }
         /* Override global site styles for this isolated page */
+        body { background: #040810 !important; }
         body::after { display: none !important; }
         body::before { display: none !important; }
       `}</style>

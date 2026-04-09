@@ -8,14 +8,7 @@ export const metadata: Metadata = {
 /* Isolated dark layout — no global nav, no PageTransition, no film grain */
 export default function ExperienceLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div
-      style={{
-        background: "#040810",
-        minHeight: "100vh",
-        overflowX: "hidden",
-        position: "relative",
-      }}
-    >
+    <div style={{ minHeight: "100vh", overflowX: "hidden", background: "transparent" }}>
       {children}
     </div>
   );
