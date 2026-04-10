@@ -604,7 +604,7 @@ function ReachOut() {
             </div>
 
             <p className="text-text-muted text-[13px]">
-              Or email directly: <a href="mailto:eljordp@gmail.com" className="text-text hover:underline transition-colors">eljordp@gmail.com</a>
+              Or email directly: <a href="mailto:jordanl4solar@gmail.com" className="text-text hover:underline transition-colors">jordanl4solar@gmail.com</a>
             </p>
           </div>
         </RevealOnScroll>
@@ -649,7 +649,7 @@ function Footer() {
               <p className="text-text text-[13px] font-semibold mb-4">Connect</p>
               <div className="flex flex-col gap-2.5">
                 <a href="https://instagram.com/jdlo" target="_blank" rel="noopener noreferrer" className="text-text-muted text-[12px] hover:text-text transition-colors">Instagram</a>
-                <a href="mailto:eljordp@gmail.com" className="text-text-muted text-[12px] hover:text-text transition-colors">eljordp@gmail.com</a>
+                <a href="mailto:jordanl4solar@gmail.com" className="text-text-muted text-[12px] hover:text-text transition-colors">jordanl4solar@gmail.com</a>
               </div>
             </div>
           </div>

@@ -70,10 +70,10 @@ export default function RefundPage() {
               <p className="text-text-muted text-[13px] leading-[1.8]">
                 Need help? Email{" "}
                 <a
-                  href="mailto:eljordp@gmail.com"
+                  href="mailto:jordanl4solar@gmail.com"
                   className="text-accent hover:underline"
                 >
-                  eljordp@gmail.com
+                  jordanl4solar@gmail.com
                 </a>
               </p>
             </div>

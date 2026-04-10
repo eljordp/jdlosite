@@ -236,7 +236,7 @@ export async function POST(req: NextRequest) {
     const [notifResult, replyResult] = await Promise.allSettled([
       getResend().emails.send({
         from: "JDLO Leads <jp@jdlo.site>",
-        to: process.env.LEAD_EMAIL || "eljordp@gmail.com",
+        to: process.env.LEAD_EMAIL || "jordanl4solar@gmail.com",
         subject: `New ${labels[type] || "Lead"}: ${name}${course ? ` — ${course}` : ""}`,
         html: notificationHtml,
         replyTo: email,
@@ -246,7 +246,7 @@ export async function POST(req: NextRequest) {
         to: email,
         subject: reply.subject,
         html: autoReplyHtml,
-        replyTo: process.env.LEAD_EMAIL || "eljordp@gmail.com",
+        replyTo: process.env.LEAD_EMAIL || "jordanl4solar@gmail.com",
       }),
     ]);
 
@@ -254,7 +254,7 @@ export async function POST(req: NextRequest) {
     const emailLogs = [];
     if (notifResult.status === "fulfilled" && notifResult.value?.data?.id) {
       emailLogs.push({
-        to_email: process.env.LEAD_EMAIL || "eljordp@gmail.com",
+        to_email: process.env.LEAD_EMAIL || "jordanl4solar@gmail.com",
         subject: `New ${labels[type] || "Lead"}: ${name}`,
         type: "notification",
         status: "sent",

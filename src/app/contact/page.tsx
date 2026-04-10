@@ -245,10 +245,10 @@ export default function ContactPage() {
                   <p className="text-red-400 text-[13px] text-center">
                     Something went wrong. Try emailing{" "}
                     <a
-                      href="mailto:eljordp@gmail.com"
+                      href="mailto:jordanl4solar@gmail.com"
                       className="underline"
                     >
-                      eljordp@gmail.com
+                      jordanl4solar@gmail.com
                     </a>{" "}
                     directly.
                   </p>
@@ -258,10 +258,10 @@ export default function ContactPage() {
                 <p className="text-text-muted text-[13px] text-center pt-2">
                   Or email me directly:{" "}
                   <a
-                    href="mailto:eljordp@gmail.com"
+                    href="mailto:jordanl4solar@gmail.com"
                     className="text-accent hover:underline transition-colors"
                   >
-                    eljordp@gmail.com
+                    jordanl4solar@gmail.com
                   </a>
                 </p>
               </form>

@@ -119,7 +119,7 @@ function ReturnContent() {
               Something went wrong
             </h1>
             <p className="text-text-secondary text-[15px] leading-relaxed mb-8">
-              No worries, reach out at eljordp@gmail.com and we&apos;ll sort
+              No worries, reach out at jordanl4solar@gmail.com and we&apos;ll sort
               it out.
             </p>
             <Link

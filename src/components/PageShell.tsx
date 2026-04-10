@@ -119,7 +119,7 @@ export default function PageShell({ children, activeSlug }: PageShellProps) {
             </span>
             <div className="flex items-center gap-6">
               <a href="https://instagram.com/jdlo" target="_blank" rel="noopener noreferrer" className="text-text-muted text-[12px] font-mono hover:text-text transition-colors">@jdlo</a>
-              <a href="mailto:eljordp@gmail.com" className="text-text-muted text-[12px] font-mono hover:text-text transition-colors">eljordp@gmail.com</a>
+              <a href="mailto:jordanl4solar@gmail.com" className="text-text-muted text-[12px] font-mono hover:text-text transition-colors">jordanl4solar@gmail.com</a>
             </div>
           </div>
         </div>

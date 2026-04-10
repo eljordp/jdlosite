@@ -267,33 +267,38 @@ export default function WorkPage() {
           ═══════════════════════════════════════════════════════════ */}
       <section className="section-gap">
         <div className="max-w-[1400px] mx-auto px-6 md:px-10">
-          {/* Hero */}
-          <div className="mb-24 md:mb-32">
-            <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-8 hero-animate hero-delay-1">
-              Work
-            </p>
-            <h1 className="font-display text-[clamp(3rem,8vw,7rem)] tracking-[-0.03em] leading-[0.9] mb-8 hero-animate hero-delay-2">
-              Everything I&apos;ve built.
-            </h1>
-            <p className="text-text-secondary text-xl leading-relaxed max-w-[560px] hero-animate hero-delay-3">
-              Casinos, enterprise tools, e-commerce platforms, AI systems,
-              games, brand sites, for businesses from local shops to
-              six-figure operations.
-            </p>
-          </div>
+          {/* Hero — 2 col: title left, filter right */}
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-12 mb-16 pt-8">
+            {/* Left */}
+            <div className="hero-animate hero-delay-1">
+              <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-6">
+                Work
+              </p>
+              <h1 className="font-display text-[clamp(3rem,7vw,6rem)] tracking-[-0.03em] leading-[0.9] mb-6">
+                Everything I&apos;ve built.
+              </h1>
+              <p className="text-text-secondary text-lg leading-relaxed max-w-[480px]">
+                Casinos, enterprise tools, e-commerce, AI systems, games, brand sites.
+                From local shops to six-figure operations.
+              </p>
+            </div>
 
-          {/* Filter bar */}
-          <div className="mb-16 hero-animate hero-delay-4">
-            <div className="flex flex-wrap gap-2.5">
-              {CATEGORIES.map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => handleFilter(cat)}
-                  className={pillClass(activeFilter === cat)}
-                >
-                  {cat}
-                </button>
-              ))}
+            {/* Right — filter + count */}
+            <div className="hero-animate hero-delay-2 lg:text-right shrink-0">
+              <p className="text-text-muted text-[11px] font-mono tracking-wider uppercase mb-4">
+                {filtered.length} project{filtered.length !== 1 ? "s" : ""}
+              </p>
+              <div className="flex flex-wrap lg:justify-end gap-2">
+                {CATEGORIES.map((cat) => (
+                  <button
+                    key={cat}
+                    onClick={() => handleFilter(cat)}
+                    className={pillClass(activeFilter === cat)}
+                  >
+                    {cat}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
 
