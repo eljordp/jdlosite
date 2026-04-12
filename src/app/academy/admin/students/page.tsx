@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 
@@ -115,9 +116,17 @@ export default async function AdminStudentsPage() {
           <p className="text-[11px] font-mono tracking-[0.5em] uppercase text-[#888] mb-4">
             Admin
           </p>
-          <h1 className="font-display text-[clamp(2rem,4vw,3rem)] tracking-[-0.03em] leading-[0.95] text-[#1a1a1a]">
-            Academy — Students
-          </h1>
+          <div className="flex items-baseline gap-6">
+            <h1 className="font-display text-[clamp(2rem,4vw,3rem)] tracking-[-0.03em] leading-[0.95] text-[#1a1a1a]">
+              Academy — Students
+            </h1>
+            <Link
+              href="/academy/admin/content"
+              className="text-[13px] text-[#888] hover:text-[#1a1a1a] transition-colors"
+            >
+              Content →
+            </Link>
+          </div>
         </div>
 
         {/* Stats */}

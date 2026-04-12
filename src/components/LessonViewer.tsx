@@ -16,7 +16,30 @@ interface LessonViewerProps {
   userId: string;
   prevLesson: { mod: string; idx: number; title: string } | null;
   nextLesson: { mod: string; idx: number; title: string } | null;
+  videoUrlOverride?: string;
 }
+
+function getVideoEmbedUrl(url: string): string {
+  if (url.includes('loom.com')) {
+    return url.replace('loom.com/share', 'loom.com/embed');
+  }
+  if (url.includes('youtu.be/')) {
+    const id = url.split('youtu.be/')[1]?.split('?')[0];
+    return `https://www.youtube.com/embed/${id}`;
+  }
+  if (url.includes('youtube.com/watch')) {
+    const params = new URLSearchParams(url.split('?')[1] ?? '');
+    const id = params.get('v');
+    return `https://www.youtube.com/embed/${id}`;
+  }
+  return url;
+}
+
+const RESOURCE_ICONS: Record<string, string> = {
+  template: '📄',
+  tool: '🔧',
+  link: '🔗',
+};
 
 interface Highlight {
   text: string;
@@ -74,6 +97,7 @@ export default function LessonViewer({
   userId,
   prevLesson,
   nextLesson,
+  videoUrlOverride,
 }: LessonViewerProps) {
   const [notes, setNotes] = useLocalStorage<string>(`lesson-notes-${lessonKey}`, '');
   const [highlights, setHighlights] = useLocalStorage<Highlight[]>(
@@ -94,8 +118,16 @@ export default function LessonViewer({
   const [savingSubmission, setSavingSubmission] = useState(false);
   const [submissionSaved, setSubmissionSaved] = useState(false);
 
+  // Module completion overlay
+  const [showCompletion, setShowCompletion] = useState(false);
+
+  const isLastLesson = lessonIdx === moduleLessons.length - 1;
+
   const notesDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  // Resolve video URL: override takes priority, then lesson.videoUrl
+  const resolvedVideoUrl = videoUrlOverride ?? lesson.videoUrl;
 
   // Load saved submission on mount
   useEffect(() => {
@@ -131,11 +163,23 @@ export default function LessonViewer({
         try {
           const raw = localStorage.getItem('academy-completed-lessons');
           const completed: string[] = raw ? JSON.parse(raw) : [];
-          if (!completed.includes(lessonKey)) {
-            localStorage.setItem(
-              'academy-completed-lessons',
-              JSON.stringify([...completed, lessonKey])
-            );
+          const updatedCompleted = completed.includes(lessonKey)
+            ? completed
+            : [...completed, lessonKey];
+          localStorage.setItem(
+            'academy-completed-lessons',
+            JSON.stringify(updatedCompleted)
+          );
+
+          // Check if this is the last lesson and all module lessons are complete
+          if (isLastLesson) {
+            const allDone = moduleLessons.every((_, i) => {
+              const key = `${moduleNum}-${i}`;
+              return updatedCompleted.includes(key);
+            });
+            if (allDone) {
+              setShowCompletion(true);
+            }
           }
         } catch {
           // ignore
@@ -207,49 +251,67 @@ export default function LessonViewer({
 
   function renderBodyWithHighlights(body: string, sectionIdx: number) {
     const sectionHighlights = highlights.filter((h) => h.sectionIdx === sectionIdx);
-    if (sectionHighlights.length === 0) return body;
 
-    // Simple approach: replace highlight text occurrences with marked spans
-    // We return segments as an array for React rendering
-    let remaining = body;
-    const parts: { text: string; highlighted: boolean; hlIdx?: number }[] = [];
+    // Split on double newlines for paragraph breathing room
+    const paragraphs = body.split('\n\n').filter(Boolean);
 
-    // Sort highlights by their position in the text to avoid overlaps
-    const sorted = sectionHighlights
-      .map((h, i) => ({ ...h, origIdx: i }))
-      .sort((a, b) => remaining.indexOf(a.text) - remaining.indexOf(b.text));
-
-    for (const hl of sorted) {
-      const pos = remaining.indexOf(hl.text);
-      if (pos === -1) continue;
-      if (pos > 0) {
-        parts.push({ text: remaining.slice(0, pos), highlighted: false });
-      }
-      parts.push({ text: hl.text, highlighted: true, hlIdx: hl.origIdx });
-      remaining = remaining.slice(pos + hl.text.length);
-    }
-    if (remaining) {
-      parts.push({ text: remaining, highlighted: false });
+    if (sectionHighlights.length === 0) {
+      return (
+        <>
+          {paragraphs.map((para, pi) => (
+            <p key={pi} className="mb-4 last:mb-0">
+              {para}
+            </p>
+          ))}
+        </>
+      );
     }
 
-    if (parts.length === 0) return body;
-
+    // Apply highlights within each paragraph
     return (
       <>
-        {parts.map((part, i) =>
-          part.highlighted ? (
-            <mark
-              key={i}
-              className="bg-yellow-100 text-[#1a1a1a] rounded px-0.5 cursor-pointer"
-              title="Click to remove highlight"
-              onClick={() => typeof part.hlIdx === 'number' && removeHighlight(part.hlIdx)}
-            >
-              {part.text}
-            </mark>
-          ) : (
-            <span key={i}>{part.text}</span>
-          )
-        )}
+        {paragraphs.map((para, pi) => {
+          let remaining = para;
+          const parts: { text: string; highlighted: boolean; hlIdx?: number }[] = [];
+
+          const sorted = sectionHighlights
+            .map((h, i) => ({ ...h, origIdx: i }))
+            .sort((a, b) => remaining.indexOf(a.text) - remaining.indexOf(b.text));
+
+          for (const hl of sorted) {
+            const pos = remaining.indexOf(hl.text);
+            if (pos === -1) continue;
+            if (pos > 0) {
+              parts.push({ text: remaining.slice(0, pos), highlighted: false });
+            }
+            parts.push({ text: hl.text, highlighted: true, hlIdx: hl.origIdx });
+            remaining = remaining.slice(pos + hl.text.length);
+          }
+          if (remaining) {
+            parts.push({ text: remaining, highlighted: false });
+          }
+
+          return (
+            <p key={pi} className="mb-4 last:mb-0">
+              {parts.length === 0
+                ? para
+                : parts.map((part, i) =>
+                    part.highlighted ? (
+                      <mark
+                        key={i}
+                        className="bg-yellow-100 text-[#1a1a1a] rounded px-0.5 cursor-pointer"
+                        title="Click to remove highlight"
+                        onClick={() => typeof part.hlIdx === 'number' && removeHighlight(part.hlIdx)}
+                      >
+                        {part.text}
+                      </mark>
+                    ) : (
+                      <span key={i}>{part.text}</span>
+                    )
+                  )}
+            </p>
+          );
+        })}
       </>
     );
   }
@@ -264,8 +326,70 @@ export default function LessonViewer({
     e.target.value = val;
   }
 
+  // Build next module href for completion overlay
+  const nextModuleHref = nextLesson
+    ? `/academy/lesson/${nextLesson.mod}/${nextLesson.idx}`
+    : '/academy/dashboard';
+
   return (
     <div className="min-h-screen bg-white text-[#1a1a1a] relative">
+      {/* Module completion overlay */}
+      {showCompletion && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm animate-fade-in"
+          style={{ animation: 'overlayIn 0.25s ease both' }}
+        >
+          <style>{`
+            @keyframes overlayIn {
+              from { opacity: 0; }
+              to   { opacity: 1; }
+            }
+            @keyframes cardIn {
+              from { opacity: 0; transform: translateY(8px); }
+              to   { opacity: 1; transform: translateY(0); }
+            }
+          `}</style>
+          <div
+            className="max-w-[440px] w-full mx-4 bg-white rounded-2xl p-10"
+            style={{ animation: 'cardIn 0.3s ease 0.05s both' }}
+          >
+            <p className="text-[11px] font-mono tracking-[0.3em] text-[#aaa] uppercase mb-3">
+              Module {moduleNum}
+            </p>
+            <h2 className="font-display text-[2rem] text-[#111] tracking-tight leading-[1.1] mb-3">
+              Module {moduleNum} complete.
+            </h2>
+            <p className="text-[15px] text-[#555] mb-7">
+              You&apos;ve finished {moduleTitle}.
+            </p>
+            {/* Stat pills */}
+            <div className="flex items-center gap-2 mb-8">
+              <span className="inline-flex items-center text-[12px] font-mono text-[#666] bg-[#f5f5f5] rounded-full px-3 py-1">
+                {moduleLessons.length} lessons done
+              </span>
+            </div>
+            {/* Buttons */}
+            <div className="flex flex-col gap-3">
+              <Link
+                href={nextModuleHref}
+                className="inline-flex items-center justify-center gap-2 bg-[#111] text-white text-[14px] font-medium px-5 py-3 rounded-xl hover:bg-[#222] transition-colors"
+              >
+                {nextLesson ? 'Next Module' : 'Back to Dashboard'}
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path d="M3 7H11M8 4L11 7L8 10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </Link>
+              <Link
+                href="/academy/dashboard"
+                className="inline-flex items-center justify-center text-[14px] text-[#666] hover:text-[#111] transition-colors py-2"
+              >
+                Back to Dashboard
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Highlight tooltip */}
       {tooltip.visible && (
         <div
@@ -349,6 +473,18 @@ export default function LessonViewer({
               Back to Dashboard
             </Link>
 
+            {/* Video player — rendered before the lesson header */}
+            {resolvedVideoUrl && (
+              <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-xl mb-10 bg-[#111]">
+                <iframe
+                  src={getVideoEmbedUrl(resolvedVideoUrl)}
+                  className="absolute top-0 left-0 w-full h-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+            )}
+
             {/* Lesson header */}
             <header className="mb-10">
               <p className="text-[11px] font-mono tracking-[0.3em] text-[#888] uppercase mb-4">
@@ -365,6 +501,11 @@ export default function LessonViewer({
                   </svg>
                   {lesson.readingTime}
                 </span>
+                {isLastLesson && (
+                  <span className="inline-flex items-center text-[12px] font-mono text-[#888] bg-[#f0f0f0] rounded-full px-3 py-1">
+                    Last lesson
+                  </span>
+                )}
               </div>
 
               <div className="mt-6 pb-8 border-b border-[#efefef]">
@@ -385,9 +526,9 @@ export default function LessonViewer({
                   <h2 className="text-[17px] font-semibold text-[#111] mt-10 mb-3">
                     {section.heading}
                   </h2>
-                  <p className="text-[16px] leading-[1.85] text-[#333] select-text">
+                  <div className="text-[16px] leading-[1.85] text-[#333] select-text">
                     {renderBodyWithHighlights(section.body, i)}
-                  </p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -406,6 +547,30 @@ export default function LessonViewer({
                 ))}
               </ul>
             </div>
+
+            {/* Resources & Templates */}
+            {lesson.resources && lesson.resources.length > 0 && (
+              <div className="bg-[#f0f7ff] border border-[#c8dff5] rounded-xl p-6 mt-6">
+                <p className="text-[10px] font-mono tracking-[0.3em] text-[#4a7fa5] uppercase mb-4">
+                  Resources &amp; Templates
+                </p>
+                <ul className="space-y-2.5">
+                  {lesson.resources.map((resource, i) => (
+                    <li key={i}>
+                      <a
+                        href={resource.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-3 text-[14px] text-[#1a4f7a] hover:text-[#0f3154] transition-colors group"
+                      >
+                        <span className="text-[16px] shrink-0">{RESOURCE_ICONS[resource.type] ?? '🔗'}</span>
+                        <span className="group-hover:underline underline-offset-2">{resource.label}</span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
             {/* Assignment */}
             <div className="bg-[#fffbf0] border border-[#e8d5a3] rounded-xl p-6 mt-6">

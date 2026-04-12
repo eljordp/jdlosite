@@ -1,5 +1,6 @@
 import { redirect, notFound } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
+import { createAdminClient } from '@/lib/supabase/admin';
 import { courseData } from '@/lib/courseData';
 import LessonViewer from '@/components/LessonViewer';
 
@@ -53,6 +54,22 @@ export default async function LessonPage({ params }: Props) {
 
   const lessonData = moduleData.lessons[lessonIdx];
   const lessonKey = `${mod}-${lessonIdx}`;
+
+  // Fetch video URL from Supabase lesson_videos table (fails gracefully if table doesn't exist)
+  let videoUrlOverride: string | undefined = undefined;
+  try {
+    const adminClient = createAdminClient();
+    const { data: videoRow } = await adminClient
+      .from('lesson_videos')
+      .select('video_url')
+      .eq('lesson_key', lessonKey)
+      .single();
+    if (videoRow?.video_url) {
+      videoUrlOverride = videoRow.video_url as string;
+    }
+  } catch {
+    // Table doesn't exist or query failed — fall back to lesson.videoUrl
+  }
 
   // Compute prev lesson
   let prevLesson: { mod: string; idx: number; title: string } | null = null;
@@ -108,6 +125,7 @@ export default async function LessonPage({ params }: Props) {
       userId={user.id}
       prevLesson={prevLesson}
       nextLesson={nextLesson}
+      videoUrlOverride={videoUrlOverride}
     />
   );
 }

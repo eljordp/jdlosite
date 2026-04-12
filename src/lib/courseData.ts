@@ -14,6 +14,8 @@ export type Lesson = {
   keyTakeaways: string[];
   assignment: LessonAssignment;
   quiz: QuizQuestion[];
+  videoUrl?: string;
+  resources?: { label: string; url: string; type: 'template' | 'tool' | 'link' }[];
 };
 export type CourseModule = { num: string; title: string; description: string; lessons: Lesson[] };
 
