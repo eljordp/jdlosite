@@ -69,6 +69,28 @@ function Hero() {
   );
 }
 
+/* ── Academy Banner ── */
+function AcademyBanner() {
+  return (
+    <div className="border-t border-b border-border bg-surface-raised">
+      <div className="max-w-[1400px] mx-auto px-6 md:px-10">
+        <Link
+          href="/academy"
+          className="flex items-center justify-between py-4 group"
+        >
+          <div className="flex items-center gap-3">
+            <span className="text-[10px] tracking-[0.5em] uppercase font-mono text-text-muted">New</span>
+            <span className="text-sm font-medium text-text-primary">
+              JDLO Academy — Learn to build what I build
+            </span>
+          </div>
+          <span className="text-text-muted group-hover:text-text-primary transition-colors text-sm">→</span>
+        </Link>
+      </div>
+    </div>
+  );
+}
+
 /* ── Services ── */
 const services = [
   {
@@ -737,6 +759,7 @@ export default function Home() {
     <main>
       <HomeNav />
       <Hero />
+      <AcademyBanner />
       <Services />
       <Process />
       <Work />
