@@ -47,6 +47,9 @@ export const courseData: CourseModule[] = [
             body: 'Once you know your bottleneck, set a 90-day benchmark that addresses it specifically. Not a goal. A benchmark. A goal is "make more money." A benchmark is "$3,000 in new cash collected in the next 90 days from two clients, with one retainer proposal sent by day 30." Benchmarks are measurable, time-bound, and tied to exactly one lever. If you have a pipeline problem, your benchmark is a volume metric: 20 outreach messages per week. If you have a conversion problem, it\'s a close rate: 50% of calls should result in a yes or a clear no. Lock the benchmark in before you move to the next lesson.',
           },
         ],
+        resources: [
+          { label: 'Operator Audit Template', url: 'https://docs.google.com/document/d/1wRbXscSzvBeZ83EeJRN0345UY0U157ZtGOqqNkCNb6Q/copy', type: 'template' as const },
+        ],
         keyTakeaways: [
           'Measure outputs, not activity. Only what shipped in 30 days counts as evidence.',
           'Pipeline, conversion, and delivery are three separate problems that need three separate fixes.',
@@ -671,6 +674,9 @@ export const courseData: CourseModule[] = [
             body: 'Every discovery call should end with a clear next step, proposed by you, with a specific date. Not "I\'ll send something over." "I\'ll send the proposal by Thursday at noon and we can reconnect Friday to walk through it." The specific date creates a micro-commitment and keeps the deal alive between touchpoints. If the prospect is ready to move on the call (and you\'ll know because they\'ll stop asking questions and start asking about process) close right there. "Based on what you\'ve shared, I\'m confident in the approach. If you\'re ready to move forward, here\'s how we get started." Then stop talking. The close is not a monologue.',
           },
         ],
+        resources: [
+          { label: 'Discovery Call Script', url: 'https://docs.google.com/document/d/1G-MsRnvvnCk_ezpq93G7zoJMMH94lQMjQhMiabYcWDE/copy', type: 'template' as const },
+        ],
         keyTakeaways: [
           'Discovery is diagnostic, not a pitch. 70% listening, 20% reflecting, 10% presenting.',
           'Seven questions cover 90% of what you need before presenting any solution.',
@@ -731,6 +737,9 @@ export const courseData: CourseModule[] = [
             heading: 'Handling late payment and non-payment',
             body: 'Late payment has a standard protocol. Invoice sent on the agreed date. Payment reminder at 48 hours if not received. Direct message or call at 72 hours. Work paused at 7 days with a written notice. Non-payment beyond 14 days moves to a demand letter citing the contract terms. This protocol is not aggressive. It\'s professional. Most late payments resolve at the 48-hour reminder step because the client simply forgot or the invoice went to spam. The ones that don\'t resolve are the ones you need the contract for. Having the contract doesn\'t guarantee you\'ll collect, but it creates a paper trail that makes collection significantly more likely and small claims court a realistic option.',
           },
+        ],
+        resources: [
+          { label: 'Client Contract Template', url: 'https://docs.google.com/document/d/1CmViyNvyJwsrTb0v077lQxUBOYTMHb8_AaRvZfBcL-8/copy', type: 'template' as const },
         ],
         keyTakeaways: [
           'Scope creep, non-payment, and disputes are almost entirely preventable with a written agreement.',
@@ -799,6 +808,9 @@ export const courseData: CourseModule[] = [
             heading: 'The one-platform rule and when to break it',
             body: 'Build one platform deep before spreading to a second. Every platform has its own algorithm, content format, and audience behavior. Learning two simultaneously means being mediocre on both. Instagram first if your clients are consumer-facing businesses. LinkedIn first if your clients are B2B. Twitter/X first if you\'re building in tech or SaaS. The one-platform rule holds until you have 12 months of consistent output and a clear sense of what\'s working. At that point, repurposing content to a second platform is reasonable. Before that point, you\'re diluting your effort for marginal additional reach.',
           },
+        ],
+        resources: [
+          { label: '30-Day Content Calendar', url: 'https://docs.google.com/document/d/1KLRt-i0QFAvvG5oYeMUCXdwvfWahOikZzyo6V4g8Osg/copy', type: 'template' as const },
         ],
         keyTakeaways: [
           'Authority with 500 followers beats audience with 50,000 if it\'s the right 500.',
@@ -1112,6 +1124,9 @@ export const courseData: CourseModule[] = [
             body: 'A retainer without monthly reporting is a retainer that cancels when the client stops seeing movement. Monthly reporting takes 30 minutes per client and does three things. It documents the value delivered, which makes cancellation psychologically harder. It surfaces problems before they become crises, which maintains trust. And it creates a natural touchpoint for expanding the retainer or referrals because you\'re visible and engaged. The report format: three bullet points of what happened, three bullet points of what\'s happening next, one metric that represents the retainer\'s core value. Under one page. Send it the same day every month. Predictability signals professionalism.',
           },
         ],
+        resources: [
+          { label: 'Retainer Pitch Script', url: 'https://docs.google.com/document/d/1ySkTeU7xiKZFqUU7NKfb3dGxBNvyqVNUNK8kAABCSN4/copy', type: 'template' as const },
+        ],
         keyTakeaways: [
           'Clients renew when value is clear and the cost of stopping is higher than the cost of continuing.',
           'Three structures: maintenance ($500-$1,500), growth ($1,500-$3,500), full-service ($3,500-$7,500).',
@@ -1234,6 +1249,9 @@ export const courseData: CourseModule[] = [
             body: 'The $10K blueprint runs in 90 days. Month one: convert one current client to a retainer, pitch two new projects, publish your first productized service, build your pipeline to 10 active leads. Month two: close one new project client, send a retainer pitch to a second current client, execute the content plan from Module 04, make three intro asks. Month three: convert a second client to retainer, close one more project, run the full discovery call framework on your top three pipeline leads. By day 90, you should have a clear view of whether you\'re at $8K, $10K, or $12K/month, and a specific diagnosis of what to adjust if you\'re short. The blueprint is not a guarantee. It\'s a test with measurable outcomes.',
           },
         ],
+        resources: [
+          { label: '$10K Blueprint Template', url: 'https://docs.google.com/document/d/1JGI74xud8q4xkWQ-WbukgvmmQPv3I8yy2bb65RGxNUo/copy', type: 'template' as const },
+        ],
         keyTakeaways: [
           'A plan has names, services, a timeline, and one key constraint. A direction has none of those.',
           'Clearest first path: three to five clients at $2K-$3K with one anchor retainer.',
@@ -1270,6 +1288,379 @@ export const courseData: CourseModule[] = [
             options: ["Launching a new marketing campaign and building brand awareness", "Converting one current client to a retainer, pitching two new projects, and publishing your productized service", "Hiring a team member to handle client delivery and free up selling time", "Raising all existing client prices to move toward higher-value work"],
             correctIdx: 1,
             explanation: "Month one: convert one current client to a retainer. Pitch two new projects. Publish your productized service. Build pipeline to 10 active leads. This sequence builds predictable base revenue while simultaneously opening new project opportunities.",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    num: '06',
+    title: 'Case Studies',
+    description: 'Six real projects. What happened, what broke, what shipped, what it paid. The framework in action.',
+    lessons: [
+      {
+        title: 'West Coast Terpz — From Instagram DMs to $12K/mo',
+        readingTime: '10 min',
+        overview: 'WCT was running their entire cannabis e-commerce operation through Instagram DMs and cash. No system, no scale, no visibility. I built them a full custom e-commerce platform. They went from zero online revenue to over $12K a month. This is what happens when you price on outcomes instead of hours.',
+        sections: [
+          {
+            heading: 'The situation before — what selling through DMs actually looks like',
+            body: 'Before I touched anything, WCT was doing every transaction manually. Someone DMs, they screenshot the order, they text back a venmo link or an address, they manually track who paid and who didn\'t in their notes app. This is not a small operation — they were moving real volume. But at some point, DM selling breaks. You miss orders. You lose track of inventory. You can\'t run promotions at scale because there\'s no cart, no checkout, no record of what happened. The owner knew it was broken but didn\'t know what to replace it with. That\'s the opening. When someone knows their current workflow is a fire they\'re putting out every day, they\'re not asking "is this worth building?" — they already know it is. Your job is just to show up with the solution.',
+          },
+          {
+            heading: 'Scoping the build — what I decided to build vs what I left out',
+            body: 'The first conversation was about scope. They wanted everything. Custom loyalty program, age verification, subscription boxes, referral tracking. I said no to most of it — not because I couldn\'t build it, but because none of it was the bottleneck. The bottleneck was: customers have no way to browse, no way to check out, and no way to pay without a manual back-and-forth. Fix that first. I scoped the v1 to product catalog, cart, checkout, and payment processing. That\'s it. No loyalty program, no subscriptions. Just the core purchase flow. Everything else is phase two, and phase two only gets built if phase one is working. This is how you avoid scope creep on the first project with a new client — you tie the scope to the specific problem they hired you to solve, not every problem they might ever have.',
+          },
+          {
+            heading: 'The build itself — stack, timeline, decisions made',
+            body: 'I built the platform on the standard stack — Next.js, Supabase, Stripe. Custom front end, nothing off the shelf that would limit what we could do later. The build took about three weeks of actual working time. Not three weeks of calendar time where I was staring at it every day — three weeks of hours logged. The decisions that mattered: I built the admin dashboard before the storefront, so they could load inventory before we went live. I set up Stripe first and tested checkout end-to-end on day one, because payment processing is the most likely thing to break and you want to find those problems early. I kept every component modular so features can be added without rebuilding. When you\'re working with a client who will want changes, the architecture needs to support that.',
+          },
+          {
+            heading: 'The result and what it taught me about pricing on outcomes',
+            body: 'They went from zero online revenue to $12K+ a month in the first 90 days after launch. Total paid to me so far: $900. That\'s the part that stings when you look at it raw. But there\'s a MRR deal on the table — 10 to 30% profit share — which would put ongoing revenue at $1,200 to $3,600 a month from a single client. That\'s the lesson. I underpriced the build because I charged for my time, not for the outcome I created. $12K a month in new revenue for their business — a fraction of that as a build fee is a bargain, and it should have been priced accordingly. When you scope a project, ask: what is this worth if it works? Price from that number, not from how many hours you\'re guessing it will take. The client is buying the outcome. Charge for it.',
+          },
+        ],
+        keyTakeaways: [
+          'DM-based selling breaks at scale — the moment a business is ready to stop putting out fires, they\'re ready for a real system.',
+          'Scope v1 to the specific bottleneck only. Everything else is phase two.',
+          'Test the payment flow first. That\'s where projects die if you wait too long.',
+          'Price on outcomes, not hours. If you create $12K/mo in new revenue, your build fee should reflect that.',
+          'MRR deals with profit share are worth more over time than a one-time project fee.',
+        ],
+        assignment: {
+          title: 'Find a DM-based business and price the system',
+          description: 'Find one business in your network still running on DMs or spreadsheets. Map every step of their current manual workflow. Then map what a real system would replace — each manual step becomes a feature. Price the build based on the revenue upside it creates, not based on your hours.',
+          deliverable: 'A one-page scope doc: current workflow (every manual step), proposed system (what replaces each step), and a price anchored to the business outcome — not your time.',
+        },
+        quiz: [
+          {
+            question: 'What was the core bottleneck in WCT\'s operation before the build?',
+            options: ['They had no social media presence', 'Customers had no way to browse, check out, or pay without a manual back-and-forth', 'Their inventory was disorganized', 'They didn\'t have a logo or brand identity'],
+            correctIdx: 1,
+            explanation: 'The issue wasn\'t branding or social — it was the purchase flow. No catalog, no cart, no checkout. Every transaction was manual. That was the bottleneck, and that\'s what the v1 had to fix.',
+          },
+          {
+            question: 'Why did JP scope out the loyalty program, subscriptions, and referral tracking for v1?',
+            options: ['Those features were too complex to build', 'They were too expensive to implement', 'None of it was the actual bottleneck — adding those before fixing the core purchase flow solves the wrong problem', 'The client didn\'t want those features'],
+            correctIdx: 2,
+            explanation: 'Scope creep on the first project kills trust and timelines. You tie the scope to the specific problem that\'s blocking revenue. Everything else is phase two, after phase one proves it works.',
+          },
+          {
+            question: 'What should you test first when building an e-commerce platform?',
+            options: ['The homepage design and branding', 'The admin dashboard and inventory management', 'Payment processing — end to end on day one', 'Mobile responsiveness across devices'],
+            correctIdx: 2,
+            explanation: 'Payment processing is the most likely thing to break and the most important thing to get right. Test checkout end-to-end on day one so you find problems early, not at launch.',
+          },
+          {
+            question: 'What is the key pricing lesson from the WCT case study?',
+            options: ['Always charge by the hour so the client knows exactly what they\'re paying for', 'Charge based on the outcome the system creates, not based on your time', 'Undercharge to build the relationship, then raise prices later', 'Use value-based pricing only with large enterprise clients'],
+            correctIdx: 1,
+            explanation: 'WCT went from $0 to $12K/mo in new revenue. The build fee should reflect a fraction of that outcome, not an estimate of hours worked. Clients buy outcomes. Price accordingly.',
+          },
+        ],
+      },
+      {
+        title: 'DHL — How a Solo Operator Lands an Enterprise Deal',
+        readingTime: '10 min',
+        overview: 'A DHL premier partner needed a desktop translator app — Flutter, Windows .exe — to handle returns portals and translation systems across 100+ stores, with expansion to Canada on the deck. I built it solo. This is how a referral network turns into enterprise proof.',
+        sections: [
+          {
+            heading: 'How the deal came through — the referral network in action',
+            body: 'I didn\'t cold outreach DHL. The deal came through Mo, a partner in my network. That\'s the only way enterprise deals happen when you\'re starting out — someone who already has access brings you in. This is why building relationships with people who have clients bigger than yours is more valuable than spending the same time on outreach to strangers. Mo knew what I could build. Mo had a client with a specific problem. Mo made the intro. My job at that point was to be ready: have clear examples of work, be able to articulate what I build and why, and close the conversation with a concrete next step. The prep that made me ready for that moment happened months before the deal. It wasn\'t luck. You invest in relationships before you need them.',
+          },
+          {
+            heading: 'Scoping enterprise vs small business — what\'s actually different',
+            body: 'Enterprise clients are not just bigger small businesses. The requirements process is different. There are stakeholders beyond the person you\'re talking to. Timelines are longer, expectations are more formal, and documentation matters in ways it doesn\'t with a single-owner business. For the DHL project, I needed to understand not just the feature list but the deployment environment — Windows .exe, specific store hardware, compatibility requirements across 100+ locations. I had to ask more upfront questions than I\'d normally ask, and I had to make sure the scope document was explicit because there\'s no casual conversation that fixes a misunderstanding at this level. The lesson: take longer to scope, document everything, and treat the spec like a contract because at this level it basically is.',
+          },
+          {
+            heading: 'Building something you\'ve never built before — Flutter was new',
+            body: 'I had not built a Flutter desktop app before this project. I said yes anyway. That\'s not recklessness — it\'s calibrated confidence. I knew I could figure it out because I\'d already figured out things I didn\'t know how to do before. The pattern was the same: understand the requirements clearly, break the build into the smallest working piece, build that first, then expand. With Flutter, I spent the first three days purely learning — reading docs, building throwaway prototypes, understanding the deployment pipeline for Windows .exe output. By day four I was building the actual product. What looked like a jump off a cliff was actually a structured learning sprint followed by a familiar build process. If you wait until you know everything to say yes, you will say yes to nothing.',
+          },
+          {
+            heading: 'What enterprise proof does for your positioning',
+            body: 'DHL on your portfolio changes every conversation after it. When a prospect is deciding whether to trust you with their project, they\'re pattern-matching against what they already know. DHL is a pattern they already know. It\'s a name that signals you\'ve operated at a level above side project work. I don\'t lead every pitch with it, but it\'s always in the deck. It answers the implicit question before it gets asked: "has this person done real work for real companies, or is this just a portfolio of spec projects?" Enterprise proof collapses the trust gap. It gets you into rooms that would otherwise be closed. That\'s worth building toward, even if the first enterprise deal comes in at a price lower than you\'d charge today.',
+          },
+        ],
+        keyTakeaways: [
+          'Enterprise deals come through relationships, not cold outreach — invest in your network before you need it.',
+          'Enterprise scoping requires more upfront questions, more documentation, and a spec that functions like a contract.',
+          'Saying yes to technology you haven\'t used yet is fine if you have a structured learning-then-build approach.',
+          'DHL-level portfolio proof changes how every future prospect evaluates you before you say a word.',
+          'The referral network is your highest-leverage sales channel — prioritize relationships with people whose clients are bigger than yours.',
+        ],
+        assignment: {
+          title: 'Map an enterprise-adjacent opportunity in your network',
+          description: 'Identify one enterprise-adjacent contact in your network — someone connected to a company with more than 50 employees or multiple locations. Map what their operational pain looks like from what you already know. Write a one-paragraph spec for what you\'d build — include deployment environment, who the end users are, and what the manual process currently looks like.',
+          deliverable: 'A one-paragraph spec for a real enterprise-adjacent project: problem, end users, deployment context, and what you\'d build to fix it.',
+        },
+        quiz: [
+          {
+            question: 'How did JP get the DHL project?',
+            options: ['Cold email outreach to DHL\'s procurement team', 'Through a referral from a partner named Mo who already had access', 'By posting a case study on LinkedIn that a DHL manager saw', 'By reaching out directly after researching their operational problems'],
+            correctIdx: 1,
+            explanation: 'The deal came through Mo — a partner in the network. Enterprise deals for solo operators almost always start with a warm intro. That\'s why building relationships with people who have bigger clients than yours is the highest-leverage sales activity available to you.',
+          },
+          {
+            question: 'What is the most significant difference when scoping an enterprise project vs a small business project?',
+            options: ['Enterprise projects require more advanced technical skills', 'There are multiple stakeholders, formal timelines, and a spec that functions like a contract', 'Enterprise clients have bigger budgets so you can charge more freely', 'Enterprise projects require a team, not a solo operator'],
+            correctIdx: 1,
+            explanation: 'It\'s not just about technical complexity. Enterprise means multiple decision-makers, formal requirements, and documentation that leaves no room for casual clarification. The spec is a contract. Treat it that way.',
+          },
+          {
+            question: 'What was JP\'s approach when Flutter — a technology he hadn\'t used — was required for the DHL project?',
+            options: ['He subcontracted the Flutter work to a specialist', 'He told the client he\'d need to bring in a Flutter developer', 'He spent three days learning through docs and throwaway prototypes, then built the actual product', 'He built it in a technology he knew and converted it to Flutter afterward'],
+            correctIdx: 2,
+            explanation: 'Structured learning sprint then familiar build process. You understand requirements, break it into the smallest working piece, build that first, then expand. Waiting until you know everything to say yes means saying yes to nothing.',
+          },
+          {
+            question: 'Why does having an enterprise client like DHL in your portfolio matter beyond the single project?',
+            options: ['Enterprise projects pay more so it improves your average project value', 'It collapses the trust gap in every future conversation by proving you\'ve operated at a level above spec project work', 'Enterprise clients always refer you to other enterprise clients', 'It qualifies you for higher-priced freelance platforms'],
+            correctIdx: 1,
+            explanation: 'DHL is a name prospects already recognize. It answers the implicit question — "has this person done real work for real companies?" — before it gets asked. That\'s worth more than the project fee over the long term.',
+          },
+        ],
+      },
+      {
+        title: 'Club Bot / Velvet — Building AI That Actually Automates Something',
+        readingTime: '11 min',
+        overview: 'Vegas nightclub promoter Lauren moves 400 to 500+ guests a week. Her entire workflow was manual texts, manual contact saving, manual Tao dashboard entry. I built Club Bot — an AI concierge that automates the whole thing. Revenue model: 30% of referral revenue plus CRM tier pricing. This is what real automation looks like.',
+        sections: [
+          {
+            heading: 'Finding the automation opportunity — how to spot when a manual process is ready to be replaced',
+            body: 'Lauren was doing the same work every night. Guest texts in. She reads it. She manually saves the contact. She manually texts back the table info and dress code. She manually enters the reservation into Tao\'s dashboard. Same steps, every guest, every night, 400 to 500 times a week. That\'s not a workflow — that\'s a loop someone is trapped in. The signal that a manual process is ready for automation is repetition plus volume. When someone is doing the same action more than 20 times a week without any variation in the logic, a bot can do it. The higher the volume and the more predictable the inputs, the stronger the case for automation. Lauren\'s situation was textbook: high volume, predictable inputs (guest inquiries follow the same patterns), clear output (reservation confirmed + dashboard entry made). That\'s a green light.',
+          },
+          {
+            heading: 'Designing the AI system — what it actually does step by step',
+            body: 'The design wasn\'t complicated once I mapped the before-state. Guest texts the number. Bot reads the message, identifies the intent (inquiry, confirmation, request for info). Bot pulls the relevant response from a knowledge base — table availability, pricing, dress code, event details. Bot sends the response. If the guest confirms, bot captures their info, creates a contact record, and logs the reservation in the dashboard. That\'s it. No AI magic. Just a decision tree built on top of a language model, with integrations to the tools Lauren was already using. The build was less about AI and more about integrations — connecting the right APIs to make the data flow without a human in the middle. Most "AI products" work this way. The intelligence is in the design, not in some novel model capability.',
+          },
+          {
+            heading: 'The revenue model — why percentage plus SaaS tier is better than one-time for AI tools',
+            body: 'I didn\'t charge a flat project fee for Club Bot. The deal is 30% of referral revenue, plus CRM tier pricing as the tool scales to more promoters and more clients. Here\'s why that structure wins: the tool gets more valuable as Lauren moves more guests. If she goes from 400/week to 600/week, the bot handles more volume without additional work from me, and my revenue goes up automatically. That\'s the leverage that project fees don\'t have. The SaaS tier layer means other promoters can use the same infrastructure at a monthly rate. One build, multiple revenue streams. If you\'re building AI tools, price them the way software is priced — recurring, tied to usage or value delivered — not the way service work is priced. One-time fees leave money on the table when the tool keeps working after you stop.',
+          },
+          {
+            heading: 'Selling AI to non-technical people — they don\'t care how it works',
+            body: 'Lauren did not care about the model, the API integrations, or the architecture. She cared about one thing: does this mean I don\'t have to manually respond to 400 guests a week anymore? That\'s the pitch. Not "I\'m going to build you an LLM-powered automation workflow with CRM integration and a dashboard layer." The pitch is: "Right now you spend X hours a week texting guests and entering data. After this, you spend zero hours doing that. It happens automatically. You just see the results in your dashboard." Non-technical buyers buy the outcome. They buy the relief of not doing the thing they currently hate doing. Your job in the sales conversation is to make the before-and-after completely clear, without a single sentence about how it works.',
+          },
+        ],
+        keyTakeaways: [
+          'Repetition plus volume is the signal that a manual process is ready for automation.',
+          'Most AI products are decision trees on top of language models, with integrations doing the heavy lifting.',
+          'Percentage of revenue plus SaaS tier pricing beats one-time fees for tools that keep delivering value.',
+          'Non-technical buyers buy the outcome — zero hours doing the thing they hate — not the technology.',
+          'Map the before-state completely before designing anything. The design is obvious once the before-state is clear.',
+        ],
+        assignment: {
+          title: 'Map a manual workflow and price the automation',
+          description: 'Identify one manual workflow from someone in your network that meets the automation criteria: high repetition, predictable inputs, clear outputs. Write the complete before-state — every step they currently do manually. Write the complete after-state — every step the bot handles. Then price it as a percentage of the time or revenue value they get back, not as a project fee.',
+          deliverable: 'A before/after workflow map with every step documented, plus a pricing structure — percentage, recurring, or usage-based — that reflects the ongoing value the automation delivers.',
+        },
+        quiz: [
+          {
+            question: 'What are the two key signals that a manual process is ready for automation?',
+            options: ['The client is frustrated and has budget available', 'High repetition and high volume with predictable inputs and outputs', 'The task involves data entry and communication', 'The business owner is spending more than 10 hours a week on it'],
+            correctIdx: 1,
+            explanation: 'When someone is doing the same action more than 20 times a week with predictable inputs and clear outputs, a bot can do it. Repetition plus volume plus predictability is the pattern.',
+          },
+          {
+            question: 'What did the majority of the Club Bot build actually involve?',
+            options: ['Training a custom language model on Lauren\'s historical conversations', 'Building a novel AI reasoning system specific to nightclub operations', 'Connecting APIs and making data flow between tools Lauren was already using', 'Building a custom mobile app for guests to use instead of texting'],
+            correctIdx: 2,
+            explanation: 'Most "AI products" are decision trees on top of existing language models, with integrations doing the heavy lifting. The intelligence is in the design and the data flow, not in novel model capability.',
+          },
+          {
+            question: 'Why is percentage of revenue plus SaaS tier pricing better than a one-time project fee for AI tools?',
+            options: ['It makes the upfront cost lower and easier for clients to say yes', 'The tool keeps delivering value after you stop working, so recurring pricing captures that ongoing leverage', 'It aligns your incentives with the client\'s success', 'One-time fees are harder to justify to non-technical clients'],
+            correctIdx: 1,
+            explanation: 'A flat fee means you get paid once for something that keeps working. Recurring pricing tied to usage or outcomes means your revenue grows as the tool delivers more value. One build, multiple revenue streams.',
+          },
+          {
+            question: 'What is the correct way to pitch an AI automation tool to a non-technical buyer?',
+            options: ['Explain the technical architecture to build credibility and justify the price', 'Show them comparable tools from competitors and explain why yours is better', 'Make the before-and-after completely clear — X hours doing the thing now, zero hours after', 'Lead with the tech stack and the AI model powering it'],
+            correctIdx: 2,
+            explanation: 'Non-technical buyers buy relief. "Right now you spend X hours on this. After this, you spend zero." That\'s the pitch. No architecture discussion. No model names. Just before and after.',
+          },
+        ],
+      },
+      {
+        title: 'Quanta Casino — Scoping and Shipping a Complex Product',
+        readingTime: '11 min',
+        overview: 'Quanta Casino is a full online casino platform. 23 games, real-time multiplayer, $300K+ platform value. This is the most technically complex project in the portfolio. What it taught me about scoping big products, shipping under complexity, and what it does to your pricing ceiling.',
+        sections: [
+          {
+            heading: 'How to scope something this big without losing your mind — vertical slices, not horizontal layers',
+            body: 'The mistake most people make on complex projects is scoping horizontally. They build the entire database schema first, then the entire API layer, then the entire front end. Horizontal layering means nothing is working until everything is done, which means you have no feedback loop and no early wins. I scoped Quanta in vertical slices. A vertical slice is a complete piece of the product — fully functional from database to UI — even if it\'s small. First slice: one game, fully playable, with real-time bet tracking. That\'s it. No lobby, no wallet system, no multiplayer yet — just one game working end to end. Once that shipped internally, I had proof of concept. The second slice added the wallet. Third slice added multiplayer. Each slice is a working product, not a layer of a future product. Vertical slices keep the build moving because you\'re always shipping something real.',
+          },
+          {
+            heading: 'The multiplayer problem — real-time systems require different architecture thinking',
+            body: 'Standard web architecture is request-response: user does something, server responds. Real-time multiplayer is different — the state of the game needs to update for all players simultaneously, without any player making a request. That requires WebSockets or a real-time pub/sub layer. For Quanta, I used PartyKit to handle the real-time layer. The architecture decision that mattered most: keep the game state on the server, push updates to all clients, never trust the client to calculate the state. This is both a security and a synchronization decision. If the client calculates game outcomes, it can be manipulated. If the server calculates and pushes, it can\'t. Understanding why the architecture is built a certain way — not just how — is what separates someone who follows tutorials from someone who can make judgment calls when something breaks.',
+          },
+          {
+            heading: 'Scope creep on big projects and how to handle it',
+            body: 'Twenty-three games is a lot of games. It didn\'t start as 23 games. It started as one game with a plan for more. The scope expanded because each new game was additive — it didn\'t break anything that existed, it just added to the product surface. That\'s the acceptable version of scope creep: expansion that\'s additive, bounded, and deliberate. The dangerous version is when new requirements change existing architecture. A new game is additive. "Actually we want to change how the wallet works" midway through is architectural. I learned to frame these differently in client conversations: additive scope gets added to the project at the original rate, architectural changes require a scope revision conversation. Setting that norm early prevents the conversation from being adversarial later. It\'s not "no." It\'s "yes, and here\'s what that means for the project."',
+          },
+          {
+            heading: 'What building something this complex does for your confidence and pricing ceiling',
+            body: 'Before Quanta, I would not have put $300K on a project spec. After Quanta, that number was just a reflection of what was actually there — 23 games, real-time multiplayer, full wallet and auth system, audit trail, admin panel. You can\'t price confidently at levels you\'ve never operated at. Every complex project you complete raises your floor. It gives you a reference point to anchor from. When someone asks you what something costs, you\'re not guessing — you\'re pattern-matching against real work you\'ve done at real scale. That pattern-matching also makes you better at scoping. You know which parts of a build are fast, which parts have hidden complexity, and where the risk is. That knowledge is the actual product you\'re selling — not just the code.',
+          },
+        ],
+        keyTakeaways: [
+          'Scope complex products in vertical slices — complete pieces from database to UI — not horizontal layers.',
+          'Real-time systems need server-side state calculation. Never trust the client to calculate outcomes.',
+          'Additive scope is acceptable; architectural scope changes require a separate conversation.',
+          'You can\'t price confidently at levels you\'ve never operated at — complex projects raise your pricing floor.',
+          'The knowledge of where complexity lives in a system is as valuable as the code itself.',
+        ],
+        assignment: {
+          title: 'Break an ambitious project into vertical slices',
+          description: 'Take your most ambitious project idea — something that feels too big or too complex to start. Break it into vertical slices. Each slice should be a complete, working piece of the product from data layer to UI. Identify the first slice — the one that proves the concept works. Then identify the second and third slices in priority order.',
+          deliverable: 'A vertical slice breakdown: Slice 1 (proof of concept, fully functional), Slice 2 (first expansion), Slice 3 (second expansion). Each slice should be buildable in one to two weeks of focused work.',
+        },
+        quiz: [
+          {
+            question: 'What is a vertical slice in product development?',
+            options: ['A layer of the tech stack built in isolation before moving to the next layer', 'A complete, fully functional piece of the product from database to UI, even if small', 'A project planning document that maps all features before building starts', 'A sprint cycle that covers one week of development work'],
+            correctIdx: 1,
+            explanation: 'Vertical slices are complete pieces of the product — database to UI — that work end to end. The opposite of building all the database first, then all the API, then all the front end. Slices give you a working product at every step.',
+          },
+          {
+            question: 'Why should game state in a multiplayer system be calculated on the server, not the client?',
+            options: ['Servers are faster than client browsers at calculations', 'It reduces the amount of code that needs to be written on the client side', 'If the client calculates outcomes, it can be manipulated — server-side calculation prevents cheating and ensures synchronization', 'Client-side calculation requires more API calls which increases latency'],
+            correctIdx: 2,
+            explanation: 'If the client calculates game outcomes, it can be manipulated by anyone who can modify the client. Server calculates, server pushes updates to all clients. Security and synchronization in one decision.',
+          },
+          {
+            question: 'How should you handle a client request that changes existing architecture mid-project?',
+            options: ['Refuse the change and point to the original scope document', 'Accept it silently and absorb the extra work to maintain the relationship', 'Frame it as a scope revision conversation — "yes, and here\'s what that means for the project"', 'Complete the original scope first, then propose the architectural change as a phase two project'],
+            correctIdx: 2,
+            explanation: 'It\'s not "no." It\'s "yes, and here\'s what that means." Architectural changes are different from additive scope and require a conversation about timeline and pricing. Setting that norm early keeps the relationship collaborative.',
+          },
+          {
+            question: 'What is the most important thing building a $300K+ platform like Quanta does for your business?',
+            options: ['Generates a large one-time project fee that covers months of runway', 'Raises your pricing floor by giving you a reference point to anchor from when scoping future projects', 'Builds a portfolio piece that can be sold as a SaaS product', 'Proves to investors that you can handle enterprise-scale development'],
+            correctIdx: 1,
+            explanation: 'You can\'t price confidently at levels you\'ve never operated at. Every complex project you complete gives you a reference point. Pattern-matching against real work at real scale is what lets you scope and price accurately instead of guessing.',
+          },
+        ],
+      },
+      {
+        title: 'Vacaville Appliance — The Fast Win Playbook',
+        readingTime: '9 min',
+        overview: 'Local appliance repair business. Website plus AI receptionist targeting property managers. $300 for the website, $1K for consultation. Fast project, clean client, straightforward. This kind of work is the financial foundation that keeps you building the big stuff without pressure.',
+        sections: [
+          {
+            heading: 'Why fast wins matter — cash flow, confidence, and portfolio breadth',
+            body: 'Not every project is Quanta Casino. Not every project should be. The fast win — $300 to $1,500, delivered in a week or less — does things that complex projects can\'t do. It generates cash now, when you need it. It builds a new portfolio entry with zero risk. It gives you a client relationship that might expand into something bigger. And it keeps your confidence high during the inevitable slow weeks when nothing in the pipeline is moving. I run what I call the fast win playbook whenever my cash situation needs a refresh or my pipeline is stalled. It\'s not a retreat — it\'s a deliberate tool. Local service businesses are everywhere, they have real problems, and they\'re underserved by the tech industry because the deal size seems too small to bother with. That\'s exactly why it\'s an opportunity.',
+          },
+          {
+            heading: 'The AI receptionist build — what it does, how long it took',
+            body: 'The AI receptionist I built for Vacaville Appliance handles inbound calls and texts. It answers common questions — service availability, pricing, scheduling — without a human picking up. If the caller needs to book a job, it captures their info and the job details, sends a confirmation, and logs the appointment in the system. It took me about four days to build and deploy. The actual work was: voice agent setup, knowledge base with their service menu and pricing, calendar integration for booking, and a notification system so the owner sees new appointments without checking anything manually. The value proposition was simple: they were missing calls because they\'re in the field most of the day. The AI receptionist means no missed calls. For a small business that runs on phone volume, that\'s the pitch. No calls missed equals no revenue missed.',
+          },
+          {
+            heading: 'Targeting a niche within a niche — why property managers beat general homeowners',
+            body: 'Vacaville Appliance doesn\'t just fix appliances — they service apartment complexes, rental properties, and property management companies. That\'s the niche within the niche. General homeowners call once every few years when something breaks. Property managers call weekly. They manage 30, 50, 100 units where appliances break on a regular cycle. They need a reliable service partner, not just a one-off repair. That changes the ICP completely. The marketing, the messaging, the AI receptionist scripts — all of it was designed around property managers, not homeowners. When you find a niche within a niche, the volume compounds. One property manager account is worth 50 homeowner calls. The business strategy follows from identifying who actually drives repeat volume.',
+          },
+          {
+            heading: 'How to use local service businesses as a fast path to MRR through AI retainers',
+            body: 'The website was $300. The consultation was $1K. Those are one-time. But the AI receptionist running on their phone number every month — that\'s a retainer. $150 to $300 a month to keep it running, updated, and monitored. Every local service business I build an AI receptionist for is a potential monthly client. At $200/month, ten local businesses is $2K MRR. That\'s not a side project — that\'s a product line. The play is: get the fast win with the website build, prove value fast, then pitch the AI retainer as the thing that keeps delivering value every month. The website is the opening conversation. The retainer is the ongoing relationship. Stack ten of these in your local market and you have a predictable revenue baseline that doesn\'t require you to close a new project every month to pay your bills.',
+          },
+        ],
+        keyTakeaways: [
+          'Fast wins generate cash, build confidence, and add portfolio breadth — they\'re a deliberate tool, not a compromise.',
+          'Local service businesses are underserved by tech, which makes them a consistent opportunity for solo operators.',
+          'Identify the niche within the niche — property managers beat general homeowners on volume and relationship longevity.',
+          'AI receptionists are a natural retainer product: low maintenance, high value, monthly recurring.',
+          'The website is the opening conversation. The AI retainer is the ongoing relationship.',
+        ],
+        assignment: {
+          title: 'Map 3 local AI receptionist opportunities',
+          description: 'Identify 3 local service businesses within 10 miles of you. For each one, document their current phone and booking workflow — how do they take calls, how do they schedule, what questions do they answer repeatedly. Identify what an AI receptionist would replace. Pick the one with the highest inbound volume and build a demo this week.',
+          deliverable: 'A one-page map of 3 local businesses: current workflow, what the AI replaces, estimated call volume, and a proposed monthly retainer price. Plus a working demo for the top pick.',
+        },
+        quiz: [
+          {
+            question: 'Why are local service businesses a consistent opportunity for operators building AI tools?',
+            options: ['They have larger budgets than most small businesses', 'They are underserved by the tech industry because deal sizes seem too small, which means less competition', 'They are more willing to try new technology than other business types', 'Local businesses have simpler requirements that are easier to build for'],
+            correctIdx: 1,
+            explanation: 'The tech industry ignores local service businesses because the deal size seems too small to bother with. That\'s exactly why it\'s an opportunity. Less competition, real problems, and they\'re everywhere.',
+          },
+          {
+            question: 'Why is targeting property managers a better ICP than general homeowners for an appliance repair business?',
+            options: ['Property managers have higher budgets and can pay premium prices', 'Property managers manage multiple units where appliances break regularly, generating repeat volume vs a homeowner\'s one call every few years', 'Property managers are easier to reach through digital advertising', 'Property managers sign longer-term service contracts by default'],
+            correctIdx: 1,
+            explanation: 'One property manager account is worth 50 homeowner calls. They manage 30 to 100 units with regular appliance turnover. Repeat volume compounds. The niche within the niche changes the entire business model.',
+          },
+          {
+            question: 'What was the key business problem the AI receptionist solved for Vacaville Appliance?',
+            options: ['They needed a way to collect payment online instead of in person', 'They were missing calls — and therefore missing revenue — because the owner was in the field all day', 'Their scheduling system was disorganized and causing double-bookings', 'They needed to reduce the time spent answering repetitive customer questions'],
+            correctIdx: 1,
+            explanation: 'Small service businesses run on phone volume. If you\'re in the field and missing calls, you\'re missing jobs. The AI receptionist means no missed calls, which means no missed revenue. That\'s the pitch.',
+          },
+          {
+            question: 'What is the long-term revenue strategy with local service business clients?',
+            options: ['Build the most comprehensive website possible to justify a premium one-time fee', 'Complete the project, get a testimonial, and use it to attract similar clients', 'Use the initial build as the opening conversation, then convert them to an AI retainer for ongoing monthly revenue', 'Charge enough upfront to make the relationship profitable even without follow-on work'],
+            correctIdx: 2,
+            explanation: 'The website is the opening conversation. The AI retainer is the ongoing relationship. Ten local businesses at $200/month is $2K MRR — a predictable revenue baseline that doesn\'t require you to close a new project every month.',
+          },
+        ],
+      },
+      {
+        title: 'Onhizm — Celebrity Brands and What They Actually Need',
+        readingTime: '9 min',
+        overview: 'Bay Area clothing brand worn by rappers and celebrities, was at Empire. I built their full digital presence. Met in person in LA. Mostly collab — compensation was a $200 sweatsuit and a relationship. Shopify as CMS, custom front end. This is about what fashion brands actually need, when non-cash deals make sense, and how relationships like this form.',
+        sections: [
+          {
+            heading: 'How relationships like this form — the Sticker Smith connection',
+            body: 'I didn\'t find Onhizm through an ad or a cold DM. It came through the Sticker Smith relationship — another client in the same world who made the introduction. This is a pattern worth studying. Your existing clients are connected to other people who need what you do. The introduction carries social proof that no cold outreach can replicate. When Sticker Smith vouched for me, the conversation with Onhizm started from trust, not from skepticism. The lesson is that every client relationship you build is also a node in a referral network. How you show up, how you deliver, how you communicate — all of it determines whether that node sends you new work or goes quiet. Delivering before you ask is not just good ethics, it\'s the most reliable growth strategy available to a solo operator without a marketing budget.',
+          },
+          {
+            heading: 'What fashion and streetwear brands actually need digitally vs what they think they need',
+            body: 'Fashion brands think they need a flashy site with animations, sound effects, and a cinematic video hero. What they actually need is a store that converts browsers into buyers without friction, a product page that makes the clothes look as good as they do in real life, and a checkout that doesn\'t lose people halfway through. I\'ve looked at enough streetwear sites to know: the beautiful ones often don\'t sell. The clean ones do. Onhizm needed brand presence that matched the energy of where they were — worn by artists, connected to the industry — but the execution needed to serve the purchase flow, not compete with it. My job was to translate the brand identity into a digital experience that made someone feel the brand and then buy without friction. Those are two different problems, and you need to solve both.',
+          },
+          {
+            heading: 'Building on top of Shopify — when to use existing infrastructure vs custom',
+            body: 'I used Shopify as the CMS and backend, with a custom front end on top. This is the right call for fashion brands at this stage. Shopify handles inventory, orders, fulfillment integrations, and payments — infrastructure that would take weeks to build from scratch and would need constant maintenance. A custom front end means I can build the exact visual experience the brand needs without being constrained by Shopify\'s default templates. The rule I use: build custom where it differentiates the client, use infrastructure where it doesn\'t. A fashion brand differentiates through visual identity and product. They don\'t differentiate through their payment processing or their inventory management system. Use Shopify for the commodity work, build custom for the experience layer.',
+          },
+          {
+            heading: 'Non-cash deals and when they\'re worth it — the network value of a celebrity brand client',
+            body: 'I got a $200 sweatsuit and a relationship out of the Onhizm project. No cash. That bothers me less than it would have a year ago, and here\'s why: the right non-cash deal is a network investment. Onhizm is worn by artists with audiences. Being the person who built their site puts me in rooms and conversations I wouldn\'t otherwise have access to. That has real value — harder to measure than cash, but real. The test I run now before accepting a non-cash deal: would I be proud to show this in a pitch? Does this client have a network that has potential value to me? Is this genuinely early-stage and the cash will come when it does? If the answer to all three is yes, it might be worth it. But the bar is high. Most non-cash deals are just underpriced work dressed up as collaboration. Know the difference.',
+          },
+        ],
+        keyTakeaways: [
+          'Referral networks form through delivery — how you show up for existing clients determines whether they send you new ones.',
+          'Fashion brands need a store that converts, not just one that looks good. Solve both the brand feeling and the purchase flow.',
+          'Use Shopify for commodity infrastructure, build custom for the experience layer where the brand differentiates.',
+          'Non-cash deals are worth it when they open real network access — test it against three criteria before you agree.',
+          'Every client you build for is a node in a referral network. Your reputation compounds through delivery.',
+        ],
+        assignment: {
+          title: 'Map a relationship worth investing in',
+          description: 'Identify one brand or business in your network where the relationship has value beyond the immediate cash. Map what you could build for them — be specific about what it would take to build and what it would deliver. Then define what non-cash value would make it worth doing: network access, portfolio proof, equity, future referrals. If the non-cash value doesn\'t pass all three tests — proud to show it, their network has real value to you, cash will come — don\'t do it.',
+          deliverable: 'A one-page relationship investment memo: what you\'d build, what it would take, what the non-cash value is, and whether it passes the three-test filter.',
+        },
+        quiz: [
+          {
+            question: 'How did the Onhizm project come about?',
+            options: ['JP reached out directly after seeing the brand on Instagram', 'Through a referral from Sticker Smith, another client in the same network', 'Onhizm found JP\'s portfolio and reached out cold', 'Through a mutual contact at Empire Records'],
+            correctIdx: 1,
+            explanation: 'The Sticker Smith connection made the introduction. Referrals carry social proof that cold outreach can\'t replicate — the conversation starts from trust, not skepticism. Every client relationship is a node in a referral network.',
+          },
+          {
+            question: 'What do fashion brands actually need from their digital presence vs what they think they need?',
+            options: ['They need animation-heavy, cinematic experiences that match their creative vision', 'A store that converts browsers into buyers without friction, plus brand presence that makes someone feel the brand before they buy', 'They primarily need social media integration and influencer-friendly sharing features', 'They need mobile-first design above everything else because most fashion browsing is on phones'],
+            correctIdx: 1,
+            explanation: 'Beautiful sites often don\'t sell. Clean sites do. The job is to translate brand identity into a digital experience that makes someone feel the brand AND buy without friction. Two separate problems, both need solving.',
+          },
+          {
+            question: 'What is the decision rule for when to use Shopify vs when to build custom?',
+            options: ['Use Shopify when the client can\'t afford custom development', 'Build custom always — it gives you more control and is better for the client long-term', 'Build custom where it differentiates the client, use infrastructure like Shopify where it doesn\'t', 'Use Shopify for small brands and build custom only for enterprise clients'],
+            correctIdx: 2,
+            explanation: 'A fashion brand differentiates through visual identity and product experience. They don\'t differentiate through payment processing or inventory management. Shopify handles the commodity work. Custom front end handles the experience layer.',
+          },
+          {
+            question: 'What is the three-test filter for deciding whether a non-cash deal is worth taking?',
+            options: ['Is the client famous, will it get press, and will it lead to paid work within 90 days', 'Would you be proud to show it in a pitch, does their network have real value to you, and will cash come when the business scales', 'Is the non-cash value equivalent to your standard rate, is it a short project, and is the brand growing', 'Does the client have more than 10K followers, are they in your niche, and can they provide a testimonial'],
+            correctIdx: 1,
+            explanation: 'Three tests: proud to show it in a pitch (portfolio proof), their network has real potential value to you (network access), and cash will come when it does (not just perpetually free). All three need to be yes. Most non-cash deals fail at least one.',
           },
         ],
       },
