@@ -274,6 +274,18 @@ const projects: Record<string, {
     ],
     liveUrl: "https://jdlo-crm.vercel.app",
   },
+  "world-class-exotics": {
+    name: "World Class Exotics",
+    category: "Website / E-commerce",
+    headline: "Exotic car rental platform with booking and fleet showcase",
+    description: "Custom platform for World Class Exotics. Full fleet showcase, booking flow, and a premium design that matches the luxury feel of the brand.",
+    stats: [
+      { value: "Luxury", label: "Fleet" },
+      { value: "Booking", label: "Flow" },
+      { value: "Premium", label: "Design" },
+    ],
+    liveUrl: "https://world-class-exotic.vercel.app",
+  },
   "joon11ee": {
     name: "Joon11ee",
     category: "Website / E-commerce",

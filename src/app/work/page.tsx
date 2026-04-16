@@ -48,10 +48,11 @@ interface Project {
 
 const PROJECTS: Project[] = [
   // ── Flagship (most impressive) ──
+  { name: "World Class Exotics", slug: "world-class-exotics", categories: ["Website", "E-commerce"], headline: "Exotic car rental platform with booking and fleet showcase", stats: ["Luxury fleet", "Booking flow", "Premium design"] },
   { name: "HOA Dispute Bot", slug: "hoa-dispute", categories: ["AI", "Tool"], headline: "AI desktop app that coaches homeowners through HOA disputes in real time", stats: ["Electron app", "AI overlay", "Real-time guidance"] },
-  { name: "Joon11ee", slug: "joon11ee", categories: ["Website", "E-commerce"], headline: "Luxury exotic rental platform for high-end vehicles and experiences", stats: ["Luxury rentals", "Custom platform", "Premium design"] },
   { name: "Quanta", slug: "quanta", categories: ["Casino"], headline: "Full online sweepstakes casino from scratch", stats: ["6 game types", "Real-time multiplayer", "$50K+ platform value"] },
   { name: "Club Bot / Velvet", slug: "club-bot", categories: ["AI", "SaaS"], headline: "AI nightclub promoter platform, custom product turned SaaS", stats: ["500+ guests/week", "30hrs/wk saved", "SaaS platform"] },
+  { name: "Joon11ee", slug: "joon11ee", categories: ["Website", "E-commerce"], headline: "Luxury exotic rental platform for high-end vehicles and experiences", stats: ["Luxury rentals", "Custom platform", "Premium design"] },
   { name: "Burj Khalifa", slug: "burj-khalifa", url: "https://burj-khalifa-site.vercel.app", categories: ["Website", "3D"], headline: "Immersive 3D tourism experience — WebGL, bloom post-processing, scroll-driven orbital camera", stats: ["Three.js WebGL", "Bloom + chromatic aberration", "Live demo →"] },
   { name: "Best Odds", slug: "best-odds", categories: ["Pitch"], headline: "Interactive presentation for casino odds and strategy", stats: ["Data-driven", "Visual slides", "Animated"] },
   // ── Enterprise ──
