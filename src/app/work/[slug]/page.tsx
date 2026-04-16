@@ -14,6 +14,7 @@ const projects: Record<string, {
   revenue?: string;
   screenshot?: string;
   liveUrl?: string;
+  noEmbed?: boolean;
   customSections?: boolean;
 }> = {
   quanta: {
@@ -283,7 +284,9 @@ const projects: Record<string, {
       { value: "Custom", label: "Platform" },
       { value: "Premium", label: "Design" },
     ],
-    link: "https://www.joon11ee.com",
+    liveUrl: "https://www.joon11ee.com",
+    screenshot: "/screenshots/joon11ee.png",
+    noEmbed: true,
   },
   "hoa-dispute": {
     name: "HOA Dispute Bot",
@@ -410,8 +413,8 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             </div>
           </RevealOnScroll>
 
-          {/* Live Preview */}
-          {project.liveUrl && (
+          {/* Live Preview — iframe */}
+          {project.liveUrl && !project.noEmbed && (
             <RevealOnScroll>
               <div className="mt-16">
                 <div className="flex items-center justify-between mb-4">
@@ -438,7 +441,45 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             </RevealOnScroll>
           )}
 
-          {/* Screenshot fallback (no live URL) */}
+          {/* Live Preview — screenshot (site blocks iframes) */}
+          {project.liveUrl && project.noEmbed && project.screenshot && (
+            <RevealOnScroll>
+              <div className="mt-16">
+                <div className="flex items-center justify-between mb-4">
+                  <p className="text-text-muted text-[11px] font-mono tracking-[0.3em] uppercase">Live Preview</p>
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-text-muted text-[12px] font-mono hover:text-text transition-colors"
+                  >
+                    Open full site &rarr;
+                  </a>
+                </div>
+                <div className="rounded-2xl border border-border overflow-hidden max-w-[960px] shadow-lg relative group">
+                  <Image
+                    src={project.screenshot}
+                    alt={`${project.name} preview`}
+                    width={1200}
+                    height={750}
+                    className="w-full h-auto"
+                  />
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/40 transition-all duration-300"
+                  >
+                    <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-bg text-text text-[13px] font-mono tracking-wider px-5 py-2.5 rounded-full border border-border">
+                      Visit Site &rarr;
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </RevealOnScroll>
+          )}
+
+          {/* Screenshot only (no live URL) */}
           {!project.liveUrl && project.screenshot && (
             <RevealOnScroll>
               <div className="mt-16 rounded-2xl border border-border overflow-hidden max-w-[900px] shadow-lg">
