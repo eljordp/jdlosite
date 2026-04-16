@@ -20,21 +20,35 @@ type Category =
   | "SaaS"
   | "Pitch"
   | "Tool"
-  | "3D";
+  | "3D"
+  | "Real Estate"
+  | "Trades"
+  | "Health"
+  | "Creator"
+  | "Restaurant"
+  | "Sports"
+  | "Cannabis";
 
 const CATEGORIES: Category[] = [
   "All",
   "Website",
-  "3D",
-  "AI",
   "E-commerce",
-  "Enterprise",
+  "AI",
   "SaaS",
+  "Enterprise",
   "Casino",
   "Game",
+  "Real Estate",
+  "Trades",
+  "Health",
+  "Creator",
+  "Restaurant",
+  "Sports",
+  "Fashion",
+  "Cannabis",
   "Pitch",
   "Tool",
-  "Fashion",
+  "3D",
 ];
 
 interface Project {
@@ -44,6 +58,7 @@ interface Project {
   categories: Category[];
   headline: string;
   stats: [string, string, string];
+  featured?: boolean; // false = only show when filtered by category
 }
 
 const PROJECTS: Project[] = [
@@ -78,6 +93,26 @@ const PROJECTS: Project[] = [
   { name: "OlyLife Ohana", slug: "olylife-ohana", categories: ["Website", "E-commerce"], headline: "Health & wellness brand site for PEMF and Terahertz therapy devices", stats: ["50K+ customers", "E-commerce", "Custom design"] },
   // ── SaaS / Tools ──
   { name: "JDLO CRM", slug: "jdlo-crm", categories: ["SaaS", "Tool"], headline: "Custom CRM for managing clients, leads, and pipeline", stats: ["Full CRM", "Pipeline mgmt", "Custom built"] },
+  { name: "Outreach Engine", slug: "outreach-engine", url: "https://outreach-engine-pearl-pi.vercel.app", categories: ["SaaS", "Tool", "AI"], headline: "Sales outreach automation tool with AI-generated messaging", stats: ["Auto sequences", "AI messaging", "Pipeline sync"] },
+  { name: "DealBrief", slug: "dealbrief", url: "https://dealbrief-two.vercel.app", categories: ["SaaS", "Tool"], headline: "Deal summary SaaS for sales teams and brokers", stats: ["SaaS platform", "Deal tracking", "Custom built"] },
+  { name: "Travelyt", slug: "travelyt", url: "https://travelyt-psi.vercel.app", categories: ["Website", "SaaS"], headline: "Baggage delivery service platform for travelers", stats: ["Booking flow", "Quote system", "Full platform"] },
+  { name: "Estrellas Fashion", slug: "estrellas-fashion", url: "https://estrellas-fashion.vercel.app", categories: ["Website", "Fashion", "E-commerce"], headline: "Fashion brand site with a curated product showcase", stats: ["Custom design", "Brand identity", "E-commerce"] },
+  { name: "Abby Dream Homes", slug: "abby-dream-homes", url: "https://abby-dream-homes.vercel.app", categories: ["Website", "Real Estate"], featured: false, headline: "Real estate agent site with listings and lead capture", stats: ["Listings", "Lead capture", "Local SEO"] },
+  { name: "Jade Beverly Hills", slug: "jade-beverly-hills", url: "https://jade-beverly-hills.vercel.app", categories: ["Website", "Restaurant"], featured: false, headline: "Luxury Beverly Hills restaurant website", stats: ["Beverly Hills", "Reservations", "Premium design"] },
+  { name: "A&E Vineyard", slug: "a-e-vineyard", url: "https://a-e-vineyard-landing.vercel.app", categories: ["Website", "Restaurant"], featured: false, headline: "Vineyard landing page with tasting bookings", stats: ["Vineyard", "Tastings", "Local"] },
+  { name: "Diaz Constructions", slug: "diaz-constructions", url: "https://diaz-constructions.vercel.app", categories: ["Website", "Trades"], featured: false, headline: "Construction company website with project gallery and lead form", stats: ["Project gallery", "Lead form", "Local"] },
+  { name: "Modern Build", slug: "modern-build", url: "https://modern-build-construction.vercel.app", categories: ["Website", "Trades"], featured: false, headline: "Modern construction company brand site", stats: ["Custom design", "Brand identity", "Lead capture"] },
+  { name: "Illuminart Signs", slug: "illuminart-signs", url: "https://illuminart-signs.vercel.app", categories: ["Website", "Trades"], featured: false, headline: "Custom sign-making business website", stats: ["Portfolio", "Quote form", "Custom built"] },
+  { name: "New Leaf Chiro", slug: "new-leaf-chiro", url: "https://new-leaf-chiro.vercel.app", categories: ["Website", "Health"], featured: false, headline: "Chiropractor website with booking system", stats: ["Booking system", "Local SEO", "Custom design"] },
+  { name: "Aura Spray", slug: "aura-spray", url: "https://aura-spray.vercel.app", categories: ["Website", "Health"], featured: false, headline: "Spray tan studio brand site with booking", stats: ["Booking", "Brand identity", "Local"] },
+  { name: "Miiir Beats", slug: "miiir-beats", url: "https://miiir-beats.vercel.app", categories: ["Website", "Creator"], featured: false, headline: "Music producer portfolio and beat store", stats: ["Beat store", "Portfolio", "Custom built"] },
+  { name: "DJ Chacha", slug: "dj-chacha", url: "https://djchacha-site.vercel.app", categories: ["Website", "Creator"], featured: false, headline: "DJ portfolio site with booking and media reel", stats: ["Media reel", "Booking", "Custom"] },
+  { name: "Created By Mase", slug: "created-by-mase", url: "https://createdbymase.com", categories: ["Website", "Creator"], featured: false, headline: "Creator portfolio site for a multimedia artist", stats: ["Portfolio", "Custom design", "Live domain"] },
+  { name: "Isaiah 2 Turnt", slug: "isaiah-2-turnt", url: "https://isaiah2turnt.vercel.app", categories: ["Website", "Creator"], featured: false, headline: "Artist site with media, tour, and socials", stats: ["Artist site", "Media", "Custom built"] },
+  { name: "FJ17 Photo", slug: "fj17-photo", url: "https://fj17photo.vercel.app", categories: ["Website", "Creator"], featured: false, headline: "Photographer portfolio with gallery and booking", stats: ["Gallery", "Booking", "Custom design"] },
+  { name: "Vegas Knows", slug: "vegas-knows", url: "https://vegasknows.vercel.app", categories: ["Website", "Sports", "SaaS"], featured: false, headline: "Sports picks platform with tier-based subscriptions", stats: ["Subscriptions", "Picks feed", "Custom platform"] },
+  { name: "Polymarket Dashboard", slug: "polymarket-dashboard", url: "https://polymarket-dashboard-sable.vercel.app", categories: ["Tool", "SaaS"], featured: false, headline: "Trading dashboard for Polymarket prediction markets", stats: ["Real-time data", "Charts", "Custom analytics"] },
+  { name: "Blunted Roll Co", slug: "blunted-roll-co", url: "https://bluntedrollco-menu.vercel.app", categories: ["Website", "Cannabis", "E-commerce"], featured: false, headline: "Cannabis brand menu and ordering site", stats: ["Product menu", "Ordering", "Brand design"] },
   // ── Private / inquire ──
   { name: "Loan Agent", slug: "loan-agent", categories: ["AI", "SaaS"], headline: "Multi-tenant loan processing system with AI underwriting. Private system, inquire for details", stats: ["Multi-tenant", "Auto processing", "Inquire"] },
 ];
@@ -121,6 +156,13 @@ const CATEGORY_ACCENT: Record<string, string> = {
   Tool: "#111",
   Pitch: "#1a1a0f",
   "3D": "#0f1a1a",
+  "Real Estate": "#141a14",
+  Trades: "#1a1610",
+  Health: "#0f1a16",
+  Creator: "#1a0f14",
+  Restaurant: "#1a1410",
+  Sports: "#101a14",
+  Cannabis: "#0f1a0f",
 };
 
 export default function WorkPage() {
@@ -136,7 +178,7 @@ export default function WorkPage() {
 
   const filtered =
     activeFilter === "All"
-      ? PROJECTS
+      ? PROJECTS.filter((p) => p.featured !== false)
       : PROJECTS.filter((p) =>
           p.categories.includes(activeFilter as Exclude<Category, "All">)
         );
