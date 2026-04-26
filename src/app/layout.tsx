@@ -6,16 +6,16 @@ import { PortalProvider } from "@/components/PortalTransition";
 import CustomCursor from "@/components/CustomCursor";
 
 export const metadata: Metadata = {
-  title: "JDLO | I Build Whatever You Need",
+  title: "JDLO | The Operator Stack",
   description:
-    "Websites, apps, AI systems, games, casinos, enterprise tools. If you can think it, I can build it. Jordan Lopez, operator, builder.",
+    "I install the system that runs your business — site, CRM, AI follow-up, automation, dashboard. One stack. Ships in two weeks. Jordan Lopez, operator.",
   icons: {
     icon: "/jordan.jpg",
   },
   openGraph: {
-    title: "JDLO | Websites, AI Systems & Sales Operations",
+    title: "JDLO | The Operator Stack",
     description:
-      "I build websites that convert, AI systems that replace manual work, and sales operations that close.",
+      "Stop losing leads. Book more jobs. Without adding hours. The full system that runs your business — installed in two weeks.",
     url: "https://jdlo.site",
     siteName: "JDLO",
     images: [{ url: "https://jdlo.site/jordan.jpg", width: 1200, height: 1500, alt: "Jordan Lopez | JDLO" }],
@@ -23,9 +23,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "JDLO | Websites, AI Systems & Sales Operations",
+    title: "JDLO | The Operator Stack",
     description:
-      "I build websites that convert, AI systems that replace manual work, and sales operations that close.",
+      "Stop losing leads. Book more jobs. Without adding hours. The full system that runs your business — installed in two weeks.",
     images: ["https://jdlo.site/jordan.jpg"],
   },
 };

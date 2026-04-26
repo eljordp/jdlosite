@@ -69,17 +69,39 @@ function Hero() {
   );
 }
 
+/* ── Operator Banner ── */
+function OperatorBanner() {
+  return (
+    <div className="border-t border-b border-border bg-surface-raised">
+      <div className="max-w-[1400px] mx-auto px-6 md:px-10">
+        <Link
+          href="/operator"
+          className="flex items-center justify-between py-4 group gap-4"
+        >
+          <div className="flex items-center gap-3 min-w-0">
+            <span className="text-[10px] tracking-[0.5em] uppercase font-mono text-accent shrink-0">New offer</span>
+            <span className="text-sm font-medium text-text-primary truncate">
+              The Operator Stack — site, CRM, AI follow-up, dashboard. The system that runs your business.
+            </span>
+          </div>
+          <span className="text-text-muted group-hover:text-text-primary transition-colors text-sm shrink-0">See it →</span>
+        </Link>
+      </div>
+    </div>
+  );
+}
+
 /* ── Academy Banner ── */
 function AcademyBanner() {
   return (
-    <div className="border-t border-b border-border bg-surface-raised">
+    <div className="border-b border-border bg-surface-raised">
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
         <Link
           href="/academy"
           className="flex items-center justify-between py-4 group"
         >
           <div className="flex items-center gap-3">
-            <span className="text-[10px] tracking-[0.5em] uppercase font-mono text-text-muted">New</span>
+            <span className="text-[10px] tracking-[0.5em] uppercase font-mono text-text-muted">Academy</span>
             <span className="text-sm font-medium text-text-primary">
               JDLO Academy — Learn to build what I build
             </span>
@@ -759,6 +781,7 @@ export default function Home() {
     <main>
       <HomeNav />
       <Hero />
+      <OperatorBanner />
       <AcademyBanner />
       <Services />
       <Process />
