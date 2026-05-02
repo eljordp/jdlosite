@@ -249,6 +249,122 @@ function Deliverables() {
   );
 }
 
+/* ── Proof / Receipts ── */
+const proof = [
+  {
+    name: "Lonely Love",
+    slug: "lonely-love",
+    cats: ["Fashion", "E-commerce"],
+    headline: "Custom e-commerce site for a clothing brand with a real following.",
+    stat: "Full storefront",
+  },
+  {
+    name: "Onhizm",
+    slug: "onhizm",
+    cats: ["Fashion", "Website"],
+    headline: "Custom site for a brand worn by celebrities. Premium positioning.",
+    stat: "Empire connections",
+  },
+  {
+    name: "Aesthetics By Kayy",
+    slug: "aesthetics-by-kayy",
+    cats: ["Website", "Booking"],
+    headline: "Luxury skin, brow & lash studio with full booking system.",
+    stat: "Hawaii-based",
+  },
+  {
+    name: "Vacaville Appliance",
+    slug: "vacaville-appliance",
+    cats: ["AI", "Service Business"],
+    headline: "AI receptionist that books appointments while the owner sleeps.",
+    stat: "40+ bookings/mo",
+  },
+  {
+    name: "West Coast Terpz",
+    slug: "west-coast-terpz",
+    cats: ["E-commerce", "Website"],
+    headline: "Turned a local brand into an online business doing real revenue.",
+    stat: "$12K+/mo",
+  },
+  {
+    name: "Pomaika'i Co",
+    slug: "pomaikai",
+    cats: ["Website", "AI"],
+    headline: "Centralized operations for a six-figure consultancy. Five tools → one.",
+    stat: "20 hrs/wk saved",
+  },
+];
+
+function Proof() {
+  return (
+    <section className="section-gap border-t border-border">
+      <div className="max-w-[1400px] mx-auto px-6 md:px-10">
+        <RevealOnScroll>
+          <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-8">
+            Receipts
+          </p>
+          <h2 className="font-display text-[clamp(2rem,4.5vw,3.8rem)] tracking-[-0.03em] leading-[1.05] max-w-[900px] mb-6">
+            We&apos;ve done this before. <br />
+            <span className="text-text-secondary">For real businesses doing real numbers.</span>
+          </h2>
+          <p className="text-text-secondary text-lg max-w-[640px] mb-16">
+            30+ projects shipped — fashion brands, service businesses, e-commerce
+            stores, AI tools. Click any project to see the full case study.
+          </p>
+        </RevealOnScroll>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {proof.map((p, i) => (
+            <RevealOnScroll key={p.slug} delay={(i % 3) + 1}>
+              <Link
+                href={`/work/${p.slug}`}
+                className="group block border border-border rounded-2xl p-7 md:p-8 h-full bg-bg hover:border-text/20 transition-colors duration-300"
+              >
+                <div className="flex flex-wrap gap-2 mb-5">
+                  {p.cats.map((c) => (
+                    <span
+                      key={c}
+                      className="text-[10px] font-mono tracking-[0.15em] uppercase text-text-muted border border-border rounded-full px-2.5 py-1"
+                    >
+                      {c}
+                    </span>
+                  ))}
+                </div>
+                <div className="flex items-baseline justify-between mb-4 gap-3">
+                  <h3 className="font-display text-[clamp(1.3rem,2vw,1.7rem)] tracking-[-0.02em] leading-[1.05]">
+                    {p.name}
+                  </h3>
+                  <span className="text-[11px] font-semibold tracking-[-0.02em] shrink-0 gradient-text font-mono">
+                    {p.stat}
+                  </span>
+                </div>
+                <p className="text-text-secondary text-[14px] leading-relaxed mb-4">
+                  {p.headline}
+                </p>
+                <span className="text-accent text-[12px] font-mono group-hover:text-text transition-colors">
+                  See case study →
+                </span>
+              </Link>
+            </RevealOnScroll>
+          ))}
+        </div>
+
+        <RevealOnScroll>
+          <Link
+            href="/work"
+            className="inline-flex items-center gap-2 text-accent text-[14px] font-mono font-medium hover:text-text border-b border-accent/40 hover:border-text pb-0.5 transition-all duration-300 mt-12 group"
+          >
+            See all 30+ projects
+            <span className="group-hover:translate-x-1 transition-transform duration-200">
+              →
+            </span>
+          </Link>
+        </RevealOnScroll>
+      </div>
+    </section>
+  );
+}
+
 /* ── Pricing ── */
 const tiers = [
   {
@@ -595,6 +711,7 @@ export default function IndiaPage() {
       <Problem />
       <Niches />
       <Deliverables />
+      <Proof />
       <Pricing />
       <Process />
       <Team />
