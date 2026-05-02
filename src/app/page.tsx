@@ -21,7 +21,7 @@ function Hero() {
               Jordan Lopez, Operator
             </p>
             <p className="text-text-muted text-[11px] tracking-[0.08em] mb-10 hero-animate hero-delay-1 font-mono">
-              20+ businesses built &middot; Restaurants, nightclubs, cannabis, real estate, DHL, fashion, print shops
+              30+ businesses built &middot; Restaurants, nightclubs, cannabis, real estate, DHL, fashion, print shops
             </p>
 
             <h1 className="font-display hero-animate hero-delay-2 text-[clamp(2.8rem,7.5vw,6.5rem)] leading-[0.95] tracking-[-0.03em]">
@@ -117,19 +117,19 @@ function AcademyBanner() {
 const services = [
   {
     title: "Apps & Systems",
-    desc: "AI tools, dashboards, booking systems, automation, internal ops. Anything your business needs to run faster, save time, and make more money.",
+    desc: "AI tools, dashboards, booking systems, automation, internal ops. Built an AI receptionist for a Vacaville business that books 40+ appointments a month while the owner sleeps. Built an agency dashboard that replaced 5 tools and saved a six-figure consultancy 20 hours a week.",
     tag: "See products",
     href: "/services/apps-systems",
   },
   {
     title: "Creative & Custom",
-    desc: "Video games, online casinos, enterprise tools, quizzes, whatever you can imagine. If it can be built, I've probably already built something like it.",
+    desc: "Casinos, video games, enterprise platforms, marketplaces. Shipped a full sweepstakes casino with 6 games and real-time multiplayer. Built a translator app running across 100+ DHL stores in Chicago, expanding to Canada. If you can describe it, I can ship it.",
     tag: "See products",
     href: "/services/creative",
   },
   {
     title: "Websites & E-commerce",
-    desc: "Sites that make you money and make people take you seriously. Not templates. Custom built, designed to convert, ready to grow with you.",
+    desc: "Custom sites built to make money, not look pretty in a deck. Took a local cannabis brand from Instagram DMs to $12K+/month in online sales in 10 days. Built an exotic rental platform doing real bookings for a luxury fleet. Not templates. Built from scratch.",
     tag: "See products",
     href: "/services/websites",
   },
@@ -196,7 +196,7 @@ function Process() {
             {
               num: "02",
               title: "I build it",
-              desc: "You get progress updates along the way. I move fast. Most websites ship in under 2 weeks. AI systems and sales ops depend on scope.",
+              desc: "Progress updates as I go. I move fast. Built an entire agency operating system in 5 days. Built an enterprise translator app for 100+ stores. Most websites ship in under 2 weeks. Bigger systems take 3–6 weeks. You see it as it happens.",
             },
             {
               num: "03",
@@ -241,8 +241,8 @@ function Work() {
             Selected Work
           </p>
           <h2 className="font-display text-[clamp(2.2rem,5vw,4.5rem)] tracking-[-0.03em] leading-[0.95] mb-16">
-            20+ projects shipped.<br />
-            <span className="text-text-secondary">Here are a few.</span>
+            30+ projects, all live.<br />
+            <span className="text-text-secondary">Six worth showing.</span>
           </h2>
         </RevealOnScroll>
 
@@ -285,7 +285,7 @@ function Work() {
             className="group block mt-12 py-6 sm:py-8 bg-text text-bg rounded-2xl text-center hover:bg-text/90 transition-all duration-300"
           >
             <span className="text-[clamp(1rem,2vw,1.3rem)] font-semibold tracking-[-0.01em]">
-              See all 20+ projects &rarr;
+              See all 30+ projects &rarr;
             </span>
             <span className="block text-bg/60 text-[13px] mt-1">
               Filter by category: websites, apps, AI, games, casinos, enterprise
@@ -324,34 +324,48 @@ function MidCTA({ text, href, label }: { text: string; href: string; label: stri
 
 /* ── Results ── */
 function Results() {
+  const stats: { countEnd: number | null; prefix?: string; suffix: string; plainNum: string | null; label: string; desc: string }[] = [
+    { countEnd: 30, suffix: "+", plainNum: null, label: "Projects shipped", desc: "Every one is live. Every client knows me on a first-name basis." },
+    { countEnd: 12, prefix: "$", suffix: "K+/mo", plainNum: null, label: "In recurring sales unlocked", desc: "West Coast Terpz went from Instagram DMs to $12K+/month in 10 days." },
+    { countEnd: 100, suffix: "+", plainNum: null, label: "Stores running my code", desc: "DHL premier partner using my translator app across Chicago. Expanding to Canada." },
+    { countEnd: 500, suffix: "+", plainNum: null, label: "Weekly automations", desc: "Guest list signups, AI bookings, customer chats, all running without a human in the loop." },
+    { countEnd: 65, suffix: " hrs/wk", plainNum: null, label: "Saved across clients", desc: "Pomaika'i alone got 20 hours back. Vegas promoter 30. Add it up." },
+    { countEnd: null, suffix: "", plainNum: "2 weeks", label: "Average turnaround", desc: "Most websites go from first message to live in under 14 days." },
+  ];
   return (
     <section className="section-gap border-t border-border">
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
         <RevealOnScroll>
-          <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-16">
-            The Receipts
-          </p>
+          <div className="flex items-baseline justify-between mb-16">
+            <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono">
+              The Receipts
+            </p>
+            <p className="text-text-muted text-[11px] font-mono hidden md:block">
+              Real numbers from real clients
+            </p>
+          </div>
         </RevealOnScroll>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-0">
-          {[
-            { label: "Projects shipped", desc: "Websites, apps, games, AI tools, dashboards, casinos, for every kind of business and idea.", countEnd: 20, suffix: "+", plainNum: null },
-            { label: "Average turnaround", desc: "Most projects go from first message to live fast. No dragging it out, no endless meetings.", countEnd: null, suffix: "", plainNum: "2 weeks" },
-            { label: "Custom built", desc: "No templates. No page builders. No shortcuts. Everything is built from scratch, designed for you.", countEnd: 100, suffix: "%", plainNum: null },
-          ].map((stat, i) => (
-            <RevealOnScroll key={stat.label} delay={i + 1}>
-              <div className={`py-5 md:py-0 md:pr-12 ${i < 2 ? "md:border-r border-b md:border-b-0 border-border" : ""} ${i > 0 ? "md:pl-12" : ""}`}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border rounded-2xl overflow-hidden">
+          {stats.map((stat, i) => (
+            <RevealOnScroll key={stat.label} delay={(i % 3) + 1}>
+              <div className="bg-bg p-8 h-full">
                 {stat.countEnd !== null ? (
-                  <CountUp end={stat.countEnd} suffix={stat.suffix} className="text-[clamp(2rem,4vw,3.5rem)] font-display tracking-[-0.04em] gradient-text" />
+                  <CountUp
+                    end={stat.countEnd}
+                    prefix={stat.prefix}
+                    suffix={stat.suffix}
+                    className="text-[clamp(2rem,4vw,3.2rem)] font-display tracking-[-0.04em] gradient-text leading-none block mb-4"
+                  />
                 ) : (
-                  <span className="text-[clamp(2rem,4vw,3.5rem)] font-display tracking-[-0.04em] gradient-text">
+                  <span className="text-[clamp(2rem,4vw,3.2rem)] font-display tracking-[-0.04em] gradient-text leading-none block mb-4">
                     {stat.plainNum}
                   </span>
                 )}
-                <h3 className="text-[15px] font-medium mt-2 mb-2">
+                <h3 className="text-[14px] font-medium mb-2 tracking-[-0.01em]">
                   {stat.label}
                 </h3>
-                <p className="text-text-secondary text-[14px] leading-relaxed">
+                <p className="text-text-secondary text-[13px] leading-relaxed">
                   {stat.desc}
                 </p>
               </div>
@@ -764,7 +778,7 @@ export default function Home() {
       <Services />
       <Process />
       <Work />
-      <MidCTA text="Know what you need? Let's skip the small talk." href="/contact" label="Start a Project" />
+      <MidCTA text="Most projects start with a 10-minute message and ship within 2 weeks." href="/contact" label="Start a Project" />
       <Results />
       <Testimonials />
       <QuickQuoteSection />
