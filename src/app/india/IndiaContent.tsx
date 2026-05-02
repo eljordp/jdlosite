@@ -13,11 +13,11 @@ const WHATSAPP_GREETING =
 const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_GREETING}`;
 
 const LANG_KEY = "jdlo_india_lang";
-const DEFAULT_LANG: Lang = "hg";
+const DEFAULT_LANG: Lang = "hi";
 
 /* ── Language Toggle ── */
 function LangToggle({ lang, setLang }: { lang: Lang; setLang: (l: Lang) => void }) {
-  const langs: Lang[] = ["hg", "hi", "en"];
+  const langs: Lang[] = ["hi", "en"];
   return (
     <div className="fixed top-16 right-4 md:right-8 z-40 flex items-center gap-1 bg-bg/80 backdrop-blur-md border border-border rounded-full p-1">
       {langs.map((l) => (
@@ -551,7 +551,7 @@ export default function IndiaContent() {
   useEffect(() => {
     try {
       const stored = localStorage.getItem(LANG_KEY);
-      if (stored === "en" || stored === "hg" || stored === "hi") {
+      if (stored === "en" || stored === "hi") {
         setLangState(stored);
       }
     } catch {}
