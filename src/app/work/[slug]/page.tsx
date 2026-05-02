@@ -136,7 +136,7 @@ const projects: Record<string, {
     ],
     revenue: "~$1,000",
     screenshot: "/screenshots/sticker-smith.png",
-    liveUrl: "https://the-sticker-smith.vercel.app",
+    liveUrl: "https://tssprint.vercel.app",
   },
   "fw-wheels": {
     name: "fw.wheels",
