@@ -531,28 +531,48 @@ function Clients() {
 function FAQ() {
   const faqs = [
     {
-      q: "How much does a website cost?",
-      a: "Websites start at $3K. Price depends on scope. A 5-page business site is different from a full e-commerce platform. I'll give you an exact quote within 24 hours of your first message.",
+      q: "Why $3K when I can build my own with Squarespace for $200?",
+      a: "Because that Squarespace site looks like every other small business and converts like one too. Custom builds mean custom branding, custom flow, custom integrations — booking, payments, lead capture, CRM all wired together. It's not a website, it's a system that runs your business while you sleep.",
     },
     {
-      q: "How long does it take?",
-      a: "Most websites ship in under 2 weeks. AI systems and sales operations depend on complexity, but I'll give you a clear timeline upfront. No surprises.",
+      q: "Why not just use Lovable or one of the AI site builders?",
+      a: "Use them for prototypes. They break the second you need anything custom — real auth, real payments, real integrations, real performance. I use AI too. The difference is I know which 5% of what it generates is actually production-ready.",
     },
     {
-      q: "Do I own the code?",
-      a: "100%. Everything I build is yours. Full source code, deployed on your infrastructure, no vendor lock-in. You can hire someone else to maintain it if you want, but you won't need to.",
+      q: "How much does it actually cost?",
+      a: "Websites start at $3K. E-commerce or AI systems run $5K–$15K depending on scope. Custom platforms (casinos, marketplaces, dashboards) start at $15K. I'll send you an exact number within 24 hours of your first message — no discovery calls, no proposals you have to chase.",
     },
     {
-      q: "What makes you different from agencies?",
-      a: "I'm one person who builds everything with AI. That means you get agency-quality work at a fraction of the cost, faster, with direct communication. No project managers, no telephone game.",
+      q: "Can I pay in installments?",
+      a: "Yes. Default is 50% upfront to start, 50% on launch. For bigger builds we can split into 3 payments tied to milestones. I don't take on payment plans without a deposit — that's how every freelancer gets ghosted.",
     },
     {
-      q: "Do you do maintenance after launch?",
-      a: "Yes. I don't disappear after delivery. Tweaks, updates, and support are part of the deal. For ongoing work, we can set up a monthly retainer.",
+      q: "How fast can you actually ship?",
+      a: "Most websites go live in under 2 weeks. Built and shipped a $5K agency platform in 5 days. AI systems and full marketplaces take 3–6 weeks depending on complexity. I tell you the real timeline upfront — no surprise delays.",
     },
     {
-      q: "What if I just need one thing?",
-      a: "That's fine. Most clients start with a website and come back for AI or sales ops later. No pressure to buy a package. Just tell me what you need right now.",
+      q: "What if I'm not technical and don't know what I want?",
+      a: "Most of my best clients didn't. Tell me your business, your customer, and the problem you're trying to solve. I figure out the rest and come back with a plan. You don't need to know what a CMS is. You just need to know what you want your business to do.",
+    },
+    {
+      q: "I've been burned by freelancers before. Why is this different?",
+      a: "Fair concern. I've shipped 30+ projects, every one is live and running, every client knows me on a first-name basis. I respond to messages same-day, I show you the build as it happens, and I don't disappear after delivery. If something breaks I fix it. If you want to talk to past clients, I'll send you their numbers.",
+    },
+    {
+      q: "Do I own everything?",
+      a: "100%. Source code, domain, customer data, hosting accounts — all yours. Nothing locked behind my account. If you fire me tomorrow you keep the entire system. I'd just rather you didn't.",
+    },
+    {
+      q: "Do you do branding too, or just the website?",
+      a: "Both. Most clients come for one and end up using me for the other. Logos, brand voice, content, photo direction, the website, the systems behind it. One person, one vision, faster execution.",
+    },
+    {
+      q: "What if I just need a quick fix or a one-pager?",
+      a: "That's fine. Landing pages start at $497. Sometimes that's all you need to test an offer before building the full thing. I'll tell you straight — if a $497 page solves your problem, I'm not selling you the $5K build.",
+    },
+    {
+      q: "Do you do ongoing maintenance?",
+      a: "Yes. After launch you get 30 days of free tweaks. After that, retainers start at $500/month for hosting, monitoring, small updates, and fast response. Most clients on retainer never need to think about their site again.",
     },
   ];
 
@@ -566,7 +586,7 @@ function FAQ() {
                 FAQ
               </p>
               <h2 className="font-display text-[clamp(2rem,4vw,3.5rem)] tracking-[-0.03em] leading-[1]">
-                Questions.
+                What people ask.
               </h2>
             </div>
           </RevealOnScroll>
