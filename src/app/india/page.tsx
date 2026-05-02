@@ -452,7 +452,7 @@ function Team() {
                 JDLO India · Director
               </p>
               <h3 className="font-display text-[clamp(1.8rem,3vw,2.4rem)] tracking-[-0.03em] leading-[1.05] mb-4">
-                Kamesh — Your Point of Contact
+                Kamesh Malhotra — Your Point of Contact
               </h3>
               <p className="text-text-secondary text-[15px] leading-relaxed mb-6">
                 Based in India. Speaks your language. Handles every conversation
