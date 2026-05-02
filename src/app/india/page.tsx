@@ -4,7 +4,7 @@ import RevealOnScroll from "@/components/RevealOnScroll";
 import HomeNav from "@/components/HomeNav";
 import SplitText from "@/components/SplitText";
 
-const WHATSAPP_NUMBER = "91XXXXXXXXXX"; // TODO: Kamesh to provide
+const WHATSAPP_NUMBER = "919797596601";
 const WHATSAPP_GREETING = "Hi%20Kamesh%2C%20I%20saw%20JDLO%20India%20and%20want%20to%20talk%20about%20a%20website%20for%20my%20business.";
 const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_GREETING}`;
 
