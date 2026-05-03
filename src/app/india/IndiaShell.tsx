@@ -77,7 +77,7 @@ function IndiaNav({ lang, setLang }: { lang: Lang; setLang: (l: Lang) => void })
           </div>
 
           <div className="flex items-center gap-2">
-            <div className="hidden sm:flex items-center gap-1 bg-bg/40 border border-border rounded-full p-1">
+            <div className="flex items-center gap-1 bg-bg/40 border border-border rounded-full p-1">
               {langs.map((l) => (
                 <button
                   key={l}
