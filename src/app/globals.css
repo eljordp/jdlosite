@@ -347,6 +347,12 @@ details summary { list-style: none; }
   padding-bottom: clamp(6rem, 14vh, 12rem);
 }
 
+/* ── India page: tighter mobile rhythm ── */
+.india-main .section-gap {
+  padding-top: clamp(3.5rem, 10vh, 12rem);
+  padding-bottom: clamp(3.5rem, 10vh, 12rem);
+}
+
 /* ── Page transitions ── */
 .page-transition {
   will-change: opacity, transform;

@@ -186,15 +186,15 @@ function WhatsAppButton({
 /* ── Hero ── */
 function Hero({ c, lang }: { c: CopyShape; lang: Lang }) {
   return (
-    <section className="min-h-[92vh] flex flex-col justify-center relative px-6 md:px-10">
+    <section className="min-h-[85vh] md:min-h-[92vh] flex flex-col justify-center relative px-6 md:px-10 pt-20">
       <div className="max-w-[1400px] mx-auto w-full relative z-10">
-        <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase mb-8 hero-animate hero-delay-1 font-mono">
+        <p className="text-text-muted text-[10px] md:text-[11px] tracking-[0.5em] uppercase mb-6 md:mb-8 font-mono hero-animate hero-delay-1">
           {c.hero.eyebrow}
         </p>
 
         <h1
           key={`hero-${lang}`}
-          className="font-display hero-animate hero-delay-2 text-[clamp(2.6rem,8vw,7rem)] leading-[0.92] tracking-[-0.035em] max-w-[1100px]"
+          className="font-display hero-animate hero-delay-2 text-[clamp(2rem,8vw,7rem)] leading-[1] md:leading-[0.92] tracking-[-0.035em] max-w-[1100px]"
         >
           <SplitText staggerMs={45}>{c.hero.h1a}</SplitText>
           <br />
@@ -205,8 +205,8 @@ function Hero({ c, lang }: { c: CopyShape; lang: Lang }) {
           </span>
         </h1>
 
-        <div className="hero-animate hero-delay-3 mt-12 flex flex-col md:flex-row md:items-end md:justify-between gap-10">
-          <p className="text-text-secondary text-lg md:text-xl leading-relaxed max-w-[560px]">
+        <div className="hero-animate hero-delay-3 mt-8 md:mt-12 flex flex-col md:flex-row md:items-end md:justify-between gap-6 md:gap-10">
+          <p className="text-text-secondary text-base md:text-xl leading-relaxed max-w-[560px]">
             {c.hero.desc}
           </p>
           <div className="flex items-center gap-4 flex-wrap">
@@ -230,7 +230,7 @@ function Problem({ c }: { c: CopyShape }) {
           <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-8">
             {c.problem.eyebrow}
           </p>
-          <h2 className="font-display text-[clamp(2rem,4.5vw,3.8rem)] tracking-[-0.03em] leading-[1.05] max-w-[900px] mb-16">
+          <h2 className="font-display text-[clamp(1.7rem,4.5vw,3.8rem)] tracking-[-0.03em] leading-[1.05] max-w-[900px] mb-10 md:mb-16">
             {c.problem.h2a} <br />
             <span className="text-text-secondary">{c.problem.h2b}</span>
           </h2>
@@ -262,10 +262,10 @@ function Niches({ c }: { c: CopyShape }) {
           <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-8">
             {c.niches.eyebrow}
           </p>
-          <h2 className="font-display text-[clamp(2rem,4.5vw,3.8rem)] tracking-[-0.03em] leading-[1.05] max-w-[1000px] mb-4">
+          <h2 className="font-display text-[clamp(1.7rem,4.5vw,3.8rem)] tracking-[-0.03em] leading-[1.05] max-w-[1000px] mb-4">
             {c.niches.h2}
           </h2>
-          <p className="text-text-secondary text-lg max-w-[640px] mb-20">
+          <p className="text-text-secondary text-lg max-w-[640px] mb-12 md:mb-20">
             {c.niches.sub}
           </p>
         </RevealOnScroll>
@@ -273,7 +273,7 @@ function Niches({ c }: { c: CopyShape }) {
         <div className="grid md:grid-cols-3 gap-px bg-border">
           {c.niches.items.map((n, i) => (
             <RevealOnScroll key={n.num} delay={(i % 3) + 1}>
-              <div className="bg-bg p-8 md:p-10 h-full">
+              <div className="bg-bg p-6 md:p-10 h-full">
                 <div className="flex items-baseline justify-between mb-8">
                   <span className="text-accent text-[11px] font-mono tracking-[0.2em]">
                     {n.num}
@@ -309,7 +309,7 @@ function Deliverables({ c }: { c: CopyShape }) {
           <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-8">
             {c.deliverables.eyebrow}
           </p>
-          <h2 className="font-display text-[clamp(2rem,4.5vw,3.8rem)] tracking-[-0.03em] leading-[1.05] max-w-[900px] mb-16">
+          <h2 className="font-display text-[clamp(1.7rem,4.5vw,3.8rem)] tracking-[-0.03em] leading-[1.05] max-w-[900px] mb-10 md:mb-16">
             {c.deliverables.h2a}{" "}
             <span className="text-text-secondary">{c.deliverables.h2b}</span>
           </h2>
@@ -346,11 +346,11 @@ function Proof({ c }: { c: CopyShape }) {
           <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-8">
             {c.proof.eyebrow}
           </p>
-          <h2 className="font-display text-[clamp(2rem,4.5vw,3.8rem)] tracking-[-0.03em] leading-[1.05] max-w-[900px] mb-6">
+          <h2 className="font-display text-[clamp(1.7rem,4.5vw,3.8rem)] tracking-[-0.03em] leading-[1.05] max-w-[900px] mb-6">
             {c.proof.h2a} <br />
             <span className="text-text-secondary">{c.proof.h2b}</span>
           </h2>
-          <p className="text-text-secondary text-lg max-w-[640px] mb-16">
+          <p className="text-text-secondary text-lg max-w-[640px] mb-10 md:mb-16">
             {c.proof.sub}
           </p>
         </RevealOnScroll>
@@ -409,11 +409,11 @@ function Pricing({ c }: { c: CopyShape }) {
           <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-8">
             {c.pricing.eyebrow}
           </p>
-          <h2 className="font-display text-[clamp(2rem,4.5vw,3.8rem)] tracking-[-0.03em] leading-[1.05] mb-6 max-w-[900px]">
+          <h2 className="font-display text-[clamp(1.7rem,4.5vw,3.8rem)] tracking-[-0.03em] leading-[1.05] mb-6 max-w-[900px]">
             {c.pricing.h2a} <br />
             <span className="text-text-secondary">{c.pricing.h2b}</span>
           </h2>
-          <p className="text-text-secondary text-[15px] leading-relaxed max-w-[640px] mb-16">
+          <p className="text-text-secondary text-[15px] leading-relaxed max-w-[640px] mb-10 md:mb-16">
             {c.pricing.sub}
           </p>
         </RevealOnScroll>
@@ -422,7 +422,7 @@ function Pricing({ c }: { c: CopyShape }) {
           {c.pricing.tiers.map((t, i) => (
             <RevealOnScroll key={t.name} delay={(i % 3) + 1}>
               <div
-                className={`border rounded-2xl p-8 md:p-10 h-full flex flex-col ${
+                className={`border rounded-2xl p-6 md:p-8 lg:p-10 h-full flex flex-col ${
                   t.featured
                     ? "border-accent/40 bg-bg shadow-[0_0_40px_rgba(255,255,255,0.04)]"
                     : "border-border bg-bg"
@@ -480,7 +480,7 @@ function Process({ c }: { c: CopyShape }) {
           <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-8">
             {c.process.eyebrow}
           </p>
-          <h2 className="font-display text-[clamp(2rem,4.5vw,3.8rem)] tracking-[-0.03em] leading-[1.05] mb-20">
+          <h2 className="font-display text-[clamp(1.7rem,4.5vw,3.8rem)] tracking-[-0.03em] leading-[1.05] mb-12 md:mb-20">
             {c.process.h2a}{" "}
             <span className="text-text-secondary">{c.process.h2b}</span>
           </h2>
@@ -523,7 +523,7 @@ function Team({ c }: { c: CopyShape }) {
           <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-8">
             {c.team.eyebrow}
           </p>
-          <h2 className="font-display text-[clamp(2rem,4.5vw,3.8rem)] tracking-[-0.03em] leading-[1.05] mb-16 max-w-[900px]">
+          <h2 className="font-display text-[clamp(1.7rem,4.5vw,3.8rem)] tracking-[-0.03em] leading-[1.05] mb-10 md:mb-16 max-w-[900px]">
             {c.team.h2a}{" "}
             <span className="text-text-secondary">{c.team.h2b}</span>
           </h2>
@@ -593,7 +593,7 @@ function AboutKamesh({ c }: { c: CopyShape }) {
           <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-8">
             {c.about.eyebrow}
           </p>
-          <h2 className="font-display text-[clamp(2rem,4.5vw,3.8rem)] tracking-[-0.03em] leading-[1.05] max-w-[1000px] mb-16">
+          <h2 className="font-display text-[clamp(1.7rem,4.5vw,3.8rem)] tracking-[-0.03em] leading-[1.05] max-w-[1000px] mb-10 md:mb-16">
             {c.about.h2a} <br />
             <span className="text-text-secondary">{c.about.h2b}</span>
           </h2>
@@ -685,11 +685,11 @@ function Roadmap({ c }: { c: CopyShape }) {
           <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-8">
             {c.roadmap.eyebrow}
           </p>
-          <h2 className="font-display text-[clamp(2rem,4.5vw,3.8rem)] tracking-[-0.03em] leading-[1.05] max-w-[900px] mb-6">
+          <h2 className="font-display text-[clamp(1.7rem,4.5vw,3.8rem)] tracking-[-0.03em] leading-[1.05] max-w-[900px] mb-6">
             {c.roadmap.h2a} <br />
             <span className="text-text-secondary">{c.roadmap.h2b}</span>
           </h2>
-          <p className="text-text-secondary text-lg max-w-[640px] mb-16">
+          <p className="text-text-secondary text-lg max-w-[640px] mb-10 md:mb-16">
             {c.roadmap.sub}
           </p>
         </RevealOnScroll>
@@ -697,7 +697,7 @@ function Roadmap({ c }: { c: CopyShape }) {
         <div className="grid md:grid-cols-3 gap-px bg-border">
           {c.roadmap.items.map((r, i) => (
             <RevealOnScroll key={r.title} delay={(i % 3) + 1}>
-              <div className="bg-bg p-8 md:p-10 h-full">
+              <div className="bg-bg p-6 md:p-10 h-full">
                 <div className="flex items-baseline justify-between mb-6">
                   <span className="text-[10px] font-mono tracking-[0.3em] uppercase text-text-muted">
                     Coming
@@ -831,7 +831,7 @@ export default function IndiaContent() {
   const c = copy[lang];
 
   return (
-    <main lang={lang === "hi" ? "hi" : "en"}>
+    <main lang={lang === "hi" ? "hi" : "en"} className="india-main">
       <IndiaNav lang={lang} setLang={setLang} />
       <div key={hydrated ? lang : "ssr"}>
         <Hero c={c} lang={lang} />
