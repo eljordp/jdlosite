@@ -266,7 +266,7 @@ export function Pricing() {
           </p>
         </RevealOnScroll>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {c.pricing.tiers.map((t, i) => (
             <RevealOnScroll key={t.name} delay={(i % 3) + 1}>
               <div
@@ -285,16 +285,51 @@ export function Pricing() {
                   {t.name}
                 </p>
                 <div className="flex items-baseline gap-3 mb-2">
-                  <span className="font-display text-[clamp(2.6rem,5vw,3.6rem)] tracking-[-0.04em] leading-none gradient-text">
+                  <span className="font-display text-[clamp(2rem,4vw,2.8rem)] tracking-[-0.04em] leading-none gradient-text">
                     {t.inr}
                   </span>
                 </div>
                 <p className="text-text-muted text-[12px] font-mono mb-6">
                   {t.usd} · {t.sub}
                 </p>
-                <p className="text-text-secondary text-[14px] leading-relaxed mb-6 flex-grow">
+                <p className="text-text-secondary text-[14px] leading-relaxed mb-6">
                   {t.desc}
                 </p>
+
+                {t.subTiers && (
+                  <div className="border-t border-border pt-5 mb-6">
+                    {t.subTiersHeader && (
+                      <p className="text-[10px] font-mono tracking-[0.3em] uppercase text-text-muted mb-4">
+                        {t.subTiersHeader}
+                      </p>
+                    )}
+                    <div className="space-y-4">
+                      {t.subTiers.map((s) => (
+                        <div
+                          key={s.label}
+                          className="border-l-2 border-accent/40 pl-4"
+                        >
+                          <div className="flex items-baseline justify-between gap-2 mb-1">
+                            <span className="font-display text-[15px] tracking-tight">
+                              {s.label}
+                            </span>
+                            <span className="text-accent text-[13px] font-mono">
+                              {s.inr}
+                            </span>
+                          </div>
+                          <p className="text-text-muted text-[11px] font-mono mb-1">
+                            {s.days}
+                          </p>
+                          <p className="text-text-secondary text-[12.5px] leading-relaxed">
+                            {s.desc}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                <div className="flex-grow" />
                 <p className="text-text text-[12px] font-mono tracking-wide mb-2">
                   {t.fit}
                 </p>

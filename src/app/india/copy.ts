@@ -17,6 +17,13 @@ interface Deliverable {
   desc: string;
 }
 
+interface SubTier {
+  label: string;
+  inr: string;
+  days: string;
+  desc: string;
+}
+
 interface Tier {
   name: string;
   inr: string;
@@ -27,6 +34,8 @@ interface Tier {
   monthly: string;
   cta: string;
   featured?: boolean;
+  subTiers?: SubTier[];
+  subTiersHeader?: string;
 }
 
 interface Step {
@@ -271,40 +280,41 @@ export const copy: Record<Lang, CopyShape> = {
     },
     pricing: {
       eyebrow: "Pricing",
-      h2a: "Five tiers.",
-      h2b: "From a quick start to full premium.",
+      h2a: "Three tiers.",
+      h2b: "Pick what fits your business.",
       sub: "All prices in INR. Payment plans available — 50% to start, 50% on delivery. EMI option through Razorpay. No hidden fees, no surprise bills.",
       mostPopular: "Most Popular",
       tiers: [
         {
-          name: "Express",
-          inr: "₹15,000",
-          usd: "≈ $180",
-          sub: "one-time",
-          desc: "Single-page site, WhatsApp + UPI integration, mobile-first. Live in 5 days.",
-          fit: "Best for: shops just getting online, want a digital business card",
-          monthly: "+ ₹2,000/mo hosting",
-          cta: "Talk to Kamesh",
-        },
-        {
-          name: "Growth",
-          inr: "₹35,000",
-          usd: "≈ $420",
-          sub: "one-time",
-          desc: "Multi-page site, Razorpay + Instagram sync, lead inbox. Live in 10 days.",
-          fit: "Best for: small D2C brands ready to take real orders online",
-          monthly: "+ ₹3,000/mo hosting & care",
-          cta: "Talk to Kamesh",
-        },
-        {
           name: "Starter",
-          inr: "₹85,000",
-          usd: "≈ $1,000",
+          inr: "From ₹15,000",
+          usd: "≈ from $180",
           sub: "one-time",
-          desc: "Custom-designed site (not a template), full Razorpay flow, lead capture. Live in 14 days.",
-          fit: "Best for: brands wanting custom design + their own identity",
-          monthly: "+ ₹4,000/mo hosting & care",
+          desc: "Three ways to get online — pick the entry that fits your business. All include WhatsApp, mobile-first design, and your branding.",
+          fit: "Best for: shops just getting online, small D2C brands, solo founders",
+          monthly: "+ ₹2,000–4,000/mo hosting & care",
           cta: "Talk to Kamesh",
+          subTiersHeader: "Three ways to start",
+          subTiers: [
+            {
+              label: "Express",
+              inr: "₹15,000",
+              days: "5 days",
+              desc: "Single-page site, WhatsApp + UPI button, mobile-first.",
+            },
+            {
+              label: "Growth",
+              inr: "₹35,000",
+              days: "10 days",
+              desc: "Multi-page site, Razorpay + Instagram sync, lead inbox.",
+            },
+            {
+              label: "Full",
+              inr: "₹85,000",
+              days: "14 days",
+              desc: "Custom-designed site (not a template), full Razorpay flow, lead capture.",
+            },
+          ],
         },
         {
           name: "Studio",
@@ -491,40 +501,41 @@ export const copy: Record<Lang, CopyShape> = {
     },
     pricing: {
       eyebrow: "प्राइसिंग",
-      h2a: "पाँच टियर्स।",
-      h2b: "क्विक स्टार्ट से लेकर फुल प्रीमियम तक।",
+      h2a: "तीन टियर्स।",
+      h2b: "अपने बिज़नेस के हिसाब से चुनें।",
       sub: "सभी कीमतें INR में। पेमेंट प्लान्स उपलब्ध — 50% शुरू में, 50% डिलीवरी पर। Razorpay से EMI ऑप्शन। कोई छुपी फीस नहीं, कोई सरप्राइज़ बिल नहीं।",
       mostPopular: "सबसे लोकप्रिय",
       tiers: [
         {
-          name: "Express",
-          inr: "₹15,000",
-          usd: "≈ $180",
-          sub: "एक-बार",
-          desc: "सिंगल-पेज साइट, WhatsApp + UPI इंटीग्रेशन, मोबाइल-फर्स्ट। 5 दिनों में लाइव।",
-          fit: "Best for: ऑनलाइन शुरू करने वाली दुकानें, डिजिटल बिज़नेस कार्ड चाहिए",
-          monthly: "+ ₹2,000/mo होस्टिंग",
-          cta: "Kamesh से बात करें",
-        },
-        {
-          name: "Growth",
-          inr: "₹35,000",
-          usd: "≈ $420",
-          sub: "एक-बार",
-          desc: "मल्टी-पेज साइट, Razorpay + Instagram सिंक, लीड इनबॉक्स। 10 दिनों में लाइव।",
-          fit: "Best for: छोटे D2C ब्रांड्स जो ऑनलाइन ऑर्डर्स लेने को तैयार हैं",
-          monthly: "+ ₹3,000/mo होस्टिंग एवं केयर",
-          cta: "Kamesh से बात करें",
-        },
-        {
           name: "Starter",
-          inr: "₹85,000",
-          usd: "≈ $1,000",
+          inr: "₹15,000 से शुरू",
+          usd: "≈ $180 से",
           sub: "एक-बार",
-          desc: "कस्टम-डिज़ाइन्ड साइट (टेम्पलेट नहीं), पूरा Razorpay फ्लो, लीड कैप्चर। 14 दिनों में लाइव।",
-          fit: "Best for: ब्रांड्स जिन्हें कस्टम डिज़ाइन और अपनी पहचान चाहिए",
-          monthly: "+ ₹4,000/mo होस्टिंग एवं केयर",
+          desc: "ऑनलाइन आने के तीन तरीके — अपने बिज़नेस के हिसाब से entry चुनें। सब में WhatsApp, मोबाइल-फर्स्ट डिज़ाइन, और आपकी ब्रांडिंग शामिल है।",
+          fit: "Best for: ऑनलाइन शुरू करने वाली दुकानें, छोटे D2C ब्रांड्स, सोलो फाउंडर्स",
+          monthly: "+ ₹2,000–4,000/mo होस्टिंग एवं केयर",
           cta: "Kamesh से बात करें",
+          subTiersHeader: "शुरू करने के तीन तरीके",
+          subTiers: [
+            {
+              label: "Express",
+              inr: "₹15,000",
+              days: "5 दिन",
+              desc: "सिंगल-पेज साइट, WhatsApp + UPI बटन, मोबाइल-फर्स्ट।",
+            },
+            {
+              label: "Growth",
+              inr: "₹35,000",
+              days: "10 दिन",
+              desc: "मल्टी-पेज साइट, Razorpay + Instagram सिंक, लीड इनबॉक्स।",
+            },
+            {
+              label: "Full",
+              inr: "₹85,000",
+              days: "14 दिन",
+              desc: "कस्टम-डिज़ाइन्ड साइट (टेम्पलेट नहीं), पूरा Razorpay फ्लो, लीड कैप्चर।",
+            },
+          ],
         },
         {
           name: "Studio",
