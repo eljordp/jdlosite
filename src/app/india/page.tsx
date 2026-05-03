@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import IndiaContent from "./IndiaContent";
+import { Hero, Problem, Niches, FinalCTA } from "./sections";
 
 export const metadata: Metadata = {
   title: "JDLO India — Websites & Systems for Indian Businesses",
@@ -13,6 +13,13 @@ export const metadata: Metadata = {
   },
 };
 
-export default function IndiaPage() {
-  return <IndiaContent />;
+export default function IndiaHome() {
+  return (
+    <>
+      <Hero />
+      <Problem />
+      <Niches />
+      <FinalCTA />
+    </>
+  );
 }
