@@ -109,8 +109,19 @@ export interface CopyShape {
     jpLink: string;
     kameshRole: string;
     kameshName: string;
+    kameshTitle: string;
+    kameshLocation: string;
     kameshDesc: string;
+    kameshLangs: string;
+    kameshEmail: string;
     kameshCta: string;
+  };
+  roadmap: {
+    eyebrow: string;
+    h2a: string;
+    h2b: string;
+    sub: string;
+    items: { title: string; desc: string; eta: string }[];
   };
   faq: {
     eyebrow: string;
@@ -322,9 +333,36 @@ export const copy: Record<Lang, CopyShape> = {
       jpDesc: "Builds the entire system. 30+ projects shipped. Clients in the US, Vegas, Hawaii, and now India. Every site is built personally — no outsourcing, no templates, no agency fluff.",
       jpLink: "See the work →",
       kameshRole: "JDLO India · Director",
-      kameshName: "Kamesh Malhotra — Your Point of Contact",
-      kameshDesc: "Based in India. Speaks your language. Handles every conversation from first WhatsApp message to launch day. Knows the Indian market inside out — what works, what doesn't, and what you can actually charge.",
-      kameshCta: "Message Kamesh",
+      kameshName: "Kamesh Malhotra",
+      kameshTitle: "Web Developer · Business Strategist · Social Media Expert",
+      kameshLocation: "Jammu (J&K), India · 21",
+      kameshDesc: "Has built websites and run social media for Indian fashion brands, coaches, and D2C SMEs since 2021. Deep knowledge of Razorpay, UPI, EMI, and GST-ready invoicing. Handles every JDLO India conversation from first WhatsApp message to launch day.",
+      kameshLangs: "Hindi (native) · English (fluent)",
+      kameshEmail: "malhotrakamesh7@gmail.com",
+      kameshCta: "Message Kamesh on WhatsApp",
+    },
+    roadmap: {
+      eyebrow: "What's Coming",
+      h2a: "We're building a system,",
+      h2b: "not just selling sites.",
+      sub: "JDLO India is a long-term play. Here's what we're shipping next — get on the page early and you'll be the first to know.",
+      items: [
+        {
+          title: "JDLO India Academy",
+          desc: "A Hindi + English course teaching small business owners to run their own digital presence. WhatsApp marketing, Instagram, lead capture, payments. Self-paced, certified.",
+          eta: "Q3 2026",
+        },
+        {
+          title: "Regional Language Sites",
+          desc: "Tamil, Telugu, Marathi, Bengali, Punjabi — full site delivery in your local language for clients outside the Hindi belt. Built into Studio and Brand tiers.",
+          eta: "Q3 2026",
+        },
+        {
+          title: "AI WhatsApp Auto-Reply",
+          desc: "A WhatsApp bot trained on your business that answers customer questions 24/7, qualifies leads, and books calls. Add-on to any tier from Growth up.",
+          eta: "Q4 2026",
+        },
+      ],
     },
     faq: {
       eyebrow: "FAQ",
@@ -497,9 +535,36 @@ export const copy: Record<Lang, CopyShape> = {
       jpDesc: "पूरा सिस्टम खुद बनाता है। 30+ प्रोजेक्ट्स शिप किए। US, Vegas, Hawaii के क्लाइंट्स, अब भारत भी। हर साइट खुद बिल्ड करता है — कोई आउटसोर्सिंग नहीं, कोई टेम्पलेट्स नहीं, कोई एजेंसी ड्रामा नहीं।",
       jpLink: "काम देखें →",
       kameshRole: "JDLO India · डायरेक्टर",
-      kameshName: "Kamesh Malhotra — आपका पॉइंट ऑफ कॉन्टैक्ट",
-      kameshDesc: "भारत में रहते हैं। आपकी भाषा बोलते हैं। पहले WhatsApp मैसेज से लेकर लॉन्च डे तक हर बातचीत संभालते हैं। भारतीय बाज़ार को अंदर तक जानते हैं — क्या काम करता है, क्या नहीं, और आप वाकई कितना चार्ज कर सकते हैं।",
-      kameshCta: "Kamesh को मैसेज करें",
+      kameshName: "Kamesh Malhotra",
+      kameshTitle: "वेब डेवलपर · बिज़नेस स्ट्रैटेजिस्ट · सोशल मीडिया एक्सपर्ट",
+      kameshLocation: "जम्मू (J&K), भारत · 21 साल",
+      kameshDesc: "2021 से भारतीय फैशन ब्रांड्स, कोच, और D2C SMEs के लिए वेबसाइट्स बनाए और सोशल मीडिया चलाया है। Razorpay, UPI, EMI, और GST-ready invoicing का गहरा ज्ञान। JDLO India की हर बातचीत पहले WhatsApp मैसेज से लेकर लॉन्च डे तक संभालते हैं।",
+      kameshLangs: "हिंदी (मातृभाषा) · अंग्रेज़ी (फ्लूएंट)",
+      kameshEmail: "malhotrakamesh7@gmail.com",
+      kameshCta: "Kamesh को WhatsApp पर मैसेज करें",
+    },
+    roadmap: {
+      eyebrow: "आगे क्या आ रहा है",
+      h2a: "हम सिर्फ साइट्स नहीं बेच रहे —",
+      h2b: "हम एक सिस्टम बना रहे हैं।",
+      sub: "JDLO India एक लंबी प्लानिंग है। आगे हम क्या launch कर रहे हैं — पेज पर जल्दी आ जाओ तो आप पहले जान पाओगे।",
+      items: [
+        {
+          title: "JDLO India Academy",
+          desc: "एक हिंदी + अंग्रेज़ी कोर्स जो छोटे बिज़नेस ओनर्स को सिखाएगा अपनी डिजिटल प्रेज़ेन्स खुद चलाना। WhatsApp marketing, Instagram, lead capture, payments। सेल्फ-पेस्ड, certified।",
+          eta: "Q3 2026",
+        },
+        {
+          title: "रीजनल लैंग्वेज साइट्स",
+          desc: "तमिल, तेलुगू, मराठी, बंगाली, पंजाबी — हिंदी बेल्ट के बाहर वाले क्लाइंट्स के लिए उनकी लोकल भाषा में पूरी साइट डिलीवरी। Studio और Brand टियर्स में शामिल।",
+          eta: "Q3 2026",
+        },
+        {
+          title: "AI WhatsApp ऑटो-रिप्लाई",
+          desc: "एक WhatsApp बॉट जो आपके बिज़नेस पर ट्रेन्ड हो — 24/7 कस्टमर सवालों का जवाब देता है, leads qualify करता है, calls book करता है। Growth tier और ऊपर के लिए add-on।",
+          eta: "Q4 2026",
+        },
+      ],
     },
     faq: {
       eyebrow: "FAQ",

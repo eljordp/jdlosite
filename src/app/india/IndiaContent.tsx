@@ -439,19 +439,78 @@ function Team({ c }: { c: CopyShape }) {
           </RevealOnScroll>
 
           <RevealOnScroll delay={1}>
-            <div className="bg-bg p-8 md:p-12 h-full">
+            <div className="bg-bg p-8 md:p-12 h-full flex flex-col">
               <p className="text-[10px] font-mono tracking-[0.3em] uppercase text-text-muted mb-6">
                 {c.team.kameshRole}
               </p>
-              <h3 className="font-display text-[clamp(1.8rem,3vw,2.4rem)] tracking-[-0.03em] leading-[1.05] mb-4">
+              <h3 className="font-display text-[clamp(1.8rem,3vw,2.4rem)] tracking-[-0.03em] leading-[1.05] mb-2">
                 {c.team.kameshName}
               </h3>
+              <p className="text-accent text-[12px] font-mono tracking-wide mb-1">
+                {c.team.kameshTitle}
+              </p>
+              <p className="text-text-muted text-[12px] font-mono tracking-wide mb-5">
+                {c.team.kameshLocation} · {c.team.kameshLangs}
+              </p>
               <p className="text-text-secondary text-[15px] leading-relaxed mb-6">
                 {c.team.kameshDesc}
               </p>
-              <WhatsAppButton>{c.team.kameshCta}</WhatsAppButton>
+              <div className="mt-auto flex flex-col gap-3">
+                <WhatsAppButton>{c.team.kameshCta}</WhatsAppButton>
+                <a
+                  href={`mailto:${c.team.kameshEmail}`}
+                  className="text-text-muted hover:text-text text-[12px] font-mono transition-colors"
+                >
+                  {c.team.kameshEmail}
+                </a>
+              </div>
             </div>
           </RevealOnScroll>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── Roadmap ── */
+function Roadmap({ c }: { c: CopyShape }) {
+  return (
+    <section className="section-gap border-t border-border bg-surface">
+      <div className="max-w-[1400px] mx-auto px-6 md:px-10">
+        <RevealOnScroll>
+          <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-8">
+            {c.roadmap.eyebrow}
+          </p>
+          <h2 className="font-display text-[clamp(2rem,4.5vw,3.8rem)] tracking-[-0.03em] leading-[1.05] max-w-[900px] mb-6">
+            {c.roadmap.h2a} <br />
+            <span className="text-text-secondary">{c.roadmap.h2b}</span>
+          </h2>
+          <p className="text-text-secondary text-lg max-w-[640px] mb-16">
+            {c.roadmap.sub}
+          </p>
+        </RevealOnScroll>
+
+        <div className="grid md:grid-cols-3 gap-px bg-border">
+          {c.roadmap.items.map((r, i) => (
+            <RevealOnScroll key={r.title} delay={(i % 3) + 1}>
+              <div className="bg-bg p-8 md:p-10 h-full">
+                <div className="flex items-baseline justify-between mb-6">
+                  <span className="text-[10px] font-mono tracking-[0.3em] uppercase text-text-muted">
+                    Coming
+                  </span>
+                  <span className="text-accent text-[11px] font-mono tracking-[0.15em]">
+                    {r.eta}
+                  </span>
+                </div>
+                <h3 className="font-display text-[clamp(1.5rem,2.4vw,2rem)] tracking-[-0.03em] leading-[1.05] mb-4">
+                  {r.title}
+                </h3>
+                <p className="text-text-secondary text-[14px] leading-relaxed">
+                  {r.desc}
+                </p>
+              </div>
+            </RevealOnScroll>
+          ))}
         </div>
       </div>
     </section>
@@ -580,6 +639,7 @@ export default function IndiaContent() {
         <Pricing c={c} />
         <Process c={c} />
         <Team c={c} />
+        <Roadmap c={c} />
         <FAQ c={c} />
         <FinalCTA c={c} />
       </div>
