@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import RevealOnScroll from "@/components/RevealOnScroll";
 import SplitText from "@/components/SplitText";
 import { useIndia, WHATSAPP_LINK } from "./IndiaShell";
@@ -32,7 +33,19 @@ export function WhatsAppButton({
 export function Hero() {
   const { c, lang } = useIndia();
   return (
-    <section className="min-h-[85vh] md:min-h-[92vh] flex flex-col justify-center relative px-6 md:px-10 pt-20">
+    <section className="min-h-[85vh] md:min-h-[92vh] flex flex-col justify-center relative px-6 md:px-10 pt-20 overflow-hidden">
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/india/hero-bg.jpg"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center opacity-30"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-bg via-bg/80 to-bg/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-bg via-transparent to-bg/40" />
+      </div>
       <div className="max-w-[1400px] mx-auto w-full relative z-10">
         <p className="text-text-muted text-[10px] md:text-[11px] tracking-[0.5em] uppercase mb-6 md:mb-8 font-mono hero-animate hero-delay-1">
           {c.hero.eyebrow}
@@ -121,24 +134,36 @@ export function Niches() {
         <div className="grid md:grid-cols-3 gap-px bg-border">
           {c.niches.items.map((n, i) => (
             <RevealOnScroll key={n.num} delay={(i % 3) + 1}>
-              <div className="bg-bg p-6 md:p-10 h-full">
-                <div className="flex items-baseline justify-between mb-8">
-                  <span className="text-accent text-[11px] font-mono tracking-[0.2em]">
-                    {n.num}
-                  </span>
-                  <span className="text-text-muted text-[10px] font-mono tracking-[0.3em] uppercase">
-                    Niche
-                  </span>
+              <div className="bg-bg h-full flex flex-col">
+                <div className="relative aspect-[4/3] w-full overflow-hidden">
+                  <Image
+                    src={n.image}
+                    alt=""
+                    fill
+                    sizes="(min-width: 768px) 33vw, 100vw"
+                    className="object-cover transition-transform duration-700 hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/30 to-transparent" />
                 </div>
-                <h3 className="font-display text-[clamp(1.6rem,2.6vw,2.2rem)] tracking-[-0.03em] leading-[1.05] mb-2">
-                  {n.title}
-                </h3>
-                <p className="text-text-muted text-[12px] font-mono tracking-[0.15em] uppercase mb-6">
-                  {n.sub}
-                </p>
-                <p className="text-text-secondary text-[15px] leading-relaxed">
-                  {n.desc}
-                </p>
+                <div className="p-6 md:p-10 flex-grow flex flex-col">
+                  <div className="flex items-baseline justify-between mb-6">
+                    <span className="text-accent text-[11px] font-mono tracking-[0.2em]">
+                      {n.num}
+                    </span>
+                    <span className="text-text-muted text-[10px] font-mono tracking-[0.3em] uppercase">
+                      Niche
+                    </span>
+                  </div>
+                  <h3 className="font-display text-[clamp(1.6rem,2.6vw,2.2rem)] tracking-[-0.03em] leading-[1.05] mb-2">
+                    {n.title}
+                  </h3>
+                  <p className="text-text-muted text-[12px] font-mono tracking-[0.15em] uppercase mb-6">
+                    {n.sub}
+                  </p>
+                  <p className="text-text-secondary text-[15px] leading-relaxed">
+                    {n.desc}
+                  </p>
+                </div>
               </div>
             </RevealOnScroll>
           ))}
@@ -251,8 +276,17 @@ export function Receipts() {
 export function Pricing() {
   const { c } = useIndia();
   return (
-    <section className="section-gap border-t border-border bg-surface">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-10">
+    <section className="section-gap border-t border-border bg-surface relative overflow-hidden">
+      <div className="absolute inset-0 z-0 opacity-[0.08]">
+        <Image
+          src="/india/pricing-bg.jpg"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover"
+        />
+      </div>
+      <div className="max-w-[1400px] mx-auto px-6 md:px-10 relative z-10">
         <RevealOnScroll>
           <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-8">
             {c.pricing.eyebrow}
