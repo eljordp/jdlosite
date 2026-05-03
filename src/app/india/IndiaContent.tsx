@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import RevealOnScroll from "@/components/RevealOnScroll";
-import HomeNav from "@/components/HomeNav";
 import SplitText from "@/components/SplitText";
 import { copy, LANG_LABELS, type Lang, type CopyShape } from "./copy";
 
@@ -15,26 +14,149 @@ const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_GREETING
 const LANG_KEY = "jdlo_india_lang";
 const DEFAULT_LANG: Lang = "hi";
 
-/* ── Language Toggle ── */
-function LangToggle({ lang, setLang }: { lang: Lang; setLang: (l: Lang) => void }) {
+/* ── India Nav ── */
+function IndiaNav({ lang, setLang }: { lang: Lang; setLang: (l: Lang) => void }) {
+  const [open, setOpen] = useState(false);
   const langs: Lang[] = ["hi", "en"];
+
+  const links =
+    lang === "hi"
+      ? [
+          { label: "प्राइसिंग", href: "#pricing" },
+          { label: "Kamesh के बारे में", href: "#about" },
+          { label: "आगे क्या आ रहा है", href: "#roadmap" },
+          { label: "Receipts", href: "#receipts" },
+        ]
+      : [
+          { label: "Pricing", href: "#pricing" },
+          { label: "About Kamesh", href: "#about" },
+          { label: "What's Coming", href: "#roadmap" },
+          { label: "Receipts", href: "#receipts" },
+        ];
+
   return (
-    <div className="fixed top-16 right-4 md:right-8 z-40 flex items-center gap-1 bg-bg/80 backdrop-blur-md border border-border rounded-full p-1">
-      {langs.map((l) => (
-        <button
-          key={l}
-          onClick={() => setLang(l)}
-          className={`text-[11px] font-mono tracking-wide px-3 py-1.5 rounded-full transition-colors ${
-            lang === l
-              ? "bg-text text-bg"
-              : "text-text-muted hover:text-text"
-          }`}
-          aria-label={`Switch to ${LANG_LABELS[l]}`}
-        >
-          {LANG_LABELS[l]}
-        </button>
-      ))}
-    </div>
+    <>
+      <nav className="fixed top-0 left-0 right-0 z-50 nav-blur border-b border-border">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-10 h-14 flex items-center justify-between">
+          <Link href="/india" className="text-[15px] font-semibold tracking-tight">
+            JDLO <span className="text-text-muted font-normal">India</span>
+          </Link>
+
+          <div className="hidden md:flex items-center gap-7 text-[13px] text-text-secondary">
+            {links.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                className="hover:text-text transition-colors duration-300"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+
+          <div className="flex items-center gap-2">
+            <div className="hidden sm:flex items-center gap-1 bg-bg/40 border border-border rounded-full p-1">
+              {langs.map((l) => (
+                <button
+                  key={l}
+                  onClick={() => setLang(l)}
+                  className={`text-[11px] font-mono tracking-wide px-2.5 py-1 rounded-full transition-colors ${
+                    lang === l
+                      ? "bg-text text-bg"
+                      : "text-text-muted hover:text-text"
+                  }`}
+                  aria-label={`Switch to ${LANG_LABELS[l]}`}
+                >
+                  {LANG_LABELS[l]}
+                </button>
+              ))}
+            </div>
+            <a
+              href={WHATSAPP_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden sm:inline-flex items-center gap-1.5 bg-[#25D366] text-black font-semibold tracking-tight px-3.5 py-1.5 rounded-full text-[12px] hover:bg-[#1ebe57] transition-colors duration-200"
+            >
+              WhatsApp
+            </a>
+            <button
+              onClick={() => setOpen(true)}
+              className="md:hidden p-2 -mr-1 text-text-muted hover:text-text transition-colors"
+              aria-label="Open menu"
+            >
+              <svg width="20" height="14" viewBox="0 0 20 14" fill="currentColor">
+                <rect width="20" height="1.5" rx="0.75" />
+                <rect y="6.25" width="20" height="1.5" rx="0.75" />
+                <rect y="12.5" width="20" height="1.5" rx="0.75" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      <div
+        className={`fixed inset-0 z-[100] bg-bg flex flex-col px-6 py-5 transition-opacity duration-300 md:hidden ${
+          open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        }`}
+      >
+        <div className="flex items-center justify-between mb-10">
+          <Link
+            href="/india"
+            onClick={() => setOpen(false)}
+            className="text-[15px] font-semibold tracking-tight"
+          >
+            JDLO <span className="text-text-muted font-normal">India</span>
+          </Link>
+          <button
+            onClick={() => setOpen(false)}
+            className="text-text-muted hover:text-text text-4xl leading-none"
+            aria-label="Close menu"
+          >
+            ×
+          </button>
+        </div>
+
+        <div className="flex flex-col flex-1">
+          {links.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              onClick={() => setOpen(false)}
+              className="text-[1.5rem] sm:text-[2rem] font-semibold tracking-[-0.03em] text-text-secondary hover:text-text transition-colors duration-200 py-2.5 border-b border-border/40 last:border-0"
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+
+        <div className="pt-8 flex flex-col gap-3">
+          <div className="flex items-center justify-center gap-1 bg-bg/40 border border-border rounded-full p-1 self-center">
+            {langs.map((l) => (
+              <button
+                key={l}
+                onClick={() => setLang(l)}
+                className={`text-[12px] font-mono tracking-wide px-4 py-1.5 rounded-full transition-colors ${
+                  lang === l
+                    ? "bg-text text-bg"
+                    : "text-text-muted hover:text-text"
+                }`}
+              >
+                {LANG_LABELS[l]}
+              </button>
+            ))}
+          </div>
+          <a
+            href={WHATSAPP_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setOpen(false)}
+            className="inline-flex items-center justify-center gap-1.5 bg-[#25D366] text-black font-semibold tracking-tight px-6 py-3 rounded-full text-[14px]"
+          >
+            WhatsApp Kamesh
+          </a>
+        </div>
+      </div>
+    </>
   );
 }
 
@@ -218,7 +340,7 @@ function Deliverables({ c }: { c: CopyShape }) {
 /* ── Proof ── */
 function Proof({ c }: { c: CopyShape }) {
   return (
-    <section className="section-gap border-t border-border">
+    <section id="receipts" className="section-gap border-t border-border">
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
         <RevealOnScroll>
           <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-8">
@@ -236,8 +358,10 @@ function Proof({ c }: { c: CopyShape }) {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {c.proof.items.map((p, i) => (
             <RevealOnScroll key={p.slug} delay={(i % 3) + 1}>
-              <Link
+              <a
                 href={`/work/${p.slug}`}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group block border border-border rounded-2xl p-7 md:p-8 h-full bg-bg hover:border-text/20 transition-colors duration-300"
               >
                 <div className="flex flex-wrap gap-2 mb-5">
@@ -264,22 +388,10 @@ function Proof({ c }: { c: CopyShape }) {
                 <span className="text-accent text-[12px] font-mono group-hover:text-text transition-colors">
                   {c.proof.caseStudy}
                 </span>
-              </Link>
+              </a>
             </RevealOnScroll>
           ))}
         </div>
-
-        <RevealOnScroll>
-          <Link
-            href="/work"
-            className="inline-flex items-center gap-2 text-accent text-[14px] font-mono font-medium hover:text-text border-b border-accent/40 hover:border-text pb-0.5 transition-all duration-300 mt-12 group"
-          >
-            {c.proof.seeAll}
-            <span className="group-hover:translate-x-1 transition-transform duration-200">
-              →
-            </span>
-          </Link>
-        </RevealOnScroll>
       </div>
     </section>
   );
@@ -429,12 +541,12 @@ function Team({ c }: { c: CopyShape }) {
               <p className="text-text-secondary text-[15px] leading-relaxed mb-6">
                 {c.team.jpDesc}
               </p>
-              <Link
-                href="/work"
+              <a
+                href="#receipts"
                 className="text-accent text-[13px] font-mono hover:text-text transition-colors"
               >
                 {c.team.jpLink}
-              </Link>
+              </a>
             </div>
           </RevealOnScroll>
 
@@ -472,10 +584,102 @@ function Team({ c }: { c: CopyShape }) {
   );
 }
 
+/* ── About Kamesh ── */
+function AboutKamesh({ c }: { c: CopyShape }) {
+  return (
+    <section id="about" className="section-gap border-t border-border">
+      <div className="max-w-[1400px] mx-auto px-6 md:px-10">
+        <RevealOnScroll>
+          <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-8">
+            {c.about.eyebrow}
+          </p>
+          <h2 className="font-display text-[clamp(2rem,4.5vw,3.8rem)] tracking-[-0.03em] leading-[1.05] max-w-[1000px] mb-16">
+            {c.about.h2a} <br />
+            <span className="text-text-secondary">{c.about.h2b}</span>
+          </h2>
+        </RevealOnScroll>
+
+        <div className="grid lg:grid-cols-[1.2fr_1fr] gap-12 lg:gap-20 items-start">
+          <div className="space-y-6">
+            <RevealOnScroll>
+              <p className="text-text-secondary text-[16px] md:text-[17px] leading-relaxed">
+                {c.about.storyP1}
+              </p>
+            </RevealOnScroll>
+            <RevealOnScroll delay={1}>
+              <p className="text-text-secondary text-[16px] md:text-[17px] leading-relaxed">
+                {c.about.storyP2}
+              </p>
+            </RevealOnScroll>
+            <RevealOnScroll delay={2}>
+              <p className="text-text-secondary text-[16px] md:text-[17px] leading-relaxed">
+                {c.about.storyP3}
+              </p>
+            </RevealOnScroll>
+            <RevealOnScroll delay={3}>
+              <blockquote className="border-l-2 border-accent pl-6 mt-10 italic text-text text-[17px] md:text-[19px] leading-relaxed font-display tracking-tight">
+                &ldquo;{c.about.quote}&rdquo;
+                <footer className="not-italic font-sans text-text-muted text-[12px] font-mono tracking-wide mt-3 normal-case">
+                  — Kamesh Malhotra
+                </footer>
+              </blockquote>
+            </RevealOnScroll>
+          </div>
+
+          <div className="space-y-8 lg:sticky lg:top-24">
+            <RevealOnScroll>
+              <div className="border border-border rounded-2xl p-7 md:p-8 bg-bg">
+                <p className="text-[10px] font-mono tracking-[0.3em] uppercase text-text-muted mb-6">
+                  {c.about.qualHeader}
+                </p>
+                <ul className="space-y-3">
+                  {c.about.quals.map((q, i) => (
+                    <li key={i} className="flex items-start gap-3">
+                      <span className="text-accent text-[11px] font-mono mt-1.5 shrink-0">
+                        0{i + 1}
+                      </span>
+                      <span className="text-text-secondary text-[14px] leading-relaxed">
+                        {q}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </RevealOnScroll>
+
+            <RevealOnScroll delay={1}>
+              <div className="border border-border rounded-2xl p-7 md:p-8 bg-bg">
+                <p className="text-[10px] font-mono tracking-[0.3em] uppercase text-text-muted mb-6">
+                  {c.about.contactHeader}
+                </p>
+                <div className="space-y-3 mb-7 text-[14px] leading-relaxed">
+                  <p className="text-text-secondary">{c.about.contactWa}</p>
+                  <p>
+                    <a
+                      href={`mailto:${c.team.kameshEmail}`}
+                      className="text-text-secondary hover:text-text transition-colors"
+                    >
+                      {c.about.contactEmail}
+                    </a>
+                  </p>
+                  <p className="text-text-muted">{c.about.contactLoc}</p>
+                </div>
+                <WhatsAppButton className="w-full justify-center">
+                  {c.about.cta}
+                </WhatsAppButton>
+              </div>
+            </RevealOnScroll>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ── Roadmap ── */
 function Roadmap({ c }: { c: CopyShape }) {
   return (
-    <section className="section-gap border-t border-border bg-surface">
+    <section id="roadmap" className="section-gap border-t border-border bg-surface">
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
         <RevealOnScroll>
           <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-8">
@@ -628,8 +832,7 @@ export default function IndiaContent() {
 
   return (
     <main lang={lang === "hi" ? "hi" : "en"}>
-      <HomeNav />
-      <LangToggle lang={lang} setLang={setLang} />
+      <IndiaNav lang={lang} setLang={setLang} />
       <div key={hydrated ? lang : "ssr"}>
         <Hero c={c} lang={lang} />
         <Problem c={c} />
@@ -639,6 +842,7 @@ export default function IndiaContent() {
         <Pricing c={c} />
         <Process c={c} />
         <Team c={c} />
+        <AboutKamesh c={c} />
         <Roadmap c={c} />
         <FAQ c={c} />
         <FinalCTA c={c} />

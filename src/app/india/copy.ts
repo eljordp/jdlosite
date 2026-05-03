@@ -123,6 +123,22 @@ export interface CopyShape {
     sub: string;
     items: { title: string; desc: string; eta: string }[];
   };
+  about: {
+    eyebrow: string;
+    h2a: string;
+    h2b: string;
+    storyP1: string;
+    storyP2: string;
+    storyP3: string;
+    quote: string;
+    qualHeader: string;
+    quals: string[];
+    contactHeader: string;
+    contactWa: string;
+    contactEmail: string;
+    contactLoc: string;
+    cta: string;
+  };
   faq: {
     eyebrow: string;
     h2: string;
@@ -353,16 +369,34 @@ export const copy: Record<Lang, CopyShape> = {
           eta: "Q3 2026",
         },
         {
-          title: "Regional Language Sites",
-          desc: "Tamil, Telugu, Marathi, Bengali, Punjabi — full site delivery in your local language for clients outside the Hindi belt. Built into Studio and Brand tiers.",
-          eta: "Q3 2026",
-        },
-        {
           title: "AI WhatsApp Auto-Reply",
           desc: "A WhatsApp bot trained on your business that answers customer questions 24/7, qualifies leads, and books calls. Add-on to any tier from Growth up.",
           eta: "Q4 2026",
         },
       ],
+    },
+    about: {
+      eyebrow: "About Kamesh",
+      h2a: "The face of JDLO in India.",
+      h2b: "Born here. Built here. Available here.",
+      storyP1: "Kamesh started building websites for small businesses in Jammu when he was 18. Three years in, he's worked with dozens of Indian fashion brands, coaches, and D2C founders — and one thing kept hitting him.",
+      storyP2: "India has 60+ million small businesses, but the digital tools built for them are either dirt cheap (Wix templates that break in 6 months) or imported from the West at prices no Indian SME can pay. That gap is where most businesses get stuck.",
+      storyP3: "That's why he reached out to JP. JP had been building serious operator systems for US clients — websites, AI agents, lead automation. Kamesh saw the move: bring that quality to India, but at India pricing, in India language, with India payment rails. JDLO India is that gap closing.",
+      quote: "I'm not selling websites. I'm selling Indian businesses a way to look and run as serious as they actually are.",
+      qualHeader: "Why work with Kamesh",
+      quals: [
+        "Building websites for Indian SMEs since 2021",
+        "Deep knowledge of Razorpay, UPI, EMI, GST-ready invoicing",
+        "Native Hindi speaker, fluent English — every conversation in your language",
+        "Social media strategy for Indian audiences across Instagram, Facebook, YouTube",
+        "Direct line to JP — every technical decision, no agency middlemen",
+        "Based in Jammu (J&K), works with clients across India",
+      ],
+      contactHeader: "Reach Kamesh directly",
+      contactWa: "WhatsApp: +91 97975 96601",
+      contactEmail: "Email: malhotrakamesh7@gmail.com",
+      contactLoc: "Location: Jammu (J&K), India · Available 9am–11pm IST",
+      cta: "Start a conversation",
     },
     faq: {
       eyebrow: "FAQ",
@@ -371,7 +405,7 @@ export const copy: Record<Lang, CopyShape> = {
         { q: "Why ₹85,000 when I can get a website for ₹10,000?", a: "Because that ₹10,000 site is a Wix template that breaks in 6 months and makes you look like every other small business. We build custom — your branding, your offer, your customer flow. Razorpay, WhatsApp, Instagram sync, lead inbox, all integrated. It's not a website, it's a system." },
         { q: "How do payments work? Razorpay or international?", a: "All payments to us go through Razorpay or UPI in INR. No need for international banking, no currency conversion headaches. Kamesh handles all collection. You pay in rupees like any other Indian business." },
         { q: "Can I pay in EMI?", a: "Yes. Razorpay supports no-cost EMI on most credit cards (3-12 months). For Studio and Brand tiers we also offer a 50/50 plan — half upfront to start, half on delivery." },
-        { q: "Will the site be in Hindi or English?", a: "Whichever you want. Most of our clients do bilingual — English for credibility, Hindi for warmth. We can also do regional languages (Tamil, Telugu, Marathi, etc.) on the Brand tier." },
+        { q: "Will the site be in Hindi or English?", a: "Whichever you want. Most of our clients do bilingual — English for credibility, Hindi for warmth. Kamesh handles all the language work directly." },
         { q: "Do I own everything you build?", a: "Yes. Source code, domain, customer data, all of it. Nothing locked behind our account. If you want to leave us after launch, you keep the entire system. We just won't be there to fix things when they break." },
         { q: "What if I just need a simple WhatsApp catalog?", a: "Then go with Starter — that's exactly what it's for. WhatsApp catalog, basic site, payments. Live in 7 days for ₹85K. Most fashion D2C brands start here." },
         { q: "Can you handle SEO for India?", a: "Basic SEO is included in every tier — Google My Business setup, meta tags, sitemap. Deep SEO (content, backlinks, ranking work) is a separate engagement we can scope after launch." },
@@ -555,16 +589,34 @@ export const copy: Record<Lang, CopyShape> = {
           eta: "Q3 2026",
         },
         {
-          title: "रीजनल लैंग्वेज साइट्स",
-          desc: "तमिल, तेलुगू, मराठी, बंगाली, पंजाबी — हिंदी बेल्ट के बाहर वाले क्लाइंट्स के लिए उनकी लोकल भाषा में पूरी साइट डिलीवरी। Studio और Brand टियर्स में शामिल।",
-          eta: "Q3 2026",
-        },
-        {
           title: "AI WhatsApp ऑटो-रिप्लाई",
           desc: "एक WhatsApp बॉट जो आपके बिज़नेस पर ट्रेन्ड हो — 24/7 कस्टमर सवालों का जवाब देता है, leads qualify करता है, calls book करता है। Growth tier और ऊपर के लिए add-on।",
           eta: "Q4 2026",
         },
       ],
+    },
+    about: {
+      eyebrow: "Kamesh के बारे में",
+      h2a: "भारत में JDLO का चेहरा।",
+      h2b: "यहीं पैदा हुए। यहीं बने। यहीं उपलब्ध।",
+      storyP1: "Kamesh ने 18 साल की उम्र में जम्मू के छोटे बिज़नेस के लिए वेबसाइट्स बनाना शुरू किया। तीन साल में उन्होंने दर्जनों भारतीय फैशन ब्रांड्स, कोचों, और D2C फाउंडर्स के साथ काम किया — और एक बात बार-बार सामने आती रही।",
+      storyP2: "भारत में 6 करोड़ से ज़्यादा छोटे बिज़नेस हैं, लेकिन उनके लिए बने डिजिटल टूल्स या तो बेहद सस्ते हैं (Wix टेम्पलेट्स जो 6 महीने में टूट जाते हैं) या Western देशों से इंपोर्ट किए गए ऐसी कीमतों पर जो कोई भारतीय SME afford नहीं कर सकता। यही gap है जहाँ ज़्यादातर बिज़नेस अटक जाते हैं।",
+      storyP3: "इसी वजह से उन्होंने JP से contact किया। JP US क्लाइंट्स के लिए serious operator systems बना रहे थे — websites, AI agents, lead automation। Kamesh ने मौका देखा: वही quality भारत में लाओ, लेकिन भारतीय pricing पर, भारतीय language में, भारतीय payment rails के साथ। JDLO India वही gap भर रहा है।",
+      quote: "मैं वेबसाइट्स नहीं बेच रहा। मैं भारतीय बिज़नेस को एक तरीका दे रहा हूँ कि वो जितने serious हैं, उतने ही दिखें और काम करें।",
+      qualHeader: "Kamesh के साथ क्यों काम करें",
+      quals: [
+        "2021 से भारतीय SMEs के लिए वेबसाइट्स बना रहे हैं",
+        "Razorpay, UPI, EMI, GST-ready invoicing का गहरा ज्ञान",
+        "हिंदी मातृभाषा, अंग्रेज़ी फ्लूएंट — हर बातचीत आपकी भाषा में",
+        "Instagram, Facebook, YouTube पर भारतीय audiences के लिए सोशल मीडिया स्ट्रैटेजी",
+        "JP से सीधा connection — हर तकनीकी निर्णय, कोई agency बीच में नहीं",
+        "जम्मू (J&K) में स्थित, पूरे भारत में clients के साथ काम",
+      ],
+      contactHeader: "Kamesh से सीधे संपर्क करें",
+      contactWa: "WhatsApp: +91 97975 96601",
+      contactEmail: "Email: malhotrakamesh7@gmail.com",
+      contactLoc: "स्थान: जम्मू (J&K), भारत · 9am–11pm IST उपलब्ध",
+      cta: "बातचीत शुरू करें",
     },
     faq: {
       eyebrow: "FAQ",
@@ -573,7 +625,7 @@ export const copy: Record<Lang, CopyShape> = {
         { q: "₹85,000 क्यों जब ₹10,000 में वेबसाइट मिल जाती है?", a: "क्योंकि वो ₹10,000 की साइट Wix टेम्पलेट है जो 6 महीने में टूट जाती है और आपको हर दूसरे small business जैसा दिखाती है। हम कस्टम बनाते हैं — आपकी ब्रांडिंग, आपका ऑफर, आपका ग्राहक फ्लो। Razorpay, WhatsApp, Instagram सिंक, लीड इनबॉक्स, सब इंटीग्रेटेड। यह वेबसाइट नहीं, सिस्टम है।" },
         { q: "पेमेंट्स कैसे काम करते हैं? Razorpay या इंटरनेशनल?", a: "हमें सारे पेमेंट्स Razorpay या UPI से INR में आते हैं। इंटरनेशनल बैंकिंग की ज़रूरत नहीं, करेंसी कन्वर्ज़न का टेंशन नहीं। Kamesh सब कलेक्शन संभालता है। आप रुपयों में पे करते हैं, जैसे कोई भी भारतीय बिज़नेस।" },
         { q: "EMI में पे कर सकता हूँ?", a: "हाँ। Razorpay ज़्यादातर क्रेडिट कार्ड्स पर no-cost EMI सपोर्ट करता है (3-12 महीने)। Studio और Brand टियर्स के लिए 50/50 प्लान भी है — आधा शुरू में, आधा डिलीवरी पर।" },
-        { q: "साइट हिंदी में होगी या अंग्रेज़ी?", a: "आपकी मर्ज़ी। ज़्यादातर क्लाइंट्स bilingual करते हैं — credibility के लिए अंग्रेज़ी, warmth के लिए हिंदी। Brand टियर में regional languages भी (तमिल, तेलुगू, मराठी, etc.)।" },
+        { q: "साइट हिंदी में होगी या अंग्रेज़ी?", a: "आपकी मर्ज़ी। ज़्यादातर क्लाइंट्स bilingual करते हैं — credibility के लिए अंग्रेज़ी, warmth के लिए हिंदी। भाषा का सारा काम Kamesh ख़ुद संभालता है।" },
         { q: "जो आप बनाते हैं वो सब मेरा होता है?", a: "हाँ। सोर्स कोड, डोमेन, ग्राहक डेटा, सब। हमारे अकाउंट के पीछे कुछ लॉक नहीं। लॉन्च के बाद अगर आप छोड़ कर जाना चाहें, पूरा सिस्टम आपका रहेगा। बस हम नहीं होंगे फिक्स करने के लिए जब कुछ टूटे।" },
         { q: "मुझे सिर्फ simple WhatsApp catalog चाहिए?", a: "तो Starter ले लें — इसी के लिए बनाया है। WhatsApp catalog, basic साइट, payments। ₹85K में 7 दिनों में लाइव। ज़्यादातर fashion D2C ब्रांड्स यहीं से शुरू करते हैं।" },
         { q: "भारत के लिए SEO संभाल सकते हैं?", a: "हर टियर में बेसिक SEO शामिल — Google My Business सेटअप, मेटा टैग्स, साइटमैप। डीप SEO (content, backlinks, ranking work) अलग एंगेजमेंट है जो लॉन्च के बाद scope कर सकते हैं।" },
