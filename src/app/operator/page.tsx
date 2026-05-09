@@ -42,7 +42,7 @@ function Hero() {
             bottleneck. One stack. One bill. Ships in two weeks.
           </p>
           <div className="flex items-center gap-4">
-            <GlowLink href="/contact?ref=operator">Start a Project</GlowLink>
+            <GlowLink href="/contact?ref=operator">Book a 20-min call</GlowLink>
             <a
               href="https://instagram.com/jdlo"
               target="_blank"
@@ -252,7 +252,7 @@ function Pricing() {
             </h2>
             <p className="text-text-secondary text-[15px] leading-relaxed max-w-[440px]">
               Same offer for every business. Payment plan available with 50% down.
-              If it&apos;s not a fit, I&apos;ll tell you straight in 24 hours.
+              If it&apos;s not a fit, I&apos;ll tell you in five minutes on the call.
             </p>
           </RevealOnScroll>
 
@@ -578,19 +578,19 @@ function FinalCTA() {
         <RevealOnScroll>
           <div className="max-w-[840px] mx-auto text-center">
             <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-8">
-              Start a Project
+              Book the call
             </p>
             <h2 className="font-display text-[clamp(2.6rem,6vw,5.5rem)] tracking-[-0.03em] leading-[0.95] mb-8">
-              Tell me about your business. <br />
-              <span className="text-text-secondary">I&apos;ll tell you if this is the move.</span>
+              Twenty minutes. <br />
+              <span className="text-text-secondary">Five if it&apos;s not a fit.</span>
             </h2>
             <p className="text-text-secondary text-lg md:text-xl leading-relaxed mb-14 max-w-[560px] mx-auto">
-              I take on three Operator Stack clients a month. Send me a quick message about
-              your business and I&apos;ll come back with a straight answer in 24 hours. No call required.
+              I take on three Operator Stack clients a month. If you&apos;re serious, get on the
+              call and I&apos;ll tell you straight if this is the move for your business.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <GlowLink href="/contact?ref=operator">Start a Project</GlowLink>
+              <GlowLink href="/contact?ref=operator">Book the call</GlowLink>
               <a
                 href="https://instagram.com/jdlo"
                 target="_blank"
