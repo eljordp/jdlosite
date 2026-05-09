@@ -171,10 +171,10 @@ export default function AboutPage() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { name: "West Coast Terpz", what: "E-commerce store", result: "$12K+/mo in online sales" },
+              { name: "World Class Exotics", what: "Luxury rental platform", result: "Booking + fleet showcase" },
               { name: "Club Bot / Velvet", what: "AI promoter platform", result: "500+ guests automated per week" },
               { name: "Cubicship / DHL", what: "Enterprise translator app", result: "100+ stores, expanding to Canada" },
-              { name: "Pomaika'i Co", what: "Agency site + ops dashboard", result: "Replaced 5 tools, saved 20hrs/wk" },
+              { name: "BayParlays", what: "AI parlay optimizer", result: "Stripe live, sharp-edge analysis" },
               { name: "Quanta Casino", what: "Full online casino", result: "23 games, real-time multiplayer" },
               { name: "Aesthetics By Kayy", what: "Website + booking", result: "Luxury studio, Big Island Hawaii" },
             ].map((client, i) => (

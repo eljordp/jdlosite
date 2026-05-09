@@ -5,7 +5,7 @@ import { useRef, useEffect, useState } from 'react';
 const BASE = 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69705b759c8dc226ae265997/';
 
 const photos = [
-  { src: '/photos/suit-lv.jpg', alt: 'Suit in front of Louis Vuitton, Vegas', story: 'Vegas with the Pomaika\'i team. Pulled up suited outside LV just to do it. Six months earlier I didn\'t have two pennies to rub together. this trip was proof that things were moving.' },
+  { src: '/photos/suit-lv.jpg', alt: 'Suit in front of Louis Vuitton, Vegas', story: 'Vegas. Pulled up suited outside LV just to do it. Six months earlier I didn\'t have two pennies to rub together. This trip was proof that things were moving.' },
   { src: `${BASE}4b6dbfd71_image.png`, alt: 'Palm Trees', story: 'LA. Every time I pull up it feels different. like the city knows you\'re serious now. Palm trees hitting, energy right, something always about to happen.' },
   { src: '/jordan-2.jpg', alt: 'Jordan Lopez', story: 'Vegas, right after a UFC fight. Looking off into the distance thinking about how high the limit actually goes. That city does something to your ambition.' },
   { src: `${BASE}f97897ac6_image.png`, alt: 'Squad Up', story: 'Me and my bro with Icewear Vezzo. Detroit rapper, serious catalog, and he just happened to be right there. That\'s the thing about moving in the right circles. you stop being surprised when you\'re next to people like this.' },

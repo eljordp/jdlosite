@@ -227,10 +227,10 @@ function Pricing() {
 /* ────────────────────────────────────────────────── */
 const caseStudies = [
   {
-    name: "Pomaika\u2018i Co",
+    name: "World Class Exotics",
     result:
-      "Full agency website and internal operations dashboard for a growing creative agency.",
-    stats: ["$5K build", "20 hrs/wk saved on ops"],
+      "Luxury exotic car rental platform with booking and a curated fleet showcase.",
+    stats: ["Custom platform", "Premium design"],
   },
   {
     name: "The Sticker Smith",

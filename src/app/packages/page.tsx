@@ -100,7 +100,7 @@ function getPackagesForNiche(niche: string): PackageData[] {
           price: "$4,000",
           tagline: "Turn one-time buyers into regulars.",
           popular: true,
-          desc: "Website + SMS loyalty program + reorder campaigns. Built this exact stack for West Coast Terpz, who went from Instagram DMs to $12K+/mo in online sales. Same system, your brand.",
+          desc: "Website + SMS loyalty program + reorder campaigns. The system that turns one-time buyers into repeat customers without you running campaigns by hand. Custom-built around your brand.",
           includes: ["Everything in Compliant & Online", "SMS loyalty + points system", "Automated reorder campaigns", "New product drop announcements", "Email capture + nurture sequence", "Analytics dashboard", "30 days support"],
         },
         {

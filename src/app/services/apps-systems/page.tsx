@@ -6,7 +6,7 @@ import ScrollHighlightText from "@/components/ScrollHighlightText";
 export const metadata = {
   title: "Apps & Systems | JDLO",
   description:
-    "Custom apps, AI receptionists, automation workflows, dashboards, and business systems that save 40+ hours a week and generate revenue while you sleep.",
+    "Custom apps, AI receptionists, automation workflows, dashboards, and business systems built around exactly how your business runs.",
 };
 
 const offerings = [
@@ -19,7 +19,7 @@ const offerings = [
   {
     num: "02",
     title: "Automation Workflows",
-    desc: "Replace 40+ hours of manual work every week. The repetitive tasks eating your team alive: data entry, follow-ups, scheduling, reporting. Handled automatically, every time, without mistakes.",
+    desc: "Replace the manual work eating your team alive. Data entry, follow-ups, scheduling, reporting. Handled automatically, every time, without mistakes. Velvet runs 500+ guest list bookings a week with no human touching it.",
     href: "/services/apps-systems/automation-workflows",
   },
   {
@@ -152,7 +152,7 @@ export default function AppsSystemsPage() {
       <section className="section-gap">
         <div className="max-w-[1400px] mx-auto px-6 md:px-10">
           <ScrollHighlightText
-            text="Most businesses waste 20 to 40 hours a week on things a system could handle. Answering the same questions. Manually booking appointments. Copying data between spreadsheets. I build the thing that does it all for you. And it never calls in sick."
+            text="Most businesses waste hours every week on things a system could handle automatically. Answering the same questions. Manually booking appointments. Copying data between spreadsheets. I build the thing that does it all for you. And it never calls in sick."
             className="font-[family-name:var(--font-display)] text-[clamp(1.8rem,4vw,3.5rem)] tracking-[-0.03em] leading-[1.2] max-w-[900px]"
           />
         </div>

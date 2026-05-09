@@ -304,14 +304,14 @@ function Pricing() {
 /* ── Proof ── */
 const proof = [
   {
-    name: "West Coast Terpz",
-    line: "Went from DMs and spreadsheets to $12K+/mo in online sales. Built in 10 days.",
-    stat: "$12K+/mo",
+    name: "World Class Exotics",
+    line: "Luxury exotic car rental platform. Booking flow, premium fleet showcase, custom build.",
+    stat: "Live platform",
   },
   {
-    name: "Pomaika'i Co",
-    line: "Replaced five tools with one system. Saved 20 hours a week for a six-figure agency.",
-    stat: "20 hrs/wk saved",
+    name: "BayParlays",
+    line: "AI parlay optimizer with sharp-edge analysis and CLV tracking. Stripe in production.",
+    stat: "Stripe live",
   },
   {
     name: "Velvet (Vegas)",

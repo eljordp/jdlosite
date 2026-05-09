@@ -225,10 +225,10 @@ function Process() {
 /* ── Work (featured 6) ── */
 const featured = [
   { category: "Casino", name: "Quanta", headline: "23 games, real-time multiplayer, $50K+ platform", stat: "$50K+", img: "/screenshots/quanta.png", slug: "quanta" },
-  { category: "AI / SaaS", name: "Velvet", headline: "Automates 500+ guest lists/week for Vegas promoters", stat: "500+ guests/wk", img: "/screenshots/club-bot.png", slug: "club-bot" },
-  { category: "Agency", name: "Pomaika\u2018i Co", headline: "Replaced 5 tools, saved 20hrs/week for a six-figure agency", stat: "$5K project", img: "/screenshots/pomaikai.png", slug: "pomaikai" },
+  { category: "AI / SaaS", name: "Velvet", headline: "Automates 500+ guest lists/week for Vegas nightclub promoters", stat: "500+ guests/wk", img: "/screenshots/club-bot.png", slug: "club-bot" },
+  { category: "Website / Luxury", name: "World Class Exotics", headline: "Exotic car rental platform with booking and fleet showcase", stat: "Luxury fleet", img: "/screenshots/quanta.png", slug: "world-class-exotics" },
   { category: "Enterprise", name: "DHL Training", headline: "Gamified training app for 100+ stores across Chicago, DHL premier partner", stat: "100+ stores", img: "/screenshots/dhl-translator.png", slug: "dhl-translator", link: "https://dhltranslator.vercel.app" },
-  { category: "E-commerce", name: "West Coast Terpz", headline: "Went from Instagram DMs to $12K+/mo in online sales", stat: "$12K+/mo", img: "/screenshots/west-coast-terpz.png", slug: "west-coast-terpz" },
+  { category: "AI / SaaS", name: "BayParlays", headline: "AI parlay optimizer with sharp-edge analysis and CLV tracking \u2014 Stripe live", stat: "Live product", img: "/screenshots/quanta.png", slug: "bayparlays" },
   { category: "AI / Tool", name: "HOA Dispute Bot", headline: "Electron AI overlay app that coaches homeowners through disputes in real time", stat: "AI overlay", img: "/screenshots/quanta.png", slug: "hoa-dispute" },
 ];
 
@@ -325,10 +325,10 @@ function MidCTA({ text, href, label }: { text: string; href: string; label: stri
 /* ── Results ── */
 function Results() {
   const stats: { countEnd: number | null; prefix?: string; suffix: string; plainNum: string | null; label: string; desc: string }[] = [
-    { countEnd: null, suffix: "", plainNum: "$12K+/mo", label: "West Coast Terpz", desc: "Took a local cannabis brand from Instagram DMs to a real e-commerce operation." },
+    { countEnd: null, suffix: "", plainNum: "$50K+", label: "Quanta Casino", desc: "Full sweepstakes casino built from scratch. 23 games, real-time multiplayer, admin panel." },
     { countEnd: null, suffix: "", plainNum: "100+", label: "Cubicship / DHL stores", desc: "Translator app live across DHL premier partner stores in Chicago, expanding to Canada." },
     { countEnd: null, suffix: "", plainNum: "500+", label: "Velvet guest lists/wk", desc: "Vegas nightclub promoter automated. Tao Group venues — Hakkasan, OMNIA, TAO, Marquee, Jewel." },
-    { countEnd: null, suffix: "", plainNum: "20 hrs/wk", label: "Pomaika'i Co", desc: "Replaced 5 separate tools with one custom dashboard for a six-figure consultancy." },
+    { countEnd: null, suffix: "", plainNum: "Stripe live", label: "BayParlays", desc: "AI parlay optimizer with sharp-edge analysis and CLV tracking. Stripe in production." },
     { countEnd: null, suffix: "", plainNum: "40+/mo", label: "Vacaville Appliance", desc: "AI receptionist that books service appointments while the owner sleeps." },
     { countEnd: null, suffix: "", plainNum: "2 weeks", label: "Average turnaround", desc: "Most websites go from first message to live in under 14 days. No discovery calls." },
   ];
@@ -388,33 +388,9 @@ function Testimonials() {
           </p>
         </RevealOnScroll>
 
-        {/* Featured testimonial - Malachi (big quote) */}
-        <RevealOnScroll>
-          <div className="max-w-[800px] mb-20">
-            <p className="font-display text-[8rem] leading-none text-text/10 mb-[-2rem]">&ldquo;</p>
-            <blockquote className="font-display italic text-[clamp(1.8rem,3.8vw,3.2rem)] tracking-[-0.02em] leading-[1.25] mb-8">
-              JP built our entire digital operation in two weeks. Website, dashboard, client portal — all of it. We were paying for five different tools and none of them talked to each other. He replaced all of that with one system. I don&apos;t know how he does it that fast, but it works and it hasn&apos;t broken once.
-            </blockquote>
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full bg-surface border border-border flex items-center justify-center">
-                <span className="text-text font-display text-lg">M</span>
-              </div>
-              <div>
-                <p className="text-text text-[14px] font-medium">Malachi Pesta</p>
-                <p className="text-text-muted text-[13px]">CEO & Founder, Pomaika&apos;i Co</p>
-              </div>
-            </div>
-          </div>
-        </RevealOnScroll>
-
-        {/* Additional shorter testimonials */}
+        {/* Testimonials grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {[
-            {
-              quote: "Went from DMs and spreadsheets to a full e-commerce site doing $12K a month. Jordan built it in like 10 days. Still can't believe it.",
-              name: "West Coast Terpz",
-              role: "E-commerce",
-            },
             {
               quote: "We needed something to handle 500+ guest lists a week. He built an AI system that does it automatically. Our promoters just send a name and it handles everything.",
               name: "Club Bot / Velvet",
@@ -424,6 +400,11 @@ function Testimonials() {
               quote: "He built us a translator app that handles 100+ stores across Chicago. We're expanding to Canada now. The app just works.",
               name: "Cubicship / DHL",
               role: "Enterprise",
+            },
+            {
+              quote: "AI receptionist books appointments while we sleep. 40+ a month coming in automatically. The phone hasn't rung at 11pm without being answered since launch.",
+              name: "Vacaville Appliance",
+              role: "AI Receptionist",
             },
           ].map((t, i) => (
             <RevealOnScroll key={t.name} delay={i + 1}>
@@ -472,12 +453,12 @@ function QuickQuoteSection() {
 
 /* ── Clients ── */
 const clients = [
-  { name: "West Coast Terpz", built: "E-commerce store", result: "$12K+/mo online sales" },
+  { name: "World Class Exotics", built: "Luxury rental platform", result: "Booking + fleet showcase" },
   { name: "Club Bot / Velvet", built: "AI promoter platform", result: "500+ guests/wk automated" },
-  { name: "Cubicship / DHL", built: "Enterprise translator", result: "100+ stores" },
-  { name: "Pomaika\u2018i Co", built: "Agency site + dashboard", result: "Replaced 5 tools" },
-  { name: "Quanta Casino", built: "Full online casino", result: "23 games, multiplayer" },
-  { name: "Aesthetics By Kayy", built: "Website + booking", result: "Luxury studio, Hawaii" },
+  { name: "Cubicship / DHL", built: "Enterprise translator", result: "100+ stores, expanding to Canada" },
+  { name: "BayParlays", built: "AI parlay optimizer", result: "Stripe live, sharp-edge analysis" },
+  { name: "Quanta Casino", built: "Full online casino", result: "23 games, real-time multiplayer" },
+  { name: "Aesthetics By Kayy", built: "Website + booking", result: "Luxury studio, Big Island Hawaii" },
 ];
 
 function Clients() {
