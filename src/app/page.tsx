@@ -229,7 +229,7 @@ const featured = [
   { category: "Agency", name: "Pomaika\u2018i Co", headline: "Replaced 5 tools, saved 20hrs/week for a six-figure agency", stat: "$5K project", img: "/screenshots/pomaikai.png", slug: "pomaikai" },
   { category: "Enterprise", name: "DHL Training", headline: "Gamified training app for 100+ stores across Chicago, DHL premier partner", stat: "100+ stores", img: "/screenshots/dhl-translator.png", slug: "dhl-translator", link: "https://dhltranslator.vercel.app" },
   { category: "E-commerce", name: "West Coast Terpz", headline: "Went from Instagram DMs to $12K+/mo in online sales", stat: "$12K+/mo", img: "/screenshots/west-coast-terpz.png", slug: "west-coast-terpz" },
-  { category: "Game", name: "JDLO The Game", headline: "Full RPG. 7 chapters, 20+ characters, original story", stat: "7 chapters", img: "/screenshots/jdlo-the-game.png", slug: "jdlo-the-game" },
+  { category: "AI / Tool", name: "HOA Dispute Bot", headline: "Electron AI overlay app that coaches homeowners through disputes in real time", stat: "AI overlay", img: "/screenshots/quanta.png", slug: "hoa-dispute" },
 ];
 
 function Work() {
@@ -325,12 +325,12 @@ function MidCTA({ text, href, label }: { text: string; href: string; label: stri
 /* ── Results ── */
 function Results() {
   const stats: { countEnd: number | null; prefix?: string; suffix: string; plainNum: string | null; label: string; desc: string }[] = [
-    { countEnd: 30, suffix: "+", plainNum: null, label: "Projects shipped", desc: "Every one is live. Every client knows me on a first-name basis." },
-    { countEnd: 12, prefix: "$", suffix: "K+/mo", plainNum: null, label: "In recurring sales unlocked", desc: "West Coast Terpz went from Instagram DMs to $12K+/month in 10 days." },
-    { countEnd: 100, suffix: "+", plainNum: null, label: "Stores running my code", desc: "DHL premier partner using my translator app across Chicago. Expanding to Canada." },
-    { countEnd: 500, suffix: "+", plainNum: null, label: "Weekly automations", desc: "Guest list signups, AI bookings, customer chats, all running without a human in the loop." },
-    { countEnd: 65, suffix: " hrs/wk", plainNum: null, label: "Saved across clients", desc: "Pomaika'i alone got 20 hours back. Vegas promoter 30. Add it up." },
-    { countEnd: null, suffix: "", plainNum: "2 weeks", label: "Average turnaround", desc: "Most websites go from first message to live in under 14 days." },
+    { countEnd: null, suffix: "", plainNum: "$12K+/mo", label: "West Coast Terpz", desc: "Took a local cannabis brand from Instagram DMs to a real e-commerce operation." },
+    { countEnd: null, suffix: "", plainNum: "100+", label: "Cubicship / DHL stores", desc: "Translator app live across DHL premier partner stores in Chicago, expanding to Canada." },
+    { countEnd: null, suffix: "", plainNum: "500+", label: "Velvet guest lists/wk", desc: "Vegas nightclub promoter automated. Tao Group venues — Hakkasan, OMNIA, TAO, Marquee, Jewel." },
+    { countEnd: null, suffix: "", plainNum: "20 hrs/wk", label: "Pomaika'i Co", desc: "Replaced 5 separate tools with one custom dashboard for a six-figure consultancy." },
+    { countEnd: null, suffix: "", plainNum: "40+/mo", label: "Vacaville Appliance", desc: "AI receptionist that books service appointments while the owner sleeps." },
+    { countEnd: null, suffix: "", plainNum: "2 weeks", label: "Average turnaround", desc: "Most websites go from first message to live in under 14 days. No discovery calls." },
   ];
   return (
     <section className="section-gap border-t border-border">
@@ -341,7 +341,7 @@ function Results() {
               The Receipts
             </p>
             <p className="text-text-muted text-[11px] font-mono hidden md:block">
-              Real numbers from real clients
+              Real numbers, real clients, named.
             </p>
           </div>
         </RevealOnScroll>

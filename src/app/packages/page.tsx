@@ -100,7 +100,7 @@ function getPackagesForNiche(niche: string): PackageData[] {
           price: "$4,000",
           tagline: "Turn one-time buyers into regulars.",
           popular: true,
-          desc: "Website + SMS loyalty program + reorder campaigns. Dispensaries that do this see 40-60% repeat purchase rates. I've built this system. It works.",
+          desc: "Website + SMS loyalty program + reorder campaigns. Built this exact stack for West Coast Terpz, who went from Instagram DMs to $12K+/mo in online sales. Same system, your brand.",
           includes: ["Everything in Compliant & Online", "SMS loyalty + points system", "Automated reorder campaigns", "New product drop announcements", "Email capture + nurture sequence", "Analytics dashboard", "30 days support"],
         },
         {
@@ -154,7 +154,7 @@ function getPackagesForNiche(niche: string): PackageData[] {
           price: "$4,500",
           tagline: "Never lose a lead again.",
           popular: true,
-          desc: "Website + CRM + instant lead follow-up automation. 78% of deals go to the first agent who responds. This system responds in under 5 minutes, every time.",
+          desc: "Website + CRM + instant lead follow-up automation. The first agent to respond usually wins the deal. This system responds in under 5 minutes, every time, automatically.",
           includes: ["Everything in Agent Site", "CRM + lead pipeline", "Instant lead follow-up (< 5 min)", "Automated nurture sequences", "Showing scheduler", "AI-generated listing descriptions", "Analytics dashboard", "30 days support"],
         },
         {
@@ -173,7 +173,7 @@ function getPackagesForNiche(niche: string): PackageData[] {
           name: "Book Online",
           price: "$997",
           tagline: "Stop losing clients to phone tag.",
-          desc: "Clean website with online booking so clients can schedule 24/7 without calling. Calendar syncs, confirmations sent automatically. Most shops recoup this in a month.",
+          desc: "Clean website with online booking so clients can schedule 24/7 without calling. Calendar syncs, confirmations sent automatically. Aesthetics By Kayy on the Big Island runs on this exact setup.",
           includes: ["Custom website", "Online booking system", "Calendar sync", "Automated confirmations + reminders", "Google Business setup", "Mobile responsive"],
         },
         {
@@ -181,7 +181,7 @@ function getPackagesForNiche(niche: string): PackageData[] {
           price: "$2,500",
           tagline: "Stay booked solid.",
           popular: true,
-          desc: "Booking + automated review requests after every appointment + rebooking reminders. The shops doing this are always full. It's not luck, it's the system.",
+          desc: "Booking + automated review requests after every appointment + rebooking reminders. The system that keeps the calendar full without you having to think about it.",
           includes: ["Everything in Book Online", "Automated review requests (SMS)", "Rebooking reminder sequences", "Waitlist management", "Email capture + loyalty", "SEO + analytics", "30 days support"],
         },
         {
@@ -235,7 +235,7 @@ function getPackagesForNiche(niche: string): PackageData[] {
           price: "$3,000",
           tagline: "Turn leads into members automatically.",
           popular: true,
-          desc: "Website + trial booking funnel + automated onboarding + churn prevention. Gyms doing this keep members 2x longer on average. I'll show you exactly how.",
+          desc: "Website + trial booking funnel + automated onboarding + churn prevention. The system that turns walk-by traffic into long-term members without you remembering to follow up.",
           includes: ["Everything in Get Found", "Trial booking funnel", "Automated member onboarding", "Class reminder + no-show follow-up", "Churn prevention sequences", "Analytics dashboard", "30 days support"],
         },
         {
@@ -289,7 +289,7 @@ function getPackagesForNiche(niche: string): PackageData[] {
           price: "$3,000",
           tagline: "Stop losing leads to missed calls.",
           popular: true,
-          desc: "Website + AI receptionist + automated follow-up. Every call gets answered, every lead gets followed up with. The service businesses doing this are booked out weeks ahead.",
+          desc: "Website + AI receptionist + automated follow-up. Every call gets answered, every lead gets followed up with. Built this for Vacaville Appliance — books 40+ service appointments/month while the owner sleeps.",
           includes: ["Everything in Get Found", "AI phone receptionist (24/7)", "Automated lead follow-up", "Online quote + booking request", "Review request automation", "Analytics dashboard", "30 days support"],
         },
         {

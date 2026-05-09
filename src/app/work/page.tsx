@@ -89,7 +89,6 @@ const PROJECTS: Project[] = [
   { name: "Manza Visuals", slug: "manza-visuals", categories: ["Website"], headline: "Portfolio site for a Bay Area videographer and visual artist", stats: ["Custom design", "Video portfolio", "Lead capture"] },
   { name: "fw.wheels", slug: "fw-wheels", categories: ["Website"], headline: "Wheel catalog and ordering system for auto dealer", stats: ["Full catalog", "MRR potential", "Custom built"] },
   // ── Games & creative ──
-  { name: "JDLO The Game", slug: "jdlo-the-game", categories: ["Game"], headline: "Full RPG video game with 7 chapters and cutscenes", stats: ["7 chapters", "20+ characters", "Full original story"] },
   { name: "JDLO Wii", slug: "jdlo-wii", categories: ["Game"], headline: "Wii Sports-inspired multiplayer web game", stats: ["1v1 multiplayer", "Web-based", "Original game"] },
   { name: "Robot Producer", slug: "robot-producer", categories: ["Pitch", "Website"], headline: "Full B2B sales system for selling robots to businesses", stats: ["Full sales kit", "ROI calculator", "4 platforms"] },
   { name: "Muddled by Mia", slug: "muddled-by-mia", categories: ["Website"], headline: "Website for a cocktail and mixology brand", stats: ["Custom design", "Brand identity", "Full website"] },

@@ -103,10 +103,10 @@ export default function AboutPage() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border rounded-xl overflow-hidden">
             {[
-              { num: "20+", label: "Projects shipped", sub: "Restaurants, casinos, cannabis, fashion, DHL, nightclubs, real estate" },
+              { num: "30+", label: "Projects shipped", sub: "Restaurants, casinos, cannabis, fashion, DHL, nightclubs, real estate" },
               { num: "5 months", label: "Self-taught", sub: "Went from zero to building full platforms for paying clients" },
               { num: "2 weeks", label: "Avg delivery", sub: "Most websites go live in under 2 weeks. Bigger builds depend on scope." },
-              { num: "100%", label: "Custom built", sub: "No templates. No page builders. Everything from scratch." },
+              { num: "0", label: "Templates used", sub: "Every site I ship is custom. No page builders, no Wix, no Squarespace shortcuts." },
             ].map((stat, i) => (
               <RevealOnScroll key={stat.label} delay={i + 1}>
                 <div className="bg-bg p-8 h-full">
