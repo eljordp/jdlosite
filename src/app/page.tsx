@@ -755,7 +755,6 @@ export default function Home() {
       <HomeNav />
       <Hero />
       <OperatorBanner />
-      <AcademyBanner />
       <Services />
       <Process />
       <Work />
