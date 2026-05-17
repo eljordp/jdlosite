@@ -120,10 +120,10 @@ export default function BrochurePage() {
             <div>
               <h3 style={{ fontSize: "18pt" }}>Operator Stack</h3>
               <p className="muted" style={{ margin: "6px 0 0" }}>
-                Full install + monthly partnership
+                Full install + ongoing partnership
               </p>
             </div>
-            <div className="price">$5,000 install &middot; $1,500 / mo</div>
+            <div className="price">$2,500 install &middot; $500 / mo</div>
           </div>
 
           <ul>
@@ -373,7 +373,7 @@ export default function BrochurePage() {
         <div className="three" style={{ marginTop: 20, rowGap: 20, alignItems: "stretch" }}>
           <div className="pkg">
             <h3>Starter Site</h3>
-            <div className="pkg-price">$2,500</div>
+            <div className="pkg-price">$500</div>
             <p>For owners who need a real online presence fast.</p>
             <ul>
               <li>Custom 1&ndash;3 page site</li>
@@ -386,7 +386,7 @@ export default function BrochurePage() {
 
           <div className="pkg">
             <h3>Pro Site + CRM</h3>
-            <div className="pkg-price">$5,000</div>
+            <div className="pkg-price">$1,500</div>
             <p>The full conversion site, wired into a real pipeline.</p>
             <ul>
               <li>Multi-page custom site</li>
@@ -399,8 +399,8 @@ export default function BrochurePage() {
 
           <div className="pkg feature">
             <h3>Operator Stack</h3>
-            <div className="pkg-price">$5,000 + $1,500/mo</div>
-            <p>The full system. Owner-level leverage, monthly partnership.</p>
+            <div className="pkg-price">$2,500 + $500/mo</div>
+            <p>The full system. Owner-level leverage, ongoing partnership.</p>
             <ul>
               <li>Conversion site + CRM</li>
               <li>AI Operator (chat, qualify, follow-up)</li>
@@ -416,20 +416,20 @@ export default function BrochurePage() {
           <div className="thin-rule" />
           <div className="two">
             <div>
-              <p><strong>E-commerce storefront</strong> &middot; from $3,500</p>
-              <p><strong>Mobile app (iOS + Android)</strong> &middot; from $6,000</p>
-              <p><strong>Branding &amp; identity</strong> &middot; from $1,500</p>
+              <p><strong>E-commerce storefront</strong> &middot; from $1,500</p>
+              <p><strong>Mobile app (iOS + Android)</strong> &middot; from $2,500</p>
+              <p><strong>Branding &amp; identity</strong> &middot; from $500</p>
             </div>
             <div>
-              <p><strong>WhatsApp / Instagram AI agent</strong> &middot; from $1,500</p>
-              <p><strong>Internal dashboard / admin tool</strong> &middot; from $2,500</p>
-              <p><strong>Content system + calendar</strong> &middot; from $1,000</p>
+              <p><strong>WhatsApp / Instagram AI agent</strong> &middot; from $500</p>
+              <p><strong>Internal dashboard / admin tool</strong> &middot; from $750</p>
+              <p><strong>Content system + calendar</strong> &middot; from $300</p>
             </div>
           </div>
         </div>
 
         <p className="muted" style={{ marginTop: 24, fontSize: "9.5pt" }}>
-          Payment plans available on builds over $3,000 with a 40% deposit.
+          Payment plans available on builds over $1,500 with a 40% deposit.
         </p>
 
         <div className="footer-mark">JDLO</div>
