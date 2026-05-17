@@ -1,0 +1,265 @@
+.brochure-root {
+  --ink: #111111;
+  --paper: #faf7f2;
+  --rule: #1f1f1f;
+  --muted: #5a5550;
+  --accent: #7a1f1f;
+  --tint: #efe9df;
+
+  background: #e9e4dc;
+  color: var(--ink);
+  font-family: "Inter", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  padding: 24px 0 48px;
+  position: relative;
+  z-index: 1;
+}
+
+.brochure-root * { box-sizing: border-box; }
+
+.brochure-root .page {
+  width: 8.5in;
+  min-height: 11in;
+  margin: 24px auto;
+  padding: 0.85in 0.85in 0.75in;
+  background: var(--paper);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12);
+  page-break-after: always;
+  position: relative;
+}
+.brochure-root .page:last-child { page-break-after: auto; }
+
+.brochure-root h1,
+.brochure-root h2,
+.brochure-root h3,
+.brochure-root h4 {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  margin: 0;
+  color: var(--ink);
+}
+.brochure-root h1 { font-size: 56pt; line-height: 1.02; }
+.brochure-root h2 { font-size: 26pt; line-height: 1.1; margin-bottom: 14px; }
+.brochure-root h3 { font-size: 14pt; line-height: 1.2; margin-bottom: 6px; }
+.brochure-root h4 {
+  font-size: 11pt;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.brochure-root p,
+.brochure-root li {
+  font-size: 11pt;
+  line-height: 1.55;
+  color: var(--ink);
+  margin: 0 0 10px;
+}
+
+.brochure-root .muted { color: var(--muted); }
+.brochure-root .rule { height: 1px; background: var(--rule); width: 100%; margin: 14px 0 22px; }
+.brochure-root .thin-rule { height: 1px; background: rgba(31, 31, 31, 0.18); margin: 12px 0; }
+.brochure-root .small {
+  font-size: 9.5pt;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+}
+.brochure-root .pill {
+  display: inline-block;
+  padding: 4px 10px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  font-size: 9pt;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.brochure-root .pagenum {
+  position: absolute;
+  bottom: 0.45in;
+  right: 0.85in;
+  font-size: 9pt;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+}
+.brochure-root .footer-mark {
+  position: absolute;
+  bottom: 0.45in;
+  left: 0.85in;
+  font-size: 9pt;
+  color: var(--muted);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* Cover */
+.brochure-root .cover { display: flex; flex-direction: column; justify-content: space-between; min-height: 9.4in; }
+.brochure-root .cover .stamp { display: flex; justify-content: space-between; align-items: center; }
+.brochure-root .cover h1 { font-size: 92pt; line-height: 0.95; }
+.brochure-root .cover .sub {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: 22pt;
+  line-height: 1.25;
+  max-width: 5.5in;
+  color: var(--ink);
+}
+.brochure-root .cover .meta { display: flex; justify-content: space-between; align-items: flex-end; }
+.brochure-root .cover .meta div { font-size: 10pt; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
+
+/* Layouts */
+.brochure-root .two { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.brochure-root .three { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 22px; }
+.brochure-root .lede {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: 16pt;
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+/* Stack card */
+.brochure-root .stack { border: 1px solid var(--rule); padding: 28px 30px; background: #fff; margin-top: 8px; }
+.brochure-root .stack .price { font-family: "Instrument Serif", serif; font-size: 22pt; }
+.brochure-root .stack ul { margin: 14px 0 0; padding: 0; list-style: none; }
+.brochure-root .stack li {
+  padding: 10px 0;
+  border-top: 1px solid rgba(31, 31, 31, 0.12);
+  display: flex;
+  gap: 14px;
+}
+.brochure-root .stack li:first-child { border-top: 0; }
+.brochure-root .stack li .label { font-weight: 600; min-width: 1.8in; }
+.brochure-root .stack li .desc { color: var(--muted); flex: 1; }
+
+/* Service rows */
+.brochure-root .svc { padding: 16px 0; border-top: 1px solid rgba(31, 31, 31, 0.12); }
+.brochure-root .svc:first-child { border-top: 0; }
+.brochure-root .svc h3 { margin-bottom: 4px; }
+.brochure-root .svc p { color: var(--muted); margin: 0; }
+
+/* Niche cards */
+.brochure-root .niche { border: 1px solid var(--rule); padding: 16px 18px; background: #fff; }
+.brochure-root .niche h3 { font-size: 12pt; margin-bottom: 4px; }
+.brochure-root .niche p { font-size: 10pt; color: var(--muted); margin: 0; }
+
+/* Pain table */
+.brochure-root table.pain { width: 100%; border-collapse: collapse; margin-top: 4px; }
+.brochure-root table.pain th,
+.brochure-root table.pain td {
+  text-align: left;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(31, 31, 31, 0.18);
+  vertical-align: top;
+}
+.brochure-root table.pain th {
+  font-size: 9.5pt;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 600;
+  border-bottom: 1px solid var(--rule);
+}
+.brochure-root table.pain td { font-size: 10.5pt; line-height: 1.5; }
+.brochure-root table.pain td:first-child {
+  font-family: "Instrument Serif", serif;
+  font-size: 12pt;
+  padding-right: 22px;
+  width: 42%;
+}
+
+/* Projects */
+.brochure-root .project {
+  padding: 14px 0;
+  border-top: 1px solid rgba(31, 31, 31, 0.14);
+  display: grid;
+  grid-template-columns: 1.6in 1fr 1in;
+  gap: 22px;
+  align-items: baseline;
+}
+.brochure-root .project:first-child { border-top: 0; }
+.brochure-root .project .name { font-family: "Instrument Serif", serif; font-size: 13pt; }
+.brochure-root .project .what { color: var(--muted); font-size: 10.5pt; line-height: 1.45; }
+.brochure-root .project .tag {
+  font-size: 9pt;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: right;
+}
+
+/* Packages */
+.brochure-root .pkg {
+  border: 1px solid var(--rule);
+  padding: 22px;
+  background: #fff;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.brochure-root .pkg h3 { font-size: 16pt; margin-bottom: 6px; }
+.brochure-root .pkg .pkg-price { font-family: "Instrument Serif", serif; font-size: 20pt; margin: 6px 0 12px; }
+.brochure-root .pkg p { font-size: 10pt; color: var(--muted); }
+.brochure-root .pkg ul { padding-left: 16px; margin: 6px 0 0; }
+.brochure-root .pkg li { font-size: 10pt; line-height: 1.5; margin: 0; }
+.brochure-root .pkg.feature { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.brochure-root .pkg.feature h3,
+.brochure-root .pkg.feature .pkg-price { color: var(--paper); }
+.brochure-root .pkg.feature p,
+.brochure-root .pkg.feature li { color: rgba(250, 247, 242, 0.78); }
+
+/* Process steps */
+.brochure-root .step {
+  display: grid;
+  grid-template-columns: 0.6in 1fr;
+  gap: 18px;
+  padding: 16px 0;
+  border-top: 1px solid rgba(31, 31, 31, 0.14);
+}
+.brochure-root .step:first-child { border-top: 0; }
+.brochure-root .step .n { font-family: "Instrument Serif", serif; font-size: 30pt; line-height: 1; color: var(--accent); }
+.brochure-root .step h3 { margin-bottom: 4px; }
+.brochure-root .step p { color: var(--muted); margin: 0; }
+
+/* Contact close */
+.brochure-root .close-card { border: 1px solid var(--rule); padding: 36px; background: #fff; }
+.brochure-root .close-card h2 { margin-bottom: 8px; }
+.brochure-root .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 22px; }
+.brochure-root .contact-grid h4 { margin-bottom: 8px; }
+.brochure-root .contact-grid p { margin: 4px 0; font-size: 11pt; }
+.brochure-root .contact-grid a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(31, 31, 31, 0.3);
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+  .brochure-root .page {
+    width: 100%;
+    min-height: auto;
+    padding: 32px 22px;
+    margin: 12px auto;
+  }
+  .brochure-root h1 { font-size: 44pt; }
+  .brochure-root .cover h1 { font-size: 52pt; }
+  .brochure-root h2 { font-size: 22pt; }
+  .brochure-root .two,
+  .brochure-root .three { grid-template-columns: 1fr; gap: 18px; }
+  .brochure-root .project { grid-template-columns: 1fr; gap: 4px; }
+  .brochure-root .project .tag { text-align: left; }
+  .brochure-root .pagenum,
+  .brochure-root .footer-mark { display: none; }
+  .brochure-root .stack li { flex-direction: column; gap: 4px; }
+  .brochure-root .stack li .label { min-width: 0; }
+}
+
+/* Print: clean PDF export */
+@media print {
+  body::after { display: none !important; }
+  .brochure-root { background: #fff; padding: 0; }
+  .brochure-root .page { margin: 0; box-shadow: none; }
+}
