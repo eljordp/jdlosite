@@ -291,8 +291,8 @@ export const copy: Record<Lang, CopyShape> = {
       tiers: [
         {
           name: "Starter",
-          inr: "From ₹15,000",
-          usd: "≈ from $180",
+          inr: "From ₹30,000",
+          usd: "≈ from $360",
           sub: "one-time",
           desc: "Three ways to get online — pick the entry that fits your business. All include WhatsApp, mobile-first design, and your branding.",
           fit: "Best for: shops just getting online, small D2C brands, solo founders",
@@ -302,19 +302,19 @@ export const copy: Record<Lang, CopyShape> = {
           subTiers: [
             {
               label: "Express",
-              inr: "₹15,000",
+              inr: "₹30,000",
               days: "5 days",
               desc: "Single-page site, WhatsApp + UPI button, mobile-first.",
             },
             {
               label: "Growth",
-              inr: "₹35,000",
+              inr: "₹70,000",
               days: "10 days",
               desc: "Multi-page site, Razorpay + Instagram sync, lead inbox.",
             },
             {
               label: "Full",
-              inr: "₹85,000",
+              inr: "₹1,70,000",
               days: "14 days",
               desc: "Custom-designed site (not a template), full Razorpay flow, lead capture.",
             },
@@ -418,12 +418,12 @@ export const copy: Record<Lang, CopyShape> = {
       eyebrow: "FAQ",
       h2: "What people ask.",
       items: [
-        { q: "Why ₹85,000 when I can get a website for ₹10,000?", a: "Because that ₹10,000 site is a Wix template that breaks in 6 months and makes you look like every other small business. We build custom — your branding, your offer, your customer flow. Razorpay, WhatsApp, Instagram sync, lead inbox, all integrated. It's not a website, it's a system." },
+        { q: "Why ₹1,70,000 when I can get a website for ₹10,000?", a: "Because that ₹10,000 site is a Wix template that breaks in 6 months and makes you look like every other small business. We build custom — your branding, your offer, your customer flow. Razorpay, WhatsApp, Instagram sync, lead inbox, all integrated. It's not a website, it's a system." },
         { q: "How do payments work? Razorpay or international?", a: "All payments to us go through Razorpay or UPI in INR. No need for international banking, no currency conversion headaches. Kamesh handles all collection. You pay in rupees like any other Indian business." },
         { q: "Can I pay in EMI?", a: "Yes. Razorpay supports no-cost EMI on most credit cards (3-12 months). For Studio and Brand tiers we also offer a 50/50 plan — half upfront to start, half on delivery." },
         { q: "Will the site be in Hindi or English?", a: "Whichever you want. Most of our clients do bilingual — English for credibility, Hindi for warmth. Kamesh handles all the language work directly." },
         { q: "Do I own everything you build?", a: "Yes. Source code, domain, customer data, all of it. Nothing locked behind our account. If you want to leave us after launch, you keep the entire system. We just won't be there to fix things when they break." },
-        { q: "What if I just need a simple WhatsApp catalog?", a: "Then go with Starter — that's exactly what it's for. WhatsApp catalog, basic site, payments. Live in 7 days for ₹85K. Most fashion D2C brands start here." },
+        { q: "What if I just need a simple WhatsApp catalog?", a: "Then go with Starter — that's exactly what it's for. WhatsApp catalog, basic site, payments. Live in 7 days for ₹1,70,000. Most fashion D2C brands start here." },
         { q: "Can you handle SEO for India?", a: "Basic SEO is included in every tier — Google My Business setup, meta tags, sitemap. Deep SEO (content, backlinks, ranking work) is a separate engagement we can scope after launch." },
       ],
     },
@@ -517,8 +517,8 @@ export const copy: Record<Lang, CopyShape> = {
       tiers: [
         {
           name: "Starter",
-          inr: "₹15,000 से शुरू",
-          usd: "≈ $180 से",
+          inr: "₹30,000 से शुरू",
+          usd: "≈ $360 से",
           sub: "एक-बार",
           desc: "ऑनलाइन आने के तीन तरीके — अपने बिज़नेस के हिसाब से entry चुनें। सब में WhatsApp, मोबाइल-फर्स्ट डिज़ाइन, और आपकी ब्रांडिंग शामिल है।",
           fit: "Best for: ऑनलाइन शुरू करने वाली दुकानें, छोटे D2C ब्रांड्स, सोलो फाउंडर्स",
@@ -528,19 +528,19 @@ export const copy: Record<Lang, CopyShape> = {
           subTiers: [
             {
               label: "Express",
-              inr: "₹15,000",
+              inr: "₹30,000",
               days: "5 दिन",
               desc: "सिंगल-पेज साइट, WhatsApp + UPI बटन, मोबाइल-फर्स्ट।",
             },
             {
               label: "Growth",
-              inr: "₹35,000",
+              inr: "₹70,000",
               days: "10 दिन",
               desc: "मल्टी-पेज साइट, Razorpay + Instagram सिंक, लीड इनबॉक्स।",
             },
             {
               label: "Full",
-              inr: "₹85,000",
+              inr: "₹1,70,000",
               days: "14 दिन",
               desc: "कस्टम-डिज़ाइन्ड साइट (टेम्पलेट नहीं), पूरा Razorpay फ्लो, लीड कैप्चर।",
             },
@@ -644,12 +644,12 @@ export const copy: Record<Lang, CopyShape> = {
       eyebrow: "FAQ",
       h2: "लोग क्या पूछते हैं।",
       items: [
-        { q: "₹85,000 क्यों जब ₹10,000 में वेबसाइट मिल जाती है?", a: "क्योंकि वो ₹10,000 की साइट Wix टेम्पलेट है जो 6 महीने में टूट जाती है और आपको हर दूसरे small business जैसा दिखाती है। हम कस्टम बनाते हैं — आपकी ब्रांडिंग, आपका ऑफर, आपका ग्राहक फ्लो। Razorpay, WhatsApp, Instagram सिंक, लीड इनबॉक्स, सब इंटीग्रेटेड। यह वेबसाइट नहीं, सिस्टम है।" },
+        { q: "₹1,70,000 क्यों जब ₹10,000 में वेबसाइट मिल जाती है?", a: "क्योंकि वो ₹10,000 की साइट Wix टेम्पलेट है जो 6 महीने में टूट जाती है और आपको हर दूसरे small business जैसा दिखाती है। हम कस्टम बनाते हैं — आपकी ब्रांडिंग, आपका ऑफर, आपका ग्राहक फ्लो। Razorpay, WhatsApp, Instagram सिंक, लीड इनबॉक्स, सब इंटीग्रेटेड। यह वेबसाइट नहीं, सिस्टम है।" },
         { q: "पेमेंट्स कैसे काम करते हैं? Razorpay या इंटरनेशनल?", a: "हमें सारे पेमेंट्स Razorpay या UPI से INR में आते हैं। इंटरनेशनल बैंकिंग की ज़रूरत नहीं, करेंसी कन्वर्ज़न का टेंशन नहीं। Kamesh सब कलेक्शन संभालता है। आप रुपयों में पे करते हैं, जैसे कोई भी भारतीय बिज़नेस।" },
         { q: "EMI में पे कर सकता हूँ?", a: "हाँ। Razorpay ज़्यादातर क्रेडिट कार्ड्स पर no-cost EMI सपोर्ट करता है (3-12 महीने)। Studio और Brand टियर्स के लिए 50/50 प्लान भी है — आधा शुरू में, आधा डिलीवरी पर।" },
         { q: "साइट हिंदी में होगी या अंग्रेज़ी?", a: "आपकी मर्ज़ी। ज़्यादातर क्लाइंट्स bilingual करते हैं — credibility के लिए अंग्रेज़ी, warmth के लिए हिंदी। भाषा का सारा काम Kamesh ख़ुद संभालता है।" },
         { q: "जो आप बनाते हैं वो सब मेरा होता है?", a: "हाँ। सोर्स कोड, डोमेन, ग्राहक डेटा, सब। हमारे अकाउंट के पीछे कुछ लॉक नहीं। लॉन्च के बाद अगर आप छोड़ कर जाना चाहें, पूरा सिस्टम आपका रहेगा। बस हम नहीं होंगे फिक्स करने के लिए जब कुछ टूटे।" },
-        { q: "मुझे सिर्फ simple WhatsApp catalog चाहिए?", a: "तो Starter ले लें — इसी के लिए बनाया है। WhatsApp catalog, basic साइट, payments। ₹85K में 7 दिनों में लाइव। ज़्यादातर fashion D2C ब्रांड्स यहीं से शुरू करते हैं।" },
+        { q: "मुझे सिर्फ simple WhatsApp catalog चाहिए?", a: "तो Starter ले लें — इसी के लिए बनाया है। WhatsApp catalog, basic साइट, payments। ₹1,70,000 में 7 दिनों में लाइव। ज़्यादातर fashion D2C ब्रांड्स यहीं से शुरू करते हैं।" },
         { q: "भारत के लिए SEO संभाल सकते हैं?", a: "हर टियर में बेसिक SEO शामिल — Google My Business सेटअप, मेटा टैग्स, साइटमैप। डीप SEO (content, backlinks, ranking work) अलग एंगेजमेंट है जो लॉन्च के बाद scope कर सकते हैं।" },
       ],
     },
