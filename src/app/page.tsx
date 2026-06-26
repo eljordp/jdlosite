@@ -12,37 +12,37 @@ import CountUp from "@/components/CountUp";
 /* ── Hero ── */
 function Hero() {
   return (
-    <section className="min-h-screen flex flex-col justify-center relative px-6 md:px-10">
+    <section className="min-h-screen flex flex-col justify-center relative overflow-hidden px-4 sm:px-6 md:px-10">
 
       <div className="max-w-[1400px] mx-auto w-full relative z-10">
-        <div className="grid lg:grid-cols-[1.3fr_1fr] gap-12 lg:gap-20 items-center">
-          <div>
+        <div className="grid min-w-0 lg:grid-cols-[1.3fr_1fr] gap-12 lg:gap-20 items-center">
+          <div className="min-w-0">
             <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase mb-2 hero-animate hero-delay-1 font-mono">
-              Jordan Lopez, Operator
+              JDLO / Jordan Lopez
             </p>
             <p className="text-text-muted text-[11px] tracking-[0.08em] mb-10 hero-animate hero-delay-1 font-mono">
-              30+ businesses built &middot; Restaurants, nightclubs, cannabis, real estate, DHL, fashion, print shops
+              30+ projects shipped &middot; Websites, AI systems, dashboards, e-commerce, casinos, enterprise tools
             </p>
 
-            <h1 className="font-display hero-animate hero-delay-2 text-[clamp(2.8rem,7.5vw,6.5rem)] leading-[0.95] tracking-[-0.03em]">
-              <SplitText staggerMs={55}>If you can think it,</SplitText>
+            <h1 className="font-display hero-animate hero-delay-2 text-[clamp(2.8rem,7vw,5.7rem)] leading-[0.95] tracking-[-0.03em]">
+              <SplitText staggerMs={55}>Your business is bigger</SplitText>
               <br />
-              <SplitText delay={0.3} staggerMs={55}>I can build it.</SplitText>
+              <SplitText delay={0.3} staggerMs={55}>than your website shows.</SplitText>
             </h1>
 
-        <div className="hero-animate hero-delay-3 mt-12 flex flex-col md:flex-row md:items-end md:justify-between gap-10">
+        <div className="hero-animate hero-delay-3 mt-10 flex flex-col items-start gap-7">
           <p className="text-text-secondary text-lg md:text-xl leading-relaxed max-w-[480px]">
-            Websites. Apps. AI systems. Games. Dashboards. Online casinos. If it lives on a screen and makes you money, I build it.
+            I build the online system behind your business: custom site, CRM, AI follow-up, booking, payments, dashboard, and whatever else makes the operation run smoother.
           </p>
-          <div className="flex items-center gap-4">
-            <GlowLink href="/contact">
+          <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:items-center sm:gap-4">
+            <GlowLink href="/contact" className="w-full sm:w-auto">
               Start a Project
             </GlowLink>
             <a
               href="https://instagram.com/jdlo"
               target="_blank"
               rel="noopener noreferrer"
-              className="ghost-btn"
+              className="ghost-btn w-full sm:w-auto"
             >
               DM @jdlo
             </a>
@@ -81,7 +81,7 @@ function OperatorBanner() {
           <div className="flex items-center gap-3 min-w-0">
             <span className="text-[10px] tracking-[0.5em] uppercase font-mono text-accent shrink-0">New offer</span>
             <span className="text-sm font-medium text-text-primary truncate">
-              The Operator Stack — site, CRM, AI follow-up, dashboard. The system that runs your business.
+              The Operator Stack - site, CRM, AI follow-up, dashboard. The system behind the business.
             </span>
           </div>
           <span className="text-text-muted group-hover:text-text-primary transition-colors text-sm shrink-0">See it →</span>
@@ -148,6 +148,42 @@ function Services() {
               03 offerings
             </p>
           </div>
+          <div className="mb-12 max-w-[760px]">
+            <h2 className="font-display text-[clamp(2.1rem,5vw,4rem)] tracking-[-0.03em] leading-[0.98] mb-5">
+              Start with the Operator Stack.
+            </h2>
+            <p className="text-text-secondary text-[15px] md:text-[17px] leading-relaxed max-w-[620px]">
+              If you know your business needs to look more serious and stop losing leads,
+              this is the front door: website, CRM, AI follow-up, booking, payments,
+              automation, and a dashboard built around how you actually operate.
+            </p>
+          </div>
+        </RevealOnScroll>
+
+        <RevealOnScroll>
+          <Link
+            href="/operator"
+            className="group block border border-border rounded-2xl p-6 md:p-8 mb-8 bg-surface hover:border-text/20 transition-colors duration-300"
+          >
+            <div className="grid md:grid-cols-[1fr_auto] gap-6 md:items-end">
+              <div>
+                <p className="text-accent text-[11px] tracking-[0.4em] uppercase font-mono mb-4">
+                  Main offer
+                </p>
+                <h3 className="font-display text-[clamp(1.8rem,4vw,3rem)] tracking-[-0.03em] leading-[1] mb-4">
+                  The Operator Stack
+                </h3>
+                <p className="text-text-secondary text-[14px] md:text-[15px] leading-relaxed max-w-[640px]">
+                  One build that connects your public site, lead capture, follow-up,
+                  booking, payments, and owner dashboard so the business feels bigger
+                  without adding another employee.
+                </p>
+              </div>
+              <span className="text-[13px] font-mono text-text group-hover:text-accent transition-colors">
+                See the offer &rarr;
+              </span>
+            </div>
+          </Link>
         </RevealOnScroll>
 
         <div>
@@ -226,10 +262,10 @@ function Process() {
 const featured = [
   { category: "Casino", name: "Quanta", headline: "23 games, real-time multiplayer, $50K+ platform", stat: "$50K+", img: "/screenshots/quanta.png", slug: "quanta" },
   { category: "AI / SaaS", name: "Velvet", headline: "Automates 500+ guest lists/week for Vegas nightclub promoters", stat: "500+ guests/wk", img: "/screenshots/club-bot.png", slug: "club-bot" },
-  { category: "Website / Luxury", name: "World Class Exotics", headline: "Exotic car rental platform with booking and fleet showcase", stat: "Luxury fleet", img: "/screenshots/quanta.png", slug: "world-class-exotics" },
-  { category: "Enterprise", name: "DHL Training", headline: "Gamified training app for 100+ stores across Chicago, DHL premier partner", stat: "100+ stores", img: "/screenshots/dhl-translator.png", slug: "dhl-translator", link: "https://dhltranslator.vercel.app" },
-  { category: "AI / SaaS", name: "BayParlays", headline: "AI parlay optimizer with sharp-edge analysis and CLV tracking \u2014 Stripe live", stat: "Live product", img: "/screenshots/quanta.png", slug: "bayparlays" },
-  { category: "AI / Tool", name: "HOA Dispute Bot", headline: "Electron AI overlay app that coaches homeowners through disputes in real time", stat: "AI overlay", img: "/screenshots/quanta.png", slug: "hoa-dispute" },
+  { category: "Website / Luxury", name: "World Class Exotics", headline: "Exotic car rental platform with booking and fleet showcase", stat: "Luxury fleet", img: "/screenshots/world-class-exotics.png", slug: "world-class-exotics" },
+  { category: "Enterprise", name: "DHL Training", headline: "Gamified training app for 100+ stores across Chicago, DHL premier partner", stat: "100+ stores", img: "/screenshots/dhl-translator.png", slug: "dhl-translator", link: "https://cubicship-translator.vercel.app" },
+  { category: "Logistics / SaaS", name: "Travelyt", headline: "Door-to-airport baggage delivery platform with quote flow and booking", stat: "Full platform", img: "/screenshots/travelyt.png", slug: "travelyt", link: "https://travelyt-psi.vercel.app" },
+  { category: "Website / AI", name: "Pomaika'i Co", headline: "Centralized operations for a six-figure consultancy", stat: "5 tools replaced", img: "/screenshots/pomaikai.png", slug: "pomaikai" },
 ];
 
 function Work() {
@@ -250,7 +286,7 @@ function Work() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {featured.map((project, i) => (
             <RevealOnScroll key={project.name} delay={(i % 3) + 1}>
-              <Link href={`/work/${project.slug}`} className="group block">
+              <Link href={project.link ?? `/work/${project.slug}`} className="group block">
                 <div className="rounded-xl border border-border overflow-hidden mb-4 bg-surface">
                   <Image
                     src={project.img}
@@ -307,11 +343,11 @@ function MidCTA({ text, href, label }: { text: string; href: string; label: stri
             <p className="text-[clamp(1.1rem,2vw,1.4rem)] font-medium tracking-[-0.02em] max-w-[500px]">
               {text}
             </p>
-            <div className="flex gap-3 shrink-0">
-              <Link href={href} className="magnetic-btn !py-2.5 !px-6 !text-[13px]">
+            <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:shrink-0">
+              <Link href={href} className="magnetic-btn w-full sm:w-auto !py-2.5 !px-6 !text-[13px]">
                 <span className="relative z-10">{label}</span>
               </Link>
-              <a href="https://instagram.com/jdlo" target="_blank" rel="noopener noreferrer" className="ghost-btn !py-2.5 !px-6 !text-[13px]">
+              <a href="https://instagram.com/jdlo" target="_blank" rel="noopener noreferrer" className="ghost-btn w-full sm:w-auto !py-2.5 !px-6 !text-[13px]">
                 DM @jdlo
               </a>
             </div>
@@ -614,7 +650,7 @@ function FAQ() {
 /* ── Reach Out ── */
 function ReachOut() {
   return (
-    <section className="section-gap relative">
+    <section className="section-gap relative overflow-hidden">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-text/[0.02] rounded-full blur-[150px] pointer-events-none" />
 
       <div className="max-w-[1400px] mx-auto px-6 md:px-10 relative z-10">
@@ -693,6 +729,8 @@ function Footer() {
             <div>
               <p className="text-text text-[13px] font-semibold mb-4">Pages</p>
               <div className="flex flex-col gap-2.5">
+                <Link href="/services" className="text-text-muted text-[12px] hover:text-text transition-colors">Services</Link>
+                <Link href="/work" className="text-text-muted text-[12px] hover:text-text transition-colors">Work</Link>
                 <Link href="/about" className="text-text-muted text-[12px] hover:text-text transition-colors">About</Link>
                 <Link href="/contact" className="text-text-muted text-[12px] hover:text-text transition-colors">Contact</Link>
               </div>
@@ -731,15 +769,15 @@ function Footer() {
 function StickyMobileCTA() {
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden border-t border-border bg-bg/90 backdrop-blur-lg px-4 py-3">
-      <div className="flex gap-3">
-        <Link href="/contact" className="magnetic-btn flex-1 justify-center !py-2.5 !text-[13px]">
+      <div className="grid grid-cols-2 gap-3">
+        <Link href="/contact" className="magnetic-btn min-w-0 justify-center !px-3 !py-2.5 !text-[13px]">
           <span className="relative z-10">Start a Project</span>
         </Link>
         <a
           href="https://instagram.com/jdlo"
           target="_blank"
           rel="noopener noreferrer"
-          className="ghost-btn flex-1 justify-center !py-2.5 !text-[13px]"
+          className="ghost-btn min-w-0 justify-center !px-3 !py-2.5 !text-[13px]"
         >
           DM @jdlo
         </a>

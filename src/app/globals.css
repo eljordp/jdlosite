@@ -280,6 +280,17 @@ body::after {
   pointer-events: none;
 }
 
+@media (max-width: 640px) {
+  .magnetic-btn,
+  .ghost-btn {
+    max-width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    text-align: center;
+    white-space: normal;
+  }
+}
+
 
 /* ── Ghost button ── */
 .ghost-btn {

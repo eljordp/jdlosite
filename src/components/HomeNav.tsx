@@ -6,7 +6,7 @@ import { GlowLink } from '@/components/GlowButton';
 import { usePortal } from '@/components/PortalTransition';
 
 const links = [
-  { label: 'Services', href: '/#services' },
+  { label: 'Services', href: '/services' },
   { label: 'Work', href: '/work' },
   { label: 'Packages', href: '/packages' },
   { label: 'About', href: '/about' },
@@ -20,7 +20,7 @@ export default function HomeNav() {
   return (
     <>
       <nav className="fixed top-0 left-0 right-0 z-50 nav-blur">
-        <div className="max-w-[1400px] mx-auto px-6 md:px-10 h-14 flex items-center justify-between">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-10 h-14 flex items-center justify-between">
           <Link href="/" className="text-[15px] font-semibold tracking-tight">
             JDLO
           </Link>
@@ -39,9 +39,11 @@ export default function HomeNav() {
           </div>
 
           <div className="flex items-center gap-3">
-            <GlowLink href="/contact" className="!py-1.5 !px-5 !text-[13px]">
-              Let&apos;s Talk
-            </GlowLink>
+            <div className="hidden sm:block">
+              <GlowLink href="/contact" className="!py-1.5 !px-5 !text-[13px]">
+                Let&apos;s Talk
+              </GlowLink>
+            </div>
             {/* Mobile hamburger */}
             <button
               onClick={() => setOpen(true)}

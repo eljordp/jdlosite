@@ -7,7 +7,7 @@ export default function CreativePage() {
   return (
     <PageShell activeSlug="services">
       {/* ── Hero ── */}
-      <section className="min-h-[90vh] flex items-end relative px-6 md:px-10 pb-[14vh]">
+      <section className="min-h-[90vh] flex items-end relative overflow-hidden px-6 md:px-10 pb-[14vh]">
         <div className="absolute top-[15%] left-[10%] w-[600px] h-[600px] bg-text/[0.02] rounded-full blur-[200px] pointer-events-none" />
 
         <div className="max-w-[1400px] mx-auto w-full relative z-10">
@@ -377,7 +377,7 @@ export default function CreativePage() {
       </section>
 
       {/* ── CTA ── */}
-      <section className="section-gap border-t border-border relative">
+      <section className="section-gap border-t border-border relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-text/[0.02] rounded-full blur-[150px] pointer-events-none" />
 
         <div className="max-w-[1400px] mx-auto px-6 md:px-10 relative z-10">

@@ -89,7 +89,7 @@ export default function AppsSystemsPage() {
   return (
     <PageShell activeSlug="services">
       {/* ── Hero ── */}
-      <section className="min-h-[90vh] flex items-center relative">
+      <section className="min-h-[90vh] flex items-center relative overflow-hidden">
         <div className="absolute top-1/4 left-1/3 w-[500px] h-[500px] bg-accent/[0.03] rounded-full blur-[180px] pointer-events-none" />
         <div className="max-w-[1400px] mx-auto px-6 md:px-10 w-full relative z-10 pt-20">
           <p className="text-accent text-[11px] tracking-[0.5em] uppercase font-mono mb-8 hero-animate hero-delay-1">

@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 /* ────────────────────────────────────────────────── */
 function Hero() {
   return (
-    <section className="min-h-[85vh] flex flex-col justify-end relative px-6 md:px-10 pb-[10vh]">
+    <section className="min-h-[85vh] flex flex-col justify-end relative overflow-hidden px-6 md:px-10 pb-[10vh]">
       {/* ambient light */}
       <div className="absolute top-[18%] right-[6%] w-[600px] h-[600px] bg-text/[0.018] rounded-full blur-[200px] pointer-events-none" />
 

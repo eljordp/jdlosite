@@ -70,7 +70,7 @@ const projects: Record<string, {
       { value: "DHL", label: "Premier Partner" },
     ],
     screenshot: "/screenshots/cubicship.png",
-    liveUrl: "https://dhltranslator.vercel.app",
+    liveUrl: "https://cubicship-translator.vercel.app",
   },
   "dhl-cra-quiz": {
     name: "DHL CRA Quiz",

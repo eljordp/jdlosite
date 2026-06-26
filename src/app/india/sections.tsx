@@ -707,7 +707,7 @@ export function FAQ() {
 export function FinalCTA() {
   const { c } = useIndia();
   return (
-    <section className="section-gap relative">
+    <section className="section-gap relative overflow-hidden">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-text/[0.02] rounded-full blur-[150px] pointer-events-none" />
       <div className="max-w-[1400px] mx-auto px-6 md:px-10 relative z-10">
         <RevealOnScroll>

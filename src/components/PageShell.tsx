@@ -5,7 +5,7 @@ import Link from "next/link";
 import { GlowLink } from "@/components/GlowButton";
 
 const navLinks = [
-  { label: "Services", href: "/#services" },
+  { label: "Services", href: "/services" },
   { label: "Work", href: "/work" },
   { label: "Packages", href: "/packages" },
   { label: "About", href: "/about" },
@@ -23,7 +23,7 @@ export default function PageShell({ children, activeSlug }: PageShellProps) {
   return (
     <main>
       <nav className="fixed top-0 left-0 right-0 z-50 nav-blur border-b border-border">
-        <div className="max-w-[1400px] mx-auto px-6 h-12 flex items-center justify-between gap-6">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 h-12 flex items-center justify-between gap-6">
           <Link href="/" className="text-[15px] font-semibold tracking-tight shrink-0">
             JDLO
           </Link>
@@ -44,9 +44,11 @@ export default function PageShell({ children, activeSlug }: PageShellProps) {
           </div>
 
           <div className="flex items-center gap-3">
-            <GlowLink href="/contact" className="!py-1.5 !px-4 !text-[13px] shrink-0">
-              Let&apos;s Talk
-            </GlowLink>
+            <div className="hidden sm:block">
+              <GlowLink href="/contact" className="!py-1.5 !px-4 !text-[13px] shrink-0">
+                Let&apos;s Talk
+              </GlowLink>
+            </div>
             <button
               onClick={() => setOpen(true)}
               className="md:hidden p-2 -mr-1 text-text-muted hover:text-text transition-colors"

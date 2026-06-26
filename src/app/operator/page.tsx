@@ -363,7 +363,7 @@ function Proof() {
             href="/work"
             className="inline-flex items-center gap-2 text-accent text-[14px] font-mono font-medium hover:text-white border-b border-accent/40 hover:border-white pb-0.5 transition-all duration-300 mt-12 group"
           >
-            See all 20+ projects
+            See all 30+ projects
             <span className="group-hover:translate-x-1 transition-transform duration-200">
               &rarr;
             </span>
@@ -572,7 +572,7 @@ function FAQ() {
 /* ── Final CTA ── */
 function FinalCTA() {
   return (
-    <section className="section-gap relative">
+    <section className="section-gap relative overflow-hidden">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-text/[0.02] rounded-full blur-[150px] pointer-events-none" />
       <div className="max-w-[1400px] mx-auto px-6 md:px-10 relative z-10">
         <RevealOnScroll>
