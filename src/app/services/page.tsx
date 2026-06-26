@@ -100,6 +100,7 @@ export default function ServicesPage() {
                         src={item.img}
                         alt={item.name}
                         fill
+                        loading="eager"
                         className="object-cover object-top group-hover:scale-[1.03] transition-transform duration-500"
                         sizes="180px"
                       />

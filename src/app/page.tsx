@@ -293,6 +293,7 @@ function Work() {
                     alt={project.name}
                     width={600}
                     height={350}
+                    loading="eager"
                     className="w-full aspect-[16/10] object-cover object-top group-hover:scale-[1.02] transition-transform duration-500"
                   />
                 </div>
