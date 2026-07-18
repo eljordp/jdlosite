@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { track } from "@vercel/analytics";
+import posthog from "posthog-js";
 import { getVisitor, saveVisitor } from "@/lib/visitor";
 
 const industries = [
@@ -20,7 +22,7 @@ const needs = ["Website", "AI System", "App / Dashboard", "E-commerce Store", "A
 export default function QuickQuote() {
   const [form, setForm] = useState({ name: "", email: "", industry: "", needs: [] as string[], details: "" });
   const [otherIndustry, setOtherIndustry] = useState("");
-  const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
   // Load saved visitor data
   useEffect(() => {
@@ -48,20 +50,34 @@ export default function QuickQuote() {
     e.preventDefault();
     if (!form.email || !form.name) return;
     setStatus("sending");
-    await fetch("/api/lead", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        type: "inquiry",
-        name: form.name,
-        email: form.email,
-        service: form.needs.join(", ") || "Not specified",
-        message: `Industry: ${form.industry === "Other" ? (otherIndustry || "Other") : (form.industry || "Not specified")}. Needs: ${form.needs.join(", ") || "Not specified"}. Details: ${form.details || "None"}`,
-        budget: "Quick quote request",
-      }),
-    });
-    saveVisitor({ name: form.name, email: form.email, industry: form.industry, needs: form.needs });
-    setStatus("sent");
+    try {
+      const response = await fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: "inquiry",
+          name: form.name,
+          email: form.email,
+          service: form.needs.join(", ") || "Not specified",
+          message: `Industry: ${form.industry === "Other" ? (otherIndustry || "Other") : (form.industry || "Not specified")}. Needs: ${form.needs.join(", ") || "Not specified"}. Details: ${form.details || "None"}`,
+          budget: "Quick quote request",
+        }),
+      });
+
+      if (!response.ok) throw new Error("Lead submission failed");
+
+      const eventProperties = {
+        form: "homepage_quick_quote",
+        industry: form.industry || "Not specified",
+        services: form.needs.join(", ") || "Not specified",
+      };
+      track("lead_submitted", eventProperties);
+      posthog.capture("lead_submitted", eventProperties);
+      saveVisitor({ name: form.name, email: form.email, industry: form.industry, needs: form.needs });
+      setStatus("sent");
+    } catch {
+      setStatus("error");
+    }
   };
 
   if (status === "sent") {
@@ -175,6 +191,11 @@ export default function QuickQuote() {
           {status === "sending" ? "Sending..." : "Get My Free Quote"}
         </span>
       </button>
+      {status === "error" && (
+        <p className="text-red-600 text-[13px]">
+          Something went wrong. Please try again or DM me on Instagram.
+        </p>
+      )}
       <p className="text-text-muted text-[12px]">
         Or DM me directly: <a href="https://instagram.com/jdlo" target="_blank" rel="noopener noreferrer" className="text-text hover:underline">@jdlo</a>
       </p>

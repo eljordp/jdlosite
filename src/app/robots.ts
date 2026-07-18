@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: '/api/',
+      disallow: ['/api/', '/admin/', '/academy/', '/auth/', '/return'],
     },
     sitemap: 'https://jdlo.site/sitemap.xml',
   };

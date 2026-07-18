@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { track } from "@vercel/analytics";
+import posthog from "posthog-js";
 import PageShell from "@/components/PageShell";
 
 const serviceOptions = [
@@ -63,6 +65,13 @@ export default function ContactPage() {
       });
 
       if (res.ok) {
+        const eventProperties = {
+          form: "contact_page",
+          service: form.service || "Not specified",
+          budget: form.budget || "Not specified",
+        };
+        track("lead_submitted", eventProperties);
+        posthog.capture("lead_submitted", eventProperties);
         setStatus("sent");
         setForm({ name: "", email: "", service: "", message: "", budget: "" });
       } else {
