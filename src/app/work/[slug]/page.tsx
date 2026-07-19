@@ -87,8 +87,6 @@ const projects: Record<string, {
     revenue: "$1,300",
     screenshot: "/screenshots/vacaville-appliance.png",
     liveUrl: "https://vacavilleappliance.vercel.app",
-    quote: "Jordan built our website and AI receptionist, then helped connect how customers find us, get answers, and move into our service process. The result is a business that can handle more leads and jobs without every step depending on us.",
-    quoteAttribution: "Draft for Vacaville Appliance approval — not yet a client testimonial",
   },
   "pearl-farms": {
     name: "Pearl Farms / Napa",
