@@ -18,8 +18,8 @@ export default function WebDesignSystemsPage() {
     outcomes={["More qualified visitors take action.", "Customers understand the business before they call.", "The brand earns trust faster.", "New pages and offers can launch without breaking the system.", "Lead sources and conversion paths become measurable.", "The website supports sales instead of acting like a brochure."]}
     proof={[
       { name: "Vacaville Appliance", result: "Website and intake ecosystem supporting a real local service operation.", href: "/work/vacaville-appliance" },
-      { name: "The Sticker Smith", result: "A clearer public sales channel and custom ordering path for a print business.", href: "/work/sticker-smith" },
-      { name: "Pomaika‘i Co", result: "Growth and leadership paths for a consultancy with multiple offers.", href: "/work/pomaikai" },
+      { name: "Mo / DHL Systems", result: "Public tools and customer workflows connected to a wider operating relationship.", href: "/work/dhl-translator" },
+      { name: "Pearl Farms / Napa", result: "A Napa wine brand digital presence currently being built alongside internal systems.", href: "/work/pearl-farms" },
     ]}
   />;
 }

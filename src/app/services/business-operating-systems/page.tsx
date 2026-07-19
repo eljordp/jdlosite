@@ -18,8 +18,8 @@ export default function BusinessOperatingSystemsPage() {
     outcomes={["The team can see the same operational truth.", "Fewer tasks depend on memory.", "Owners spend less time coordinating routine work.", "Leads, jobs, and payments are easier to track.", "Bottlenecks show up before they become emergencies.", "The business can add volume without equal admin growth."]}
     proof={[
       { name: "Vacaville Appliance", result: "A live service operation with visible leads, jobs, invoicing, and customer workflows.", href: "/work/vacaville-appliance" },
-      { name: "Pomaika‘i Co", result: "Centralized operating tools for a consultancy with multiple delivery lanes.", href: "/work/pomaikai" },
-      { name: "Cubicship / DHL", result: "Purpose-built tools supporting a multi-location shipping operation.", href: "/work/dhl-translator" },
+      { name: "Mo / DHL Systems", result: "A translator, private hub, workflow materials, and decision-support tools across multiple operating lanes.", href: "/work/dhl-translator" },
+      { name: "Pearl Farms / Napa", result: "Email and phone operations plus a wine brand presence currently in progress.", href: "/work/pearl-farms" },
     ]}
   />;
 }

@@ -16,6 +16,8 @@ const projects: Record<string, {
   liveUrl?: string;
   noEmbed?: boolean;
   customSections?: boolean;
+  quote?: string;
+  quoteAttribution?: string;
 }> = {
   quanta: {
     name: "Quanta",
@@ -60,31 +62,17 @@ const projects: Record<string, {
     liveUrl: "https://poika.vercel.app",
   },
   "dhl-translator": {
-    name: "Cubicship Translator",
-    category: "Enterprise",
-    headline: "Translation system for a DHL premier partner operating in 100+ stores",
-    description: "Built for Cubicship, a DHL premier partner currently operating in over 100 stores in Chicago and expanding to Canada. The translator processes shipping documents, customs forms, and manifests at scale, eliminating hours of manual translation work across every location. Handles international logistics documentation so staff can focus on customers instead of paperwork.",
+    name: "Mo / DHL Systems",
+    category: "Enterprise + Operations",
+    headline: "A long-running systems relationship across stores, logistics, communication, and decision support",
+    description: "The translator was one entry point. Work for Mo has expanded into a private operations hub, customer onboarding and workflow materials, freight tools, public briefing pages, and decision support across Cubicship, MEA, and Travelyt. The proof is the range of systems built around how his businesses actually operate, not a claim that DHL corporate hired JDLO directly.",
     stats: [
-      { value: "100+", label: "Stores" },
-      { value: "Canada", label: "Expanding to" },
-      { value: "DHL", label: "Premier Partner" },
+      { value: "100+", label: "Store operating context" },
+      { value: "Private", label: "Operations hub" },
+      { value: "Multi-system", label: "Working relationship" },
     ],
-    screenshot: "/screenshots/cubicship.png",
+    screenshot: "/screenshots/dhl-translator.png",
     liveUrl: "https://cubicship-translator.vercel.app",
-  },
-  "west-coast-terpz": {
-    name: "West Coast Terpz",
-    category: "E-commerce",
-    headline: "E-commerce platform that turned a local brand online",
-    description: "Full online store with wholesale ordering, product management, and integrated checkout. Took a business from Instagram DMs to a real e-commerce operation processing orders 24/7.",
-    stats: [
-      { value: "$12K+", label: "Monthly revenue" },
-      { value: "24/7", label: "Order processing" },
-      { value: "3x", label: "Customer reach" },
-    ],
-    revenue: "$900+",
-    screenshot: "/screenshots/west-coast-terpz.png",
-    liveUrl: "https://west-coast-terpz.vercel.app",
   },
   "vacaville-appliance": {
     name: "Vacaville Appliance",
@@ -99,6 +87,19 @@ const projects: Record<string, {
     revenue: "$1,300",
     screenshot: "/screenshots/vacaville-appliance.png",
     liveUrl: "https://vacavilleappliance.vercel.app",
+    quote: "Jordan didn’t just build us a website. He helped connect how customers find us, get answers, and move into our service process. The result is a business that can handle more leads and jobs without every step depending on us.",
+    quoteAttribution: "Draft for Vacaville Appliance approval — not yet a client testimonial",
+  },
+  "pearl-farms": {
+    name: "Pearl Farms / Napa",
+    category: "AI Operations + Brand / In Progress",
+    headline: "Connecting company communication systems to a modern Napa wine brand",
+    description: "The current scope is to integrate AI into company email and phone workflows, reduce repeated questions and administrative handling, and create the digital presence for a Napa wine brand. This is active work. Results will be documented after the systems are implemented and measured.",
+    stats: [
+      { value: "AI", label: "Email assistance" },
+      { value: "Phone", label: "Intake + FAQ system" },
+      { value: "Napa", label: "Wine brand presence" },
+    ],
   },
   "sticker-smith": {
     name: "The Sticker Smith",
@@ -338,6 +339,19 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               </p>
             </div>
           </RevealOnScroll>
+
+          {project.quote && (
+            <RevealOnScroll>
+              <figure className="max-w-[820px] mt-14 border-l-2 border-accent pl-6 md:pl-9 py-2">
+                <blockquote className="font-display text-[clamp(1.6rem,3vw,2.6rem)] leading-[1.12] tracking-[-0.02em]">
+                  “{project.quote}”
+                </blockquote>
+                <figcaption className="text-text-muted text-[11px] font-mono mt-6 uppercase tracking-[0.12em]">
+                  {project.quoteAttribution}
+                </figcaption>
+              </figure>
+            </RevealOnScroll>
+          )}
 
           {/* Live Preview — iframe */}
           {project.liveUrl && !project.noEmbed && (

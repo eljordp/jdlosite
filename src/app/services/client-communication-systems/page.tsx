@@ -18,8 +18,8 @@ export default function ClientCommunicationSystemsPage() {
     outcomes={["Fewer leads disappear between channels.", "Customers get useful answers faster.", "The team repeats itself less.", "Appointments and estimates receive consistent follow-up.", "The customer experience feels organized.", "The owner is no longer the default help desk."]}
     proof={[
       { name: "Vacaville Appliance", result: "Service information, intake, and customer flow around a high-volume repair business.", href: "/work/vacaville-appliance" },
-      { name: "Club Bot / Velvet", result: "Structured guest-list communication at high weekly volume.", href: "/work/club-bot" },
-      { name: "Cubicship", result: "Customer-facing tools and workflows for complex shipping questions.", href: "/work/dhl-translator" },
+      { name: "Mo / DHL Systems", result: "Customer-facing tools, freight workflows, and a private operations hub built around real communication needs.", href: "/work/dhl-translator" },
+      { name: "Pearl Farms / Napa", result: "AI-assisted email, phone intake, and FAQ work currently in progress.", href: "/work/pearl-farms" },
     ]}
   />;
 }

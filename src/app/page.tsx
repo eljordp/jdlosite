@@ -37,7 +37,19 @@ const services = [
   },
 ];
 
-const cases = [
+type CaseStudy = {
+  name: string;
+  category: string;
+  image?: string;
+  visualLabel?: string;
+  href: string;
+  headline: string;
+  body: string;
+  metrics: string[];
+  note?: string;
+};
+
+const cases: CaseStudy[] = [
   {
     name: "Vacaville Appliance",
     category: "Local service business",
@@ -50,24 +62,25 @@ const cases = [
     note: "Business figures observed in Jobber. They show the environment the system supports; they are not presented as revenue created by JDLO alone.",
   },
   {
-    name: "Pomaika‘i Co",
-    category: "Consultancy operations",
-    image: "/screenshots/pomaikai.png",
-    href: "/work/pomaikai",
-    headline: "One clearer system for selling expertise and running delivery.",
+    name: "Mo / DHL Systems",
+    category: "Enterprise + operator systems",
+    image: "/screenshots/dhl-translator.png",
+    href: "/work/dhl-translator",
+    headline: "A long-term systems relationship, not a one-off website.",
     body:
-      "A public growth front door and internal operating tools designed around a consultancy that had knowledge, relationships, and delivery spread across separate places.",
-    metrics: ["Growth + leadership paths", "Centralized client operations", "Custom internal tools"],
+      "Work for Mo has grown across translation, private operations hubs, customer workflows, freight tools, public briefing pages, and decision support for his DHL-affiliated and logistics businesses.",
+    metrics: ["DHL store translator", "Private operations hub", "Customer + freight workflows"],
   },
   {
-    name: "The Sticker Smith",
-    category: "Product business",
-    image: "/screenshots/sticker-smith.png",
-    href: "/work/sticker-smith",
-    headline: "From word of mouth to a business customers can find and buy from.",
+    name: "Pearl Farms / Napa",
+    category: "Current build / Napa",
+    visualLabel: "PEARL FARMS\nNAPA, CALIFORNIA\nSYSTEM IN PROGRESS",
+    href: "/work/pearl-farms",
+    headline: "Connecting a working operation to a modern wine brand.",
     body:
-      "A clearer brand, public website, and ordering path built to turn existing print capability into a more credible and accessible sales channel.",
-    metrics: ["Public sales channel", "Custom ordering path", "Stronger buyer credibility"],
+      "Current scope: integrate AI into company email and phone workflows, reduce repetitive administration, and create the digital presence for a Napa wine brand. This is active work, not a finished-results claim.",
+    metrics: ["AI-assisted email", "Phone intake + FAQs", "Wine brand digital presence"],
+    note: "In progress. Results will be added only after the systems are live and measured.",
   },
 ];
 
@@ -170,9 +183,18 @@ function CaseStudies() {
           {cases.map((item, index) => (
             <RevealOnScroll key={item.name} delay={(index % 3) + 1}>
               <Link href={item.href} className="group grid lg:grid-cols-[0.78fr_1.22fr] border border-border rounded-2xl overflow-hidden bg-surface hover:border-text/20 transition-colors">
-                <div className="relative min-h-[240px] lg:min-h-[390px] overflow-hidden">
-                  <Image src={item.image} alt={`${item.name} system`} fill className="object-cover object-top group-hover:scale-[1.02] transition-transform duration-700" sizes="(max-width: 1024px) 100vw, 40vw" />
-                </div>
+                {item.image ? (
+                  <div className="relative min-h-[240px] lg:min-h-[390px] overflow-hidden">
+                    <Image src={item.image} alt={`${item.name} system`} fill className="object-cover object-top group-hover:scale-[1.02] transition-transform duration-700" sizes="(max-width: 1024px) 100vw, 40vw" />
+                  </div>
+                ) : (
+                  <div className="min-h-[240px] lg:min-h-[390px] bg-[#171b13] text-[#e8e1cf] p-8 md:p-12 flex flex-col justify-between overflow-hidden relative">
+                    <div className="absolute -right-16 -top-16 w-64 h-64 rounded-full border border-[#e8e1cf]/10" />
+                    <span className="text-[10px] tracking-[0.45em] font-mono text-[#e8e1cf]/55">JDLO / FIELD SYSTEM</span>
+                    <p className="font-display text-[clamp(2.2rem,4vw,4rem)] leading-[0.94] whitespace-pre-line">{item.visualLabel}</p>
+                    <span className="text-[11px] font-mono text-[#e8e1cf]/55">EMAIL · PHONE · BRAND</span>
+                  </div>
+                )}
                 <div className="p-7 md:p-10 lg:p-12 flex flex-col justify-center">
                   <p className="text-accent text-[10px] tracking-[0.35em] uppercase font-mono mb-4">{item.category}</p>
                   <h3 className="font-display text-[clamp(2rem,4vw,3.7rem)] tracking-[-0.035em] leading-[0.98] mb-5">{item.name}</h3>
