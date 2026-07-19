@@ -86,7 +86,7 @@ const cases: CaseStudy[] = [
 
 function Hero() {
   return (
-    <section className="min-h-screen flex items-center px-4 sm:px-6 md:px-10 overflow-hidden">
+    <section className="min-h-screen flex items-center px-4 sm:px-6 md:px-10 overflow-hidden" data-analytics-section="hero">
       <div className="max-w-[1400px] mx-auto w-full pt-24 pb-16">
         <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-14 lg:gap-20 items-center">
           <div>
@@ -127,7 +127,7 @@ function Hero() {
 
 function OutcomeStrip() {
   return (
-    <section className="border-y border-border bg-surface">
+    <section className="border-y border-border bg-surface" data-analytics-section="outcome-strip">
       <div className="max-w-[1400px] mx-auto px-6 md:px-10 py-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {["More qualified leads", "Faster client responses", "Less repetitive admin", "Clearer operating data"].map((item) => (
           <p key={item} className="text-[12px] font-mono text-text-secondary flex items-center gap-3">
@@ -141,7 +141,7 @@ function OutcomeStrip() {
 
 function Services() {
   return (
-    <section className="section-gap" id="services">
+    <section className="section-gap" id="services" data-analytics-section="services">
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
         <RevealOnScroll>
           <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-6">Three ways I create leverage</p>
@@ -171,7 +171,7 @@ function Services() {
 
 function CaseStudies() {
   return (
-    <section className="section-gap border-t border-border" id="case-studies">
+    <section className="section-gap border-t border-border" id="case-studies" data-analytics-section="case-studies">
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
         <RevealOnScroll>
           <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-6">Case studies</p>
@@ -227,7 +227,7 @@ function Benefits() {
     ["Measure", "Track where leads come from, what converts, and where money or time leaks out of the process."],
   ];
   return (
-    <section className="section-gap border-t border-border bg-surface">
+    <section className="section-gap border-t border-border bg-surface" data-analytics-section="business-outcomes">
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
         <RevealOnScroll>
           <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-6">What changes</p>
@@ -250,7 +250,7 @@ function Benefits() {
 
 function FinalCTA() {
   return (
-    <section className="section-gap">
+    <section className="section-gap" data-analytics-section="final-cta">
       <div className="max-w-[980px] mx-auto px-6 text-center">
         <RevealOnScroll>
           <p className="text-accent text-[11px] tracking-[0.5em] uppercase font-mono mb-8">Start with the bottleneck</p>

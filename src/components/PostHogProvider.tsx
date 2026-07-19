@@ -32,6 +32,9 @@ export default function PostHogProvider({ children }: { children: React.ReactNod
       capture_pageview: false, // manual via PageTracker
       capture_pageleave: true,
       autocapture: true,
+      session_recording: {
+        maskAllInputs: true,
+      },
     });
   }, []);
 

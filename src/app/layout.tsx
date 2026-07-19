@@ -4,6 +4,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import Script from "next/script";
 import "./globals.css";
 import PostHogProvider from "@/components/PostHogProvider";
+import SiteAnalytics from "@/components/SiteAnalytics";
 import PageTransition from "@/components/PageTransition";
 import { PortalProvider } from "@/components/PortalTransition";
 import CustomCursor from "@/components/CustomCursor";
@@ -90,6 +91,7 @@ export default function RootLayout({
           <PortalProvider>
             <PageTransition>{children}</PageTransition>
           </PortalProvider>
+          <SiteAnalytics />
         </PostHogProvider>
         <Analytics />
         <SpeedInsights />

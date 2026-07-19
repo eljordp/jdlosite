@@ -1,8 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { track } from "@vercel/analytics";
-import posthog from "posthog-js";
+import { captureSiteEvent } from "@/lib/analytics";
 import { getVisitor, saveVisitor } from "@/lib/visitor";
 
 const industries = [
@@ -71,8 +70,7 @@ export default function QuickQuote() {
         industry: form.industry || "Not specified",
         services: form.needs.join(", ") || "Not specified",
       };
-      track("lead_submitted", eventProperties);
-      posthog.capture("lead_submitted", eventProperties);
+      captureSiteEvent("lead_submitted", eventProperties);
       saveVisitor({ name: form.name, email: form.email, industry: form.industry, needs: form.needs });
       setStatus("sent");
     } catch {
