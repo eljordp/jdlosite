@@ -20,14 +20,9 @@ type Category =
   | "SaaS"
   | "Pitch"
   | "Tool"
-  | "3D"
-  | "Real Estate"
-  | "Trades"
   | "Health"
   | "Creator"
-  | "Restaurant"
-  | "Sports"
-  | "Cannabis";
+  | "Restaurant";
 
 const CATEGORIES: Category[] = [
   "All",
@@ -38,17 +33,12 @@ const CATEGORIES: Category[] = [
   "Enterprise",
   "Casino",
   "Game",
-  "Real Estate",
-  "Trades",
   "Health",
   "Creator",
   "Restaurant",
-  "Sports",
   "Fashion",
-  "Cannabis",
   "Pitch",
   "Tool",
-  "3D",
 ];
 
 interface Project {
@@ -62,63 +52,32 @@ interface Project {
 }
 
 const PROJECTS: Project[] = [
-  // ── Flagship (most impressive) ──
   { name: "World Class Exotics", slug: "world-class-exotics", categories: ["Website", "E-commerce"], headline: "Exotic car rental platform with booking and fleet showcase", stats: ["Luxury fleet", "Booking flow", "Premium design"] },
-  { name: "Operator OS", slug: "operator-os", url: "https://operator-os-peach.vercel.app", categories: ["SaaS", "AI", "Tool"], headline: "Operator OS — full business operating system for solo founders", stats: ["Operator Stack", "AI-native", "Full system"] },
-  { name: "BayParlays", slug: "bayparlays", url: "https://bayparlays.vercel.app", categories: ["SaaS", "Sports", "AI"], headline: "AI parlay optimizer with sharp-edge analysis and CLV tracking", stats: ["AI optimizer", "CLV tracking", "Sharp edges"] },
   { name: "Paper Trader", slug: "paper-trader", url: "https://paper-trader-two-eta.vercel.app", categories: ["SaaS", "Tool"], headline: "Funded-eval simulator for traders — practice through tier ladders", stats: ["Tier ladder", "Live simulation", "Auth + DB"] },
   { name: "HOA Dispute Bot", slug: "hoa-dispute", categories: ["AI", "Tool"], headline: "AI desktop app that coaches homeowners through HOA disputes in real time", stats: ["Electron app", "AI overlay", "Real-time guidance"] },
-  { name: "Quanta", slug: "quanta", categories: ["Casino"], headline: "Full online sweepstakes casino from scratch", stats: ["6 game types", "Real-time multiplayer", "$50K+ platform value"] },
   { name: "Club Bot / Velvet", slug: "club-bot", categories: ["AI", "SaaS"], headline: "AI nightclub promoter platform, custom product turned SaaS", stats: ["500+ guests/week", "30hrs/wk saved", "SaaS platform"] },
-  { name: "Joon11ee", slug: "joon11ee", categories: ["Website", "E-commerce"], headline: "Luxury exotic rental platform for high-end vehicles and experiences", stats: ["Luxury rentals", "Custom platform", "Premium design"] },
   { name: "No Birdz Wings", slug: "nobirdz-wings", url: "https://nobirdz-wings.vercel.app", categories: ["Website", "Restaurant"], headline: "Atlanta vegan wings brand site with menu and online ordering", stats: ["Atlanta", "Brand identity", "Menu + ordering"] },
-  { name: "Burj Khalifa", slug: "burj-khalifa", url: "https://burj-khalifa-site.vercel.app", categories: ["Website", "3D"], headline: "Immersive 3D tourism experience — WebGL, bloom post-processing, scroll-driven orbital camera", stats: ["Three.js WebGL", "Bloom + chromatic aberration", "Live demo →"] },
   { name: "Best Odds", slug: "best-odds", categories: ["Pitch"], headline: "Interactive presentation for casino odds and strategy", stats: ["Data-driven", "Visual slides", "Animated"] },
-  // ── Enterprise ──
   { name: "Pomaika\u2018i Co", slug: "pomaikai", categories: ["Website", "AI"], headline: "Centralized operations for a six-figure consultancy", stats: ["$5K project", "5+ tools replaced", "20hrs/wk saved"] },
   { name: "Cubicship Translator", slug: "dhl-translator", categories: ["Enterprise", "Tool"], headline: "Translation system for DHL premier partner in 100+ stores, expanding to Canada", stats: ["100+ stores", "DHL Premier Partner", "Expanding to Canada"] },
-  { name: "DHL CRA Quiz", slug: "dhl-cra-quiz", categories: ["Enterprise"], headline: "Competency assessment for enterprise onboarding", stats: ["200+ employees", "85% faster onboarding", "Auto certification"] },
-  { name: "Cubicship", slug: "cubicship", categories: ["Website", "Enterprise"], headline: "Returns portal and main site for DHL premier partner", stats: ["Refund workflow", "Returns portal", "2 platforms"] },
-  // ── Client websites & e-commerce ──
   { name: "CWBY Studios", slug: "cwby-studios", categories: ["Website"], headline: "Creative studio and agency site based in Hollywood", stats: ["Hollywood", "Creative agency", "Premium design"] },
   { name: "West Coast Terpz", slug: "west-coast-terpz", categories: ["Website", "E-commerce"], headline: "E-commerce platform that turned a local brand online", stats: ["$12K+/mo revenue", "24/7 order processing", "3x customer reach"] },
-  { name: "Vacaville Appliance", slug: "vacaville-appliance", categories: ["Website", "AI"], headline: "AI receptionist that books appointments while they sleep", stats: ["40+ bookings/mo", "24/7 availability", "$8K+ revenue added"] },
+  { name: "Vacaville Appliance", slug: "vacaville-appliance", categories: ["Website", "Enterprise"], headline: "Connected web, lead, and operating system for a local service business", stats: ["$144.3K invoiced YTD", "57 June jobs", "17 June leads"] },
   { name: "Lonely Love", slug: "lonely-love", categories: ["Website", "Fashion", "E-commerce"], headline: "E-commerce site for a clothing brand with a following", stats: ["Custom e-commerce", "Brand identity", "Full store"] },
   { name: "Onhizm", slug: "onhizm", categories: ["Website", "Fashion"], headline: "Custom site for a brand worn by celebrities", stats: ["Empire connections", "Custom redesign", "Premium brand"] },
   { name: "The Sticker Smith", slug: "sticker-smith", categories: ["Website", "E-commerce"], headline: "Brand website that turned a print shop into a real business", stats: ["5x online visibility", "New revenue channel", "Pro brand identity"] },
   { name: "Manza Visuals", slug: "manza-visuals", categories: ["Website"], headline: "Portfolio site for a Bay Area videographer and visual artist", stats: ["Custom design", "Video portfolio", "Lead capture"] },
   { name: "fw.wheels", slug: "fw-wheels", categories: ["Website"], headline: "Wheel catalog and ordering system for auto dealer", stats: ["Full catalog", "MRR potential", "Custom built"] },
-  // ── Games & creative ──
-  { name: "JDLO Wii", slug: "jdlo-wii", categories: ["Game"], headline: "Wii Sports-inspired multiplayer web game", stats: ["1v1 multiplayer", "Web-based", "Original game"] },
-  { name: "Robot Producer", slug: "robot-producer", categories: ["Pitch", "Website"], headline: "Full B2B sales system for selling robots to businesses", stats: ["Full sales kit", "ROI calculator", "4 platforms"] },
-  { name: "Muddled by Mia", slug: "muddled-by-mia", categories: ["Website"], headline: "Website for a cocktail and mixology brand", stats: ["Custom design", "Brand identity", "Full website"] },
-  { name: "Aesthetics By Kayy", slug: "aesthetics-by-kayy", categories: ["Website"], headline: "Luxury skin, brow & lash studio on the Big Island of Hawaii", stats: ["Hawaii-based", "Booking system", "Local SEO"] },
-  { name: "OlyLife Ohana", slug: "olylife-ohana", categories: ["Website", "E-commerce"], headline: "Health & wellness brand site for PEMF and Terahertz therapy devices", stats: ["50K+ customers", "E-commerce", "Custom design"] },
-  // ── SaaS / Tools ──
+  { name: "Muddled by Mia", slug: "muddled-by-mia", categories: ["Website", "Restaurant"], headline: "Website for a cocktail and mixology brand", stats: ["Custom design", "Brand identity", "Full website"] },
+  { name: "OlyLife Ohana", slug: "olylife-ohana", categories: ["Website", "E-commerce", "Health"], headline: "Health & wellness brand site for PEMF and Terahertz therapy devices", stats: ["50K+ customers", "E-commerce", "Custom design"] },
   { name: "JDLO CRM", slug: "jdlo-crm", categories: ["SaaS", "Tool"], headline: "Custom CRM for managing clients, leads, and pipeline", stats: ["Full CRM", "Pipeline mgmt", "Custom built"] },
   { name: "Outreach Engine", slug: "outreach-engine", url: "https://outreach-engine-pearl-pi.vercel.app", categories: ["SaaS", "Tool", "AI"], headline: "Sales outreach automation tool with AI-generated messaging", stats: ["Auto sequences", "AI messaging", "Pipeline sync"] },
-  { name: "DealBrief", slug: "dealbrief", url: "https://dealbrief-two.vercel.app", categories: ["SaaS", "Tool"], headline: "Deal summary SaaS for sales teams and brokers", stats: ["SaaS platform", "Deal tracking", "Custom built"] },
   { name: "Travelyt", slug: "travelyt", url: "https://travelyt-psi.vercel.app", categories: ["Website", "SaaS"], headline: "Baggage delivery service platform for travelers", stats: ["Booking flow", "Quote system", "Full platform"] },
-  { name: "Estrellas Fashion", slug: "estrellas-fashion", url: "https://estrellas-fashion.vercel.app", categories: ["Website", "Fashion", "E-commerce"], headline: "Fashion brand site with a curated product showcase", stats: ["Custom design", "Brand identity", "E-commerce"] },
-  { name: "Abby Dream Homes", slug: "abby-dream-homes", url: "https://abby-dream-homes.vercel.app", categories: ["Website", "Real Estate"], featured: false, headline: "Real estate agent site with listings and lead capture", stats: ["Listings", "Lead capture", "Local SEO"] },
-  { name: "Jade Beverly Hills", slug: "jade-beverly-hills", url: "https://jade-beverly-hills.vercel.app", categories: ["Website", "Restaurant"], featured: false, headline: "Luxury Beverly Hills restaurant website", stats: ["Beverly Hills", "Reservations", "Premium design"] },
-  { name: "A&E Vineyard", slug: "a-e-vineyard", url: "https://a-e-vineyard-landing.vercel.app", categories: ["Website", "Restaurant"], featured: false, headline: "Vineyard landing page with tasting bookings", stats: ["Vineyard", "Tastings", "Local"] },
-  { name: "Diaz Constructions", slug: "diaz-constructions", url: "https://diaz-constructions.vercel.app", categories: ["Website", "Trades"], featured: false, headline: "Construction company website with project gallery and lead form", stats: ["Project gallery", "Lead form", "Local"] },
-  { name: "Modern Build", slug: "modern-build", url: "https://modern-build-construction.vercel.app", categories: ["Website", "Trades"], featured: false, headline: "Modern construction company brand site", stats: ["Custom design", "Brand identity", "Lead capture"] },
-  { name: "Illuminart Signs", slug: "illuminart-signs", url: "https://illuminart-signs.vercel.app", categories: ["Website", "Trades"], featured: false, headline: "Custom sign-making business website", stats: ["Portfolio", "Quote form", "Custom built"] },
-  { name: "New Leaf Chiro", slug: "new-leaf-chiro", url: "https://new-leaf-chiro.vercel.app", categories: ["Website", "Health"], featured: false, headline: "Chiropractor website with booking system", stats: ["Booking system", "Local SEO", "Custom design"] },
-  { name: "Aura Spray", slug: "aura-spray", url: "https://aura-spray.vercel.app", categories: ["Website", "Health"], featured: false, headline: "Spray tan studio brand site with booking", stats: ["Booking", "Brand identity", "Local"] },
-  { name: "Miiir Beats", slug: "miiir-beats", url: "https://miiir-beats.vercel.app", categories: ["Website", "Creator"], featured: false, headline: "Music producer portfolio and beat store", stats: ["Beat store", "Portfolio", "Custom built"] },
-  { name: "DJ Chacha", slug: "dj-chacha", url: "https://djchacha-site.vercel.app", categories: ["Website", "Creator"], featured: false, headline: "DJ portfolio site with booking and media reel", stats: ["Media reel", "Booking", "Custom"] },
-  { name: "Created By Mase", slug: "created-by-mase", url: "https://createdbymase.com", categories: ["Website", "Creator"], featured: false, headline: "Creator portfolio site for a multimedia artist", stats: ["Portfolio", "Custom design", "Live domain"] },
-  { name: "Isaiah 2 Turnt", slug: "isaiah-2-turnt", url: "https://isaiah2turnt.vercel.app", categories: ["Website", "Creator"], featured: false, headline: "Artist site with media, tour, and socials", stats: ["Artist site", "Media", "Custom built"] },
-  { name: "FJ17 Photo", slug: "fj17-photo", url: "https://fj17photo.vercel.app", categories: ["Website", "Creator"], featured: false, headline: "Photographer portfolio with gallery and booking", stats: ["Gallery", "Booking", "Custom design"] },
-  { name: "Kaitlyn Edejer", slug: "kaitlyn-edejer", url: "https://kaitlynedejer-v2.vercel.app", categories: ["Website", "Creator"], featured: false, headline: "Influencer site with content reel, brand deals, and contact", stats: ["Influencer site", "Content reel", "Brand deals"] },
-  { name: "Vegas Knows", slug: "vegas-knows", url: "https://vegasknows.vercel.app", categories: ["Website", "Sports", "SaaS"], featured: false, headline: "Sports picks platform with tier-based subscriptions", stats: ["Subscriptions", "Picks feed", "Custom platform"] },
-  { name: "Polymarket Dashboard", slug: "polymarket-dashboard", url: "https://polymarket-dashboard-sable.vercel.app", categories: ["Tool", "SaaS"], featured: false, headline: "Trading dashboard for Polymarket prediction markets", stats: ["Real-time data", "Charts", "Custom analytics"] },
-  { name: "Blunted Roll Co", slug: "blunted-roll-co", url: "https://bluntedrollco-menu.vercel.app", categories: ["Website", "Cannabis", "E-commerce"], featured: false, headline: "Cannabis brand menu and ordering site", stats: ["Product menu", "Ordering", "Brand design"] },
-  // ── Private / inquire ──
-  { name: "Loan Agent", slug: "loan-agent", categories: ["AI", "SaaS"], headline: "Multi-tenant loan processing system with AI underwriting. Private system, inquire for details", stats: ["Multi-tenant", "Auto processing", "Inquire"] },
+  { name: "Miiir Beats", slug: "miiir-beats", url: "https://miiir-beats.vercel.app", categories: ["Website", "Creator"], headline: "Music producer portfolio and beat store", stats: ["Beat store", "Portfolio", "Custom built"] },
+  { name: "Kaitlyn Edejer", slug: "kaitlyn-edejer", url: "https://kaitlynedejer-v2.vercel.app", categories: ["Website", "Creator"], headline: "Influencer site with content reel, brand deals, and contact", stats: ["Influencer site", "Content reel", "Brand deals"] },
+  { name: "Operator OS", slug: "operator-os", url: "https://operator-os-peach.vercel.app", categories: ["SaaS", "AI", "Tool"], headline: "Experimental operating system for solo founders", stats: ["Product experiment", "AI-native", "Internal tool"] },
+  { name: "Quanta", slug: "quanta", categories: ["Casino"], headline: "Sweepstakes casino product build", stats: ["6 game types", "Real-time multiplayer", "Product engineering"] },
+  { name: "JDLO Wii", slug: "jdlo-wii", categories: ["Game"], headline: "Wii Sports-inspired multiplayer web game", stats: ["1v1 multiplayer", "Web-based", "Original game"] },
 ];
 
 /* ────────────────────────────────────────────────────────────

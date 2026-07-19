@@ -127,11 +127,11 @@ export default function ProductPage() {
           <RevealOnScroll>
             <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-6">Related Work</p>
             <div className="py-10 border-b border-border">
-              <p className="text-[11px] font-mono text-text-muted tracking-[0.15em] uppercase mb-2">Lifestyle</p>
-              <h3 className="font-display text-[clamp(1.4rem,3vw,2.2rem)] tracking-[-0.02em] leading-[1.1] mb-3">Aesthetics By Kayy</h3>
-              <p className="text-text-secondary text-[15px] leading-relaxed mb-6 max-w-[500px]">Booking system for luxury aesthetics studio in Hawaii</p>
+              <p className="text-[11px] font-mono text-text-muted tracking-[0.15em] uppercase mb-2">Service business</p>
+              <h3 className="font-display text-[clamp(1.4rem,3vw,2.2rem)] tracking-[-0.02em] leading-[1.1] mb-3">Vacaville Appliance</h3>
+              <p className="text-text-secondary text-[15px] leading-relaxed mb-6 max-w-[500px]">Website, service intake, and operating workflows supporting a live appliance repair business</p>
               <div className="flex flex-wrap gap-x-8 gap-y-3">
-                {[{ v: "24/7", l: "booking" }, { v: "Big Island", l: "Hawaii" }, { v: "Luxury", l: "studio" }].map(s => (
+                {[{ v: "17", l: "June leads" }, { v: "57", l: "June jobs" }, { v: "$144.3K", l: "2026 invoiced YTD" }].map(s => (
                   <div key={s.l} className="flex items-center gap-2.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-text/20 shrink-0" />
                     <span className="text-text font-medium text-[14px]">{s.v} {s.l}</span>

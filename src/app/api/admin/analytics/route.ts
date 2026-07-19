@@ -1,14 +1,19 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 
-export async function GET() {
+export async function GET(req: NextRequest) {
   try {
+    const key = process.env.ANALYTICS_API_KEY;
+    const authorization = req.headers.get("authorization");
+    if (!key || authorization !== `Bearer ${key}`) {
+      return NextResponse.json({ error: "Not found" }, { status: 404 });
+    }
     const supabase = createAdminClient();
 
     // Get all leads
     const { data: leads, error } = await supabase
       .from("leads")
-      .select("*")
+      .select("type,created_at")
       .order("created_at", { ascending: false });
 
     if (error) {
@@ -18,7 +23,6 @@ export async function GET() {
         todayLeads: 0,
         weekLeads: 0,
         byType: {},
-        recentLeads: [],
         error: error.message,
       });
     }
@@ -44,7 +48,6 @@ export async function GET() {
       todayLeads,
       weekLeads,
       byType,
-      recentLeads: allLeads.slice(0, 20),
     });
   } catch (e) {
     return NextResponse.json({ error: "Failed to load analytics" }, { status: 500 });

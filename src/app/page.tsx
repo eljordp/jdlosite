@@ -1,66 +1,104 @@
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
+import HomeNav from "@/components/HomeNav";
 import RevealOnScroll from "@/components/RevealOnScroll";
 import { GlowLink } from "@/components/GlowButton";
-import HomeNav from "@/components/HomeNav";
-import EmailCapture from "@/components/EmailCapture";
-import QuickQuote from "@/components/QuickQuote";
-import NewsletterCapture from "@/components/NewsletterCapture";
 import SplitText from "@/components/SplitText";
-import CountUp from "@/components/CountUp";
 
-/* ── Hero ── */
+const services = [
+  {
+    num: "01",
+    title: "Web Design Systems",
+    href: "/services/web-design-systems",
+    summary:
+      "A credible website connected to the actions that create revenue: calls, forms, booking, checkout, follow-up, and measurement.",
+    outcomes: ["Get found", "Capture demand", "Convert traffic"],
+  },
+  {
+    num: "02",
+    title: "Client Communication Systems",
+    href: "/services/client-communication-systems",
+    summary:
+      "Lead intake, FAQs, estimates, reminders, status updates, and follow-up designed so customers get answers without the owner becoming the inbox.",
+    outcomes: ["Faster replies", "Fewer missed leads", "Less repetitive admin"],
+  },
+  {
+    num: "03",
+    title: "Business Operating Systems",
+    href: "/services/business-operating-systems",
+    summary:
+      "The internal layer: CRM, dashboards, scheduling, automation, and custom tools that make the business easier to run and ready to grow.",
+    outcomes: ["One source of truth", "Cleaner handoffs", "More owner leverage"],
+  },
+];
+
+const cases = [
+  {
+    name: "Vacaville Appliance",
+    category: "Local service business",
+    image: "/screenshots/vacaville-appliance.png",
+    href: "/work/vacaville-appliance",
+    headline: "A service business becoming a connected operating ecosystem.",
+    body:
+      "Since joining the business around August 2025, the work has expanded beyond a website into lead capture, service information, customer intake, and the systems around day-to-day operations.",
+    metrics: ["$144.3K invoiced in 2026 through Jul 19", "57 new one-off jobs in June", "17 new leads in June"],
+    note: "Business figures observed in Jobber. They show the environment the system supports; they are not presented as revenue created by JDLO alone.",
+  },
+  {
+    name: "Pomaika‘i Co",
+    category: "Consultancy operations",
+    image: "/screenshots/pomaikai.png",
+    href: "/work/pomaikai",
+    headline: "One clearer system for selling expertise and running delivery.",
+    body:
+      "A public growth front door and internal operating tools designed around a consultancy that had knowledge, relationships, and delivery spread across separate places.",
+    metrics: ["Growth + leadership paths", "Centralized client operations", "Custom internal tools"],
+  },
+  {
+    name: "The Sticker Smith",
+    category: "Product business",
+    image: "/screenshots/sticker-smith.png",
+    href: "/work/sticker-smith",
+    headline: "From word of mouth to a business customers can find and buy from.",
+    body:
+      "A clearer brand, public website, and ordering path built to turn existing print capability into a more credible and accessible sales channel.",
+    metrics: ["Public sales channel", "Custom ordering path", "Stronger buyer credibility"],
+  },
+];
+
 function Hero() {
   return (
-    <section className="min-h-screen flex flex-col justify-center relative overflow-hidden px-4 sm:px-6 md:px-10">
-
-      <div className="max-w-[1400px] mx-auto w-full relative z-10">
-        <div className="grid min-w-0 lg:grid-cols-[1.3fr_1fr] gap-12 lg:gap-20 items-center">
-          <div className="min-w-0">
-            <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase mb-2 hero-animate hero-delay-1 font-mono">
-              JDLO / Jordan Lopez
+    <section className="min-h-screen flex items-center px-4 sm:px-6 md:px-10 overflow-hidden">
+      <div className="max-w-[1400px] mx-auto w-full pt-24 pb-16">
+        <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-14 lg:gap-20 items-center">
+          <div>
+            <p className="text-accent text-[11px] tracking-[0.5em] uppercase font-mono mb-8 hero-animate hero-delay-1">
+              JDLO / Revenue systems
             </p>
-            <p className="text-text-muted text-[11px] tracking-[0.08em] mb-10 hero-animate hero-delay-1 font-mono">
-              30+ projects shipped &middot; Websites, AI systems, dashboards, e-commerce, casinos, enterprise tools
-            </p>
-
-            <h1 className="font-display hero-animate hero-delay-2 text-[clamp(2.8rem,7vw,5.7rem)] leading-[0.95] tracking-[-0.03em]">
-              <SplitText staggerMs={55}>Your business is bigger</SplitText>
+            <h1 className="font-display text-[clamp(3rem,7.4vw,7.2rem)] leading-[0.9] tracking-[-0.04em] hero-animate hero-delay-2">
+              <SplitText staggerMs={45}>I turn scattered</SplitText>
               <br />
-              <SplitText delay={0.3} staggerMs={55}>than your website shows.</SplitText>
+              <SplitText delay={0.25} staggerMs={45}>businesses into</SplitText>
+              <br />
+              <span className="text-text-secondary"><SplitText delay={0.5} staggerMs={45}>revenue systems.</SplitText></span>
             </h1>
-
-        <div className="hero-animate hero-delay-3 mt-10 flex flex-col items-start gap-7">
-          <p className="text-text-secondary text-lg md:text-xl leading-relaxed max-w-[480px]">
-            I build the online system behind your business: custom site, CRM, AI follow-up, booking, payments, dashboard, and whatever else makes the operation run smoother.
-          </p>
-          <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:items-center sm:gap-4">
-            <GlowLink href="/contact" className="w-full sm:w-auto">
-              Start a Project
-            </GlowLink>
-            <a
-              href="https://instagram.com/jdlo"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="ghost-btn w-full sm:w-auto"
-            >
-              DM @jdlo
-            </a>
+            <div className="mt-10 max-w-[650px] hero-animate hero-delay-3">
+              <p className="text-text-secondary text-lg md:text-xl leading-relaxed">
+                I connect the website, lead flow, client communication, and internal operations so more opportunities turn into revenue and less of the business depends on you answering every question.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3 sm:items-center mt-9">
+                <GlowLink href="/contact?ref=home-hero" className="w-full sm:w-auto">Build My System</GlowLink>
+                <Link href="#case-studies" className="ghost-btn w-full sm:w-auto">See the proof</Link>
+              </div>
+            </div>
           </div>
-        </div>
-          </div>
-
-          {/* Photo */}
           <div className="hidden lg:block hero-animate hero-delay-4">
-            <div className="relative w-full aspect-[3/4] rounded-2xl overflow-hidden border border-border clip-reveal visible" style={{transition: 'clip-path 1.6s 0.8s cubic-bezier(0.16, 1, 0.3, 1)'}}>
-              <Image
-                src="/photos/suit-lv.jpg"
-                alt="Jordan Lopez"
-                fill
-                className="object-cover object-top"
-                sizes="40vw"
-                priority
-              />
+            <div className="relative aspect-[3/4] overflow-hidden rounded-2xl border border-border">
+              <Image src="/photos/suit-lv.jpg" alt="Jordan Lopez, JDLO" fill priority className="object-cover object-top" sizes="38vw" />
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-7 pt-24">
+                <p className="text-white text-sm font-medium">Jordan Lopez</p>
+                <p className="text-white/60 text-xs font-mono mt-1">Designer · systems builder · operator</p>
+              </div>
             </div>
           </div>
         </div>
@@ -69,342 +107,111 @@ function Hero() {
   );
 }
 
-/* ── Operator Banner ── */
-function OperatorBanner() {
+function OutcomeStrip() {
   return (
-    <div className="border-t border-b border-border bg-surface-raised">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-10">
-        <Link
-          href="/operator"
-          className="flex items-center justify-between py-4 group gap-4"
-        >
-          <div className="flex items-center gap-3 min-w-0">
-            <span className="text-[10px] tracking-[0.5em] uppercase font-mono text-accent shrink-0">New offer</span>
-            <span className="text-sm font-medium text-text-primary truncate">
-              The Operator Stack - site, CRM, AI follow-up, dashboard. The system behind the business.
-            </span>
-          </div>
-          <span className="text-text-muted group-hover:text-text-primary transition-colors text-sm shrink-0">See it →</span>
-        </Link>
+    <section className="border-y border-border bg-surface">
+      <div className="max-w-[1400px] mx-auto px-6 md:px-10 py-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {["More qualified leads", "Faster client responses", "Less repetitive admin", "Clearer operating data"].map((item) => (
+          <p key={item} className="text-[12px] font-mono text-text-secondary flex items-center gap-3">
+            <span className="w-1.5 h-1.5 rounded-full bg-accent" />{item}
+          </p>
+        ))}
       </div>
-    </div>
+    </section>
   );
 }
-
-/* ── Academy Banner ── */
-function AcademyBanner() {
-  return (
-    <div className="border-b border-border bg-surface-raised">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-10">
-        <Link
-          href="/academy"
-          className="flex items-center justify-between py-4 group"
-        >
-          <div className="flex items-center gap-3">
-            <span className="text-[10px] tracking-[0.5em] uppercase font-mono text-text-muted">Academy</span>
-            <span className="text-sm font-medium text-text-primary">
-              JDLO Academy — Learn to build what I build
-            </span>
-          </div>
-          <span className="text-text-muted group-hover:text-text-primary transition-colors text-sm">→</span>
-        </Link>
-      </div>
-    </div>
-  );
-}
-
-/* ── Services ── */
-const services = [
-  {
-    title: "Apps & Systems",
-    desc: "AI tools, dashboards, booking systems, automation, internal ops. Built an AI receptionist for a Vacaville business that books 40+ appointments a month while the owner sleeps. Built an agency dashboard that replaced 5 tools and saved a six-figure consultancy 20 hours a week.",
-    tag: "See products",
-    href: "/services/apps-systems",
-  },
-  {
-    title: "Creative & Custom",
-    desc: "Casinos, video games, enterprise platforms, marketplaces. Shipped a full sweepstakes casino with 6 games and real-time multiplayer. Built a translator app running across 100+ DHL stores in Chicago, expanding to Canada. If you can describe it, I can ship it.",
-    tag: "See products",
-    href: "/services/creative",
-  },
-  {
-    title: "Websites & E-commerce",
-    desc: "Custom sites built to make money, not look pretty in a deck. Took a local cannabis brand from Instagram DMs to $12K+/month in online sales in 10 days. Built an exotic rental platform doing real bookings for a luxury fleet. Not templates. Built from scratch.",
-    tag: "See products",
-    href: "/services/websites",
-  },
-];
 
 function Services() {
   return (
-    <section id="services" className="section-gap border-t border-border">
+    <section className="section-gap" id="services">
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
         <RevealOnScroll>
-          <div className="flex items-baseline justify-between mb-6">
-            <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono">
-              Services
-            </p>
-            <p className="text-text-muted text-[11px] font-mono hidden md:block">
-              03 offerings
-            </p>
-          </div>
-          <div className="mb-12 max-w-[760px]">
-            <h2 className="font-display text-[clamp(2.1rem,5vw,4rem)] tracking-[-0.03em] leading-[0.98] mb-5">
-              Start with the Operator Stack.
-            </h2>
-            <p className="text-text-secondary text-[15px] md:text-[17px] leading-relaxed max-w-[620px]">
-              If you know your business needs to look more serious and stop losing leads,
-              this is the front door: website, CRM, AI follow-up, booking, payments,
-              automation, and a dashboard built around how you actually operate.
-            </p>
-          </div>
-        </RevealOnScroll>
-
-        <RevealOnScroll>
-          <Link
-            href="/operator"
-            className="group block border border-border rounded-2xl p-6 md:p-8 mb-8 bg-surface hover:border-text/20 transition-colors duration-300"
-          >
-            <div className="grid md:grid-cols-[1fr_auto] gap-6 md:items-end">
-              <div>
-                <p className="text-accent text-[11px] tracking-[0.4em] uppercase font-mono mb-4">
-                  Main offer
-                </p>
-                <h3 className="font-display text-[clamp(1.8rem,4vw,3rem)] tracking-[-0.03em] leading-[1] mb-4">
-                  The Operator Stack
-                </h3>
-                <p className="text-text-secondary text-[14px] md:text-[15px] leading-relaxed max-w-[640px]">
-                  One build that connects your public site, lead capture, follow-up,
-                  booking, payments, and owner dashboard so the business feels bigger
-                  without adding another employee.
-                </p>
-              </div>
-              <span className="text-[13px] font-mono text-text group-hover:text-accent transition-colors">
-                See the offer &rarr;
-              </span>
-            </div>
-          </Link>
-        </RevealOnScroll>
-
-        <div>
-          {services.map((service, i) => (
-            <RevealOnScroll key={service.title} delay={(i % 3) + 1}>
-              <Link href={service.href} className="skill-row group block">
-                <div>
-                  <span className="skill-title font-display">{service.title}</span>
-                  <div className="skill-desc">
-                    <p className="text-text-secondary text-[14px] leading-relaxed pt-4 max-w-[500px]">
-                      {service.desc}
-                    </p>
-                  </div>
-                </div>
-                <span className="skill-price">{service.tag}</span>
-                <span className="skill-number" aria-hidden="true">
-                  0{i + 1}
-                </span>
-              </Link>
-            </RevealOnScroll>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ── Process ── */
-function Process() {
-  return (
-    <section className="section-gap border-t border-border">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-10">
-        <RevealOnScroll>
-          <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-20">
-            How It Works
-          </p>
-        </RevealOnScroll>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-0">
-          {[
-            {
-              num: "01",
-              title: "You tell me what you need",
-              desc: "Fill out the form or send me a message. I'll respond within 24 hours with a clear plan, timeline, and price. No discovery calls, no runaround.",
-            },
-            {
-              num: "02",
-              title: "I build it",
-              desc: "Progress updates as I go. I move fast. Built an entire agency operating system in 5 days. Built an enterprise translator app for 100+ stores. Most websites ship in under 2 weeks. Bigger systems take 3–6 weeks. You see it as it happens.",
-            },
-            {
-              num: "03",
-              title: "You launch & grow",
-              desc: "Everything I build is yours. Full code ownership, deployed live, ready to make money. I stick around for tweaks and support after launch.",
-            },
-          ].map((step, i) => (
-            <RevealOnScroll key={step.num} delay={i + 1}>
-              <div className={`py-5 md:py-0 md:pr-12 ${i < 2 ? "md:border-r border-b md:border-b-0 border-border" : ""} ${i > 0 ? "md:pl-12" : ""}`}>
-                <span className="text-accent text-[11px] font-mono">{step.num}</span>
-                <h3 className="font-display text-[clamp(1.5rem,3vw,2.2rem)] tracking-[-0.02em] mt-3 mb-4 leading-[1.1]">
-                  {step.title}
-                </h3>
-                <p className="text-text-secondary text-[14px] leading-relaxed">
-                  {step.desc}
-                </p>
-              </div>
-            </RevealOnScroll>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ── Work (featured 6) ── */
-const featured = [
-  { category: "Casino", name: "Quanta", headline: "23 games, real-time multiplayer, $50K+ platform", stat: "$50K+", img: "/screenshots/quanta.png", slug: "quanta" },
-  { category: "AI / SaaS", name: "Velvet", headline: "Automates 500+ guest lists/week for Vegas nightclub promoters", stat: "500+ guests/wk", img: "/screenshots/club-bot.png", slug: "club-bot" },
-  { category: "Website / Luxury", name: "World Class Exotics", headline: "Exotic car rental platform with booking and fleet showcase", stat: "Luxury fleet", img: "/screenshots/world-class-exotics.png", slug: "world-class-exotics" },
-  { category: "Enterprise", name: "DHL Training", headline: "Gamified training app for 100+ stores across Chicago, DHL premier partner", stat: "100+ stores", img: "/screenshots/dhl-translator.png", slug: "dhl-translator", link: "https://cubicship-translator.vercel.app" },
-  { category: "Logistics / SaaS", name: "Travelyt", headline: "Door-to-airport baggage delivery platform with quote flow and booking", stat: "Full platform", img: "/screenshots/travelyt.png", slug: "travelyt", link: "https://travelyt-psi.vercel.app" },
-  { category: "Website / AI", name: "Pomaika'i Co", headline: "Centralized operations for a six-figure consultancy", stat: "5 tools replaced", img: "/screenshots/pomaikai.png", slug: "pomaikai" },
-];
-
-function Work() {
-  return (
-    <section id="work" className="section-gap border-t border-border">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-10">
-        <RevealOnScroll>
-          <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-6">
-            Selected Work
-          </p>
-          <h2 className="font-display text-[clamp(2.2rem,5vw,4.5rem)] tracking-[-0.03em] leading-[0.95] mb-16">
-            30+ projects, all live.<br />
-            <span className="text-text-secondary">Six worth showing.</span>
+          <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-6">Three ways I create leverage</p>
+          <h2 className="font-display text-[clamp(2.4rem,5vw,4.8rem)] tracking-[-0.035em] leading-[0.95] max-w-[900px] mb-16">
+            Not a made-up package. <span className="text-text-secondary">Three real systems a business needs.</span>
           </h2>
         </RevealOnScroll>
-
-        {/* Project grid with screenshots */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {featured.map((project, i) => (
-            <RevealOnScroll key={project.name} delay={(i % 3) + 1}>
-              <Link href={project.link ?? `/work/${project.slug}`} className="group block">
-                <div className="rounded-xl border border-border overflow-hidden mb-4 bg-surface">
-                  <Image
-                    src={project.img}
-                    alt={project.name}
-                    width={600}
-                    height={350}
-                    loading="eager"
-                    className="w-full aspect-[16/10] object-cover object-top group-hover:scale-[1.02] transition-transform duration-500"
-                  />
+        <div className="grid lg:grid-cols-3 gap-px bg-border rounded-2xl overflow-hidden">
+          {services.map((service, index) => (
+            <RevealOnScroll key={service.title} delay={index + 1}>
+              <Link href={service.href} className="group block bg-bg p-7 md:p-9 h-full hover:bg-surface transition-colors">
+                <span className="text-accent text-xs font-mono">{service.num}</span>
+                <h3 className="font-display text-[clamp(1.8rem,3vw,2.8rem)] tracking-[-0.03em] leading-[1] mt-10 mb-5">{service.title}</h3>
+                <p className="text-text-secondary text-[15px] leading-relaxed mb-9">{service.summary}</p>
+                <div className="space-y-3 mb-10">
+                  {service.outcomes.map((outcome) => <p key={outcome} className="text-xs font-mono text-text-muted">+ {outcome}</p>)}
                 </div>
-                <div>
-                  <div className="flex items-baseline justify-between gap-3 mb-1">
-                    <h3 className="font-display text-[clamp(1.1rem,2vw,1.5rem)] tracking-[-0.02em] leading-[1.1] group-hover:text-text-muted transition-colors duration-300">
-                      {project.name}
-                    </h3>
-                    <span className="text-[13px] font-semibold tracking-[-0.02em] shrink-0">
-                      {project.stat}
-                    </span>
+                <span className="text-sm font-mono group-hover:text-accent transition-colors">Explore service →</span>
+              </Link>
+            </RevealOnScroll>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function CaseStudies() {
+  return (
+    <section className="section-gap border-t border-border" id="case-studies">
+      <div className="max-w-[1400px] mx-auto px-6 md:px-10">
+        <RevealOnScroll>
+          <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-6">Case studies</p>
+          <h2 className="font-display text-[clamp(2.4rem,5vw,4.8rem)] tracking-[-0.035em] leading-[0.95] mb-16">
+            Systems inside real businesses.
+          </h2>
+        </RevealOnScroll>
+        <div className="space-y-6">
+          {cases.map((item, index) => (
+            <RevealOnScroll key={item.name} delay={(index % 3) + 1}>
+              <Link href={item.href} className="group grid lg:grid-cols-[0.78fr_1.22fr] border border-border rounded-2xl overflow-hidden bg-surface hover:border-text/20 transition-colors">
+                <div className="relative min-h-[240px] lg:min-h-[390px] overflow-hidden">
+                  <Image src={item.image} alt={`${item.name} system`} fill className="object-cover object-top group-hover:scale-[1.02] transition-transform duration-700" sizes="(max-width: 1024px) 100vw, 40vw" />
+                </div>
+                <div className="p-7 md:p-10 lg:p-12 flex flex-col justify-center">
+                  <p className="text-accent text-[10px] tracking-[0.35em] uppercase font-mono mb-4">{item.category}</p>
+                  <h3 className="font-display text-[clamp(2rem,4vw,3.7rem)] tracking-[-0.035em] leading-[0.98] mb-5">{item.name}</h3>
+                  <p className="text-text text-lg leading-relaxed max-w-[660px] mb-4">{item.headline}</p>
+                  <p className="text-text-secondary text-[14px] leading-relaxed max-w-[660px] mb-8">{item.body}</p>
+                  <div className="grid sm:grid-cols-3 gap-3">
+                    {item.metrics.map((metric) => <div key={metric} className="border-t border-border pt-3 text-[12px] text-text-muted font-mono leading-relaxed">{metric}</div>)}
                   </div>
-                  <p className="text-[11px] font-mono tracking-[0.15em] uppercase text-text-muted leading-relaxed">
-                    {project.headline}
-                  </p>
+                  {item.note && <p className="text-[10px] leading-relaxed text-text-muted/70 mt-5">{item.note}</p>}
                 </div>
               </Link>
             </RevealOnScroll>
           ))}
         </div>
-
-        {/* Big CTA to see all work */}
         <RevealOnScroll>
-          <Link
-            href="/work"
-            className="group block mt-12 py-6 sm:py-8 bg-text text-bg rounded-2xl text-center hover:bg-text/90 transition-all duration-300"
-          >
-            <span className="text-[clamp(1rem,2vw,1.3rem)] font-semibold tracking-[-0.01em]">
-              See all 30+ projects &rarr;
-            </span>
-            <span className="block text-bg/60 text-[13px] mt-1">
-              Filter by category: websites, apps, AI, games, casinos, enterprise
-            </span>
-          </Link>
+          <div className="mt-10 text-center"><Link href="/work" className="ghost-btn">See the full project archive</Link></div>
         </RevealOnScroll>
       </div>
     </section>
   );
 }
 
-/* ── Mid-page CTA ── */
-function MidCTA({ text, href, label }: { text: string; href: string; label: string }) {
-  return (
-    <section className="py-16 sm:py-20">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-10">
-        <RevealOnScroll>
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 py-8 sm:py-10 px-8 sm:px-12 border border-border rounded-2xl">
-            <p className="text-[clamp(1.1rem,2vw,1.4rem)] font-medium tracking-[-0.02em] max-w-[500px]">
-              {text}
-            </p>
-            <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:shrink-0">
-              <Link href={href} className="magnetic-btn w-full sm:w-auto !py-2.5 !px-6 !text-[13px]">
-                <span className="relative z-10">{label}</span>
-              </Link>
-              <a href="https://instagram.com/jdlo" target="_blank" rel="noopener noreferrer" className="ghost-btn w-full sm:w-auto !py-2.5 !px-6 !text-[13px]">
-                DM @jdlo
-              </a>
-            </div>
-          </div>
-        </RevealOnScroll>
-      </div>
-    </section>
-  );
-}
-
-/* ── Results ── */
-function Results() {
-  const stats: { countEnd: number | null; prefix?: string; suffix: string; plainNum: string | null; label: string; desc: string }[] = [
-    { countEnd: null, suffix: "", plainNum: "$50K+", label: "Quanta Casino", desc: "Full sweepstakes casino built from scratch. 23 games, real-time multiplayer, admin panel." },
-    { countEnd: null, suffix: "", plainNum: "100+", label: "Cubicship / DHL stores", desc: "Translator app live across DHL premier partner stores in Chicago, expanding to Canada." },
-    { countEnd: null, suffix: "", plainNum: "500+", label: "Velvet guest lists/wk", desc: "Vegas nightclub promoter automated. Tao Group venues — Hakkasan, OMNIA, TAO, Marquee, Jewel." },
-    { countEnd: null, suffix: "", plainNum: "Stripe live", label: "BayParlays", desc: "AI parlay optimizer with sharp-edge analysis and CLV tracking. Stripe in production." },
-    { countEnd: null, suffix: "", plainNum: "40+/mo", label: "Vacaville Appliance", desc: "AI receptionist that books service appointments while the owner sleeps." },
-    { countEnd: null, suffix: "", plainNum: "2 weeks", label: "Average turnaround", desc: "Most websites go from first message to live in under 14 days. No discovery calls." },
+function Benefits() {
+  const benefits = [
+    ["Capture", "Turn traffic, calls, and messages into structured leads instead of scattered conversations."],
+    ["Answer", "Put frequent questions, service details, pricing context, and next steps where clients can get them quickly."],
+    ["Convert", "Create a clear path from interest to estimate, booking, payment, or the next meaningful sales action."],
+    ["Operate", "Give the team a shared view of customers, work, follow-up, and performance so fewer things fall through."],
+    ["Automate", "Remove reminders, duplicate entry, repetitive replies, and handoffs that software can handle safely."],
+    ["Measure", "Track where leads come from, what converts, and where money or time leaks out of the process."],
   ];
   return (
-    <section className="section-gap border-t border-border">
+    <section className="section-gap border-t border-border bg-surface">
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
         <RevealOnScroll>
-          <div className="flex items-baseline justify-between mb-16">
-            <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono">
-              The Receipts
-            </p>
-            <p className="text-text-muted text-[11px] font-mono hidden md:block">
-              Real numbers, real clients, named.
-            </p>
-          </div>
+          <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-6">What changes</p>
+          <h2 className="font-display text-[clamp(2.2rem,4.8vw,4.4rem)] tracking-[-0.035em] leading-[0.98] max-w-[820px] mb-16">The business becomes easier to buy from and easier to run.</h2>
         </RevealOnScroll>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border rounded-2xl overflow-hidden">
-          {stats.map((stat, i) => (
-            <RevealOnScroll key={stat.label} delay={(i % 3) + 1}>
-              <div className="bg-bg p-8 h-full">
-                {stat.countEnd !== null ? (
-                  <CountUp
-                    end={stat.countEnd}
-                    prefix={stat.prefix}
-                    suffix={stat.suffix}
-                    className="text-[clamp(2rem,4vw,3.2rem)] font-display tracking-[-0.04em] gradient-text leading-none block mb-4"
-                  />
-                ) : (
-                  <span className="text-[clamp(2rem,4vw,3.2rem)] font-display tracking-[-0.04em] gradient-text leading-none block mb-4">
-                    {stat.plainNum}
-                  </span>
-                )}
-                <h3 className="text-[14px] font-medium mb-2 tracking-[-0.01em]">
-                  {stat.label}
-                </h3>
-                <p className="text-text-secondary text-[13px] leading-relaxed">
-                  {stat.desc}
-                </p>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-border rounded-2xl overflow-hidden">
+          {benefits.map(([title, body], i) => (
+            <RevealOnScroll key={title} delay={(i % 3) + 1}>
+              <div className="bg-bg p-7 md:p-9 h-full">
+                <h3 className="font-display text-3xl mb-4">{title}</h3>
+                <p className="text-text-secondary text-sm leading-relaxed">{body}</p>
               </div>
             </RevealOnScroll>
           ))}
@@ -414,294 +221,17 @@ function Results() {
   );
 }
 
-/* ── Testimonials ── */
-function Testimonials() {
+function FinalCTA() {
   return (
-    <section className="section-gap border-t border-border">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-10">
+    <section className="section-gap">
+      <div className="max-w-[980px] mx-auto px-6 text-center">
         <RevealOnScroll>
-          <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-16">
-            What They Say
-          </p>
-        </RevealOnScroll>
-
-        {/* Testimonials grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[
-            {
-              quote: "We needed something to handle 500+ guest lists a week. He built an AI system that does it automatically. Our promoters just send a name and it handles everything.",
-              name: "Club Bot / Velvet",
-              role: "AI Platform",
-            },
-            {
-              quote: "He built us a translator app that handles 100+ stores across Chicago. We're expanding to Canada now. The app just works.",
-              name: "Cubicship / DHL",
-              role: "Enterprise",
-            },
-            {
-              quote: "AI receptionist books appointments while we sleep. 40+ a month coming in automatically. The phone hasn't rung at 11pm without being answered since launch.",
-              name: "Vacaville Appliance",
-              role: "AI Receptionist",
-            },
-          ].map((t, i) => (
-            <RevealOnScroll key={t.name} delay={i + 1}>
-              <div className="border border-border rounded-xl p-6 h-full flex flex-col">
-                <p className="text-text-secondary text-[14px] leading-relaxed mb-6 flex-1">
-                  &ldquo;{t.quote}&rdquo;
-                </p>
-                <div>
-                  <p className="text-text text-[14px] font-medium">{t.name}</p>
-                  <p className="text-text-muted text-[12px]">{t.role}</p>
-                </div>
-              </div>
-            </RevealOnScroll>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ── Quick Quote Form ── */
-function QuickQuoteSection() {
-  return (
-    <section className="section-gap bg-surface">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-10">
-        <div className="max-w-[700px]">
-          <RevealOnScroll>
-            <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-6">
-              Free Quote
-            </p>
-            <h2 className="font-display text-[clamp(2rem,4vw,3.5rem)] tracking-[-0.03em] leading-[1] mb-4">
-              Tell me what you need.
-            </h2>
-            <p className="text-text-secondary text-[15px] leading-relaxed mb-12 max-w-[480px]">
-              Pick your industry, select what you need, and I&apos;ll send you a personalized plan + price within 24 hours. No calls, no BS.
-            </p>
-          </RevealOnScroll>
-          <RevealOnScroll delay={1}>
-            <QuickQuote />
-          </RevealOnScroll>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ── Clients ── */
-const clients = [
-  { name: "World Class Exotics", built: "Luxury rental platform", result: "Booking + fleet showcase" },
-  { name: "Club Bot / Velvet", built: "AI promoter platform", result: "500+ guests/wk automated" },
-  { name: "Cubicship / DHL", built: "Enterprise translator", result: "100+ stores, expanding to Canada" },
-  { name: "BayParlays", built: "AI parlay optimizer", result: "Stripe live, sharp-edge analysis" },
-  { name: "Quanta Casino", built: "Full online casino", result: "23 games, real-time multiplayer" },
-  { name: "Aesthetics By Kayy", built: "Website + booking", result: "Luxury studio, Big Island Hawaii" },
-];
-
-function Clients() {
-  return (
-    <section id="about" className="section-gap border-t border-border">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-10">
-        <div className="grid grid-cols-1 lg:grid-cols-[auto_1fr] gap-12 lg:gap-20 items-start">
-          {/* Photo accent */}
-          <RevealOnScroll>
-            <div className="relative w-24 h-24 lg:w-32 lg:h-32 rounded-2xl overflow-hidden border border-border shrink-0">
-              <Image
-                src="/jordan-2.jpg"
-                alt="Jordan Lopez"
-                fill
-                className="object-cover object-center"
-                sizes="128px"
-              />
-            </div>
-          </RevealOnScroll>
-
-          <div>
-            <RevealOnScroll>
-              <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-6">
-                Who I&apos;ve Built For
-              </p>
-            </RevealOnScroll>
-
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {clients.map((client, i) => (
-                <RevealOnScroll key={client.name} delay={(i % 3) + 1}>
-                  <div className="border border-border rounded-xl p-5 bg-surface hover:border-border-hover hover:bg-bg transition-all duration-300">
-                    <p className="text-[15px] font-semibold tracking-[-0.02em] mb-1">
-                      {client.name}
-                    </p>
-                    <p className="text-text-muted text-[13px] mb-3">
-                      {client.built}
-                    </p>
-                    <p className="text-text-secondary text-[13px] font-medium">
-                      {client.result}
-                    </p>
-                  </div>
-                </RevealOnScroll>
-              ))}
-            </div>
-
-            <RevealOnScroll>
-              <Link
-                href="/work"
-                className="inline-flex items-center gap-2 text-accent text-[14px] font-mono font-medium hover:text-white border-b border-accent/40 hover:border-white pb-0.5 transition-all duration-300 mt-8 group"
-              >
-                See all projects
-                <span className="group-hover:translate-x-1 transition-transform duration-200">
-                  &rarr;
-                </span>
-              </Link>
-            </RevealOnScroll>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ── FAQ ── */
-function FAQ() {
-  const faqs = [
-    {
-      q: "Why $3K when I can build my own with Squarespace for $200?",
-      a: "Because that Squarespace site looks like every other small business and converts like one too. Custom builds mean custom branding, custom flow, custom integrations — booking, payments, lead capture, CRM all wired together. It's not a website, it's a system that runs your business while you sleep.",
-    },
-    {
-      q: "Why not just use Lovable or one of the AI site builders?",
-      a: "Use them for prototypes. They break the second you need anything custom — real auth, real payments, real integrations, real performance. I use AI too. The difference is I know which 5% of what it generates is actually production-ready.",
-    },
-    {
-      q: "How much does it actually cost?",
-      a: "Websites start at $3K. E-commerce or AI systems run $5K–$15K depending on scope. Custom platforms (casinos, marketplaces, dashboards) start at $15K. I'll send you an exact number within 24 hours of your first message — no discovery calls, no proposals you have to chase.",
-    },
-    {
-      q: "Can I pay in installments?",
-      a: "Yes. Default is 50% upfront to start, 50% on launch. For bigger builds we can split into 3 payments tied to milestones. I don't take on payment plans without a deposit — that's how every freelancer gets ghosted.",
-    },
-    {
-      q: "How fast can you actually ship?",
-      a: "Most websites go live in under 2 weeks. Built and shipped a $5K agency platform in 5 days. AI systems and full marketplaces take 3–6 weeks depending on complexity. I tell you the real timeline upfront — no surprise delays.",
-    },
-    {
-      q: "What if I'm not technical and don't know what I want?",
-      a: "Most of my best clients didn't. Tell me your business, your customer, and the problem you're trying to solve. I figure out the rest and come back with a plan. You don't need to know what a CMS is. You just need to know what you want your business to do.",
-    },
-    {
-      q: "I've been burned by freelancers before. Why is this different?",
-      a: "Fair concern. I've shipped 30+ projects, every one is live and running, every client knows me on a first-name basis. I respond to messages same-day, I show you the build as it happens, and I don't disappear after delivery. If something breaks I fix it. If you want to talk to past clients, I'll send you their numbers.",
-    },
-    {
-      q: "Do I own everything?",
-      a: "100%. Source code, domain, customer data, hosting accounts — all yours. Nothing locked behind my account. If you fire me tomorrow you keep the entire system. I'd just rather you didn't.",
-    },
-    {
-      q: "Do you do branding too, or just the website?",
-      a: "Both. Most clients come for one and end up using me for the other. Logos, brand voice, content, photo direction, the website, the systems behind it. One person, one vision, faster execution.",
-    },
-    {
-      q: "What if I just need a quick fix or a one-pager?",
-      a: "That's fine. Landing pages start at $497. Sometimes that's all you need to test an offer before building the full thing. I'll tell you straight — if a $497 page solves your problem, I'm not selling you the $5K build.",
-    },
-    {
-      q: "Do you do ongoing maintenance?",
-      a: "Yes. After launch you get 30 days of free tweaks. After that, retainers start at $500/month for hosting, monitoring, small updates, and fast response. Most clients on retainer never need to think about their site again.",
-    },
-  ];
-
-  return (
-    <section id="faq" className="section-gap border-t border-border">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-10">
-        <div className="grid grid-cols-1 lg:grid-cols-[400px_1fr] gap-8 lg:gap-24">
-          <RevealOnScroll>
-            <div className="lg:sticky lg:top-24">
-              <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-8">
-                FAQ
-              </p>
-              <h2 className="font-display text-[clamp(2rem,4vw,3.5rem)] tracking-[-0.03em] leading-[1]">
-                What people ask.
-              </h2>
-            </div>
-          </RevealOnScroll>
-
-          <div>
-            {faqs.map((faq, i) => (
-              <RevealOnScroll key={i} delay={(i % 3) + 1}>
-                <details className="group border-b border-border">
-                  <summary className="flex items-center justify-between py-6 cursor-pointer">
-                    <span className="text-[16px] font-medium pr-6">{faq.q}</span>
-                    <span className="text-text-muted group-open:rotate-45 transition-transform duration-500 text-lg shrink-0">
-                      +
-                    </span>
-                  </summary>
-                  <div className="pb-6">
-                    <p className="text-text-secondary text-[14px] leading-relaxed max-w-[500px]">
-                      {faq.a}
-                    </p>
-                  </div>
-                </details>
-              </RevealOnScroll>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ── Reach Out ── */
-function ReachOut() {
-  return (
-    <section className="section-gap relative overflow-hidden">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-text/[0.02] rounded-full blur-[150px] pointer-events-none" />
-
-      <div className="max-w-[1400px] mx-auto px-6 md:px-10 relative z-10">
-        <RevealOnScroll>
-          <div className="max-w-[800px] mx-auto text-center">
-            <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-8">
-              Let&apos;s work together
-            </p>
-            <h2 className="font-display text-[clamp(2.8rem,6vw,5.5rem)] tracking-[-0.03em] leading-[0.95] mb-8">
-              I only take on a few
-              <br />projects at a time.
-            </h2>
-            <p className="text-text-secondary text-lg md:text-xl leading-relaxed mb-14 max-w-[520px] mx-auto">
-              If you&apos;re serious about building something, reach out now. I respond to every message within 24 hours.
-            </p>
-
-            {/* Two paths */}
-            <div className="grid sm:grid-cols-2 gap-6 max-w-[640px] mx-auto mb-10">
-              {/* Instagram DM */}
-              <a
-                href="https://instagram.com/jdlo"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group border border-border rounded-2xl p-8 text-center hover:border-text/20 transition-all duration-300 glow-pulse"
-              >
-                <span className="text-[2rem] block mb-4">&#9998;</span>
-                <span className="block text-[15px] font-semibold mb-2">DM me on Instagram</span>
-                <span className="block text-text-secondary text-[14px] mb-4">Fastest way to reach me. Send a message and I&apos;ll respond same day.</span>
-                <span className="inline-flex items-center gap-1.5 text-text font-mono text-[13px] font-medium group-hover:gap-2.5 transition-all duration-300">
-                  @jdlo <span>&rarr;</span>
-                </span>
-              </a>
-
-              {/* Contact Form */}
-              <Link
-                href="/contact"
-                className="group border border-border rounded-2xl p-8 text-center hover:border-text/20 transition-all duration-300"
-              >
-                <span className="text-[2rem] block mb-4">&#9993;</span>
-                <span className="block text-[15px] font-semibold mb-2">Fill out the form</span>
-                <span className="block text-text-secondary text-[14px] mb-4">Tell me about your project, budget, and timeline. I&apos;ll send you a plan.</span>
-                <span className="inline-flex items-center gap-1.5 text-text font-mono text-[13px] font-medium group-hover:gap-2.5 transition-all duration-300">
-                  Start a project <span>&rarr;</span>
-                </span>
-              </Link>
-            </div>
-
-            <p className="text-text-muted text-[13px]">
-              Or email directly: <a href="mailto:jordanl4solar@gmail.com" className="text-text hover:underline transition-colors">jordanl4solar@gmail.com</a>
-            </p>
+          <p className="text-accent text-[11px] tracking-[0.5em] uppercase font-mono mb-8">Start with the bottleneck</p>
+          <h2 className="font-display text-[clamp(3rem,7vw,6.5rem)] tracking-[-0.045em] leading-[0.9] mb-9">Tell me where the business is leaking time or money.</h2>
+          <p className="text-text-secondary text-lg leading-relaxed max-w-[620px] mx-auto mb-10">I’ll map the smallest system that creates a real business result. No invented stack. No technology for its own sake.</p>
+          <div className="flex flex-col sm:flex-row justify-center gap-3">
+            <GlowLink href="/contact?ref=home-bottom" className="w-full sm:w-auto">Start a Project</GlowLink>
+            <a href="mailto:joo@meaship.com" className="ghost-btn w-full sm:w-auto">joo@meaship.com</a>
           </div>
         </RevealOnScroll>
       </div>
@@ -709,103 +239,33 @@ function ReachOut() {
   );
 }
 
-/* ── Footer ── */
 function Footer() {
   return (
-    <footer className="py-16 pb-24 md:pb-16 border-t border-border">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-10">
-        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-12 mb-16">
-          <div className="max-w-[280px]">
-            <p className="text-text text-[14px] font-semibold tracking-[-0.02em] mb-2">
-              JDLO
-            </p>
-            <p className="text-text-muted text-[13px] leading-relaxed mb-6">
-              Apps, AI systems, websites, games, casinos. Whatever your business needs.
-            </p>
-            <p className="text-text text-[12px] font-medium mb-3">Stay in the loop</p>
-            <NewsletterCapture />
-          </div>
-
-          <div className="flex gap-16 flex-wrap">
-            <div>
-              <p className="text-text text-[13px] font-semibold mb-4">Pages</p>
-              <div className="flex flex-col gap-2.5">
-                <Link href="/services" className="text-text-muted text-[12px] hover:text-text transition-colors">Services</Link>
-                <Link href="/work" className="text-text-muted text-[12px] hover:text-text transition-colors">Work</Link>
-                <Link href="/about" className="text-text-muted text-[12px] hover:text-text transition-colors">About</Link>
-                <Link href="/contact" className="text-text-muted text-[12px] hover:text-text transition-colors">Contact</Link>
-              </div>
-            </div>
-            <div>
-              <p className="text-text text-[13px] font-semibold mb-4">Legal</p>
-              <div className="flex flex-col gap-2.5">
-                <Link href="/terms" className="text-text-muted text-[12px] hover:text-text transition-colors">Terms</Link>
-                <Link href="/privacy" className="text-text-muted text-[12px] hover:text-text transition-colors">Privacy</Link>
-              </div>
-            </div>
-            <div>
-              <p className="text-text text-[13px] font-semibold mb-4">Connect</p>
-              <div className="flex flex-col gap-2.5">
-                <a href="https://instagram.com/jdlo" target="_blank" rel="noopener noreferrer" className="text-text-muted text-[12px] hover:text-text transition-colors">Instagram</a>
-                <a href="mailto:jordanl4solar@gmail.com" className="text-text-muted text-[12px] hover:text-text transition-colors">jordanl4solar@gmail.com</a>
-              </div>
-            </div>
-          </div>
+    <footer className="border-t border-border py-12 pb-24 md:pb-12">
+      <div className="max-w-[1400px] mx-auto px-6 md:px-10 flex flex-col md:flex-row gap-8 md:items-end md:justify-between">
+        <div>
+          <p className="font-semibold mb-2">JDLO</p>
+          <p className="text-text-muted text-sm max-w-[430px]">Web design, client communication, and business operating systems built to create revenue and owner leverage.</p>
         </div>
-
-        <div className="border-t border-border pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <span className="text-text-muted text-[11px] font-mono tracking-wider">
-            &copy; {new Date().getFullYear()} JDLO
-          </span>
-          <span className="text-text-muted text-[11px] font-mono">
-            Jordan Lopez
-          </span>
+        <div className="flex flex-wrap gap-x-6 gap-y-3 text-xs font-mono text-text-muted">
+          <Link href="/services">Services</Link><Link href="/work">Work</Link><Link href="/about">About</Link><Link href="/contact">Contact</Link><a href="mailto:joo@meaship.com">joo@meaship.com</a>
         </div>
       </div>
     </footer>
   );
 }
 
-/* ── Sticky Mobile CTA ── */
-function StickyMobileCTA() {
-  return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden border-t border-border bg-bg/90 backdrop-blur-lg px-4 py-3">
-      <div className="grid grid-cols-2 gap-3">
-        <Link href="/contact" className="magnetic-btn min-w-0 justify-center !px-3 !py-2.5 !text-[13px]">
-          <span className="relative z-10">Start a Project</span>
-        </Link>
-        <a
-          href="https://instagram.com/jdlo"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="ghost-btn min-w-0 justify-center !px-3 !py-2.5 !text-[13px]"
-        >
-          DM @jdlo
-        </a>
-      </div>
-    </div>
-  );
-}
-
-/* ── Page ── */
 export default function Home() {
   return (
     <main>
       <HomeNav />
       <Hero />
-      <OperatorBanner />
+      <OutcomeStrip />
       <Services />
-      <Process />
-      <Work />
-      <MidCTA text="Most projects start with a 10-minute message and ship within 2 weeks." href="/contact" label="Start a Project" />
-      <Results />
-      <Testimonials />
-      <QuickQuoteSection />
-      <Clients />
-      <FAQ />
-      <ReachOut />
+      <CaseStudies />
+      <Benefits />
+      <FinalCTA />
       <Footer />
-      <StickyMobileCTA />
     </main>
   );
 }

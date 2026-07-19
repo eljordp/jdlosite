@@ -7,7 +7,6 @@ import { GlowLink } from "@/components/GlowButton";
 const navLinks = [
   { label: "Services", href: "/services" },
   { label: "Work", href: "/work" },
-  { label: "Packages", href: "/packages" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
@@ -120,7 +119,7 @@ export default function PageShell({ children, activeSlug }: PageShellProps) {
             </span>
             <div className="flex items-center gap-6">
               <a href="https://instagram.com/jdlo" target="_blank" rel="noopener noreferrer" className="text-text-muted text-[12px] font-mono hover:text-text transition-colors">@jdlo</a>
-              <a href="mailto:jordanl4solar@gmail.com" className="text-text-muted text-[12px] font-mono hover:text-text transition-colors">jordanl4solar@gmail.com</a>
+              <a href="mailto:joo@meaship.com" className="text-text-muted text-[12px] font-mono hover:text-text transition-colors">joo@meaship.com</a>
             </div>
           </div>
         </div>

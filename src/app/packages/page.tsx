@@ -173,7 +173,7 @@ function getPackagesForNiche(niche: string): PackageData[] {
           name: "Book Online",
           price: "$997",
           tagline: "Stop losing clients to phone tag.",
-          desc: "Clean website with online booking so clients can schedule 24/7 without calling. Calendar syncs, confirmations sent automatically. Aesthetics By Kayy on the Big Island runs on this exact setup.",
+          desc: "Clean website with online booking so clients can schedule 24/7 without calling. Calendar syncs, confirmations sent automatically. Vacaville Appliance uses this same booking-first pattern for service appointments.",
           includes: ["Custom website", "Online booking system", "Calendar sync", "Automated confirmations + reminders", "Google Business setup", "Mobile responsive"],
         },
         {
@@ -289,7 +289,7 @@ function getPackagesForNiche(niche: string): PackageData[] {
           price: "$3,000",
           tagline: "Stop losing leads to missed calls.",
           popular: true,
-          desc: "Website + AI receptionist + automated follow-up. Every call gets answered, every lead gets followed up with. Built this for Vacaville Appliance — books 40+ service appointments/month while the owner sleeps.",
+          desc: "Website + structured intake + automated follow-up. Built for businesses like Vacaville Appliance, where leads, customer questions, scheduling, and job information need to move through one clearer system.",
           includes: ["Everything in Get Found", "AI phone receptionist (24/7)", "Automated lead follow-up", "Online quote + booking request", "Review request automation", "Analytics dashboard", "30 days support"],
         },
         {

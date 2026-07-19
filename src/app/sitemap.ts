@@ -7,9 +7,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: base, lastModified: new Date(), changeFrequency: 'weekly', priority: 1.0 },
     // Services
     { url: `${base}/services`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.95 },
-    { url: `${base}/operator`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.95 },
+    { url: `${base}/services/web-design-systems`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.95 },
+    { url: `${base}/services/client-communication-systems`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.95 },
+    { url: `${base}/services/business-operating-systems`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.95 },
     { url: `${base}/services/apps-systems`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9 },
-    { url: `${base}/services/creative`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${base}/services/creative`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
     { url: `${base}/services/websites`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9 },
     // Products - Apps & Systems
     { url: `${base}/services/apps-systems/ai-receptionist`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
@@ -19,8 +21,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/services/apps-systems/custom-dashboards`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
     { url: `${base}/services/apps-systems/internal-tools`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
     // Products - Creative
-    { url: `${base}/services/creative/video-games`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${base}/services/creative/online-casinos`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${base}/services/creative/video-games`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.35 },
+    { url: `${base}/services/creative/online-casinos`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.35 },
     { url: `${base}/services/creative/enterprise-tools`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
     { url: `${base}/services/creative/interactive-experiences`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
     { url: `${base}/services/creative/custom-platforms`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },

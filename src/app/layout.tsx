@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import Script from "next/script";
 import "./globals.css";
 import PostHogProvider from "@/components/PostHogProvider";
 import PageTransition from "@/components/PageTransition";
@@ -9,9 +10,9 @@ import CustomCursor from "@/components/CustomCursor";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://jdlo.site"),
-  title: "JDLO | The Operator Stack",
+  title: "JDLO | Revenue Systems for Growing Businesses",
   description:
-    "I install the Operator Stack for your business: custom website, CRM, AI follow-up, booking, payments, automation, and dashboard.",
+    "JDLO builds web design, client communication, and business operating systems that help businesses capture leads, save time, and create revenue.",
   authors: [{ name: "Jordan Lopez", url: "https://jdlo.site/about" }],
   creator: "Jordan Lopez",
   publisher: "JDLO",
@@ -19,9 +20,9 @@ export const metadata: Metadata = {
     icon: "/jordan.jpg",
   },
   openGraph: {
-    title: "JDLO | The Operator Stack",
+    title: "JDLO | Revenue Systems for Growing Businesses",
     description:
-      "Your business is bigger than your website makes it look. JDLO builds the website, CRM, AI follow-up, booking flow, payments, and dashboard.",
+      "Web design, client communication, and business operations connected around revenue.",
     url: "https://jdlo.site",
     siteName: "JDLO",
     images: [{ url: "https://jdlo.site/jordan.jpg", width: 1200, height: 1500, alt: "Jordan Lopez | JDLO" }],
@@ -29,9 +30,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "JDLO | The Operator Stack",
+    title: "JDLO | Revenue Systems for Growing Businesses",
     description:
-      "Your business is bigger than your website makes it look. JDLO builds the Operator Stack behind it.",
+      "Web design, client communication, and business operations connected around revenue.",
     images: ["https://jdlo.site/jordan.jpg"],
   },
 };
@@ -47,7 +48,7 @@ export default function RootLayout({
     "@id": "https://jdlo.site/#organization",
     name: "JDLO",
     url: "https://jdlo.site",
-    email: "jordanl4solar@gmail.com",
+    email: "joo@meaship.com",
     description:
       "JDLO builds custom websites, design systems, CRM workflows, AI follow-up, booking, payments, dashboards, and internal business tools.",
     founder: {
@@ -78,6 +79,12 @@ export default function RootLayout({
         />
       </head>
       <body className="font-sans antialiased">
+        {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ? (
+          <>
+            <Script src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}`} strategy="afterInteractive" />
+            <Script id="ga4" strategy="afterInteractive">{`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}',{anonymize_ip:true});`}</Script>
+          </>
+        ) : null}
         <CustomCursor />
         <PostHogProvider>
           <PortalProvider>

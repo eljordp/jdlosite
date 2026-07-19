@@ -1545,15 +1545,15 @@ export const courseData: CourseModule[] = [
       {
         title: 'Vacaville Appliance — The Fast Win Playbook',
         readingTime: '9 min',
-        overview: 'Local appliance repair business. Website plus AI receptionist targeting property managers. $300 for the website, $1K for consultation. Fast project, clean client, straightforward. This kind of work is the financial foundation that keeps you building the big stuff without pressure.',
+        overview: 'Local appliance repair business. Website, business consultation, and an evolving operating ecosystem around leads, service information, and customer intake. The important lesson is not a single AI feature. It is what happens when you join a real business and keep improving the whole system.',
         sections: [
           {
             heading: 'Why fast wins matter — cash flow, confidence, and portfolio breadth',
             body: 'Not every project is Quanta Casino. Not every project should be. The fast win — $300 to $1,500, delivered in a week or less — does things that complex projects can\'t do. It generates cash now, when you need it. It builds a new portfolio entry with zero risk. It gives you a client relationship that might expand into something bigger. And it keeps your confidence high during the inevitable slow weeks when nothing in the pipeline is moving. I run what I call the fast win playbook whenever my cash situation needs a refresh or my pipeline is stalled. It\'s not a retreat — it\'s a deliberate tool. Local service businesses are everywhere, they have real problems, and they\'re underserved by the tech industry because the deal size seems too small to bother with. That\'s exactly why it\'s an opportunity.',
           },
           {
-            heading: 'The AI receptionist build — what it does, how long it took',
-            body: 'The AI receptionist I built for Vacaville Appliance handles inbound calls and texts. It answers common questions — service availability, pricing, scheduling — without a human picking up. If the caller needs to book a job, it captures their info and the job details, sends a confirmation, and logs the appointment in the system. It took me about four days to build and deploy. The actual work was: voice agent setup, knowledge base with their service menu and pricing, calendar integration for booking, and a notification system so the owner sees new appointments without checking anything manually. The value proposition was simple: they were missing calls because they\'re in the field most of the day. The AI receptionist means no missed calls. For a small business that runs on phone volume, that\'s the pitch. No calls missed equals no revenue missed.',
+            heading: 'The ecosystem build — what changed',
+            body: 'The work started with the public website and grew into the systems around a real service operation: clearer service information, lead capture, customer intake, job visibility, and the administrative flow behind delivery. Jobber currently shows meaningful lead and job volume, but the honest lesson is not that one feature created all of the revenue. The lesson is that a builder who stays close to the operation can keep finding and fixing the next bottleneck.',
           },
           {
             heading: 'Targeting a niche within a niche — why property managers beat general homeowners',

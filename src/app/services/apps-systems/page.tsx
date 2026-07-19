@@ -63,12 +63,12 @@ const caseStudies = [
   {
     category: "AI Receptionist",
     name: "Vacaville Appliance",
-    headline: "AI receptionist booking 40+ appointments per month, automatically, 24/7",
+    headline: "Connected intake and operating workflows for a high-volume service business",
     desc: "Built a system that answers calls, qualifies whether the lead is worth pursuing, and books the appointment, all without a human touching it. Targeted property managers specifically, their highest-value segment.",
     stats: [
-      { value: "40+", label: "Bookings/mo" },
-      { value: "24/7", label: "Availability" },
-      { value: "$8K+", label: "Revenue added" },
+      { value: "17", label: "June leads" },
+      { value: "57", label: "June one-off jobs" },
+      { value: "$144.3K", label: "2026 invoiced through Jul 19" },
     ],
   },
   {

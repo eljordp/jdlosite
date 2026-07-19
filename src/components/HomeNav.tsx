@@ -8,7 +8,6 @@ import { usePortal } from '@/components/PortalTransition';
 const links = [
   { label: 'Services', href: '/services' },
   { label: 'Work', href: '/work' },
-  { label: 'Packages', href: '/packages' },
   { label: 'About', href: '/about' },
   { label: 'Contact', href: '/contact' },
 ];
