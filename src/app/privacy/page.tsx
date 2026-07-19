@@ -141,10 +141,10 @@ export default function PrivacyPage() {
               <p className="text-text-muted text-[13px] leading-[1.8]">
                 Questions about your data? Reach out at{" "}
                 <a
-                  href="mailto:joo@meaship.com"
+                  href="mailto:eljordp@gmail.com"
                   className="text-accent hover:underline"
                 >
-                  joo@meaship.com
+                  eljordp@gmail.com
                 </a>
               </p>
             </div>

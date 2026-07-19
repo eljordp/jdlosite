@@ -141,6 +141,18 @@ function getAutoReply(type: string, firstName: string, course?: string) {
         ...base,
       };
 
+    case "newsletter":
+      return {
+        ...base,
+        greeting: "You’re in.",
+        subject: "Welcome to JDLO Operator Notes",
+        body: `
+          <p>I’ll send you practical notes from the systems I’m building: what was broken, what I connected, what changed, and what I learned.</p>
+          <p>No recycled AI news. No daily noise. Just useful work when there is something worth showing.</p>
+          <p>Talk soon.</p>
+        `,
+      };
+
     default:
       return {
         subject: "Thanks for reaching out",
@@ -170,6 +182,7 @@ export async function POST(req: NextRequest) {
       student: "Course Waitlist",
       mentorship: "Mentorship Application",
       careers: "Career Application",
+      newsletter: "Newsletter Signup",
     };
 
     const firstName = name.split(" ")[0];
@@ -232,11 +245,23 @@ export async function POST(req: NextRequest) {
       });
     } catch { /* table may not exist yet */ }
 
+    if (type === "newsletter") {
+      try {
+        const segmentId = process.env.RESEND_NEWSLETTER_SEGMENT_ID;
+        await getResend().contacts.create({
+          email: email.toLowerCase(),
+          unsubscribed: false,
+          properties: { source: "jdlo.site" },
+          segments: segmentId ? [{ id: segmentId }] : undefined,
+        });
+      } catch { /* email notification still provides a recoverable signup */ }
+    }
+
     // Send both emails — allSettled so one failure doesn't block the other
     const [notifResult, replyResult] = await Promise.allSettled([
       getResend().emails.send({
         from: "JDLO Leads <jp@jdlo.site>",
-        to: process.env.LEAD_EMAIL || "joo@meaship.com",
+        to: process.env.LEAD_EMAIL || "eljordp@gmail.com",
         subject: `New ${labels[type] || "Lead"}: ${name}${course ? ` — ${course}` : ""}`,
         html: notificationHtml,
         replyTo: email,
@@ -246,7 +271,7 @@ export async function POST(req: NextRequest) {
         to: email,
         subject: reply.subject,
         html: autoReplyHtml,
-        replyTo: process.env.LEAD_EMAIL || "joo@meaship.com",
+        replyTo: process.env.LEAD_EMAIL || "eljordp@gmail.com",
       }),
     ]);
 
@@ -254,7 +279,7 @@ export async function POST(req: NextRequest) {
     const emailLogs = [];
     if (notifResult.status === "fulfilled" && notifResult.value?.data?.id) {
       emailLogs.push({
-        to_email: process.env.LEAD_EMAIL || "joo@meaship.com",
+        to_email: process.env.LEAD_EMAIL || "eljordp@gmail.com",
         subject: `New ${labels[type] || "Lead"}: ${name}`,
         type: "notification",
         status: "sent",

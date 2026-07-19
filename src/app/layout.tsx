@@ -49,7 +49,7 @@ export default function RootLayout({
     "@id": "https://jdlo.site/#organization",
     name: "JDLO",
     url: "https://jdlo.site",
-    email: "joo@meaship.com",
+    email: "eljordp@gmail.com",
     description:
       "JDLO builds custom websites, design systems, CRM workflows, AI follow-up, booking, payments, dashboards, and internal business tools.",
     founder: {

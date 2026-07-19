@@ -5,6 +5,7 @@ import HomeNav from "@/components/HomeNav";
 import RevealOnScroll from "@/components/RevealOnScroll";
 import { GlowLink } from "@/components/GlowButton";
 import SplitText from "@/components/SplitText";
+import NewsletterCapture from "@/components/NewsletterCapture";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
@@ -258,9 +259,27 @@ function FinalCTA() {
           <p className="text-text-secondary text-lg leading-relaxed max-w-[620px] mx-auto mb-10">I’ll map the smallest system that creates a real business result. No invented stack. No technology for its own sake.</p>
           <div className="flex flex-col sm:flex-row justify-center gap-3">
             <GlowLink href="/contact?ref=home-bottom" className="w-full sm:w-auto">Start a Project</GlowLink>
-            <a href="mailto:joo@meaship.com" className="ghost-btn w-full sm:w-auto">joo@meaship.com</a>
+            <a href="mailto:eljordp@gmail.com" className="ghost-btn w-full sm:w-auto">eljordp@gmail.com</a>
           </div>
         </RevealOnScroll>
+      </div>
+    </section>
+  );
+}
+
+function OperatorNotes() {
+  return (
+    <section className="border-t border-border px-6 py-20 md:px-10 md:py-28" data-analytics-section="operator-notes">
+      <div className="max-w-[1400px] mx-auto rounded-3xl bg-[#111] text-white px-7 py-10 md:px-12 md:py-14 grid lg:grid-cols-[1.15fr_0.85fr] gap-12 lg:items-end">
+        <div>
+          <p className="text-white/45 text-[11px] tracking-[0.45em] uppercase font-mono mb-7">JDLO / Operator Notes</p>
+          <h2 className="font-display text-[clamp(2.8rem,5.6vw,5.4rem)] tracking-[-0.04em] leading-[0.92] max-w-[760px]">Systems, decisions, and what actually happened.</h2>
+        </div>
+        <div>
+          <p className="text-white/65 text-[16px] leading-relaxed mb-7">One useful teardown, build lesson, or business observation at a time. No recycled AI news and no daily noise.</p>
+          <NewsletterCapture />
+          <p className="text-white/35 text-[11px] font-mono mt-4">Useful when there is something worth sending. Unsubscribe anytime.</p>
+        </div>
       </div>
     </section>
   );
@@ -275,7 +294,7 @@ function Footer() {
           <p className="text-text-muted text-sm max-w-[430px]">Web design, client communication, and business operating systems built to create revenue and owner leverage.</p>
         </div>
         <div className="flex flex-wrap gap-x-6 gap-y-3 text-xs font-mono text-text-muted">
-          <Link href="/services">Services</Link><Link href="/work">Work</Link><Link href="/about">About</Link><Link href="/contact">Contact</Link><a href="mailto:joo@meaship.com">joo@meaship.com</a>
+          <Link href="/services">Services</Link><Link href="/work">Work</Link><Link href="/about">About</Link><Link href="/contact">Contact</Link><a href="mailto:eljordp@gmail.com">eljordp@gmail.com</a>
         </div>
       </div>
     </footer>
@@ -291,6 +310,7 @@ export default function Home() {
       <Services />
       <CaseStudies />
       <Benefits />
+      <OperatorNotes />
       <FinalCTA />
       <Footer />
     </main>

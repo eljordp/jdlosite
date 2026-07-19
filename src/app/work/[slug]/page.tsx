@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import PageShell from "@/components/PageShell";
 import RevealOnScroll from "@/components/RevealOnScroll";
@@ -265,6 +266,29 @@ const projects: Record<string, {
 
 export function generateStaticParams() {
   return Object.keys(projects).map((slug) => ({ slug }));
+}
+
+const noIndexProjects = new Set(["quanta", "best-odds", "jdlo-wii"]);
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const project = projects[slug];
+  if (!project) return { title: "Project Not Found | JDLO" };
+
+  const description = `${project.headline}. ${project.description}`.slice(0, 158);
+
+  return {
+    title: `${project.name} Case Study | JDLO`,
+    description,
+    alternates: { canonical: `/work/${slug}` },
+    openGraph: {
+      title: `${project.name} Case Study | JDLO`,
+      description,
+      url: `https://jdlo.site/work/${slug}`,
+      images: project.screenshot ? [{ url: project.screenshot, alt: `${project.name} system` }] : undefined,
+    },
+    robots: noIndexProjects.has(slug) ? { index: false, follow: true } : undefined,
+  };
 }
 
 export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
