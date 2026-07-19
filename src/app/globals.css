@@ -141,6 +141,24 @@ body::after {
 .hero-delay-4 { animation-delay: 0.8s; opacity: 0; }
 .hero-delay-5 { animation-delay: 1.0s; opacity: 0; }
 
+@media (max-width: 767px) {
+  .hero-animate { animation-duration: 0.75s; }
+  .hero-delay-1 { animation-delay: 0.05s; }
+  .hero-delay-2 { animation-delay: 0.12s; }
+  .hero-delay-3 { animation-delay: 0.2s; }
+  .split-word { animation-duration: 0.5s; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-animate,
+  .split-word {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}
+
 /* ── Gradient text ── */
 .gradient-text {
   background: linear-gradient(135deg, #141414 0%, #525252 100%);

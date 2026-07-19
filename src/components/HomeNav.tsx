@@ -19,8 +19,8 @@ export default function HomeNav() {
   return (
     <>
       <nav className="fixed top-0 left-0 right-0 z-50 nav-blur">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-10 h-14 flex items-center justify-between">
-          <Link href="/" className="text-[15px] font-semibold tracking-tight">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-10 h-16 md:h-14 flex items-center justify-between">
+          <Link href="/" className="min-h-11 inline-flex items-center text-[15px] font-semibold tracking-tight">
             JDLO
           </Link>
 
@@ -46,7 +46,7 @@ export default function HomeNav() {
             {/* Mobile hamburger */}
             <button
               onClick={() => setOpen(true)}
-              className="md:hidden p-2 -mr-1 text-text-muted hover:text-text transition-colors"
+              className="md:hidden w-11 h-11 -mr-2 inline-flex items-center justify-center text-text-muted hover:text-text transition-colors"
               aria-label="Open menu"
             >
               <svg width="20" height="14" viewBox="0 0 20 14" fill="currentColor">
@@ -65,13 +65,13 @@ export default function HomeNav() {
           open ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
       >
-        <div className="flex items-center justify-between mb-10">
-          <Link href="/" onClick={() => setOpen(false)} className="text-[15px] font-semibold tracking-tight">
+        <div className="flex items-center justify-between mb-7">
+          <Link href="/" onClick={() => setOpen(false)} className="min-h-11 inline-flex items-center text-[15px] font-semibold tracking-tight">
             JDLO
           </Link>
           <button
             onClick={() => setOpen(false)}
-            className="text-text-muted hover:text-text text-4xl leading-none"
+            className="w-11 h-11 -mr-2 inline-flex items-center justify-center text-text-muted hover:text-text text-4xl leading-none"
             aria-label="Close menu"
           >
             ×
@@ -84,7 +84,7 @@ export default function HomeNav() {
               key={link.label}
               href={link.href}
               onClick={() => setOpen(false)}
-              className="text-[1.5rem] sm:text-[2rem] font-semibold tracking-[-0.03em] text-text-secondary hover:text-text transition-colors duration-200 py-2.5 border-b border-border/40 last:border-0"
+              className="min-h-14 flex items-center text-[1.5rem] sm:text-[2rem] font-semibold tracking-[-0.03em] text-text-secondary hover:text-text transition-colors duration-200 border-b border-border/40 last:border-0"
             >
               {link.label}
             </Link>

@@ -17,7 +17,7 @@ const services = [
     title: "Web Design Systems",
     href: "/services/web-design-systems",
     summary:
-      "A credible website connected to the actions that create revenue: calls, forms, booking, checkout, follow-up, and measurement.",
+      "A credible website connected to calls, forms, booking, follow-up, and measurement.",
     outcomes: ["Get found", "Capture demand", "Convert traffic"],
   },
   {
@@ -25,7 +25,7 @@ const services = [
     title: "Client Communication Systems",
     href: "/services/client-communication-systems",
     summary:
-      "Lead intake, FAQs, estimates, reminders, status updates, and follow-up designed so customers get answers without the owner becoming the inbox.",
+      "Lead intake, FAQs, estimates, reminders, and follow-up—without the owner becoming the inbox.",
     outcomes: ["Faster replies", "Fewer missed leads", "Less repetitive admin"],
   },
   {
@@ -33,7 +33,7 @@ const services = [
     title: "Business Operating Systems",
     href: "/services/business-operating-systems",
     summary:
-      "The internal layer: CRM, dashboards, scheduling, automation, and custom tools that make the business easier to run and ready to grow.",
+      "CRM, dashboards, scheduling, automation, and custom tools that make the business easier to run.",
     outcomes: ["One source of truth", "Cleaner handoffs", "More owner leverage"],
   },
 ];
@@ -58,7 +58,7 @@ const cases: CaseStudy[] = [
     href: "/work/vacaville-appliance",
     headline: "A service business becoming a connected operating ecosystem.",
     body:
-      "Since joining the business around August 2025, the work has centered on a new website and AI receptionist, then expanded into lead capture, service information, customer intake, and the systems around day-to-day operations.",
+      "Since joining around August 2025, the website and AI receptionist have expanded into lead capture, service information, customer intake, and day-to-day workflows.",
     metrics: ["$144.3K invoiced in 2026 through Jul 19", "57 new one-off jobs in June", "17 new leads in June"],
     note: "Business figures observed in Jobber. They show the environment the system supports; they are not presented as revenue created by JDLO alone.",
   },
@@ -69,7 +69,7 @@ const cases: CaseStudy[] = [
     href: "/work/dhl-translator",
     headline: "A long-term systems relationship, not a one-off website.",
     body:
-      "Work for Mo has grown across translation, private operations hubs, customer workflows, freight tools, public briefing pages, and decision support for his DHL-affiliated and logistics businesses.",
+      "Translation, private hubs, customer workflows, freight tools, briefing pages, and decision support built across a long-running systems relationship.",
     metrics: ["DHL store translator", "Private operations hub", "Customer + freight workflows"],
   },
   {
@@ -79,7 +79,7 @@ const cases: CaseStudy[] = [
     href: "/work/pearl-farms",
     headline: "Connecting a working operation to a modern wine brand.",
     body:
-      "Current scope: integrate AI into company email and phone workflows, reduce repetitive administration, and create the digital presence for a Napa wine brand. This is active work, not a finished-results claim.",
+      "AI-assisted email and phone workflows plus the digital presence for a Napa wine brand. Active work; results will follow measurement.",
     metrics: ["AI-assisted email", "Phone intake + FAQs", "Wine brand digital presence"],
     note: "In progress. Results will be added only after the systems are live and measured.",
   },
@@ -87,28 +87,35 @@ const cases: CaseStudy[] = [
 
 function Hero() {
   return (
-    <section className="min-h-screen flex items-center px-4 sm:px-6 md:px-10 overflow-hidden" data-analytics-section="hero">
-      <div className="max-w-[1400px] mx-auto w-full pt-24 pb-16">
+    <section className="px-4 pt-[5.5rem] pb-10 sm:px-6 md:min-h-screen md:flex md:items-center md:px-10 md:pt-0 md:pb-0 overflow-hidden" data-analytics-section="hero">
+      <div className="max-w-[1400px] mx-auto w-full md:pt-24 md:pb-16">
         <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-14 lg:gap-20 items-center">
           <div>
-            <p className="text-accent text-[11px] tracking-[0.5em] uppercase font-mono mb-8 hero-animate hero-delay-1">
-              JDLO / Revenue systems
+            <p className="text-accent text-[10px] md:text-[11px] tracking-[0.28em] md:tracking-[0.5em] uppercase font-mono mb-5 md:mb-8 hero-animate hero-delay-1">
+              AI receptionist · revenue website · operations
             </p>
             <h1 className="font-display text-[clamp(3rem,7.4vw,7.2rem)] leading-[0.9] tracking-[-0.04em] hero-animate hero-delay-2">
-              <SplitText staggerMs={45}>I turn scattered</SplitText>
+              <SplitText staggerMs={38}>Stop losing leads</SplitText>
               <br />
-              <SplitText delay={0.25} staggerMs={45}>businesses into</SplitText>
+              <SplitText delay={0.18} staggerMs={38}>between the call</SplitText>
               <br />
-              <span className="text-text-secondary"><SplitText delay={0.5} staggerMs={45}>revenue systems.</SplitText></span>
+              <span className="text-text-secondary"><SplitText delay={0.36} staggerMs={38}>and the follow-up.</SplitText></span>
             </h1>
-            <div className="mt-10 max-w-[650px] hero-animate hero-delay-3">
-              <p className="text-text-secondary text-lg md:text-xl leading-relaxed">
-                I connect the website, lead flow, client communication, and internal operations so more opportunities turn into revenue and less of the business depends on you answering every question.
+            <div className="mt-7 md:mt-10 max-w-[650px] hero-animate hero-delay-3">
+              <p className="text-text-secondary text-[17px] md:text-xl leading-[1.55] md:leading-relaxed">
+                I connect your website, customer communication, and internal workflow so more inquiries become revenue—and fewer questions depend on you.
               </p>
-              <div className="flex flex-col sm:flex-row gap-3 sm:items-center mt-9">
-                <GlowLink href="/contact?ref=home-hero" className="w-full sm:w-auto">Build My System</GlowLink>
-                <Link href="#case-studies" className="ghost-btn w-full sm:w-auto">See the proof</Link>
+              <div className="flex flex-col sm:flex-row gap-3 sm:items-center mt-7 md:mt-9">
+                <GlowLink href="/contact?ref=home-hero" className="w-full sm:w-auto">Find My Revenue Leak</GlowLink>
+                <Link href="#case-studies" className="ghost-btn w-full sm:w-auto">See Vacaville proof</Link>
               </div>
+              <Link href="/work/vacaville-appliance" className="mt-5 flex items-center justify-between gap-4 rounded-xl border border-border bg-surface px-4 py-3.5 lg:hidden">
+                <span>
+                  <span className="block text-[10px] uppercase tracking-[0.22em] font-mono text-text-muted">Vacaville · observed in Jobber</span>
+                  <span className="block mt-1.5 text-sm text-text">17 June leads · 57 new one-off jobs</span>
+                </span>
+                <span className="text-lg" aria-hidden="true">→</span>
+              </Link>
             </div>
           </div>
           <div className="hidden lg:block hero-animate hero-delay-4">
@@ -129,10 +136,10 @@ function Hero() {
 function OutcomeStrip() {
   return (
     <section className="border-y border-border bg-surface" data-analytics-section="outcome-strip">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-10 py-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="max-w-[1400px] mx-auto px-4 md:px-10 py-4 md:py-6 grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-3 md:gap-6">
         {["More qualified leads", "Faster client responses", "Less repetitive admin", "Clearer operating data"].map((item) => (
-          <p key={item} className="text-[12px] font-mono text-text-secondary flex items-center gap-3">
-            <span className="w-1.5 h-1.5 rounded-full bg-accent" />{item}
+          <p key={item} className="text-[10px] md:text-[12px] leading-snug font-mono text-text-secondary flex items-center gap-2 md:gap-3">
+            <span className="w-1.5 h-1.5 shrink-0 rounded-full bg-accent" />{item}
           </p>
         ))}
       </div>
@@ -142,22 +149,22 @@ function OutcomeStrip() {
 
 function Services() {
   return (
-    <section className="section-gap" id="services" data-analytics-section="services">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-10">
+    <section className="py-16 md:py-28 lg:py-40" id="services" data-analytics-section="services">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-10">
         <RevealOnScroll>
-          <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-6">Three ways I create leverage</p>
-          <h2 className="font-display text-[clamp(2.4rem,5vw,4.8rem)] tracking-[-0.035em] leading-[0.95] max-w-[900px] mb-16">
-            Not a made-up package. <span className="text-text-secondary">Three real systems a business needs.</span>
+          <p className="text-text-muted text-[10px] md:text-[11px] tracking-[0.38em] md:tracking-[0.5em] uppercase font-mono mb-4 md:mb-6">Three ways I create leverage</p>
+          <h2 className="font-display text-[clamp(2.4rem,5vw,4.8rem)] tracking-[-0.035em] leading-[0.95] max-w-[900px] mb-8 md:mb-16">
+            Three systems. <span className="text-text-secondary">One outcome: less leakage.</span>
           </h2>
         </RevealOnScroll>
         <div className="grid lg:grid-cols-3 gap-px bg-border rounded-2xl overflow-hidden">
           {services.map((service, index) => (
             <RevealOnScroll key={service.title} delay={index + 1}>
-              <Link href={service.href} className="group block bg-bg p-7 md:p-9 h-full hover:bg-surface transition-colors">
+              <Link href={service.href} className="group block bg-bg p-5 md:p-9 h-full hover:bg-surface transition-colors">
                 <span className="text-accent text-xs font-mono">{service.num}</span>
-                <h3 className="font-display text-[clamp(1.8rem,3vw,2.8rem)] tracking-[-0.03em] leading-[1] mt-10 mb-5">{service.title}</h3>
-                <p className="text-text-secondary text-[15px] leading-relaxed mb-9">{service.summary}</p>
-                <div className="space-y-3 mb-10">
+                <h3 className="font-display text-[clamp(1.8rem,3vw,2.8rem)] tracking-[-0.03em] leading-[1] mt-5 md:mt-10 mb-3 md:mb-5">{service.title}</h3>
+                <p className="text-text-secondary text-[14px] md:text-[15px] leading-relaxed mb-5 md:mb-9">{service.summary}</p>
+                <div className="flex flex-wrap gap-x-4 gap-y-2 mb-5 md:block md:space-y-3 md:mb-10">
                   {service.outcomes.map((outcome) => <p key={outcome} className="text-xs font-mono text-text-muted">+ {outcome}</p>)}
                 </div>
                 <span className="text-sm font-mono group-hover:text-accent transition-colors">Explore service →</span>
@@ -172,37 +179,38 @@ function Services() {
 
 function CaseStudies() {
   return (
-    <section className="section-gap border-t border-border" id="case-studies" data-analytics-section="case-studies">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-10">
+    <section className="py-16 md:py-28 lg:py-40 border-t border-border" id="case-studies" data-analytics-section="case-studies">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-10">
         <RevealOnScroll>
-          <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-6">Case studies</p>
-          <h2 className="font-display text-[clamp(2.4rem,5vw,4.8rem)] tracking-[-0.035em] leading-[0.95] mb-16">
+          <p className="text-text-muted text-[10px] md:text-[11px] tracking-[0.38em] md:tracking-[0.5em] uppercase font-mono mb-4 md:mb-6">Case studies</p>
+          <h2 className="font-display text-[clamp(2.4rem,5vw,4.8rem)] tracking-[-0.035em] leading-[0.95] mb-8 md:mb-16">
             Systems inside real businesses.
           </h2>
+          <p className="-mt-4 mb-6 text-[11px] uppercase tracking-[0.24em] font-mono text-text-muted lg:hidden">Swipe through the systems →</p>
         </RevealOnScroll>
-        <div className="space-y-6">
+        <div className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 no-scrollbar sm:-mx-6 sm:px-6 lg:mx-0 lg:block lg:space-y-6 lg:overflow-visible lg:px-0 lg:pb-0">
           {cases.map((item, index) => (
-            <RevealOnScroll key={item.name} delay={(index % 3) + 1}>
-              <Link href={item.href} className="group grid lg:grid-cols-[0.78fr_1.22fr] border border-border rounded-2xl overflow-hidden bg-surface hover:border-text/20 transition-colors">
+            <RevealOnScroll key={item.name} delay={(index % 3) + 1} className="w-[88vw] max-w-[390px] shrink-0 snap-start lg:w-auto lg:max-w-none">
+              <Link href={item.href} className="group grid h-full lg:grid-cols-[0.78fr_1.22fr] border border-border rounded-2xl overflow-hidden bg-surface hover:border-text/20 transition-colors">
                 {item.image ? (
-                  <div className="relative min-h-[240px] lg:min-h-[390px] overflow-hidden">
+                  <div className="relative min-h-[190px] sm:min-h-[240px] lg:min-h-[390px] overflow-hidden">
                     <Image src={item.image} alt={`${item.name} system`} fill className="object-cover object-top group-hover:scale-[1.02] transition-transform duration-700" sizes="(max-width: 1024px) 100vw, 40vw" />
                   </div>
                 ) : (
-                  <div className="min-h-[240px] lg:min-h-[390px] bg-[#171b13] text-[#e8e1cf] p-8 md:p-12 flex flex-col justify-between overflow-hidden relative">
+                  <div className="min-h-[210px] sm:min-h-[240px] lg:min-h-[390px] bg-[#171b13] text-[#e8e1cf] p-6 md:p-12 flex flex-col justify-between overflow-hidden relative">
                     <div className="absolute -right-16 -top-16 w-64 h-64 rounded-full border border-[#e8e1cf]/10" />
                     <span className="text-[10px] tracking-[0.45em] font-mono text-[#e8e1cf]/55">JDLO / FIELD SYSTEM</span>
                     <p className="font-display text-[clamp(2.2rem,4vw,4rem)] leading-[0.94] whitespace-pre-line">{item.visualLabel}</p>
                     <span className="text-[11px] font-mono text-[#e8e1cf]/55">EMAIL · PHONE · BRAND</span>
                   </div>
                 )}
-                <div className="p-7 md:p-10 lg:p-12 flex flex-col justify-center">
+                <div className="p-5 md:p-10 lg:p-12 flex flex-col justify-center">
                   <p className="text-accent text-[10px] tracking-[0.35em] uppercase font-mono mb-4">{item.category}</p>
                   <h3 className="font-display text-[clamp(2rem,4vw,3.7rem)] tracking-[-0.035em] leading-[0.98] mb-5">{item.name}</h3>
-                  <p className="text-text text-lg leading-relaxed max-w-[660px] mb-4">{item.headline}</p>
-                  <p className="text-text-secondary text-[14px] leading-relaxed max-w-[660px] mb-8">{item.body}</p>
-                  <div className="grid sm:grid-cols-3 gap-3">
-                    {item.metrics.map((metric) => <div key={metric} className="border-t border-border pt-3 text-[12px] text-text-muted font-mono leading-relaxed">{metric}</div>)}
+                  <p className="text-text text-[17px] md:text-lg leading-relaxed max-w-[660px] mb-3 md:mb-4">{item.headline}</p>
+                  <p className="text-text-secondary text-[13px] md:text-[14px] leading-relaxed max-w-[660px] mb-5 md:mb-8">{item.body}</p>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-0 sm:gap-3">
+                    {item.metrics.map((metric) => <div key={metric} className="border-t border-border py-2 sm:pt-3 sm:pb-0 text-[11px] md:text-[12px] text-text-muted font-mono leading-relaxed">{metric}</div>)}
                   </div>
                   {item.note && <p className="text-[10px] leading-relaxed text-text-muted/70 mt-5">{item.note}</p>}
                 </div>
@@ -228,18 +236,18 @@ function Benefits() {
     ["Measure", "Track where leads come from, what converts, and where money or time leaks out of the process."],
   ];
   return (
-    <section className="section-gap border-t border-border bg-surface" data-analytics-section="business-outcomes">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-10">
+    <section className="py-16 md:py-28 lg:py-40 border-t border-border bg-surface" data-analytics-section="business-outcomes">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-10">
         <RevealOnScroll>
-          <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-6">What changes</p>
-          <h2 className="font-display text-[clamp(2.2rem,4.8vw,4.4rem)] tracking-[-0.035em] leading-[0.98] max-w-[820px] mb-16">The business becomes easier to buy from and easier to run.</h2>
+          <p className="text-text-muted text-[10px] md:text-[11px] tracking-[0.38em] md:tracking-[0.5em] uppercase font-mono mb-4 md:mb-6">What changes</p>
+          <h2 className="font-display text-[clamp(2.2rem,4.8vw,4.4rem)] tracking-[-0.035em] leading-[0.98] max-w-[820px] mb-8 md:mb-16">The business becomes easier to buy from and easier to run.</h2>
         </RevealOnScroll>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-border rounded-2xl overflow-hidden">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-px bg-border rounded-2xl overflow-hidden">
           {benefits.map(([title, body], i) => (
             <RevealOnScroll key={title} delay={(i % 3) + 1}>
-              <div className="bg-bg p-7 md:p-9 h-full">
-                <h3 className="font-display text-3xl mb-4">{title}</h3>
-                <p className="text-text-secondary text-sm leading-relaxed">{body}</p>
+              <div className="bg-bg p-4 sm:p-5 md:p-9 h-full">
+                <h3 className="font-display text-2xl md:text-3xl mb-2 md:mb-4">{title}</h3>
+                <p className="text-text-secondary text-[12px] md:text-sm leading-relaxed">{body}</p>
               </div>
             </RevealOnScroll>
           ))}
@@ -251,8 +259,8 @@ function Benefits() {
 
 function FinalCTA() {
   return (
-    <section className="section-gap" data-analytics-section="final-cta">
-      <div className="max-w-[980px] mx-auto px-6 text-center">
+    <section className="py-16 md:py-28 lg:py-40" data-analytics-section="final-cta">
+      <div className="max-w-[980px] mx-auto px-4 sm:px-6 text-center">
         <RevealOnScroll>
           <p className="text-accent text-[11px] tracking-[0.5em] uppercase font-mono mb-8">Start with the bottleneck</p>
           <h2 className="font-display text-[clamp(3rem,7vw,6.5rem)] tracking-[-0.045em] leading-[0.9] mb-9">Tell me where the business is leaking time or money.</h2>
@@ -269,8 +277,8 @@ function FinalCTA() {
 
 function OperatorNotes() {
   return (
-    <section className="border-t border-border px-6 py-20 md:px-10 md:py-28" data-analytics-section="operator-notes">
-      <div className="max-w-[1400px] mx-auto rounded-3xl bg-[#111] text-white px-7 py-10 md:px-12 md:py-14 grid lg:grid-cols-[1.15fr_0.85fr] gap-12 lg:items-end">
+    <section className="border-t border-border px-4 py-16 sm:px-6 md:px-10 md:py-28" data-analytics-section="operator-notes">
+      <div className="max-w-[1400px] mx-auto rounded-2xl md:rounded-3xl bg-[#111] text-white px-5 py-8 md:px-12 md:py-14 grid lg:grid-cols-[1.15fr_0.85fr] gap-8 md:gap-12 lg:items-end">
         <div>
           <p className="text-white/45 text-[11px] tracking-[0.45em] uppercase font-mono mb-7">JDLO / Operator Notes</p>
           <h2 className="font-display text-[clamp(2.8rem,5.6vw,5.4rem)] tracking-[-0.04em] leading-[0.92] max-w-[760px]">Systems, decisions, and what actually happened.</h2>
@@ -307,8 +315,8 @@ export default function Home() {
       <HomeNav />
       <Hero />
       <OutcomeStrip />
-      <Services />
       <CaseStudies />
+      <Services />
       <Benefits />
       <OperatorNotes />
       <FinalCTA />
