@@ -1,9 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { Metadata } from "next";
 import HomeNav from "@/components/HomeNav";
 import RevealOnScroll from "@/components/RevealOnScroll";
 import { GlowLink } from "@/components/GlowButton";
 import SplitText from "@/components/SplitText";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 const services = [
   {
