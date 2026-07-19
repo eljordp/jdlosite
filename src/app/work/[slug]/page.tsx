@@ -78,7 +78,7 @@ const projects: Record<string, {
     name: "Vacaville Appliance",
     category: "Website + Operations",
     headline: "A local service business becoming a connected revenue system",
-    description: "Since Jordan joined the business around August 2025, the work has expanded beyond a website into lead capture, service information, customer intake, and the systems around daily operations. Current Jobber figures show the scale the ecosystem supports; they are not claimed as revenue created by JDLO alone.",
+    description: "Since Jordan joined the business around August 2025, the engagement has centered on the website and AI receptionist, then expanded into lead capture, service information, customer intake, and the systems around daily operations. Current Jobber figures show the scale the ecosystem supports; they are not claimed as revenue created by JDLO alone.",
     stats: [
       { value: "$144.3K", label: "2026 invoiced through Jul 19" },
       { value: "57", label: "New one-off jobs in June" },
@@ -87,7 +87,7 @@ const projects: Record<string, {
     revenue: "$1,300",
     screenshot: "/screenshots/vacaville-appliance.png",
     liveUrl: "https://vacavilleappliance.vercel.app",
-    quote: "Jordan didn’t just build us a website. He helped connect how customers find us, get answers, and move into our service process. The result is a business that can handle more leads and jobs without every step depending on us.",
+    quote: "Jordan built our website and AI receptionist, then helped connect how customers find us, get answers, and move into our service process. The result is a business that can handle more leads and jobs without every step depending on us.",
     quoteAttribution: "Draft for Vacaville Appliance approval — not yet a client testimonial",
   },
   "pearl-farms": {

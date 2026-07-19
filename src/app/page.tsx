@@ -57,7 +57,7 @@ const cases: CaseStudy[] = [
     href: "/work/vacaville-appliance",
     headline: "A service business becoming a connected operating ecosystem.",
     body:
-      "Since joining the business around August 2025, the work has expanded beyond a website into lead capture, service information, customer intake, and the systems around day-to-day operations.",
+      "Since joining the business around August 2025, the work has centered on a new website and AI receptionist, then expanded into lead capture, service information, customer intake, and the systems around day-to-day operations.",
     metrics: ["$144.3K invoiced in 2026 through Jul 19", "57 new one-off jobs in June", "17 new leads in June"],
     note: "Business figures observed in Jobber. They show the environment the system supports; they are not presented as revenue created by JDLO alone.",
   },
