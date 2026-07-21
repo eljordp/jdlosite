@@ -117,10 +117,10 @@ export default function ProductPage() {
             <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-6">Related Work</p>
             <div className="py-10 border-b border-border">
               <p className="text-[11px] font-mono text-text-muted tracking-[0.15em] uppercase mb-2">Game</p>
-              <h3 className="font-display text-[clamp(1.4rem,3vw,2.2rem)] tracking-[-0.02em] leading-[1.1] mb-3">JDLO The Game</h3>
-              <p className="text-text-secondary text-[15px] leading-relaxed mb-6 max-w-[500px]">Full RPG with 7 chapters, 20+ characters, original story and art</p>
+              <h3 className="font-display text-[clamp(1.4rem,3vw,2.2rem)] tracking-[-0.02em] leading-[1.1] mb-3">JDLO Wii</h3>
+              <p className="text-text-secondary text-[15px] leading-relaxed mb-6 max-w-[500px]">Wii Sports-inspired multiplayer web game playable directly in the browser</p>
               <div className="flex flex-wrap gap-x-8 gap-y-3">
-                {[{ v: "7", l: "chapters" }, { v: "222+", l: "interactables" }, { v: "Full", l: "RPG" }].map(s => (
+                {[{ v: "1v1", l: "multiplayer" }, { v: "Web", l: "based" }, { v: "Original", l: "game" }].map(s => (
                   <div key={s.l} className="flex items-center gap-2.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-text/20 shrink-0" />
                     <span className="text-text font-medium text-[14px]">{s.v} {s.l}</span>

@@ -275,98 +275,96 @@ export default function CreativePage() {
               </div>
             </RevealOnScroll>
 
-            {/* JDLO The Game */}
+            {/* JDLO Wii */}
             <RevealOnScroll delay={1}>
               <div className="py-12 sm:py-16 border-b border-border">
                 <span className="text-[11px] font-mono text-text-muted tracking-[0.15em] uppercase">
                   Game
                 </span>
                 <h3 className="font-display text-[clamp(1.8rem,4vw,3.2rem)] tracking-[-0.02em] leading-[1.05] mt-2">
-                  JDLO The Game
+                  JDLO Wii
                 </h3>
                 <p className="text-text-secondary text-[clamp(1rem,2vw,1.25rem)] leading-relaxed font-medium mt-4 mb-4 max-w-[640px]">
-                  A full RPG video game with seven chapters, original characters,
-                  and a story nobody expected from a portfolio piece.
+                  Wii Sports-inspired multiplayer web game playable directly in
+                  the browser.
                 </p>
                 <p className="text-text-muted text-[14px] leading-relaxed max-w-[640px] mb-8">
-                  Pokemon Platinum-style adventure built from the ground up.
-                  Twenty-plus characters, boss battles, minigames, cinematic
-                  cutscenes, and a progression system that keeps people playing.
-                  Not a demo. A real game.
+                  Original browser game mechanics, 1v1 play, lightweight launch
+                  flow, and no download required. Built as a playful interactive
+                  proof point instead of another static portfolio page.
                 </p>
 
                 <div className="flex flex-wrap gap-x-8 gap-y-4">
                   <div>
                     <span className="text-[clamp(1.4rem,2.5vw,1.8rem)] font-semibold tracking-[-0.03em] block leading-none">
-                      7
+                      1v1
                     </span>
                     <span className="text-text-muted text-[11px] font-mono tracking-wider uppercase mt-1 block">
-                      Chapters
+                      Multiplayer
                     </span>
                   </div>
                   <div>
                     <span className="text-[clamp(1.4rem,2.5vw,1.8rem)] font-semibold tracking-[-0.03em] block leading-none">
-                      20+
+                      Web
                     </span>
                     <span className="text-text-muted text-[11px] font-mono tracking-wider uppercase mt-1 block">
-                      Characters
+                      Based
                     </span>
                   </div>
                   <div>
                     <span className="text-[clamp(1.4rem,2.5vw,1.8rem)] font-semibold tracking-[-0.03em] block leading-none">
-                      Full
+                      Original
                     </span>
                     <span className="text-text-muted text-[11px] font-mono tracking-wider uppercase mt-1 block">
-                      Original story
+                      Game
                     </span>
                   </div>
                 </div>
               </div>
             </RevealOnScroll>
 
-            {/* DHL CRA Quiz */}
+            {/* Cubicship Translator */}
             <RevealOnScroll delay={2}>
               <div className="py-12 sm:py-16">
                 <span className="text-[11px] font-mono text-text-muted tracking-[0.15em] uppercase">
                   Enterprise
                 </span>
                 <h3 className="font-display text-[clamp(1.8rem,4vw,3.2rem)] tracking-[-0.02em] leading-[1.05] mt-2">
-                  DHL CRA Quiz
+                  Cubicship Translator
                 </h3>
                 <p className="text-text-secondary text-[clamp(1rem,2vw,1.25rem)] leading-relaxed font-medium mt-4 mb-4 max-w-[640px]">
-                  Enterprise competency assessment that transformed onboarding
-                  for 200+ employees at a Fortune 500 logistics partner.
+                  Enterprise translation system for a DHL premier partner
+                  operating across 100+ stores.
                 </p>
                 <p className="text-text-muted text-[14px] leading-relaxed max-w-[640px] mb-8">
-                  Evaluates new hires across compliance, operations, and
-                  role-specific knowledge. Automated scoring, progress tracking,
-                  and certification, replacing a manual process that used
-                  to take weeks.
+                  Processes shipping documents, customs forms, and manifests at
+                  scale so staff can handle international logistics paperwork
+                  faster across every location.
                 </p>
 
                 <div className="flex flex-wrap gap-x-8 gap-y-4">
                   <div>
                     <span className="text-[clamp(1.4rem,2.5vw,1.8rem)] font-semibold tracking-[-0.03em] block leading-none">
-                      200+
+                      100+
                     </span>
                     <span className="text-text-muted text-[11px] font-mono tracking-wider uppercase mt-1 block">
-                      Employees
+                      Stores
                     </span>
                   </div>
                   <div>
                     <span className="text-[clamp(1.4rem,2.5vw,1.8rem)] font-semibold tracking-[-0.03em] block leading-none">
-                      85%
+                      DHL
                     </span>
                     <span className="text-text-muted text-[11px] font-mono tracking-wider uppercase mt-1 block">
-                      Faster onboarding
+                      Premier partner
                     </span>
                   </div>
                   <div>
                     <span className="text-[clamp(1.4rem,2.5vw,1.8rem)] font-semibold tracking-[-0.03em] block leading-none">
-                      Auto
+                      Canada
                     </span>
                     <span className="text-text-muted text-[11px] font-mono tracking-wider uppercase mt-1 block">
-                      Certification
+                      Expanding to
                     </span>
                   </div>
                 </div>

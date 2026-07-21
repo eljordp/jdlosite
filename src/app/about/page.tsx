@@ -103,7 +103,7 @@ export default function AboutPage() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border rounded-xl overflow-hidden">
             {[
-              { num: "30+", label: "Projects shipped", sub: "Restaurants, casinos, cannabis, fashion, DHL, nightclubs, real estate" },
+              { num: "24", label: "Live projects verified", sub: "Websites, AI systems, e-commerce, DHL tools, nightclubs, games, and dashboards" },
               { num: "5 months", label: "Self-taught", sub: "Went from zero to building full platforms for paying clients" },
               { num: "2 weeks", label: "Avg delivery", sub: "Most websites go live in under 2 weeks. Bigger builds depend on scope." },
               { num: "0", label: "Templates used", sub: "Every site I ship is custom. No page builders, no Wix, no Squarespace shortcuts." },
@@ -171,12 +171,12 @@ export default function AboutPage() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { name: "World Class Exotics", what: "Luxury rental platform", result: "Booking + fleet showcase" },
               { name: "Club Bot / Velvet", what: "AI promoter platform", result: "500+ guests automated per week" },
               { name: "Cubicship / DHL", what: "Enterprise translator app", result: "100+ stores, expanding to Canada" },
-              { name: "BayParlays", what: "AI parlay optimizer", result: "Stripe live, sharp-edge analysis" },
               { name: "Quanta Casino", what: "Full online casino", result: "23 games, real-time multiplayer" },
-              { name: "Aesthetics By Kayy", what: "Website + booking", result: "Luxury studio, Big Island Hawaii" },
+              { name: "The Sticker Smith", what: "Print shop website", result: "Custom ordering path + brand system" },
+              { name: "OlyLife Ohana", what: "Wellness e-commerce", result: "Product education + store flow" },
+              { name: "Paper Trader", what: "Trading simulator", result: "Tier ladder + live practice" },
             ].map((client, i) => (
               <RevealOnScroll key={client.name} delay={(i % 3) + 1}>
                 <div className="p-6 border border-border rounded-xl">

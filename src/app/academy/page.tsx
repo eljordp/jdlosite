@@ -3,10 +3,10 @@ import Image from 'next/image';
 import { ProblemSection, QualifierSection, ModulesSection } from '@/components/AcademyLandingSections';
 
 const receipts = [
-  { stat: '$12K+/mo', label: 'West Coast Terpz', desc: 'Instagram DMs to a real e-commerce operation' },
+  { stat: 'Live store', label: 'OlyLife Ohana', desc: 'Product education plus e-commerce flow' },
   { stat: '500+/wk', label: 'Club Bot / Velvet', desc: 'Guest lists automated for Vegas promoters' },
   { stat: '100+ stores', label: 'DHL Translator', desc: 'Chicago → Canada, DHL premier partner' },
-  { stat: '20+ built', label: 'Real Projects', desc: 'Restaurants, nightclubs, cannabis, real estate, fashion' },
+  { stat: '24 live', label: 'Verified Projects', desc: 'Websites, nightclubs, DHL tools, games, AI systems, fashion' },
 ];
 
 export default function AcademyPage() {

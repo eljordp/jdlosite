@@ -181,11 +181,11 @@ export default function ProductPage() {
           <RevealOnScroll>
             <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-6">Related Work</p>
             <div className="py-10 border-b border-border">
-              <p className="text-[11px] font-mono text-text-muted tracking-[0.15em] uppercase mb-2">Luxury</p>
-              <h3 className="font-display text-[clamp(1.4rem,3vw,2.2rem)] tracking-[-0.02em] leading-[1.1] mb-3">World Class Exotics</h3>
-              <p className="text-text-secondary text-[15px] leading-relaxed mb-6 max-w-[500px]">Exotic car rental platform with booking flow and luxury fleet showcase</p>
+              <p className="text-[11px] font-mono text-text-muted tracking-[0.15em] uppercase mb-2">Local business</p>
+              <h3 className="font-display text-[clamp(1.4rem,3vw,2.2rem)] tracking-[-0.02em] leading-[1.1] mb-3">The Sticker Smith</h3>
+              <p className="text-text-secondary text-[15px] leading-relaxed mb-6 max-w-[500px]">Custom print shop site with a clearer ordering path and a stronger public brand system</p>
               <div className="flex flex-wrap gap-x-8 gap-y-3">
-                {[{ v: "Luxury", l: "fleet" }, { v: "Booking", l: "flow" }, { v: "Premium", l: "design" }].map(s => (
+                {[{ v: "Custom", l: "site" }, { v: "Ordering", l: "path" }, { v: "Brand", l: "system" }].map(s => (
                   <div key={s.l} className="flex items-center gap-2.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-text/20 shrink-0" />
                     <span className="text-text font-medium text-[14px]">{s.v} {s.l}</span>

@@ -227,10 +227,10 @@ function Pricing() {
 /* ────────────────────────────────────────────────── */
 const caseStudies = [
   {
-    name: "World Class Exotics",
+    name: "OlyLife Ohana",
     result:
-      "Luxury exotic car rental platform with booking and a curated fleet showcase.",
-    stats: ["Custom platform", "Premium design"],
+      "Health and wellness e-commerce site with product education and a store flow built to convert.",
+    stats: ["Product education", "E-commerce"],
   },
   {
     name: "The Sticker Smith",
@@ -239,10 +239,10 @@ const caseStudies = [
     stats: ["New revenue channel", "5x online visibility"],
   },
   {
-    name: "West Coast Terpz",
+    name: "Lonely Love",
     result:
-      "E-commerce storefront processing orders around the clock. No manual work, no missed sales.",
-    stats: ["$12K+/mo revenue", "24/7 order processing"],
+      "Custom e-commerce site for a clothing brand with a full product catalog and brand-matched shopping experience.",
+    stats: ["Custom storefront", "Fashion e-commerce"],
   },
 ];
 

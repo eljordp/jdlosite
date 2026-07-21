@@ -71,20 +71,20 @@ export default function EcommerceStoreProduct() {
             <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-6">Related Work</p>
             <div className="py-10 border-b border-border">
               <p className="text-[11px] font-mono text-text-muted tracking-[0.15em] uppercase mb-2">E-commerce</p>
-              <h3 className="font-display text-[clamp(1.4rem,3vw,2.2rem)] tracking-[-0.02em] leading-[1.1] mb-3">West Coast Terpz</h3>
-              <p className="text-text-secondary text-[15px] leading-relaxed mb-6 max-w-[500px]">E-commerce doing $12K+/mo</p>
+              <h3 className="font-display text-[clamp(1.4rem,3vw,2.2rem)] tracking-[-0.02em] leading-[1.1] mb-3">OlyLife Ohana</h3>
+              <p className="text-text-secondary text-[15px] leading-relaxed mb-6 max-w-[500px]">Wellness e-commerce site with product education and a clean store flow</p>
               <div className="flex flex-wrap gap-x-8 gap-y-3">
                 <div className="flex items-start gap-4">
                   <span className="w-1.5 h-1.5 rounded-full bg-text mt-2.5 shrink-0" />
-                  <span className="text-text-secondary text-[15px] leading-relaxed">$12K+/mo revenue</span>
+                  <span className="text-text-secondary text-[15px] leading-relaxed">Product education</span>
                 </div>
                 <div className="flex items-start gap-4">
                   <span className="w-1.5 h-1.5 rounded-full bg-text mt-2.5 shrink-0" />
-                  <span className="text-text-secondary text-[15px] leading-relaxed">24/7 order processing</span>
+                  <span className="text-text-secondary text-[15px] leading-relaxed">E-commerce flow</span>
                 </div>
                 <div className="flex items-start gap-4">
                   <span className="w-1.5 h-1.5 rounded-full bg-text mt-2.5 shrink-0" />
-                  <span className="text-text-secondary text-[15px] leading-relaxed">3x customer reach</span>
+                  <span className="text-text-secondary text-[15px] leading-relaxed">Custom design</span>
                 </div>
               </div>
             </div>

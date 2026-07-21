@@ -335,10 +335,10 @@ export default function BrochurePage() {
 
         <div style={{ marginTop: 18 }}>
           {[
-            ["BayParlays", "AI-driven sports prediction platform with subscription tiers, payments, and live data feeds.", "Sports / AI"],
+            ["Paper Trader", "Funded-eval simulator for traders with tier ladders, live practice, auth, and database-backed progress.", "Trading / SaaS"],
             ["Travelyt", "Door-to-airport baggage service. Quote flow, booking, customer notifications, mobile app.", "Logistics"],
             ["DHL Translator", "Internal counter tool that translates customer requests and instructions in real time.", "Logistics / Ops"],
-            ["WCT", "E-commerce storefront with custom checkout, inventory management, and order workflows.", "E-commerce"],
+            ["OlyLife Ohana", "Health and wellness e-commerce site with product education, customer stories, and a custom store flow.", "E-commerce"],
             ["Sticker Smith", "D2C brand site with custom storefront, order flow, and content layer.", "D2C"],
             ["Vacaville Appliance", "Local service business site with quoting, lead capture, and Google Business integration.", "Local Service"],
             ["Carusso Restorations", "Bay Area furniture restoration brand. Conversion site, lead pipeline, Google Business packet.", "Trades"],
