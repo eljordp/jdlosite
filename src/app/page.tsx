@@ -63,6 +63,17 @@ const cases: CaseStudy[] = [
     note: "Vercel Analytics, Jul 14-21, 2026.",
   },
   {
+    name: "The Sticker Smith / TSSPrint",
+    category: "Local print + search system",
+    image: "/screenshots/sticker-smith.png",
+    href: "/work/sticker-smith",
+    headline: "A production client site earning real search discovery and service demand.",
+    body:
+      "Local-service pages, sticker and print discovery, portfolio proof, quote paths, and an operating layer for a Bay Area print business.",
+    metrics: ["187 visitors in 7 days", "401 page views in 7 days", "85 visitors from Google"],
+    note: "Vercel Analytics, Jul 14-21, 2026. Live at tssprint.com.",
+  },
+  {
     name: "Vacaville Appliance",
     category: "Local service business",
     image: "/screenshots/vacaville-appliance.png",
@@ -85,12 +96,12 @@ const cases: CaseStudy[] = [
   },
   {
     name: "Pearls Farm",
-    category: "Embedded winery + agriculture role",
+    category: "Farm contractor + winery infrastructure",
     visualLabel: "PEARLS FARM\nNAPA, CALIFORNIA\nDIGITAL INFRASTRUCTURE",
     href: "/work/pearls-farm",
     headline: "Two websites, social publishing, field content, and measurement—run as one system.",
     body:
-      "As Pearls Farm's W-2 Social Media and Marketing Coordinator, Jordan owns work across the company site, Prosperando wine-brand reference site, multi-channel publishing, field capture, DMs, and monthly reporting.",
+      "Jordan builds digital infrastructure for Pearls Farm Labor Inc., a farm labor contractor, as its embedded Social Media and Marketing Coordinator—across the company site, Prosperando, publishing, field capture, DMs, and reporting.",
     metrics: ["2 websites in scope", "4+ publishing channels", "Field + reporting workflow"],
     note: "Current role and active systems. Outcome claims will follow verified measurement.",
   },

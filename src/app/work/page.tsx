@@ -10,6 +10,7 @@ import PageShell from "@/components/PageShell";
 
 type Category =
   | "All"
+  | "Selected"
   | "Website"
   | "AI"
   | "Enterprise"
@@ -26,6 +27,7 @@ type Category =
 
 const CATEGORIES: Category[] = [
   "All",
+  "Selected",
   "Website",
   "E-commerce",
   "AI",
@@ -48,18 +50,18 @@ interface Project {
   categories: Category[];
   headline: string;
   stats: [string, string, string];
-  featured?: boolean; // true = selected proof shown in the default view
+  featured?: boolean; // true = included in the shorter selected-proof view
 }
 
 const PROJECTS: Project[] = [
   { name: "JOON11EE", slug: "joon11ee", categories: ["Website", "Enterprise"], headline: "Multi-market exotic rental platform built for discovery, fleet browsing, and qualified booking requests", stats: ["275 visitors / 7d", "750 page views / 7d", "92% mobile"], featured: true },
+  { name: "The Sticker Smith / TSSPrint", slug: "sticker-smith", categories: ["Website", "E-commerce"], headline: "A live local print platform creating search discovery, service demand, and direct quote paths", stats: ["187 visitors / 7d", "401 page views / 7d", "85 from Google"], featured: true },
   { name: "Vacaville Appliance", slug: "vacaville-appliance", categories: ["Website", "Enterprise"], headline: "Connected web, lead, and operating system for a local service business", stats: ["$144.3K invoiced YTD", "57 June jobs", "17 June leads"], featured: true },
   { name: "CubicShip", slug: "cubicship", categories: ["Website", "Enterprise", "SaaS"], headline: "A public shipping platform connected to customer orders, quotes, locations, freight, and branch workflows", stats: ["15 managed locations", "512 Google reviews", "67 page views / 7d"], featured: true },
   { name: "Mo / DHL Systems", slug: "dhl-translator", categories: ["Enterprise", "Tool", "AI"], headline: "Six connected systems across customer service, training, operations, freight, and decision support", stats: ["6+ connected systems", "100+ store context", "Ongoing relationship"], featured: true },
   { name: "Pomaika\u2018i Co", slug: "pomaikai", categories: ["Website", "AI"], headline: "A six-route business platform with real systems proof and visible JDLO build credit", stats: ["6 public routes", "3 system stories", "JDLO AI credit"], featured: true },
-  { name: "Lauren Rees / ReesVIP", slug: "lauren-rees", categories: ["AI", "SaaS"], headline: "A promoter's guest-list operation turned into an AI concierge, CRM, and reusable platform", stats: ["500+ guests/week", "AI concierge + CRM", "Client to platform"], featured: true },
+  { name: "Lauren Rees — ReesVIP + Velvet", slug: "lauren-rees", categories: ["AI", "SaaS"], headline: "A live promoter platform plus the white-label product concept derived from it", stats: ["ReesVIP live", "AI concierge + CRM", "Velvet product concept"], featured: true },
   { name: "Pearls Farm", slug: "pearls-farm", categories: ["Website", "AI", "Enterprise"], headline: "Digital infrastructure across two websites, social channels, field content, and measurement", stats: ["2 websites", "4+ social channels", "Field + reporting system"], featured: true },
-  { name: "The Sticker Smith", slug: "sticker-smith", categories: ["Website", "E-commerce"], headline: "Brand website that turned a print shop into a real business", stats: ["5x online visibility", "New revenue channel", "Pro brand identity"] },
   { name: "Paper Trader", slug: "paper-trader", url: "https://paper-trader-two-eta.vercel.app", categories: ["SaaS", "Tool"], headline: "Funded-eval simulator for traders — practice through tier ladders", stats: ["Tier ladder", "Live simulation", "Auth + DB"] },
   { name: "HOA Dispute Bot", slug: "hoa-dispute", categories: ["AI", "Tool"], headline: "AI desktop app that coaches homeowners through HOA disputes in real time", stats: ["Electron app", "AI overlay", "Real-time guidance"] },
   { name: "No Birdz Wings", slug: "nobirdz-wings", url: "https://nobirdz-wings.vercel.app", categories: ["Website", "Restaurant"], headline: "Atlanta vegan wings brand site with menu and online ordering", stats: ["Atlanta", "Brand identity", "Menu + ordering"] },
@@ -142,9 +144,11 @@ export default function WorkPage() {
 
   const filtered =
     activeFilter === "All"
-      ? PROJECTS.filter((p) => p.featured === true)
+      ? PROJECTS
+      : activeFilter === "Selected"
+        ? PROJECTS.filter((p) => p.featured === true)
       : PROJECTS.filter((p) =>
-          p.categories.includes(activeFilter as Exclude<Category, "All">)
+          p.categories.includes(activeFilter)
         );
 
   /* ── Calculator state ── */
@@ -285,15 +289,16 @@ export default function WorkPage() {
                 The work that proves the system.
               </h1>
               <p className="text-text-secondary text-lg leading-relaxed max-w-[480px]">
-                The strongest proof first: connected websites, AI intake,
-                operating tools, and client systems built around real workflows.
+                The strongest proof is ranked first. The full published catalog
+                stays visible below it—websites, AI intake, operating tools,
+                products, and client systems built around real workflows.
               </p>
             </div>
 
             {/* Right — filter + count */}
             <div className="hero-animate hero-delay-2 lg:text-right lg:w-[620px] shrink-0">
               <p className="text-text-muted text-[11px] font-mono tracking-wider uppercase mb-4">
-                {filtered.length} {activeFilter === "All" ? "selected " : ""}project{filtered.length !== 1 ? "s" : ""}
+                {filtered.length} {activeFilter === "All" ? "published " : activeFilter === "Selected" ? "selected " : ""}project{filtered.length !== 1 ? "s" : ""}
               </p>
               <div className="flex flex-wrap lg:justify-end gap-2">
                 {CATEGORIES.map((cat) => (

@@ -13,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Main pages
     { url: `${base}/work`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
     { url: `${base}/work/joon11ee`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${base}/work/sticker-smith`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9 },
     { url: `${base}/work/vacaville-appliance`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.85 },
     { url: `${base}/work/cubicship`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.85 },
     { url: `${base}/work/dhl-translator`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.85 },

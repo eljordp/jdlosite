@@ -63,14 +63,14 @@ const projects: Record<string, {
     noEmbed: true,
   },
   "lauren-rees": {
-    name: "Lauren Rees / ReesVIP",
-    category: "Client Platform + AI Operations",
-    headline: "A promoter's guest-list operation turned into an AI concierge, CRM, and reusable platform",
-    description: "Lauren Rees is the client. ReesVIP is the customer-facing website and Club Bot is the operating system inside it: event discovery, AI-assisted answers, guest-list intake, confirmations, referral tracking, contact history, and promoter reporting. Velvet explores how that custom system could become a white-label product for other promoters. The relationship and the business problem lead; the product names sit underneath them.",
+    name: "Lauren Rees — ReesVIP + Velvet",
+    category: "Live Client Platform + Product Concept",
+    headline: "A live promoter platform and the white-label product direction derived from it",
+    description: "Lauren Rees is the client. ReesVIP is the live customer-facing platform: event discovery, AI-assisted answers, guest-list intake, confirmations, referral tracking, contact history, and promoter reporting. Club Bot was the internal working name for that automation system, not a separate public brand. Velvet is a separate white-label product concept derived from the ReesVIP build.",
     stats: [
-      { value: "500+", label: "Guests/week" },
-      { value: "30hrs/wk", label: "Time saved" },
-      { value: "SaaS", label: "Velvet platform" },
+      { value: "Live", label: "ReesVIP platform" },
+      { value: "AI + CRM", label: "Operating system" },
+      { value: "Concept", label: "Velvet product" },
     ],
     screenshot: "/screenshots/club-bot.png",
     liveUrl: "https://www.reesvip.com",
@@ -120,29 +120,30 @@ const projects: Record<string, {
   },
   "pearls-farm": {
     name: "Pearls Farm",
-    category: "Web + Social + Winery Infrastructure",
+    category: "Farm Labor Contractor + Winery Infrastructure",
     headline: "Building the digital infrastructure for a vineyard-services company and its wine brand",
-    description: "Pearls Farm hired Jordan as its W-2 Social Media and Marketing Coordinator. The role covers two websites—Pearls Farm and Prosperando—plus multi-channel content planning, field photo and video, machinery-rental promotion, direct-message handling, and monthly reporting. The work is a connected winery and agricultural marketing operation, not a standalone AI experiment. Access, analytics, lead routing, and proof are being established before paid growth.",
+    description: "Jordan builds digital infrastructure for Pearls Farm Labor Inc., a farm labor contractor, as its embedded Social Media and Marketing Coordinator. The role covers two websites—Pearls Farm and Prosperando—plus multi-channel content planning, field photo and video, machinery-rental promotion, direct-message handling, and monthly reporting. The work is a connected winery and agricultural marketing operation, not a standalone AI experiment. Access, analytics, lead routing, and proof are being established before paid growth.",
     stats: [
       { value: "2", label: "Websites in scope" },
       { value: "4+", label: "Publishing channels" },
-      { value: "W-2", label: "Embedded company role" },
+      { value: "Embedded", label: "Company role" },
     ],
     customSections: true,
   },
   "sticker-smith": {
-    name: "The Sticker Smith",
-    category: "Website + Marketing",
-    headline: "Brand website that turned a print shop into a real business",
-    description: "Complete brand identity, website, and marketing system for a Bay Area print shop. Went from word-of-mouth only to showing up online, getting orders, and looking legitimate to wholesale buyers.",
+    name: "The Sticker Smith / TSSPrint",
+    category: "Website + Local Search + Lead Capture",
+    headline: "A live local print platform creating search discovery, service demand, and direct quote paths",
+    description: "TSSPrint is the production website for The Sticker Smith: service discovery, sticker and print pages, Hayward and Oakland local-search routes, portfolio proof, contact and quote paths, and an admin layer for ongoing operations. Vercel Analytics recorded 187 visitors and 401 page views for Jul 14-21, 2026; Google referred 85 visitors in that window.",
     stats: [
-      { value: "5x", label: "Online visibility" },
-      { value: "New", label: "Revenue channel" },
-      { value: "Pro", label: "Brand identity" },
+      { value: "187", label: "Visitors / 7 days" },
+      { value: "401", label: "Page views / 7 days" },
+      { value: "85", label: "Google referrals / 7 days" },
     ],
     revenue: "~$1,000",
     screenshot: "/screenshots/sticker-smith.png",
-    liveUrl: "https://tssprint.vercel.app",
+    liveUrl: "https://tssprint.com",
+    noEmbed: true,
   },
   "fw-wheels": {
     name: "fw.wheels",
@@ -560,7 +561,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         </>
       )}
 
-      {/* Lauren Rees / ReesVIP custom sections */}
+      {/* Lauren Rees / ReesVIP + Velvet custom sections */}
       {slug === "lauren-rees" && (
         <>
           {/* The Product - ReesVIP */}
@@ -574,7 +575,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                   ReesVIP
                 </h2>
                 <p className="text-text-secondary text-[17px] leading-[1.8] max-w-[680px] mb-4">
-                  Lauren&apos;s guests visit reesvip.com, browse upcoming events at Tao Group venues, and get on the guest list in seconds. The AI concierge answers repeat questions about dress codes, venues, and availability, then routes the guest into a structured signup. The case is Lauren&apos;s operating transformation; ReesVIP and Club Bot are the systems built for it.
+                  Lauren&apos;s guests visit reesvip.com, browse upcoming events at Tao Group venues, and get on the guest list in seconds. The AI concierge answers repeat questions about dress codes, venues, and availability, then routes the guest into a structured signup. ReesVIP is the public platform; “Club Bot” was the internal working name used during the build.
                 </p>
               </RevealOnScroll>
               <RevealOnScroll delay={1}>
@@ -601,7 +602,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                   Velvet
                 </h2>
                 <p className="text-text-secondary text-[17px] leading-[1.8] max-w-[680px] mb-4">
-                  Velvet is the product direction derived from Lauren&apos;s custom system: a promoter could deploy their own branding, venues, workflows, and AI concierge from a shared platform. It is presented as a product path, not as a separate client or a substitute for Lauren&apos;s case study.
+                  Velvet is a separate white-label product concept derived from the ReesVIP system: a promoter could deploy their own branding, venues, workflows, and AI concierge from a shared platform. It is not another name for Club Bot and it is not presented as a second client.
                 </p>
               </RevealOnScroll>
               <RevealOnScroll delay={1}>
@@ -649,10 +650,10 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                     Lauren Rees promotes at Tao Group venues in Vegas: Hakkasan, OMNIA, TAO, Marquee, Jewel. She moves 400-500+ people per week through guest lists. Her workflow before Club Bot: manually text every person, manually save contacts to her phone one by one, manually input info into Tao&apos;s system. No CRM. Just her phone contacts and the Notes app.
                   </p>
                   <p className="text-text-secondary text-[17px] leading-[1.8]">
-                    Club Bot replaced all of that. AI concierge handles the conversations, guest list signups are automatic, follow-ups go out on their own, referral tracking runs in the background. One system replaced an entire manual operation and freed up 30+ hours per week.
+                    ReesVIP was designed to replace that manual chain. The AI concierge handles repeat conversations, guest-list signups become structured, follow-ups can run automatically, and referral tracking sits behind the public experience.
                   </p>
                   <p className="text-text-secondary text-[17px] leading-[1.8]">
-                    Then the question became: if it works for Lauren, why not every promoter? That&apos;s Velvet. Same system, white-labeled, multi-tenant. Any promoter can spin up their own Club Bot in minutes. The product became the SaaS.
+                    The next product question became: could the same architecture serve other promoters? Velvet is that white-label concept. ReesVIP is the live client platform; Velvet is the reusable product direction.
                   </p>
                 </div>
               </RevealOnScroll>
