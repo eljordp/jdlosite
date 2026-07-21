@@ -34,11 +34,39 @@ const projects: Record<string, {
     screenshot: "/screenshots/quanta.png",
     liveUrl: "https://quantplay-ten.vercel.app/play",
   },
-  "club-bot": {
-    name: "Club Bot / Velvet",
-    category: "AI System / SaaS",
-    headline: "AI-powered nightclub promoter platform, the product and the SaaS behind it",
-    description: "Club Bot started as a custom build for Lauren Rees, a Vegas nightclub promoter moving 500+ people per week across Tao Group venues: Hakkasan, OMNIA, TAO, Marquee, Jewel. She was manually texting every single person, saving contacts one by one to her phone, and inputting info into Tao's system by hand. Club Bot replaced all of that: AI concierge chat handles bookings, guest list signups happen automatically, follow-ups go out on their own, and referral tracking runs in the background. One system replaced an entire manual operation.",
+  joon11ee: {
+    name: "JOON11EE",
+    category: "Website + Booking System",
+    headline: "A multi-market exotic rental platform built around discovery, trust, and qualified demand",
+    description: "JOON11EE connects a large vehicle fleet across Miami, Los Angeles and Orange County, and San Francisco to location-aware browsing, detailed vehicle pages, availability requests, analytics, and an operator-facing lead workflow. In Vercel Analytics for Jul 14-21, 2026, the site recorded 275 visitors and 750 page views; 92% of those visitors were on mobile.",
+    stats: [
+      { value: "275", label: "Visitors / 7 days" },
+      { value: "750", label: "Page views / 7 days" },
+      { value: "92%", label: "Mobile visitors" },
+    ],
+    screenshot: "/screenshots/joon11ee.png",
+    liveUrl: "https://joon11ee.com",
+    noEmbed: true,
+  },
+  cubicship: {
+    name: "CubicShip",
+    category: "Website + Customer Operations",
+    headline: "One public front door for a distributed shipping and counter-service operation",
+    description: "CubicShip turns a wide operating footprint into a navigable customer system: quote intake, service orders, DHL Express locations, shipment tracking, freight help, printing and signage, account onboarding, and status handoffs. The public site represents 15 managed locations and 512 Google reviews; its Vercel Analytics recorded 34 visitors and 67 page views for Jul 14-21, 2026.",
+    stats: [
+      { value: "15", label: "Managed locations" },
+      { value: "512", label: "Google reviews represented" },
+      { value: "67", label: "Page views / 7 days" },
+    ],
+    screenshot: "/screenshots/cubicship.png",
+    liveUrl: "https://cubicship.com",
+    noEmbed: true,
+  },
+  "lauren-rees": {
+    name: "Lauren Rees / ReesVIP",
+    category: "Client Platform + AI Operations",
+    headline: "A promoter's guest-list operation turned into an AI concierge, CRM, and reusable platform",
+    description: "Lauren Rees is the client. ReesVIP is the customer-facing website and Club Bot is the operating system inside it: event discovery, AI-assisted answers, guest-list intake, confirmations, referral tracking, contact history, and promoter reporting. Velvet explores how that custom system could become a white-label product for other promoters. The relationship and the business problem lead; the product names sit underneath them.",
     stats: [
       { value: "500+", label: "Guests/week" },
       { value: "30hrs/wk", label: "Time saved" },
@@ -50,17 +78,17 @@ const projects: Record<string, {
   },
   pomaikai: {
     name: "Pomaika\u2018i Co",
-    category: "Agency",
-    headline: "Centralized operations for a six-figure consultancy",
-    description: "Full agency website with a custom admin dashboard that tracks leads, revenue, team performance, and client engagement in real time. One system replaced five different tools they were paying for.",
+    category: "Business Platform + Brand System",
+    headline: "A multi-route business platform that connects positioning, programs, partnerships, and systems proof",
+    description: "Pomaika\u2018i is a broader business-platform build, not a one-page portfolio. The public experience now spans Growth, Leadership, Capital, Institute, Collective, and Partnerships, while the systems section explains real production work and preserves visible JDLO AI builder credit. Placeholder proof is intentionally excluded until the client supplies real testimonials, reviews, and social evidence.",
     stats: [
-      { value: "$5K", label: "Project value" },
-      { value: "5+", label: "Tools replaced" },
-      { value: "20hrs/wk", label: "Time saved" },
+      { value: "6", label: "Public business routes" },
+      { value: "3", label: "Production system stories" },
+      { value: "JDLO AI", label: "Visible builder credit" },
     ],
-    revenue: "$5,000",
     screenshot: "/screenshots/pomaikai.png",
-    liveUrl: "https://poika.vercel.app",
+    liveUrl: "https://pomaikai-co.vercel.app",
+    noEmbed: true,
   },
   "dhl-translator": {
     name: "Mo / DHL Systems",
@@ -91,15 +119,16 @@ const projects: Record<string, {
     liveUrl: "https://vacavilleappliance.vercel.app",
   },
   "pearls-farm": {
-    name: "Pearls Farm / Napa",
-    category: "AI Operations + Brand / In Progress",
-    headline: "Connecting company communication systems to a modern Napa wine brand",
-    description: "The current scope is to integrate AI into company email and phone workflows, reduce repeated questions and administrative handling, and create the digital presence for a Napa wine brand. This is active work. Results will be documented after the systems are implemented and measured.",
+    name: "Pearls Farm",
+    category: "Web + Social + Winery Infrastructure",
+    headline: "Building the digital infrastructure for a vineyard-services company and its wine brand",
+    description: "Pearls Farm hired Jordan as its W-2 Social Media and Marketing Coordinator. The role covers two websites—Pearls Farm and Prosperando—plus multi-channel content planning, field photo and video, machinery-rental promotion, direct-message handling, and monthly reporting. The work is a connected winery and agricultural marketing operation, not a standalone AI experiment. Access, analytics, lead routing, and proof are being established before paid growth.",
     stats: [
-      { value: "AI", label: "Email assistance" },
-      { value: "Phone", label: "Intake + FAQ system" },
-      { value: "Napa", label: "Wine brand presence" },
+      { value: "2", label: "Websites in scope" },
+      { value: "4+", label: "Publishing channels" },
+      { value: "W-2", label: "Embedded company role" },
     ],
+    customSections: true,
   },
   "sticker-smith": {
     name: "The Sticker Smith",
@@ -531,21 +560,21 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         </>
       )}
 
-      {/* Club Bot / Velvet custom sections */}
-      {slug === "club-bot" && (
+      {/* Lauren Rees / ReesVIP custom sections */}
+      {slug === "lauren-rees" && (
         <>
           {/* The Product - ReesVIP */}
           <section className="section-gap border-t border-border">
             <div className="max-w-[1400px] mx-auto px-6 md:px-10">
               <RevealOnScroll>
                 <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-6">
-                  The Product
+                  The Client System
                 </p>
                 <h2 className="font-display text-[clamp(2rem,4vw,3.5rem)] tracking-[-0.03em] leading-[0.95] mb-4">
                   ReesVIP
                 </h2>
                 <p className="text-text-secondary text-[17px] leading-[1.8] max-w-[680px] mb-4">
-                  The client-facing product. Lauren&apos;s guests visit reesvip.com, browse upcoming events at every Tao Group venue, and get on the guest list in seconds. The AI concierge answers questions about dress codes, venues, and availability, then handles the signup automatically. No more Lauren texting 500 people one by one.
+                  Lauren&apos;s guests visit reesvip.com, browse upcoming events at Tao Group venues, and get on the guest list in seconds. The AI concierge answers repeat questions about dress codes, venues, and availability, then routes the guest into a structured signup. The case is Lauren&apos;s operating transformation; ReesVIP and Club Bot are the systems built for it.
                 </p>
               </RevealOnScroll>
               <RevealOnScroll delay={1}>
@@ -572,7 +601,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                   Velvet
                 </h2>
                 <p className="text-text-secondary text-[17px] leading-[1.8] max-w-[680px] mb-4">
-                  Velvet is the white-label platform behind Club Bot. Any nightclub promoter can deploy their own version: their own branding, their own venues, their own AI concierge. One codebase, infinite deployments. ReesVIP was the first. Velvet is the business.
+                  Velvet is the product direction derived from Lauren&apos;s custom system: a promoter could deploy their own branding, venues, workflows, and AI concierge from a shared platform. It is presented as a product path, not as a separate client or a substitute for Lauren&apos;s case study.
                 </p>
               </RevealOnScroll>
               <RevealOnScroll delay={1}>
@@ -626,6 +655,56 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                     Then the question became: if it works for Lauren, why not every promoter? That&apos;s Velvet. Same system, white-labeled, multi-tenant. Any promoter can spin up their own Club Bot in minutes. The product became the SaaS.
                   </p>
                 </div>
+              </RevealOnScroll>
+            </div>
+          </section>
+        </>
+      )}
+
+      {/* Pearls Farm embedded-role scope */}
+      {slug === "pearls-farm" && (
+        <>
+          <section className="section-gap border-t border-border bg-surface">
+            <div className="max-w-[1400px] mx-auto px-6 md:px-10">
+              <RevealOnScroll>
+                <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-6">The Role</p>
+                <h2 className="font-display text-[clamp(2rem,4vw,3.8rem)] tracking-[-0.03em] leading-[0.95] mb-6 max-w-[860px]">
+                  Embedded across the company, the field, and the customer-facing layer.
+                </h2>
+                <p className="text-text-secondary text-[17px] leading-[1.8] max-w-[780px]">
+                  Jordan reports to the owner and independently coordinates the monthly content calendar, publishing cadence, field capture, website work, direct messages, and performance reporting. That makes the engagement stronger than a site handoff: the digital system is being built from inside the operation it has to represent.
+                </p>
+              </RevealOnScroll>
+              <div className="grid md:grid-cols-2 gap-4 mt-14">
+                {[
+                  { number: "01", title: "Pearls Farm website", body: "Take ownership of the company website, domain, forms, service information, conversion paths, Search Console, analytics, and the proof vineyard owners need before contacting the team.", href: "https://pearlsfarminc.com", link: "Visit Pearls Farm" },
+                  { number: "02", title: "Prosperando wine brand", body: "Build the reference website and digital direction for Prosperando, connecting the Flores family story, Napa wine positioning, product presentation, and the path toward a compliant production experience.", href: "https://prosperando-omega.vercel.app", link: "View the reference site" },
+                  { number: "03", title: "Social operating system", body: "Plan and publish across Instagram, Facebook, LinkedIn, and YouTube; capture field photo and video; test hooks and formats; manage responses; and turn seasonal farm work into an evidence-backed content engine.", href: "https://www.instagram.com/pearlsfarminc/", link: "View Instagram" },
+                  { number: "04", title: "Measurement + lead routing", body: "Reconcile contact data, separate vineyard-owner inquiries from job applicants, establish conversion tracking, and report reach, engagement, leads, and growth before the company spends on paid distribution.", href: "https://pearlsfarminc.com/contact", link: "View the public contact path" },
+                ].map((system, index) => (
+                  <RevealOnScroll key={system.number} delay={index % 2}>
+                    <article className="h-full rounded-2xl border border-border bg-bg p-7 md:p-8 flex flex-col">
+                      <p className="text-accent text-[10px] tracking-[0.35em] uppercase font-mono mb-7">Workstream {system.number}</p>
+                      <h3 className="font-display text-[1.7rem] tracking-[-0.025em] leading-[1.05] mb-4">{system.title}</h3>
+                      <p className="text-text-secondary text-[14px] leading-[1.75] flex-1">{system.body}</p>
+                      <a href={system.href} target="_blank" rel="noopener noreferrer" className="text-[12px] font-mono mt-7 hover:text-accent transition-colors">{system.link} &rarr;</a>
+                    </article>
+                  </RevealOnScroll>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <section className="section-gap border-t border-border">
+            <div className="max-w-[1400px] mx-auto px-6 md:px-10">
+              <RevealOnScroll>
+                <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-6">What This Proves</p>
+                <h2 className="font-display text-[clamp(2rem,4vw,3.8rem)] tracking-[-0.03em] leading-[0.95] mb-7 max-w-[820px]">
+                  A digital presence is infrastructure when it connects ownership, publishing, communication, and measurement.
+                </h2>
+                <p className="text-text-secondary text-[17px] leading-[1.8] max-w-[780px]">
+                  The Pearls Farm work spans a vineyard-services company and a Napa wine brand. Current proof is the role, the systems, and the live surfaces; traffic, lead, and revenue outcomes will be added only after the new measurement layer has enough data.
+                </p>
               </RevealOnScroll>
             </div>
           </section>

@@ -52,6 +52,17 @@ type CaseStudy = {
 
 const cases: CaseStudy[] = [
   {
+    name: "JOON11EE",
+    category: "Multi-market rental platform",
+    image: "/screenshots/joon11ee.png",
+    href: "/work/joon11ee",
+    headline: "A real audience moving through fleet discovery and qualified booking paths.",
+    body:
+      "Vehicle discovery, market-specific inventory, booking intake, conversion tracking, and operator workflows across Miami, LA/OC, and San Francisco.",
+    metrics: ["275 visitors in 7 days", "750 page views in 7 days", "92% mobile audience"],
+    note: "Vercel Analytics, Jul 14-21, 2026.",
+  },
+  {
     name: "Vacaville Appliance",
     category: "Local service business",
     image: "/screenshots/vacaville-appliance.png",
@@ -73,15 +84,15 @@ const cases: CaseStudy[] = [
     metrics: ["DHL store translator", "Private operations hub", "Customer + freight workflows"],
   },
   {
-    name: "Pearls Farm / Napa",
-    category: "Current build / Napa",
-    visualLabel: "PEARLS FARM\nNAPA, CALIFORNIA\nSYSTEM IN PROGRESS",
+    name: "Pearls Farm",
+    category: "Embedded winery + agriculture role",
+    visualLabel: "PEARLS FARM\nNAPA, CALIFORNIA\nDIGITAL INFRASTRUCTURE",
     href: "/work/pearls-farm",
-    headline: "Connecting a working operation to a modern wine brand.",
+    headline: "Two websites, social publishing, field content, and measurement—run as one system.",
     body:
-      "AI-assisted email and phone workflows plus the digital presence for a Napa wine brand. Active work; results will follow measurement.",
-    metrics: ["AI-assisted email", "Phone intake + FAQs", "Wine brand digital presence"],
-    note: "In progress. Results will be added only after the systems are live and measured.",
+      "As Pearls Farm's W-2 Social Media and Marketing Coordinator, Jordan owns work across the company site, Prosperando wine-brand reference site, multi-channel publishing, field capture, DMs, and monthly reporting.",
+    metrics: ["2 websites in scope", "4+ publishing channels", "Field + reporting workflow"],
+    note: "Current role and active systems. Outcome claims will follow verified measurement.",
   },
 ];
 
