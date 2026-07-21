@@ -19,7 +19,7 @@ export default function BusinessOperatingSystemsPage() {
     proof={[
       { name: "Vacaville Appliance", result: "A live service operation with visible leads, jobs, invoicing, and customer workflows.", href: "/work/vacaville-appliance" },
       { name: "Mo / DHL Systems", result: "A translator, private hub, workflow materials, and decision-support tools across multiple operating lanes.", href: "/work/dhl-translator" },
-      { name: "Pearl Farms / Napa", result: "Email and phone operations plus a wine brand presence currently in progress.", href: "/work/pearl-farms" },
+      { name: "Pearls Farm / Napa", result: "Email and phone operations plus a wine brand presence currently in progress.", href: "/work/pearls-farm" },
     ]}
   />;
 }

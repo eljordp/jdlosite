@@ -73,10 +73,10 @@ const cases: CaseStudy[] = [
     metrics: ["DHL store translator", "Private operations hub", "Customer + freight workflows"],
   },
   {
-    name: "Pearl Farms / Napa",
+    name: "Pearls Farm / Napa",
     category: "Current build / Napa",
-    visualLabel: "PEARL FARMS\nNAPA, CALIFORNIA\nSYSTEM IN PROGRESS",
-    href: "/work/pearl-farms",
+    visualLabel: "PEARLS FARM\nNAPA, CALIFORNIA\nSYSTEM IN PROGRESS",
+    href: "/work/pearls-farm",
     headline: "Connecting a working operation to a modern wine brand.",
     body:
       "AI-assisted email and phone workflows plus the digital presence for a Napa wine brand. Active work; results will follow measurement.",

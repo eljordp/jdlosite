@@ -65,15 +65,16 @@ const projects: Record<string, {
   "dhl-translator": {
     name: "Mo / DHL Systems",
     category: "Enterprise + Operations",
-    headline: "A long-running systems relationship across stores, logistics, communication, and decision support",
+    headline: "One operator relationship became an ecosystem of customer, training, logistics, and decision-support systems",
     description: "The translator was one entry point. Work for Mo has expanded into a private operations hub, customer onboarding and workflow materials, freight tools, public briefing pages, and decision support across Cubicship, MEA, and Travelyt. The proof is the range of systems built around how his businesses actually operate, not a claim that DHL corporate hired JDLO directly.",
     stats: [
-      { value: "100+", label: "Store operating context" },
-      { value: "Private", label: "Operations hub" },
-      { value: "Multi-system", label: "Working relationship" },
+      { value: "6+", label: "Connected systems" },
+      { value: "100+", label: "Store-network context" },
+      { value: "Ongoing", label: "Working relationship" },
     ],
     screenshot: "/screenshots/dhl-translator.png",
     liveUrl: "https://cubicship-translator.vercel.app",
+    noEmbed: true,
   },
   "vacaville-appliance": {
     name: "Vacaville Appliance",
@@ -89,8 +90,8 @@ const projects: Record<string, {
     screenshot: "/screenshots/vacaville-appliance.png",
     liveUrl: "https://vacavilleappliance.vercel.app",
   },
-  "pearl-farms": {
-    name: "Pearl Farms / Napa",
+  "pearls-farm": {
+    name: "Pearls Farm / Napa",
     category: "AI Operations + Brand / In Progress",
     headline: "Connecting company communication systems to a modern Napa wine brand",
     description: "The current scope is to integrate AI into company email and phone workflows, reduce repeated questions and administrative handling, and create the digital presence for a Napa wine brand. This is active work. Results will be documented after the systems are implemented and measured.",
@@ -211,20 +212,6 @@ const projects: Record<string, {
       { value: "Custom", label: "Built" },
     ],
     liveUrl: "https://jdlo-crm.vercel.app",
-  },
-  "world-class-exotics": {
-    name: "World Class Exotics",
-    category: "Website / E-commerce",
-    headline: "Exotic car rental platform with booking and fleet showcase",
-    description: "Custom platform for World Class Exotics. Full fleet showcase, booking flow, and a premium design that matches the luxury feel of the brand.",
-    stats: [
-      { value: "Luxury", label: "Fleet" },
-      { value: "Booking", label: "Flow" },
-      { value: "Premium", label: "Design" },
-    ],
-    screenshot: "/screenshots/world-class-exotics.png",
-    liveUrl: "https://world-class-exotic.vercel.app",
-    noEmbed: true,
   },
   "hoa-dispute": {
     name: "HOA Dispute Bot",
@@ -457,6 +444,92 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           )}
         </div>
       </section>
+
+      {/* Mo / DHL relationship ecosystem */}
+      {slug === "dhl-translator" && (
+        <>
+          <section className="section-gap border-t border-border bg-surface">
+            <div className="max-w-[1400px] mx-auto px-6 md:px-10">
+              <RevealOnScroll>
+                <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-6">
+                  The Relationship
+                </p>
+                <h2 className="font-display text-[clamp(2rem,4vw,3.8rem)] tracking-[-0.03em] leading-[0.95] mb-6 max-w-[820px]">
+                  Not one tool. A growing operating ecosystem.
+                </h2>
+                <p className="text-text-secondary text-[17px] leading-[1.8] max-w-[760px]">
+                  The first visible build was a translator. The relationship kept expanding because each shipped tool exposed the next bottleneck: staff training, customer communication, internal coordination, freight intake, and decision support across several businesses.
+                </p>
+              </RevealOnScroll>
+
+              <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-4 mt-14">
+                {[
+                  {
+                    number: "01",
+                    title: "DHL Store Translator",
+                    body: "A customer-facing translation tool built around real ServicePoint conversations so language does not stop a shipment or consume the counter team.",
+                  },
+                  {
+                    number: "02",
+                    title: "CRA Training Simulator",
+                    body: "A structured competency and onboarding experience that turns operating knowledge into repeatable staff training instead of verbal handoffs.",
+                  },
+                  {
+                    number: "03",
+                    title: "Cubicship Customer Systems",
+                    body: "Public pages, returns and shipping workflows, onboarding materials, and customer-facing tools connected to the wider store operation.",
+                  },
+                  {
+                    number: "04",
+                    title: "Private Operations Hub",
+                    body: "A living command center for active initiatives, meeting context, project memory, decisions, and the next useful action across Mo’s operating lanes.",
+                  },
+                  {
+                    number: "05",
+                    title: "MEA + Freight Workflows",
+                    body: "Intake, quote-support, service explanations, and carrier-partner coordination materials designed to reduce back-and-forth without overstating the company’s role.",
+                  },
+                  {
+                    number: "06",
+                    title: "Travelyt Decision Support",
+                    body: "Opportunity briefs, custody and airline-acceptance research, public explanations, and decision tools used to move a complex travel concept toward viable partnerships.",
+                  },
+                ].map((system, index) => (
+                  <RevealOnScroll key={system.number} delay={index % 3}>
+                    <article className="h-full rounded-2xl border border-border bg-bg p-7 md:p-8">
+                      <p className="text-accent text-[10px] tracking-[0.35em] uppercase font-mono mb-7">
+                        System {system.number}
+                      </p>
+                      <h3 className="font-display text-[1.7rem] tracking-[-0.025em] leading-[1.05] mb-4">
+                        {system.title}
+                      </h3>
+                      <p className="text-text-secondary text-[14px] leading-[1.75]">
+                        {system.body}
+                      </p>
+                    </article>
+                  </RevealOnScroll>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <section className="section-gap border-t border-border">
+            <div className="max-w-[1400px] mx-auto px-6 md:px-10">
+              <RevealOnScroll>
+                <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-6">
+                  What This Proves
+                </p>
+                <h2 className="font-display text-[clamp(2rem,4vw,3.8rem)] tracking-[-0.03em] leading-[0.95] mb-7 max-w-[760px]">
+                  The value is in seeing the next system before it becomes another disconnected problem.
+                </h2>
+                <p className="text-text-secondary text-[17px] leading-[1.8] max-w-[760px]">
+                  This is not presented as a direct engagement with DHL corporate. It is a long-running relationship with an operator working across DHL ServicePoint, Cubicship, MEA, and Travelyt contexts. The result is stronger proof than a single demo: JDLO can stay inside a business, learn how it moves, and keep building the connected layer around it.
+                </p>
+              </RevealOnScroll>
+            </div>
+          </section>
+        </>
+      )}
 
       {/* Club Bot / Velvet custom sections */}
       {slug === "club-bot" && (

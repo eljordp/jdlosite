@@ -24,6 +24,8 @@ const nextConfig: NextConfig = {
       { source: "/services/creative/interactive-experiences", destination: "/work", permanent: true },
       { source: "/services/creative/online-casinos", destination: "/work", permanent: true },
       { source: "/services/creative/video-games", destination: "/work", permanent: true },
+      { source: "/work/world-class-exotics", destination: "/work", permanent: true },
+      { source: "/work/pearl-farms", destination: "/work/pearls-farm", permanent: true },
     ];
   },
 };

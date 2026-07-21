@@ -19,7 +19,7 @@ export default function ClientCommunicationSystemsPage() {
     proof={[
       { name: "Vacaville Appliance", result: "Service information, intake, and customer flow around a high-volume repair business.", href: "/work/vacaville-appliance" },
       { name: "Mo / DHL Systems", result: "Customer-facing tools, freight workflows, and a private operations hub built around real communication needs.", href: "/work/dhl-translator" },
-      { name: "Pearl Farms / Napa", result: "AI-assisted email, phone intake, and FAQ work currently in progress.", href: "/work/pearl-farms" },
+      { name: "Pearls Farm / Napa", result: "AI-assisted email, phone intake, and FAQ work currently in progress.", href: "/work/pearls-farm" },
     ]}
   />;
 }

@@ -19,7 +19,7 @@ export default function WebDesignSystemsPage() {
     proof={[
       { name: "Vacaville Appliance", result: "Website and intake ecosystem supporting a real local service operation.", href: "/work/vacaville-appliance" },
       { name: "Mo / DHL Systems", result: "Public tools and customer workflows connected to a wider operating relationship.", href: "/work/dhl-translator" },
-      { name: "Pearl Farms / Napa", result: "A Napa wine brand digital presence currently being built alongside internal systems.", href: "/work/pearl-farms" },
+      { name: "Pearls Farm / Napa", result: "A Napa wine brand digital presence currently being built alongside internal systems.", href: "/work/pearls-farm" },
     ]}
   />;
 }

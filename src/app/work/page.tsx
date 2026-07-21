@@ -48,24 +48,23 @@ interface Project {
   categories: Category[];
   headline: string;
   stats: [string, string, string];
-  featured?: boolean; // false = only show when filtered by category
+  featured?: boolean; // true = selected proof shown in the default view
 }
 
 const PROJECTS: Project[] = [
-  { name: "World Class Exotics", slug: "world-class-exotics", categories: ["Website", "E-commerce"], headline: "Exotic car rental platform with booking and fleet showcase", stats: ["Luxury fleet", "Booking flow", "Premium design"] },
+  { name: "Vacaville Appliance", slug: "vacaville-appliance", categories: ["Website", "Enterprise"], headline: "Connected web, lead, and operating system for a local service business", stats: ["$144.3K invoiced YTD", "57 June jobs", "17 June leads"], featured: true },
+  { name: "Mo / DHL Systems", slug: "dhl-translator", categories: ["Enterprise", "Tool", "AI"], headline: "Six connected systems across customer service, training, operations, freight, and decision support", stats: ["6+ connected systems", "100+ store context", "Ongoing relationship"], featured: true },
+  { name: "Club Bot / Velvet", slug: "club-bot", categories: ["AI", "SaaS"], headline: "AI nightclub promoter platform, custom product turned SaaS", stats: ["500+ guests/week", "30hrs/wk saved", "SaaS platform"], featured: true },
+  { name: "Pomaika\u2018i Co", slug: "pomaikai", categories: ["Website", "AI"], headline: "Centralized operations for a six-figure consultancy", stats: ["$5K project", "5+ tools replaced", "20hrs/wk saved"], featured: true },
+  { name: "The Sticker Smith", slug: "sticker-smith", categories: ["Website", "E-commerce"], headline: "Brand website that turned a print shop into a real business", stats: ["5x online visibility", "New revenue channel", "Pro brand identity"], featured: true },
+  { name: "Pearls Farm / Napa", slug: "pearls-farm", categories: ["Website", "AI", "Enterprise"], headline: "AI-assisted email and phone systems plus a Napa wine brand digital presence", stats: ["In progress", "Email + phone AI", "Wine brand presence"], featured: true },
   { name: "Paper Trader", slug: "paper-trader", url: "https://paper-trader-two-eta.vercel.app", categories: ["SaaS", "Tool"], headline: "Funded-eval simulator for traders — practice through tier ladders", stats: ["Tier ladder", "Live simulation", "Auth + DB"] },
   { name: "HOA Dispute Bot", slug: "hoa-dispute", categories: ["AI", "Tool"], headline: "AI desktop app that coaches homeowners through HOA disputes in real time", stats: ["Electron app", "AI overlay", "Real-time guidance"] },
-  { name: "Club Bot / Velvet", slug: "club-bot", categories: ["AI", "SaaS"], headline: "AI nightclub promoter platform, custom product turned SaaS", stats: ["500+ guests/week", "30hrs/wk saved", "SaaS platform"] },
   { name: "No Birdz Wings", slug: "nobirdz-wings", url: "https://nobirdz-wings.vercel.app", categories: ["Website", "Restaurant"], headline: "Atlanta vegan wings brand site with menu and online ordering", stats: ["Atlanta", "Brand identity", "Menu + ordering"] },
   { name: "Best Odds", slug: "best-odds", categories: ["Pitch"], headline: "Interactive presentation for casino odds and strategy", stats: ["Data-driven", "Visual slides", "Animated"] },
-  { name: "Pomaika\u2018i Co", slug: "pomaikai", categories: ["Website", "AI"], headline: "Centralized operations for a six-figure consultancy", stats: ["$5K project", "5+ tools replaced", "20hrs/wk saved"] },
-  { name: "Mo / DHL Systems", slug: "dhl-translator", categories: ["Enterprise", "Tool", "AI"], headline: "Translator, private operations hub, customer workflows, and logistics decision support", stats: ["100+ store context", "Private ops hub", "Multi-system relationship"] },
   { name: "CWBY Studios", slug: "cwby-studios", categories: ["Website"], headline: "Creative studio and agency site based in Hollywood", stats: ["Hollywood", "Creative agency", "Premium design"] },
-  { name: "Vacaville Appliance", slug: "vacaville-appliance", categories: ["Website", "Enterprise"], headline: "Connected web, lead, and operating system for a local service business", stats: ["$144.3K invoiced YTD", "57 June jobs", "17 June leads"] },
-  { name: "Pearl Farms / Napa", slug: "pearl-farms", categories: ["Website", "AI", "Enterprise"], headline: "AI-assisted email and phone systems plus a Napa wine brand digital presence", stats: ["In progress", "Email + phone AI", "Wine brand presence"] },
   { name: "Lonely Love", slug: "lonely-love", categories: ["Website", "Fashion", "E-commerce"], headline: "E-commerce site for a clothing brand with a following", stats: ["Custom e-commerce", "Brand identity", "Full store"] },
   { name: "Onhizm", slug: "onhizm", categories: ["Website", "Fashion"], headline: "Custom site for a brand worn by celebrities", stats: ["Empire connections", "Custom redesign", "Premium brand"] },
-  { name: "The Sticker Smith", slug: "sticker-smith", categories: ["Website", "E-commerce"], headline: "Brand website that turned a print shop into a real business", stats: ["5x online visibility", "New revenue channel", "Pro brand identity"] },
   { name: "Manza Visuals", slug: "manza-visuals", categories: ["Website"], headline: "Portfolio site for a Bay Area videographer and visual artist", stats: ["Custom design", "Video portfolio", "Lead capture"] },
   { name: "fw.wheels", slug: "fw-wheels", categories: ["Website"], headline: "Wheel catalog and ordering system for auto dealer", stats: ["Full catalog", "MRR potential", "Custom built"] },
   { name: "Muddled by Mia", slug: "muddled-by-mia", categories: ["Website", "Restaurant"], headline: "Website for a cocktail and mixology brand", stats: ["Custom design", "Brand identity", "Full website"] },
@@ -141,7 +140,7 @@ export default function WorkPage() {
 
   const filtered =
     activeFilter === "All"
-      ? PROJECTS.filter((p) => p.featured !== false)
+      ? PROJECTS.filter((p) => p.featured === true)
       : PROJECTS.filter((p) =>
           p.categories.includes(activeFilter as Exclude<Category, "All">)
         );
@@ -276,23 +275,23 @@ export default function WorkPage() {
           {/* Hero — 2 col: title left, filter right */}
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-12 mb-16 pt-8">
             {/* Left */}
-            <div className="hero-animate hero-delay-1">
+            <div className="hero-animate hero-delay-1 max-w-[640px] lg:flex-1 min-w-0">
               <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-6">
                 Work
               </p>
               <h1 className="font-display text-[clamp(3rem,7vw,6rem)] tracking-[-0.03em] leading-[0.9] mb-6">
-                Everything I&apos;ve built.
+                The work that proves the system.
               </h1>
               <p className="text-text-secondary text-lg leading-relaxed max-w-[480px]">
-                Casinos, enterprise tools, e-commerce, AI systems, games, brand sites.
-                From local shops to six-figure operations.
+                The strongest proof first: connected websites, AI intake,
+                operating tools, and client systems built around real workflows.
               </p>
             </div>
 
             {/* Right — filter + count */}
-            <div className="hero-animate hero-delay-2 lg:text-right shrink-0">
+            <div className="hero-animate hero-delay-2 lg:text-right lg:w-[620px] shrink-0">
               <p className="text-text-muted text-[11px] font-mono tracking-wider uppercase mb-4">
-                {filtered.length} project{filtered.length !== 1 ? "s" : ""}
+                {filtered.length} {activeFilter === "All" ? "selected " : ""}project{filtered.length !== 1 ? "s" : ""}
               </p>
               <div className="flex flex-wrap lg:justify-end gap-2">
                 {CATEGORIES.map((cat) => (

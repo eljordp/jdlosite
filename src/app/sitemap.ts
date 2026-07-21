@@ -14,7 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/work`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
     { url: `${base}/work/vacaville-appliance`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.85 },
     { url: `${base}/work/dhl-translator`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.85 },
-    { url: `${base}/work/pearl-farms`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.75 },
+    { url: `${base}/work/pearls-farm`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.75 },
     { url: `${base}/about`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
     { url: `${base}/contact`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
     // Legal
