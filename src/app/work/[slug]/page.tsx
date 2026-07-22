@@ -100,8 +100,8 @@ const projects: Record<string, {
       { value: "4", label: "Operating lanes" },
       { value: "Ongoing", label: "Working relationship" },
     ],
-    screenshot: "/screenshots/dhl-translator.png",
-    liveUrl: "https://cubicship-translator.vercel.app",
+    screenshot: "/screenshots/travelyt.png",
+    liveUrl: "https://travelyt.us",
     noEmbed: true,
   },
   "vacaville-appliance": {

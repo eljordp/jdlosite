@@ -63,6 +63,16 @@ const cases: CaseStudy[] = [
     note: "Live demand queue, Jul 22, 2026. Sourced opportunities are not presented as closed contracts.",
   },
   {
+    name: "Mo / CubicShip / DHL / Travelyt",
+    category: "Nine-workstream operator ecosystem",
+    image: "/screenshots/travelyt.png",
+    href: "/work/dhl-translator",
+    headline: "One relationship spanning customer service, training, logistics, sales, and partnership decisions.",
+    body:
+      "Nine documented workstreams across the DHL counter, CubicShip, MEA freight, Travelyt, a private command center, and experimental sales prototypes.",
+    metrics: ["9 documented workstreams", "4 operating lanes", "Ongoing relationship"],
+  },
+  {
     name: "JOON11EE",
     category: "Multi-market rental platform",
     image: "/screenshots/joon11ee.png",
@@ -94,16 +104,6 @@ const cases: CaseStudy[] = [
       "Since joining around August 2025, the website and AI receptionist have expanded into lead capture, service information, customer intake, and day-to-day workflows.",
     metrics: ["$144.3K invoiced in 2026 through Jul 19", "57 new one-off jobs in June", "17 new leads in June"],
     note: "Business figures observed in Jobber. They show the environment the system supports; they are not presented as revenue created by JDLO alone.",
-  },
-  {
-    name: "Mo / CubicShip / DHL / Travelyt",
-    category: "Nine-workstream operator ecosystem",
-    image: "/screenshots/dhl-translator.png",
-    href: "/work/dhl-translator",
-    headline: "One relationship spanning customer service, training, logistics, sales, and partnership decisions.",
-    body:
-      "Nine documented workstreams across the DHL counter, CubicShip, MEA freight, Travelyt, a private command center, and experimental sales prototypes.",
-    metrics: ["9 documented workstreams", "4 operating lanes", "Ongoing relationship"],
   },
 ];
 
