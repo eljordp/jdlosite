@@ -73,17 +73,6 @@ const cases: CaseStudy[] = [
     metrics: ["9 documented workstreams", "4 operating lanes", "Ongoing relationship"],
   },
   {
-    name: "JOON11EE",
-    category: "Multi-market rental platform",
-    image: "/screenshots/joon11ee.png",
-    href: "/work/joon11ee",
-    headline: "A real audience moving through fleet discovery and qualified booking paths.",
-    body:
-      "Vehicle discovery, market-specific inventory, booking intake, conversion tracking, and operator workflows across Miami, LA/OC, and San Francisco.",
-    metrics: ["275 visitors in 7 days", "750 page views in 7 days", "92% mobile audience"],
-    note: "Vercel Analytics, Jul 14-21, 2026.",
-  },
-  {
     name: "The Sticker Smith / TSSPrint",
     category: "Local print + search system",
     image: "/screenshots/sticker-smith.png",
@@ -93,6 +82,17 @@ const cases: CaseStudy[] = [
       "Local-service pages, sticker and print discovery, portfolio proof, quote paths, and an operating layer for a Bay Area print business.",
     metrics: ["187 visitors in 7 days", "401 page views in 7 days", "85 visitors from Google"],
     note: "Vercel Analytics, Jul 14-21, 2026. Live at tssprint.com.",
+  },
+  {
+    name: "JOON11EE",
+    category: "Multi-market rental platform",
+    image: "/screenshots/joon11ee.png",
+    href: "/work/joon11ee",
+    headline: "A real audience moving through fleet discovery and qualified booking paths.",
+    body:
+      "Vehicle discovery, market-specific inventory, booking intake, conversion tracking, and operator workflows across Miami, LA/OC, and San Francisco.",
+    metrics: ["275 visitors in 7 days", "750 page views in 7 days", "92% mobile audience"],
+    note: "Vercel Analytics, Jul 14-21, 2026.",
   },
   {
     name: "Vacaville Appliance",
