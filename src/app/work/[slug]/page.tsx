@@ -91,13 +91,13 @@ const projects: Record<string, {
     noEmbed: true,
   },
   "dhl-translator": {
-    name: "Mo / DHL Systems",
+    name: "Mo / CubicShip / DHL / Travelyt",
     category: "Enterprise + Operations",
     headline: "One operator relationship became an ecosystem of customer, training, logistics, and decision-support systems",
-    description: "The translator was one entry point. Work for Mo has expanded into a private operations hub, customer onboarding and workflow materials, freight tools, public briefing pages, and decision support across Cubicship, MEA, and Travelyt. The proof is the range of systems built around how his businesses actually operate, not a claim that DHL corporate hired JDLO directly.",
+    description: "The translator was one entry point. Work for Mo expanded into staff training, CubicShip's public platform, private operating systems, freight and sales workflows, Travelyt's public product, and partnership decision support. The proof is nine documented workstreams built around how his businesses actually operate—not a claim that DHL corporate hired JDLO directly.",
     stats: [
-      { value: "6+", label: "Connected systems" },
-      { value: "100+", label: "Store-network context" },
+      { value: "9", label: "Documented workstreams" },
+      { value: "4", label: "Operating lanes" },
       { value: "Ongoing", label: "Working relationship" },
     ],
     screenshot: "/screenshots/dhl-translator.png",
@@ -120,14 +120,17 @@ const projects: Record<string, {
   },
   "pearls-farm": {
     name: "Pearls Farm",
-    category: "Farm Labor Contractor + Winery Infrastructure",
-    headline: "Building the digital infrastructure for a vineyard-services company and its wine brand",
-    description: "Jordan builds digital infrastructure for Pearls Farm Labor Inc., a farm labor contractor, as its embedded Social Media and Marketing Coordinator. The role covers two websites—Pearls Farm and Prosperando—plus multi-channel content planning, field photo and video, machinery-rental promotion, direct-message handling, and monthly reporting. The work is a connected winery and agricultural marketing operation, not a standalone AI experiment. Access, analytics, lead routing, and proof are being established before paid growth.",
+    category: "Website + Demand Engine + Social Distribution",
+    headline: "Building both sides of growth for a farm labor contractor: buyers who need crews and workers ready to staff them",
+    description: "Jordan is a contractor for Pearls Farm Labor Inc. He rebuilt the production website, created distinct crew-request and bilingual hiring paths, built a live opportunity engine from federal labor-demand records and grower research, and is developing the social distribution system around real field work. The same engagement also includes Prosperando's wine-brand presence and the measurement layer needed to learn what converts.",
     stats: [
-      { value: "2", label: "Websites in scope" },
-      { value: "4+", label: "Publishing channels" },
-      { value: "Embedded", label: "Company role" },
+      { value: "18", label: "Ready buyer contacts" },
+      { value: "8", label: "Active vineyard + field buyers" },
+      { value: "308", label: "Workers across top 2 opportunities" },
     ],
+    screenshot: "/screenshots/pearls-farm-site.png",
+    liveUrl: "https://pearlsfarminc.com",
+    noEmbed: true,
     customSections: true,
   },
   "sticker-smith": {
@@ -485,7 +488,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                   The Relationship
                 </p>
                 <h2 className="font-display text-[clamp(2rem,4vw,3.8rem)] tracking-[-0.03em] leading-[0.95] mb-6 max-w-[820px]">
-                  Not one tool. A growing operating ecosystem.
+                  Nine workstreams. One operator ecosystem.
                 </h2>
                 <p className="text-text-secondary text-[17px] leading-[1.8] max-w-[760px]">
                   The first visible build was a translator. The relationship kept expanding because each shipped tool exposed the next bottleneck: staff training, customer communication, internal coordination, freight intake, and decision support across several businesses.
@@ -498,31 +501,54 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                     number: "01",
                     title: "DHL Store Translator",
                     body: "A customer-facing translation tool built around real ServicePoint conversations so language does not stop a shipment or consume the counter team.",
+                    href: "https://cubicship-translator.vercel.app",
+                    link: "Open the translator",
                   },
                   {
                     number: "02",
-                    title: "CRA Training Simulator",
-                    body: "A structured competency and onboarding experience that turns operating knowledge into repeatable staff training instead of verbal handoffs.",
+                    title: "DHL Counter Training Game",
+                    body: "A live simulator that turns counter workflows, CRA shipping judgment, prohibited-item rules, and customer handling into repeatable staff certification.",
+                    href: "https://dhl-training-game.vercel.app",
+                    link: "Play the training game",
                   },
                   {
                     number: "03",
-                    title: "Cubicship Customer Systems",
-                    body: "Public pages, returns and shipping workflows, onboarding materials, and customer-facing tools connected to the wider store operation.",
+                    title: "CubicShip Public Platform",
+                    body: "The customer-facing shipping business: service discovery, locations, returns, order and quote paths, account flows, and the public trust layer around the store network.",
+                    href: "https://cubicship.com",
+                    link: "Visit CubicShip",
                   },
                   {
                     number: "04",
-                    title: "Private Operations Hub",
-                    body: "A living command center for active initiatives, meeting context, project memory, decisions, and the next useful action across Mo’s operating lanes.",
+                    title: "CubicShip Sales + Agent Systems",
+                    body: "Rate sheets, personalized agent kits, group-sales intake, quote support, training checklists, and customer follow-up workflows that turn store knowledge into a repeatable operating process.",
                   },
                   {
                     number: "05",
-                    title: "MEA + Freight Workflows",
-                    body: "Intake, quote-support, service explanations, and carrier-partner coordination materials designed to reduce back-and-forth without overstating the company’s role.",
+                    title: "Private Mo Operations Hub",
+                    body: "A protected command center for active initiatives, meeting context, project memory, decisions, compliance status, and the next useful action across Mo’s businesses.",
                   },
                   {
                     number: "06",
-                    title: "Travelyt Decision Support",
-                    body: "Opportunity briefs, custody and airline-acceptance research, public explanations, and decision tools used to move a complex travel concept toward viable partnerships.",
+                    title: "MEA + Freight Workflows",
+                    body: "Freight intake, quote support, service explanations, customer communication, and carrier-coordination materials designed to reduce back-and-forth without overstating MEA's role.",
+                  },
+                  {
+                    number: "07",
+                    title: "Travelyt Public Product",
+                    body: "The public platform for a verified third-party custody and check-in concept, with traveler education, intake, and a landside-only proposed pilot boundary.",
+                    href: "https://travelyt.us",
+                    link: "Visit Travelyt",
+                  },
+                  {
+                    number: "08",
+                    title: "Travelyt Partnership Decision Support",
+                    body: "Airline outreach kits, proposed pilot plans, custody diagrams, identity research, engineering review pages, and decision briefs. These are review artifacts—not proof of airline, airport, TSA, or IDEMIA approval.",
+                  },
+                  {
+                    number: "09",
+                    title: "Mo Suit 3D Sales Prototype",
+                    body: "An interactive 3D prototype exploring how a sales concept could be explained and demonstrated before committing to a larger product build.",
                   },
                 ].map((system, index) => (
                   <RevealOnScroll key={system.number} delay={index % 3}>
@@ -536,6 +562,11 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                       <p className="text-text-secondary text-[14px] leading-[1.75]">
                         {system.body}
                       </p>
+                      {system.href && (
+                        <a href={system.href} target="_blank" rel="noopener noreferrer" className="inline-block text-[12px] font-mono mt-7 hover:text-accent transition-colors">
+                          {system.link} &rarr;
+                        </a>
+                      )}
                     </article>
                   </RevealOnScroll>
                 ))}
@@ -670,18 +701,21 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               <RevealOnScroll>
                 <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-6">The Role</p>
                 <h2 className="font-display text-[clamp(2rem,4vw,3.8rem)] tracking-[-0.03em] leading-[0.95] mb-6 max-w-[860px]">
-                  Embedded across the company, the field, and the customer-facing layer.
+                  A contractor building the system that brings demand in—and makes capacity visible.
                 </h2>
                 <p className="text-text-secondary text-[17px] leading-[1.8] max-w-[780px]">
-                  Jordan reports to the owner and independently coordinates the monthly content calendar, publishing cadence, field capture, website work, direct messages, and performance reporting. That makes the engagement stronger than a site handoff: the digital system is being built from inside the operation it has to represent.
+                  Jordan works as a contractor for Pearls Farm Labor and coordinates the website, buyer-opportunity research, lead routing, publishing, field capture, direct messages, and reporting with the owner. It is not a site handoff. It is the connected commercial layer around a licensed farm labor operation.
                 </p>
               </RevealOnScroll>
               <div className="grid md:grid-cols-2 gap-4 mt-14">
                 {[
-                  { number: "01", title: "Pearls Farm website", body: "Take ownership of the company website, domain, forms, service information, conversion paths, Search Console, analytics, and the proof vineyard owners need before contacting the team.", href: "https://pearlsfarminc.com", link: "Visit Pearls Farm" },
-                  { number: "02", title: "Prosperando wine brand", body: "Build the reference website and digital direction for Prosperando, connecting the Flores family story, Napa wine positioning, product presentation, and the path toward a compliant production experience.", href: "https://prosperando-omega.vercel.app", link: "View the reference site" },
-                  { number: "03", title: "Social operating system", body: "Plan and publish across Instagram, Facebook, LinkedIn, and YouTube; capture field photo and video; test hooks and formats; manage responses; and turn seasonal farm work into an evidence-backed content engine.", href: "https://www.instagram.com/pearlsfarminc/", link: "View Instagram" },
-                  { number: "04", title: "Measurement + lead routing", body: "Reconcile contact data, separate vineyard-owner inquiries from job applicants, establish conversion tracking, and report reach, engagement, leads, and growth before the company spends on paid distribution.", href: "https://pearlsfarminc.com/contact", link: "View the public contact path" },
+                  { number: "01", title: "New production website", body: "Rebuilt the public business around what vineyard owners actually need: clear services, eight county pages, licensing proof, field credibility, and a direct Request a crew path.", href: "https://pearlsfarminc.com", link: "Visit the new website" },
+                  { number: "02", title: "Buyer demand engine", body: "Built a ranked business-development queue from current federal H-2A demand, past buyer history, grower research, and verified contact data—while excluding likely competing labor contractors.", href: "https://pearls-h2a.vercel.app", link: "Open the live demand queue" },
+                  { number: "03", title: "Crew-request pipeline", body: "Structured buyer intake around crop, acreage, location, work type, timing, and contact details, then routed submissions into a private operating inbox so demand can be qualified and followed up.", href: "https://pearlsfarminc.com/request-a-crew", link: "View the crew request" },
+                  { number: "04", title: "Bilingual worker recruiting", body: "Separated customer demand from worker applications and created a Spanish-first hiring path, including direct WhatsApp access, so Pearls can build the labor side without mixing it into buyer inquiries.", href: "https://pearlsfarminc.com/careers", link: "View the hiring path" },
+                  { number: "05", title: "Social distribution system", body: "Turns real crews, equipment, seasonal work, and field results into Instagram, TikTok, Facebook, and short-form proof designed to reach both vineyard decision-makers and prospective workers.", href: "https://www.instagram.com/pearlsfarmlabor/", link: "View Pearls social" },
+                  { number: "06", title: "Prosperando wine brand", body: "Built the reference website and digital direction for Prosperando, connecting the Flores family story, Napa wine positioning, product presentation, and the path toward a compliant production experience.", href: "https://prosperando-omega.vercel.app", link: "View the wine-brand site" },
+                  { number: "07", title: "Measurement + search infrastructure", body: "Connected analytics, conversion events, Search Console, technical SEO, and owner reporting so Pearls can see which pages, channels, and inquiries create movement before scaling paid distribution.", href: "https://pearlsfarminc.com/service-areas", link: "Explore the search footprint" },
                 ].map((system, index) => (
                   <RevealOnScroll key={system.number} delay={index % 2}>
                     <article className="h-full rounded-2xl border border-border bg-bg p-7 md:p-8 flex flex-col">
@@ -701,10 +735,10 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               <RevealOnScroll>
                 <p className="text-text-muted text-[11px] tracking-[0.5em] uppercase font-mono mb-6">What This Proves</p>
                 <h2 className="font-display text-[clamp(2rem,4vw,3.8rem)] tracking-[-0.03em] leading-[0.95] mb-7 max-w-[820px]">
-                  A digital presence is infrastructure when it connects ownership, publishing, communication, and measurement.
+                  The system creates two kinds of movement: qualified buyers coming in and crews ready to serve them.
                 </h2>
                 <p className="text-text-secondary text-[17px] leading-[1.8] max-w-[780px]">
-                  The Pearls Farm work spans a vineyard-services company and a Napa wine brand. Current proof is the role, the systems, and the live surfaces; traffic, lead, and revenue outcomes will be added only after the new measurement layer has enough data.
+                  The live queue currently contains 18 ready buyer contacts and eight active vineyard or field buyers. Its two largest current vineyard opportunities request 160 and 148 workers—308 combined. Those are sourced and qualified opportunities, not closed contracts, but they prove JDLO is doing more than publishing a site: it is finding demand Pearls can evaluate, pursue, and fulfill while the website, social channels, and recruiting system support the full path.
                 </p>
               </RevealOnScroll>
             </div>

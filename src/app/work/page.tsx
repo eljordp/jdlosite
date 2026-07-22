@@ -11,6 +11,7 @@ import PageShell from "@/components/PageShell";
 type Category =
   | "All"
   | "Selected"
+  | "Mo Ecosystem"
   | "Website"
   | "AI"
   | "Enterprise"
@@ -28,6 +29,7 @@ type Category =
 const CATEGORIES: Category[] = [
   "All",
   "Selected",
+  "Mo Ecosystem",
   "Website",
   "E-commerce",
   "AI",
@@ -54,14 +56,16 @@ interface Project {
 }
 
 const PROJECTS: Project[] = [
+  { name: "Pearls Farm", slug: "pearls-farm", categories: ["Website", "AI", "Enterprise"], headline: "A new production website connected to crew demand, bilingual recruiting, social distribution, and a live buyer-opportunity engine", stats: ["18 ready contacts", "8 active buyers", "308 workers / top 2"], featured: true },
   { name: "JOON11EE", slug: "joon11ee", categories: ["Website", "Enterprise"], headline: "Multi-market exotic rental platform built for discovery, fleet browsing, and qualified booking requests", stats: ["275 visitors / 7d", "750 page views / 7d", "92% mobile"], featured: true },
   { name: "The Sticker Smith / TSSPrint", slug: "sticker-smith", categories: ["Website", "E-commerce"], headline: "A live local print platform creating search discovery, service demand, and direct quote paths", stats: ["187 visitors / 7d", "401 page views / 7d", "85 from Google"], featured: true },
   { name: "Vacaville Appliance", slug: "vacaville-appliance", categories: ["Website", "Enterprise"], headline: "Connected web, lead, and operating system for a local service business", stats: ["$144.3K invoiced YTD", "57 June jobs", "17 June leads"], featured: true },
-  { name: "CubicShip", slug: "cubicship", categories: ["Website", "Enterprise", "SaaS"], headline: "A public shipping platform connected to customer orders, quotes, locations, freight, and branch workflows", stats: ["15 managed locations", "512 Google reviews", "67 page views / 7d"], featured: true },
-  { name: "Mo / DHL Systems", slug: "dhl-translator", categories: ["Enterprise", "Tool", "AI"], headline: "Six connected systems across customer service, training, operations, freight, and decision support", stats: ["6+ connected systems", "100+ store context", "Ongoing relationship"], featured: true },
+  { name: "CubicShip", slug: "cubicship", categories: ["Mo Ecosystem", "Website", "Enterprise", "SaaS"], headline: "A public shipping platform connected to customer orders, quotes, locations, freight, and branch workflows", stats: ["15 managed locations", "512 Google reviews", "67 page views / 7d"], featured: true },
+  { name: "Mo / CubicShip / DHL / Travelyt", slug: "dhl-translator", categories: ["Mo Ecosystem", "Enterprise", "Tool", "AI"], headline: "Nine documented workstreams across customer service, training, operations, freight, sales, and partnership decision support", stats: ["9 workstreams", "4 operating lanes", "Ongoing relationship"], featured: true },
+  { name: "DHL ServicePoint Translator", slug: "dhl-servicepoint-translator", url: "https://cubicship-translator.vercel.app", categories: ["Mo Ecosystem", "AI", "Tool"], headline: "Customer-facing translation for real international shipping conversations at the counter", stats: ["Live tool", "100+ store context", "Customer service"] },
+  { name: "DHL Counter Training Game", slug: "dhl-training-game", url: "https://dhl-training-game.vercel.app", categories: ["Mo Ecosystem", "Game", "Enterprise"], headline: "A repeatable training simulator for counter workflows, shipping judgment, and staff certification", stats: ["Live simulator", "Training workflow", "Pass-to-certify"] },
   { name: "Pomaika\u2018i Co", slug: "pomaikai", categories: ["Website", "AI"], headline: "A six-route business platform with real systems proof and visible JDLO build credit", stats: ["6 public routes", "3 system stories", "JDLO AI credit"], featured: true },
   { name: "Lauren Rees — ReesVIP + Velvet", slug: "lauren-rees", categories: ["AI", "SaaS"], headline: "A live promoter platform plus the white-label product concept derived from it", stats: ["ReesVIP live", "AI concierge + CRM", "Velvet product concept"], featured: true },
-  { name: "Pearls Farm", slug: "pearls-farm", categories: ["Website", "AI", "Enterprise"], headline: "Digital infrastructure across two websites, social channels, field content, and measurement", stats: ["2 websites", "4+ social channels", "Field + reporting system"], featured: true },
   { name: "Paper Trader", slug: "paper-trader", url: "https://paper-trader-two-eta.vercel.app", categories: ["SaaS", "Tool"], headline: "Funded-eval simulator for traders — practice through tier ladders", stats: ["Tier ladder", "Live simulation", "Auth + DB"] },
   { name: "HOA Dispute Bot", slug: "hoa-dispute", categories: ["AI", "Tool"], headline: "AI desktop app that coaches homeowners through HOA disputes in real time", stats: ["Electron app", "AI overlay", "Real-time guidance"] },
   { name: "No Birdz Wings", slug: "nobirdz-wings", url: "https://nobirdz-wings.vercel.app", categories: ["Website", "Restaurant"], headline: "Atlanta vegan wings brand site with menu and online ordering", stats: ["Atlanta", "Brand identity", "Menu + ordering"] },
@@ -75,7 +79,7 @@ const PROJECTS: Project[] = [
   { name: "OlyLife Ohana", slug: "olylife-ohana", categories: ["Website", "E-commerce", "Health"], headline: "Health & wellness brand site for PEMF and Terahertz therapy devices", stats: ["50K+ customers", "E-commerce", "Custom design"] },
   { name: "JDLO CRM", slug: "jdlo-crm", categories: ["SaaS", "Tool"], headline: "Custom CRM for managing clients, leads, and pipeline", stats: ["Full CRM", "Pipeline mgmt", "Custom built"] },
   { name: "Outreach Engine", slug: "outreach-engine", url: "https://outreach-engine-pearl-pi.vercel.app", categories: ["SaaS", "Tool", "AI"], headline: "Sales outreach automation tool with AI-generated messaging", stats: ["Auto sequences", "AI messaging", "Pipeline sync"] },
-  { name: "Travelyt", slug: "travelyt", url: "https://travelyt-psi.vercel.app", categories: ["Website", "SaaS"], headline: "Baggage delivery service platform for travelers", stats: ["Booking flow", "Quote system", "Full platform"] },
+  { name: "Travelyt", slug: "travelyt", url: "https://travelyt.us", categories: ["Mo Ecosystem", "Website", "SaaS"], headline: "Verified third-party custody and check-in workflow for a proposed landside travel pilot", stats: ["Custody workflow", "Landside boundary", "Pilot decision support"] },
   { name: "Miiir Beats", slug: "miiir-beats", url: "https://miiir-beats.vercel.app", categories: ["Website", "Creator"], headline: "Music producer portfolio and beat store", stats: ["Beat store", "Portfolio", "Custom built"] },
   { name: "Kaitlyn Edejer", slug: "kaitlyn-edejer", url: "https://kaitlynedejer-v2.vercel.app", categories: ["Website", "Creator"], headline: "Influencer site with content reel, brand deals, and contact", stats: ["Influencer site", "Content reel", "Brand deals"] },
   { name: "Operator OS", slug: "operator-os", url: "https://operator-os-peach.vercel.app", categories: ["SaaS", "AI", "Tool"], headline: "Experimental operating system for solo founders", stats: ["Product experiment", "AI-native", "Internal tool"] },

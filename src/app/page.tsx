@@ -52,6 +52,17 @@ type CaseStudy = {
 
 const cases: CaseStudy[] = [
   {
+    name: "Pearls Farm",
+    category: "Website + demand engine + social distribution",
+    image: "/screenshots/pearls-farm-site.png",
+    href: "/work/pearls-farm",
+    headline: "A new public website connected to buyer demand, recruiting, and field proof.",
+    body:
+      "As a contractor for Pearls Farm Labor, Jordan rebuilt the company website, created the crew-request and bilingual hiring paths, sourced high-capacity buyer opportunities, and is building the social system that turns real field work into demand.",
+    metrics: ["18 ready buyer contacts", "8 active vineyard + field buyers", "308 workers across the top 2 opportunities"],
+    note: "Live demand queue, Jul 22, 2026. Sourced opportunities are not presented as closed contracts.",
+  },
+  {
     name: "JOON11EE",
     category: "Multi-market rental platform",
     image: "/screenshots/joon11ee.png",
@@ -85,25 +96,14 @@ const cases: CaseStudy[] = [
     note: "Business figures observed in Jobber. They show the environment the system supports; they are not presented as revenue created by JDLO alone.",
   },
   {
-    name: "Mo / DHL Systems",
-    category: "Enterprise + operator systems",
+    name: "Mo / CubicShip / DHL / Travelyt",
+    category: "Nine-workstream operator ecosystem",
     image: "/screenshots/dhl-translator.png",
     href: "/work/dhl-translator",
-    headline: "A long-term systems relationship, not a one-off website.",
+    headline: "One relationship spanning customer service, training, logistics, sales, and partnership decisions.",
     body:
-      "Translation, private hubs, customer workflows, freight tools, briefing pages, and decision support built across a long-running systems relationship.",
-    metrics: ["DHL store translator", "Private operations hub", "Customer + freight workflows"],
-  },
-  {
-    name: "Pearls Farm",
-    category: "Farm contractor + winery infrastructure",
-    visualLabel: "PEARLS FARM\nNAPA, CALIFORNIA\nDIGITAL INFRASTRUCTURE",
-    href: "/work/pearls-farm",
-    headline: "Two websites, social publishing, field content, and measurement—run as one system.",
-    body:
-      "Jordan builds digital infrastructure for Pearls Farm Labor Inc., a farm labor contractor, as its embedded Social Media and Marketing Coordinator—across the company site, Prosperando, publishing, field capture, DMs, and reporting.",
-    metrics: ["2 websites in scope", "4+ publishing channels", "Field + reporting workflow"],
-    note: "Current role and active systems. Outcome claims will follow verified measurement.",
+      "Nine documented workstreams across the DHL counter, CubicShip, MEA freight, Travelyt, a private command center, and experimental sales prototypes.",
+    metrics: ["9 documented workstreams", "4 operating lanes", "Ongoing relationship"],
   },
 ];
 
@@ -129,12 +129,12 @@ function Hero() {
               </p>
               <div className="flex flex-col sm:flex-row gap-3 sm:items-center mt-7 md:mt-9">
                 <GlowLink href="/contact?ref=home-hero" className="w-full sm:w-auto">Find My Revenue Leak</GlowLink>
-                <Link href="#case-studies" className="ghost-btn w-full sm:w-auto">See Vacaville proof</Link>
+                <Link href="#case-studies" className="ghost-btn w-full sm:w-auto">See Revenue Systems at Work</Link>
               </div>
-              <Link href="/work/vacaville-appliance" className="mt-5 flex items-center justify-between gap-4 rounded-xl border border-border bg-surface px-4 py-3.5 lg:hidden">
+              <Link href="/work/pearls-farm" className="mt-5 flex items-center justify-between gap-4 rounded-xl border border-border bg-surface px-4 py-3.5 lg:hidden">
                 <span>
-                  <span className="block text-[10px] uppercase tracking-[0.22em] font-mono text-text-muted">Vacaville · observed in Jobber</span>
-                  <span className="block mt-1.5 text-sm text-text">17 June leads · 57 new one-off jobs</span>
+                  <span className="block text-[10px] uppercase tracking-[0.22em] font-mono text-text-muted">Pearls Farm · live demand system</span>
+                  <span className="block mt-1.5 text-sm text-text">8 active buyers · 308 workers across the top 2</span>
                 </span>
                 <span className="text-lg" aria-hidden="true">→</span>
               </Link>
